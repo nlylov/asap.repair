@@ -1564,8 +1564,9 @@ button.portfolio-card__video {
 
 .footer__legal {
   display: flex;
-  gap: 24px;
+  gap: 12px 24px;
   justify-content: center;
+  flex-wrap: wrap;
   margin-top: 10px;
 }
 

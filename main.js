@@ -947,6 +947,8 @@ document.addEventListener('components-loaded', () => {
             </div>
             <a href="/reviews/" class="nav-link">Reviews</a>
             <a href="/faq/" class="nav-link">FAQ</a>
+            <a href="/case-studies/" class="nav-link">Case Studies</a>
+            <a href="/blog/" class="nav-link">Blog</a>
             <button type="button" class="btn btn--accent" style="margin-top:16px" data-open-quote>Get a Free Quote</button>
           </nav>
         `;
