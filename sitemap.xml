@@ -532,4 +532,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+    <!-- ========================== -->
+    <!-- BLOG                        -->
+    <!-- ========================== -->
+
+    <url>
+        <loc>https://asap.repair/blog/</loc>
+        <lastmod>2026-04-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://asap.repair/blog/furniture-assembly-cost-nyc/</loc>
+        <lastmod>2026-04-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://asap.repair/blog/tv-mounting-nyc-apartment/</loc>
+        <lastmod>2026-04-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://asap.repair/blog/handyman-queens-nyc/</loc>
+        <lastmod>2026-04-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
 </urlset>
