@@ -57,6 +57,14 @@
             chatScript.src = '/chat.js';
             chatScript.defer = true;
             document.body.appendChild(chatScript);
+
+            // Load related-content component when placeholder exists
+            if (document.getElementById('related-content')) {
+                const rcScript = document.createElement('script');
+                rcScript.src = '/components/related-content.js';
+                rcScript.defer = true;
+                document.body.appendChild(rcScript);
+            }
         } catch (err) {
             console.error('[loader] Failed to load components:', err);
         }
