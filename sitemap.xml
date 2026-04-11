@@ -538,6 +538,17 @@
     <!-- ========================== -->
 
     <url>
+        <loc>https://asap.repair/case-studies/</loc>
+        <lastmod>2026-04-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- ========================== -->
+    <!-- BLOG                        -->
+    <!-- ========================== -->
+
+    <url>
         <loc>https://asap.repair/blog/</loc>
         <lastmod>2026-04-11</lastmod>
         <changefreq>weekly</changefreq>
