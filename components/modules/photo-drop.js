@@ -7,7 +7,7 @@
    Auto-detects service from URL path.
    ============================================ */
 
-const API_URL = 'https://repair-asap-proxy-production.up.railway.app/api/quote';
+const API_URL = 'https://crm.asap.repair/api/widget/quote';
 
 // Map URL path segments → service display names
 const SERVICE_MAP = {
