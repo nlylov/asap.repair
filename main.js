@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const inlineAddressGroup = document.getElementById('inlineAddressGroup');
   const inlineAddressInput = document.getElementById('inline-address');
   const inlineDateClear = document.getElementById('inlineDateClear');
-  const SLOTS_API = 'https://repair-asap-proxy-production.up.railway.app/api/calendar-slots';
+  const SLOTS_API = 'https://crm.asap.repair/api/calendar/slots';
 
   // Date change → fetch time slots
   if (inlineDateInput) {
@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-          const response = await fetch('https://repair-asap-proxy-production.up.railway.app/api/quote', {
+          const response = await fetch('https://crm.asap.repair/api/widget/quote', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),

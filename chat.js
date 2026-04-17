@@ -3,7 +3,7 @@
 
   // --- КОНФИГУРАЦИЯ ---
   const config = {
-    apiEndpoint: 'https://repair-asap-proxy-production.up.railway.app',
+    apiEndpoint: 'https://crm.asap.repair',
     fontFamily: "'Outfit', 'Inter', sans-serif",
     storageKey: 'repair_asap_thread_id'
   };
@@ -435,7 +435,11 @@
 
   async function initThread() {
     const storedThreadId = localStorage.getItem(config.storageKey);
-    if (storedThreadId) {
+    // Old proxy used OpenAI thread IDs (thread_xxx). New CRM endpoints use
+    // their own format. Drop legacy IDs so we mint a fresh thread.
+    if (storedThreadId && storedThreadId.startsWith('thread_')) {
+      localStorage.removeItem(config.storageKey);
+    } else if (storedThreadId) {
       state.threadId = storedThreadId;
       if (document.getElementById('repair-asap-chat-messages').children.length === 0) {
         addMessageToUI('bot', 'Hi! 👋 I\'m here to help with your project. What do you need done?');
@@ -443,7 +447,7 @@
       return;
     }
     try {
-      const response = await fetch(`${config.apiEndpoint}/api/thread`, { method: 'POST' });
+      const response = await fetch(`${config.apiEndpoint}/api/widget/thread`, { method: 'POST' });
       if (response.ok) {
         const data = await response.json();
         state.threadId = data.threadId;
@@ -467,7 +471,7 @@
     showLoading();
 
     try {
-      const response = await fetch(`${config.apiEndpoint}/api/message`, {
+      const response = await fetch(`${config.apiEndpoint}/api/widget/message`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ threadId: state.threadId, message: message, pageContext: window.location.pathname })
@@ -542,7 +546,7 @@
 
       showLoading();
 
-      const response = await fetch(`${config.apiEndpoint}/api/chat-photo`, {
+      const response = await fetch(`${config.apiEndpoint}/api/widget/chat-photo`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

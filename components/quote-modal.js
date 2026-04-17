@@ -4,8 +4,8 @@
 (function () {
     'use strict';
 
-    const API_URL = 'https://repair-asap-proxy-production.up.railway.app/api/quote';
-    const SLOTS_API = 'https://repair-asap-proxy-production.up.railway.app/api/calendar-slots';
+    const API_URL = 'https://crm.asap.repair/api/widget/quote';
+    const SLOTS_API = 'https://crm.asap.repair/api/calendar/slots';
     const MAX_PHOTOS = 5;
     const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 
@@ -208,7 +208,7 @@
     // ---- Returning Customer Detection ----
     const phoneField = form.querySelector('#modal-phone');
     const nameField = form.querySelector('#modal-name');
-    const CUSTOMER_API = 'https://repair-asap-proxy-production.up.railway.app/api/check-customer';
+    const CUSTOMER_API = 'https://crm.asap.repair/api/widget/check-customer';
     let customerChecked = false;
 
     if (phoneField) {
