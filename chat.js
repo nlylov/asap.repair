@@ -447,7 +447,16 @@
       return;
     }
     try {
-      const response = await fetch(`${config.apiEndpoint}/api/widget/thread`, { method: 'POST' });
+      const sessionContext = {};
+      try { sessionContext.page = window.location.href; } catch (_) {}
+      try { sessionContext.referrer = document.referrer || ''; } catch (_) {}
+      try { sessionContext.language = navigator.language || ''; } catch (_) {}
+      try { sessionContext.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (_) {}
+      const response = await fetch(`${config.apiEndpoint}/api/widget/thread`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(sessionContext),
+      });
       if (response.ok) {
         const data = await response.json();
         state.threadId = data.threadId;
