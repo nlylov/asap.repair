@@ -103,7 +103,8 @@
     (async function () {
       const grid = document.getElementById('cs-grid');
       try {
-        const res = await fetch('https://crm.asap.repair/api/public/case-studies?limit=50');
+        // org=repair-asap is required by the CRM public case-studies endpoint
+        const res = await fetch('https://crm.asap.repair/api/public/case-studies?org=repair-asap&limit=50');
         const { studies } = await res.json();
 
         if (!studies || studies.length === 0) {

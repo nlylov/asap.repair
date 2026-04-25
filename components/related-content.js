@@ -24,8 +24,8 @@
   let studies = [];
   try {
     const url = category
-      ? `https://crm.asap.repair/api/public/case-studies?limit=3&category=${category}`
-      : `https://crm.asap.repair/api/public/case-studies?limit=3`;
+      ? `https://crm.asap.repair/api/public/case-studies?org=repair-asap&limit=3&category=${category}`
+      : `https://crm.asap.repair/api/public/case-studies?org=repair-asap&limit=3`;
     const res = await fetch(url);
     if (res.ok) {
       const data = await res.json();
