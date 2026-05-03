@@ -59,6 +59,49 @@ window.initPlacesAutocomplete = initPlacesAutocomplete;
    -------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ---- GA4 Conversion Event Tracking ----
+  function trackEvent(eventName, params) {
+    if (typeof gtag === 'function') {
+      gtag('event', eventName, params || {});
+    }
+  }
+
+  // Track all phone link clicks
+  document.addEventListener('click', (e) => {
+    const telLink = e.target.closest('a[href^="tel:"]');
+    if (telLink) {
+      trackEvent('phone_click', {
+        event_category: 'contact',
+        event_label: telLink.textContent.trim(),
+        link_url: telLink.href,
+      });
+    }
+
+    // Track SMS link clicks
+    const smsLink = e.target.closest('a[href^="sms:"]');
+    if (smsLink) {
+      trackEvent('sms_click', {
+        event_category: 'contact',
+        event_label: smsLink.textContent.trim(),
+        link_url: smsLink.href,
+      });
+    }
+  });
+
+  // ---- Mobile Sticky CTA Bar (hide when footer visible) ----
+  const stickyBar = document.getElementById('mobileStickyCtaBar');
+  if (stickyBar) {
+    const footerEl = document.getElementById('site-footer');
+    if (footerEl) {
+      const stickyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          stickyBar.classList.toggle('hidden', entry.isIntersecting);
+        });
+      }, { threshold: 0.1 });
+      stickyObserver.observe(footerEl);
+    }
+  }
+
   // ---- Scroll Reveal (Intersection Observer) ----
   const revealElements = document.querySelectorAll('.reveal');
   const revealObserver = new IntersectionObserver((entries) => {
@@ -359,6 +402,12 @@ document.addEventListener('DOMContentLoaded', () => {
           const result = await response.json();
 
           if (response.ok && result.success) {
+            // GA4: Track successful form submission
+            trackEvent('quote_form_submit', {
+              event_category: 'lead',
+              event_label: payload.service || 'unknown',
+              form_type: 'inline',
+            });
             // Dynamic success screen with booking details
             let successHtml = '';
             if (result.booked && payload.time) {

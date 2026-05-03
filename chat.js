@@ -423,6 +423,11 @@
       chatWindow.classList.add('open');
       if (isMobile) container.classList.add('mobile-active');
 
+      // GA4: Track chat open
+      if (typeof gtag === 'function') {
+        gtag('event', 'chat_open', { event_category: 'engagement' });
+      }
+
       setTimeout(() => {
         const msgs = document.getElementById('repair-asap-chat-messages');
         msgs.scrollTop = msgs.scrollHeight;

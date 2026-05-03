@@ -153,6 +153,14 @@
     window.openQuoteModal = function (serviceValue) {
         modal.classList.add('active');
         modal.setAttribute('aria-hidden', 'false');
+
+        // GA4: Track quote modal open
+        if (typeof gtag === 'function') {
+            gtag('event', 'quote_modal_open', {
+                event_category: 'engagement',
+                event_label: serviceValue || 'general',
+            });
+        }
         // Lock body scroll (iOS-safe)
         const scrollY = window.scrollY;
         document.body.style.position = 'fixed';
@@ -632,6 +640,14 @@
             const result = await response.json();
 
             if (response.ok && result.success) {
+                // GA4: Track successful modal form submission
+                if (typeof gtag === 'function') {
+                    gtag('event', 'quote_modal_submit', {
+                        event_category: 'lead',
+                        event_label: payload.service || 'unknown',
+                        form_type: 'modal',
+                    });
+                }
                 // Dynamic success screen
                 const titleEl = document.getElementById('successTitle');
                 const msgEl = document.getElementById('successMessage');

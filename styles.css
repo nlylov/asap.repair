@@ -5429,3 +5429,138 @@ button.portfolio-card__video {
     font-size: 26px;
   }
 }
+
+/* ============================================
+   HERO — SMS/Photo CTA
+   ============================================ */
+.hero__photo-cta {
+  margin-bottom: 32px;
+}
+
+.hero__sms-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s var(--ease);
+  padding: 8px 0;
+}
+
+.hero__sms-link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.hero__sms-link svg {
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+/* ============================================
+   FORM — Microcopy
+   ============================================ */
+.form-microcopy {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+/* ============================================
+   MOBILE STICKY CTA BAR
+   ============================================ */
+.mobile-sticky-cta {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-sticky-cta {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 998;
+    background: rgba(10, 15, 28, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--border-accent);
+    padding: 10px 12px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    gap: 8px;
+    transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+  }
+
+  .mobile-sticky-cta.hidden {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .mobile-sticky-cta__btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 8px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.2s var(--ease);
+    border: none;
+    cursor: pointer;
+  }
+
+  .mobile-sticky-cta__btn svg {
+    flex-shrink: 0;
+  }
+
+  .mobile-sticky-cta__btn--call {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+  }
+
+  .mobile-sticky-cta__btn--call:hover {
+    background: var(--accent-subtle);
+  }
+
+  .mobile-sticky-cta__btn--text {
+    background: transparent;
+    border: 1px solid var(--text-muted);
+    color: var(--text-primary);
+  }
+
+  .mobile-sticky-cta__btn--text:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .mobile-sticky-cta__btn--quote {
+    background: linear-gradient(135deg, var(--accent), #b8943f);
+    color: var(--bg-primary);
+    box-shadow: 0 2px 12px rgba(201, 168, 76, 0.3);
+  }
+
+  .mobile-sticky-cta__btn--quote:hover {
+    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.4);
+    transform: translateY(-1px);
+  }
+
+  /* Offset body content so it's not hidden behind sticky bar */
+  body {
+    padding-bottom: 72px;
+  }
+
+  /* Move chat widget above sticky bar */
+  #repair-asap-chatbot-container {
+    bottom: 80px !important;
+  }
+}
