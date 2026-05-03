@@ -457,7 +457,7 @@
       try { sessionContext.referrer = document.referrer || ''; } catch (_) {}
       try { sessionContext.language = navigator.language || ''; } catch (_) {}
       try { sessionContext.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (_) {}
-      const response = await fetch(`${config.apiEndpoint}/api/widget/thread`, {
+      const response = await fetch(`${config.apiEndpoint}/api/widget/thread?org=repair-asap`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(sessionContext),
