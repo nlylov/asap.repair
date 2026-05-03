@@ -5554,13 +5554,12 @@ button.portfolio-card__video {
     transform: translateY(-1px);
   }
 
-  /* Offset body content so it's not hidden behind sticky bar */
-  body {
+  /* Offset body and chat widget ONLY when sticky bar is present on this page */
+  body:has(.mobile-sticky-cta) {
     padding-bottom: 72px;
   }
 
-  /* Move chat widget above sticky bar */
-  #repair-asap-chatbot-container {
+  body:has(.mobile-sticky-cta) #repair-asap-chatbot-container {
     bottom: 80px !important;
   }
 }
