@@ -631,17 +631,19 @@
     padding: 50px 0;
   }
   .rsm-viewport {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 16 / 10;
   }
   .rsm-callout__pill {
-    display: none;
+    font-size: 9px;
+    padding: 3px 6px;
+    backdrop-filter: blur(6px);
   }
   .rsm-callout__line {
-    display: none;
+    width: 8px;
   }
   .rsm-callout__dot {
-    width: 18px;
-    height: 18px;
+    width: 10px;
+    height: 10px;
   }
   .rsm-detail__cta {
     flex-direction: column;
