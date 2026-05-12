@@ -438,6 +438,27 @@
     }
   }
 
+  function getSessionContext() {
+    const sessionContext = {};
+    try { sessionContext.page = window.location.href; } catch (_) {}
+    try { sessionContext.referrer = document.referrer || ''; } catch (_) {}
+    try { sessionContext.language = navigator.language || ''; } catch (_) {}
+    try { sessionContext.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (_) {}
+    return sessionContext;
+  }
+
+  async function notifyWidgetVisit(threadId) {
+    try {
+      await fetch(`${config.apiEndpoint}/api/widget/visit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.assign({ threadId: threadId }, getSessionContext())),
+      });
+    } catch (e) {
+      console.warn('Visit notification failed', e);
+    }
+  }
+
   async function initThread() {
     const storedThreadId = localStorage.getItem(config.storageKey);
     // Old proxy used OpenAI thread IDs (thread_xxx). New CRM endpoints use
@@ -446,17 +467,14 @@
       localStorage.removeItem(config.storageKey);
     } else if (storedThreadId) {
       state.threadId = storedThreadId;
+      notifyWidgetVisit(storedThreadId);
       if (document.getElementById('repair-asap-chat-messages').children.length === 0) {
         addMessageToUI('bot', 'Hi! 👋 I\'m here to help with your project. What do you need done?');
       }
       return;
     }
     try {
-      const sessionContext = {};
-      try { sessionContext.page = window.location.href; } catch (_) {}
-      try { sessionContext.referrer = document.referrer || ''; } catch (_) {}
-      try { sessionContext.language = navigator.language || ''; } catch (_) {}
-      try { sessionContext.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (_) {}
+      const sessionContext = getSessionContext();
       const response = await fetch(`${config.apiEndpoint}/api/widget/thread?org=repair-asap`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
