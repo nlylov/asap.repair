@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const inlineAddressGroup = document.getElementById('inlineAddressGroup');
   const inlineAddressInput = document.getElementById('inline-address');
   const inlineDateClear = document.getElementById('inlineDateClear');
-  const SLOTS_API = 'https://crm.asap.repair/api/calendar/slots';
+  const SLOTS_API = 'https://crm.asap.repair/api/calendar/slots?org=repair-asap';
 
   // Date change → fetch time slots
   if (inlineDateInput) {
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
       inlineTimeSlotsEl.innerHTML = '<div class="time-slots__loading"><span class="spinner-sm"></span> Loading available times...</div>';
 
       try {
-        const resp = await fetch(`${SLOTS_API}?date=${date}`);
+        const resp = await fetch(`${SLOTS_API}&date=${date}`);
         const data = await resp.json();
 
         if (!data.slots || data.slots.length === 0) {

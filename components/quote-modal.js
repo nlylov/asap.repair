@@ -5,7 +5,7 @@
     'use strict';
 
     const API_URL = 'https://crm.asap.repair/api/widget/quote';
-    const SLOTS_API = 'https://crm.asap.repair/api/calendar/slots';
+    const SLOTS_API = 'https://crm.asap.repair/api/calendar/slots?org=repair-asap';
     const MAX_PHOTOS = 5;
     const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 
@@ -96,7 +96,7 @@
             timeSlotsEl.innerHTML = '<div class="time-slots__loading"><span class="spinner-sm"></span> Loading available times...</div>';
 
             try {
-                const resp = await fetch(`${SLOTS_API}?date=${date}`);
+                const resp = await fetch(`${SLOTS_API}&date=${date}`);
                 const data = await resp.json();
 
                 if (!data.slots || data.slots.length === 0) {
