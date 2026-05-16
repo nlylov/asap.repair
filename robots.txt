@@ -1,5 +1,7 @@
 # Repair Asap LLC — robots.txt
 # https://asap.repair
+# Note: Cloudflare Managed robots settings may override this file in production.
+# Keep live robots.txt aligned with this policy and preserve the Sitemap directive.
 
 User-agent: *
 Allow: /

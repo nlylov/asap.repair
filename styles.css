@@ -1703,11 +1703,12 @@ button.portfolio-card__video {
   border-radius: 20px;
   width: 100%;
   max-width: 560px;
-  max-height: 90vh;
+  max-height: min(90vh, 760px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   padding: 40px;
+  scrollbar-gutter: stable;
   transform: translateY(20px) scale(0.97);
   transition: transform 0.35s var(--ease);
 }
@@ -1765,6 +1766,43 @@ button.portfolio-card__video {
   font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.6;
+}
+
+.form-required-note,
+.noscript-quote-fallback {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: -8px 0 18px;
+}
+
+.noscript-quote-fallback {
+  background: rgba(193, 154, 74, 0.1);
+  border: 1px solid rgba(193, 154, 74, 0.25);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 0 0 20px;
+}
+
+.noscript-quote-fallback a,
+.required-mark {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.quote-modal__actions {
+  position: sticky;
+  bottom: -40px;
+  z-index: 3;
+  margin: 20px -40px -40px;
+  padding: 16px 40px 24px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.92), var(--surface) 32%);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -18px 34px rgba(2, 6, 23, 0.28);
+}
+
+.quote-modal__actions .form-microcopy {
+  margin: 10px 0 0;
 }
 
 .quote-modal__form .form-row {

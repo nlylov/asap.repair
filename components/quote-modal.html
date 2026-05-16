@@ -1,5 +1,5 @@
 <!-- ========== QUOTE MODAL ========== -->
-<div class="quote-modal" id="quoteModal" aria-hidden="true" role="dialog" aria-labelledby="quoteModalTitle">
+<div class="quote-modal" id="quoteModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="quoteModalTitle" aria-describedby="quoteModalSubtitle quoteModalRequiredNote">
     <div class="quote-modal__backdrop"></div>
     <div class="quote-modal__container">
         <button class="quote-modal__close" id="quoteModalClose" aria-label="Close form">
@@ -13,18 +13,23 @@
         <div class="quote-modal__header">
             <span class="quote-modal__badge">Free Quote</span>
             <h2 class="quote-modal__title" id="quoteModalTitle">Request Your Free Quote</h2>
-            <p class="quote-modal__subtitle">Tell us about your project — we'll get back to you within 30 minutes.</p>
+            <p class="quote-modal__subtitle" id="quoteModalSubtitle">Tell us about your project — we'll get back to you within 30 minutes.</p>
+            <p class="form-required-note" id="quoteModalRequiredNote">Fields marked <span aria-hidden="true">*</span> are required. ZIP, time, and address are required only when booking a date.</p>
         </div>
+
+        <noscript>
+            <p class="noscript-quote-fallback">Online quote requests require JavaScript. Please call <a href="tel:+17753107770">+1 (775) 310-7770</a> or text photos to <a href="sms:+17753107770">+1 (775) 310-7770</a>.</p>
+        </noscript>
 
         <form class="quote-modal__form" id="quoteModalForm" novalidate>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="modal-name" class="form-label">Full Name</label>
+                    <label for="modal-name" class="form-label">Full Name <span class="required-mark" aria-hidden="true">*</span></label>
                     <input type="text" id="modal-name" name="name" class="form-input" placeholder="John Smith" required>
                     <span class="form-error">Please enter your name</span>
                 </div>
                 <div class="form-group">
-                    <label for="modal-phone" class="form-label">Phone Number</label>
+                    <label for="modal-phone" class="form-label">Phone Number <span class="required-mark" aria-hidden="true">*</span></label>
                     <input type="tel" id="modal-phone" name="phone" class="form-input" placeholder="+1 (775) 000-0000"
                         required>
                     <span class="form-error">Please enter a valid phone number</span>
@@ -47,7 +52,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="modal-service" class="form-label">Service Needed</label>
+                    <label for="modal-service" class="form-label">Service Needed <span class="required-mark" aria-hidden="true">*</span></label>
                     <select id="modal-service" name="service" class="form-input form-select" required>
                         <option value="" disabled selected>Select a service</option>
                         <option value="Furniture Assembly">Furniture Assembly</option>
@@ -116,17 +121,20 @@
                 <label class="consent-label">
                     <input type="checkbox" id="modal-consent" name="consent" required>
                     <span class="consent-check"></span>
-                    <span class="consent-text">I agree to the <a href="/privacy-policy/" target="_blank">Privacy
+                    <span class="consent-text">I agree <span class="required-mark" aria-hidden="true">*</span> to the <a href="/privacy-policy/" target="_blank">Privacy
                             Policy</a> and <a href="/terms-of-service/" target="_blank">Terms of Service</a>, and
                         consent to receive text messages. Message &amp; data rates may apply.</span>
                 </label>
                 <span class="form-error">You must agree to continue</span>
             </div>
 
-            <button type="submit" class="btn btn--accent btn--lg btn--full" id="quoteModalSubmit">
-                <span class="btn__text">Send Request</span>
-                <span class="btn__loader"></span>
-            </button>
+            <div class="quote-modal__actions">
+                <button type="submit" class="btn btn--accent btn--lg btn--full" id="quoteModalSubmit">
+                    <span class="btn__text">Send Request</span>
+                    <span class="btn__loader"></span>
+                </button>
+                <p class="form-microcopy">Free estimate · No obligation · Response within 30 min</p>
+            </div>
         </form>
 
         <div class="quote-modal__success" id="quoteModalSuccess" style="display:none">

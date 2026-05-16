@@ -91,7 +91,7 @@
             // Mark ZIP as required for booking
             const zipLabel = form.querySelector('#modal-zip')?.closest('.form-group')?.querySelector('.form-label');
             if (zipLabel && !zipLabel.querySelector('.zip-required')) {
-                zipLabel.innerHTML = zipLabel.innerHTML.replace('(optional)', '<span class="zip-required" style="color:var(--accent);font-weight:500">*</span>');
+                zipLabel.innerHTML = zipLabel.innerHTML.replace('(optional)', '<span class="zip-required required-mark" aria-hidden="true">*</span>');
             }
             timeSlotsEl.innerHTML = '<div class="time-slots__loading"><span class="spinner-sm"></span> Loading available times...</div>';
 
@@ -153,6 +153,7 @@
     window.openQuoteModal = function (serviceValue) {
         modal.classList.add('active');
         modal.setAttribute('aria-hidden', 'false');
+        form.querySelectorAll('[required]').forEach((field) => field.setAttribute('aria-required', 'true'));
 
         // GA4: Track quote modal open
         if (typeof gtag === 'function') {
