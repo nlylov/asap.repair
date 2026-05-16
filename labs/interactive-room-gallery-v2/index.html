@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room-by-Room Gallery v2 | Repair ASAP Prototype</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Premium interactive prototype — explore Repair ASAP services through a curated, room-by-room interior gallery.">
+    <link rel="icon" type="image/x-icon" href="/assets/favicons/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#stage">Skip to gallery</a>
+
+    <header class="lab-header">
+        <div class="lab-container lab-header__inner">
+            <a class="lab-mark" href="/" aria-label="Repair ASAP home">
+                <span class="lab-mark__name">Repair&nbsp;ASAP</span>
+                <span class="lab-mark__tag">Lab&nbsp;·&nbsp;v2</span>
+            </a>
+            <nav class="lab-actions" aria-label="Prototype actions">
+                <a class="lab-btn lab-btn--ghost" href="/">Main site</a>
+                <a class="lab-btn lab-btn--solid" href="/#contact">Get a free quote</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="lab-hero" aria-labelledby="heroTitle">
+            <div class="lab-container lab-hero__grid">
+                <div class="lab-hero__copy">
+                    <p class="lab-eyebrow">Interactive prototype · Concept</p>
+                    <h1 id="heroTitle" class="lab-hero__title">
+                        A guided walkthrough of every&nbsp;room
+                        <em>you can ask us to make&nbsp;better.</em>
+                    </h1>
+                    <p class="lab-hero__lede">
+                        Drift through five staged interiors. Tap any object to see exactly how Repair ASAP turns the room around — from a single TV mount to a full move-in punch list.
+                    </p>
+                </div>
+                <aside class="lab-hero__meta" aria-label="Gallery facts">
+                    <dl>
+                        <div>
+                            <dt>Rooms</dt>
+                            <dd>Five</dd>
+                        </div>
+                        <div>
+                            <dt>Services shown</dt>
+                            <dd>Twenty</dd>
+                        </div>
+                        <div>
+                            <dt>Coverage</dt>
+                            <dd>NYC · 5 boroughs</dd>
+                        </div>
+                    </dl>
+                </aside>
+            </div>
+        </section>
+
+        <section id="stage" class="stage" aria-labelledby="stageTitle">
+            <div class="lab-container">
+                <div class="stage__ribbon">
+                    <div class="stage__index">
+                        <span class="stage__num" id="roomNumber">01</span>
+                        <span class="stage__total">/&nbsp;05</span>
+                    </div>
+                    <div class="stage__title-block">
+                        <p class="lab-eyebrow lab-eyebrow--quiet">Now showing</p>
+                        <h2 id="stageTitle" class="stage__title" aria-live="polite">Living room</h2>
+                    </div>
+                    <div class="stage__nav">
+                        <button class="stage__arrow" type="button" id="prevRoom" aria-label="Previous room">
+                            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18 9 12l6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <span>Prev</span>
+                        </button>
+                        <button class="stage__arrow stage__arrow--next" type="button" id="nextRoom" aria-label="Next room">
+                            <span>Next</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="stage__frame" id="stageFrame" tabindex="0" aria-roledescription="Interactive room gallery">
+                    <div class="stage__viewport" id="stageViewport">
+                        <article class="scene is-active" data-room="living" aria-label="Living room scene">
+                            <img class="scene__photo" src="rooms/living.jpg" alt="Premium living room with wall-mounted TV, floating shelves, framed art, and city window" loading="eager">
+                            <div class="scene__veil" aria-hidden="true"></div>
+                            <button class="callout" type="button" data-service="living-tv" data-side="right" data-index="01" style="--x:16%;--y:60%">
+                                <span class="callout__node"><span class="callout__num">01</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">TV mounting</span>
+                            </button>
+                            <button class="callout" type="button" data-service="living-shelves" data-side="right" data-index="02" style="--x:9%;--y:42%">
+                                <span class="callout__node"><span class="callout__num">02</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Shelf mounting</span>
+                            </button>
+                            <button class="callout" type="button" data-service="living-art" data-side="left" data-index="03" style="--x:59%;--y:33%">
+                                <span class="callout__node"><span class="callout__num">03</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Picture hanging</span>
+                            </button>
+                            <button class="callout" type="button" data-service="living-projector" data-side="right" data-index="04" style="--x:19%;--y:78%">
+                                <span class="callout__node"><span class="callout__num">04</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Media setup</span>
+                            </button>
+                        </article>
+
+                        <article class="scene" data-room="kitchen" aria-label="Kitchen scene" aria-hidden="true">
+                            <img class="scene__photo" src="rooms/kitchen.jpg" alt="Premium kitchen with dark cabinets, marble counter, faucet, dishwasher, and pendant lights" loading="lazy">
+                            <div class="scene__veil" aria-hidden="true"></div>
+                            <button class="callout" type="button" data-service="kitchen-dishwasher" data-side="left" data-index="01" style="--x:68%;--y:70%">
+                                <span class="callout__node"><span class="callout__num">01</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Dishwasher install</span>
+                            </button>
+                            <button class="callout" type="button" data-service="kitchen-faucet" data-side="left" data-index="02" style="--x:55%;--y:55%">
+                                <span class="callout__node"><span class="callout__num">02</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Faucet replacement</span>
+                            </button>
+                            <button class="callout" type="button" data-service="kitchen-cabinets" data-side="right" data-index="03" style="--x:12%;--y:32%">
+                                <span class="callout__node"><span class="callout__num">03</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Cabinet adjustments</span>
+                            </button>
+                            <button class="callout" type="button" data-service="kitchen-backsplash" data-side="right" data-index="04" style="--x:27%;--y:50%">
+                                <span class="callout__node"><span class="callout__num">04</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Backsplash help</span>
+                            </button>
+                        </article>
+
+                        <article class="scene" data-room="bathroom" aria-label="Bathroom scene" aria-hidden="true">
+                            <img class="scene__photo" src="rooms/bathroom.jpg" alt="Bright modern bathroom with shower glass, vanity, faucet, mirror, and tile" loading="lazy">
+                            <div class="scene__veil" aria-hidden="true"></div>
+                            <button class="callout" type="button" data-service="bath-caulk" data-side="right" data-index="01" style="--x:31%;--y:78%">
+                                <span class="callout__node"><span class="callout__num">01</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Caulking</span>
+                            </button>
+                            <button class="callout" type="button" data-service="bath-faucet" data-side="left" data-index="02" style="--x:57%;--y:56%">
+                                <span class="callout__node"><span class="callout__num">02</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Fixture help</span>
+                            </button>
+                            <button class="callout" type="button" data-service="bath-mirror" data-side="left" data-index="03" style="--x:66%;--y:31%">
+                                <span class="callout__node"><span class="callout__num">03</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Mirror mounting</span>
+                            </button>
+                            <button class="callout" type="button" data-service="bath-plumbing" data-side="right" data-index="04" style="--x:32%;--y:48%">
+                                <span class="callout__node"><span class="callout__num">04</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Minor plumbing</span>
+                            </button>
+                        </article>
+
+                        <article class="scene" data-room="bedroom" aria-label="Bedroom scene" aria-hidden="true">
+                            <img class="scene__photo" src="rooms/bedroom.jpg" alt="Premium bedroom with bed, dresser, wardrobe, wall art, lamps, and city window" loading="lazy">
+                            <div class="scene__veil" aria-hidden="true"></div>
+                            <button class="callout" type="button" data-service="bed-assembly" data-side="left" data-index="01" style="--x:48%;--y:52%">
+                                <span class="callout__node"><span class="callout__num">01</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Bed assembly</span>
+                            </button>
+                            <button class="callout" type="button" data-service="bed-furniture" data-side="right" data-index="02" style="--x:24%;--y:68%">
+                                <span class="callout__node"><span class="callout__num">02</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Furniture assembly</span>
+                            </button>
+                            <button class="callout" type="button" data-service="bed-dresser" data-side="left" data-index="03" style="--x:86%;--y:63%">
+                                <span class="callout__node"><span class="callout__num">03</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Dresser help</span>
+                            </button>
+                            <button class="callout" type="button" data-service="bed-closet" data-side="left" data-index="04" style="--x:87%;--y:38%">
+                                <span class="callout__node"><span class="callout__num">04</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Closet assembly</span>
+                            </button>
+                        </article>
+
+                        <article class="scene" data-room="hallway" aria-label="Hallway and walls scene" aria-hidden="true">
+                            <img class="scene__photo" src="rooms/walls.jpg" alt="Bright hallway wall with shelf, light fixture, paint roller, and wall repair area" loading="lazy">
+                            <div class="scene__veil" aria-hidden="true"></div>
+                            <button class="callout" type="button" data-service="hall-drywall" data-side="left" data-index="01" style="--x:79%;--y:50%">
+                                <span class="callout__node"><span class="callout__num">01</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Drywall repair</span>
+                            </button>
+                            <button class="callout" type="button" data-service="hall-painting" data-side="left" data-index="02" style="--x:79%;--y:75%">
+                                <span class="callout__node"><span class="callout__num">02</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Painting</span>
+                            </button>
+                            <button class="callout" type="button" data-service="hall-light" data-side="right" data-index="03" style="--x:50%;--y:14%">
+                                <span class="callout__node"><span class="callout__num">03</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">Light fixture</span>
+                            </button>
+                            <button class="callout" type="button" data-service="hall-general" data-side="right" data-index="04" style="--x:16%;--y:39%">
+                                <span class="callout__node"><span class="callout__num">04</span></span>
+                                <span class="callout__leader" aria-hidden="true"></span>
+                                <span class="callout__chip">General repairs</span>
+                            </button>
+                        </article>
+                    </div>
+
+                    <aside class="detail" aria-live="polite">
+                        <div class="detail__inner">
+                            <p class="detail__category" id="detailCategory">Living room</p>
+                            <h3 class="detail__title" id="detailTitle">Hover or tap a numbered object</h3>
+                            <p class="detail__copy" id="detailCopy">Each room highlights a handful of common Repair ASAP services. Pick one to see the details and keep moving.</p>
+                            <ul class="detail__tags" id="detailTags"></ul>
+                            <div class="detail__cta">
+                                <a class="lab-btn lab-btn--solid" id="textPhotosLink" href="sms:+17753107770?body=Hi%2C%20I%20need%20help%20with%20a%20home%20project.%20Photos%3A">Text us photos</a>
+                                <a class="lab-btn lab-btn--ghost-light" href="/#contact">Get free quote</a>
+                                <a class="lab-btn lab-btn--text" id="learnMoreLink" href="/services/" aria-label="Learn more about this service">Learn more →</a>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+
+                <div class="stage__chips" aria-label="Services in this room">
+                    <div class="stage__chips-track" id="serviceChips" role="tablist"></div>
+                </div>
+
+                <div class="stage__floor" aria-label="Room navigation">
+                    <p class="stage__floor-label">Floor plan</p>
+                    <ol class="stage__floor-list" id="roomDots" role="tablist"></ol>
+                    <p class="stage__hint">
+                        <span class="stage__hint--desktop">Hover an object for a preview. Click to lock it.</span>
+                        <span class="stage__hint--mobile">Tap an object or chip to see the service.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="notes" aria-labelledby="notesTitle">
+            <div class="lab-container notes__grid">
+                <div>
+                    <p class="lab-eyebrow">Prototype intent</p>
+                    <h2 id="notesTitle" class="notes__title">Designed to feel like a curator-led tour, not a service grid.</h2>
+                </div>
+                <div class="notes__copy">
+                    <p>This page tests whether a slow, room-by-room reveal makes the full Repair ASAP service range easier to absorb than the standard list view. Every callout maps to a real production service page; the ribbon, floor plan, and detail card are only visual concepts at this stage.</p>
+                    <p class="notes__small">Isolated from the live homepage. Production styles, scripts, tracking, chat widget, and forms remain untouched.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="lab-footer">
+        <div class="lab-container lab-footer__inner">
+            <p>Repair ASAP — interactive room gallery, prototype v2.</p>
+            <p class="lab-footer__small">Concept page only. Not linked from the live site.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
