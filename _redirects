@@ -68,3 +68,15 @@ https://asap-repair.netlify.app/*  https://asap.repair/:splat  301!
 /services/interior-painting.html            /services/painting/                    301
 /services/drywall-repair-finishing.html     /services/general-repairs/             301
 /services/minor-tiling-backsplash.html      /services/general-repairs/             301
+
+# ---- PR-1 BROKEN SERVICE SLUG PRESERVATION (keep indexed URLs from 404ing) ----
+/services/painting/baseboard-painting/              /services/painting/trim-painting/                         301
+/services/painting/baseboard-painting               /services/painting/trim-painting/                         301
+/services/painting/wall-painting/                   /services/painting/interior-painting/                     301
+/services/painting/wall-painting                    /services/painting/interior-painting/                     301
+/services/general-repairs/shelf-installation/       /services/tv-wall-mounting/shelf-installation/            301
+/services/general-repairs/shelf-installation        /services/tv-wall-mounting/shelf-installation/            301
+/services/general-repairs/picture-hanging/          /services/tv-wall-mounting/art-installation/              301
+/services/general-repairs/picture-hanging           /services/tv-wall-mounting/art-installation/              301
+/services/general-repairs/curtain-rod-installation/ /services/tv-wall-mounting/curtain-rod-installation/      301
+/services/general-repairs/curtain-rod-installation  /services/tv-wall-mounting/curtain-rod-installation/      301
