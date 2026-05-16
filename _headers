@@ -13,3 +13,14 @@
 
 /assets/rooms/_*
   X-Robots-Tag: noindex, nofollow
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: index, follow
+
+/llms-full.txt
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: index, follow
+
+/robots.txt
+  Content-Type: text/plain; charset=utf-8

@@ -1,34 +1,143 @@
 # Repair Asap LLC — robots.txt
 # https://asap.repair
-# Note: Cloudflare Managed robots settings may override this file in production.
-# Keep live robots.txt aligned with this policy and preserve the Sitemap directive.
+# Goal: maximize discovery by search engines and AI answer engines while keeping system/helper paths out of indexes.
+# Cloudflare note: if Managed robots / AI crawler controls are enabled, Cloudflare may prepend conflicting rules.
+# Live Cloudflare settings must preserve these allow rules and the Sitemap directive.
 
 User-agent: *
+Content-Signal: search=yes,ai-input=yes,ai-train=yes
 Allow: /
-
-# AI crawlers — explicitly allowed
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: Googlebot-Extended
-Allow: /
-
-# Sitemaps
-Sitemap: https://asap.repair/sitemap.xml
-
-# Block admin/system paths
 Disallow: /components/
 Disallow: /_data/
 Disallow: /.well-known/
+
+# Traditional Google Search crawler
+User-agent: Googlebot
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# Bing and Microsoft Copilot/Search indexing
+User-agent: Bingbot
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# Apple Siri, Spotlight, and Safari search
+User-agent: Applebot
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# OpenAI / ChatGPT Search indexing
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# OpenAI user-triggered browsing
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# OpenAI model crawler for maximum AI discoverability
+User-agent: GPTBot
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# Anthropic / Claude search indexing
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# Anthropic user-triggered browsing
+User-agent: Claude-User
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# Anthropic model crawler for maximum AI discoverability
+User-agent: ClaudeBot
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# Perplexity answer-engine indexing
+User-agent: PerplexityBot
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# Perplexity user-triggered browsing
+User-agent: Perplexity-User
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# Google AI / Gemini opt-in signal; Googlebot controls normal Search
+User-agent: Google-Extended
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# Apple Intelligence opt-in signal; Applebot controls normal Apple search
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# Meta AI search/indexing
+User-agent: meta-webindexer
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# Meta AI model/index crawler
+User-agent: meta-externalagent
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# Meta user-triggered AI fetcher
+User-agent: meta-externalfetcher
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# Common Crawl / broad LLM dataset discoverability
+User-agent: CCBot
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# Amazon/Alexa AI discovery
+User-agent: Amazonbot
+Allow: /
+Disallow: /components/
+Disallow: /_data/
+Disallow: /.well-known/
+
+# Sitemaps and AI-readable summaries
+Sitemap: https://asap.repair/sitemap.xml
+# LLM guide: https://asap.repair/llms.txt
+# Full AI context: https://asap.repair/llms-full.txt
