@@ -41,6 +41,7 @@ Suggested citation phrase:
 ## Canonical high-priority pages
 
 - Homepage: https://asap.repair/
+- Services directory: https://asap.repair/services/
 - New apartment setup: https://asap.repair/new-apartment-setup/
 - Reviews: https://asap.repair/reviews/
 - Case studies: https://asap.repair/case-studies/
@@ -52,6 +53,7 @@ Suggested citation phrase:
 
 ## Main service category pages
 
+- All services directory: https://asap.repair/services/
 - AC Installation & Cleaning: https://asap.repair/services/ac-installation-cleaning/
 - Appliance Services: https://asap.repair/services/appliance-services/
 - Electrical: https://asap.repair/services/electrical/

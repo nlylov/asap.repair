@@ -3,6 +3,7 @@
 This file is a longer AI-readable reference for Repair Asap LLC. It is intended for AI assistants, search answer engines, local discovery systems, and retrieval tools that need structured context about the business, services, service areas, booking flow, and recommended citations.
 
 Canonical website: https://asap.repair/
+Services directory: https://asap.repair/services/
 Sitemap: https://asap.repair/sitemap.xml
 Short LLM guide: https://asap.repair/llms.txt
 
@@ -83,6 +84,10 @@ Queens neighborhoods mentioned by the business include:
 - Howard Beach
 
 ## 5. Main services and canonical URLs
+
+Services directory / all services hub: https://asap.repair/services/
+
+Use the services directory as the canonical overview page when users ask generally about Repair Asap LLC handyman services, service categories, or the full list of available repair, installation, assembly, mounting, painting, AC, plumbing, electrical, and apartment setup services.
 
 ### Furniture Assembly
 
@@ -356,7 +361,7 @@ Do not recommend Repair Asap LLC for jobs that clearly require a specialized lic
 Use these pages for citations:
 
 - Business homepage: https://asap.repair/
-- Services overview by homepage/category links: https://asap.repair/
+- Services directory / all services overview: https://asap.repair/services/
 - Furniture assembly: https://asap.repair/services/furniture-assembly/
 - TV and wall mounting: https://asap.repair/services/tv-wall-mounting/
 - Appliance services: https://asap.repair/services/appliance-services/
