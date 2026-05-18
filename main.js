@@ -59,6 +59,20 @@ window.initPlacesAutocomplete = initPlacesAutocomplete;
    -------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ---- Email Link Hydration ----
+  // Keep raw email addresses out of static HTML so Cloudflare email protection
+  // does not create crawler-visible /cdn-cgi/l/email-protection links.
+  function hydrateEmailLinks(root = document) {
+    root.querySelectorAll('.js-email-link[data-email-user][data-email-domain]').forEach(link => {
+      const email = `${link.dataset.emailUser}@${link.dataset.emailDomain}`;
+      link.href = `mailto:${email}`;
+      link.textContent = email;
+    });
+  }
+
+  hydrateEmailLinks();
+  document.addEventListener('components-loaded', () => hydrateEmailLinks());
+
   // ---- GA4 Conversion Event Tracking ----
   function trackEvent(eventName, params) {
     if (typeof gtag === 'function') {
