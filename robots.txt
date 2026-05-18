@@ -5,7 +5,6 @@
 # Live Cloudflare settings must preserve these allow rules and the Sitemap directive.
 
 User-agent: *
-Content-Signal: search=yes,ai-input=yes,ai-train=yes
 Allow: /
 Disallow: /components/
 Disallow: /_data/
