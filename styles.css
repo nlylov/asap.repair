@@ -1791,14 +1791,9 @@ button.portfolio-card__video {
 }
 
 .quote-modal__actions {
-  position: sticky;
-  bottom: -40px;
-  z-index: 3;
-  margin: 20px -40px -40px;
-  padding: 16px 40px 24px;
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.92), var(--surface) 32%);
+  margin-top: 20px;
+  padding-top: 16px;
   border-top: 1px solid var(--border);
-  box-shadow: 0 -18px 34px rgba(2, 6, 23, 0.28);
 }
 
 .quote-modal__actions .form-microcopy {
@@ -2774,10 +2769,10 @@ button.portfolio-card__video {
 /* ---------- Service Hero ---------- */
 .svc-hero {
   position: relative;
-  min-height: 92vh;
+  min-height: 60vh;
   display: flex;
   align-items: center;
-  padding: 60px 0 100px;
+  padding: 28px 0 36px;
   overflow: hidden;
 }
 
@@ -2820,23 +2815,23 @@ button.portfolio-card__video {
   color: var(--accent);
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  margin-bottom: 28px;
+  margin-bottom: 14px;
 }
 
 .svc-hero__title {
   font-family: var(--font-heading);
-  font-size: clamp(36px, 5vw, 64px);
+  font-size: clamp(34px, 4.2vw, 54px);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -2px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .svc-hero__subtitle {
-  font-size: 18px;
-  line-height: 1.7;
+  font-size: 17px;
+  line-height: 1.55;
   color: var(--text-secondary);
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   max-width: 560px;
 }
 
@@ -2844,14 +2839,14 @@ button.portfolio-card__video {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 48px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
 }
 
 .svc-hero__trust {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
