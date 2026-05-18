@@ -3,54 +3,147 @@
    ============================================ */
 
 // ---- Google Places Autocomplete ----
+function getAddressComponentValue(components, type, preferShort = false) {
+  const component = components?.find(c => c.types?.includes(type));
+  if (!component) return '';
+  return preferShort
+    ? (component.shortText || component.short_name || component.longText || component.long_name || '')
+    : (component.longText || component.long_name || component.shortText || component.short_name || '');
+}
+
+function applySelectedAddress(input, zip, formattedAddress, components) {
+  if (!input) return;
+
+  input.value = formattedAddress || input.value || '';
+  input.classList.remove('error');
+  input.classList.add('success');
+  input.dispatchEvent(new Event('input', { bubbles: true }));
+  input.dispatchEvent(new Event('change', { bubbles: true }));
+
+  const zipValue = getAddressComponentValue(components, 'postal_code', true);
+  if (zipValue && zip) {
+    zip.value = zipValue;
+    zip.classList.remove('error');
+    zip.classList.add('success');
+    zip.dispatchEvent(new Event('input', { bubbles: true }));
+    zip.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+}
+
+function initPlaceAutocompleteElementField(input, zip) {
+  const autocompleteElement = new google.maps.places.PlaceAutocompleteElement({
+    includedRegionCodes: ['US'],
+  });
+  const label = input.closest('.form-group')?.querySelector('.form-label')?.textContent?.trim();
+
+  autocompleteElement.id = `${input.id}-autocomplete`;
+  autocompleteElement.classList.add('places-autocomplete-element');
+  autocompleteElement.placeholder = input.getAttribute('placeholder') || 'Service address';
+  if (label) autocompleteElement.setAttribute('aria-label', label);
+
+  autocompleteElement.addEventListener('input', () => {
+    if (typeof autocompleteElement.value === 'string') {
+      input.value = autocompleteElement.value;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  });
+
+  autocompleteElement.addEventListener('change', () => {
+    if (typeof autocompleteElement.value === 'string') {
+      input.value = autocompleteElement.value;
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  });
+
+  autocompleteElement.addEventListener('gmp-select', async ({ placePrediction }) => {
+    if (!placePrediction) return;
+    const place = placePrediction.toPlace();
+    await place.fetchFields({ fields: ['formattedAddress', 'addressComponents'] });
+    applySelectedAddress(input, zip, place.formattedAddress, place.addressComponents);
+  });
+
+  autocompleteElement.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') e.preventDefault();
+  });
+
+  const syncStateClasses = () => {
+    autocompleteElement.classList.toggle('error', input.classList.contains('error'));
+    autocompleteElement.classList.toggle('success', input.classList.contains('success'));
+  };
+  new MutationObserver(syncStateClasses).observe(input, { attributes: true, attributeFilter: ['class'] });
+
+  input.before(autocompleteElement);
+  input.classList.add('places-autocomplete-source');
+  input.setAttribute('aria-hidden', 'true');
+  input.tabIndex = -1;
+  input._placesWidget = autocompleteElement;
+}
+
+function initLegacyPlacesAutocompleteField(input, zip) {
+  const autocomplete = new google.maps.places.Autocomplete(input, {
+    types: ['address'],
+    componentRestrictions: { country: 'us' },
+    fields: ['address_components', 'formatted_address'],
+  });
+
+  autocomplete.addListener('place_changed', () => {
+    const place = autocomplete.getPlace();
+    if (!place.address_components) return;
+    applySelectedAddress(input, zip, place.formatted_address, place.address_components);
+  });
+
+  // Prevent form submission when pressing Enter in autocomplete dropdown
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const pacContainer = document.querySelector('.pac-container');
+      if (pacContainer && pacContainer.style.display !== 'none') {
+        e.preventDefault();
+      }
+    }
+  });
+}
+
+function clearPlacesAutocompleteField(input) {
+  if (!input) return;
+  input.value = '';
+  input.classList.remove('error', 'success');
+  if (input._placesWidget) {
+    input._placesWidget.value = '';
+    input._placesWidget.classList.remove('error', 'success');
+  }
+  input.dispatchEvent(new Event('input', { bubbles: true }));
+  input.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
 function initPlacesAutocomplete() {
+  if (!window.google?.maps?.places) return;
+
   const addressFields = [
     { input: document.getElementById('inline-address'), zip: document.getElementById('zip') },
     { input: document.getElementById('modal-address'), zip: document.getElementById('modal-zip') },
   ];
 
   addressFields.forEach(({ input, zip }) => {
-    if (!input) return;
+    if (!input || input._placesInitialized) return;
 
-    const autocomplete = new google.maps.places.Autocomplete(input, {
-      types: ['address'],
-      componentRestrictions: { country: 'us' },
-      fields: ['address_components', 'formatted_address'],
-    });
+    if (google.maps.places.PlaceAutocompleteElement) {
+      initPlaceAutocompleteElementField(input, zip);
+    } else if (google.maps.places.Autocomplete) {
+      initLegacyPlacesAutocompleteField(input, zip);
+    }
 
-    autocomplete.addListener('place_changed', () => {
-      const place = autocomplete.getPlace();
-      if (!place.address_components) return;
-
-      // Set the full formatted address
-      input.value = place.formatted_address;
-      input.classList.remove('error');
-      input.classList.add('success');
-
-      // Auto-fill ZIP code
-      const zipComponent = place.address_components.find(c =>
-        c.types.includes('postal_code')
-      );
-      if (zipComponent && zip) {
-        zip.value = zipComponent.short_name;
-        zip.classList.remove('error');
-        zip.classList.add('success');
-      }
-    });
-
-    // Prevent form submission when pressing Enter in autocomplete dropdown
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        const pacContainer = document.querySelector('.pac-container');
-        if (pacContainer && pacContainer.style.display !== 'none') {
-          e.preventDefault();
-        }
-      }
-    });
+    input._placesInitialized = true;
   });
 }
-// Make it a global callback for the Google Maps script
+// Make helpers global for the Google Maps callback and modal/date reset code.
 window.initPlacesAutocomplete = initPlacesAutocomplete;
+window.clearPlacesAutocompleteField = clearPlacesAutocompleteField;
+
+// If the async Google callback fired before this file loaded, or Google finished
+// loading before this helper was defined, initialize now from the real function.
+if (window.google?.maps?.places) {
+  initPlacesAutocomplete();
+}
 
 /* --------------------------------------------------
    PAGE-SPECIFIC INIT (runs immediately on DOMContentLoaded)
@@ -275,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (inlineTimeSlotsEl) inlineTimeSlotsEl.innerHTML = '';
       if (inlineTimeInput) inlineTimeInput.value = '';
       if (inlineAddressGroup) inlineAddressGroup.style.display = 'none';
-      if (inlineAddressInput) { inlineAddressInput.value = ''; inlineAddressInput.classList.remove('error', 'success'); }
+      if (inlineAddressInput) clearPlacesAutocompleteField(inlineAddressInput);
       // Restore ZIP as optional
       const zipLabel = form?.querySelector('#zip')?.closest('.form-group')?.querySelector('.form-label');
       if (zipLabel && zipLabel.querySelector('.zip-required')) {
