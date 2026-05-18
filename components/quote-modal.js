@@ -57,35 +57,8 @@
             if (addressGroup) {
                 addressGroup.style.display = 'block';
                 // Re-init Places Autocomplete for modal address field once it's visible
-                if (addressInput && !addressInput._placesInitialized && typeof google !== 'undefined' && google.maps && google.maps.places) {
-                    const autocomplete = new google.maps.places.Autocomplete(addressInput, {
-                        types: ['address'],
-                        componentRestrictions: { country: 'us' },
-                        fields: ['address_components', 'formatted_address'],
-                    });
-                    autocomplete.addListener('place_changed', () => {
-                        const place = autocomplete.getPlace();
-                        if (!place.address_components) return;
-                        addressInput.value = place.formatted_address;
-                        addressInput.classList.remove('error');
-                        addressInput.classList.add('success');
-                        // Auto-fill ZIP
-                        const zipComp = place.address_components.find(c => c.types.includes('postal_code'));
-                        const zipEl = form.querySelector('#modal-zip');
-                        if (zipComp && zipEl) {
-                            zipEl.value = zipComp.short_name;
-                            zipEl.classList.remove('error');
-                            zipEl.classList.add('success');
-                        }
-                    });
-                    // Prevent Enter from submitting form in autocomplete dropdown
-                    addressInput.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter') {
-                            const pac = document.querySelector('.pac-container');
-                            if (pac && pac.style.display !== 'none') e.preventDefault();
-                        }
-                    });
-                    addressInput._placesInitialized = true;
+                if (window.initPlacesAutocomplete) {
+                    window.initPlacesAutocomplete();
                 }
             }
             // Mark ZIP as required for booking
@@ -140,7 +113,7 @@
             if (timeSlotsEl) timeSlotsEl.innerHTML = '';
             if (timeInput) timeInput.value = '';
             if (addressGroup) { addressGroup.style.display = 'none'; }
-            if (addressInput) { addressInput.value = ''; addressInput.classList.remove('error', 'success'); }
+            if (addressInput) { window.clearPlacesAutocompleteField ? window.clearPlacesAutocompleteField(addressInput) : (addressInput.value = ''); }
             // Restore ZIP as optional
             const zipLabel = form.querySelector('#modal-zip')?.closest('.form-group')?.querySelector('.form-label');
             if (zipLabel && zipLabel.querySelector('.zip-required')) {
@@ -263,7 +236,7 @@
         if (timeSlotsEl) timeSlotsEl.innerHTML = '';
         if (timeInput) timeInput.value = '';
         if (addressGroup) addressGroup.style.display = 'none';
-        if (addressInput) { addressInput.value = ''; addressInput.classList.remove('error', 'success'); }
+        if (addressInput) { window.clearPlacesAutocompleteField ? window.clearPlacesAutocompleteField(addressInput) : (addressInput.value = ''); }
         if (dateClearBtn) dateClearBtn.style.display = 'none';
         customerChecked = false;
         const wb = document.getElementById('welcomeBanner');
