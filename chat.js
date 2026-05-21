@@ -423,10 +423,11 @@
       chatWindow.classList.add('open');
       if (isMobile) container.classList.add('mobile-active');
 
-      // GA4: Track chat open
-      if (typeof gtag === 'function') {
-        gtag('event', 'chat_open', { event_category: 'engagement' });
-      }
+      // GA4 / Clarity: Track chat open without customer PII.
+      window.repairAsapTrackEvent?.('chat_open', {
+        event_category: 'engagement',
+        page_path: window.location.pathname,
+      });
 
       setTimeout(() => {
         const msgs = document.getElementById('repair-asap-chat-messages');
