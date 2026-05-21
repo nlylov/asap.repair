@@ -128,13 +128,12 @@
         modal.setAttribute('aria-hidden', 'false');
         form.querySelectorAll('[required]').forEach((field) => field.setAttribute('aria-required', 'true'));
 
-        // GA4: Track quote modal open
-        if (typeof gtag === 'function') {
-            gtag('event', 'quote_modal_open', {
-                event_category: 'engagement',
-                event_label: serviceValue || 'general',
-            });
-        }
+        // GA4 / Clarity: Track quote modal open without customer PII.
+        window.repairAsapTrackEvent?.('quote_modal_open', {
+            event_category: 'engagement',
+            event_label: serviceValue || 'general',
+            page_path: window.location.pathname,
+        });
         // Lock body scroll (iOS-safe)
         const scrollY = window.scrollY;
         document.body.style.position = 'fixed';
@@ -292,6 +291,12 @@
         const quoteBtn = e.target.closest('[data-open-quote]');
         if (quoteBtn && quoteBtn.tagName !== 'A') {
             e.preventDefault();
+            window.repairAsapTrackEvent?.('cta_click', {
+                event_category: 'engagement',
+                event_label: quoteBtn.textContent.trim() || 'quote_cta',
+                cta_type: 'quote_modal',
+                page_path: window.location.pathname,
+            });
             // Close mobile overlay if open
             const overlay = document.querySelector('.nav-overlay.active');
             if (overlay) {
@@ -315,6 +320,12 @@
 
         if (href === '/#contact' || href === '#contact') {
             e.preventDefault();
+            window.repairAsapTrackEvent?.('cta_click', {
+                event_category: 'engagement',
+                event_label: link.textContent.trim() || 'contact_cta',
+                cta_type: 'contact_anchor',
+                page_path: window.location.pathname,
+            });
             const service = link.dataset.service || detectServiceFromURL();
             openQuoteModal(service);
         }
@@ -614,14 +625,17 @@
             const result = await response.json();
 
             if (response.ok && result.success) {
-                // GA4: Track successful modal form submission
-                if (typeof gtag === 'function') {
-                    gtag('event', 'quote_modal_submit', {
-                        event_category: 'lead',
-                        event_label: payload.service || 'unknown',
-                        form_type: 'modal',
-                    });
-                }
+                // GA4 / Clarity: Track successful modal form submission without customer PII.
+                window.repairAsapTrackEvent?.('quote_modal_submit', {
+                    event_category: 'lead',
+                    event_label: payload.service || 'unknown',
+                    form_type: 'modal',
+                });
+                window.repairAsapTrackEvent?.('generate_lead', {
+                    event_category: 'lead',
+                    event_label: payload.service || 'unknown',
+                    form_type: 'modal',
+                });
                 // Dynamic success screen
                 const titleEl = document.getElementById('successTitle');
                 const msgEl = document.getElementById('successMessage');

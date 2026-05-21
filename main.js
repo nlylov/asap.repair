@@ -2,6 +2,23 @@
    REPAIR ASAP LLC — Main JavaScript
    ============================================ */
 
+// ---- Analytics helpers ----
+function repairAsapTrackEvent(eventName, params) {
+  const safeParams = params || {};
+
+  if (typeof gtag === 'function') {
+    gtag('event', eventName, safeParams);
+  }
+
+  // Microsoft Clarity exposes a global `clarity()` function after its tag is installed.
+  // This is intentionally event-name only so no phone, email, address, or message text is sent.
+  if (typeof clarity === 'function') {
+    clarity('event', eventName);
+  }
+}
+
+window.repairAsapTrackEvent = repairAsapTrackEvent;
+
 // ---- Google Places Autocomplete ----
 function getAddressComponentValue(components, type, preferShort = false) {
   const component = components?.find(c => c.types?.includes(type));
@@ -166,12 +183,25 @@ document.addEventListener('DOMContentLoaded', () => {
   hydrateEmailLinks();
   document.addEventListener('components-loaded', () => hydrateEmailLinks());
 
-  // ---- GA4 Conversion Event Tracking ----
+  // ---- GA4 / Clarity Conversion Event Tracking ----
   function trackEvent(eventName, params) {
-    if (typeof gtag === 'function') {
-      gtag('event', eventName, params || {});
-    }
+    window.repairAsapTrackEvent?.(eventName, params);
   }
+
+  // Track first form interaction without capturing field values.
+  const trackedFormStarts = new WeakSet();
+  document.addEventListener('input', (e) => {
+    const form = e.target.closest('form');
+    if (!form || trackedFormStarts.has(form)) return;
+
+    const formType = form.id === 'quoteForm' ? 'inline' : (form.id || 'unknown');
+    trackedFormStarts.add(form);
+    trackEvent('form_start', {
+      event_category: 'lead',
+      form_type: formType,
+      page_path: window.location.pathname,
+    });
+  }, true);
 
   // Track all phone link clicks
   document.addEventListener('click', (e) => {
@@ -511,6 +541,11 @@ document.addEventListener('DOMContentLoaded', () => {
           if (response.ok && result.success) {
             // GA4: Track successful form submission
             trackEvent('quote_form_submit', {
+              event_category: 'lead',
+              event_label: payload.service || 'unknown',
+              form_type: 'inline',
+            });
+            trackEvent('generate_lead', {
               event_category: 'lead',
               event_label: payload.service || 'unknown',
               form_type: 'inline',
