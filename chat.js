@@ -360,8 +360,8 @@
             <div class="chat-header-status"><span class="status-dot"></span> Online 24/7</div>
         </div>
       </div>
-      <button id="repair-asap-chat-close">
-        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+      <button id="repair-asap-chat-close" type="button" aria-label="Close chat">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
       </button>`;
 
     const chatMessages = document.createElement('div');
@@ -373,8 +373,8 @@
     // Photo attach button
     const attachBtn = document.createElement('button');
     attachBtn.id = 'repair-asap-chat-attach';
-    attachBtn.title = 'Attach photo';
-    attachBtn.innerHTML = `<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
+    attachBtn.setAttribute('aria-label', 'Attach photo');
+    attachBtn.innerHTML = `<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
 
     const fileInput = document.createElement('input');
     fileInput.id = 'repair-asap-chat-file';
@@ -392,7 +392,9 @@
 
     const chatSend = document.createElement('button');
     chatSend.id = 'repair-asap-chat-send';
-    chatSend.innerHTML = `<svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>`;
+    chatSend.type = 'button';
+    chatSend.setAttribute('aria-label', 'Send message');
+    chatSend.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>`;
     chatSend.addEventListener('click', sendMessage);
 
     chatInputContainer.appendChild(fileInput);

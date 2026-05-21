@@ -334,7 +334,7 @@
 
   function clearCallouts() {
     callouts.forEach(function(c){ c.classList.remove('is-active'); });
-    document.querySelectorAll('.rsm-service-chip').forEach(function(c){ c.setAttribute('aria-selected','false'); });
+    document.querySelectorAll('.rsm-service-chip').forEach(function(c){ c.setAttribute('aria-pressed','false'); });
   }
 
   function showRoomIntro(room) {
@@ -358,7 +358,7 @@
     activeService = sid;
     clearCallouts();
     callouts.forEach(function(c){ if(c.dataset.service===sid) c.classList.add('is-active'); });
-    document.querySelectorAll('.rsm-service-chip').forEach(function(c){ if(c.dataset.service===sid) c.setAttribute('aria-selected','true'); });
+    document.querySelectorAll('.rsm-service-chip').forEach(function(c){ if(c.dataset.service===sid) c.setAttribute('aria-pressed','true'); });
     detRoom.textContent = s.room;
     detTitle.textContent = s.title;
     detCopy.textContent = s.desc;
@@ -372,7 +372,7 @@
   function buildChips(room) {
     chipsWrap.innerHTML = room.services.map(function(sid) {
       var s = S[sid]; if (!s) return '';
-      return '<button class="rsm-service-chip" type="button" data-service="' + sid + '" aria-selected="false">' + s.title + '</button>';
+      return '<button class="rsm-service-chip" type="button" data-service="' + sid + '" aria-pressed="false">' + s.title + '</button>';
     }).join('');
   }
 

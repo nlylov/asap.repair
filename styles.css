@@ -1580,7 +1580,7 @@ button.portfolio-card__video {
 
 .footer__bottom p {
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 .footer__legal {
@@ -1593,7 +1593,7 @@ button.portfolio-card__video {
 
 .footer__legal a {
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.2s;
 }
