@@ -429,12 +429,12 @@
   transition: opacity 180ms;
 }
 .rsm-service-chip:hover,
-.rsm-service-chip[aria-selected="true"] {
+.rsm-service-chip[aria-pressed="true"] {
   border-color: var(--rsm-border-accent);
   color: #f5d980;
   background: var(--rsm-accent-soft);
 }
-.rsm-service-chip[aria-selected="true"]::before {
+.rsm-service-chip[aria-pressed="true"]::before {
   opacity: 1;
 }
 
