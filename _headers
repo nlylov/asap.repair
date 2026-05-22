@@ -14,6 +14,21 @@
 /assets/rooms/_*
   X-Robots-Tag: noindex, nofollow
 
+/api/*
+  X-Robots-Tag: noindex, nofollow
+
+/assets/images/*
+  X-Robots-Tag: noindex, follow
+
+/assets/services/*
+  X-Robots-Tag: noindex, follow
+
+/assets/photo/*
+  X-Robots-Tag: noindex, follow
+
+/assets/photo/thumbnails/*
+  X-Robots-Tag: noindex, follow
+
 /llms.txt
   Content-Type: text/plain; charset=utf-8
   X-Robots-Tag: index, follow

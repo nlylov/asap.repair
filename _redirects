@@ -3,8 +3,9 @@
 # Old site URLs → New site URLs
 # ============================================
 
-# ---- NETLIFY SUBDOMAIN → PRIMARY DOMAIN (prevent duplicate content) ----
+# ---- NON-CANONICAL HOSTS → PRIMARY DOMAIN (prevent duplicate content) ----
 https://asap-repair.netlify.app/*  https://asap.repair/:splat  301!
+https://api.asap.repair/*         https://asap.repair/        301!
 
 # ---- RECATEGORIZED PAGES ----
 /services/painting/tadelakt-installation/   /services/general-repairs/tadelakt-installation/  301
@@ -80,3 +81,11 @@ https://asap-repair.netlify.app/*  https://asap.repair/:splat  301!
 /services/general-repairs/picture-hanging           /services/tv-wall-mounting/art-installation/              301
 /services/general-repairs/curtain-rod-installation/ /services/tv-wall-mounting/curtain-rod-installation/      301
 /services/general-repairs/curtain-rod-installation  /services/tv-wall-mounting/curtain-rod-installation/      301
+
+# ---- GSC INDEX HYGIENE (canonical slash URLs) ----
+/services/furniture-assembly            /services/furniture-assembly/       301
+/services/appliance-services            /services/appliance-services/       301
+/services/general-repairs               /services/general-repairs/          301
+/services/plumbing                      /services/plumbing/                 301
+/services/tv-wall-mounting              /services/tv-wall-mounting/         301
+/services/flooring-installation         /services/flooring-installation/    301
