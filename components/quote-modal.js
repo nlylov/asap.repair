@@ -13,7 +13,7 @@
     if (!modal) return;
 
     // Re-init Places Autocomplete for dynamically loaded modal address field
-    if (window.initPlacesAutocomplete && typeof google !== 'undefined') {
+    if (window.initPlacesAutocomplete && window.google?.maps?.places) {
         window.initPlacesAutocomplete();
     }
 
@@ -56,8 +56,10 @@
             // Show address field and mark ZIP required when date is selected
             if (addressGroup) {
                 addressGroup.style.display = 'block';
-                // Re-init Places Autocomplete for modal address field once it's visible
-                if (window.initPlacesAutocomplete) {
+                // Load and init Places Autocomplete for modal address field once it's visible
+                if (window.loadPlacesAutocomplete) {
+                    window.loadPlacesAutocomplete().catch(() => {});
+                } else if (window.initPlacesAutocomplete) {
                     window.initPlacesAutocomplete();
                 }
             }
