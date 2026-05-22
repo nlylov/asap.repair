@@ -26,7 +26,7 @@
 
     <url>
         <loc>https://asap.repair/services/</loc>
-        <lastmod>2026-05-16</lastmod>
+        <lastmod>2026-05-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
     </url>
@@ -38,7 +38,7 @@
     </url>
     <url>
         <loc>https://asap.repair/services/appliance-services/</loc>
-        <lastmod>2026-03-08</lastmod>
+        <lastmod>2026-05-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -56,7 +56,7 @@
     </url>
     <url>
         <loc>https://asap.repair/services/furniture-assembly/</loc>
-        <lastmod>2026-03-08</lastmod>
+        <lastmod>2026-05-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
