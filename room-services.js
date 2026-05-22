@@ -376,8 +376,23 @@
     }).join('');
   }
 
+  function ensureRoomImageLoaded(i) {
+    var slide = slides[i];
+    if (!slide) return;
+    var img = slide.querySelector('.rsm-scene__photo[data-src]');
+    if (!img) return;
+    img.src = img.dataset.src;
+    if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+    img.removeAttribute('data-src');
+    img.removeAttribute('data-srcset');
+  }
+
   function setRoom(i) {
     idx = ((i % rooms.length) + rooms.length) % rooms.length;
+    ensureRoomImageLoaded(idx);
+    window.requestIdleCallback
+      ? window.requestIdleCallback(function(){ ensureRoomImageLoaded((idx + 1) % rooms.length); }, { timeout: 1500 })
+      : setTimeout(function(){ ensureRoomImageLoaded((idx + 1) % rooms.length); }, 600);
     slides.forEach(function(sl, si) {
       var on = si === idx;
       sl.classList.toggle('is-active', on);
