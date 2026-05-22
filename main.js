@@ -52,10 +52,13 @@ function initPlaceAutocompleteElementField(input, zip) {
     includedRegionCodes: ['US'],
   });
   const label = input.closest('.form-group')?.querySelector('.form-label')?.textContent?.trim();
+  const currentValue = input.value;
+  const shouldRestoreFocus = document.activeElement === input;
 
   autocompleteElement.id = `${input.id}-autocomplete`;
   autocompleteElement.classList.add('places-autocomplete-element');
   autocompleteElement.placeholder = input.getAttribute('placeholder') || 'Service address';
+  if (currentValue) autocompleteElement.value = currentValue;
   if (label) autocompleteElement.setAttribute('aria-label', label);
 
   autocompleteElement.addEventListener('input', () => {
@@ -94,6 +97,10 @@ function initPlaceAutocompleteElementField(input, zip) {
   input.setAttribute('aria-hidden', 'true');
   input.tabIndex = -1;
   input._placesWidget = autocompleteElement;
+
+  if (shouldRestoreFocus) {
+    requestAnimationFrame(() => autocompleteElement.focus?.());
+  }
 }
 
 function initLegacyPlacesAutocompleteField(input, zip) {
@@ -132,6 +139,45 @@ function clearPlacesAutocompleteField(input) {
   input.dispatchEvent(new Event('change', { bubbles: true }));
 }
 
+function loadPlacesAutocomplete() {
+  if (window.google?.maps?.places) {
+    initPlacesAutocomplete();
+    return Promise.resolve();
+  }
+
+  if (window.__repairAsapPlacesLoadingPromise) {
+    return window.__repairAsapPlacesLoadingPromise;
+  }
+
+  const src = window.__repairAsapPlacesScriptSrc;
+  if (!src) return Promise.resolve();
+
+  window.__repairAsapPlacesLoadingPromise = new Promise((resolve, reject) => {
+    const fail = (error) => {
+      error?.target?.remove?.();
+      window.__repairAsapPlacesLoadingPromise = null;
+      reject(error);
+    };
+
+    const existing = document.querySelector('script[data-repair-asap-places]');
+    if (existing) {
+      existing.addEventListener('load', () => resolve(), { once: true });
+      existing.addEventListener('error', fail, { once: true });
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = true;
+    script.dataset.repairAsapPlaces = 'true';
+    script.addEventListener('load', () => resolve(), { once: true });
+    script.addEventListener('error', fail, { once: true });
+    document.head.appendChild(script);
+  });
+
+  return window.__repairAsapPlacesLoadingPromise;
+}
+
 function initPlacesAutocomplete() {
   if (!window.google?.maps?.places) return;
 
@@ -152,7 +198,8 @@ function initPlacesAutocomplete() {
     input._placesInitialized = true;
   });
 }
-// Make helpers global for the Google Maps callback and modal/date reset code.
+// Make helpers global for the deferred Google Maps loader, callback, and modal/date reset code.
+window.loadPlacesAutocomplete = loadPlacesAutocomplete;
 window.initPlacesAutocomplete = initPlacesAutocomplete;
 window.clearPlacesAutocompleteField = clearPlacesAutocompleteField;
 
@@ -224,6 +271,23 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
+
+  // Load Google Places only when a customer is about to enter an address.
+  function bindDeferredPlacesLoader(root = document) {
+    const selectors = '#inline-address, #modal-address, #inlineAddressGroup input, #addressGroup input';
+    root.querySelectorAll(selectors).forEach((field) => {
+      if (field._placesLoaderBound) return;
+      field._placesLoaderBound = true;
+      ['focus', 'pointerdown'].forEach((eventName) => {
+        field.addEventListener(eventName, () => {
+          window.loadPlacesAutocomplete?.().catch(() => {});
+        }, { passive: true });
+      });
+    });
+  }
+
+  bindDeferredPlacesLoader();
+  document.addEventListener('components-loaded', () => bindDeferredPlacesLoader());
 
   // ---- Mobile Sticky CTA Bar (hide when footer visible) ----
   const stickyBar = document.getElementById('mobileStickyCtaBar');
