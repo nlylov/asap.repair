@@ -25,13 +25,13 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="modal-name" class="form-label">Full Name <span class="required-mark" aria-hidden="true">*</span></label>
-                    <input type="text" id="modal-name" name="name" class="form-input" placeholder="John Smith" required>
+                    <input type="text" id="modal-name" name="name" class="form-input" placeholder="John Smith" autocomplete="name" required>
                     <span class="form-error">Please enter your name</span>
                 </div>
                 <div class="form-group">
                     <label for="modal-phone" class="form-label">Phone Number <span class="required-mark" aria-hidden="true">*</span></label>
                     <input type="tel" id="modal-phone" name="phone" class="form-input" placeholder="+1 (775) 000-0000"
-                        required>
+                        autocomplete="tel" required>
                     <span class="form-error">Please enter a valid phone number</span>
                 </div>
             </div>
@@ -39,14 +39,14 @@
                 <div class="form-group">
                     <label for="modal-email" class="form-label">Email <span
                             style="color:var(--text-muted);font-weight:400">(optional)</span></label>
-                    <input type="email" id="modal-email" name="email" class="form-input" placeholder="john@example.com">
+                    <input type="email" id="modal-email" name="email" class="form-input" placeholder="john@example.com" autocomplete="email">
                     <span class="form-error">Please enter a valid email</span>
                 </div>
                 <div class="form-group">
                     <label for="modal-zip" class="form-label">ZIP Code <span
                             style="color:var(--text-muted);font-weight:400">(optional)</span></label>
                     <input type="text" id="modal-zip" name="zip" class="form-input" placeholder="10001" maxlength="5"
-                        inputmode="numeric" pattern="[0-9]{5}">
+                        inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code">
                     <span class="form-error">Please enter a valid 5-digit ZIP</span>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                 <label for="modal-address" class="form-label">Service Address <span
                         style="color:var(--accent);font-weight:500">*</span></label>
                 <input type="text" id="modal-address" name="address" class="form-input"
-                    placeholder="123 Main St, Apt 4B, New York, NY">
+                    placeholder="123 Main St, Apt 4B, New York, NY" autocomplete="street-address">
                 <span class="form-error">Address is required when booking a date</span>
             </div>
             <div class="form-group">
