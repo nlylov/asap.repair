@@ -378,13 +378,6 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-    <url>
-        <loc>https://asap.repair/services/general-repairs/tadelakt-installation/</loc>
-        <lastmod>2026-04-11</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
     <!-- ========================== -->
     <!-- PAINTING                    -->
     <!-- ========================== -->
@@ -425,6 +418,13 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://asap.repair/services/painting/decorative-plaster-tadelakt/</loc>
+        <lastmod>2026-05-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
     <url>
         <loc>https://asap.repair/services/painting/checkerboard-floor-painting/</loc>
         <lastmod>2026-04-11</lastmod>

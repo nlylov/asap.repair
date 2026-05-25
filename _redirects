@@ -7,9 +7,13 @@
 https://asap-repair.netlify.app/*  https://asap.repair/:splat  301!
 https://api.asap.repair/*         https://asap.repair/        301!
 
-# ---- RECATEGORIZED PAGES ----
-/services/painting/tadelakt-installation/   /services/general-repairs/tadelakt-installation/  301
-/services/painting/tadelakt-installation    /services/general-repairs/tadelakt-installation/  301
+# ---- DECORATIVE PLASTER / TADELAKT CANONICAL ----
+/decorative-plaster-tadelakt-nyc/                 /services/painting/decorative-plaster-tadelakt/  301
+/decorative-plaster-tadelakt-nyc                  /services/painting/decorative-plaster-tadelakt/  301
+/services/painting/tadelakt-installation/         /services/painting/decorative-plaster-tadelakt/  301
+/services/painting/tadelakt-installation          /services/painting/decorative-plaster-tadelakt/  301
+/services/general-repairs/tadelakt-installation/  /services/painting/decorative-plaster-tadelakt/  301
+/services/general-repairs/tadelakt-installation   /services/painting/decorative-plaster-tadelakt/  301
 
 # ---- SERVICE HUBS (renamed slugs) ----
 /services/mounting-hanging/*          /services/tv-wall-mounting/:splat  301

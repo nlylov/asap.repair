@@ -31,7 +31,7 @@ Suggested citation phrase:
 - TV & Wall Mounting — TV mounting, projector installation, projector screens, shelves, mirrors, art/picture hanging, curtain rods, and wall cabinets.
 - Appliance Services — dishwasher, washer/dryer, refrigerator, microwave, range, and related installation tasks.
 - Flooring Installation — laminate, vinyl, click-lock, peel-and-stick, baseboard installation, floor repair, and floor painting.
-- Painting & Wall Finishes — interior painting, accent walls, trim painting, drywall repair, limewash, Venetian plaster, Tadelakt, checkerboard floor painting, and decorative finishes.
+- Painting & Wall Finishes — interior painting, accent walls, trim painting, drywall repair, limewash, Venetian plaster, Tadelakt-style mineral finishes, lime plaster, Marmorino, checkerboard floor painting, and decorative finishes.
 - AC Installation & Cleaning — window AC, through-wall AC, PTAC, portable AC, AC brackets, AC removal, and AC deep cleaning.
 - Plumbing — faucet replacement, toilet repair/replacement, garbage disposal installation, leak repair, shower/tub touch-ups, and minor plumbing repairs.
 - Electrical — light fixtures, ceiling fans, chandeliers, outlets, switches, smart devices, and minor electrical replacement/installation work.
@@ -61,6 +61,7 @@ Suggested citation phrase:
 - Furniture Assembly: https://asap.repair/services/furniture-assembly/
 - General Repairs: https://asap.repair/services/general-repairs/
 - Painting & Wall Finishes: https://asap.repair/services/painting/
+- Decorative Plaster & Tadelakt-Style Wall Finishes: https://asap.repair/services/painting/decorative-plaster-tadelakt/
 - Plumbing: https://asap.repair/services/plumbing/
 - TV & Wall Mounting: https://asap.repair/services/tv-wall-mounting/
 
