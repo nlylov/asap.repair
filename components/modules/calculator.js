@@ -1523,6 +1523,71 @@ const CONFIGS = {
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates include hookup, leveling, and leak test. Appliance and hoses not included.'
+    },
+    decorative_plaster: {
+        title: 'Decorative Plaster Budget Planner',
+        subtitle: 'Choose a finish direction and room type for a rough planning range. Final pricing is confirmed after photos, surface review, access, and material selection.',
+        categories: [
+            {
+                label: 'Finish Direction',
+                id: 'series',
+                options: [
+                    { value: '', label: 'Choose finish direction…' },
+                    { value: 'lime-plaster', label: 'Lime plaster / mineral texture' },
+                    { value: 'lime-paint', label: 'Lime paint / soft mineral wash' },
+                    { value: 'venetian', label: 'Marmorino / Venetian-style plaster' },
+                    { value: 'tadelakt', label: 'Tadelakt-style bathroom finish' },
+                    { value: 'carrera', label: 'Carrera-style marble plaster' }
+                ]
+            },
+            {
+                label: 'Room / Scope',
+                id: 'size',
+                dependsOn: 'series',
+                optionSets: {
+                    'lime-plaster': [
+                        { value: '', label: 'Choose scope…' },
+                        { value: 'sm', label: 'Small accent wall' },
+                        { value: 'md', label: 'Feature wall / fireplace wall' },
+                        { value: 'lg', label: 'Room-scale wall finish' }
+                    ],
+                    'lime-paint': [
+                        { value: '', label: 'Choose scope…' },
+                        { value: 'sm', label: 'Small room or entry' },
+                        { value: 'md', label: 'Bedroom / office walls' },
+                        { value: 'lg', label: 'Living room or multi-room' }
+                    ],
+                    venetian: [
+                        { value: '', label: 'Choose scope…' },
+                        { value: 'sm', label: 'Accent panel / niche' },
+                        { value: 'md', label: 'Feature wall' },
+                        { value: 'lg', label: 'Large feature area' }
+                    ],
+                    tadelakt: [
+                        { value: '', label: 'Choose scope…' },
+                        { value: 'sm', label: 'Powder room wall / vanity area' },
+                        { value: 'md', label: 'Bathroom walls' },
+                        { value: 'lg', label: 'Shower or wet-area review' }
+                    ],
+                    carrera: [
+                        { value: '', label: 'Choose scope…' },
+                        { value: 'sm', label: 'Small statement wall' },
+                        { value: 'md', label: 'Powder room / fireplace wall' },
+                        { value: 'lg', label: 'Large custom feature wall' }
+                    ]
+                }
+            }
+        ],
+        pricing: {
+            'lime-plaster': { sm: [1200, 2200], md: [2200, 3800], lg: [4200, 7800] },
+            'lime-paint': { sm: [850, 1600], md: [1600, 2900], lg: [3000, 5600] },
+            venetian: { sm: [1500, 2800], md: [2800, 5200], lg: [5600, 9800] },
+            tadelakt: { sm: [2400, 4200], md: [4200, 7500], lg: [6500, 12000] },
+            carrera: { sm: [1800, 3400], md: [3400, 6500], lg: [7000, 12500] }
+        },
+        cta: { text: 'Request Finish Consultation', href: '/#contact' },
+        disclaimer: 'Budget ranges are planning estimates only. Wet-area finishes require proper waterproofing behind the decorative surface and a custom review.',
+        placeholder: 'Select finish and scope to see a planning range'
     }
 };
 
@@ -1569,7 +1634,7 @@ export default function calculator(container) {
                             <line x1="12" y1="1" x2="12" y2="23"/>
                             <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
                         </svg>
-                        <span>Select furniture to see estimate</span>
+                        <span>${cfg.placeholder || 'Select service details to see estimate'}</span>
                     </div>
                     <div class="mod-calc__result-price" style="display:none">
                         <div class="mod-calc__price-label">Estimated Price</div>
