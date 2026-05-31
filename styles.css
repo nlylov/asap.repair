@@ -1499,6 +1499,56 @@ button.portfolio-card__video {
 }
 
 /* ============================================
+   SITE LINKS / CRAWL DISCOVERY
+   ============================================ */
+.site-links {
+  padding: var(--section-pad) 0;
+  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  border-top: 1px solid var(--border);
+}
+
+.site-links__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.site-links__card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: transform var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.site-links__card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-accent);
+  background: var(--accent-subtle);
+}
+
+.site-links__card strong {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  color: var(--text-primary);
+}
+
+.site-links__eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ============================================
    FOOTER
    ============================================ */
 .footer {
@@ -2307,6 +2357,10 @@ button.portfolio-card__video {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .site-links__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .contact__wrapper {
     grid-template-columns: 1fr;
     gap: 48px;
@@ -2469,6 +2523,14 @@ button.portfolio-card__video {
 
   .contact__form {
     padding: 28px 20px;
+  }
+
+  .site-links__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-links__card {
+    padding: 20px;
   }
 
   /* Footer */
