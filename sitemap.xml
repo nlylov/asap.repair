@@ -574,7 +574,7 @@
 
     <url>
         <loc>https://asap.repair/case-studies/</loc>
-        <lastmod>2026-04-11</lastmod>
+        <lastmod>2026-06-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -607,5 +607,15 @@
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
+
+
+    <!-- CASE STUDY DETAIL PAGES (generated) -->
+    <url>
+        <loc>https://asap.repair/case-studies/crown-royal-barbershop-renovation-manhattan/</loc>
+        <lastmod>2026-06-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <!-- /CASE STUDY DETAIL PAGES -->
 
 </urlset>

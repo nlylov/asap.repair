@@ -1,0 +1,41 @@
+{
+  "studies": [
+    {
+      "slug": "crown-royal-barbershop-renovation-manhattan",
+      "title": "Crown Royal Barbershop Renovation in Manhattan",
+      "excerpt": "A damaged Manhattan commercial space was turned into a finished barbershop with new drywall, restroom tile, porcelain flooring, subway tile, lighting, painting, and a custom wood slat feature wall.",
+      "thumbnail": "/assets/case-studies/crown-royal-barbershop-renovation-manhattan/thumbnail.webp",
+      "location": "Murray Hill / Kips Bay, Manhattan",
+      "category": "commercial_renovation",
+      "categories": [
+        "commercial_renovation",
+        "general_repairs",
+        "flooring",
+        "painting",
+        "plumbing",
+        "electrical"
+      ],
+      "tags": [
+        "commercial renovation",
+        "barbershop renovation",
+        "drywall repair",
+        "bathroom build-out",
+        "porcelain tile",
+        "subway tile",
+        "painting",
+        "lighting",
+        "wood slat wall",
+        "Manhattan"
+      ],
+      "serviceSlugs": [
+        "general-repairs/drywall-repair",
+        "flooring-installation",
+        "painting/interior-painting",
+        "electrical/light-fixture-installation",
+        "plumbing/leak-repair",
+        "general-repairs"
+      ],
+      "featured": true
+    }
+  ]
+}
