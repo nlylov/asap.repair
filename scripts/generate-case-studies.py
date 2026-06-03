@@ -169,14 +169,55 @@ def section_gallery(study: dict, stage: str, title: str, subtitle: str) -> str:
   </section>"""
 
 
+def paragraph_html(paragraphs: list[str]) -> str:
+    return "\n          ".join(f"<p>{e(paragraph)}</p>" for paragraph in paragraphs if paragraph)
+
+
+def render_optional_focus_section(study: dict, content: dict) -> str:
+    if content.get("hideFocusSection"):
+        return ""
+    eyebrow = content.get("focusEyebrow", "Custom finish")
+    title = content.get("focusTitle", "Wood slat partition with integrated lighting")
+    paragraphs = content.get("focusParagraphs") or [
+        "A drywall partition was built to separate the dining/break area from the main customer space, then finished with vertical wood slat panels and integrated accent lighting.",
+        "This detail gave the barbershop a warmer, more premium look while keeping the space practical for day-to-day commercial use.",
+    ]
+    split = max(1, len(paragraphs) // 2)
+    left_paragraphs = paragraph_html(paragraphs[:split])
+    right_paragraphs = paragraph_html(paragraphs[split:])
+    return f"""<section class=\"project-section\">
+      <div class=\"container project-two-col\">
+        <div>
+          <span class=\"project-eyebrow\">{e(eyebrow)}</span>
+          <h2>{e(title)}</h2>
+          {left_paragraphs}
+        </div>
+        <div>
+          {right_paragraphs}
+        </div>
+      </div>
+    </section>"""
+
+
 def render_detail(study: dict) -> str:
     hero_img = study["heroImage"]
+    content = study.get("content", {})
     scope_items = "".join(f"<li>{e(item)}</li>" for item in study.get("scope", []))
     service_links = "".join(
         f'<a class="project-service-link" href="{e(s["url"])}">{e(s["title"])}<span>→</span></a>'
         for s in study.get("relatedServices", [])
     )
     tags = "".join(f"<span>{e(tag)}</span>" for tag in study.get("tags", [])[:10])
+    starting_paragraphs = content.get("startingParagraphs") or [
+        study["challenge"],
+        "The restroom was only roughed in with plumbing and drain lines. The main room had old drywall, visible damage, and uneven surfaces left by previous tenants.",
+    ]
+    process_paragraphs = content.get("processParagraphs") or [
+        study["solution"],
+        "The work was completed on a tight commercial schedule. Most of the build-out was handled solo, with helpers brought in for grout and finish-support days.",
+        "Durable finishes were prioritized: porcelain tile flooring, restroom tile, subway tile in the customer area, repaired ceilings, and practical access for future maintenance.",
+    ]
+    process_split = max(1, len(process_paragraphs) // 2)
     return f"""<!DOCTYPE html>
 <html lang=\"en\">
 <head>
@@ -197,12 +238,12 @@ def render_detail(study: dict) -> str:
           <p class=\"project-hero__lede\">{e(study['excerpt'])}</p>
           <div class=\"project-tags\">{tags}</div>
           <div class=\"project-hero__actions\">
-            <button class=\"btn btn--accent btn--lg\" data-open-quote>Request a Commercial Renovation Quote</button>
+            <button class=\"btn btn--accent btn--lg\" data-open-quote>{e(content.get('heroCtaText', 'Request a Commercial Renovation Quote'))}</button>
             <a class=\"btn btn--secondary btn--lg\" href=\"/case-studies/\">View More Projects</a>
           </div>
         </div>
         <figure class=\"project-hero__image\">
-          <img src=\"{e(hero_img)}\" alt=\"{e(study['title'])}\" width=\"1600\" height=\"1200\" fetchpriority=\"high\">
+          <img src=\"{e(hero_img)}\" alt=\"{e(study['title'])}\" width=\"{e(study.get('heroWidth', 1600))}\" height=\"{e(study.get('heroHeight', 1200))}\" fetchpriority=\"high\">
           <figcaption>{e(study.get('location'))}</figcaption>
         </figure>
       </div>
@@ -213,17 +254,16 @@ def render_detail(study: dict) -> str:
         <div><span>Client</span><strong>{e(study.get('client'))}</strong></div>
         <div><span>Location</span><strong>{e(study.get('locationShort'))}</strong></div>
         <div><span>Property type</span><strong>{e(study.get('industry'))}</strong></div>
-        <div><span>Completed</span><strong>{e(study.get('dateRange'))}</strong></div>
+        <div><span>{e(content.get('dateLabel', 'Completed'))}</span><strong>{e(study.get('dateRange'))}</strong></div>
       </div>
     </section>
 
     <section class=\"project-section\">
       <div class=\"container project-two-col\">
         <div>
-          <span class=\"project-eyebrow\">Starting condition</span>
-          <h2>From damaged shell space to customer-ready barbershop</h2>
-          <p>{e(study['challenge'])}</p>
-          <p>The restroom was only roughed in with plumbing and drain lines. The main room had old drywall, visible damage, and uneven surfaces left by previous tenants.</p>
+          <span class=\"project-eyebrow\">{e(content.get('startingEyebrow', 'Starting condition'))}</span>
+          <h2>{e(content.get('startingTitle', 'From damaged shell space to customer-ready barbershop'))}</h2>
+          {paragraph_html(starting_paragraphs)}
         </div>
         <div class=\"project-scope-card\">
           <h3>Scope of work</h3>
@@ -232,46 +272,34 @@ def render_detail(study: dict) -> str:
       </div>
     </section>
 
-    {section_gallery(study, 'before', 'Before: unfinished and damaged areas', 'The project started with damaged drywall, exposed rough-ins, missing ceiling sections, and uneven wall surfaces.')}
+    {section_gallery(study, 'before', content.get('beforeTitle', 'Before: unfinished and damaged areas'), content.get('beforeSubtitle', 'The project started with damaged drywall, exposed rough-ins, missing ceiling sections, and uneven wall surfaces.'))}
 
     <section class=\"project-section project-section--dark\">
       <div class=\"container project-two-col\">
         <div>
-          <span class=\"project-eyebrow\">Build-out process</span>
-          <h2>Drywall, ceiling repair, tile, painting, and lighting</h2>
-          <p>{e(study['solution'])}</p>
+          <span class=\"project-eyebrow\">{e(content.get('processEyebrow', 'Build-out process'))}</span>
+          <h2>{e(content.get('processTitle', 'Drywall, ceiling repair, tile, painting, and lighting'))}</h2>
+          {paragraph_html(process_paragraphs[:process_split])}
         </div>
         <div>
-          <p>The work was completed on a tight commercial schedule. Most of the build-out was handled solo, with helpers brought in for grout and finish-support days.</p>
-          <p>Durable finishes were prioritized: porcelain tile flooring, restroom tile, subway tile in the customer area, repaired ceilings, and practical access for future maintenance.</p>
+          {paragraph_html(process_paragraphs[process_split:])}
         </div>
       </div>
     </section>
 
-    {section_gallery(study, 'process', 'Process: drywall, tile, and surface preparation', 'Selected progress photos show the transformation from rough construction to durable commercial finishes.')}
+    {section_gallery(study, 'process', content.get('processGalleryTitle', 'Process: drywall, tile, and surface preparation'), content.get('processGallerySubtitle', 'Selected progress photos show the transformation from rough construction to durable commercial finishes.'))}
 
-    <section class=\"project-section\">
-      <div class=\"container project-two-col\">
-        <div>
-          <span class=\"project-eyebrow\">Custom finish</span>
-          <h2>Wood slat partition with integrated lighting</h2>
-          <p>A drywall partition was built to separate the dining/break area from the main customer space, then finished with vertical wood slat panels and integrated accent lighting.</p>
-        </div>
-        <div>
-          <p>This detail gave the barbershop a warmer, more premium look while keeping the space practical for day-to-day commercial use.</p>
-        </div>
-      </div>
-    </section>
+    {render_optional_focus_section(study, content)}
 
-    {section_gallery(study, 'detail', 'Details: custom feature wall and finish work', 'Feature-wall and finish details that helped turn the space into a branded customer-facing interior.')}
-    {section_gallery(study, 'after', 'After: finished Manhattan barbershop interior', 'Final photos after painting, lighting, tile, shelving, artwork, and cleanup.')}
+    {section_gallery(study, 'detail', content.get('detailTitle', 'Details: custom feature wall and finish work'), content.get('detailSubtitle', 'Feature-wall and finish details that helped turn the space into a branded customer-facing interior.'))}
+    {section_gallery(study, 'after', content.get('afterTitle', 'After: finished Manhattan barbershop interior'), content.get('afterSubtitle', 'Final photos after painting, lighting, tile, shelving, artwork, and cleanup.'))}
 
     <section class=\"project-section project-section--services\">
       <div class=\"container\">
         <div class=\"section-header\">
           <span class=\"project-eyebrow\">Related services</span>
-          <h2 class=\"section-title\">Need similar work in NYC?</h2>
-          <p class=\"section-subtitle\">This project connects to several Repair ASAP service areas.</p>
+          <h2 class=\"section-title\">{e(content.get('servicesTitle', 'Need similar work in NYC?'))}</h2>
+          <p class=\"section-subtitle\">{e(content.get('servicesSubtitle', 'This project connects to several Repair ASAP service areas.'))}</p>
         </div>
         <div class=\"project-service-grid\">{service_links}</div>
       </div>
@@ -279,8 +307,8 @@ def render_detail(study: dict) -> str:
 
     <section class=\"project-cta\">
       <div class=\"container\">
-        <h2>Planning a commercial renovation or restroom build-out?</h2>
-        <p>Send photos, describe the scope, and Repair ASAP will help plan the next step.</p>
+        <h2>{e(content.get('ctaTitle', 'Planning a commercial renovation or restroom build-out?'))}</h2>
+        <p>{e(content.get('ctaText', 'Send photos, describe the scope, and Repair ASAP will help plan the next step.'))}</p>
         <button class=\"btn btn--accent btn--lg\" data-open-quote>Get a Free Quote</button>
       </div>
     </section>

@@ -36,6 +36,35 @@
         "general-repairs"
       ],
       "featured": true
+    },
+    {
+      "slug": "drywall-repair-after-mini-split-installation-brooklyn",
+      "title": "Drywall Repair After Mini-Split Installation in Brooklyn",
+      "excerpt": "After a mini-split indoor AC unit was installed, the wall below it had open drywall cuts and exposed rough edges. Repair Asap patched, compounded, dried, and painted the wall for a clean finished look.",
+      "thumbnail": "/assets/case-studies/drywall-repair-after-mini-split-installation-brooklyn/thumbnail.webp",
+      "location": "East Williamsburg, Brooklyn",
+      "category": "general_repairs",
+      "categories": [
+        "general_repairs",
+        "painting",
+        "ac_installation_cleaning"
+      ],
+      "tags": [
+        "drywall repair",
+        "mini-split AC",
+        "wall patch",
+        "interior painting",
+        "Brooklyn",
+        "East Williamsburg",
+        "general repairs"
+      ],
+      "serviceSlugs": [
+        "general-repairs/drywall-repair",
+        "painting/interior-painting",
+        "general-repairs",
+        "ac-installation-cleaning"
+      ],
+      "featured": false
     }
   ]
 }
