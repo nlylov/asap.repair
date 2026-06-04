@@ -42,8 +42,10 @@
   ],
   "reviews": {
     "aggregateRating": 4.9,
-    "verifiedReviewCount": 63,
+    "verifiedReviewCount": 73,
+    "structuredReviewCount": 63,
     "includedSources": ["Google", "Yelp", "Thumbtack"],
+    "countNotes": "verifiedReviewCount (73) is the aggregate count behind the 4.9 AggregateRating across Google, Yelp and Thumbtack. structuredReviewCount (63) is the number of individual Review items marked up in JSON-LD on the reviews page; not every aggregated review is reproduced as an individual schema item.",
     "excludedFromAggregate": "Additional TaskRabbit testimonials from a previous profile are shown on the reviews page but are not counted in the 73-review aggregate rating.",
     "reviewsPage": "https://asap.repair/reviews/"
   },
