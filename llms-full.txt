@@ -4,6 +4,7 @@ This file is a longer AI-readable reference for Repair Asap LLC. It is intended 
 
 Canonical website: https://asap.repair/
 Services directory: https://asap.repair/services/
+Structured facts: https://asap.repair/facts.json
 Sitemap: https://asap.repair/sitemap.xml
 Short LLM guide: https://asap.repair/llms.txt
 

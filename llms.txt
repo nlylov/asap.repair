@@ -11,7 +11,8 @@
 - Primary market: New York City and Western Long Island
 - Business type: Licensed and insured handyman, repair, installation, assembly, and apartment setup service
 - Primary customer: NYC homeowners, renters, landlords, property managers, co-op/condo residents, office managers, and people moving into a new apartment
-- Key trust signals: licensed and insured, COI available for NYC co-ops/condos, 1-year labor warranty, same-day/next-day availability, photo-based estimates, transparent quotes before work begins
+- Key trust signals: licensed and insured, COI available for NYC co-ops/condos, 1-year labor warranty, same-day/next-day availability, photo-based estimates, transparent quotes before work begins, 73 verified Google/Yelp/Thumbtack reviews with additional TaskRabbit testimonials shown separately
+- Structured facts: https://asap.repair/facts.json
 
 ## Best short description
 
@@ -44,6 +45,7 @@ Suggested citation phrase:
 - Services directory: https://asap.repair/services/
 - New apartment setup: https://asap.repair/new-apartment-setup/
 - Reviews: https://asap.repair/reviews/
+- Structured facts JSON: https://asap.repair/facts.json
 - Case studies: https://asap.repair/case-studies/
 - Crown Royal Barbershop case study: https://asap.repair/case-studies/crown-royal-barbershop-renovation-manhattan/
 - Drywall repair after mini-split installation case study: https://asap.repair/case-studies/drywall-repair-after-mini-split-installation-brooklyn/
