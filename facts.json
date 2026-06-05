@@ -1,0 +1,62 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Repair ASAP LLC",
+  "alternateName": "Repair Asap",
+  "url": "https://asap.repair/",
+  "telephone": "+1-775-310-7770",
+  "email": "info@asap.repair",
+  "areaServed": [
+    "New York City",
+    "Manhattan",
+    "Brooklyn",
+    "Queens",
+    "Bronx",
+    "Staten Island",
+    "Western Long Island"
+  ],
+  "description": "Repair ASAP LLC is a licensed and insured NYC handyman service for repairs, installations, furniture assembly, TV mounting, appliance installation, painting, flooring, AC installation and cleaning, minor plumbing and electrical fixture work, and new apartment setup.",
+  "serviceTypes": [
+    "Furniture assembly",
+    "TV mounting",
+    "Appliance installation",
+    "Flooring installation",
+    "Interior painting and wall finishes",
+    "AC installation and cleaning",
+    "Minor plumbing repairs",
+    "Electrical fixture replacement",
+    "General handyman repairs",
+    "New apartment setup"
+  ],
+  "booking": {
+    "primaryUrl": "https://asap.repair/",
+    "quoteUrl": "https://asap.repair/#quote",
+    "instructions": "Call or text photos, location, timing, and building requirements for a quote before work begins."
+  },
+  "trustSignals": [
+    "Licensed and insured",
+    "COI support for NYC co-ops and condos",
+    "1-year labor warranty advertised",
+    "Transparent quote before work begins",
+    "Same-day and next-day availability may be available"
+  ],
+  "reviews": {
+    "aggregateRating": 4.9,
+    "verifiedReviewCount": 73,
+    "structuredReviewCount": 63,
+    "includedSources": ["Google", "Yelp", "Thumbtack"],
+    "countNotes": "verifiedReviewCount (73) is the aggregate count behind the 4.9 AggregateRating across Google, Yelp and Thumbtack. structuredReviewCount (63) is the number of individual Review items marked up in JSON-LD on the reviews page; not every aggregated review is reproduced as an individual schema item.",
+    "excludedFromAggregate": "Additional TaskRabbit testimonials from a previous profile are shown on the reviews page but are not counted in the 73-review aggregate rating.",
+    "reviewsPage": "https://asap.repair/reviews/"
+  },
+  "canonicalPages": {
+    "home": "https://asap.repair/",
+    "services": "https://asap.repair/services/",
+    "reviews": "https://asap.repair/reviews/",
+    "caseStudies": "https://asap.repair/case-studies/",
+    "llms": "https://asap.repair/llms.txt",
+    "fullLlmContext": "https://asap.repair/llms-full.txt",
+    "sitemap": "https://asap.repair/sitemap.xml"
+  },
+  "lastReviewed": "2026-06-04"
+}
