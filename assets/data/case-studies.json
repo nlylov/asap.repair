@@ -1,6 +1,41 @@
 {
   "studies": [
     {
+      "slug": "bathroom-build-out-rough-plumbing-to-tiled-shower-queens",
+      "title": "Bathroom Build-Out From Rough Plumbing to a Tiled Marble Shower in Queens",
+      "excerpt": "This bathroom started as bare framing with only rough plumbing and utilities. Repair Asap built the walls and ceiling, waterproofed the wet areas, formed a sloped shower pan, and tiled the shower and floor in marble-look porcelain and hexagon mosaic.",
+      "thumbnail": "/assets/case-studies/bathroom-build-out-rough-plumbing-to-tiled-shower-queens/thumbnail.webp",
+      "location": "St. Albans, Queens",
+      "category": "flooring",
+      "categories": [
+        "flooring",
+        "plumbing",
+        "general_repairs",
+        "painting"
+      ],
+      "tags": [
+        "bathroom build-out",
+        "bathroom renovation",
+        "shower tile",
+        "waterproofing",
+        "shower pan",
+        "marble-look porcelain",
+        "mosaic floor",
+        "rough plumbing",
+        "Queens",
+        "St. Albans"
+      ],
+      "serviceSlugs": [
+        "flooring-installation",
+        "general-repairs/drywall-repair",
+        "plumbing",
+        "plumbing/bathroom-fixture-installation",
+        "general-repairs/caulking",
+        "general-repairs"
+      ],
+      "featured": true
+    },
+    {
       "slug": "crown-royal-barbershop-renovation-manhattan",
       "title": "Crown Royal Barbershop Renovation in Manhattan",
       "excerpt": "A damaged Manhattan commercial space was turned into a finished barbershop with new drywall, restroom tile, porcelain flooring, subway tile, lighting, painting, and a custom wood slat feature wall.",
