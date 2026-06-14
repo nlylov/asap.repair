@@ -580,7 +580,7 @@
 
     <url>
         <loc>https://asap.repair/case-studies/</loc>
-        <lastmod>2026-06-05</lastmod>
+        <lastmod>2026-06-14</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -616,6 +616,12 @@
 
 
     <!-- CASE STUDY DETAIL PAGES (generated) -->
+    <url>
+        <loc>https://asap.repair/case-studies/gazebo-outdoor-kitchen-installation-lattingtown-long-island/</loc>
+        <lastmod>2026-06-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
     <url>
         <loc>https://asap.repair/case-studies/bathroom-build-out-rough-plumbing-to-tiled-shower-queens/</loc>
         <lastmod>2026-06-05</lastmod>
