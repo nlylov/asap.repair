@@ -1,6 +1,35 @@
 {
   "studies": [
     {
+      "slug": "gazebo-outdoor-kitchen-installation-lattingtown-long-island",
+      "title": "Gazebo & Outdoor Kitchen Installation on Concrete Footings in Lattingtown, Long Island",
+      "excerpt": "An existing paver patio became a permanent outdoor living space. Repair Asap lifted pavers, drilled and poured concrete footings under each post, then a two-person crew assembled the gazebo frame, roof, drainage, and an outdoor kitchen.",
+      "thumbnail": "/assets/case-studies/gazebo-outdoor-kitchen-installation-lattingtown-long-island/thumbnail.webp",
+      "location": "Lattingtown, Nassau County",
+      "category": "general_repairs",
+      "categories": [
+        "general_repairs",
+        "furniture_assembly"
+      ],
+      "tags": [
+        "gazebo installation",
+        "outdoor kitchen",
+        "concrete footings",
+        "paver patio",
+        "hardtop gazebo",
+        "gazebo assembly",
+        "backyard project",
+        "Lattingtown",
+        "Nassau County",
+        "Long Island"
+      ],
+      "serviceSlugs": [
+        "furniture-assembly",
+        "general-repairs"
+      ],
+      "featured": true
+    },
+    {
       "slug": "bathroom-build-out-rough-plumbing-to-tiled-shower-queens",
       "title": "Bathroom Build-Out From Rough Plumbing to a Tiled Marble Shower in Queens",
       "excerpt": "This bathroom started as bare framing with only rough plumbing and utilities. Repair Asap built the walls and ceiling, waterproofed the wet areas, formed a sloped shower pan, and tiled the shower and floor in marble-look porcelain and hexagon mosaic.",

@@ -113,6 +113,22 @@ def render_head(study: dict) -> str:
             {"@type": "ListItem", "position": 3, "name": study["title"], "item": url},
         ],
     }
+    faqs = study.get("content", {}).get("faqs") or []
+    faq_script = ""
+    if faqs:
+        faq_schema = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": f["q"],
+                    "acceptedAnswer": {"@type": "Answer", "text": f["a"]},
+                }
+                for f in faqs
+            ],
+        }
+        faq_script = f'\n  <script type="application/ld+json">{json_ld(faq_schema)}</script>'
     return f"""  <meta charset=\"UTF-8\">
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
   <title>{e(study.get('seoTitle') or study['title'])}</title>
@@ -135,9 +151,9 @@ def render_head(study: dict) -> str:
   <link href=\"https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap\" rel=\"stylesheet\" media=\"print\" onload=\"this.media='all'\">
   <noscript><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap\"></noscript>
   <link rel=\"stylesheet\" href=\"/styles.css\">
-  <link rel=\"stylesheet\" href=\"/case-studies/case-studies.css\">
+  <link rel="stylesheet" href="/case-studies/case-studies.css?v=20260614-faq-contrast">
   <script type=\"application/ld+json\">{json_ld(schema)}</script>
-  <script type=\"application/ld+json\">{json_ld(breadcrumbs)}</script>"""
+  <script type=\"application/ld+json\">{json_ld(breadcrumbs)}</script>{faq_script}"""
 
 
 def render_image(img: dict, cls: str = "project-gallery__image") -> str:
@@ -199,6 +215,26 @@ def render_optional_focus_section(study: dict, content: dict) -> str:
     </section>"""
 
 
+def render_faq(study: dict) -> str:
+    content = study.get("content", {})
+    faqs = content.get("faqs") or []
+    if not faqs:
+        return ""
+    items = "".join(
+        f'<details class="project-faq__item"><summary>{e(f["q"])}</summary><div class="project-faq__answer"><p>{e(f["a"])}</p></div></details>'
+        for f in faqs
+    )
+    return f"""<section class=\"project-section project-section--faq\">
+      <div class=\"container\">
+        <div class=\"section-header section-header--left\">
+          <span class=\"project-eyebrow\">FAQ</span>
+          <h2 class=\"section-title\">{e(content.get('faqTitle', 'Frequently asked questions'))}</h2>
+        </div>
+        <div class=\"project-faq\">{items}</div>
+      </div>
+    </section>"""
+
+
 def render_detail(study: dict) -> str:
     hero_img = study["heroImage"]
     content = study.get("content", {})
@@ -218,6 +254,8 @@ def render_detail(study: dict) -> str:
         "Durable finishes were prioritized: porcelain tile flooring, restroom tile, subway tile in the customer area, repaired ceilings, and practical access for future maintenance.",
     ]
     process_split = max(1, len(process_paragraphs) // 2)
+    faq_section = render_faq(study)
+    faq_block = f"\n\n    {faq_section}" if faq_section else ""
     return f"""<!DOCTYPE html>
 <html lang=\"en\">
 <head>
@@ -303,7 +341,7 @@ def render_detail(study: dict) -> str:
         </div>
         <div class=\"project-service-grid\">{service_links}</div>
       </div>
-    </section>
+    </section>{faq_block}
 
     <section class=\"project-cta\">
       <div class=\"container\">
@@ -368,7 +406,7 @@ def render_index(studies: list[dict]) -> str:
   <link href=\"https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap\" rel=\"stylesheet\" media=\"print\" onload=\"this.media='all'\">
   <noscript><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap\"></noscript>
   <link rel=\"stylesheet\" href=\"/styles.css\">
-  <link rel=\"stylesheet\" href=\"/case-studies/case-studies.css\">
+  <link rel="stylesheet" href="/case-studies/case-studies.css?v=20260614-faq-contrast">
   <script type=\"application/ld+json\">{json_ld(schema)}</script>
 </head>
 <body>
