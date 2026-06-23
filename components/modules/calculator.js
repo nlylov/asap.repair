@@ -1645,7 +1645,8 @@ export default function calculator(container) {
                         </div>
                         <button type="button" class="btn btn--accent btn--lg mod-calc__cta">${cfg.cta.text}</button>
                         <p class="mod-calc__disclaimer">${cfg.disclaimer}</p>
-                        <p class="mod-calc__disclaimer" style="margin-top:6px;font-weight:500">⚠️ Minimum service call: $99 per visit</p>
+                        <p class="mod-calc__disclaimer" style="margin-top:6px;font-weight:500">⚠️ Minimum repair visit: $150 (any install/attach job)</p>
+                        <p class="mod-calc__disclaimer" style="margin-top:4px">Price shown is for the work only — NYC sales tax (8.875%) is added separately where applicable. Some capital-improvement installs are tax-exempt with Form ST-124; we'll confirm on your invoice.</p>
                     </div>
                 </div>
             </div>
@@ -1689,6 +1690,25 @@ export default function calculator(container) {
         });
     });
 
+    // Repair ASAP pricing model — single source of truth, kept in sync with the CRM
+    // Knowledge Base so the website and the AI quote the same thing.
+    //   REPAIR_MINIMUM ($150): floor for any actual WORK (install / attach / mount /
+    //     assemble). This calculator is about work, so every figure it shows or writes
+    //     into a lead honors this minimum. A real lead used to arrive as "Double Rod —
+    //     1 window (estimated $55–$90)" — below the work minimum.
+    //   ASSESSMENT_VISIT_FEE ($99): FOUNDATION ONLY — intentionally not rendered here.
+    //     The on-site assessment visit (photos, notes, meter test, NO repair work),
+    //     CREDITED toward the project if the customer proceeds; photo / remote estimates
+    //     are free. Reserved for the future estimate-only / appliance-diagnostic pages so
+    //     they share one source and never quote $99 for work.
+    //   SALES_TAX_RATE (8.875% NYC): disclosure-only — shown as a separate note, never
+    //     baked into the figure (most jobs are taxable labor, but a subset are non-taxable
+    //     capital improvements with Form ST-124, so we don't hard-add it to every quote).
+    const PRICING = { REPAIR_MINIMUM: 150, ASSESSMENT_VISIT_FEE: 99, SALES_TAX_RATE: 0.08875 };
+    function flooredRange(lo, hi) {
+        return [Math.max(lo, PRICING.REPAIR_MINIMUM), Math.max(hi, PRICING.REPAIR_MINIMUM)];
+    }
+
     function updatePrice() {
         const series = selected.series;
         const size = selected.size;
@@ -1699,11 +1719,20 @@ export default function calculator(container) {
             return;
         }
 
-        const [lo, hi] = cfg.pricing[series][size];
+        const [lo, hi] = flooredRange(...cfg.pricing[series][size]);
 
-        // Animate numbers
+        // Animate numbers; collapse to a single figure when the floor makes lo === hi
+        // (e.g. one curtain rod → "$150", not an awkward "$150–$150").
+        const sep = container.querySelector('.mod-calc__price-sep');
         animateNumber(priceLo, lo);
-        animateNumber(priceHi, hi);
+        if (hi > lo) {
+            animateNumber(priceHi, hi);
+            priceHi.style.display = '';
+            if (sep) sep.style.display = '';
+        } else {
+            priceHi.style.display = 'none';
+            if (sep) sep.style.display = 'none';
+        }
 
         placeholder.style.display = 'none';
         priceBox.style.display = '';
@@ -1742,7 +1771,7 @@ export default function calculator(container) {
             // Build human-readable summary from selections
             let description = '';
             if (series && size && cfg.pricing[series]?.[size]) {
-                const [lo, hi] = cfg.pricing[series][size];
+                const [lo, hi] = flooredRange(...cfg.pricing[series][size]);
 
                 // Get readable labels from the dropdown options
                 const seriesSelect = container.querySelector('[data-cat="series"]');
@@ -1750,7 +1779,10 @@ export default function calculator(container) {
                 const seriesLabel = seriesSelect?.selectedOptions?.[0]?.text || series;
                 const sizeLabel = sizeSelectEl?.selectedOptions?.[0]?.text || size;
 
-                description = `${seriesLabel} — ${sizeLabel} (estimated $${lo}–$${hi})`;
+                // Price is for the work only; NYC sales tax is separate (disclosed below).
+                description = hi > lo
+                    ? `${seriesLabel} — ${sizeLabel} (estimated $${lo}–$${hi}, work only — NYC sales tax separate)`
+                    : `${seriesLabel} — ${sizeLabel} (estimated $${lo} minimum repair visit, work only — NYC sales tax separate)`;
             }
 
             // Store for quote-modal custom_fields
