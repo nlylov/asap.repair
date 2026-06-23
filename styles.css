@@ -5679,3 +5679,138 @@ button.portfolio-card__video {
     bottom: 80px !important;
   }
 }
+
+/* ─── Live CRM Knowledge-Base widget (bazas-kb.js) ───────────────────────────
+   Styles the services / pricing / FAQ blocks the widget renders from the live
+   CRM into any [data-bazas-kb] container. Matches the site design tokens so the
+   live content (or its static fallback) sits in-theme. */
+.bk-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin: 0 auto 40px;
+  max-width: 760px;
+}
+
+/* Pricing — definition-list rows + a tax note */
+.bk-pricing {
+  margin: 0;
+}
+.bk-pricing-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.bk-pricing-row:first-child {
+  padding-top: 0;
+}
+.bk-pricing-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.bk-pricing-label {
+  margin: 0;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+.bk-pricing-value {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: right;
+}
+/* The first row is the headline minimum — give it the accent. */
+.bk-pricing-row:first-child .bk-pricing-value {
+  color: var(--accent);
+  font-size: 1.15rem;
+}
+.bk-pricing-note {
+  margin: 18px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+/* Services — categories with name/price rows */
+.bk-service-group {
+  margin-bottom: 24px;
+}
+.bk-service-group:last-child {
+  margin-bottom: 0;
+}
+.bk-service-cat {
+  margin: 0 0 12px;
+  color: var(--accent);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.bk-service-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.bk-service {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.bk-service:last-child {
+  border-bottom: none;
+}
+.bk-service-name {
+  color: var(--text-secondary);
+}
+.bk-price {
+  color: var(--text-primary);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* FAQ — collapsible question/answer */
+.bk-faq-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+.bk-faq-item:last-child {
+  border-bottom: none;
+}
+.bk-faq-q {
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  cursor: pointer;
+}
+.bk-faq-a {
+  margin-top: 10px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Narrow screens: stack the label above the value so long values don't crush. */
+@media (max-width: 560px) {
+  .bk-card {
+    padding: 22px 20px;
+  }
+  .bk-pricing-row,
+  .bk-service {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .bk-pricing-value,
+  .bk-price {
+    text-align: left;
+  }
+}

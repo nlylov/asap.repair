@@ -39,6 +39,16 @@ test('renderPricing surfaces the LIVE policy fee (no hardcoded price in source)'
   assert.doesNotMatch(cheaper, /\$150/);
 });
 
+test('renderPricing surfaces salesTax as a note, never as a row', () => {
+  const html = kb.renderPricing({ policies: { minimumVisit: '$150', salesTax: 'NYC sales tax 8.875% is separate.' } });
+  assert.match(html, /bk-pricing-note/);
+  assert.match(html, /8\.875%/);
+  // a policies object with ONLY salesTax still renders the note (no rows, no crash)
+  const onlyTax = kb.renderPricing({ policies: { salesTax: 'Tax 8.875%.' } });
+  assert.match(onlyTax, /bk-pricing-note/);
+  assert.doesNotMatch(onlyTax, /bk-pricing-row/);
+});
+
 test('bazas-kb.js executable code contains NO hardcoded tenant prices', () => {
   const src = fs.readFileSync(path.join(__dirname, '..', 'bazas-kb.js'), 'utf8');
   const code = src
