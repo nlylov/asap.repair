@@ -21,7 +21,7 @@ const FIXTURE = {
     { question: 'What areas do you serve?', answer: 'Manhattan, Brooklyn, Queens, Staten Island, and Nassau County.' }
   ],
   policies: {
-    minimumVisit: '$99',
+    minimumVisit: '$150',
     assessmentFee: '$99 (credited toward job)',
     warranty: '1-year labor warranty, 60-day parts warranty',
     payment: 'Cash, Zelle, Venmo, Card. Due upon completion.'
@@ -31,12 +31,12 @@ const FIXTURE = {
 test('renderPricing surfaces the LIVE policy fee (no hardcoded price in source)', () => {
   const html = kb.renderPricing(FIXTURE);
   assert.match(html, /Minimum visit/);
-  assert.match(html, /\$99/);                 // comes from FIXTURE.policies, not the file
+  assert.match(html, /\$150/);                // comes from FIXTURE.policies, not the file
   assert.match(html, /1-year labor warranty/);
   // change the truth → output changes (proves it is data-driven, not hardcoded)
   const cheaper = kb.renderPricing({ policies: { minimumVisit: '$1' } });
   assert.match(cheaper, /\$1/);
-  assert.doesNotMatch(cheaper, /\$99/);
+  assert.doesNotMatch(cheaper, /\$150/);
 });
 
 test('bazas-kb.js executable code contains NO hardcoded tenant prices', () => {

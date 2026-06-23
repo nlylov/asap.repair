@@ -4,13 +4,15 @@
   // --- КОНФИГУРАЦИЯ ---
   const config = {
     apiEndpoint: 'https://crm.asap.repair',
+    visitEndpoint: '/api/widget/visit',
     fontFamily: "'Outfit', 'Inter', sans-serif",
-    storageKey: 'repair_asap_thread_id'
+    storageKey: 'repair_asap_thread_id',
+    visitorStorageKey: 'repair_asap_visitor_id'
   };
   const containerId = 'repair-asap-chatbot';
   // --------------------
 
-  let state = { threadId: null, isOpen: false, isLoading: false };
+  let state = { threadId: null, isOpen: false, isLoading: false, threadPromise: null };
 
   function injectStyles() {
     const style = document.createElement('style');
@@ -447,27 +449,94 @@
     try { sessionContext.referrer = document.referrer || ''; } catch (_) {}
     try { sessionContext.language = navigator.language || ''; } catch (_) {}
     try { sessionContext.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (_) {}
+    sessionContext.visitorId = getOrCreateVisitorId();
     return sessionContext;
+  }
+
+  function getOrCreateVisitorId() {
+    try {
+      let visitorId = localStorage.getItem(config.visitorStorageKey);
+      if (!visitorId) {
+        const random = (window.crypto && window.crypto.randomUUID)
+          ? window.crypto.randomUUID()
+          : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+        visitorId = `v_${random}`;
+        localStorage.setItem(config.visitorStorageKey, visitorId);
+      }
+      return visitorId;
+    } catch (_) {
+      return `volatile_${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    }
+  }
+
+  function getStoredThreadId() {
+    try {
+      return localStorage.getItem(config.storageKey);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function setStoredThreadId(threadId) {
+    try {
+      localStorage.setItem(config.storageKey, threadId);
+    } catch (_) {}
+  }
+
+  function removeStoredThreadId() {
+    try {
+      localStorage.removeItem(config.storageKey);
+    } catch (_) {}
   }
 
   async function notifyWidgetVisit(threadId) {
     try {
-      await fetch(`${config.apiEndpoint}/api/widget/visit`, {
+      const body = Object.assign(
+        {},
+        threadId ? { threadId: threadId } : {},
+        getSessionContext()
+      );
+      await fetch(`${config.visitEndpoint}?org=repair-asap`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(Object.assign({ threadId: threadId }, getSessionContext())),
+        body: JSON.stringify(body),
       });
     } catch (e) {
       console.warn('Visit notification failed', e);
     }
   }
 
+  async function ensureThread() {
+    if (state.threadId) return state.threadId;
+    if (state.threadPromise) return state.threadPromise;
+
+    state.threadPromise = (async () => {
+      const sessionContext = getSessionContext();
+      const response = await fetch(`${config.apiEndpoint}/api/widget/thread?org=repair-asap`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(sessionContext),
+      });
+      if (!response.ok) throw new Error('Thread init failed');
+      const data = await response.json();
+      state.threadId = data.threadId;
+      setStoredThreadId(state.threadId);
+      return state.threadId;
+    })();
+
+    try {
+      return await state.threadPromise;
+    } finally {
+      state.threadPromise = null;
+    }
+  }
+
   async function initThread() {
-    const storedThreadId = localStorage.getItem(config.storageKey);
+    const storedThreadId = getStoredThreadId();
     // Old proxy used OpenAI thread IDs (thread_xxx). New CRM endpoints use
     // their own format. Drop legacy IDs so we mint a fresh thread.
     if (storedThreadId && storedThreadId.startsWith('thread_')) {
-      localStorage.removeItem(config.storageKey);
+      removeStoredThreadId();
     } else if (storedThreadId) {
       state.threadId = storedThreadId;
       notifyWidgetVisit(storedThreadId);
@@ -476,36 +545,25 @@
       }
       return;
     }
-    try {
-      const sessionContext = getSessionContext();
-      const response = await fetch(`${config.apiEndpoint}/api/widget/thread?org=repair-asap`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(sessionContext),
-      });
-      if (response.ok) {
-        const data = await response.json();
-        state.threadId = data.threadId;
-        localStorage.setItem(config.storageKey, state.threadId);
-        addMessageToUI('bot', 'Hi! 👋 I\'m here to help with your project. What do you need done?');
-      }
-    } catch (e) { console.error('Init failed', e); }
+    notifyWidgetVisit(null);
+    addMessageToUI('bot', 'Hi! 👋 I\'m here to help with your project. What do you need done?');
   }
 
   async function sendMessage() {
     const inputEl = document.getElementById('repair-asap-chat-input');
     const sendBtn = document.getElementById('repair-asap-chat-send');
     const message = inputEl.value.trim();
-    if (!message || state.isLoading || !state.threadId) return;
+    if (!message || state.isLoading) return;
 
-    inputEl.value = '';
     sendBtn.disabled = true;
-
-    addMessageToUI('user', message);
     state.isLoading = true;
-    showLoading();
 
     try {
+      await ensureThread();
+      inputEl.value = '';
+      addMessageToUI('user', message);
+      showLoading();
+
       const response = await fetch(`${config.apiEndpoint}/api/widget/message`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -557,7 +615,7 @@
 
   // --- Send photo ---
   async function sendPhoto(file) {
-    if (state.isLoading || !state.threadId) return;
+    if (state.isLoading) return;
     if (!file.type.startsWith('image/') || file.size > 5 * 1024 * 1024) {
       addMessageToUI('bot', 'Please send an image file under 5 MB.');
       return;
@@ -568,6 +626,7 @@
     sendBtn.disabled = true;
 
     try {
+      await ensureThread();
       const dataUrl = await compressChatImage(file);
       const base64 = dataUrl.split(',')[1];
 
