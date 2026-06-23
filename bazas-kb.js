@@ -61,7 +61,8 @@
   }
 
   // Pricing = the truth-critical block. Driven entirely by policies from the KB
-  // (minimum visit / assessment fee / warranty / payment) — never a hardcoded fee.
+  // (minimum visit / assessment fee / warranty / payment / sales tax) — never a
+  // hardcoded fee. salesTax is a long sentence, so it renders as a note, not a row.
   function renderPricing(kb) {
     var p = (kb && kb.policies);
     if (!p || typeof p !== 'object') return '';
@@ -70,13 +71,15 @@
     if (p.assessmentFee) rows.push(['On-site assessment', p.assessmentFee]);
     if (p.warranty) rows.push(['Warranty', p.warranty]);
     if (p.payment) rows.push(['Payment', p.payment]);
-    if (!rows.length) return '';
+    if (!rows.length && !p.salesTax) return '';
     var body = rows.map(function (r) {
       return '<div class="bk-pricing-row">' +
         '<dt class="bk-pricing-label">' + esc(r[0]) + '</dt>' +
         '<dd class="bk-pricing-value">' + esc(r[1]) + '</dd></div>';
     }).join('');
-    return '<dl class="bk-pricing">' + body + '</dl>';
+    var dl = rows.length ? '<dl class="bk-pricing">' + body + '</dl>' : '';
+    var note = p.salesTax ? '<p class="bk-pricing-note">' + esc(p.salesTax) + '</p>' : '';
+    return dl + note;
   }
 
   function renderFaq(kb) {

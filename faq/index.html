@@ -283,6 +283,19 @@
                 <span class="section-tag">Pricing</span>
                 <h2 class="section-title">Estimates &amp; Fees</h2>
             </div>
+            <!-- Live pricing pulled from the CRM Knowledge Base (bazas-kb.js). The static
+                 fallback below is shown verbatim if the CRM is unreachable, so this card
+                 never goes blank. Edit a fee in Settings → Knowledge Base and it updates
+                 here automatically — no code change. -->
+            <div class="bk-card" data-bazas-kb="pricing">
+                <dl class="bk-pricing">
+                    <div class="bk-pricing-row"><dt class="bk-pricing-label">Minimum visit</dt><dd class="bk-pricing-value">$150</dd></div>
+                    <div class="bk-pricing-row"><dt class="bk-pricing-label">On-site assessment</dt><dd class="bk-pricing-value">$99 (credited toward job)</dd></div>
+                    <div class="bk-pricing-row"><dt class="bk-pricing-label">Warranty</dt><dd class="bk-pricing-value">1-year labor warranty, 60-day parts warranty</dd></div>
+                    <div class="bk-pricing-row"><dt class="bk-pricing-label">Payment</dt><dd class="bk-pricing-value">Cash, Zelle, Venmo, Credit/Debit Card, Apple Pay, Google Pay, Check</dd></div>
+                </dl>
+                <p class="bk-pricing-note">NYC sales tax 8.875% applies to most jobs and is added to the final invoice; certain capital-improvement installs may be exempt with Form ST-124. Prices quoted are for the work only.</p>
+            </div>
             <div class="faq__list">
 
                 <!-- Free Remote Estimate -->
@@ -645,6 +658,8 @@
 
     <script src="/components/loader.js"></script>
     <script src="/main.js"></script>
+    <!-- Live CRM pricing for the [data-bazas-kb="pricing"] card above -->
+    <script src="/bazas-kb.js" defer></script>
 
     <!-- Knowledge Base dynamic FAQ overlay -->
     <script>
