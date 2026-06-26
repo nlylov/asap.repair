@@ -129,6 +129,34 @@
         "ac-installation-cleaning"
       ],
       "featured": false
+    },
+    {
+      "slug": "custom-wooden-flower-bed-built-in-bench",
+      "title": "Custom Wooden Planter With Built-In Bench in Brooklyn",
+      "excerpt": "Brooklyn, NY backyard case study: before bare dirt and fence, then support and board assembly from client drawings with board rework, then the built planter with center soil pile, and the true final after soil was moved into the planter beds.",
+      "thumbnail": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/final-planter-bench-true-final-hero.webp",
+      "location": "Brooklyn, NY",
+      "category": "furniture_assembly",
+      "categories": [
+        "furniture_assembly",
+        "general_repairs"
+      ],
+      "tags": [
+        "custom planter",
+        "flower bed",
+        "built-in bench",
+        "outdoor carpentry",
+        "client drawings",
+        "prepared boards",
+        "field adjustment",
+        "Brooklyn handyman",
+        "Prospect Lefferts Gardens"
+      ],
+      "serviceSlugs": [
+        "furniture-assembly",
+        "general-repairs"
+      ],
+      "featured": false
     }
   ]
 }
