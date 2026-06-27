@@ -279,15 +279,33 @@
     "images": [
       {
         "index": "01",
-        "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/before-sticky-polyurethane-cup-marks.webp",
-        "alt": "Sticky polyurethane finish with visible cup and item marks before table refinishing",
-        "caption": "Before: cup and item marks were visible in the soft, failed top coat.",
+        "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/before-white-cup-ring-sticky-finish.webp",
+        "alt": "Before photo of a white cup ring and cloudy water marks in a sticky polyurethane tabletop finish",
+        "caption": "Before: a white cup ring and cloudy water marks were pressed into the soft, sticky top coat.",
         "stage": "before",
-        "width": 1250,
-        "height": 1600
+        "width": 1178,
+        "height": 1580
       },
       {
         "index": "02",
+        "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/before-cloudy-sticky-polyurethane-spots.webp",
+        "alt": "Before photo of cloudy blotchy spots in a soft polyurethane finish on a wood table corner",
+        "caption": "Before detail: cloudy, blotchy spots showed the polyurethane never cured hard.",
+        "stage": "before",
+        "width": 1178,
+        "height": 1550
+      },
+      {
+        "index": "03",
+        "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/before-soft-finish-water-marks.webp",
+        "alt": "Before photo of faint rings and water marks left by everyday items on a sticky table finish",
+        "caption": "Before detail: everyday items kept leaving rings and marks in the tacky surface.",
+        "stage": "before",
+        "width": 1178,
+        "height": 1550
+      },
+      {
+        "index": "04",
         "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/before-failed-soft-finish-closeup.webp",
         "alt": "Close-up of cloudy failed polyurethane coating on a wood table",
         "caption": "Before detail: cloudy, uneven areas showed why the old coating had to be removed.",
@@ -296,7 +314,7 @@
         "height": 1400
       },
       {
-        "index": "03",
+        "index": "05",
         "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/process-sanded-table-raw-wood.webp",
         "alt": "Wood table surface after the old polyurethane was removed and sanded",
         "caption": "Process: the failed finish was stripped back and the surface prepared for stain.",
@@ -305,7 +323,7 @@
         "height": 1600
       },
       {
-        "index": "04",
+        "index": "06",
         "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/process-sanding-tool-on-table.webp",
         "alt": "Sanding tool and abrasives on the table during workshop refinishing",
         "caption": "Workshop prep: sanding tools and abrasives readied the surface.",
@@ -314,7 +332,7 @@
         "height": 1400
       },
       {
-        "index": "05",
+        "index": "07",
         "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/process-stain-color-check.webp",
         "alt": "Wood table surface during stain color check before final polyurethane",
         "caption": "Color check: the stain tone was selected with the client before the protective finish.",
@@ -323,7 +341,7 @@
         "height": 1400
       },
       {
-        "index": "06",
+        "index": "08",
         "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/after-new-polyurethane-finish.webp",
         "alt": "New polyurethane finish reflecting light on the refinished wood table",
         "caption": "After: the new polyurethane created a smoother, protected surface.",
@@ -332,7 +350,7 @@
         "height": 1400
       },
       {
-        "index": "07",
+        "index": "09",
         "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/after-refinished-tabletop-wide.webp",
         "alt": "Wide view of the refinished wood tabletop with a new protective finish",
         "caption": "After: a wider view of the refinished tabletop with the new finish cured enough for return.",
@@ -341,7 +359,7 @@
         "height": 1700
       },
       {
-        "index": "08",
+        "index": "10",
         "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/finish-detail-protective-coat.webp",
         "alt": "Detail of the protective polyurethane finish over refinished wood grain",
         "caption": "Finish detail: wood grain, stain color, and protective top coat after the workshop process.",
