@@ -212,6 +212,101 @@
     ]
   },
   {
+    "slug": "astoria-wood-table-refinishing-sticky-polyurethane",
+    "status": "published",
+    "featured": false,
+    "title": "Wood Table Refinishing in Astoria, Queens | Sticky Polyurethane Repair",
+    "shortTitle": "Wood Table Refinishing, Astoria",
+    "seoTitle": "Wood Table Refinishing in Astoria, Queens | Sticky Polyurethane Repair",
+    "description": "Astoria, Queens case study: Repair Asap restored a wood table with a soft, sticky polyurethane finish by removing the failed coating, matching the stain color with the client, and applying a new protective polyurethane finish.",
+    "excerpt": "A wood table had a failed soft polyurethane finish that stayed tacky and kept taking cup and item marks. Repair Asap took the table to a workshop, removed the old coating, matched the stain color with the client, and applied a new protective polyurethane finish over a two-day refinishing process.",
+    "client": "Residential client",
+    "location": "Astoria, Queens, NY",
+    "locationShort": "Astoria, Queens",
+    "borough": "Queens, NY",
+    "projectType": "Wood Table Refinishing",
+    "industry": "Residential furniture restoration",
+    "dateRange": "Completed over two days",
+    "datePublished": "2026-06-26",
+    "dateModified": "2026-06-26",
+    "category": "general_repairs",
+    "categories": [
+      "general_repairs",
+      "painting",
+      "furniture_assembly"
+    ],
+    "tags": [
+      "wood table refinishing",
+      "furniture restoration",
+      "sticky polyurethane repair",
+      "tacky polyurethane",
+      "stain color matching",
+      "protective polyurethane finish",
+      "Astoria",
+      "Queens"
+    ],
+    "thumbnail": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/thumbnail.webp",
+    "heroImage": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/hero-refinished-wood-table-outdoor.webp",
+    "heroWidth": 1643,
+    "heroHeight": 1700,
+    "ogImage": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/hero-refinished-wood-table-outdoor.webp",
+    "scope": [
+      "Inspecting sticky and tacky polyurethane failure",
+      "Transporting the table to a workshop",
+      "Removing the old failed polyurethane coating",
+      "Sanding and preparing the wood surface",
+      "Selecting and approving a stain color with the client",
+      "Applying a new protective polyurethane finish",
+      "Allowing drying and curing time before return"
+    ],
+    "challenge": "The previous coating had stayed soft and tacky, so cups and everyday items left marks in the tabletop. A simple extra coat would not solve the failed finish underneath.",
+    "solution": "Repair Asap handled the table in a workshop, removed the old failed coating, sanded and prepared the wood, confirmed the stain color with the client, and applied a new protective polyurethane finish.",
+    "result": "The table kept its wood character while getting a cleaner, more usable protected surface. The work was completed over two days to allow stripping, stain drying, polyurethane application, and drying/curing time; timelines vary by table condition and finish system.",
+    "relatedServices": [
+      {
+        "title": "Furniture Assembly & Repair",
+        "url": "/services/furniture-assembly/"
+      },
+      {
+        "title": "Painting & Finish Work",
+        "url": "/services/painting/interior-painting/"
+      },
+      {
+        "title": "General Repairs & Handyman",
+        "url": "/services/general-repairs/"
+      }
+    ],
+    "images": [
+      {
+        "index": "01",
+        "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/before-sticky-polyurethane-cup-marks.webp",
+        "alt": "Sticky polyurethane finish with visible marks before table refinishing",
+        "caption": "Before: marks and cloudy areas in the failed soft top coat.",
+        "stage": "before",
+        "width": 1250,
+        "height": 1600
+      },
+      {
+        "index": "02",
+        "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/process-sanded-table-raw-wood.webp",
+        "alt": "Wood table surface after the old failed coating was removed and sanded",
+        "caption": "Process: old finish removed and the wood prepared for stain.",
+        "stage": "process",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "index": "03",
+        "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/after-refinished-tabletop-wide.webp",
+        "alt": "Wide view of refinished wood table with new protective polyurethane finish",
+        "caption": "After: refinished tabletop with a new protective finish.",
+        "stage": "after",
+        "width": 1643,
+        "height": 1700
+      }
+    ]
+  },
+  {
     "slug": "bathroom-build-out-rough-plumbing-to-tiled-shower-queens",
     "status": "published",
     "featured": true,
