@@ -280,31 +280,120 @@
       {
         "index": "01",
         "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/before-sticky-polyurethane-cup-marks.webp",
-        "alt": "Sticky polyurethane finish with visible marks before table refinishing",
-        "caption": "Before: marks and cloudy areas in the failed soft top coat.",
+        "alt": "Sticky polyurethane finish with visible cup and item marks before table refinishing",
+        "caption": "Before: cup and item marks were visible in the soft, failed top coat.",
         "stage": "before",
         "width": 1250,
         "height": 1600
       },
       {
         "index": "02",
+        "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/before-failed-soft-finish-closeup.webp",
+        "alt": "Close-up of cloudy failed polyurethane coating on a wood table",
+        "caption": "Before detail: cloudy, uneven areas showed why the old coating had to be removed.",
+        "stage": "before",
+        "width": 1400,
+        "height": 1400
+      },
+      {
+        "index": "03",
         "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/process-sanded-table-raw-wood.webp",
-        "alt": "Wood table surface after the old failed coating was removed and sanded",
-        "caption": "Process: old finish removed and the wood prepared for stain.",
+        "alt": "Wood table surface after the old polyurethane was removed and sanded",
+        "caption": "Process: the failed finish was stripped back and the surface prepared for stain.",
         "stage": "process",
         "width": 1200,
         "height": 1600
       },
       {
-        "index": "03",
+        "index": "04",
+        "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/process-sanding-tool-on-table.webp",
+        "alt": "Sanding tool and abrasives on the table during workshop refinishing",
+        "caption": "Workshop prep: sanding tools and abrasives readied the surface.",
+        "stage": "process",
+        "width": 1400,
+        "height": 1400
+      },
+      {
+        "index": "05",
+        "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/process-stain-color-check.webp",
+        "alt": "Wood table surface during stain color check before final polyurethane",
+        "caption": "Color check: the stain tone was selected with the client before the protective finish.",
+        "stage": "detail",
+        "width": 1400,
+        "height": 1400
+      },
+      {
+        "index": "06",
+        "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/after-new-polyurethane-finish.webp",
+        "alt": "New polyurethane finish reflecting light on the refinished wood table",
+        "caption": "After: the new polyurethane created a smoother, protected surface.",
+        "stage": "after",
+        "width": 1400,
+        "height": 1400
+      },
+      {
+        "index": "07",
         "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/after-refinished-tabletop-wide.webp",
-        "alt": "Wide view of refinished wood table with new protective polyurethane finish",
-        "caption": "After: refinished tabletop with a new protective finish.",
+        "alt": "Wide view of the refinished wood tabletop with a new protective finish",
+        "caption": "After: a wider view of the refinished tabletop with the new finish cured enough for return.",
         "stage": "after",
         "width": 1643,
         "height": 1700
+      },
+      {
+        "index": "08",
+        "src": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/finish-detail-protective-coat.webp",
+        "alt": "Detail of the protective polyurethane finish over refinished wood grain",
+        "caption": "Finish detail: wood grain, stain color, and protective top coat after the workshop process.",
+        "stage": "detail",
+        "width": 1400,
+        "height": 1400
       }
-    ]
+    ],
+    "content": {
+      "heroCtaText": "Request Furniture Refinishing Help",
+      "dateLabel": "Timeline",
+      "startingEyebrow": "The problem",
+      "startingTitle": "Soft, sticky polyurethane that kept taking marks",
+      "startingParagraphs": [
+        "The table had already been coated by someone else before Repair Asap arrived, but the top coat never cured into a durable surface. The polyurethane stayed soft in places, felt tacky, and showed rings and pressure marks when cups or other objects were left on the table.",
+        "Because the surface needed controlled prep, sanding, stain work, and drying time, the technician brought the table to a workshop instead of attempting a rushed on-site patch."
+      ],
+      "beforeTitle": "Before: a failed soft finish that kept taking marks",
+      "beforeSubtitle": "Only clean tabletop photos are used here — no screenshots, faces, or private chat details. The failed coating showed marks, cloudy areas, and tacky spots.",
+      "processEyebrow": "Workshop process",
+      "processTitle": "Why this was not just another coat of finish",
+      "processParagraphs": [
+        "A sticky or tacky polyurethane problem usually cannot be solved by hiding it under a new coat. The failed coating has to be removed so the next stain and protective finish can bond properly.",
+        "The technician removed the old soft polyurethane, sanded and prepared the wood, confirmed a warmer stain color with the client, and — after stain drying time — applied a new protective polyurethane finish.",
+        "This project was completed over two days to allow stripping, stain drying, polyurethane application, and drying/curing time. Timelines vary by table size, coating condition, and finish system."
+      ],
+      "processGalleryTitle": "Process: stripping, sanding, and stain color",
+      "processGallerySubtitle": "Selected workshop photos from the stripped-back surface and sanding setup through the stain color check.",
+      "hideFocusSection": true,
+      "detailTitle": "Stain color and protective finish detail",
+      "detailSubtitle": "Close-ups of the approved stain tone and the new protective polyurethane top coat.",
+      "afterTitle": "After: refinished tabletop with a new protective finish",
+      "afterSubtitle": "The table kept its wood character while gaining a cleaner, more usable protected surface for daily use.",
+      "servicesTitle": "Need a table or furniture finish repaired?",
+      "servicesSubtitle": "This case connects to furniture work, general repairs, and painting/finish touch-up services across Queens and NYC.",
+      "ctaTitle": "Have a sticky or damaged table finish?",
+      "ctaText": "Send photos of the tabletop, close-ups of the problem areas, and the approximate table size, and Repair ASAP can recommend the next step for refinishing or repair.",
+      "faqs": [
+        {
+          "q": "Why was the polyurethane sticky or tacky?",
+          "a": "A polyurethane top coat can stay soft and tacky if it was applied too thick, over an incompatible or uncured product, in poor conditions, or never fully cured. Once that happens, the surface keeps taking marks and a new coat on top usually will not fix it."
+        },
+        {
+          "q": "Can you just add another coat over a sticky finish?",
+          "a": "Usually no. The failed soft coating has to be removed first so the new stain and protective polyurethane can bond to a sound surface. On this table the old coating was stripped back before any new color or top coat went on."
+        },
+        {
+          "q": "How long does table refinishing take?",
+          "a": "This table was completed over two days to allow stripping, stain drying, polyurethane application, and drying/curing time. Timelines vary by table size, the condition of the old coating, and the finish system used."
+        }
+      ]
+    }
   },
   {
     "slug": "bathroom-build-out-rough-plumbing-to-tiled-shower-queens",
