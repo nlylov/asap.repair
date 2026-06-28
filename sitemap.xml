@@ -580,7 +580,7 @@
 
     <url>
         <loc>https://asap.repair/case-studies/</loc>
-        <lastmod>2026-06-14</lastmod>
+        <lastmod>2026-06-28</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -617,8 +617,20 @@
 
     <!-- CASE STUDY DETAIL PAGES (generated) -->
     <url>
+        <loc>https://asap.repair/case-studies/plastic-wall-panel-installation-bedford-stuyvesant-brooklyn/</loc>
+        <lastmod>2026-06-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
         <loc>https://asap.repair/case-studies/gazebo-outdoor-kitchen-installation-lattingtown-long-island/</loc>
         <lastmod>2026-06-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
+        <loc>https://asap.repair/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/</loc>
+        <lastmod>2026-06-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.75</priority>
     </url>
@@ -637,6 +649,12 @@
     <url>
         <loc>https://asap.repair/case-studies/drywall-repair-after-mini-split-installation-brooklyn/</loc>
         <lastmod>2026-06-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
+        <loc>https://asap.repair/case-studies/custom-wooden-flower-bed-built-in-bench/</loc>
+        <lastmod>2026-06-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.75</priority>
     </url>

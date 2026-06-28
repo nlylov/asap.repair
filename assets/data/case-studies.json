@@ -1,6 +1,34 @@
 {
   "studies": [
     {
+      "slug": "plastic-wall-panel-installation-bedford-stuyvesant-brooklyn",
+      "title": "Plastic Wall Panel Installation in Bedford-Stuyvesant, Brooklyn",
+      "excerpt": "A plain room wall was upgraded with black plastic decorative panels. Repair Asap measured the layout, checked alignment, cut openings around electrical outlets, and fastened the panels securely in about four hours.",
+      "thumbnail": "/assets/case-studies/plastic-wall-panel-installation-bedford-stuyvesant-brooklyn/thumbnail.webp",
+      "location": "Bedford-Stuyvesant, Brooklyn",
+      "category": "general_repairs",
+      "categories": [
+        "general_repairs",
+        "tv_wall_mounting",
+        "painting"
+      ],
+      "tags": [
+        "plastic wall panels",
+        "wall panel installation",
+        "decorative wall panels",
+        "outlet cutouts",
+        "interior upgrade",
+        "Brooklyn",
+        "Bedford-Stuyvesant"
+      ],
+      "serviceSlugs": [
+        "general-repairs",
+        "tv-wall-mounting/art-installation",
+        "painting/interior-painting"
+      ],
+      "featured": false
+    },
+    {
       "slug": "gazebo-outdoor-kitchen-installation-lattingtown-long-island",
       "title": "Gazebo & Outdoor Kitchen Installation on Concrete Footings in Lattingtown, Long Island",
       "excerpt": "An existing paver patio became a permanent outdoor living space. Repair Asap lifted pavers, drilled and poured concrete footings under each post, then a two-person crew assembled the gazebo frame, roof, drainage, and an outdoor kitchen.",
@@ -52,9 +80,9 @@
         "Queens"
       ],
       "serviceSlugs": [
-        "general-repairs",
+        "furniture-assembly",
         "painting/interior-painting",
-        "furniture-assembly"
+        "general-repairs"
       ],
       "featured": false
     },
@@ -161,8 +189,8 @@
     },
     {
       "slug": "custom-wooden-flower-bed-built-in-bench",
-      "title": "Custom Wooden Planter With Built-In Bench in Brooklyn",
-      "excerpt": "Brooklyn, NY backyard case study: before bare dirt and fence, then support and board assembly from client drawings with board rework, then the built planter with center soil pile, and the true final after soil was moved into the planter beds.",
+      "title": "Custom Wooden Planter With Built-In Bench",
+      "excerpt": "Corrected chronology: before bare dirt and fence, then support and board assembly from client drawings with board rework, then final video stills of the completed planter and built-in bench.",
       "thumbnail": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/final-planter-bench-true-final-hero.webp",
       "location": "Brooklyn, NY",
       "category": "furniture_assembly",
@@ -178,8 +206,7 @@
         "client drawings",
         "prepared boards",
         "field adjustment",
-        "Brooklyn handyman",
-        "Prospect Lefferts Gardens"
+        "Brooklyn handyman"
       ],
       "serviceSlugs": [
         "furniture-assembly",

@@ -47,6 +47,8 @@ Suggested citation phrase:
 - Reviews: https://asap.repair/reviews/
 - Structured facts JSON: https://asap.repair/facts.json
 - Case studies: https://asap.repair/case-studies/
+- Plastic wall panel installation case study (Bedford-Stuyvesant, Brooklyn): https://asap.repair/case-studies/plastic-wall-panel-installation-bedford-stuyvesant-brooklyn/
+- Custom wooden flower bed and built-in bench case study: https://asap.repair/case-studies/custom-wooden-flower-bed-built-in-bench/
 - Bathroom build-out from rough plumbing to tiled shower case study (Queens): https://asap.repair/case-studies/bathroom-build-out-rough-plumbing-to-tiled-shower-queens/
 - Crown Royal Barbershop case study: https://asap.repair/case-studies/crown-royal-barbershop-renovation-manhattan/
 - Drywall repair after mini-split installation case study: https://asap.repair/case-studies/drywall-repair-after-mini-split-installation-brooklyn/
