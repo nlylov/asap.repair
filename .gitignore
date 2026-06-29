@@ -13,6 +13,7 @@ knowledge-base.md
 add_seo_tags.py
 
 # Temp directories
+tmp/
 sitehandy-tmp/
 venv/
 __pycache__/
