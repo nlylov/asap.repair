@@ -1383,18 +1383,18 @@
         "Several prepared boards had to be adjusted or refit because labels/prep did not match the plan.",
         "The bench was installed last by the same technician, and the best final views were selected from the last videos."
       ],
-      "processGalleryTitle": "Project chronology: before, assembly, and final planter bench",
-      "processGallerySubtitle": "Selected media follows the album chronology: bare ground first, support and board assembly second, and final stills from the last videos third.",
+      "beforeTitle": "Before: bare fenced dirt, no planter yet",
+      "beforeSubtitle": "The project started as an empty fenced dirt strip along the back of the yard, with no planter, flower bed, or bench in place.",
+      "processGalleryTitle": "Build sequence: supports, boards, and planter shell",
+      "processGallerySubtitle": "Assembly progressed from setting supports and fastening boards to the planter shell standing around the soil before final cleanup.",
       "focusEyebrow": "Why it mattered",
       "focusTitle": "Prepared lumber still needed careful carpentry judgment",
       "focusParagraphs": [
         "The project looks simple only after completion. In practice, the photos show a full sequence from bare ground to layout, support setting, board fastening, board rework, and final bench installation.",
         "Because no single perfect wide final photo was available, the finished result is documented with the clearest final video stills and detail frames from the end of the album."
       ],
-      "detailTitle": "Final planter, frame, and bench details",
-      "detailSubtitle": "Final detail stills show the bench boards, planter frame, and corner cedar work after assembly.",
-      "afterTitle": "Final: completed flower bed and built-in bench",
-      "afterSubtitle": "Final video stills show the completed planter body, flower bed surround, and bench after assembly.",
+      "afterTitle": "Finished flower bed and built-in bench",
+      "afterSubtitle": "Final video stills of the completed planter and integrated bench, with close-ups of the bench seat and corner joinery.",
       "servicesTitle": "Need custom assembly or repair work?",
       "servicesSubtitle": "This project connects to Repair ASAP service areas for assembly, general repairs, and custom handyman work.",
       "ctaTitle": "Planning a custom planter, bench, or outdoor assembly?",
@@ -1414,15 +1414,6 @@
       },
       {
         "index": "02",
-        "src": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/before-empty-dirt-area-planter-location.webp",
-        "alt": "Before photo of the planter location with bare ground and no wood flower bed",
-        "caption": "Before: the future planter/bench location was still bare ground with no flower bed structure.",
-        "stage": "before",
-        "width": 1920,
-        "height": 1440
-      },
-      {
-        "index": "03",
         "src": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/process-supports-and-boards-assembly.webp",
         "alt": "Support posts and boards during wooden flower bed assembly",
         "caption": "Assembly begins: supports were set and boards were attached along the planned planter footprint.",
@@ -1431,47 +1422,38 @@
         "height": 1080
       },
       {
-        "index": "04",
-        "src": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/process-planter-supports-board-layout.webp",
-        "alt": "Prepared boards and supports during planter bench construction",
-        "caption": "Process: prepared boards were checked against the client drawings and adjusted where labels or cuts did not match.",
+        "index": "03",
+        "src": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/intermediate-built-planter-soil-pile-center.webp",
+        "alt": "Wooden planter shell assembled around a center soil pile before cleanup",
+        "caption": "Mid-build: the planter shell stands around the soil pile, before the bed was leveled and cleaned up.",
         "stage": "process",
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "index": "04",
+        "src": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/final-planter-bench-overview-video-still.webp",
+        "alt": "Final overview of the custom wooden flower bed with built-in bench",
+        "caption": "Final: the completed wooden flower bed and planter, with the integrated bench in place.",
+        "stage": "after",
         "width": 1920,
-        "height": 1440
+        "height": 1080
       },
       {
         "index": "05",
-        "src": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/final-planter-bench-overview-video-still.webp",
-        "alt": "Final overview of the custom wooden flower bed with built-in bench",
-        "caption": "Final: video still from the last selected media showing the completed planter/bench layout.",
+        "src": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/final-built-in-bench-seat-video-still.webp",
+        "alt": "Final wooden bench seat integrated into the planter",
+        "caption": "Final detail: the built-in bench seat, fitted after the planter walls and frame were aligned.",
         "stage": "after",
         "width": 1920,
         "height": 1080
       },
       {
         "index": "06",
-        "src": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/final-built-in-bench-seat-video-still.webp",
-        "alt": "Final wooden bench seat integrated into the planter",
-        "caption": "Final: the built-in bench was installed after the planter walls and frame were aligned.",
-        "stage": "after",
-        "width": 1920,
-        "height": 1080
-      },
-      {
-        "index": "07",
-        "src": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/final-planter-frame-detail-video-still.webp",
-        "alt": "Final detail of wooden planter frame and bench boards",
-        "caption": "Final detail: planter frame, bench boards, and support structure after assembly.",
-        "stage": "detail",
-        "width": 1920,
-        "height": 1080
-      },
-      {
-        "index": "08",
         "src": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/final-corner-planter-detail-video-still.webp",
         "alt": "Final corner detail of the custom wooden planter",
-        "caption": "Final detail: corner planter boards and cedar finish from the last video frame selection.",
-        "stage": "detail",
+        "caption": "Final detail: corner joinery and cedar boards on the finished planter.",
+        "stage": "after",
         "width": 1920,
         "height": 1080
       }
