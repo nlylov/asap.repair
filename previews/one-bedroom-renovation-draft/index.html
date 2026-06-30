@@ -47,9 +47,12 @@
       aspect-ratio: var(--ar, 4/3);
       overflow: hidden;
       background: var(--bg-secondary);
+      /* pan-y lets the page scroll vertically while horizontal drags belong to
+         the slider — the browser never treats them as back/forward or pan. */
       touch-action: pan-y;
       user-select: none;
       -webkit-user-select: none;
+      cursor: ew-resize;
     }
     .ba__after{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .ba__before-wrap{ position: absolute; inset: 0; width: var(--pos, 50%); overflow: hidden; will-change: width; }
@@ -79,6 +82,9 @@
     .ba__range{
       position: absolute; inset: 0; z-index: 7; width: 100%; height: 100%;
       margin: 0; opacity: 0; cursor: ew-resize;
+      /* Kept for keyboard a11y only; pointer/touch dragging is handled on
+         .ba__media so it stays out of the hit-test path. */
+      pointer-events: none;
       -webkit-appearance: none; appearance: none; background: transparent;
     }
     .ba__range::-webkit-slider-thumb{ -webkit-appearance: none; width: 48px; height: 80%; cursor: ew-resize; }
@@ -100,8 +106,27 @@
     .preview-audit summary{ cursor: pointer; font-weight: 700; color: var(--text-secondary); font-family: var(--font-heading); }
     .preview-audit p{ color: var(--text-muted); font-size: 13px; margin: 12px 0; }
     .preview-audit img{ width: 100%; border: 1px solid var(--border); border-radius: var(--radius-md); margin: 12px 0; display: block; }
+    /* ---- Window sill restoration sequence (4 steps) ---- */
+    .sill-seq{ margin-top: 28px; }
+    .sill-seq__head{ display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 14px; }
+    .sill-seq__head h3{ font-family: var(--font-heading); font-weight: 700; font-size: 19px; color: var(--text-primary); margin: 0; }
+    .sill-seq__head span{ color: var(--text-muted); font-size: 13px; }
+    .sill-grid{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .sill-step{ background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .sill-step__media{ position: relative; aspect-ratio: 4/3; background: var(--bg-secondary); }
+    .sill-step__media img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sill-step__num{
+      position: absolute; top: 10px; left: 10px; width: 26px; height: 26px; border-radius: 50%;
+      background: var(--accent); color: #0a0f1c; font-family: var(--font-heading); font-weight: 700;
+      font-size: 13px; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .4);
+    }
+    .sill-step figcaption{ padding: 10px 12px 12px; color: var(--text-secondary); font-size: 12.5px; line-height: 1.5; }
+    .sill-step figcaption b{ font-family: var(--font-heading); color: var(--text-primary); display: block; margin-bottom: 2px; }
     @media (max-width: 720px){
       .ba-grid{ grid-template-columns: 1fr; }
+      .sill-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .sill-step figcaption{ font-size: 12px; padding: 8px 10px 10px; }
     }
   </style>
 </head>
@@ -198,7 +223,7 @@
 
           <figure class="ba" style="--ar:3/4">
             <div class="ba__media">
-              <img class="ba__after" src="/assets/previews/one-bedroom-renovation-draft/270.webp" alt="Hallway after — new click-lock vinyl flooring and fresh white trim" loading="lazy">
+              <img class="ba__after" src="/assets/previews/one-bedroom-renovation-draft/hallway-after-jan30-user.webp" alt="Hallway after — new click-lock vinyl flooring and fresh white trim" loading="lazy">
               <div class="ba__before-wrap"><img src="/assets/previews/one-bedroom-renovation-draft/001.webp" alt="Hallway before — worn flooring and dated finish" loading="lazy"></div>
               <span class="ba__tag ba__tag--before">Before</span>
               <span class="ba__tag ba__tag--after">After</span>
@@ -220,8 +245,32 @@
         </div>
         <div class="project-gallery">
           <figure class="project-gallery__item project-gallery__item--process"><img class="project-gallery__image" src="/assets/previews/one-bedroom-renovation-draft/224.webp" alt="Painting and wall prep in progress" loading="lazy"><figcaption>Walls and trim prepped, primed, and rolled out room by room.</figcaption></figure>
-          <figure class="project-gallery__item project-gallery__item--process"><img class="project-gallery__image" src="/assets/previews/one-bedroom-renovation-draft/042.webp" alt="Rotted window sill stripped back for rebuild" loading="lazy"><figcaption>Rotted window sills stripped back, rebuilt, and skim-coated before paint.</figcaption></figure>
-          <figure class="project-gallery__item project-gallery__item--process"><img class="project-gallery__image" src="/assets/previews/one-bedroom-renovation-draft/218.webp" alt="New vinyl flooring being laid in the hallway" loading="lazy"><figcaption>Click-lock vinyl planks laid over a leveled hallway subfloor.</figcaption></figure>
+        </div>
+
+        <div class="sill-seq">
+          <div class="sill-seq__head">
+            <h3>Restoring a rotted window sill</h3>
+            <span>The same sill, start to finish</span>
+          </div>
+          <p class="section-subtitle" style="margin:0 0 16px">One of the worst spots in the unit — the sill paint had blistered down to bare, water-damaged wood. Here is how the crew brought it back, step by step.</p>
+          <div class="sill-grid">
+            <figure class="sill-step">
+              <div class="sill-step__media"><span class="sill-step__num">1</span><img src="/assets/previews/one-bedroom-renovation-draft/sill-1-damaged-jan13-user.webp" alt="Window sill before — old paint blistered and flaking off down to bare wood" loading="lazy"></div>
+              <figcaption><b>Damaged</b>Old paint blistered and flaking off the sill in sheets, exposing bare, water-worn wood.</figcaption>
+            </figure>
+            <figure class="sill-step">
+              <div class="sill-step__media"><span class="sill-step__num">2</span><img src="/assets/previews/one-bedroom-renovation-draft/sill-2-stripped-jan13-user.webp" alt="Window sill after the loose paint was scraped and sanded back" loading="lazy"></div>
+              <figcaption><b>Stripped</b>All the loose coating scraped off and sanded back to a sound, level surface.</figcaption>
+            </figure>
+            <figure class="sill-step">
+              <div class="sill-step__media"><span class="sill-step__num">3</span><img src="/assets/previews/one-bedroom-renovation-draft/sill-3-filler-jan13-user.webp" alt="Window sill with pink wood-repair filler troweled over the damaged areas" loading="lazy"></div>
+              <figcaption><b>Rebuilt</b>Wood-repair filler troweled over the gouges and pinholes, then leveled flush.</figcaption>
+            </figure>
+            <figure class="sill-step">
+              <div class="sill-step__media"><span class="sill-step__num">4</span><img src="/assets/previews/one-bedroom-renovation-draft/sill-4-painted-jan16-user.webp" alt="Window sill after — primed and repainted smooth and clean" loading="lazy"></div>
+              <figcaption><b>Painted</b>Primed and repainted to a smooth, clean white sill, ready for the next tenant.</figcaption>
+            </figure>
+          </div>
         </div>
       </div>
     </section>
@@ -283,16 +332,90 @@
   <script>
     (function () {
       document.querySelectorAll('.ba').forEach(function (ba) {
+        var media = ba.querySelector('.ba__media');
         var range = ba.querySelector('.ba__range');
         var wrap = ba.querySelector('.ba__before-wrap');
         var div = ba.querySelector('.ba__divider');
+
         function set(v) {
           v = Math.max(0, Math.min(100, v));
           wrap.style.width = v + '%';
           div.style.left = v + '%';
+          range.value = v;
           range.setAttribute('aria-valuetext', Math.round(v) + '% before');
         }
+        function setFromX(clientX) {
+          var r = media.getBoundingClientRect();
+          if (r.width) set(((clientX - r.left) / r.width) * 100);
+        }
+
+        // Keyboard accessibility — the (visually hidden) range stays focusable.
         range.addEventListener('input', function () { set(parseFloat(range.value)); });
+
+        // Pointer dragging — covers mouse, touch, and pen. touch-action: pan-y on
+        // .ba__media means vertical swipes still scroll the page, while horizontal
+        // drags are captured here and never reach the browser's back/forward gesture.
+        var dragging = false, pending = false, startX = 0, startY = 0;
+        var SLOP = 6;
+
+        media.addEventListener('pointerdown', function (e) {
+          if (e.pointerType === 'mouse' && e.button !== 0) return;
+          startX = e.clientX; startY = e.clientY;
+          if (e.pointerType === 'mouse') {
+            dragging = true;
+            try { media.setPointerCapture(e.pointerId); } catch (_) {}
+            setFromX(e.clientX);
+            e.preventDefault();
+          } else {
+            // Touch/pen: defer until we know the gesture is horizontal so a
+            // vertical swipe is still free to scroll the page.
+            pending = true;
+          }
+        });
+
+        media.addEventListener('pointermove', function (e) {
+          if (pending) {
+            var dx = e.clientX - startX, dy = e.clientY - startY;
+            if (Math.abs(dx) < SLOP && Math.abs(dy) < SLOP) return;
+            if (Math.abs(dy) > Math.abs(dx)) { pending = false; return; } // vertical → let it scroll
+            pending = false;
+            dragging = true;
+            try { media.setPointerCapture(e.pointerId); } catch (_) {}
+          }
+          if (!dragging) return;
+          e.preventDefault();
+          setFromX(e.clientX);
+        });
+
+        function end(e) {
+          pending = false;
+          dragging = false;
+          try { media.releasePointerCapture(e.pointerId); } catch (_) {}
+        }
+        media.addEventListener('pointerup', end);
+        media.addEventListener('pointercancel', end);
+
+        // Fallback for older WebKit without Pointer Events: passive:false so we
+        // can preventDefault and stop the horizontal swipe-navigation.
+        if (!('PointerEvent' in window)) {
+          media.addEventListener('touchstart', function (e) {
+            var t = e.touches[0]; startX = t.clientX; startY = t.clientY; pending = true;
+          }, { passive: false });
+          media.addEventListener('touchmove', function (e) {
+            var t = e.touches[0];
+            if (pending) {
+              var dx = t.clientX - startX, dy = t.clientY - startY;
+              if (Math.abs(dx) < SLOP && Math.abs(dy) < SLOP) return;
+              if (Math.abs(dy) > Math.abs(dx)) { pending = false; return; }
+              pending = false; dragging = true;
+            }
+            if (!dragging) return;
+            e.preventDefault();
+            setFromX(t.clientX);
+          }, { passive: false });
+          media.addEventListener('touchend', function () { pending = false; dragging = false; });
+        }
+
         set(parseFloat(range.value) || 50);
       });
     })();
