@@ -49,6 +49,7 @@ Validation performed:
 - GA4 Search Console integration was created and verified: Search Console property `asap.repair`, property type `Домен`, web stream `asap.repair`, stream ID `13645884964`, linked by `repairasap.bot@gmail.com` on 2026-07-02.
 - Bing Webmaster Tools sitemap status was verified: `https://asap.repair/sitemap.xml` was submitted on 2026-05-30, last crawled on 2026-06-30, status `Success`, 97 URLs discovered. Bing also discovered `https://www.asap.repair/sitemap.xml` with status `Success`, 95 URLs discovered; this is duplicate discovery from the `www` surface and should be treated as noise while canonical/301 handling remains correct.
 - IndexNow support was added with root key file `/e5308b759e880acb8173dd3d6d755ddc.txt` and submission helper `scripts/submit-indexnow.mjs`.
+- Live IndexNow verification passed: `https://asap.repair/e5308b759e880acb8173dd3d6d755ddc.txt` returned `200` with the expected key. The first bulk IndexNow submission sent 97 canonical sitemap URLs and returned HTTP `202 Accepted`.
 
 Dashboard/API items completed:
 
@@ -146,6 +147,7 @@ Current status:
 IndexNow setup:
 
 - Key file: `https://asap.repair/e5308b759e880acb8173dd3d6d755ddc.txt`.
+- First submission: 97 canonical sitemap URLs sent on 2026-07-02; IndexNow API returned `202 Accepted`.
 - Submit sitemap URLs after the key file is live:
 
 ```bash
