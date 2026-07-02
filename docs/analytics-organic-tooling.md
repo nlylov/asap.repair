@@ -9,7 +9,8 @@ Scope: `https://asap.repair/` static marketing site for the Repair ASAP tenant/c
 - Sitemap currently lists 97 unique URLs.
 - Microsoft Clarity is installed with project ID `wyzjzrud6n`.
 - GA4 is linked to the Search Console domain property `asap.repair` for the web stream `asap.repair` (`13645884964`).
-- Bing Webmaster Tools verification and Ahrefs Webmaster Tools are not visible in source yet.
+- Bing Webmaster Tools has the `asap.repair` property and a successful canonical sitemap submission.
+- Ahrefs Webmaster Tools verification is not visible in source yet.
 
 ## 2026-07-02 implementation log
 
@@ -46,6 +47,8 @@ Validation performed:
 - `crm.asap.repair` was checked after the redirect rule and remains on the CRM/Railway login flow; it is not affected by the `api.asap.repair` host-only rule.
 - GA4 key events were configured for high-intent business actions: `generate_lead`, `quote_form_submit`, `quote_modal_submit`, `phone_click`, `sms_click`, `chat_open`, and existing CRM/GA4 events `purchase`, `qualify_lead`, `close_convert_lead`.
 - GA4 Search Console integration was created and verified: Search Console property `asap.repair`, property type `Домен`, web stream `asap.repair`, stream ID `13645884964`, linked by `repairasap.bot@gmail.com` on 2026-07-02.
+- Bing Webmaster Tools sitemap status was verified: `https://asap.repair/sitemap.xml` was submitted on 2026-05-30, last crawled on 2026-06-30, status `Success`, 97 URLs discovered. Bing also discovered `https://www.asap.repair/sitemap.xml` with status `Success`, 95 URLs discovered; this is duplicate discovery from the `www` surface and should be treated as noise while canonical/301 handling remains correct.
+- IndexNow support was added with root key file `/e5308b759e880acb8173dd3d6d755ddc.txt` and submission helper `scripts/submit-indexnow.mjs`.
 
 Dashboard/API items completed:
 
@@ -130,16 +133,31 @@ The Clarity project ID currently installed in source is `wyzjzrud6n`. Keep stric
 
 ## Bing Webmaster Tools
 
-Recommended setup:
+Current status:
 
-1. Go to Bing Webmaster Tools.
-2. Add site `https://asap.repair/` or import from Google Search Console if available.
-3. Submit sitemap: `https://asap.repair/sitemap.xml`.
-4. If Bing requires HTML meta verification, add the provided `msvalidate.01` meta tag to every page head or use a static verification file if Bing offers one.
-5. Submit key URLs for indexing:
-   - `/`
-   - `/services/`
-   - high-intent service pages such as TV mounting, furniture assembly, plumbing, electrical, appliance services, painting, flooring.
+- Property: `asap.repair/`.
+- Search Performance homepage report currently shows `0` clicks and `0` impressions for the visible period.
+- Top recommendations visible in Bing:
+  - Set up IndexNow.
+  - Improve inbound links from high-quality domains.
+- Canonical sitemap: `https://asap.repair/sitemap.xml`; status `Success`; 97 URLs discovered.
+- Duplicate discovered sitemap: `https://www.asap.repair/sitemap.xml`; status `Success`; 95 URLs discovered.
+
+IndexNow setup:
+
+- Key file: `https://asap.repair/e5308b759e880acb8173dd3d6d755ddc.txt`.
+- Submit sitemap URLs after the key file is live:
+
+```bash
+node scripts/submit-indexnow.mjs --dry-run
+node scripts/submit-indexnow.mjs
+```
+
+Submit key URLs for manual indexing checks if Bing still shows low discovery:
+
+- `/`
+- `/services/`
+- High-intent service pages such as TV mounting, furniture assembly, plumbing, electrical, appliance services, painting, flooring.
 
 ## Ahrefs Webmaster Tools
 
