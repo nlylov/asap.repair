@@ -251,6 +251,7 @@ Follow-up crawl check on 2026-07-02:
 - Full service-page detail pass: the remaining 15 shorter service pages were expanded with visible scope, prep, limitation, and quote-context copy. Local validation now shows 0 service pages below 500 visible words. Production was spot-checked on peel-stick floor installation, window repair, and wallpaper removal after the `7e94ab0` deployment, and the sitemap URL set was submitted to IndexNow again with HTTP `200 OK` for 97 URLs.
 - Ahrefs follow-up crawl started at 02:33 AM on 2026-07-02 and was still running when checked at 02:51 AM: 468 URLs crawled, 969 scheduled, 96 billed pages. Do not treat intermediate Ahrefs issue counts as final until this crawl completes.
 - Bing Site Scan `ASAP full site scan 2026-07-02` was still `Queued` when checked at 02:48 AM / 89 minutes after creation; pages/errors/warnings were still unavailable.
+- Live sitemap audit on 2026-07-02 found all 97 submitted URLs returning `200`; the only non-HTML URL was `facts.json`, which created expected missing title/H1/canonical/schema noise in SEO-style checks. `facts.json` was removed from XML sitemap discovery and remains public through `llms.txt` / `llms-full.txt`; sitemap URL count should now be 96 HTML URLs.
 
 Remaining Ahrefs warnings/notices to work next:
 
