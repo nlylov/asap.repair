@@ -33,7 +33,9 @@ Implemented and verified:
 - 77 live service pages now include visible service-area and quote-prep copy; the two remaining service HTML files are noindex/meta-refresh moved Tadelakt fallbacks.
 - `/services/` has a top-level Service JSON-LD block with `hasOfferCatalog`.
 - `facts.json`, `llms.txt`, and `llms-full.txt` include Nassau County scope and quote-prep details by service category.
-- Cloudflare Redirect Rule `Redirect api.asap.repair to canonical site` is active. It matches `http.host eq "api.asap.repair"` and returns a 301 redirect to `concat("https://asap.repair", http.request.uri.path)` while preserving the query string.
+- Cloudflare Redirect Rules are active for legacy/canonical host cleanup:
+  - `Redirect api.asap.repair to canonical site` matches `http.host eq "api.asap.repair"` and returns a 301 redirect to `concat("https://asap.repair", http.request.uri.path)` while preserving the query string.
+  - `Redirect www.asap.repair to canonical site` matches `http.host eq "www.asap.repair"` and returns a 301 redirect to `concat("https://asap.repair", http.request.uri.path)` while preserving the query string.
 - Pages middleware now mirrors that canonical behavior for `api.asap.repair`, `www.asap.repair`, and the old Netlify host, including direct trailing-slash normalization for extensionless URLs.
 
 Validation performed:
@@ -50,6 +52,7 @@ Validation performed:
 - Cloudflare Pages production deployment for commit `5a7b649` completed successfully.
 - Live `asap.repair` verified for `/services/`, `/services/appliance-services/dishwasher-installation/`, `/services/painting/decorative-plaster-tadelakt/`, `/facts.json`, and `/llms.txt`.
 - Live `api.asap.repair` verified: `/` redirects to `https://asap.repair/`, `/services/plumbing/` redirects to `https://asap.repair/services/plumbing/`, query strings are preserved, and following the redirect returns `200`.
+- Live `www.asap.repair` verified after the Cloudflare redirect rule was added: `http://www.asap.repair/?x=3`, `http://www.asap.repair/services/plumbing/?x=3`, and `https://www.asap.repair/services/plumbing/?x=3` each resolve to canonical `https://asap.repair/...` with one redirect and preserved query string.
 - `crm.asap.repair` was checked after the redirect rule and remains on the CRM/Railway login flow; it is not affected by the `api.asap.repair` host-only rule.
 - GA4 key events were configured for high-intent business actions: `generate_lead`, `quote_form_submit`, `quote_modal_submit`, `phone_click`, `sms_click`, `chat_open`, and existing CRM/GA4 events `purchase`, `qualify_lead`, `close_convert_lead`.
 - Live analytics instrumentation was verified with a browser probe: `dataLayer`, `gtag`, and `clarity` are present; `phone_click`, `cta_click`, `quote_modal_open`, and `chat_open` events appeared in `dataLayer` without console errors.
@@ -65,7 +68,7 @@ Validation performed:
 - Technical component/helper surfaces such as `/components/*` and `/assets/rooms/_*` are intentionally excluded from organic indexing via `X-Robots-Tag: noindex, nofollow`; they should not be treated as missing standalone analytics surfaces.
 - Clarity dashboard was verified for project `Repair ASAP` (`wyzjzrud6n`): last 3 days show 33 sessions, 29 unique users, 14 bot sessions excluded, 1.45 pages/session, 56.48% average scroll depth, 28s active time, 0 JavaScript errors, performance score 95/100 from the available page-view sample, and smart events including `phone_click`, `form_start`, `generate_lead`, `quote_modal_open`, and `quote_modal_submit`.
 - Clarity dashboard masking mode is currently `Balanced`; source-level masks now cover quote/chat surfaces. Clarity AI Visibility beta was activated for `asap.repair`; initial 7-day dashboard shows 0 citations, no Share of Authority data, no grounding-query/page rows, and AI referral traffic `<1%`.
-- Ahrefs Site Audit was checked for project `Asap` / `asap.repair/`: latest completed crawl is 2026-06-27 05:45 PM, Health Score `100%`, 193 internal URLs crawled, 0 internal URL errors, 16 warnings, 78 notices.
+- Ahrefs Site Audit was checked for project `Asap` / `asap.repair/`: latest completed crawl is 2026-07-02 03:24 AM, Health Score `100%`, 1,443 internal URLs crawled, 0 internal URL errors, 3 warnings, 122 notices.
 - Ahrefs `Indexable page not in sitemap` issue is stale for `https://asap.repair/case-studies/custom-wooden-flower-bed-built-in-bench/`; the URL is present in both local and live `sitemap.xml` and returns `200`.
 - Ahrefs structured data issue root cause was identified: case-study `Article.spatialCoverage` was emitted as a string, while schema.org expects a `Place`. The case-study generator now emits `spatialCoverage` as `{"@type":"Place","name":"..."}` and `scripts/validate-structured-data.mjs` checks this regression.
 - Ahrefs long meta-description warning was addressed in source: case-study pages now support short `metaDescription` values for HTML/OG snippets while preserving longer `Article.description`, and 10 borderline service meta descriptions were shortened.
@@ -225,13 +228,13 @@ Submit key URLs for manual indexing checks if Bing still shows low discovery:
 Current status:
 
 - Project: `Asap`, verified for `asap.repair/`.
-- Latest completed crawl: 2026-06-27 05:45 PM.
+- Latest completed crawl: 2026-07-02 03:24 AM.
 - Next scheduled crawl: 2026-07-04, 4-5 PM.
 - Health Score: `100%`.
-- Internal URLs crawled: 193.
+- Internal URLs crawled: 1,443.
 - Internal URLs with errors: 0.
-- Issues: 94 total, 0 errors, 16 warnings, 78 notices.
-- HTTP status distribution: 2,862 success `2xx`, 2 redirect `3xx`.
+- Issues distribution: 0 errors, 3 warnings, 122 notices.
+- HTTP status distribution: 1,440 success `2xx`, 3 redirect `3xx`.
 - Image references without alt text: 0.
 - Links to `4xx`: 0.
 - Robots-blocked links: 0.
@@ -256,14 +259,18 @@ Follow-up crawl check on 2026-07-02:
 - Full service-page detail pass: the remaining 15 shorter service pages were expanded with visible scope, prep, limitation, and quote-context copy. Local validation now shows 0 service pages below 500 visible words. Production was spot-checked on peel-stick floor installation, window repair, and wallpaper removal after the `7e94ab0` deployment, and the sitemap URL set was submitted to IndexNow again with HTTP `200 OK` for 97 URLs.
 - Ahrefs follow-up crawl started at 02:33 AM on 2026-07-02 and was still running when checked at 02:51 AM: 468 URLs crawled, 969 scheduled, 96 billed pages. Do not treat intermediate Ahrefs issue counts as final until this crawl completes.
 - Bing Site Scan `ASAP full site scan 2026-07-02` was still `Queued` when checked at 02:48 AM / 89 minutes after creation; pages/errors/warnings were still unavailable.
+- Ahrefs follow-up crawl completed at 03:24 AM on 2026-07-02: Health Score `100%`, 1,443 internal URLs crawled, 1,440 `2xx`, 3 `3xx`, 0 errors, 3 warnings, 122 notices, 0 links to `4xx`, 0 robots-blocked links, 0 image references without alt text. Remaining actual issue types were redirect-surface warnings/notices (`3XX redirect`, `HTTP to HTTPS redirect`, `Redirect chain`) plus expected content-change notices from the title/meta/body updates. The remaining `Redirect chain` was `http://www.asap.repair/ -> https://www.asap.repair/ -> https://asap.repair/`.
+- Cloudflare Redirect Rule `Redirect www.asap.repair to canonical site` was added after the Ahrefs crawl. Live verification now shows `http://www.asap.repair/`, `http://www.asap.repair/services/plumbing/`, `https://www.asap.repair/services/plumbing/`, and `http://api.asap.repair/services/plumbing/` resolving to canonical `https://asap.repair/...` with one redirect and preserved query strings. Wait for the next Ahrefs crawl to confirm the `Redirect chain` warning clears.
+- The 96-URL canonical sitemap set was submitted to IndexNow again after the Ahrefs follow-up crawl; IndexNow returned HTTP `200 OK`.
+- Bing Site Scan `ASAP full site scan 2026-07-02` was still `Queued` when checked at 03:24 AM / 118 minutes after creation; pages/errors/warnings were still unavailable.
 - Live sitemap audit on 2026-07-02 found all 97 previously submitted URLs returning `200`; the only non-HTML URL was `facts.json`, which created expected missing title/H1/canonical/schema noise in SEO-style checks. `facts.json` was removed from XML sitemap discovery and remains public through `llms.txt` / `llms-full.txt`; live sitemap now has 96 HTML URLs, all returning `200`, and the updated 96-URL set was submitted to IndexNow with HTTP `200 OK`.
 - Canonical redirect matrix on 2026-07-02: `www.asap.repair` redirects correctly to canonical `asap.repair`; `api.asap.repair` is a Cloudflare zone-level redirect-only legacy host and is not the live API; `asap-repair.netlify.app` now returns Netlify `404` for `/`, `/sitemap.xml`, and service paths. Netlify redirect/consolidation would require Netlify dashboard access because this host is outside the current Cloudflare Pages repo.
 
 Remaining Ahrefs warnings/notices to work next:
 
-- Long meta descriptions: fixed in source; wait for the next Ahrefs crawl to clear the warning.
-- Page/SERP title mismatch: fixed in source for long case-study titles; wait for the next Ahrefs crawl to confirm.
-- Case-study pages with only one dofollow incoming internal link: fixed in source; wait for the next Ahrefs crawl to confirm.
+- Redirect chain: fixed after the crawl by adding the direct `www.asap.repair` Cloudflare redirect rule; wait for the next Ahrefs crawl to confirm the warning clears.
+- Page/SERP title mismatch: 16 rows remain. Treat this as a monitoring item rather than a direct source-code error because Ahrefs compares live page titles with search-result titles that can lag or be rewritten by Google.
+- Pages to submit to IndexNow: 57 rows remained in Ahrefs after the crawl; the current 96-URL sitemap set was resubmitted to IndexNow with HTTP `200 OK`.
 - Link-building notice: few high-quality referring domains.
 
 ## PageSpeed / Lighthouse automation
