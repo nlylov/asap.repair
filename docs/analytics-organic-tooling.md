@@ -40,6 +40,7 @@ Validation performed:
 - 266 JSON-LD blocks across the site parsed successfully.
 - `node scripts/validate-structured-data.mjs` passed: 266 JSON-LD blocks parsed and 10 `Article` blocks checked for `spatialCoverage` as a schema.org `Place`.
 - Indexable HTML meta descriptions were checked locally; no indexable page has a meta description over 155 characters.
+- Indexable HTML titles were checked locally; no indexable page has a `<title>` over 65 characters.
 - `node --check` passed for `main.js`, `chat.js`, `components/loader.js`, and `components/quote-modal.js`.
 - Sitemap verified live and local at 97 URLs / 97 unique URLs.
 - `wrangler pages dev` parsed 70 redirect rules and 13 header rules; only ordering performance warnings were reported.
@@ -62,6 +63,7 @@ Validation performed:
 - Ahrefs `Indexable page not in sitemap` issue is stale for `https://asap.repair/case-studies/custom-wooden-flower-bed-built-in-bench/`; the URL is present in both local and live `sitemap.xml` and returns `200`.
 - Ahrefs structured data issue root cause was identified: case-study `Article.spatialCoverage` was emitted as a string, while schema.org expects a `Place`. The case-study generator now emits `spatialCoverage` as `{"@type":"Place","name":"..."}` and `scripts/validate-structured-data.mjs` checks this regression.
 - Ahrefs long meta-description warning was addressed in source: case-study pages now support short `metaDescription` values for HTML/OG snippets while preserving longer `Article.description`, and 9 borderline service meta descriptions were shortened.
+- Ahrefs page/SERP title mismatch warning was addressed in source for case studies by shortening `seoTitle` values; local validation now has no indexable page titles over 65 characters.
 
 Dashboard/API items completed:
 
@@ -227,7 +229,7 @@ Issues checked on 2026-07-02:
 Remaining Ahrefs warnings/notices to work next:
 
 - Long meta descriptions: fixed in source; wait for the next Ahrefs crawl to clear the warning.
-- 14 pages where page title and SERP title do not match.
+- Page/SERP title mismatch: fixed in source for long case-study titles; wait for the next Ahrefs crawl to confirm.
 - 10 indexable pages with only one dofollow incoming internal link.
 - Link-building notice: few high-quality referring domains.
 
