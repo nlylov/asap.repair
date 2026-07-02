@@ -252,6 +252,7 @@ Follow-up crawl check on 2026-07-02:
 - Ahrefs follow-up crawl started at 02:33 AM on 2026-07-02 and was still running when checked at 02:51 AM: 468 URLs crawled, 969 scheduled, 96 billed pages. Do not treat intermediate Ahrefs issue counts as final until this crawl completes.
 - Bing Site Scan `ASAP full site scan 2026-07-02` was still `Queued` when checked at 02:48 AM / 89 minutes after creation; pages/errors/warnings were still unavailable.
 - Live sitemap audit on 2026-07-02 found all 97 previously submitted URLs returning `200`; the only non-HTML URL was `facts.json`, which created expected missing title/H1/canonical/schema noise in SEO-style checks. `facts.json` was removed from XML sitemap discovery and remains public through `llms.txt` / `llms-full.txt`; live sitemap now has 96 HTML URLs, all returning `200`, and the updated 96-URL set was submitted to IndexNow with HTTP `200 OK`.
+- Canonical redirect matrix on 2026-07-02: `www.asap.repair` redirects correctly to canonical `asap.repair`; `api.asap.repair` is a Cloudflare zone-level redirect-only legacy host and is not the live API; `asap-repair.netlify.app` now returns Netlify `404` for `/`, `/sitemap.xml`, and service paths. Netlify redirect/consolidation would require Netlify dashboard access because this host is outside the current Cloudflare Pages repo.
 
 Remaining Ahrefs warnings/notices to work next:
 
