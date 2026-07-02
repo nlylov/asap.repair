@@ -229,6 +229,16 @@ Issues checked on 2026-07-02:
 - `Structured data has schema.org validation error`: fixed in source. The affected case-study pages had string `Article.spatialCoverage`; the generator now emits a schema.org `Place` object.
 - `Pages to submit to IndexNow`: likely stale after the first 97-URL IndexNow submission returned HTTP `202 Accepted`.
 
+Follow-up crawl check on 2026-07-02:
+
+- Ahrefs crawl started at 01:38 AM and was still `Now Crawling` when checked; intermediate data is not a final audit result.
+- Bing Site Scan still showed `Queued 36 minutes ago` after a page refresh; no pages/errors/warnings were available yet.
+- Ahrefs intermediate `Title too long` and `Meta description too long` rows were stale against the live site. Live `curl` confirmed the case-study index and flagged case-study detail pages now serve short titles and meta descriptions.
+- `Open Graph tags incomplete` affected `/privacy-policy/` and `/terms-of-service/`; both pages now include `og:image`, `og:image:alt`, `og:image:width`, `og:image:height`, and `twitter:image`.
+- `Structured data has Google rich results validation error` affected `/reviews/`; the reviews page `LocalBusiness` JSON-LD now uses a crawlable PNG image and includes address, price range, area served, and sameAs profiles.
+- `Page has only one dofollow incoming internal link` affected support pages and some case studies. Support pages now include static `.site-links` cross-links in source HTML so crawlers do not rely only on JS-loaded header/footer links. Case-study detail pages already expose static related-project links; wait for the completed crawl to confirm.
+- Local validation after the fixes: 101 HTML files checked, no indexable title longer than 65 characters, no indexable meta description longer than 155 characters, structured-data validator passed, review-schema validator passed.
+
 Remaining Ahrefs warnings/notices to work next:
 
 - Long meta descriptions: fixed in source; wait for the next Ahrefs crawl to clear the warning.

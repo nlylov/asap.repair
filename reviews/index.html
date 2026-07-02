@@ -42,9 +42,32 @@
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
           "name": "Repair ASAP LLC",
-          "image": "https://asap.repair/assets/logos/logo-gold.svg",
+          "image": "https://asap.repair/assets/images/og-image.png",
           "url": "https://asap.repair",
           "telephone": "+1-775-310-7770",
+          "priceRange": "$$",
+          "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "99-60 64th Ave",
+                "addressLocality": "Rego Park",
+                "addressRegion": "NY",
+                "postalCode": "11374",
+                "addressCountry": "US"
+          },
+          "areaServed": [
+                { "@type": "City", "name": "New York City" },
+                { "@type": "AdministrativeArea", "name": "Manhattan" },
+                { "@type": "AdministrativeArea", "name": "Brooklyn" },
+                { "@type": "AdministrativeArea", "name": "Queens" },
+                { "@type": "AdministrativeArea", "name": "Bronx" },
+                { "@type": "AdministrativeArea", "name": "Staten Island" },
+                { "@type": "AdministrativeArea", "name": "Nassau County" }
+          ],
+          "sameAs": [
+                "https://www.google.com/maps/place/Repair+Asap+LLC/",
+                "https://www.yelp.com/biz/repair-asap-brooklyn",
+                "https://www.thumbtack.com/ny/new-york/handyman/repair-asap-llc/service/437267985498792024"
+          ],
           "aggregateRating": {
                 "@type": "AggregateRating",
                 "ratingValue": "4.9",
@@ -1430,6 +1453,28 @@
 
             <div class="reviews-grid" id="reviews-grid">
                 <!-- Javascript will render reviews here -->
+            </div>
+        </div>
+    </section>
+
+    <section class="site-links" aria-label="Related Repair ASAP pages">
+        <div class="container">
+            <div class="site-links__grid">
+                <a class="site-links__card" href="/case-studies/">
+                    <span class="site-links__eyebrow">Real work</span>
+                    <strong>Case studies</strong>
+                    <span>Before, process, and after photos from completed NYC repair projects.</span>
+                </a>
+                <a class="site-links__card" href="/services/">
+                    <span class="site-links__eyebrow">Services</span>
+                    <strong>Handyman services</strong>
+                    <span>Furniture assembly, mounting, plumbing, electrical, painting, repairs, and more.</span>
+                </a>
+                <a class="site-links__card" href="/faq/">
+                    <span class="site-links__eyebrow">Questions</span>
+                    <strong>FAQ</strong>
+                    <span>Pricing, service areas, estimates, warranties, and booking details.</span>
+                </a>
             </div>
         </div>
     </section>
