@@ -33,6 +33,7 @@ Implemented and verified:
 - `/services/` has a top-level Service JSON-LD block with `hasOfferCatalog`.
 - `facts.json`, `llms.txt`, and `llms-full.txt` include Nassau County scope and quote-prep details by service category.
 - Cloudflare Redirect Rule `Redirect api.asap.repair to canonical site` is active. It matches `http.host eq "api.asap.repair"` and returns a 301 redirect to `concat("https://asap.repair", http.request.uri.path)` while preserving the query string.
+- Pages middleware now mirrors that canonical behavior for `api.asap.repair`, `www.asap.repair`, and the old Netlify host, including direct trailing-slash normalization for extensionless URLs.
 
 Validation performed:
 
