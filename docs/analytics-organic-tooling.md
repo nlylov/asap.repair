@@ -46,7 +46,17 @@ Validation performed:
 
 Open items requiring dashboard/API access:
 
-- CRM paid-conversion pipeline is implemented in `bazas-crm` PR #448 (`claude/asap-revenue-attribution`) and is mergeable with green Vercel checks, but it is not deployed to production yet. To activate paid invoice revenue events, merge/deploy the PR, run the Prisma migration, and set `GA4_API_SECRET` for GA4 Measurement Protocol.
+- CRM paid-conversion pipeline was activated on 2026-07-02:
+  - PR #448 (`Link QuickBooks payments to CRM invoices`) was merged into `bazas-crm` `main` at `bf6ad64e`.
+  - `crm.asap.repair` production is Railway service `bazas-crm`, not the Vercel preview/production domain.
+  - Railway production env now has `GA4_MEASUREMENT_ID=G-1ZRVGCMZ43` and `GA4_API_SECRET` from the GA4 Measurement Protocol API secret named `CRM paid invoice conversions`.
+  - The new `MarketingConversionEvent` table/indexes were applied directly with targeted SQL via `prisma db execute --file` inside the Railway production service.
+  - Railway deployment `2c7b2edf-02d0-4dab-9cda-edbcbf29743a` completed successfully on current `main` commit `35483ee6768bf8abe1f636b47ebdc6d4765cc43c`; that commit includes PR #448 plus later PR #449.
+  - Live smoke passed: `/api/version` returned commit `35483ee6768bf8abe1f636b47ebdc6d4765cc43c`, `/login` returned `200`, `/` returned the expected auth redirect, and runtime logs showed Next.js ready without startup errors.
+
+Important CRM DB note:
+
+- Do not run plain `prisma migrate deploy` against production yet. `prisma migrate status` reports many historical migrations as not applied, which means production has likely been advanced with `db push`/manual schema changes instead of a fully baselined migration ledger. For future migrations, either baseline the existing production schema into `_prisma_migrations` first or apply narrow, reviewed, idempotent SQL for each additive change.
 
 ## GA4 key events
 
