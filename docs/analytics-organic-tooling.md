@@ -19,7 +19,7 @@ Live site source of truth:
 - Repository/worktree: `/Users/nikita/Developer/sitehandy`.
 - Cloudflare Pages project: `asap-repair`.
 - GitHub remote still accepts pushes at `nlylov/sitehandy`, while GitHub reports the repository moved to `nlylov/asap.repair`.
-- Latest deployed site commit: `5a7b649` (`Expand service SEO and AI service area context`).
+- Check the current production source with `npx wrangler pages deployment list --project-name asap-repair`; do not treat this document as a static deployment pointer.
 
 Implemented and verified:
 
@@ -39,6 +39,7 @@ Validation performed:
 - `facts.json` parsed successfully.
 - 266 JSON-LD blocks across the site parsed successfully.
 - `node scripts/validate-structured-data.mjs` passed: 266 JSON-LD blocks parsed and 10 `Article` blocks checked for `spatialCoverage` as a schema.org `Place`.
+- Indexable HTML meta descriptions were checked locally; no indexable page has a meta description over 155 characters.
 - `node --check` passed for `main.js`, `chat.js`, `components/loader.js`, and `components/quote-modal.js`.
 - Sitemap verified live and local at 97 URLs / 97 unique URLs.
 - `wrangler pages dev` parsed 70 redirect rules and 13 header rules; only ordering performance warnings were reported.
@@ -60,6 +61,7 @@ Validation performed:
 - Ahrefs Site Audit was checked for project `Asap` / `asap.repair/`: latest completed crawl is 2026-06-27 05:45 PM, Health Score `100%`, 193 internal URLs crawled, 0 internal URL errors, 16 warnings, 78 notices.
 - Ahrefs `Indexable page not in sitemap` issue is stale for `https://asap.repair/case-studies/custom-wooden-flower-bed-built-in-bench/`; the URL is present in both local and live `sitemap.xml` and returns `200`.
 - Ahrefs structured data issue root cause was identified: case-study `Article.spatialCoverage` was emitted as a string, while schema.org expects a `Place`. The case-study generator now emits `spatialCoverage` as `{"@type":"Place","name":"..."}` and `scripts/validate-structured-data.mjs` checks this regression.
+- Ahrefs long meta-description warning was addressed in source: case-study pages now support short `metaDescription` values for HTML/OG snippets while preserving longer `Article.description`, and 9 borderline service meta descriptions were shortened.
 
 Dashboard/API items completed:
 
@@ -224,7 +226,7 @@ Issues checked on 2026-07-02:
 
 Remaining Ahrefs warnings/notices to work next:
 
-- 7 pages with long meta descriptions.
+- Long meta descriptions: fixed in source; wait for the next Ahrefs crawl to clear the warning.
 - 14 pages where page title and SERP title do not match.
 - 10 indexable pages with only one dofollow incoming internal link.
 - Link-building notice: few high-quality referring domains.

@@ -97,6 +97,7 @@ def load_studies() -> list[dict]:
 
 def render_head(study: dict) -> str:
     url = f"{SITE}/case-studies/{study['slug']}/"
+    meta_description = study.get("metaDescription") or study["description"]
     schema = {
         "@context": "https://schema.org",
         "@type": "Article",
@@ -141,10 +142,10 @@ def render_head(study: dict) -> str:
     return f"""  <meta charset=\"UTF-8\">
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
   <title>{e(study.get('seoTitle') or study['title'])}</title>
-  <meta name=\"description\" content=\"{e(study['description'])}\">
+  <meta name=\"description\" content=\"{e(meta_description)}\">
   <link rel=\"canonical\" href=\"{url}\">
   <meta property=\"og:title\" content=\"{e(study.get('seoTitle') or study['title'])}\">
-  <meta property=\"og:description\" content=\"{e(study['description'])}\">
+  <meta property=\"og:description\" content=\"{e(meta_description)}\">
   <meta property=\"og:type\" content=\"article\">
   <meta property=\"og:url\" content=\"{url}\">
   <meta property=\"og:image\" content=\"{absolute(study.get('ogImage') or study['heroImage'])}\">
@@ -396,7 +397,7 @@ def render_index(studies: list[dict]) -> str:
   <meta charset=\"UTF-8\">
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
   <title>Case Studies — Real NYC Handyman & Renovation Projects | Repair Asap LLC</title>
-  <meta name=\"description\" content=\"Real before and after photos from completed Repair ASAP jobs across New York City: commercial renovations, drywall, tile, painting, flooring, mounting, and repairs.\">
+  <meta name=\"description\" content=\"Before and after photos from completed Repair ASAP projects across NYC: renovations, drywall, tile, painting, flooring, mounting, and repairs.\">
   <link rel=\"canonical\" href=\"https://asap.repair/case-studies/\">
   <meta property=\"og:title\" content=\"Case Studies — Real NYC Handyman & Renovation Projects\">
   <meta property=\"og:description\" content=\"Before and after photos from completed jobs across NYC. Real work, real results.\">
