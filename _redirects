@@ -3,9 +3,7 @@
 # Old site URLs → New site URLs
 # ============================================
 
-# ---- NON-CANONICAL HOSTS → PRIMARY DOMAIN (prevent duplicate content) ----
-https://asap-repair.netlify.app/*  https://asap.repair/:splat  301!
-https://api.asap.repair/*         https://asap.repair/        301!
+# Host-level canonical redirects live in functions/_middleware.js.
 
 # ---- DECORATIVE PLASTER / TADELAKT CANONICAL ----
 /decorative-plaster-tadelakt-nyc/                 /services/painting/decorative-plaster-tadelakt/  301

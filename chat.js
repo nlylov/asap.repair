@@ -490,10 +490,12 @@
   }
 
   async function notifyWidgetVisit(threadId) {
+    if (!threadId) return;
+
     try {
       const body = Object.assign(
         {},
-        threadId ? { threadId: threadId } : {},
+        { threadId: threadId },
         getSessionContext()
       );
       await fetch(`${config.visitEndpoint}?org=repair-asap`, {
@@ -521,6 +523,7 @@
       const data = await response.json();
       state.threadId = data.threadId;
       setStoredThreadId(state.threadId);
+      notifyWidgetVisit(state.threadId);
       return state.threadId;
     })();
 
@@ -545,7 +548,6 @@
       }
       return;
     }
-    notifyWidgetVisit(null);
     addMessageToUI('bot', 'Hi! 👋 I\'m here to help with your project. What do you need done?');
   }
 
