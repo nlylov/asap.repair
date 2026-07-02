@@ -16,7 +16,7 @@
     "Western Long Island",
     "Nassau County"
   ],
-  "description": "Repair ASAP LLC is a licensed and insured NYC handyman service for repairs, installations, furniture assembly, TV mounting, appliance installation, painting, flooring, AC installation and cleaning, minor plumbing and electrical fixture work, and new apartment setup.",
+  "description": "Repair ASAP LLC is a licensed and insured NYC handyman service for repairs, installations, furniture assembly, TV mounting, appliance installation, painting, flooring, AC installation and cleaning, minor plumbing fixture work, electrical fixture/device replacement, and new apartment setup.",
   "serviceTypes": [
     "Furniture assembly",
     "TV mounting",
@@ -36,7 +36,7 @@
     "Faucet replacement and sink installation",
     "Garbage disposal installation",
     "Shut-off valve replacement and small leak repair",
-    "Ceiling fan, chandelier, light fixture, outlet, switch, USB outlet, and smart device installation",
+    "Ceiling fan, chandelier, light fixture, outlet, switch, USB outlet, and smart device replacement or installation when existing wiring and building rules fit",
     "Window AC installation, AC bracket installation, through-wall AC installation, PTAC installation, portable AC setup, AC removal, and AC deep cleaning",
     "TV mounting, over-fireplace TV mounting, wire concealment, shelf installation, curtain rod installation, mirror mounting, art hanging, and wall cabinet installation",
     "New apartment setup and COI-ready co-op/condo punch-list work",
@@ -118,6 +118,11 @@
     "paintingAndWallFinishes": "Send room photos, wall dimensions, finish references, paint or material details, moisture concerns, and access requirements.",
     "furnitureAssembly": "Send the product link or model, box count, room photo, delivery status, and whether anchoring or COI paperwork is required.",
     "generalRepairs": "Send clear photos, measurements, product links if parts are involved, timing, and building access requirements."
+  },
+  "regulatedTradeScope": {
+    "electrical": "NYC electrical work involving new wiring, new circuits, panel work, new outlet locations, or permit-level electrical installations may require a NYC Licensed Master Electrician and DOB permit. Repair ASAP reviews photos and scope before booking electrical fixture/device work.",
+    "plumbing": "NYC plumbing work involving piping systems, gas piping, permit-level alterations, or non-cosmetic plumbing scope may require a Licensed Master Plumber and DOB permit. Repair ASAP reviews photos and scope before booking plumbing fixture work.",
+    "gasAppliances": "Gas appliance or gas piping scope is reviewed before booking. Code-ready appliance setup may still require Licensed Master Plumber/DOB handling depending on the building and work requested."
   },
   "trustSignals": [
     "Licensed and insured",
