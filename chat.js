@@ -351,6 +351,7 @@
     // Chat window
     const chatWindow = document.createElement('div');
     chatWindow.id = 'repair-asap-chat-window';
+    chatWindow.setAttribute('data-clarity-mask', 'True');
 
     // Header
     const chatHeader = document.createElement('div');

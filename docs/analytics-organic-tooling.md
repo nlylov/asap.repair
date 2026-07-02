@@ -52,6 +52,9 @@ Validation performed:
 - Live IndexNow verification passed: `https://asap.repair/e5308b759e880acb8173dd3d6d755ddc.txt` returned `200` with the expected key. The first bulk IndexNow submission sent 97 canonical sitemap URLs and returned HTTP `202 Accepted`.
 - Bing Site Explorer status was checked: 112 URLs known over the last 6 months, 109 indexed, 0 errors, 2 warnings, 1 excluded, 7 clicks, 115 impressions, 5 backlinks. The two warning URLs are old canonical-source paths (`/minor-home-repairs`, `/minor-tiling-backsplash`) that now live-redirect with 301 to `/services/general-repairs/`. The single excluded URL is the old HTTP version `http://asap.repair/about`, not the indexed HTTPS `/about/` page.
 - Bing AI Performance beta currently reports 0 total citations, 0 average cited pages, and no grounding-query/page rows for the visible 3-month period.
+- Clarity privacy hardening was added in source with explicit `data-clarity-mask="True"` on the inline quote form, quote modal surface, photo-drop forms, and chat window.
+- Clarity dashboard was verified for project `Repair ASAP` (`wyzjzrud6n`): last 3 days show 33 sessions, 29 unique users, 14 bot sessions excluded, 1.45 pages/session, 56.48% average scroll depth, 28s active time, 0 JavaScript errors, performance score 95/100 from the available page-view sample, and smart events including `phone_click`, `form_start`, `generate_lead`, `quote_modal_open`, and `quote_modal_submit`.
+- Clarity dashboard masking mode is currently `Balanced`; source-level masks now cover quote/chat surfaces. Clarity AI Visibility beta was activated for `asap.repair`; initial 7-day dashboard shows 0 citations, no Share of Authority data, no grounding-query/page rows, and AI referral traffic `<1%`.
 
 Dashboard/API items completed:
 
@@ -132,7 +135,30 @@ Recommended setup:
    - Clarity dashboard shows the site as receiving data.
    - Test a quote form session and confirm sensitive fields are masked in the recording.
 
-The Clarity project ID currently installed in source is `wyzjzrud6n`. Keep strict masking enabled in the Clarity dashboard and verify recordings do not expose quote/chat form contents.
+The Clarity project ID currently installed in source is `wyzjzrud6n`. Keep dashboard masking at least `Balanced`, keep explicit source-level masks on quote/chat surfaces, and verify future recordings do not expose quote/chat form contents.
+
+Dashboard status checked on 2026-07-02:
+
+- Project: `Repair ASAP`.
+- Project ID: `wyzjzrud6n`.
+- Website URL: `https://asap.repair`.
+- Industry: B2C services.
+- Dashboard masking mode: `Balanced`.
+- Last 3 days: 33 sessions, 29 unique users, 14 bot sessions excluded.
+- Engagement: 1.45 pages/session, 56.48% average scroll depth, 28s average active time from 1.1 min total average session time.
+- Friction: 0% rage clicks, 18.18% dead clicks (6 sessions), 0% excessive scrolling, 9.09% quick backs (3 sessions).
+- Smart/API events visible: form submit/contact/outbound click, `phone_click`, `form_start`, `cta_click`, `generate_lead`, `quote_modal_open`, `quote_modal_submit`.
+- Referrers include `www.google.com` and `gemini.google.com`.
+- JavaScript errors: 0.
+- Performance widget: 95/100 from the available sample; LCP 1.4s, INP 110ms, CLS 0.
+- Clarity AI Visibility beta is active for `asap.repair`; initial 7-day citation dashboard shows 0 citations, no grounding-query/page data, and AI referral traffic `<1%`.
+
+Source-level privacy hardening:
+
+- `data-clarity-mask="True"` is applied to `#quoteForm`.
+- `data-clarity-mask="True"` is applied to `#quoteModal`, covering modal fields and post-submit booking details.
+- `data-clarity-mask="True"` is applied to generated photo-drop forms.
+- `data-clarity-mask="True"` is applied to `#repair-asap-chat-window`, covering user/bot chat messages and the chat input surface.
 
 ## Bing Webmaster Tools
 

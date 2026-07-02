@@ -63,7 +63,7 @@ export default function photoDrop(container) {
             <h2 class="section-title">Send a Photo, <span class="text-accent">Get a Quote</span></h2>
             <p class="mod-photo__subtitle">Upload a photo, leave your number — we'll text you a flat-rate quote within 30 minutes.</p>
             <div class="mod-photo__form-wrap">
-                <form class="mod-photo__form" id="${uid}-form" novalidate>
+                <form class="mod-photo__form" id="${uid}-form" novalidate data-clarity-mask="True">
                     <!-- Photo Upload -->
                     <div class="form-group">
                         <label class="form-label">Attach Photos <span style="color:var(--text-muted);font-weight:400">(optional, up to 5)</span></label>
