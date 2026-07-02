@@ -245,7 +245,29 @@ def render_faq(study: dict) -> str:
     </section>"""
 
 
-def render_detail(study: dict) -> str:
+def related_project_section(study: dict, studies: list[dict]) -> str:
+    if len(studies) < 2:
+        return ""
+    slugs = [s["slug"] for s in studies]
+    index = slugs.index(study["slug"])
+    limit = min(3, len(studies) - 1)
+    related = [studies[(index + offset) % len(studies)] for offset in range(1, limit + 1)]
+    links = "".join(
+        f'<a class="project-service-link" href="/case-studies/{e(s["slug"])}/">{e(s["shortTitle"])}<span>→</span></a>'
+        for s in related
+    )
+    return f"""<section class=\"project-section project-section--services\">
+      <div class=\"container\">
+        <div class=\"section-header\">
+          <span class=\"project-eyebrow\">More completed projects</span>
+          <h2 class=\"section-title\">See related Repair ASAP work</h2>
+        </div>
+        <div class=\"project-service-grid\">{links}</div>
+      </div>
+    </section>"""
+
+
+def render_detail(study: dict, studies: list[dict]) -> str:
     hero_img = study["heroImage"]
     content = study.get("content", {})
     scope_items = "".join(f"<li>{e(item)}</li>" for item in study.get("scope", []))
@@ -266,6 +288,8 @@ def render_detail(study: dict) -> str:
     process_split = max(1, len(process_paragraphs) // 2)
     faq_section = render_faq(study)
     faq_block = f"\n\n    {faq_section}" if faq_section else ""
+    related_projects = related_project_section(study, studies)
+    related_projects_block = f"\n\n    {related_projects}" if related_projects else ""
     return f"""<!DOCTYPE html>
 <html lang=\"en\">
 <head>
@@ -341,6 +365,8 @@ def render_detail(study: dict) -> str:
 
     {section_gallery(study, 'detail', content.get('detailTitle', 'Details: custom feature wall and finish work'), content.get('detailSubtitle', 'Feature-wall and finish details that helped turn the space into a branded customer-facing interior.'))}
     {section_gallery(study, 'after', content.get('afterTitle', 'After: finished Manhattan barbershop interior'), content.get('afterSubtitle', 'Final photos after painting, lighting, tile, shelving, artwork, and cleanup.'))}
+
+    {related_projects_block}
 
     <section class=\"project-section project-section--services\">
       <div class=\"container\">
@@ -512,7 +538,7 @@ def main() -> None:
     for study in studies:
         out_dir = CASE_DIR / study["slug"]
         out_dir.mkdir(parents=True, exist_ok=True)
-        (out_dir / "index.html").write_text(clean_text(render_detail(study)))
+        (out_dir / "index.html").write_text(clean_text(render_detail(study, studies)))
     (CASE_DIR / "index.html").write_text(clean_text(render_index(studies)))
     generate_public_data(studies)
     update_sitemap(studies)
