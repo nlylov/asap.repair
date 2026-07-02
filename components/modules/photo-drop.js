@@ -248,6 +248,7 @@ export default function photoDrop(container) {
             service: detectedService,
             message: form.querySelector(`#${uid}-msg`)?.value.trim() || '',
             photos: selectedPhotos.map(p => ({ data: p.base64, name: p.name, type: p.type })),
+            sessionContext: window.repairAsapGetSessionContext?.() || null,
         };
 
         try {

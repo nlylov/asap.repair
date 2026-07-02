@@ -3,6 +3,8 @@
    ============================================ */
 
 // ---- Analytics helpers ----
+const REPAIR_ASAP_VISITOR_KEY = 'repair_asap_visitor_id';
+
 function repairAsapTrackEvent(eventName, params) {
   const safeParams = params || {};
 
@@ -17,7 +19,34 @@ function repairAsapTrackEvent(eventName, params) {
   }
 }
 
+function repairAsapGetOrCreateVisitorId() {
+  try {
+    let visitorId = localStorage.getItem(REPAIR_ASAP_VISITOR_KEY);
+    if (!visitorId) {
+      const random = (window.crypto && window.crypto.randomUUID)
+        ? window.crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      visitorId = `v_${random}`;
+      localStorage.setItem(REPAIR_ASAP_VISITOR_KEY, visitorId);
+    }
+    return visitorId;
+  } catch (_) {
+    return `volatile_${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  }
+}
+
+function repairAsapGetSessionContext() {
+  const sessionContext = {};
+  try { sessionContext.page = window.location.href; } catch (_) {}
+  try { sessionContext.referrer = document.referrer || ''; } catch (_) {}
+  try { sessionContext.language = navigator.language || ''; } catch (_) {}
+  try { sessionContext.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (_) {}
+  sessionContext.visitorId = repairAsapGetOrCreateVisitorId();
+  return sessionContext;
+}
+
 window.repairAsapTrackEvent = repairAsapTrackEvent;
+window.repairAsapGetSessionContext = repairAsapGetSessionContext;
 
 // ---- Google Places Autocomplete ----
 function getAddressComponentValue(components, type, preferShort = false) {
@@ -591,6 +620,7 @@ document.addEventListener('DOMContentLoaded', () => {
           photos: [],
           time: inlineTimeInput?.value || '',
           address: inlineAddressInput?.value?.trim() || '',
+          sessionContext: window.repairAsapGetSessionContext?.() || null,
         };
 
         try {
