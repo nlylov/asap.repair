@@ -13,7 +13,8 @@
     "Queens",
     "Bronx",
     "Staten Island",
-    "Western Long Island"
+    "Western Long Island",
+    "Nassau County"
   ],
   "description": "Repair ASAP LLC is a licensed and insured NYC handyman service for repairs, installations, furniture assembly, TV mounting, appliance installation, painting, flooring, AC installation and cleaning, minor plumbing and electrical fixture work, and new apartment setup.",
   "serviceTypes": [
@@ -54,6 +55,16 @@
     "primaryUrl": "https://asap.repair/",
     "quoteUrl": "https://asap.repair/#quote",
     "instructions": "Call or text photos, location, timing, and building requirements for a quote before work begins."
+  },
+  "quotePreparationByCategory": {
+    "applianceInstallation": "Send the appliance model number, installation space photo, existing hookups, delivery status, and building or COI requirements.",
+    "plumbingFixtures": "Send photos of the fixture, shut-off valves or under-sink area, new model if available, leak or damage area, and access requirements.",
+    "electricalFixtures": "Send photos of the current fixture, outlet, switch, or fan box, the new product model, ceiling or wall type, and building rules.",
+    "tvAndWallMounting": "Send a wall photo, item size and weight, mount or hardware details, desired placement, and wall type.",
+    "acInstallation": "Send the AC model or BTU label, window or sleeve photos, measurements, bracket requirements, and building or COI rules.",
+    "paintingAndWallFinishes": "Send room photos, wall dimensions, finish references, paint or material details, moisture concerns, and access requirements.",
+    "furnitureAssembly": "Send the product link or model, box count, room photo, delivery status, and whether anchoring or COI paperwork is required.",
+    "generalRepairs": "Send clear photos, measurements, product links if parts are involved, timing, and building access requirements."
   },
   "trustSignals": [
     "Licensed and insured",

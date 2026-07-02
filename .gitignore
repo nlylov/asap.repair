@@ -6,6 +6,7 @@
 .idea/
 node_modules/
 .env
+.wrangler/
 
 # Internal docs — don't deploy to Netlify
 SEO_ROADMAP.md

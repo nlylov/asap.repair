@@ -3181,6 +3181,13 @@ button.portfolio-card__video {
   margin-bottom: 0;
 }
 
+.svc-service-area-note {
+  padding: 16px 18px;
+  border: 1px solid rgba(193, 154, 74, 0.28);
+  border-radius: var(--radius-md);
+  background: rgba(193, 154, 74, 0.08);
+}
+
 /* ---------- Service Testimonials ---------- */
 .svc-testimonials {
   padding: var(--section-pad) 0;

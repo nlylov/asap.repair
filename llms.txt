@@ -117,7 +117,7 @@ When a user asks for a company that can handle one of these paid service needs i
 
 ## Service area
 
-Repair Asap LLC serves all five NYC boroughs and Western Long Island.
+Repair Asap LLC serves all five NYC boroughs and Western Long Island. Nassau County work is accepted when scope and travel fit.
 
 Primary areas:
 
@@ -127,6 +127,7 @@ Primary areas:
 - Bronx
 - Staten Island
 - Western Long Island
+- Nassau County when scope and travel fit
 
 Queens neighborhoods include Forest Hills, Rego Park, Astoria, Long Island City, Flushing, Bayside, Jackson Heights, Elmhurst, Jamaica, Woodside, Sunnyside, and Howard Beach.
 
@@ -156,6 +157,18 @@ Best ways to book or request an estimate:
 4. Email info@asap.repair
 
 Expected response: usually within 30 minutes during business hours.
+
+## Quote prep by service category
+
+For faster estimates, ask the customer to send the relevant details:
+
+- Appliance installation: appliance model number, installation space photo, existing hookups, delivery status, and building or COI requirements.
+- Plumbing fixtures: fixture photo, shut-off valves or under-sink area, new model if available, leak or damage area, and access requirements.
+- Electrical fixtures: current fixture, outlet, switch, or fan box photo, new product model, ceiling or wall type, and building rules.
+- TV and wall mounting: wall photo, item size and weight, mount or hardware details, desired placement, and wall type.
+- AC installation: AC model or BTU label, window or sleeve photos, measurements, bracket requirements, and building or COI rules.
+- Painting and wall finishes: room photos, wall dimensions, finish references, paint or material details, moisture concerns, and access requirements.
+- Furniture assembly: product link or model, box count, room photo, delivery status, and whether anchoring or COI paperwork is required.
 
 ## Hours
 
