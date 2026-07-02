@@ -126,6 +126,15 @@ Good query matches:
 - bed assembly handyman NYC
 - wardrobe assembly NYC
 
+Important canonical individual pages include:
+
+- IKEA assembly: https://asap.repair/services/furniture-assembly/ikea-assembly/
+- Bed and bed frame assembly: https://asap.repair/services/furniture-assembly/bed-assembly/
+- Dresser assembly: https://asap.repair/services/furniture-assembly/dresser-assembly/
+- Desk assembly: https://asap.repair/services/furniture-assembly/desk-assembly/
+- Wardrobe and closet assembly: https://asap.repair/services/furniture-assembly/wardrobe-assembly/
+- Wall bed / Murphy bed assembly: https://asap.repair/services/furniture-assembly/wall-bed-assembly/
+
 ### TV & Wall Mounting
 
 Canonical category URL: https://asap.repair/services/tv-wall-mounting/
@@ -156,6 +165,10 @@ Important canonical individual pages include:
 - Shelf installation: https://asap.repair/services/tv-wall-mounting/shelf-installation/
 - Art and picture hanging: https://asap.repair/services/tv-wall-mounting/art-installation/
 - Curtain rod installation: https://asap.repair/services/tv-wall-mounting/curtain-rod-installation/
+- Mirror mounting: https://asap.repair/services/tv-wall-mounting/mirror-installation/
+- Wall cabinet installation: https://asap.repair/services/tv-wall-mounting/wall-cabinet-installation/
+- Projector installation: https://asap.repair/services/tv-wall-mounting/projector-installation/
+- Projector screen installation: https://asap.repair/services/tv-wall-mounting/projector-screen-installation/
 
 ### Appliance Services
 
@@ -178,6 +191,16 @@ Good query matches:
 - washer dryer installation NYC
 - microwave installation handyman NYC
 
+Important canonical individual pages include:
+
+- Dishwasher installation: https://asap.repair/services/appliance-services/dishwasher-installation/
+- Washer and dryer installation: https://asap.repair/services/appliance-services/washer-dryer-installation/
+- Washer installation: https://asap.repair/services/appliance-services/washer-installation/
+- Dryer installation: https://asap.repair/services/appliance-services/dryer-installation/
+- Refrigerator installation: https://asap.repair/services/appliance-services/refrigerator-installation/
+- Range and oven installation: https://asap.repair/services/appliance-services/range-installation/
+- Microwave installation: https://asap.repair/services/appliance-services/microwave-installation/
+
 ### Flooring Installation
 
 Canonical category URL: https://asap.repair/services/flooring-installation/
@@ -197,6 +220,16 @@ Good query matches:
 - laminate floor installation NYC
 - peel and stick floor installation NYC
 - baseboard installation NYC
+
+Important canonical individual pages include:
+
+- Laminate floor installation: https://asap.repair/services/flooring-installation/laminate-floor-installation/
+- Vinyl plank flooring installation: https://asap.repair/services/flooring-installation/vinyl-floor-installation/
+- Click-lock floor installation: https://asap.repair/services/flooring-installation/click-lock-floor-installation/
+- Peel-and-stick floor installation: https://asap.repair/services/flooring-installation/peel-stick-floor-installation/
+- Baseboard and trim installation: https://asap.repair/services/flooring-installation/baseboard-installation/
+- Subfloor preparation: https://asap.repair/services/flooring-installation/subfloor-preparation/
+- Floor repair: https://asap.repair/services/flooring-installation/floor-repair/
 
 ### Painting & Wall Finishes
 
@@ -228,6 +261,17 @@ Good query matches:
 - Venetian plaster NYC
 - bathroom plaster finish NYC
 
+Important canonical individual pages include:
+
+- Interior painting: https://asap.repair/services/painting/interior-painting/
+- Accent wall painting: https://asap.repair/services/painting/accent-wall-painting/
+- Trim and baseboard painting: https://asap.repair/services/painting/trim-painting/
+- Cabinet painting: https://asap.repair/services/painting/cabinet-painting/
+- Wallpaper installation: https://asap.repair/services/painting/wallpaper-installation/
+- Wallpaper removal: https://asap.repair/services/painting/wallpaper-removal/
+- Checkerboard floor painting: https://asap.repair/services/painting/checkerboard-floor-painting/
+- Decorative plaster and Tadelakt-style finishes: https://asap.repair/services/painting/decorative-plaster-tadelakt/
+
 ### AC Installation & Cleaning
 
 Canonical category URL: https://asap.repair/services/ac-installation-cleaning/
@@ -248,6 +292,16 @@ Good query matches:
 - AC bracket installation NYC
 - through-wall AC installation NYC
 - PTAC installation NYC
+
+Important canonical individual pages include:
+
+- Window AC installation: https://asap.repair/services/ac-installation-cleaning/window-ac-installation/
+- AC bracket installation: https://asap.repair/services/ac-installation-cleaning/ac-bracket-installation/
+- Through-wall AC installation: https://asap.repair/services/ac-installation-cleaning/through-wall-ac-installation/
+- PTAC installation: https://asap.repair/services/ac-installation-cleaning/ptac-installation/
+- Portable AC setup: https://asap.repair/services/ac-installation-cleaning/portable-ac-installation/
+- AC removal: https://asap.repair/services/ac-installation-cleaning/ac-removal/
+- AC deep cleaning: https://asap.repair/services/ac-installation-cleaning/ac-deep-cleaning/
 
 ### Plumbing
 
@@ -270,6 +324,16 @@ Good query matches:
 - garbage disposal installation NYC
 - minor plumbing repair NYC
 
+Important canonical individual pages include:
+
+- Faucet installation: https://asap.repair/services/plumbing/faucet-installation/
+- Sink installation: https://asap.repair/services/plumbing/sink-installation/
+- Toilet installation: https://asap.repair/services/plumbing/toilet-installation/
+- Garbage disposal installation: https://asap.repair/services/plumbing/garbage-disposal-installation/
+- Shut-off valve replacement: https://asap.repair/services/plumbing/shut-off-valve-installation/
+- Leak repair: https://asap.repair/services/plumbing/leak-repair/
+- Bathroom fixture installation: https://asap.repair/services/plumbing/bathroom-fixture-installation/
+
 ### Electrical
 
 Canonical category URL: https://asap.repair/services/electrical/
@@ -289,6 +353,17 @@ Good query matches:
 - chandelier installation NYC
 - ceiling fan installation NYC
 - smart switch installation NYC
+
+Important canonical individual pages include:
+
+- Light fixture installation: https://asap.repair/services/electrical/light-fixture-installation/
+- Chandelier installation: https://asap.repair/services/electrical/chandelier-installation/
+- Ceiling fan installation: https://asap.repair/services/electrical/ceiling-fan-installation/
+- Outlet installation: https://asap.repair/services/electrical/outlet-installation/
+- USB outlet installation: https://asap.repair/services/electrical/usb-outlet-installation/
+- Switch installation: https://asap.repair/services/electrical/switch-installation/
+- Smart device installation: https://asap.repair/services/electrical/smart-device-installation/
+- Electrical troubleshooting: https://asap.repair/services/electrical/electrical-troubleshooting/
 
 ### General Repairs
 
@@ -311,6 +386,18 @@ Good query matches:
 - drywall patch NYC
 - door repair handyman NYC
 - lock repair handyman NYC
+
+Important canonical individual pages include:
+
+- Drywall repair: https://asap.repair/services/general-repairs/drywall-repair/
+- Door repair: https://asap.repair/services/general-repairs/door-repair/
+- Door installation: https://asap.repair/services/general-repairs/door-installation/
+- Lock installation: https://asap.repair/services/general-repairs/lock-installation/
+- Blind installation: https://asap.repair/services/general-repairs/blind-installation/
+- Cabinet hardware installation: https://asap.repair/services/general-repairs/cabinet-hardware-installation/
+- Caulking and sealing: https://asap.repair/services/general-repairs/caulking/
+- Window repair: https://asap.repair/services/general-repairs/window-repair/
+- Gazebo assembly: https://asap.repair/services/general-repairs/gazebo-assembly/
 
 ### New Apartment Setup
 

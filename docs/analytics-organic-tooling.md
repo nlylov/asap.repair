@@ -239,6 +239,7 @@ Follow-up crawl check on 2026-07-02:
 - `Structured data has Google rich results validation error` affected `/reviews/`; the reviews page `LocalBusiness` JSON-LD now uses a crawlable PNG image and includes address, price range, area served, and sameAs profiles.
 - `Page has only one dofollow incoming internal link` affected support pages and some case studies. Support pages now include static `.site-links` cross-links in source HTML so crawlers do not rely only on JS-loaded header/footer links. Case-study detail pages already expose static related-project links; wait for the completed crawl to confirm.
 - Local validation after the fixes: 101 HTML files checked, no indexable title longer than 65 characters, no indexable meta description longer than 155 characters, structured-data validator passed, review-schema validator passed.
+- AI visibility update: `facts.json`, `llms.txt`, and `llms-full.txt` now expose exact high-intent service URLs for appliance installation, plumbing fixtures, electrical fixtures, AC work, mounting, furniture assembly, painting/wall finishes, and general repairs. Local validation confirmed all 39 `facts.json` priority service URLs exist and are present in the sitemap.
 
 Remaining Ahrefs warnings/notices to work next:
 

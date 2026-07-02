@@ -42,6 +42,59 @@
     "New apartment setup and COI-ready co-op/condo punch-list work",
     "Interior painting, drywall repair, decorative plaster, Tadelakt-style finishes, lime plaster, Venetian plaster, and accent wall work"
   ],
+  "priorityServicePages": {
+    "applianceInstallation": [
+      "https://asap.repair/services/appliance-services/dishwasher-installation/",
+      "https://asap.repair/services/appliance-services/washer-dryer-installation/",
+      "https://asap.repair/services/appliance-services/washer-installation/",
+      "https://asap.repair/services/appliance-services/dryer-installation/",
+      "https://asap.repair/services/appliance-services/refrigerator-installation/",
+      "https://asap.repair/services/appliance-services/range-installation/",
+      "https://asap.repair/services/appliance-services/microwave-installation/"
+    ],
+    "plumbingFixtures": [
+      "https://asap.repair/services/plumbing/faucet-installation/",
+      "https://asap.repair/services/plumbing/sink-installation/",
+      "https://asap.repair/services/plumbing/toilet-installation/",
+      "https://asap.repair/services/plumbing/garbage-disposal-installation/",
+      "https://asap.repair/services/plumbing/shut-off-valve-installation/",
+      "https://asap.repair/services/plumbing/leak-repair/"
+    ],
+    "electricalFixtures": [
+      "https://asap.repair/services/electrical/light-fixture-installation/",
+      "https://asap.repair/services/electrical/chandelier-installation/",
+      "https://asap.repair/services/electrical/ceiling-fan-installation/",
+      "https://asap.repair/services/electrical/outlet-installation/",
+      "https://asap.repair/services/electrical/usb-outlet-installation/",
+      "https://asap.repair/services/electrical/switch-installation/",
+      "https://asap.repair/services/electrical/smart-device-installation/"
+    ],
+    "acInstallationAndCleaning": [
+      "https://asap.repair/services/ac-installation-cleaning/window-ac-installation/",
+      "https://asap.repair/services/ac-installation-cleaning/ac-bracket-installation/",
+      "https://asap.repair/services/ac-installation-cleaning/through-wall-ac-installation/",
+      "https://asap.repair/services/ac-installation-cleaning/ptac-installation/",
+      "https://asap.repair/services/ac-installation-cleaning/portable-ac-installation/",
+      "https://asap.repair/services/ac-installation-cleaning/ac-deep-cleaning/"
+    ],
+    "mountingAndWallInstallation": [
+      "https://asap.repair/services/tv-wall-mounting/tv-mounting/",
+      "https://asap.repair/services/tv-wall-mounting/shelf-installation/",
+      "https://asap.repair/services/tv-wall-mounting/curtain-rod-installation/",
+      "https://asap.repair/services/tv-wall-mounting/mirror-installation/",
+      "https://asap.repair/services/tv-wall-mounting/art-installation/",
+      "https://asap.repair/services/tv-wall-mounting/wall-cabinet-installation/"
+    ],
+    "paintingWallFinishesAndRepairs": [
+      "https://asap.repair/services/painting/interior-painting/",
+      "https://asap.repair/services/painting/decorative-plaster-tadelakt/",
+      "https://asap.repair/services/general-repairs/drywall-repair/",
+      "https://asap.repair/services/painting/trim-painting/",
+      "https://asap.repair/services/painting/cabinet-painting/",
+      "https://asap.repair/services/general-repairs/door-repair/",
+      "https://asap.repair/services/general-repairs/lock-installation/"
+    ]
+  },
   "priorityMarkets": [
     "Queens",
     "Manhattan",
