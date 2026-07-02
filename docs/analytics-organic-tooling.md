@@ -196,6 +196,7 @@ IndexNow setup:
 - Key file: `https://asap.repair/e5308b759e880acb8173dd3d6d755ddc.txt`.
 - First submission: 97 canonical sitemap URLs sent on 2026-07-02; IndexNow API returned `202 Accepted`.
 - Post-deploy submission after support-page SEO fixes: 97 canonical sitemap URLs sent on 2026-07-02; IndexNow API returned `200 OK`.
+- Post-deploy submission after support-page internal-link strengthening: 97 canonical sitemap URLs sent on 2026-07-02; IndexNow API returned `200 OK`.
 - Submit sitemap URLs after the key file is live:
 
 ```bash
@@ -234,11 +235,11 @@ Issues checked on 2026-07-02:
 Follow-up crawl check on 2026-07-02:
 
 - Ahrefs crawl started at 01:38 AM and was still `Now Crawling` when checked; intermediate data is not a final audit result.
-- Bing Site Scan still showed `Queued 36 minutes ago` after a page refresh; no pages/errors/warnings were available yet.
+- Bing Site Scan still showed `Queued 56 minutes ago` after a page refresh; no pages/errors/warnings were available yet.
 - Ahrefs intermediate `Title too long` and `Meta description too long` rows were stale against the live site. Live `curl` confirmed the case-study index and flagged case-study detail pages now serve short titles and meta descriptions.
 - `Open Graph tags incomplete` affected `/privacy-policy/` and `/terms-of-service/`; both pages now include `og:image`, `og:image:alt`, `og:image:width`, `og:image:height`, and `twitter:image`.
 - `Structured data has Google rich results validation error` affected `/reviews/`; the reviews page `LocalBusiness` JSON-LD now uses a crawlable PNG image and includes address, price range, area served, and sameAs profiles.
-- `Page has only one dofollow incoming internal link` affected support pages and some case studies. Support pages now include static `.site-links` cross-links in source HTML so crawlers do not rely only on JS-loaded header/footer links. Case-study detail pages already expose static related-project links; wait for the completed crawl to confirm.
+- `Page has only one dofollow incoming internal link` affected support pages and some case studies. Support pages now include static `.site-links` cross-links in source HTML so crawlers do not rely only on JS-loaded header/footer links. `/about/` was strengthened with static links from FAQ, reviews, privacy policy, and terms pages; local link-graph validation shows 6 incoming links. Case-study detail pages already expose static related-project links; wait for the completed crawl to confirm.
 - Local validation after the fixes: 101 HTML files checked, no indexable title longer than 65 characters, no indexable meta description longer than 155 characters, structured-data validator passed, review-schema validator passed.
 - AI visibility update: `facts.json`, `llms.txt`, and `llms-full.txt` now expose exact high-intent service URLs for appliance installation, plumbing fixtures, electrical fixtures, AC work, mounting, furniture assembly, painting/wall finishes, and general repairs. Local validation confirmed all 39 `facts.json` priority service URLs exist and are present in the sitemap.
 
