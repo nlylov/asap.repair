@@ -66,6 +66,7 @@ Validation performed:
 - Ahrefs long meta-description warning was addressed in source: case-study pages now support short `metaDescription` values for HTML/OG snippets while preserving longer `Article.description`, and 10 borderline service meta descriptions were shortened.
 - Ahrefs page/SERP title mismatch warning was addressed in source for case studies by shortening `seoTitle` values; local validation now has no indexable page titles over 65 characters.
 - Ahrefs "only one dofollow incoming internal link" warning was addressed for case-study detail pages: the generator now adds cross-links to other completed projects, raising each case-study detail page to 4 local incoming internal links.
+- Lighthouse baseline was run for 7 key URLs. SEO scored `100` on every tested desktop/mobile page. The lowest mobile performance pages were `/services/tv-wall-mounting/` and `/services/furniture-assembly/` at `72` with LCP around `6.2-6.3s`; hero image preload priority and lazy footer-logo loading improved them to `85` and `82` with LCP `3.6-4.0s` on retest.
 
 Dashboard/API items completed:
 
@@ -238,6 +239,26 @@ Remaining Ahrefs warnings/notices to work next:
 ## PageSpeed / Lighthouse automation
 
 PageSpeed Insights API currently returns 429 on this environment, so the no-API fallback is local Lighthouse.
+
+Baseline checked on 2026-07-02:
+
+- Reports were generated locally under `reports/lighthouse/20260702-asap-audit/`; `reports/` is intentionally ignored by git.
+- Tested URLs: `/`, `/services/`, `/services/tv-wall-mounting/`, `/services/furniture-assembly/`, `/services/plumbing/`, `/services/electrical/`, `/services/appliance-services/`.
+- SEO score: `100` on every tested desktop/mobile URL.
+- Desktop performance: `96-100`.
+- Mobile performance before fix:
+  - `/`: `98`, LCP `2.0s`.
+  - `/services/`: `94`, LCP `2.6s`.
+  - `/services/plumbing/`: `97`, LCP `2.4s`.
+  - `/services/electrical/`: `91`, LCP `2.8s`.
+  - `/services/appliance-services/`: `90`, LCP `2.9s`.
+  - `/services/tv-wall-mounting/`: `72`, LCP `6.2s`.
+  - `/services/furniture-assembly/`: `72`, LCP `6.3s`.
+- Fix applied: `fetchpriority="high"` on the hero image preload for TV mounting and furniture assembly, plus lazy/async loading for the footer logo.
+- Mobile retest after fix:
+  - `/services/tv-wall-mounting/`: performance `85`, LCP `3.6s`.
+  - `/services/furniture-assembly/`: performance `82`, LCP `4.0s`.
+- Remaining performance limits: render-blocking `styles.css`/component loader on mobile and third-party analytics scripts. These should be handled carefully because GA4/Clarity are business-critical tracking surfaces.
 
 Suggested URL baseline:
 
