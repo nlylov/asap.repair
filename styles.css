@@ -1509,7 +1509,7 @@ button.portfolio-card__video {
 
 .site-links__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
   margin-top: 40px;
 }
