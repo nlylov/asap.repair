@@ -10,6 +10,42 @@ Scope: `https://asap.repair/` static marketing site for the Repair ASAP tenant/c
 - Microsoft Clarity is installed with project ID `wyzjzrud6n`.
 - Bing Webmaster Tools verification and Ahrefs Webmaster Tools are not visible in source yet.
 
+## 2026-07-02 implementation log
+
+Live site source of truth:
+
+- Repository/worktree: `/Users/nikita/Developer/sitehandy`.
+- Cloudflare Pages project: `asap-repair`.
+- GitHub remote still accepts pushes at `nlylov/sitehandy`, while GitHub reports the repository moved to `nlylov/asap.repair`.
+- Latest deployed site commit: `5a7b649` (`Expand service SEO and AI service area context`).
+
+Implemented and verified:
+
+- Widget visit tracking no longer posts `/api/widget/visit` before a real chat thread exists.
+- Quote submissions now carry attribution context from the browser: page URL, referrer, language, timezone, visitor ID, UTM/click IDs where present, and GA client ID from the `_ga` cookie.
+- `www.asap.repair` canonicalizes to `https://asap.repair/...`.
+- Old Tadelakt/decorative plaster URLs 301 to `/services/painting/decorative-plaster-tadelakt/`; moved HTML fallbacks are `noindex, follow`.
+- `/labs/*` redirects to `/services/` and is covered by `X-Robots-Tag: noindex, nofollow`.
+- Service JSON-LD now uses explicit area coverage for NYC boroughs plus Western Long Island/Nassau County where scope and travel fit.
+- 77 live service pages now include visible service-area and quote-prep copy; the two remaining service HTML files are noindex/meta-refresh moved Tadelakt fallbacks.
+- `/services/` has a top-level Service JSON-LD block with `hasOfferCatalog`.
+- `facts.json`, `llms.txt`, and `llms-full.txt` include Nassau County scope and quote-prep details by service category.
+
+Validation performed:
+
+- `facts.json` parsed successfully.
+- 266 JSON-LD blocks across the site parsed successfully.
+- `node --check` passed for `main.js`, `chat.js`, `components/loader.js`, and `components/quote-modal.js`.
+- Sitemap verified live and local at 97 URLs / 97 unique URLs.
+- `wrangler pages dev` parsed 70 redirect rules and 13 header rules; only ordering performance warnings were reported.
+- Cloudflare Pages production deployment for commit `5a7b649` completed successfully.
+- Live `asap.repair` verified for `/services/`, `/services/appliance-services/dishwasher-installation/`, `/services/painting/decorative-plaster-tadelakt/`, `/facts.json`, and `/llms.txt`.
+
+Open items requiring dashboard/API access:
+
+- `api.asap.repair` still resolves to the old Vercel surface, not the Cloudflare Pages canonical site. It currently returns Vercel headers (`x-vercel-id` / `x-vercel-error`) for site paths. Fix requires Cloudflare zone/domain access: either attach `api.asap.repair` to the current Pages project if it should serve the website, or add a zone-level redirect rule to `https://asap.repair/:path*`. Do not change this in code alone; the current token cannot add the custom domain.
+- CRM paid-conversion pipeline is implemented in `bazas-crm` PR #448 (`claude/asap-revenue-attribution`) and is mergeable with green Vercel checks, but it is not deployed to production yet. To activate paid invoice revenue events, merge/deploy the PR, run the Prisma migration, and set `GA4_API_SECRET` for GA4 Measurement Protocol.
+
 ## GA4 key events
 
 Recommended Repair ASAP key events:
