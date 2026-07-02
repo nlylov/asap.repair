@@ -50,6 +50,8 @@ Validation performed:
 - Bing Webmaster Tools sitemap status was verified: `https://asap.repair/sitemap.xml` was submitted on 2026-05-30, last crawled on 2026-06-30, status `Success`, 97 URLs discovered. Bing also discovered `https://www.asap.repair/sitemap.xml` with status `Success`, 95 URLs discovered; this is duplicate discovery from the `www` surface and should be treated as noise while canonical/301 handling remains correct.
 - IndexNow support was added with root key file `/e5308b759e880acb8173dd3d6d755ddc.txt` and submission helper `scripts/submit-indexnow.mjs`.
 - Live IndexNow verification passed: `https://asap.repair/e5308b759e880acb8173dd3d6d755ddc.txt` returned `200` with the expected key. The first bulk IndexNow submission sent 97 canonical sitemap URLs and returned HTTP `202 Accepted`.
+- Bing Site Explorer status was checked: 112 URLs known over the last 6 months, 109 indexed, 0 errors, 2 warnings, 1 excluded, 7 clicks, 115 impressions, 5 backlinks. The two warning URLs are old canonical-source paths (`/minor-home-repairs`, `/minor-tiling-backsplash`) that now live-redirect with 301 to `/services/general-repairs/`. The single excluded URL is the old HTTP version `http://asap.repair/about`, not the indexed HTTPS `/about/` page.
+- Bing AI Performance beta currently reports 0 total citations, 0 average cited pages, and no grounding-query/page rows for the visible 3-month period.
 
 Dashboard/API items completed:
 
@@ -138,11 +140,17 @@ Current status:
 
 - Property: `asap.repair/`.
 - Search Performance homepage report currently shows `0` clicks and `0` impressions for the visible period.
+- Site Explorer reports last-6-month totals: 112 URLs, 109 indexed, 0 errors, 2 warnings, 1 excluded, 7 clicks, 115 impressions, 5 backlinks.
+- Root page detail: indexed, 5 clicks, 95 impressions, last crawled 2026-06-24, HTTP `200`, 3 backlinks.
+- Bing AI Performance beta: 0 citations and no grounding-query/page rows for the visible 3-month period.
 - Top recommendations visible in Bing:
   - Set up IndexNow.
   - Improve inbound links from high-quality domains.
 - Canonical sitemap: `https://asap.repair/sitemap.xml`; status `Success`; 97 URLs discovered.
 - Duplicate discovered sitemap: `https://www.asap.repair/sitemap.xml`; status `Success`; 95 URLs discovered.
+- Warning details:
+  - `/minor-home-repairs` and `/minor-tiling-backsplash` are old canonical-source warnings from older crawls; both now return live `301` redirects to `/services/general-repairs/`.
+  - `http://asap.repair/about` is the only excluded/not-yet-crawled URL; treat this as stale HTTP-surface noise while HTTPS `/about/` remains indexed.
 
 IndexNow setup:
 
