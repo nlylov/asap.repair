@@ -45,6 +45,13 @@ def absolute(path: str) -> str:
     return f"{SITE}{path}"
 
 
+def place_schema(study: dict) -> dict | None:
+    location = study.get("location") or study.get("locationShort") or study.get("borough")
+    if not location:
+        return None
+    return {"@type": "Place", "name": location}
+
+
 def clean_text(text: str) -> str:
     return "\n".join(line.rstrip() for line in text.splitlines()) + "\n"
 
@@ -102,8 +109,10 @@ def render_head(study: dict) -> str:
         "dateModified": study.get("dateModified"),
         "mainEntityOfPage": {"@type": "WebPage", "@id": url},
         "about": study.get("tags", [])[:8],
-        "spatialCoverage": study.get("locationShort") or study.get("borough"),
     }
+    spatial_coverage = place_schema(study)
+    if spatial_coverage:
+        schema["spatialCoverage"] = spatial_coverage
     breadcrumbs = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",

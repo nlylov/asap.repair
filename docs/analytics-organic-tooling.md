@@ -10,7 +10,7 @@ Scope: `https://asap.repair/` static marketing site for the Repair ASAP tenant/c
 - Microsoft Clarity is installed with project ID `wyzjzrud6n`.
 - GA4 is linked to the Search Console domain property `asap.repair` for the web stream `asap.repair` (`13645884964`).
 - Bing Webmaster Tools has the `asap.repair` property and a successful canonical sitemap submission.
-- Ahrefs Webmaster Tools verification is not visible in source yet.
+- Ahrefs Site Audit project exists for `asap.repair/` and is verified in Ahrefs.
 
 ## 2026-07-02 implementation log
 
@@ -38,6 +38,7 @@ Validation performed:
 
 - `facts.json` parsed successfully.
 - 266 JSON-LD blocks across the site parsed successfully.
+- `node scripts/validate-structured-data.mjs` passed: 266 JSON-LD blocks parsed and 10 `Article` blocks checked for `spatialCoverage` as a schema.org `Place`.
 - `node --check` passed for `main.js`, `chat.js`, `components/loader.js`, and `components/quote-modal.js`.
 - Sitemap verified live and local at 97 URLs / 97 unique URLs.
 - `wrangler pages dev` parsed 70 redirect rules and 13 header rules; only ordering performance warnings were reported.
@@ -56,6 +57,9 @@ Validation performed:
 - Live production verification passed for Clarity masks on `https://asap.repair/`, `https://asap.repair/chat.js`, and `https://asap.repair/components/quote-modal.html` after deployment `9872369`.
 - Clarity dashboard was verified for project `Repair ASAP` (`wyzjzrud6n`): last 3 days show 33 sessions, 29 unique users, 14 bot sessions excluded, 1.45 pages/session, 56.48% average scroll depth, 28s active time, 0 JavaScript errors, performance score 95/100 from the available page-view sample, and smart events including `phone_click`, `form_start`, `generate_lead`, `quote_modal_open`, and `quote_modal_submit`.
 - Clarity dashboard masking mode is currently `Balanced`; source-level masks now cover quote/chat surfaces. Clarity AI Visibility beta was activated for `asap.repair`; initial 7-day dashboard shows 0 citations, no Share of Authority data, no grounding-query/page rows, and AI referral traffic `<1%`.
+- Ahrefs Site Audit was checked for project `Asap` / `asap.repair/`: latest completed crawl is 2026-06-27 05:45 PM, Health Score `100%`, 193 internal URLs crawled, 0 internal URL errors, 16 warnings, 78 notices.
+- Ahrefs `Indexable page not in sitemap` issue is stale for `https://asap.repair/case-studies/custom-wooden-flower-bed-built-in-bench/`; the URL is present in both local and live `sitemap.xml` and returns `200`.
+- Ahrefs structured data issue root cause was identified: case-study `Article.spatialCoverage` was emitted as a string, while schema.org expects a `Place`. The case-study generator now emits `spatialCoverage` as `{"@type":"Place","name":"..."}` and `scripts/validate-structured-data.mjs` checks this regression.
 
 Dashboard/API items completed:
 
@@ -198,20 +202,32 @@ Submit key URLs for manual indexing checks if Bing still shows low discovery:
 
 ## Ahrefs Webmaster Tools
 
-Recommended setup:
+Current status:
 
-1. Add project for `asap.repair`.
-2. Prefer GSC import/verification when possible.
-3. Crawl scope:
-   - include subfolders under `/services/`, `/blog/`, `/case-studies/`;
-   - respect robots.txt;
-   - use canonical URLs.
-4. Initial checks to watch:
-   - broken internal links;
-   - missing/duplicate titles and meta descriptions;
-   - orphan service pages;
-   - 404s from old service URLs;
-   - slow/heavy pages flagged by crawl.
+- Project: `Asap`, verified for `asap.repair/`.
+- Latest completed crawl: 2026-06-27 05:45 PM.
+- Next scheduled crawl: 2026-07-04, 4-5 PM.
+- Health Score: `100%`.
+- Internal URLs crawled: 193.
+- Internal URLs with errors: 0.
+- Issues: 94 total, 0 errors, 16 warnings, 78 notices.
+- HTTP status distribution: 2,862 success `2xx`, 2 redirect `3xx`.
+- Image references without alt text: 0.
+- Links to `4xx`: 0.
+- Robots-blocked links: 0.
+
+Issues checked on 2026-07-02:
+
+- `Indexable page not in sitemap`: stale. The flagged custom planter bench case study exists in current live and local sitemap.
+- `Structured data has schema.org validation error`: fixed in source. The affected case-study pages had string `Article.spatialCoverage`; the generator now emits a schema.org `Place` object.
+- `Pages to submit to IndexNow`: likely stale after the first 97-URL IndexNow submission returned HTTP `202 Accepted`.
+
+Remaining Ahrefs warnings/notices to work next:
+
+- 7 pages with long meta descriptions.
+- 14 pages where page title and SERP title do not match.
+- 10 indexable pages with only one dofollow incoming internal link.
+- Link-building notice: few high-quality referring domains.
 
 ## PageSpeed / Lighthouse automation
 
