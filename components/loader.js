@@ -6,15 +6,20 @@
 (function () {
     'use strict';
 
-    const ASSET_VERSION = '20260702d';
+    const ASSET_VERSION = '20260702e';
     const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
+    const fetchComponent = async (path) => {
+        const response = await fetch(path);
+        if (response.ok || path.endsWith('.html')) return response;
+        return fetch(`${path}.html`);
+    };
 
     async function loadComponents() {
         try {
             const [headerRes, footerRes, modalRes] = await Promise.all([
-                fetch('/components/header.html'),
-                fetch('/components/footer.html'),
-                fetch('/components/quote-modal.html')
+                fetchComponent('/components/header'),
+                fetchComponent('/components/footer'),
+                fetchComponent('/components/quote-modal')
             ]);
 
             const headerEl = document.getElementById('site-header');
