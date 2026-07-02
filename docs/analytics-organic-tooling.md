@@ -90,6 +90,12 @@ Important CRM DB note:
 
 - Do not run plain `prisma migrate deploy` against production yet. `prisma migrate status` reports many historical migrations as not applied, which means production has likely been advanced with `db push`/manual schema changes instead of a fully baselined migration ledger. For future migrations, either baseline the existing production schema into `_prisma_migrations` first or apply narrow, reviewed, idempotent SQL for each additive change.
 
+Pending CRM attribution rollout:
+
+- PR #456 (`Fix website quote booking attribution`) is open at `https://github.com/nlylov/bazas-crm/pull/456`, branch `claude/asap-revenue-attribution`, head `b7676fd2`.
+- PR #456 is mergeable and Vercel checks are green as of 2026-07-02 03:31 AM. Targeted tests passed: `npx tsx --test tests/unit/quickbooks-payment-invoice-link.test.ts tests/unit/marketing-conversion-pipeline.test.ts tests/unit/widget-session-context-attribution.test.ts` (9/9) and `npx tsc --noEmit`.
+- Production `crm.asap.repair/api/version` still reports `main` commit `77fb6d3e2f3861a464f2572783526ee90c0a5181`, so PR #456 is not live until an explicit merge/deploy step.
+
 ## GA4 key events
 
 Configured Repair ASAP key events:
@@ -269,7 +275,7 @@ Follow-up crawl check on 2026-07-02:
 Remaining Ahrefs warnings/notices to work next:
 
 - Redirect chain: fixed after the crawl by adding the direct `www.asap.repair` Cloudflare redirect rule; wait for the next Ahrefs crawl to confirm the warning clears.
-- Page/SERP title mismatch: 16 rows remain. Treat this as a monitoring item rather than a direct source-code error because Ahrefs compares live page titles with search-result titles that can lag or be rewritten by Google.
+- Page/SERP title mismatch: 16 rows remain. The checked rows are mostly Google/Ahrefs SERP title rewrites that remove the brand suffix (`| Repair ASAP` / `— Repair Asap LLC`) or add a category such as `- Plumbing`; treat this as a monitoring item rather than a direct source-code error.
 - Pages to submit to IndexNow: 57 rows remained in Ahrefs after the crawl; the current 96-URL sitemap set was resubmitted to IndexNow with HTTP `200 OK`.
 - Link-building notice: few high-quality referring domains.
 
