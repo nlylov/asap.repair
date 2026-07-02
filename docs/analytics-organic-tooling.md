@@ -197,6 +197,7 @@ IndexNow setup:
 - First submission: 97 canonical sitemap URLs sent on 2026-07-02; IndexNow API returned `202 Accepted`.
 - Post-deploy submission after support-page SEO fixes: 97 canonical sitemap URLs sent on 2026-07-02; IndexNow API returned `200 OK`.
 - Post-deploy submission after support-page internal-link strengthening: 97 canonical sitemap URLs sent on 2026-07-02; IndexNow API returned `200 OK`.
+- Post-deploy submission after priority service-page detail expansion: 97 canonical sitemap URLs sent on 2026-07-02; IndexNow API returned `200 OK`.
 - Submit sitemap URLs after the key file is live:
 
 ```bash
@@ -242,6 +243,7 @@ Follow-up crawl check on 2026-07-02:
 - `Page has only one dofollow incoming internal link` affected support pages and some case studies. Support pages now include static `.site-links` cross-links in source HTML so crawlers do not rely only on JS-loaded header/footer links. `/about/` was strengthened with static links from FAQ, reviews, privacy policy, and terms pages; local link-graph validation shows 6 incoming links. Case-study detail pages already expose static related-project links; wait for the completed crawl to confirm.
 - Local validation after the fixes: 101 HTML files checked, no indexable title longer than 65 characters, no indexable meta description longer than 155 characters, structured-data validator passed, review-schema validator passed.
 - AI visibility update: `facts.json`, `llms.txt`, and `llms-full.txt` now expose exact high-intent service URLs for appliance installation, plumbing fixtures, electrical fixtures, AC work, mounting, furniture assembly, painting/wall finishes, and general repairs. Local validation confirmed all 39 `facts.json` priority service URLs exist and are present in the sitemap.
+- Priority service-page detail pass: 22 high-intent pages from `facts.json` were expanded with visible scope/checklist/quote-prep copy. Local validation shows 0 priority service pages below 500 visible words, structured-data validator passed, review-schema validator passed, and 117 indexable HTML files have no title over 65 characters or meta description over 155 characters. Live production was spot-checked on dishwasher installation, garbage disposal installation, USB outlet installation, and trim painting.
 
 Remaining Ahrefs warnings/notices to work next:
 
