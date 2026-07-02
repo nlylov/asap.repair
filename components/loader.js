@@ -6,7 +6,7 @@
 (function () {
     'use strict';
 
-    const ASSET_VERSION = '20260702c';
+    const ASSET_VERSION = '20260702d';
     const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
 
     async function loadComponents() {

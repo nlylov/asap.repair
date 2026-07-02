@@ -827,6 +827,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const badgeEl = document.getElementById('calc-badge');
     const hintsEl = document.getElementById('calc-hints');
     const ctaBtn = document.getElementById('calc-cta');
+    let hasUserInteractedWithAcCalculator = false;
+    let hasTrackedAcCalculatorResult = false;
 
     if (!btuSel || !priceEl) return;
 
@@ -946,15 +948,36 @@ document.addEventListener('DOMContentLoaded', () => {
         hintsEl.innerHTML = '';
         hintsEl.style.display = 'none';
       }
+
+      if (hasUserInteractedWithAcCalculator && !hasTrackedAcCalculatorResult) {
+        hasTrackedAcCalculatorResult = true;
+        trackEvent('calculator_result', {
+          event_category: 'calculator',
+          calculator_config: 'window_ac',
+          service: 'AC Installation & Cleaning',
+          btu_size: selOpt(btuSel)?.value || '',
+          qty: selOpt(qtySel)?.value || '1',
+          window_type: selOpt(windowSel)?.value || '',
+          floor: selOpt(floorSel)?.value || '',
+          building: selOpt(buildingSel)?.value || '',
+          estimate_low: totalLo,
+          estimate_high: totalHi,
+          page_path: window.location.pathname,
+        });
+      }
     }
 
     // Wire up event handlers
     [btuSel, qtySel, windowSel, floorSel, buildingSel].forEach(el => {
-      if (el) el.addEventListener('change', updateCalc);
+      if (el) el.addEventListener('change', () => {
+        hasUserInteractedWithAcCalculator = true;
+        updateCalc();
+      });
     });
 
     toggles.forEach(btn => {
       btn.addEventListener('click', () => {
+        hasUserInteractedWithAcCalculator = true;
         btn.classList.toggle('active');
         btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
         updateCalc();
@@ -1005,6 +1028,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Open the quote modal (selects "AC Installation & Cleaning" service automatically)
         if (typeof window.openQuoteModal === 'function') {
+          trackEvent('calculator_quote_click', {
+            event_category: 'calculator',
+            calculator_config: 'window_ac',
+            service: 'AC Installation & Cleaning',
+            btu_size: selOpt(btuSel)?.value || '',
+            qty: selOpt(qtySel)?.value || '1',
+            window_type: selOpt(windowSel)?.value || '',
+            floor: selOpt(floorSel)?.value || '',
+            building: selOpt(buildingSel)?.value || '',
+            page_path: window.location.pathname,
+          });
           window.openQuoteModal('AC Installation & Cleaning', { preserveCalcData: true });
           // Fill the message field after the modal opens (400ms matches animation)
           setTimeout(() => {

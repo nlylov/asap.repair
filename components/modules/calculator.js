@@ -1661,10 +1661,13 @@ export default function calculator(container) {
     const priceHi = container.querySelector('.mod-calc__price-hi');
     const sizeSelect = container.querySelector('[data-cat="size"]');
     const sizeField = container.querySelector('[data-field="size"]');
+    let hasUserInteractedWithCalculator = false;
+    let hasTrackedCalculatorResult = false;
 
     // Event: series change → populate size options
     selects.forEach(sel => {
         sel.addEventListener('change', () => {
+            hasUserInteractedWithCalculator = true;
             const cat = sel.dataset.cat;
             selected[cat] = sel.value;
 
@@ -1720,6 +1723,20 @@ export default function calculator(container) {
         }
 
         const [lo, hi] = flooredRange(...cfg.pricing[series][size]);
+
+        if (hasUserInteractedWithCalculator && !hasTrackedCalculatorResult) {
+            hasTrackedCalculatorResult = true;
+            window.repairAsapTrackEvent?.('calculator_result', {
+                event_category: 'calculator',
+                calculator_config: configKey,
+                service: detectServiceFromURL() || '',
+                calculator_series: series,
+                calculator_size: size,
+                estimate_low: lo,
+                estimate_high: hi,
+                page_path: window.location.pathname,
+            });
+        }
 
         // Animate numbers; collapse to a single figure when the floor makes lo === hi
         // (e.g. one curtain rod → "$150", not an awkward "$150–$150").
@@ -1796,6 +1813,14 @@ export default function calculator(container) {
             // Open the quote modal
             if (typeof window.openQuoteModal === 'function') {
                 const service = detectServiceFromURL();
+                window.repairAsapTrackEvent?.('calculator_quote_click', {
+                    event_category: 'calculator',
+                    calculator_config: configKey,
+                    service: service || '',
+                    calculator_series: series || '',
+                    calculator_size: size || '',
+                    page_path: window.location.pathname,
+                });
                 window.openQuoteModal(service, { preserveCalcData: true });
 
                 // Pre-fill modal message textarea

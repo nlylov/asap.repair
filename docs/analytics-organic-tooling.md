@@ -6,7 +6,7 @@ Scope: `https://asap.repair/` static marketing site for the Repair ASAP tenant/c
 
 - GA4 is installed on all generated HTML pages with measurement ID `G-1ZRVGCMZ43`.
 - Public discovery files are live: `/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/llms-full.txt`.
-- Sitemap currently lists 97 unique URLs.
+- Sitemap currently lists 96 unique HTML URLs.
 - Microsoft Clarity is installed with project ID `wyzjzrud6n`.
 - GA4 is linked to the Search Console domain property `asap.repair` for the web stream `asap.repair` (`13645884964`).
 - Bing Webmaster Tools has the `asap.repair` property and a successful canonical sitemap submission.
@@ -45,7 +45,7 @@ Validation performed:
 - Indexable HTML titles were checked locally; no indexable page has a `<title>` over 65 characters.
 - Case-study internal links were checked locally; each case-study detail page now has 4 incoming internal links.
 - `node --check` passed for `main.js`, `chat.js`, `components/loader.js`, and `components/quote-modal.js`.
-- Sitemap verified live and local at 97 URLs / 97 unique URLs.
+- Sitemap verified live and local at 96 HTML URLs / 96 unique URLs after removing `facts.json` from XML discovery.
 - `wrangler pages dev` parsed 70 redirect rules and 13 header rules; only ordering performance warnings were reported.
 - Cloudflare Pages production deployment for commit `5a7b649` completed successfully.
 - Live `asap.repair` verified for `/services/`, `/services/appliance-services/dishwasher-installation/`, `/services/painting/decorative-plaster-tadelakt/`, `/facts.json`, and `/llms.txt`.
@@ -53,7 +53,7 @@ Validation performed:
 - `crm.asap.repair` was checked after the redirect rule and remains on the CRM/Railway login flow; it is not affected by the `api.asap.repair` host-only rule.
 - GA4 key events were configured for high-intent business actions: `generate_lead`, `quote_form_submit`, `quote_modal_submit`, `phone_click`, `sms_click`, `chat_open`, and existing CRM/GA4 events `purchase`, `qualify_lead`, `close_convert_lead`.
 - Live analytics instrumentation was verified with a browser probe: `dataLayer`, `gtag`, and `clarity` are present; `phone_click`, `cta_click`, `quote_modal_open`, and `chat_open` events appeared in `dataLayer` without console errors.
-- Runtime JS references now use asset version `20260702c` for `/components/loader.js`, `/main.js`, dynamically loaded quote-modal/module scripts, chat, and related-content. This avoids stale Cloudflare/browser cache serving an older analytics build after deploy. Live verification passed after Cloudflare propagation: the homepage HTML references the versioned loader/main scripts, the loader serves `ASSET_VERSION = '20260702c'`, browser smoke saw `phone_click`, `cta_click`, and `quote_modal_open` in `dataLayer`, and quote modal state clears stale calculator fields unless opened directly from a calculator CTA.
+- Runtime JS references are being advanced to asset version `20260702d` for `/components/loader.js`, `/main.js`, dynamically loaded quote-modal/module scripts, chat, and related-content. This avoids stale Cloudflare/browser cache serving an older analytics build after deploy. Local browser smoke verified that service calculators emit `calculator_result` before the first post-interaction estimate and `calculator_quote_click` before opening the quote modal; both module calculators and the window AC calculator then open the quote modal with the expected calculator-prefilled message.
 - GA4 Search Console integration was created and verified: Search Console property `asap.repair`, property type `Домен`, web stream `asap.repair`, stream ID `13645884964`, linked by `repairasap.bot@gmail.com` on 2026-07-02.
 - Bing Webmaster Tools sitemap status was verified: `https://asap.repair/sitemap.xml` was submitted on 2026-05-30, last crawled on 2026-06-30, status `Success`, 97 URLs discovered. Bing also discovered `https://www.asap.repair/sitemap.xml` with status `Success`, 95 URLs discovered; this is duplicate discovery from the `www` surface and should be treated as noise while canonical/301 handling remains correct.
 - IndexNow support was added with root key file `/e5308b759e880acb8173dd3d6d755ddc.txt` and submission helper `scripts/submit-indexnow.mjs`.
@@ -102,7 +102,12 @@ Configured Repair ASAP key events:
 
 Tracked but intentionally not marked as key events:
 
-- `form_start`, `cta_click`, `quote_modal_open`, `click`, `scroll`, `page_view`, `session_start`, `user_engagement`.
+- `form_start`, `cta_click`, `quote_modal_open`, `calculator_result`, `calculator_quote_click`, `click`, `scroll`, `page_view`, `session_start`, `user_engagement`.
+
+Calculator event meanings:
+
+- `calculator_result` — a visitor changed a calculator option and saw a priced estimate range.
+- `calculator_quote_click` — a visitor clicked the calculator CTA to continue into the quote modal.
 
 Privacy rule: do not send customer phone, email, address, message text, uploaded photo data, or other human-readable PII to GA4/Clarity. Opaque CRM ids returned by the CRM quote endpoint may be sent only for source-of-truth reconciliation of lead and paid-invoice events; do not replace them with customer-visible identifiers.
 
