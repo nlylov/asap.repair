@@ -194,6 +194,7 @@ IndexNow setup:
 
 - Key file: `https://asap.repair/e5308b759e880acb8173dd3d6d755ddc.txt`.
 - First submission: 97 canonical sitemap URLs sent on 2026-07-02; IndexNow API returned `202 Accepted`.
+- Post-deploy submission after support-page SEO fixes: 97 canonical sitemap URLs sent on 2026-07-02; IndexNow API returned `200 OK`.
 - Submit sitemap URLs after the key file is live:
 
 ```bash
