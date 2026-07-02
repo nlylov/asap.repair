@@ -56,7 +56,7 @@ Validation performed:
 - `crm.asap.repair` was checked after the redirect rule and remains on the CRM/Railway login flow; it is not affected by the `api.asap.repair` host-only rule.
 - GA4 key events were configured for high-intent business actions: `generate_lead`, `quote_form_submit`, `quote_modal_submit`, `phone_click`, `sms_click`, `chat_open`, and existing CRM/GA4 events `purchase`, `qualify_lead`, `close_convert_lead`.
 - Live analytics instrumentation was verified with a browser probe: `dataLayer`, `gtag`, and `clarity` are present; `phone_click`, `cta_click`, `quote_modal_open`, and `chat_open` events appeared in `dataLayer` without console errors.
-- Runtime JS references are being advanced to asset version `20260702e` for `/components/loader.js`, `/main.js`, dynamically loaded quote-modal/module scripts, chat, and related-content. This avoids stale Cloudflare/browser cache serving an older analytics build after deploy. The loader now requests extensionless component URLs first (`/components/header`, `/components/footer`, `/components/quote-modal`) to avoid Cloudflare Pages `.html` -> pretty-URL `308` redirects in production, with `.html` fallback for local static-server smoke tests.
+- Runtime JS references now use asset version `20260702e` for `/components/loader.js`, `/main.js`, dynamically loaded quote-modal/module scripts, chat, and related-content. This avoids stale Cloudflare/browser cache serving an older analytics build after deploy. Production deployment `638eda1` was verified live: HTML references `20260702e`, the live loader hash matches source, and browser network smoke loads `/components/header`, `/components/footer`, and `/components/quote-modal` directly as `200` responses with no `.html` redirect waterfall. The loader keeps a `.html` fallback for local static-server smoke tests.
 - GA4 Search Console integration was created and verified: Search Console property `asap.repair`, property type `Домен`, web stream `asap.repair`, stream ID `13645884964`, linked by `repairasap.bot@gmail.com` on 2026-07-02.
 - Bing Webmaster Tools sitemap status was verified: `https://asap.repair/sitemap.xml` was submitted on 2026-05-30, last crawled on 2026-06-30, status `Success`, 97 URLs discovered. Bing also discovered `https://www.asap.repair/sitemap.xml` with status `Success`, 95 URLs discovered; this is duplicate discovery from the `www` surface and should be treated as noise while canonical/301 handling remains correct.
 - IndexNow support was added with root key file `/e5308b759e880acb8173dd3d6d755ddc.txt` and submission helper `scripts/submit-indexnow.mjs`.
@@ -301,6 +301,10 @@ Baseline checked on 2026-07-02:
 - Mobile retest after fix:
   - `/services/tv-wall-mounting/`: performance `85`, LCP `3.6s`.
   - `/services/furniture-assembly/`: performance `82`, LCP `4.0s`.
+- Component redirect fix deployed in `638eda1`: the loader now requests `/components/header`, `/components/footer`, and `/components/quote-modal` directly instead of first requesting `.html` URLs that Cloudflare redirects to pretty URLs.
+- Mobile retest after component redirect fix (`reports/lighthouse/20260702-034000-after-loader-redirects/`):
+  - `/services/tv-wall-mounting/`: performance `99`, LCP `2.0s`, SEO `100`.
+  - `/services/furniture-assembly/`: performance `91`, LCP `2.8s`, SEO `100`.
 - Remaining performance limits: render-blocking `styles.css`/component loader on mobile and third-party analytics scripts. These should be handled carefully because GA4/Clarity are business-critical tracking surfaces.
 
 Suggested URL baseline:
