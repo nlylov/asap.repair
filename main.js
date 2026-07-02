@@ -19,6 +19,25 @@ function repairAsapTrackEvent(eventName, params) {
   }
 }
 
+function repairAsapBuildLeadEventParams(payload, result, formType) {
+  const params = {
+    event_category: 'lead',
+    event_label: payload?.service || 'unknown',
+    form_type: formType,
+    lead_source: 'website',
+    booking_status: result?.booked ? 'booked' : 'lead_only',
+  };
+
+  if (result?.contactId) params.crm_contact_id = result.contactId;
+  if (result?.conversationId) params.crm_conversation_id = result.conversationId;
+  if (result?.appointmentId) params.crm_appointment_id = result.appointmentId;
+  if (result?.jobId) params.crm_job_id = result.jobId;
+  if (result?.startTime) params.appointment_start = result.startTime;
+  if (payload?.date) params.requested_date = payload.date;
+
+  return params;
+}
+
 function repairAsapGetOrCreateVisitorId() {
   try {
     let visitorId = localStorage.getItem(REPAIR_ASAP_VISITOR_KEY);
@@ -65,6 +84,7 @@ function repairAsapGetSessionContext() {
 }
 
 window.repairAsapTrackEvent = repairAsapTrackEvent;
+window.repairAsapBuildLeadEventParams = repairAsapBuildLeadEventParams;
 window.repairAsapGetSessionContext = repairAsapGetSessionContext;
 
 // ---- Google Places Autocomplete ----
@@ -652,17 +672,16 @@ document.addEventListener('DOMContentLoaded', () => {
           const result = await response.json();
 
           if (response.ok && result.success) {
+            const leadEventParams = window.repairAsapBuildLeadEventParams
+              ? window.repairAsapBuildLeadEventParams(payload, result, 'inline')
+              : {
+                  event_category: 'lead',
+                  event_label: payload.service || 'unknown',
+                  form_type: 'inline',
+                };
             // GA4: Track successful form submission
-            trackEvent('quote_form_submit', {
-              event_category: 'lead',
-              event_label: payload.service || 'unknown',
-              form_type: 'inline',
-            });
-            trackEvent('generate_lead', {
-              event_category: 'lead',
-              event_label: payload.service || 'unknown',
-              form_type: 'inline',
-            });
+            trackEvent('quote_form_submit', leadEventParams);
+            trackEvent('generate_lead', leadEventParams);
             // Dynamic success screen with booking details
             let successHtml = '';
             if (result.booked && payload.time) {

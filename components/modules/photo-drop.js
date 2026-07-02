@@ -260,6 +260,15 @@ export default function photoDrop(container) {
             const result = await response.json();
 
             if (response.ok && result.success) {
+                const leadEventParams = window.repairAsapBuildLeadEventParams
+                    ? window.repairAsapBuildLeadEventParams(payload, result, 'photo_drop')
+                    : {
+                        event_category: 'lead',
+                        event_label: payload.service || 'unknown',
+                        form_type: 'photo_drop',
+                    };
+                window.repairAsapTrackEvent?.('photo_quote_submit', leadEventParams);
+                window.repairAsapTrackEvent?.('generate_lead', leadEventParams);
                 form.style.display = 'none';
                 successEl.style.display = 'block';
             } else {

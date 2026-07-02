@@ -25,6 +25,7 @@ Implemented and verified:
 
 - Widget visit tracking no longer posts `/api/widget/visit` before a real chat thread exists.
 - Quote submissions now carry attribution context from the browser: page URL, referrer, language, timezone, visitor ID, UTM/click IDs where present, and GA client ID from the `_ga` cookie.
+- Successful quote/photo submissions now build one normalized lead-event parameter set. When the CRM response includes opaque ids, website analytics events include `crm_contact_id`, `crm_conversation_id`, `crm_appointment_id`, `crm_job_id`, `booking_status`, and `appointment_start` so lead events can be reconciled with CRM jobs and paid invoices without sending customer phone, email, address, message text, or photo data.
 - `www.asap.repair` canonicalizes to `https://asap.repair/...`.
 - Old Tadelakt/decorative plaster URLs 301 to `/services/painting/decorative-plaster-tadelakt/`; moved HTML fallbacks are `noindex, follow`.
 - `/labs/*` redirects to `/services/` and is covered by `X-Robots-Tag: noindex, nofollow`.
@@ -51,6 +52,7 @@ Validation performed:
 - Live `api.asap.repair` verified: `/` redirects to `https://asap.repair/`, `/services/plumbing/` redirects to `https://asap.repair/services/plumbing/`, query strings are preserved, and following the redirect returns `200`.
 - `crm.asap.repair` was checked after the redirect rule and remains on the CRM/Railway login flow; it is not affected by the `api.asap.repair` host-only rule.
 - GA4 key events were configured for high-intent business actions: `generate_lead`, `quote_form_submit`, `quote_modal_submit`, `phone_click`, `sms_click`, `chat_open`, and existing CRM/GA4 events `purchase`, `qualify_lead`, `close_convert_lead`.
+- Live analytics instrumentation was verified with a browser probe: `dataLayer`, `gtag`, and `clarity` are present; `phone_click`, `cta_click`, `quote_modal_open`, and `chat_open` events appeared in `dataLayer` without console errors.
 - GA4 Search Console integration was created and verified: Search Console property `asap.repair`, property type `Домен`, web stream `asap.repair`, stream ID `13645884964`, linked by `repairasap.bot@gmail.com` on 2026-07-02.
 - Bing Webmaster Tools sitemap status was verified: `https://asap.repair/sitemap.xml` was submitted on 2026-05-30, last crawled on 2026-06-30, status `Success`, 97 URLs discovered. Bing also discovered `https://www.asap.repair/sitemap.xml` with status `Success`, 95 URLs discovered; this is duplicate discovery from the `www` surface and should be treated as noise while canonical/301 handling remains correct.
 - IndexNow support was added with root key file `/e5308b759e880acb8173dd3d6d755ddc.txt` and submission helper `scripts/submit-indexnow.mjs`.
@@ -59,6 +61,7 @@ Validation performed:
 - Bing AI Performance beta currently reports 0 total citations, 0 average cited pages, and no grounding-query/page rows for the visible 3-month period.
 - Clarity privacy hardening was added in source with explicit `data-clarity-mask="True"` on the inline quote form, quote modal surface, photo-drop forms, and chat window.
 - Live production verification passed for Clarity masks on `https://asap.repair/`, `https://asap.repair/chat.js`, and `https://asap.repair/components/quote-modal.html` after deployment `9872369`.
+- Technical component/helper surfaces such as `/components/*` and `/assets/rooms/_*` are intentionally excluded from organic indexing via `X-Robots-Tag: noindex, nofollow`; they should not be treated as missing standalone analytics surfaces.
 - Clarity dashboard was verified for project `Repair ASAP` (`wyzjzrud6n`): last 3 days show 33 sessions, 29 unique users, 14 bot sessions excluded, 1.45 pages/session, 56.48% average scroll depth, 28s active time, 0 JavaScript errors, performance score 95/100 from the available page-view sample, and smart events including `phone_click`, `form_start`, `generate_lead`, `quote_modal_open`, and `quote_modal_submit`.
 - Clarity dashboard masking mode is currently `Balanced`; source-level masks now cover quote/chat surfaces. Clarity AI Visibility beta was activated for `asap.repair`; initial 7-day dashboard shows 0 citations, no Share of Authority data, no grounding-query/page rows, and AI referral traffic `<1%`.
 - Ahrefs Site Audit was checked for project `Asap` / `asap.repair/`: latest completed crawl is 2026-06-27 05:45 PM, Health Score `100%`, 193 internal URLs crawled, 0 internal URL errors, 16 warnings, 78 notices.
@@ -100,7 +103,7 @@ Tracked but intentionally not marked as key events:
 
 - `form_start`, `cta_click`, `quote_modal_open`, `click`, `scroll`, `page_view`, `session_start`, `user_engagement`.
 
-Privacy rule: do not send customer phone, email, address, message text, uploaded photo data, or CRM IDs to GA4/Clarity. Event parameters should stay limited to service/category/form type/page path.
+Privacy rule: do not send customer phone, email, address, message text, uploaded photo data, or other human-readable PII to GA4/Clarity. Opaque CRM ids returned by the CRM quote endpoint may be sent only for source-of-truth reconciliation of lead and paid-invoice events; do not replace them with customer-visible identifiers.
 
 Recommended GA4 funnel/exploration:
 
