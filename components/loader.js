@@ -6,6 +6,9 @@
 (function () {
     'use strict';
 
+    const ASSET_VERSION = '20260702b';
+    const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
+
     async function loadComponents() {
         try {
             const [headerRes, footerRes, modalRes] = await Promise.all([
@@ -36,7 +39,7 @@
 
                 // Load modal JS
                 const modalScript = document.createElement('script');
-                modalScript.src = '/components/quote-modal.js';
+                modalScript.src = versionedAsset('/components/quote-modal.js');
                 modalScript.defer = true;
                 document.body.appendChild(modalScript);
             }
@@ -47,21 +50,21 @@
             // Auto-discover and load spoke-page modules
             document.querySelectorAll('[data-module]').forEach(el => {
                 const name = el.dataset.module;
-                import(`/components/modules/${name}.js`)
+                import(versionedAsset(`/components/modules/${name}.js`))
                     .then(m => { if (m.default) m.default(el); })
                     .catch(err => console.warn(`[loader] Module "${name}" not found:`, err));
             });
 
             // Load chatbot on all pages
             const chatScript = document.createElement('script');
-            chatScript.src = '/chat.js';
+            chatScript.src = versionedAsset('/chat.js');
             chatScript.defer = true;
             document.body.appendChild(chatScript);
 
             // Load related-content component when placeholder exists
             if (document.getElementById('related-content')) {
                 const rcScript = document.createElement('script');
-                rcScript.src = '/components/related-content.js';
+                rcScript.src = versionedAsset('/components/related-content.js');
                 rcScript.defer = true;
                 document.body.appendChild(rcScript);
             }
