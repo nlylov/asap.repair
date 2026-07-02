@@ -444,6 +444,10 @@
   }
 
   function getSessionContext() {
+    if (typeof window.repairAsapGetSessionContext === 'function') {
+      return window.repairAsapGetSessionContext();
+    }
+
     const sessionContext = {};
     try { sessionContext.page = window.location.href; } catch (_) {}
     try { sessionContext.referrer = document.referrer || ''; } catch (_) {}

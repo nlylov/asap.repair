@@ -35,12 +35,31 @@ function repairAsapGetOrCreateVisitorId() {
   }
 }
 
+function repairAsapGetGaClientId() {
+  try {
+    const cookie = document.cookie
+      .split(';')
+      .map(part => part.trim())
+      .find(part => part.startsWith('_ga='));
+    if (!cookie) return '';
+    const value = decodeURIComponent(cookie.slice(4));
+    const match = value.match(/^GA\d+\.\d+\.(\d+\.\d+)$/);
+    return match ? match[1] : '';
+  } catch (_) {
+    return '';
+  }
+}
+
 function repairAsapGetSessionContext() {
   const sessionContext = {};
   try { sessionContext.page = window.location.href; } catch (_) {}
   try { sessionContext.referrer = document.referrer || ''; } catch (_) {}
   try { sessionContext.language = navigator.language || ''; } catch (_) {}
   try { sessionContext.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (_) {}
+  try {
+    const gaClientId = repairAsapGetGaClientId();
+    if (gaClientId) sessionContext.gaClientId = gaClientId;
+  } catch (_) {}
   sessionContext.visitorId = repairAsapGetOrCreateVisitorId();
   return sessionContext;
 }
