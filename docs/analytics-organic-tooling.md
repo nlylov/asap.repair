@@ -6,8 +6,9 @@ Scope: `https://asap.repair/` static marketing site for the Repair ASAP tenant/c
 
 - GA4 is installed on all generated HTML pages with measurement ID `G-1ZRVGCMZ43`.
 - Public discovery files are live: `/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/llms-full.txt`.
-- Sitemap currently lists 89 URLs.
-- Microsoft Clarity, Bing Webmaster Tools verification, and Ahrefs Webmaster Tools are not visible in source yet.
+- Sitemap currently lists 97 unique URLs.
+- Microsoft Clarity is installed with project ID `wyzjzrud6n`.
+- Bing Webmaster Tools verification and Ahrefs Webmaster Tools are not visible in source yet.
 
 ## GA4 key events
 
@@ -61,7 +62,7 @@ Recommended setup:
    - Clarity dashboard shows the site as receiving data.
    - Test a quote form session and confirm sensitive fields are masked in the recording.
 
-This PR only prepares the CSP and Clarity-compatible event helper. It does not add the live Clarity project ID because that ID must come from the Clarity dashboard.
+The Clarity project ID currently installed in source is `wyzjzrud6n`. Keep strict masking enabled in the Clarity dashboard and verify recordings do not expose quote/chat form contents.
 
 ## Bing Webmaster Tools
 
@@ -112,5 +113,4 @@ Use `scripts/lighthouse-baseline.sh` on a machine with Lighthouse installed. Kee
 ## Deployment boundaries
 
 - Pull requests are safe for review.
-- Do not merge to `main` without explicit GO because Cloudflare Pages auto-deploys `main`.
 - Do not add production Clarity/Bing verification IDs unless they come from the provider dashboards and Nikita approves the exact ID/source.

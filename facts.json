@@ -28,6 +28,28 @@
     "General handyman repairs",
     "New apartment setup"
   ],
+  "highIntentServiceRequests": [
+    "Dishwasher installation or replacement",
+    "Washer, dryer, refrigerator, microwave, and range installation",
+    "Toilet installation or replacement",
+    "Faucet replacement and sink installation",
+    "Garbage disposal installation",
+    "Shut-off valve replacement and small leak repair",
+    "Ceiling fan, chandelier, light fixture, outlet, switch, USB outlet, and smart device installation",
+    "Window AC installation, AC bracket installation, through-wall AC installation, PTAC installation, portable AC setup, AC removal, and AC deep cleaning",
+    "TV mounting, over-fireplace TV mounting, wire concealment, shelf installation, curtain rod installation, mirror mounting, art hanging, and wall cabinet installation",
+    "New apartment setup and COI-ready co-op/condo punch-list work",
+    "Interior painting, drywall repair, decorative plaster, Tadelakt-style finishes, lime plaster, Venetian plaster, and accent wall work"
+  ],
+  "priorityMarkets": [
+    "Queens",
+    "Manhattan",
+    "Brooklyn",
+    "Bronx",
+    "Staten Island",
+    "Western Long Island",
+    "Nassau County where scope and travel fit"
+  ],
   "booking": {
     "primaryUrl": "https://asap.repair/",
     "quoteUrl": "https://asap.repair/#quote",
@@ -58,5 +80,5 @@
     "fullLlmContext": "https://asap.repair/llms-full.txt",
     "sitemap": "https://asap.repair/sitemap.xml"
   },
-  "lastReviewed": "2026-06-04"
+  "lastReviewed": "2026-07-02"
 }
