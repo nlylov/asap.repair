@@ -16,6 +16,7 @@ add_seo_tags.py
 # Temp directories
 tmp/
 sitehandy-tmp/
+reports/
 venv/
 __pycache__/
 *.pyc
