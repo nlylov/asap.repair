@@ -30,6 +30,7 @@ Implemented and verified:
 - 77 live service pages now include visible service-area and quote-prep copy; the two remaining service HTML files are noindex/meta-refresh moved Tadelakt fallbacks.
 - `/services/` has a top-level Service JSON-LD block with `hasOfferCatalog`.
 - `facts.json`, `llms.txt`, and `llms-full.txt` include Nassau County scope and quote-prep details by service category.
+- Cloudflare Redirect Rule `Redirect api.asap.repair to canonical site` is active. It matches `http.host eq "api.asap.repair"` and returns a 301 redirect to `concat("https://asap.repair", http.request.uri.path)` while preserving the query string.
 
 Validation performed:
 
@@ -40,10 +41,11 @@ Validation performed:
 - `wrangler pages dev` parsed 70 redirect rules and 13 header rules; only ordering performance warnings were reported.
 - Cloudflare Pages production deployment for commit `5a7b649` completed successfully.
 - Live `asap.repair` verified for `/services/`, `/services/appliance-services/dishwasher-installation/`, `/services/painting/decorative-plaster-tadelakt/`, `/facts.json`, and `/llms.txt`.
+- Live `api.asap.repair` verified: `/` redirects to `https://asap.repair/`, `/services/plumbing/` redirects to `https://asap.repair/services/plumbing/`, query strings are preserved, and following the redirect returns `200`.
+- `crm.asap.repair` was checked after the redirect rule and remains on the CRM/Railway login flow; it is not affected by the `api.asap.repair` host-only rule.
 
 Open items requiring dashboard/API access:
 
-- `api.asap.repair` still resolves to the old Vercel surface, not the Cloudflare Pages canonical site. It currently returns Vercel headers (`x-vercel-id` / `x-vercel-error`) for site paths. Fix requires Cloudflare zone/domain access: either attach `api.asap.repair` to the current Pages project if it should serve the website, or add a zone-level redirect rule to `https://asap.repair/:path*`. Do not change this in code alone; the current token cannot add the custom domain.
 - CRM paid-conversion pipeline is implemented in `bazas-crm` PR #448 (`claude/asap-revenue-attribution`) and is mergeable with green Vercel checks, but it is not deployed to production yet. To activate paid invoice revenue events, merge/deploy the PR, run the Prisma migration, and set `GA4_API_SECRET` for GA4 Measurement Protocol.
 
 ## GA4 key events
