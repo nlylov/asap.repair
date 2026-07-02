@@ -8,6 +8,7 @@ Scope: `https://asap.repair/` static marketing site for the Repair ASAP tenant/c
 - Public discovery files are live: `/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/llms-full.txt`.
 - Sitemap currently lists 97 unique URLs.
 - Microsoft Clarity is installed with project ID `wyzjzrud6n`.
+- GA4 is linked to the Search Console domain property `asap.repair` for the web stream `asap.repair` (`13645884964`).
 - Bing Webmaster Tools verification and Ahrefs Webmaster Tools are not visible in source yet.
 
 ## 2026-07-02 implementation log
@@ -44,8 +45,9 @@ Validation performed:
 - Live `api.asap.repair` verified: `/` redirects to `https://asap.repair/`, `/services/plumbing/` redirects to `https://asap.repair/services/plumbing/`, query strings are preserved, and following the redirect returns `200`.
 - `crm.asap.repair` was checked after the redirect rule and remains on the CRM/Railway login flow; it is not affected by the `api.asap.repair` host-only rule.
 - GA4 key events were configured for high-intent business actions: `generate_lead`, `quote_form_submit`, `quote_modal_submit`, `phone_click`, `sms_click`, `chat_open`, and existing CRM/GA4 events `purchase`, `qualify_lead`, `close_convert_lead`.
+- GA4 Search Console integration was created and verified: Search Console property `asap.repair`, property type `Домен`, web stream `asap.repair`, stream ID `13645884964`, linked by `repairasap.bot@gmail.com` on 2026-07-02.
 
-Open items requiring dashboard/API access:
+Dashboard/API items completed:
 
 - CRM paid-conversion pipeline was activated on 2026-07-02:
   - PR #448 (`Link QuickBooks payments to CRM invoices`) was merged into `bazas-crm` `main` at `bf6ad64e`.
@@ -86,6 +88,19 @@ Recommended GA4 funnel/exploration:
    - key event `purchase`;
    - source/medium and landing page dimensions;
    - value from Measurement Protocol `value`/`currency`.
+
+## GA4 Search Console link
+
+Configured link:
+
+- Search Console property: `asap.repair`.
+- Property type: domain property (`Домен`).
+- GA4 web stream: `asap.repair`.
+- GA4 stream ID: `13645884964`.
+- Linked by: `repairasap.bot@gmail.com`.
+- Link date shown in GA4: `2 июл. 2026 г.`.
+
+Use this link to review organic Google search queries and landing pages inside GA4 alongside high-intent events and, once volume exists, the CRM `purchase` key event. Data may take time to appear after link creation.
 
 ## Microsoft Clarity onboarding
 
