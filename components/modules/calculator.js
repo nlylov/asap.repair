@@ -1796,7 +1796,7 @@ export default function calculator(container) {
             // Open the quote modal
             if (typeof window.openQuoteModal === 'function') {
                 const service = detectServiceFromURL();
-                window.openQuoteModal(service);
+                window.openQuoteModal(service, { preserveCalcData: true });
 
                 // Pre-fill modal message textarea
                 setTimeout(() => {

@@ -125,7 +125,10 @@
     }
 
     // ---- Open ----
-    window.openQuoteModal = function (serviceValue) {
+    window.openQuoteModal = function (serviceValue, options = {}) {
+        if (!options.preserveCalcData) {
+            window._calcQuoteData = null;
+        }
         modal.classList.add('active');
         modal.setAttribute('aria-hidden', 'false');
         form.querySelectorAll('[required]').forEach((field) => field.setAttribute('aria-required', 'true'));

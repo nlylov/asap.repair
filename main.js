@@ -1005,7 +1005,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Open the quote modal (selects "AC Installation & Cleaning" service automatically)
         if (typeof window.openQuoteModal === 'function') {
-          window.openQuoteModal('AC Installation & Cleaning');
+          window.openQuoteModal('AC Installation & Cleaning', { preserveCalcData: true });
           // Fill the message field after the modal opens (400ms matches animation)
           setTimeout(() => {
             const msgField = document.getElementById('modal-message');
