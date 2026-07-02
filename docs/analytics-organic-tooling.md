@@ -43,6 +43,7 @@ Validation performed:
 - Live `asap.repair` verified for `/services/`, `/services/appliance-services/dishwasher-installation/`, `/services/painting/decorative-plaster-tadelakt/`, `/facts.json`, and `/llms.txt`.
 - Live `api.asap.repair` verified: `/` redirects to `https://asap.repair/`, `/services/plumbing/` redirects to `https://asap.repair/services/plumbing/`, query strings are preserved, and following the redirect returns `200`.
 - `crm.asap.repair` was checked after the redirect rule and remains on the CRM/Railway login flow; it is not affected by the `api.asap.repair` host-only rule.
+- GA4 key events were configured for high-intent business actions: `generate_lead`, `quote_form_submit`, `quote_modal_submit`, `phone_click`, `sms_click`, `chat_open`, and existing CRM/GA4 events `purchase`, `qualify_lead`, `close_convert_lead`.
 
 Open items requiring dashboard/API access:
 
@@ -60,31 +61,31 @@ Important CRM DB note:
 
 ## GA4 key events
 
-Recommended Repair ASAP key events:
+Configured Repair ASAP key events:
 
 - `generate_lead` — normalized lead event fired after successful inline or modal quote submit.
 - `quote_form_submit` — successful inline homepage/contact quote form submit.
 - `quote_modal_submit` — successful quote modal submit.
-- `form_start` — first interaction with a form, without capturing field values.
 - `phone_click` — click on `tel:` links.
 - `sms_click` — click on `sms:` links.
 - `chat_open` — opening the embedded chat widget.
-- `quote_modal_open` — opening the quote modal.
-- `cta_click` — quote/contact CTA click before modal open.
+- `purchase` — CRM paid invoice/payment event sent server-side through GA4 Measurement Protocol.
+- `qualify_lead` and `close_convert_lead` — existing GA4 lead-stage key events already present in the property.
+
+Tracked but intentionally not marked as key events:
+
+- `form_start`, `cta_click`, `quote_modal_open`, `click`, `scroll`, `page_view`, `session_start`, `user_engagement`.
 
 Privacy rule: do not send customer phone, email, address, message text, uploaded photo data, or CRM IDs to GA4/Clarity. Event parameters should stay limited to service/category/form type/page path.
 
-GA4 dashboard steps:
+Recommended GA4 funnel/exploration:
 
-1. GA4 → Admin → Data display → Events.
-2. Wait for events to appear after deployment and test traffic.
-3. Mark as key events:
-   - `generate_lead`
-   - `quote_form_submit`
-   - `quote_modal_submit`
-   - optionally `phone_click` and `sms_click` if calls/texts are primary conversion actions.
-4. Build a funnel/exploration:
+1. Build a funnel/exploration:
    - page_view → `cta_click` or `quote_modal_open` → `form_start` → `generate_lead`.
+2. Add a revenue view once CRM paid invoice volume appears:
+   - key event `purchase`;
+   - source/medium and landing page dimensions;
+   - value from Measurement Protocol `value`/`currency`.
 
 ## Microsoft Clarity onboarding
 
