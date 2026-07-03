@@ -8,6 +8,8 @@
     visitorStorageKey: 'repair_asap_visitor_id'
   };
   const containerId = 'repair-asap-chatbot';
+  const GA4_ID = 'G-1ZRVGCMZ43';
+  const GA_CLIENT_TIMEOUT_MS = 800;
   // --------------------
 
   let state = {
@@ -18,6 +20,7 @@
     visitThreadId: null,
     visitPromise: null,
   };
+  let gaClientIdPromise = null;
 
   function injectStyles() {
     const style = document.createElement('style');
@@ -472,7 +475,12 @@
       return window.repairAsapGetSessionContextAsync();
     }
 
-    return getSessionContext();
+    const sessionContext = getSessionContext();
+    try {
+      const gaClientId = await getGaClientIdAsync();
+      if (gaClientId) sessionContext.gaClientId = gaClientId;
+    } catch (_) {}
+    return sessionContext;
   }
 
   function getGaClientId() {
@@ -488,6 +496,44 @@
     } catch (_) {
       return '';
     }
+  }
+
+  function getGaClientIdAsync() {
+    const cookieClientId = getGaClientId();
+    if (cookieClientId) return Promise.resolve(cookieClientId);
+    if (gaClientIdPromise) return gaClientIdPromise;
+
+    gaClientIdPromise = new Promise((resolve) => {
+      let settled = false;
+      const finish = (clientId = '') => {
+        if (settled) return;
+        settled = true;
+        resolve(clientId || '');
+      };
+      const timer = setTimeout(() => finish(''), GA_CLIENT_TIMEOUT_MS);
+
+      try {
+        if (typeof window.gtag !== 'function') {
+          clearTimeout(timer);
+          finish('');
+          return;
+        }
+
+        window.gtag('get', GA4_ID, 'client_id', (clientId) => {
+          clearTimeout(timer);
+          finish(typeof clientId === 'string' ? clientId : '');
+        });
+      } catch (_) {
+        clearTimeout(timer);
+        finish('');
+      }
+    }).then((clientId) => {
+      const resolvedClientId = clientId || getGaClientId();
+      if (!resolvedClientId) gaClientIdPromise = null;
+      return resolvedClientId;
+    });
+
+    return gaClientIdPromise;
   }
 
   function getOrCreateVisitorId() {
