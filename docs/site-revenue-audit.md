@@ -138,6 +138,8 @@ Dashboard follow-up on 2026-07-03: Search Console shows the site has demand but 
 
 Technical cleanup from the same dashboard pass: `/reviews/` no longer emits individual self-serving `Review` JSON-LD, page-level `AggregateRating` JSON-LD, or `schema.org/Review` microdata after GSC validation showed the reviews page was still affected. Visible customer reviews remain in HTML, but the business-owned reviews page is no longer trying to qualify for review-snippet rich results. Live Googlebot checks confirm the review markup is gone, and GSC validation for both review-snippet issues started on 2026-07-03. All public HTML now loads GA4/Clarity through `/analytics.js?v=20260703q`, which blocks external analytics tags on localhost/127.0.0.1. Cloudflare Pages deployment `53f1a6dd` from source `35d8261` is live on the custom domain for the analytics-loader cleanup. Existing local test sessions will remain in historical Clarity ranges until the date window moves forward, but new local previews should stop polluting production analytics.
 
+Commercial snippet cleanup on 2026-07-03: the high-opportunity general-repair pages for blind installation, lock installation, and caulking were tightened for search/AI answer quality. Generic hero phrasing was replaced with apartment/door-specific intent, hard/broad claims such as `Licensed, insured`, `all other brands`, hardwired blind installation, and fixed caulk life were replaced with scope-reviewed language, and visible FAQ answers were aligned with the safer JSON-LD answers.
+
 ---
 
 ## Next 10 Highest-ROI Tasks
