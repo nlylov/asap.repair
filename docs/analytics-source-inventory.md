@@ -1,6 +1,6 @@
 # Repair ASAP analytics/source inventory
 
-Last verified: 2026-07-03, after GSC/Bing/GA4/Clarity/GBP dashboard audit, review-schema cleanup, and localhost analytics-noise source fix.
+Last verified: 2026-07-03, after GSC/Bing/GA4/Clarity/GBP dashboard audit, review-schema cleanup, localhost analytics-noise fix, and live Cloudflare Pages deployment `53f1a6dd` from source `35d8261`.
 
 Scope: `https://asap.repair/`, `https://api.asap.repair/`, and the connected CRM/organic tooling used for Repair ASAP lead and revenue measurement.
 
@@ -71,8 +71,8 @@ Crawler status at this verification point:
 - Google Search Console sitemap: canonical `https://asap.repair/sitemap.xml` was resubmitted and processed on 2026-07-03 with status `Success` and 102 discovered pages.
 - Google Search Console indexing: 44 pages indexed and 77 not indexed as of the 2026-06-29 coverage update. Not-indexed reasons were 5 old 404 rows, 2 redirects, 48 discovered-not-indexed, and 22 crawled-currently-not-indexed. Live checks showed the old 404 service slugs now redirect, except `email.email.asap.repair`, which has no DNS record and should be treated as subdomain/DNS hygiene.
 - Google Search Console performance, last 3 months: 165 clicks, 29,331 impressions, 0.6% CTR, average position 21.8. Top landing pages by clicks were `/` (53 / 3,346 impressions), `/services/furniture-assembly/` (27 / 6,432), `/services/appliance-services/` (14 / 5,178), `/services/tv-wall-mounting/projector-installation/` (11 / 340), `/services/furniture-assembly/bed-assembly/` (8 / 1,093), `/services/plumbing/toilet-installation/` (6 / 649), and `/services/general-repairs/caulking/` (5 / 400).
-- Google Search Console review snippets: 97 invalid elements, last updated 2026-07-01. Reported issues were missing `itemReviewed` and invalid `author` object type. Source cleanup removed the 63 individual self-serving `Review` JSON-LD entries from `/reviews/`; local GSC-like scan now finds 0 `Review` JSON-LD nodes and 0 missing-`itemReviewed` issues. GSC will only clear after deployment and recrawl/validation.
-- Source sitemap/custom-domain baseline before the analytics-loader deployment: 102 canonical HTML URLs returned `200`, included GA4, Clarity, `/components/loader.js?v=20260703p`, and `/main.js?v=20260703p`, with no `noindex` on sitemap pages.
+- Google Search Console review snippets: 97 invalid elements, last updated 2026-07-01. Reported issues were missing `itemReviewed` and invalid `author` object type. Deployment `53f1a6dd` from source `35d8261` removed the 63 individual self-serving `Review` JSON-LD entries from live `/reviews/`; local GSC-like scan finds 0 `Review` JSON-LD nodes and 0 missing-`itemReviewed` issues. GSC will only clear after recrawl/validation.
+- Live deployment check after analytics-loader deployment: representative custom-domain URLs (`/`, `/reviews/`, furniture assembly, appliance services, projector installation, toilet installation) returned `200`, referenced `/analytics.js?v=20260703q`, had no old inline GA4/Clarity tags, and `/reviews/` had no `Review` JSON-LD. Live `/analytics.js` returned `200` and includes the production-host guard.
 - IndexNow: updated 102-URL sitemap set resubmitted on 2026-07-03 and returned HTTP `200 OK`; Bing IndexNow shows latest submitted URLs at `Today 10:27`, source `Self`.
 - Lighthouse contrast re-check: refrigerator installation and window AC installation mobile runs are now Accessibility `100`, SEO `100`, and `color-contrast` score `1` after the calculator UI contrast fix.
 - Ahrefs crawl: completed `Today 04:51 AM` to `05:42 AM`, crawled 1,442 URLs, billed 96 pages, and showed 8 actual issue rows. The only redirect rows were canonical root/protocol redirects with no redirect loops and no redirect inlinks; content-change rows are expected from the SEO copy/meta/H1 updates.
@@ -103,7 +103,7 @@ These are business acquisition sources and should be reconciled in CRM/GA4 by le
 ## Immediate gaps to keep tracking
 
 - CRM business workflow should make paid conversion measurement deterministic: website/chat lead -> CRM lead/contact -> scheduled job/appointment -> estimate/invoice -> QuickBooks paid status -> CRM paid state -> GA4 `purchase`.
-- Production deploy/recrawl must happen before GSC review-snippet invalid count and Clarity localhost-noise trends improve. Existing `127.0.0.1` sessions remain in historical Clarity windows until the date range rolls forward.
+- GSC recrawl/validation must happen before the review-snippet invalid count clears. Existing `127.0.0.1` sessions remain in historical Clarity windows until the date range rolls forward.
 - Bing Site Scan is queue-dependent; re-check the 2026-07-03 scan before treating Bing's site-audit state as known.
 - Bing must recrawl the old AC warning URLs before its `2 warnings` Site Explorer count clears.
 - Cloudflare Pages custom domain `api.asap.repair` is live-working but still `pending` in the Pages domain API; re-check until the panel shows `active`.
