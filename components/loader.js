@@ -6,7 +6,7 @@
 (function () {
     'use strict';
 
-    const ASSET_VERSION = '20260703j';
+    const ASSET_VERSION = '20260703k';
     const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
     const fetchComponent = (path) => fetch(versionedAsset(path));
 

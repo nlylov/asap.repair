@@ -388,8 +388,8 @@ def render_detail(study: dict, studies: list[dict]) -> str:
     </section>
   </main>
   <div id=\"site-footer\"></div>
-  <script src=\"/components/loader.js?v=20260703j\" defer></script>
-  <script src=\"/main.js?v=20260703j\" defer></script>
+  <script src=\"/components/loader.js?v=20260703k\" defer></script>
+  <script src=\"/main.js?v=20260703k\" defer></script>
 </body>
 </html>
 """
@@ -482,8 +482,8 @@ def render_index(studies: list[dict]) -> str:
     </section>
   </main>
   <div id=\"site-footer\"></div>
-  <script src=\"/components/loader.js?v=20260703j\" defer></script>
-  <script src=\"/main.js?v=20260703j\" defer></script>
+  <script src=\"/components/loader.js?v=20260703k\" defer></script>
+  <script src=\"/main.js?v=20260703k\" defer></script>
 </body>
 </html>
 """

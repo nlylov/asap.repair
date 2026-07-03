@@ -15,7 +15,8 @@
     isOpen: false,
     isLoading: false,
     threadPromise: null,
-    threadValidationPromise: null,
+    visitThreadId: null,
+    visitPromise: null,
   };
 
   function injectStyles() {
@@ -498,13 +499,18 @@
     } catch (_) {}
   }
 
-  async function notifyWidgetVisit(threadId) {
+  async function notifyWidgetVisit(threadId, options = {}) {
     if (!threadId) return false;
+    if (state.visitThreadId === threadId) return true;
+    if (state.visitPromise?.threadId === threadId) return state.visitPromise.promise;
 
-    try {
+    const clearOnNotFound = options.clearOnNotFound !== false;
+    const visitSource = options.source || 'chat_widget';
+
+    const promise = (async () => {
       const body = Object.assign(
         {},
-        { threadId: threadId },
+        { threadId: threadId, visitSource: visitSource },
         getSessionContext()
       );
       const response = await fetch(`${config.visitEndpoint}?org=repair-asap`, {
@@ -514,8 +520,10 @@
       });
 
       if (response.status === 404) {
-        removeStoredThreadId();
-        if (state.threadId === threadId) state.threadId = null;
+        if (clearOnNotFound) {
+          removeStoredThreadId();
+          if (state.threadId === threadId) state.threadId = null;
+        }
         return false;
       }
 
@@ -524,15 +532,31 @@
       }
 
       return true;
+    })();
+
+    state.visitPromise = { threadId, promise };
+
+    try {
+      const ok = await promise;
+      if (ok) state.visitThreadId = threadId;
+      return ok;
     } catch (e) {
       console.warn('Visit notification failed', e);
       return true;
+    } finally {
+      if (state.visitPromise?.promise === promise) state.visitPromise = null;
     }
   }
 
   async function ensureThread() {
-    if (state.threadValidationPromise) await state.threadValidationPromise;
-    if (state.threadId) return state.threadId;
+    if (state.threadId) {
+      const existingThreadId = state.threadId;
+      const visitOk = await notifyWidgetVisit(existingThreadId, {
+        source: 'stored_thread_user_action',
+        clearOnNotFound: true,
+      });
+      if (visitOk && state.threadId) return state.threadId;
+    }
     if (state.threadPromise) return state.threadPromise;
 
     state.threadPromise = (async () => {
@@ -546,7 +570,10 @@
       const data = await response.json();
       state.threadId = data.threadId;
       setStoredThreadId(state.threadId);
-      notifyWidgetVisit(state.threadId);
+      await notifyWidgetVisit(state.threadId, {
+        source: 'thread_created',
+        clearOnNotFound: false,
+      });
       return state.threadId;
     })();
 
@@ -565,12 +592,6 @@
       removeStoredThreadId();
     } else if (storedThreadId) {
       state.threadId = storedThreadId;
-      const validationPromise = notifyWidgetVisit(storedThreadId).finally(() => {
-        if (state.threadValidationPromise === validationPromise) {
-          state.threadValidationPromise = null;
-        }
-      });
-      state.threadValidationPromise = validationPromise;
       if (document.getElementById('repair-asap-chat-messages').children.length === 0) {
         addMessageToUI('bot', 'Hi! 👋 I\'m here to help with your project. What do you need done?');
       }
@@ -589,7 +610,7 @@
     state.isLoading = true;
 
     try {
-      await ensureThread();
+      const threadId = await ensureThread();
       inputEl.value = '';
       addMessageToUI('user', message);
       showLoading();
@@ -597,7 +618,7 @@
       const response = await fetch(`${config.apiEndpoint}/api/widget/message`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ threadId: state.threadId, message: message, pageContext: window.location.pathname })
+        body: JSON.stringify({ threadId: threadId, message: message, pageContext: window.location.pathname })
       });
 
       removeLoading();
@@ -656,7 +677,7 @@
     sendBtn.disabled = true;
 
     try {
-      await ensureThread();
+      const threadId = await ensureThread();
       const dataUrl = await compressChatImage(file);
       const base64 = dataUrl.split(',')[1];
 
@@ -674,7 +695,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          threadId: state.threadId,
+          threadId: threadId,
           photo: { data: base64, name: file.name, type: 'image/jpeg' },
           pageContext: window.location.pathname
         })
