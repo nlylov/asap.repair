@@ -11,13 +11,34 @@
 /components/*
   X-Robots-Tag: noindex, nofollow
 
+/_data/*
+  X-Robots-Tag: noindex, nofollow
+
+/assets/data/*
+  X-Robots-Tag: noindex, follow
+
 /assets/rooms/_*
+  X-Robots-Tag: noindex, nofollow
+
+/previews/*
   X-Robots-Tag: noindex, nofollow
 
 /labs/*
   X-Robots-Tag: noindex, nofollow
 
 /tmp/*
+  X-Robots-Tag: noindex, nofollow
+
+/reports/*
+  X-Robots-Tag: noindex, nofollow
+
+/docs/*
+  X-Robots-Tag: noindex, nofollow
+
+/deploy/*
+  X-Robots-Tag: noindex, nofollow
+
+/AGENTS.md
   X-Robots-Tag: noindex, nofollow
 
 /api/*
@@ -48,4 +69,12 @@
 
 /e5308b759e880acb8173dd3d6d755ddc.txt
   Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: noindex, follow
+
+/web_gallery.json
+  Content-Type: application/json; charset=utf-8
+  X-Robots-Tag: noindex, follow
+
+/website_picks_final.json
+  Content-Type: application/json; charset=utf-8
   X-Robots-Tag: noindex, follow
