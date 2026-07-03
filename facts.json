@@ -36,7 +36,7 @@
     "Faucet replacement and sink installation",
     "Garbage disposal installation",
     "Accessible shut-off valve replacement, visible leak repair, and bathroom fixture installation",
-    "Ceiling fan, chandelier, light fixture, outlet, switch, USB outlet, and smart device replacement or installation when existing wiring and building rules fit",
+    "Ceiling fan, chandelier, light fixture, outlet, switch, USB outlet, smart device setup, and electrical troubleshooting for fixture/device symptoms when existing wiring and building rules fit",
     "Window AC installation, AC bracket installation, through-wall AC installation, PTAC installation, portable AC setup, AC removal, and AC deep cleaning",
     "TV mounting, over-fireplace TV mounting, wire concealment, shelf installation, curtain rod installation, mirror mounting, art hanging, and wall cabinet installation",
     "New apartment setup and COI-ready co-op/condo punch-list work",
@@ -68,7 +68,8 @@
       "https://asap.repair/services/electrical/outlet-installation/",
       "https://asap.repair/services/electrical/usb-outlet-installation/",
       "https://asap.repair/services/electrical/switch-installation/",
-      "https://asap.repair/services/electrical/smart-device-installation/"
+      "https://asap.repair/services/electrical/smart-device-installation/",
+      "https://asap.repair/services/electrical/electrical-troubleshooting/"
     ],
     "acInstallationAndCleaning": [
       "https://asap.repair/services/ac-installation-cleaning/window-ac-installation/",
@@ -113,7 +114,7 @@
   "quotePreparationByCategory": {
     "applianceInstallation": "Send the appliance model number, installation space photo, existing hookups, delivery status, and building or COI requirements.",
     "plumbingFixtures": "Send photos of the fixture, shut-off valves or under-sink area, new model if available, leak or damage area, cabinet/countertop access, and building or COI requirements.",
-    "electricalFixtures": "Send photos of the current fixture, outlet, switch, or fan box, the new product model, ceiling or wall type, and building rules.",
+    "electricalFixtures": "Send photos of the current fixture, outlet, switch, thermostat, doorbell, lock, or fan box, the new product model, fixture weight if relevant, ceiling or wall type, box depth/support, WiFi/app requirements for smart devices, and building rules.",
     "tvAndWallMounting": "Send a wall photo, item size and weight, mount or hardware details, desired placement, and wall type.",
     "acInstallation": "Send the AC model or BTU label, window or sleeve photos, measurements, bracket requirements, and building or COI rules.",
     "paintingAndWallFinishes": "Send room photos, wall dimensions, finish references, paint or material details, moisture concerns, and access requirements.",
@@ -121,7 +122,7 @@
     "generalRepairs": "Send clear photos, measurements, product links if parts are involved, timing, and building access requirements."
   },
   "regulatedTradeScope": {
-    "electrical": "NYC electrical work involving new wiring, new circuits, panel work, new outlet locations, or permit-level electrical installations may require a NYC Licensed Master Electrician and DOB permit. Repair ASAP reviews photos and scope before booking electrical fixture/device work.",
+    "electrical": "NYC electrical work involving new wiring routes, added circuits, service equipment, new outlet or fixture locations, 220V/240V outlets, EV chargers, or permit-level electrical installations may require a NYC Licensed Master Electrician and DOB permit. Repair ASAP reviews photos and scope before booking fixture/device replacement, setup, and troubleshooting work.",
     "plumbing": "NYC plumbing work involving piping systems, gas piping, permit-level alterations, or non-cosmetic plumbing scope may require a Licensed Master Plumber and DOB permit. Repair ASAP reviews photos and scope before booking plumbing fixture work.",
     "gasAppliances": "Gas appliance or gas piping scope is reviewed before booking. Code-ready appliance setup may still require Licensed Master Plumber/DOB handling depending on the building and work requested."
   },
