@@ -3345,11 +3345,13 @@ button.portfolio-card__video {
 
 .svc-related .section-subtitle a {
   color: var(--accent);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
 .svc-related .section-subtitle a:hover {
-  text-decoration: underline;
+  color: var(--accent-hover);
 }
 
 .svc-related__grid {
@@ -4222,7 +4224,7 @@ button.portfolio-card__video {
 }
 
 .svc-testimonials__meta {
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: 13px;
 }
 
