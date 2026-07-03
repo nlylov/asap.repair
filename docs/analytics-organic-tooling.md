@@ -11,6 +11,7 @@ Scope: `https://asap.repair/` static marketing site for the Repair ASAP tenant/c
 - GA4 is linked to the Search Console domain property `asap.repair` for the web stream `asap.repair` (`13645884964`).
 - Bing Webmaster Tools has the `asap.repair` property and a successful canonical sitemap submission.
 - Ahrefs Site Audit project exists for `asap.repair/` and is verified in Ahrefs.
+- Current analytics/source inventory is tracked in `docs/analytics-source-inventory.md`.
 
 ## 2026-07-02 implementation log
 
