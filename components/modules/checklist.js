@@ -4,14 +4,14 @@
    ============================================ */
 
 const DEFAULT_ITEMS = [
-    { text: 'Professional tools & hardware included', icon: 'wrench' },
-    { text: 'Unboxing & packaging removal', icon: 'package' },
-    { text: 'Precise leveling & wall anchoring', icon: 'level' },
+    { text: 'Tools matched to product hardware', icon: 'wrench' },
+    { text: 'Unboxing & packaging breakdown', icon: 'package' },
+    { text: 'Leveling & anchoring review', icon: 'level' },
     { text: '1-year workmanship warranty', icon: 'shield' },
-    { text: 'Same-day & next-day available', icon: 'clock' },
-    { text: 'Flat-rate pricing — no hourly surprises', icon: 'dollar' },
+    { text: 'Flexible scheduling after scope review', icon: 'clock' },
+    { text: 'Scope-based quote', icon: 'dollar' },
     { text: 'Licensed & insured technicians', icon: 'badge' },
-    { text: 'Full cleanup before we leave', icon: 'sparkle' }
+    { text: 'Cleanup matched to building rules', icon: 'sparkle' }
 ];
 
 const ICONS = {

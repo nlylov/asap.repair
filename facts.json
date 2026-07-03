@@ -116,7 +116,7 @@
     "tvAndWallMounting": "Send a wall photo, item size and weight, mount or hardware details, desired placement, and wall type.",
     "acInstallation": "Send the AC model or BTU label, window or sleeve photos, measurements, bracket requirements, and building or COI rules.",
     "paintingAndWallFinishes": "Send room photos, wall dimensions, finish references, paint or material details, moisture concerns, and access requirements.",
-    "furnitureAssembly": "Send the product link or model, box count, room photo, delivery status, and whether anchoring or COI paperwork is required.",
+    "furnitureAssembly": "Send the product link or model, box count, room photo, delivery status, room access, and whether wall anchoring, anti-tip restraints, ceiling clearance, packaging removal, or COI paperwork is required.",
     "generalRepairs": "Send clear photos, measurements, product links if parts are involved, timing, and building access requirements."
   },
   "regulatedTradeScope": {
@@ -129,7 +129,7 @@
     "COI support for NYC co-ops and condos",
     "1-year labor warranty advertised",
     "Transparent quote before work begins",
-    "Same-day and next-day availability may be available"
+    "Fast scheduling may be available after scope review"
   ],
   "reviews": {
     "aggregateRating": 4.9,

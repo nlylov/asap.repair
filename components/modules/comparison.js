@@ -9,12 +9,12 @@ const DEFAULT_DATA = {
     highlight: 0, // index of "our" column
     rows: [
         { feature: 'Licensed & Insured', values: ['yes', 'varies', 'no'] },
-        { feature: 'Flat-Rate Pricing', values: ['yes', 'no', 'n/a'] },
+        { feature: 'Scope-Based Quote', values: ['yes', 'no', 'n/a'] },
         { feature: '1-Year Warranty', values: ['yes', 'no', 'no'] },
         { feature: 'Professional Tools', values: ['yes', 'varies', 'no'] },
-        { feature: 'Packaging Removal', values: ['yes', 'varies', 'no'] },
-        { feature: 'Same-Day Available', values: ['yes', 'varies', 'n/a'] },
-        { feature: 'Wall Anchoring Included', values: ['yes', 'extra', 'no'] },
+        { feature: 'Packaging Breakdown', values: ['yes', 'varies', 'no'] },
+        { feature: 'Flexible Scheduling', values: ['yes', 'varies', 'n/a'] },
+        { feature: 'Wall Anchoring Review', values: ['yes', 'extra', 'no'] },
         { feature: 'Average 5-Star Rating', values: ['4.9★ avg', 'varies', 'n/a'] }
     ]
 };
