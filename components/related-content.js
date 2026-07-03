@@ -89,7 +89,7 @@
       .rc-header { margin-bottom: 32px; }
       .rc-header__label { display: inline-block; font-size: 11px; font-weight: 600; color: var(--accent); background: var(--accent-subtle); border: 1px solid var(--border-accent); border-radius: 100px; padding: 4px 12px; margin-bottom: 10px; }
       .rc-header__title { font-family: var(--font-heading); font-size: clamp(20px, 3vw, 26px); font-weight: 800; color: var(--text-primary); margin-bottom: 6px; }
-      .rc-header__sub { font-size: 14px; color: var(--text-muted); }
+      .rc-header__sub { font-size: 14px; color: var(--text-secondary); }
       .rc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
       .rc-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; text-decoration: none; display: flex; flex-direction: column; transition: border-color 0.2s, transform 0.2s; }
       .rc-card:hover { border-color: var(--border-accent); transform: translateY(-3px); }
@@ -100,7 +100,7 @@
       .rc-card__body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
       .rc-card__meta { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
       .rc-card__tag { font-size: 10px; font-weight: 600; color: var(--accent); background: var(--accent-subtle); border: 1px solid var(--border-accent); border-radius: 100px; padding: 2px 8px; }
-      .rc-card__loc { font-size: 11px; color: var(--text-muted); }
+      .rc-card__loc { font-size: 11px; color: var(--text-secondary); }
       .rc-card__title { font-family: var(--font-heading); font-size: 14px; font-weight: 700; color: var(--text-primary); line-height: 1.4; flex: 1; margin-bottom: 10px; }
       .rc-card__footer { display: flex; justify-content: space-between; align-items: center; }
       .rc-card__price { font-size: 12px; font-weight: 600; color: var(--accent); }
