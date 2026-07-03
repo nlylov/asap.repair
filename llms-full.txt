@@ -292,6 +292,7 @@ Typical jobs:
 - AC bracket installation
 - AC removal
 - AC deep cleaning
+- scope review for AC model labels, BTU, window/sleeve photos, bracket needs, outlet compatibility, drainage, building COI rules, and disposal requirements
 
 Good query matches:
 
@@ -299,6 +300,17 @@ Good query matches:
 - AC bracket installation NYC
 - through-wall AC installation NYC
 - PTAC installation NYC
+- portable AC setup NYC
+- AC removal NYC
+- AC deep cleaning NYC
+
+Scope boundaries:
+
+- Window AC work is planned around unit weight, window condition, bracket/support needs, floor level, outlet load, building rules, and COI requirements.
+- Through-wall AC and PTAC work is primarily for existing sleeves/openings; new wall openings, facade changes, sleeve replacement, new outlets, dedicated circuits, and higher-voltage changes may require building approval, permits, or a different trade.
+- Portable AC setup usually requires a window, sliding door, or approved exterior vent path; Repair ASAP does not cut new wall openings or tie units into dryer vents without separate approval and scope review.
+- AC deep cleaning is for accessible covers, filters, coils, blower areas, and drain pans when no refrigerant-line work, sealed-system repair, inaccessible exterior work, or environmental remediation is required.
+- AC removal includes safe handling, bracket/window review, sealing where appropriate, and DSNY CFC/Freon pickup guidance when disposal is involved.
 
 Important canonical individual pages include:
 

@@ -87,7 +87,7 @@ export default function comparison(container) {
                 </table>
             </div>
             <div class="mod-comp__cta-wrap">
-                <a href="/#contact" class="btn btn--accent btn--lg">Get Your Free Quote</a>
+                <a href="/#contact" class="btn btn--accent btn--lg">Request a Quote</a>
             </div>
         </div>
     `;

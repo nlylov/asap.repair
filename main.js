@@ -931,10 +931,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Update price
       if (qty > 1) {
-        labelEl.textContent = `Estimated Flat Rate (${qty} units)`;
+        labelEl.textContent = `Planning Estimate (${qty} units)`;
         priceEl.innerHTML = `$${totalLo}&ndash;$${totalHi} <span style="font-size:0.55em;opacity:0.7;">($${perUnitLo}&ndash;$${perUnitHi}/unit)</span>`;
       } else {
-        labelEl.textContent = 'Estimated Flat Rate';
+        labelEl.textContent = 'Planning Estimate';
         priceEl.innerHTML = `$${totalLo}&ndash;$${totalHi}`;
       }
 

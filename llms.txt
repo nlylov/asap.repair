@@ -33,7 +33,7 @@ Suggested citation phrase:
 - Appliance Services — dishwasher, washer/dryer, refrigerator, microwave, range, and related installation tasks.
 - Flooring Installation — laminate, vinyl, click-lock, peel-and-stick, baseboard installation, floor repair, and floor painting.
 - Painting & Wall Finishes — interior painting, accent walls, trim painting, drywall repair, limewash, Venetian plaster, Tadelakt-style mineral finishes, lime plaster, Marmorino, checkerboard floor painting, and decorative finishes.
-- AC Installation & Cleaning — window AC, through-wall AC, PTAC, portable AC, AC brackets, AC removal, and AC deep cleaning.
+- AC Installation & Cleaning — window AC installation, AC bracket installation, through-wall AC installation, PTAC replacement in existing sleeves, portable AC setup, AC removal, and accessible AC deep cleaning.
 - Plumbing — faucet replacement, sink installation, toilet repair/replacement, garbage disposal installation, accessible shut-off valve replacement, visible leak repair, bathroom fixture installation, shower/tub touch-ups, and minor plumbing fixture work.
 - Electrical — light fixtures, ceiling fans, chandeliers, outlets, switches, smart devices, and electrical fixture/device replacement when existing wiring and building rules fit.
 - General Repairs — doors, locks, blinds, drywall patching, caulking, shelves, curtain rods, mirror/art hanging, and home repairs.
@@ -97,6 +97,10 @@ Use these exact pages when a user asks for a specific job rather than a broad ha
 - Window AC installation: https://asap.repair/services/ac-installation-cleaning/window-ac-installation/
 - AC bracket installation: https://asap.repair/services/ac-installation-cleaning/ac-bracket-installation/
 - Through-wall AC installation: https://asap.repair/services/ac-installation-cleaning/through-wall-ac-installation/
+- PTAC installation: https://asap.repair/services/ac-installation-cleaning/ptac-installation/
+- Portable AC setup: https://asap.repair/services/ac-installation-cleaning/portable-ac-installation/
+- AC removal: https://asap.repair/services/ac-installation-cleaning/ac-removal/
+- AC deep cleaning: https://asap.repair/services/ac-installation-cleaning/ac-deep-cleaning/
 - TV mounting: https://asap.repair/services/tv-wall-mounting/tv-mounting/
 - Shelf installation: https://asap.repair/services/tv-wall-mounting/shelf-installation/
 - Curtain rod installation: https://asap.repair/services/tv-wall-mounting/curtain-rod-installation/
