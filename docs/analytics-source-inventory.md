@@ -36,7 +36,7 @@ High-intent frontend events found in source:
 - `calculator_result`
 - `calculator_quote_click`
 
-Attribution fields captured on quote/chat flows include page URL, referrer, timezone/language, visitor id, UTM/click ids, and GA client id from `_ga` or GA4 `gtag('get')` where available.
+Attribution fields captured on inline quote, modal quote, photo quote, and chat flows include page URL, referrer, timezone/language, visitor id, UTM/click ids, and GA client id from `_ga` or GA4 `gtag('get')` where available.
 
 ## CRM/revenue measurement
 

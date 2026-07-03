@@ -240,6 +240,10 @@ export default function photoDrop(container) {
         submitBtn.classList.add('loading');
         submitBtn.disabled = true;
 
+        const sessionContext = window.repairAsapGetSessionContextAsync
+            ? await window.repairAsapGetSessionContextAsync()
+            : (window.repairAsapGetSessionContext?.() || null);
+
         const payload = {
             name: form.querySelector(`#${uid}-name`).value.trim(),
             phone: phone.value.trim(),
@@ -248,7 +252,7 @@ export default function photoDrop(container) {
             service: detectedService,
             message: form.querySelector(`#${uid}-msg`)?.value.trim() || '',
             photos: selectedPhotos.map(p => ({ data: p.base64, name: p.name, type: p.type })),
-            sessionContext: window.repairAsapGetSessionContext?.() || null,
+            sessionContext,
         };
 
         try {
