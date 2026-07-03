@@ -124,6 +124,12 @@ Added comprehensive event tracking:
 
 ---
 
+## 2026-07-03 Follow-up
+
+The mobile sticky CTA is now truly global instead of homepage-only. The Call/Text/Free Quote bar lives in `components/footer.html`, and `main.js` binds its footer-visibility behavior after the shared components load. Local mobile browser smoke at 390x844 confirmed exactly one sticky CTA on `/` and `/services/electrical/outlet-installation/`, correct `tel:`/`sms:` targets, quote modal open from the sticky button, and no browser console errors.
+
+---
+
 ## Next 10 Highest-ROI Tasks
 
 1. **Borough landing pages** — Create `/handyman-manhattan/`, `/handyman-brooklyn/`, `/handyman-queens/` with unique content targeting local keywords
@@ -144,7 +150,8 @@ Added comprehensive event tracking:
 | File | Change |
 |------|--------|
 | `_headers` | CSP fixes: YouTube frame-src, remove old proxy |
-| `index.html` | Mobile sticky CTA, SMS links, FAQ schema, contact links, form CTA |
-| `main.js` | GA4 conversion events, sticky CTA scroll behavior |
+| `index.html` | SMS links, FAQ schema, contact links, form CTA |
+| `components/footer.html` | Global mobile sticky CTA bar shared across pages |
+| `main.js` | GA4 conversion events, sticky CTA scroll behavior after component load |
 | `styles.css` | Mobile sticky CTA bar styles |
 | `docs/site-revenue-audit.md` | This audit document |

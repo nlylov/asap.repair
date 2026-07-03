@@ -358,18 +358,24 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('components-loaded', () => bindDeferredPlacesLoader());
 
   // ---- Mobile Sticky CTA Bar (hide when footer visible) ----
-  const stickyBar = document.getElementById('mobileStickyCtaBar');
-  if (stickyBar) {
-    const footerEl = document.getElementById('site-footer');
-    if (footerEl) {
-      const stickyObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          stickyBar.classList.toggle('hidden', entry.isIntersecting);
-        });
-      }, { threshold: 0.1 });
-      stickyObserver.observe(footerEl);
-    }
+  function bindMobileStickyCta() {
+    const stickyBar = document.getElementById('mobileStickyCtaBar');
+    if (!stickyBar || stickyBar.dataset.bound === 'true') return;
+
+    const footerEl = document.querySelector('.footer') || document.getElementById('site-footer');
+    if (!footerEl) return;
+
+    stickyBar.dataset.bound = 'true';
+    const stickyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        stickyBar.classList.toggle('hidden', entry.isIntersecting);
+      });
+    }, { threshold: 0.1 });
+    stickyObserver.observe(footerEl);
   }
+
+  bindMobileStickyCta();
+  document.addEventListener('components-loaded', bindMobileStickyCta);
 
   // ---- Scroll Reveal (Intersection Observer) ----
   const revealElements = document.querySelectorAll('.reveal');
