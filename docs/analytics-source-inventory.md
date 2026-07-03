@@ -1,6 +1,6 @@
 # Repair ASAP analytics/source inventory
 
-Last verified: 2026-07-03, after GSC/Bing/GA4/Clarity/GBP dashboard audit, review-schema cleanup, and localhost analytics-noise fix.
+Last verified: 2026-07-03, after GSC/Bing/GA4/Clarity/GBP dashboard audit, review-schema cleanup, localhost analytics-noise fix, and CRM paid-invoice job-link readiness deployment.
 
 Scope: `https://asap.repair/`, `https://api.asap.repair/`, and the connected CRM/organic tooling used for Repair ASAP lead and revenue measurement.
 
@@ -43,7 +43,7 @@ Attribution fields captured on inline quote, modal quote, photo quote, and chat 
 | Source | Current status | Primary use |
 | --- | --- | --- |
 | `crm.asap.repair` | Active CRM/backend for website leads and invoice/payment reconciliation | Lead capture, chat threads, customer matching, quote/photo submissions, calendar slots |
-| QuickBooks -> CRM | Active integration, still needs business-process tightening | Invoice/payment status source for paid jobs |
+| QuickBooks -> CRM | Active integration; historical job-link cleanup script is deployed but production dry-run still needs Railway access | Invoice/payment status source for paid jobs |
 | CRM -> GA4 Measurement Protocol | Active | Sends server-side `purchase` / paid-conversion events once invoices/payments reconcile |
 | `api.asap.repair` | Technical API/webhook host, not an indexable website | Serves Pages Functions under `/api/*`; non-API paths redirect to canonical `asap.repair` |
 | `asap-repair.pages.dev` | Default Cloudflare Pages host; should not be indexed as a separate website | Redirects path-preserved to canonical `asap.repair` via Pages middleware |
@@ -86,7 +86,7 @@ Crawler status at this verification point:
 - Microsoft Clarity dashboard, last 3 days: 94 sessions, 84 unique users, 47 bot sessions excluded, 2.67 pages/session, 58.02% average scroll depth, 42s active time, 0 rage-click sessions, 5 dead-click sessions, 3 quick-back sessions, 0 JavaScript errors, performance score 95/100 from the available page-view sample, LCP 1.4s, INP 110ms, CLS 0. Smart events visible: `chat_open` 3, form submit 2, request quote 2, contact 1, outbound click 1, `phone_click` 1, `form_start` 1. Top referrers include `www.google.com` 7, `asap.repair` 6, and `chatgpt.com` 1.
 - Microsoft Clarity AI Visibility beta: 0 citations, no Share of Authority data, no grounding-query rows, no cited-page rows, and AI referral sessions `<1%`.
 - Google Analytics 4 dashboard, last 7 days: 87 active users, 81 new users, 507 events, 1 key event. Channel sessions: Direct 97, Organic Search 18, AI Assistant 7, Organic Social 1. GA4 recommendation: import offline CRM lead/conversion data for lead generation.
-- GA4 key-event admin table: `chat_open`, `generate_lead`, `phone_click`, `quote_form_submit`, `quote_modal_submit`, and `sms_click` have active stream `asap.repair`; `purchase`, `qualify_lead`, and `close_convert_lead` were configured as key events but showed no active stream in the last 28 days before the CRM follow-up. CRM PR #463 (`bazas-crm`) is merged and production-verified on `crm.asap.repair` / `app.bazas.ai` at commit `e72a9cdd`, adding server-side `qualify_lead` for booked website quotes and `close_convert_lead` alongside paid-invoice `purchase`. GA4 will show these only after new qualifying/paying CRM events occur.
+- GA4 key-event admin table: `chat_open`, `generate_lead`, `phone_click`, `quote_form_submit`, `quote_modal_submit`, and `sms_click` have active stream `asap.repair`; `purchase`, `qualify_lead`, and `close_convert_lead` were configured as key events but showed no active stream in the last 28 days before the CRM follow-up. CRM production is now verified on `crm.asap.repair` / `app.bazas.ai` at commit `d95b4e6bf6694a63b64106e4464d87f10023ee9c`; this includes PR #463 server-side `qualify_lead` / `close_convert_lead` emission and PR #479 bidirectional QuickBooks invoice/job stamping plus a dry-run-first backfill script. GA4 will show these only after new qualifying/paying CRM events occur or after reviewed historical backfill/repair creates deterministic paid links.
 - Google Business Profile: 1 profile, 100% verified. Store code `18156736253281874039`, business `Repair ASAP LLC`, status `Verified`. Search management surface showed 27 customer interactions, full profile quality, 3 new reviews, 5.0 rating with 13 Google reviews, and a prompt that recent photos were last added 408 days ago. GBP also prompts booking, posts/news, chat, and review-request actions.
 - Site performance/API cleanup after the same pass: the shared header now uses a smaller `logo-header-420.webp` asset, `components/loader.js?v=20260703u` fetches extensionless component URLs on production so header/footer/quote-modal requests avoid Cloudflare `308` redirects, and `api.asap.repair/api/widget/visit` POST responses include `access-control-allow-origin` plus `vary: Origin`. The main site now advertises `llms.txt`, `llms-full.txt`, and `facts.json` through HTTP `Link` headers, and `facts.json` is explicitly served as `application/json` with `X-Robots-Tag: index, follow`.
 
@@ -104,7 +104,7 @@ These are business acquisition sources and should be reconciled in CRM/GA4 by le
 
 ## Immediate gaps to keep tracking
 
-- CRM business workflow should make paid conversion measurement deterministic: website/chat lead -> CRM lead/contact -> scheduled job/appointment -> estimate/invoice -> QuickBooks paid status -> CRM paid state -> GA4 `purchase` / `close_convert_lead`. CRM production commit `e72a9cdd` covers the missing GA4 lead-stage events in code; business-process discipline still matters so invoices are linked to the right CRM contact/job before payment.
+- CRM business workflow should make paid conversion measurement deterministic: website/chat lead -> CRM lead/contact -> scheduled job/appointment -> estimate/invoice -> QuickBooks paid status -> CRM paid state -> GA4 `purchase` / `close_convert_lead`. CRM production commit `d95b4e6bf6694a63b64106e4464d87f10023ee9c` covers lead-stage event emission and safer invoice/job linking in code; business-process discipline still matters so invoices are created or linked under the right CRM contact/job before payment.
 - GSC recrawl/validation must happen before the review-snippet invalid count clears. Existing `127.0.0.1` sessions remain in historical Clarity windows until the date range rolls forward.
 - Bing Site Scan is queue-dependent; re-check the 2026-07-03 scan before treating Bing's site-audit state as known.
 - Bing must recrawl the old AC warning URLs before its `2 warnings` Site Explorer count clears.
