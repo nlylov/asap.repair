@@ -485,19 +485,13 @@
                 const initals = rev.author.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
                 const starsHtml = Array(5).fill(0).map((_, i) => i < rev.rating ? svgs.star : svgs.starEmpty).join('');
 
-                // Add schema.org to each review
+                // Render visible reviews without schema.org review markup; self-serving reviews are not eligible for rich results.
                 const sourceName = rev.source.charAt(0).toUpperCase() + rev.source.slice(1);
 
                 const html = `
-                <div class="rv-card" itemscope itemtype="https://schema.org/Review">
-                    <meta itemprop="author" content="${rev.author}">
-                    <meta itemprop="datePublished" content="${rev.date}">
-                    <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
-                        <meta itemprop="ratingValue" content="${rev.rating}">
-                        <meta itemprop="bestRating" content="5">
-                    </div>
+                <div class="rv-card">
                     <div class="rv-card__stars">${starsHtml}</div>
-                    <p class="rv-card__text" itemprop="reviewBody">&ldquo;${rev.text}&rdquo;</p>
+                    <p class="rv-card__text">&ldquo;${rev.text}&rdquo;</p>
                     <div class="rv-card__footer">
                         <div class="rv-card__avatar">${initals}</div>
                         <div class="rv-card__meta">

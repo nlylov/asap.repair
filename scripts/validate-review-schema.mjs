@@ -20,6 +20,8 @@ function* walk(dir) {
 const errors = [];
 let aggregateBlocks = 0;
 let reviewBlocks = 0;
+let reviewMicrodataBlocks = 0;
+let reviewItempropBlocks = 0;
 
 function collectJsonLd(html) {
   const matches = html.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi);
@@ -42,6 +44,19 @@ function walkJsonLd(node, visitor) {
 for (const file of walk(root)) {
   const html = readFileSync(file, 'utf8');
   const rel = relative(root, file);
+
+  const reviewMicrodataMatches = html.match(/itemtype=["']https?:\/\/schema\.org\/Review["']/g);
+  const reviewItempropMatches = html.match(/itemprop=["'](?:reviewBody|reviewRating|ratingValue|bestRating|worstRating|author|datePublished)["']/g);
+
+  if (reviewMicrodataMatches) {
+    reviewMicrodataBlocks += reviewMicrodataMatches.length;
+    errors.push(`${rel}: found ${reviewMicrodataMatches.length} schema.org/Review microdata block(s). Keep customer reviews visible in HTML, but do not mark them up as self-serving reviews.`);
+  }
+
+  if (rel === 'reviews/index.html' && reviewItempropMatches) {
+    reviewItempropBlocks += reviewItempropMatches.length;
+    errors.push(`${rel}: found ${reviewItempropMatches.length} review/rating itemprop attribute(s). Keep the reviews page as plain visible HTML.`);
+  }
 
   for (const block of collectJsonLd(html)) {
     let parsed;
@@ -86,6 +101,10 @@ if (aggregateBlocks === 0) {
 
 if (reviewBlocks > 0) {
   errors.push(`Found ${reviewBlocks} individual Review JSON-LD blocks. Keep customer reviews visible in HTML, but do not publish self-serving Review structured data for this LocalBusiness site.`);
+}
+
+if (reviewMicrodataBlocks > 0 || reviewItempropBlocks > 0) {
+  errors.push(`Found self-serving review microdata (${reviewMicrodataBlocks} Review itemtype, ${reviewItempropBlocks} review itemprop). Remove review rich-result markup from business-owned review pages.`);
 }
 
 if (errors.length) {
