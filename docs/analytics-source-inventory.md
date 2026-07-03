@@ -63,8 +63,8 @@ Live API-host checks on 2026-07-03:
 | IndexNow | Active | Fast URL submission for Bing/Yandex-compatible consumers |
 | Ahrefs Site Audit | Active; new crawl started on 2026-07-03 at 04:51 AM New York time | External technical SEO crawl, redirect/title/link warnings |
 | Local Lighthouse | Active fallback because PageSpeed API hit 429 in this environment | Performance/SEO/accessibility/best-practices baselines |
-| `llms.txt` / `llms-full.txt` | Live and discoverable | LLM/AI-crawler service facts, priority service URLs, borough landing page URLs, quote-prep details |
-| `facts.json` | Live and discoverable through LLM files, not XML sitemap | Structured business/service facts, priority service URLs, and service-area page URLs for AI/search use |
+| `llms.txt` / `llms-full.txt` | Live and discoverable | LLM/AI-crawler service facts, priority service URLs, borough landing page URLs, quote-prep details; advertised through HTTP `Link` discovery hints |
+| `facts.json` | Live and discoverable through LLM files and HTTP `Link` discovery hints, not XML sitemap | Structured business/service facts, priority service URLs, and service-area page URLs for AI/search use |
 
 Crawler status at this verification point:
 
@@ -87,6 +87,7 @@ Crawler status at this verification point:
 - Google Analytics 4 dashboard, last 7 days: 87 active users, 81 new users, 507 events, 1 key event. Channel sessions: Direct 97, Organic Search 18, AI Assistant 7, Organic Social 1. GA4 recommendation: import offline CRM lead/conversion data for lead generation.
 - GA4 key-event admin table: `chat_open`, `generate_lead`, `phone_click`, `quote_form_submit`, `quote_modal_submit`, and `sms_click` have active stream `asap.repair`; `purchase`, `qualify_lead`, and `close_convert_lead` were configured as key events but showed no active stream in the last 28 days before the CRM follow-up. CRM PR #463 (`bazas-crm`) is merged and production-verified on `crm.asap.repair` / `app.bazas.ai` at commit `e72a9cdd`, adding server-side `qualify_lead` for booked website quotes and `close_convert_lead` alongside paid-invoice `purchase`. GA4 will show these only after new qualifying/paying CRM events occur.
 - Google Business Profile: 1 profile, 100% verified. Store code `18156736253281874039`, business `Repair ASAP LLC`, status `Verified`. Search management surface showed 27 customer interactions, full profile quality, 3 new reviews, 5.0 rating with 13 Google reviews, and a prompt that recent photos were last added 408 days ago. GBP also prompts booking, posts/news, chat, and review-request actions.
+- Site performance/API cleanup after the same pass: the shared header now uses a smaller `logo-header-420.webp` asset, `components/loader.js?v=20260703t` fetches extensionless component URLs on production so header/footer/quote-modal requests avoid Cloudflare `308` redirects, and `api.asap.repair/api/widget/visit` POST responses include `access-control-allow-origin` plus `vary: Origin`. The main site now advertises `llms.txt`, `llms-full.txt`, and `facts.json` through HTTP `Link` headers, and `facts.json` is explicitly served as `application/json` with `X-Robots-Tag: index, follow`.
 
 ## Lead/marketplace sources outside site code
 
