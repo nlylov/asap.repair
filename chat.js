@@ -459,8 +459,27 @@
     try { sessionContext.referrer = document.referrer || ''; } catch (_) {}
     try { sessionContext.language = navigator.language || ''; } catch (_) {}
     try { sessionContext.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (_) {}
+    try {
+      const gaClientId = getGaClientId();
+      if (gaClientId) sessionContext.gaClientId = gaClientId;
+    } catch (_) {}
     sessionContext.visitorId = getOrCreateVisitorId();
     return sessionContext;
+  }
+
+  function getGaClientId() {
+    try {
+      const cookie = document.cookie
+        .split(';')
+        .map(part => part.trim())
+        .find(part => part.startsWith('_ga='));
+      if (!cookie) return '';
+      const value = decodeURIComponent(cookie.slice(4));
+      const match = value.match(/^GA\d+\.\d+\.(\d+\.\d+)$/);
+      return match ? match[1] : '';
+    } catch (_) {
+      return '';
+    }
   }
 
   function getOrCreateVisitorId() {
