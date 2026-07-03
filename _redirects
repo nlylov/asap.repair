@@ -37,6 +37,10 @@
 /furniture-assembly                   /services/furniture-assembly/      301
 /minor-plumbing-repairs/              /services/plumbing/                301
 /minor-plumbing-repairs               /services/plumbing/                301
+/ac_install/                          /services/ac-installation-cleaning/ 301
+/ac_install                           /services/ac-installation-cleaning/ 301
+/ac-installation-cleaning/            /services/ac-installation-cleaning/ 301
+/ac-installation-cleaning             /services/ac-installation-cleaning/ 301
 /assets/photos/minor-plumbing-repairs/  /services/plumbing/              301
 /assets/photos/*                      /                                  301
 
@@ -87,6 +91,7 @@
 
 # ---- GSC INDEX HYGIENE (canonical slash URLs) ----
 /services/furniture-assembly            /services/furniture-assembly/       301
+/services/ac-installation-cleaning      /services/ac-installation-cleaning/ 301
 /services/appliance-services            /services/appliance-services/       301
 /services/general-repairs               /services/general-repairs/          301
 /services/plumbing                      /services/plumbing/                 301
