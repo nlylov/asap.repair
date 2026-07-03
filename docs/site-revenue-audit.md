@@ -134,6 +134,10 @@ Borough service-area landing pages were added for Manhattan, Brooklyn, Queens, t
 
 Current local audit status after this pass: 147 HTML files in the repo, 102 indexable pages, 102 unique sitemap URLs, 77 service pages. No indexable page is missing from sitemap, no sitemap URL lacks a local page, no indexable page is missing canonical/meta description/JSON-LD, no indexable title is over 65 characters, no indexable meta description is over 155 characters, and all 77 service pages now carry FAQ/service schema, price-or-estimate intent, service-area language, and quote-prep guidance.
 
+Dashboard follow-up on 2026-07-03: Search Console shows the site has demand but low CTR: 165 clicks from 29,331 impressions over 3 months, average position 21.8, CTR 0.6%. The highest-current opportunity pages are homepage, furniture assembly, appliance services, projector installation, bed assembly, toilet installation, caulking, blinds, lock installation, and flooring. GA4 shows 87 active users, 507 events, and only 1 key event over the last 7 days; all lead/key events are configured, but CRM/QuickBooks paid stages (`purchase`, `qualify_lead`, `close_convert_lead`) still show no active stream. The next revenue priority is therefore not more raw traffic alone: it is tightening paid-conversion plumbing from website/GBP/Yelp/Thumbtack/Service Direct lead -> CRM lead/job -> QuickBooks paid invoice -> GA4 offline `purchase`.
+
+Technical cleanup from the same dashboard pass: `/reviews/` no longer emits individual self-serving `Review` JSON-LD, which was causing GSC review-snippet invalids, and all public HTML now loads GA4/Clarity through `/analytics.js?v=20260703q`, which blocks external analytics tags on localhost/127.0.0.1. Existing local test sessions will remain in historical Clarity ranges until the date window moves forward, but new local previews should stop polluting production analytics after deployment.
+
 ---
 
 ## Next 10 Highest-ROI Tasks

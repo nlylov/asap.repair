@@ -19,12 +19,49 @@ function* walk(dir) {
 
 const errors = [];
 let aggregateBlocks = 0;
+let reviewBlocks = 0;
+
+function collectJsonLd(html) {
+  const matches = html.matchAll(/<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi);
+  return [...matches].map((match) => match[1].trim());
+}
+
+function walkJsonLd(node, visitor) {
+  if (!node || typeof node !== 'object') return;
+  visitor(node);
+
+  for (const value of Object.values(node)) {
+    if (Array.isArray(value)) {
+      for (const item of value) walkJsonLd(item, visitor);
+    } else if (value && typeof value === 'object') {
+      walkJsonLd(value, visitor);
+    }
+  }
+}
 
 for (const file of walk(root)) {
   const html = readFileSync(file, 'utf8');
+  const rel = relative(root, file);
+
+  for (const block of collectJsonLd(html)) {
+    let parsed;
+    try {
+      parsed = JSON.parse(block);
+    } catch {
+      continue;
+    }
+
+    const nodes = Array.isArray(parsed) ? parsed : [parsed];
+    for (const node of nodes) {
+      walkJsonLd(node, (child) => {
+        const types = Array.isArray(child['@type']) ? child['@type'] : [child['@type']];
+        if (types.includes('Review')) reviewBlocks += 1;
+      });
+    }
+  }
+
   if (!html.includes('AggregateRating')) continue;
 
-  const rel = relative(root, file);
   const reviewCounts = [...html.matchAll(/"reviewCount"\s*:\s*"?([0-9]+)/g)].map((m) => m[1]);
   const aggregateRatingMatch = html.match(/"@type"\s*:\s*"AggregateRating"[\s\S]*?"ratingValue"\s*:\s*"?([0-9.]+)/);
   const aggregateReviewCountMatch = html.match(/"@type"\s*:\s*"AggregateRating"[\s\S]*?"reviewCount"\s*:\s*"?([0-9]+)/);
@@ -45,6 +82,10 @@ for (const file of walk(root)) {
 
 if (aggregateBlocks === 0) {
   errors.push('No AggregateRating blocks found. Validator likely ran in the wrong directory.');
+}
+
+if (reviewBlocks > 0) {
+  errors.push(`Found ${reviewBlocks} individual Review JSON-LD blocks. Keep customer reviews visible in HTML, but do not publish self-serving Review structured data for this LocalBusiness site.`);
 }
 
 if (errors.length) {
