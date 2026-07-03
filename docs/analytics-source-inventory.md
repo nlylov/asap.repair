@@ -1,6 +1,6 @@
 # Repair ASAP analytics/source inventory
 
-Last verified: 2026-07-03, after commit `a963185`.
+Last verified: 2026-07-03, after API routing cleanup commit `a963185` and inventory commit `c812e5c`.
 
 Scope: `https://asap.repair/`, `https://api.asap.repair/`, and the connected CRM/organic tooling used for Repair ASAP lead and revenue measurement.
 
