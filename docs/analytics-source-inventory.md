@@ -1,6 +1,6 @@
 # Repair ASAP analytics/source inventory
 
-Last verified: 2026-07-03, after production commit `60a7a78`, live 102-URL sitemap verification, Ahrefs/Bing follow-up, and 102-URL IndexNow resubmission.
+Last verified: 2026-07-03, after production commit `60a3643`, live 102-URL sitemap verification, Ahrefs/Bing follow-up, legacy AC redirect verification, and 102-URL IndexNow resubmission.
 
 Scope: `https://asap.repair/`, `https://api.asap.repair/`, and the connected CRM/organic tooling used for Repair ASAP lead and revenue measurement.
 
@@ -73,7 +73,7 @@ Crawler status at this verification point:
 - Lighthouse contrast re-check: refrigerator installation and window AC installation mobile runs are now Accessibility `100`, SEO `100`, and `color-contrast` score `1` after the calculator UI contrast fix.
 - Ahrefs crawl: completed `Today 04:51 AM` to `05:42 AM`, crawled 1,442 URLs, billed 96 pages, and showed 8 actual issue rows. The only redirect rows were canonical root/protocol redirects with no redirect loops and no redirect inlinks; content-change rows are expected from the SEO copy/meta/H1 updates.
 - Bing Sitemaps: 2 known sitemaps, 0 errors, 0 warnings, 191 discovered URLs. Canonical `https://asap.repair/sitemap.xml` was resubmitted on 2026-07-03 and is processing; the previous Bing crawl still showed 97 URLs discovered before it reprocessed the new 102-URL sitemap.
-- Bing Site Explorer: 112 URLs known over the last 6 months, 109 indexed, 0 errors, 2 warnings, 1 excluded, 7 clicks, 115 impressions, 5 backlinks. The two live 404 warning URLs were old AC slugs (`/ac_install`, `/ac-installation-cleaning`) and now have source redirects to `/services/ac-installation-cleaning/`.
+- Bing Site Explorer: 112 URLs known over the last 6 months, 109 indexed, 0 errors, 2 warnings, 1 excluded, 7 clicks, 115 impressions, 5 backlinks. The two live 404 warning URLs were old AC slugs (`/ac_install`, `/ac-installation-cleaning`) and production now redirects them to `/services/ac-installation-cleaning/` with one hop and final `200`.
 - Bing AI Performance beta: 0 citations and 0 cited pages in the visible report window.
 - Bing Search Performance: visible report window showed 0 clicks/impressions, while Site Explorer still shows 7 clicks and 115 impressions over the last 6 months.
 - Bing Site Scan: old `ASAP full site scan 2026-07-02` was stopped after being queued for 22+ hours; new `ASAP full site scan 2026-07-03 post-api-routing` is still `Queued 5 hours ago` with no pages/errors/warnings available yet.
