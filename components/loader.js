@@ -8,14 +8,24 @@
 
     const ASSET_VERSION = '20260703s';
     const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
-    const fetchComponent = (path) => fetch(versionedAsset(path));
+    const localHostnames = new Set(['localhost', '127.0.0.1', '::1']);
+    const useExtensionlessComponents = window.location.protocol !== 'file:' && !localHostnames.has(window.location.hostname);
+
+    const fetchComponent = async (path) => {
+        const primaryPath = useExtensionlessComponents ? path : `${path}.html`;
+        const response = await fetch(versionedAsset(primaryPath));
+        if (response.ok || primaryPath.endsWith('.html')) {
+            return response;
+        }
+        return fetch(versionedAsset(`${path}.html`));
+    };
 
     async function loadComponents() {
         try {
             const [headerRes, footerRes, modalRes] = await Promise.all([
-                fetchComponent('/components/header.html'),
-                fetchComponent('/components/footer.html'),
-                fetchComponent('/components/quote-modal.html')
+                fetchComponent('/components/header'),
+                fetchComponent('/components/footer'),
+                fetchComponent('/components/quote-modal')
             ]);
 
             const headerEl = document.getElementById('site-header');
