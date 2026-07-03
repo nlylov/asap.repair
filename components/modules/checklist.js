@@ -10,7 +10,7 @@ const DEFAULT_ITEMS = [
     { text: '1-year workmanship warranty', icon: 'shield' },
     { text: 'Flexible scheduling after scope review', icon: 'clock' },
     { text: 'Scope-based quote', icon: 'dollar' },
-    { text: 'Licensed & insured technicians', icon: 'badge' },
+    { text: 'Insured setup team', icon: 'badge' },
     { text: 'Cleanup matched to building rules', icon: 'sparkle' }
 ];
 

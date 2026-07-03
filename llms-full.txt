@@ -197,6 +197,19 @@ Good query matches:
 - dishwasher installation NYC
 - washer dryer installation NYC
 - microwave installation handyman NYC
+- gas dryer installation NYC
+- refrigerator installation NYC
+- range installation NYC
+- washer installation NYC
+
+Scope boundaries:
+
+- Appliance installation work depends on model fit, delivery status, existing hookups, shutoffs, drain/vent path, outlet or cord readiness, access route, COI/building rules, and whether gas, plumbing, electrical, or permit-level scope is involved.
+- Dishwashers are best matched when compatible existing supply, drain, and outlet or hardwire conditions are present; new supply lines, drain piping, new outlets, new circuits, or DOB permit-level scope may require a Licensed Master Plumber, Licensed Master Electrician, or DOB permit.
+- Washers and washer/dryer setups are reviewed around existing valves, drain standpipe, floor level, vibration clearance, stacking kit compatibility, dryer vent condition, and building access.
+- Gas-ready dryer and range requests must be code-ready. Gas piping, gas corrections, DOB filing, or work beyond compatible replacement/setup may require a Licensed Master Plumber.
+- Refrigerator water-line work is for compatible existing refrigerator water lines and shutoffs after review; new plumbing lines, hidden piping, saddle-valve correction, or permit-level scope may require a Licensed Master Plumber.
+- Microwave work is reviewed around cabinet support, wall support, vent path, mounting hardware, and existing outlet location; new outlets, new wiring, circuits, or hardwired changes may require licensed electrical scope.
 
 Important canonical individual pages include:
 

@@ -8,7 +8,7 @@ const DEFAULT_DATA = {
     columns: ['Repair Asap', 'TaskRabbit', 'DIY'],
     highlight: 0, // index of "our" column
     rows: [
-        { feature: 'Licensed & Insured', values: ['yes', 'varies', 'no'] },
+        { feature: 'Insured Business', values: ['yes', 'varies', 'no'] },
         { feature: 'Scope-Based Quote', values: ['yes', 'no', 'n/a'] },
         { feature: '1-Year Warranty', values: ['yes', 'no', 'no'] },
         { feature: 'Professional Tools', values: ['yes', 'varies', 'no'] },

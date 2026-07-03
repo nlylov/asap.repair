@@ -31,7 +31,7 @@
   ],
   "highIntentServiceRequests": [
     "Dishwasher installation or replacement",
-    "Washer, dryer, refrigerator, microwave, and range installation",
+    "Washer, washer/dryer, gas-ready dryer, refrigerator, microwave, and range installation after hookup and building-rule review",
     "Toilet installation or replacement",
     "Faucet replacement and sink installation",
     "Garbage disposal installation",
@@ -113,7 +113,7 @@
     "instructions": "Call or text photos, location, timing, and building requirements for a quote before work begins."
   },
   "quotePreparationByCategory": {
-    "applianceInstallation": "Send the appliance model number, installation space photo, existing hookups, delivery status, and building or COI requirements.",
+    "applianceInstallation": "Send the appliance model number, installation space photo, existing hookups, delivery status, vent path if relevant, water-line or shutoff photo if relevant, gas shutoff photo for gas-ready dryer/range requests, and building or COI requirements.",
     "plumbingFixtures": "Send photos of the fixture, shut-off valves or under-sink area, new model if available, leak or damage area, cabinet/countertop access, and building or COI requirements.",
     "electricalFixtures": "Send photos of the current fixture, outlet, switch, thermostat, doorbell, lock, or fan box, the new product model, fixture weight if relevant, ceiling or wall type, box depth/support, WiFi/app requirements for smart devices, and building rules.",
     "tvAndWallMounting": "Send a wall photo, item size and weight, mount or hardware details, desired placement, and wall type.",
@@ -125,7 +125,7 @@
   "regulatedTradeScope": {
     "electrical": "NYC electrical work involving new wiring routes, added circuits, service equipment, new outlet or fixture locations, 220V/240V outlets, EV chargers, or permit-level electrical installations may require a NYC Licensed Master Electrician and DOB permit. Repair ASAP reviews photos and scope before booking fixture/device replacement, setup, and troubleshooting work.",
     "plumbing": "NYC plumbing work involving piping systems, gas piping, permit-level alterations, or non-cosmetic plumbing scope may require a Licensed Master Plumber and DOB permit. Repair ASAP reviews photos and scope before booking plumbing fixture work.",
-    "gasAppliances": "Gas appliance or gas piping scope is reviewed before booking. Code-ready appliance setup may still require Licensed Master Plumber/DOB handling depending on the building and work requested."
+    "gasAppliances": "Gas-ready dryer or range replacement/setup is reviewed before booking and must fit existing code-ready conditions. Gas piping, corrections, DOB filing, or work beyond compatible setup may require Licensed Master Plumber/DOB handling depending on the building and work requested."
   },
   "trustSignals": [
     "Licensed and insured",
