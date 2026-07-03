@@ -3,7 +3,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-const ASSET_VERSION = '20260703o';
+const ASSET_VERSION = '20260703p';
 const ROOT = new URL('..', import.meta.url).pathname;
 
 const serviceLinks = {

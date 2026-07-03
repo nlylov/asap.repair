@@ -981,11 +981,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const score = computeComplexity();
       let tier, badgeColor;
       if (score <= 2) {
-        tier = 'Standard Install'; badgeColor = '#22c55e';
+        tier = 'Standard Install'; badgeColor = '#15803d';
       } else if (score <= 5) {
-        tier = 'Advanced Install'; badgeColor = '#f59e0b';
+        tier = 'Advanced Install'; badgeColor = '#b45309';
       } else {
-        tier = 'Photo Review Required'; badgeColor = '#ef4444';
+        tier = 'Photo Review Required'; badgeColor = '#dc2626';
       }
 
       // Update price
