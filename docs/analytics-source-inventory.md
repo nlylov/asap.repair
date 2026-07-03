@@ -1,6 +1,6 @@
 # Repair ASAP analytics/source inventory
 
-Last verified: 2026-07-03, after borough landing page deployment commit `ed3a80b` and live 102-URL sitemap verification.
+Last verified: 2026-07-03, after production commit `60a7a78` and live 102-URL sitemap verification.
 
 Scope: `https://asap.repair/`, `https://api.asap.repair/`, and the connected CRM/organic tooling used for Repair ASAP lead and revenue measurement.
 
@@ -15,7 +15,8 @@ Scope: `https://asap.repair/`, `https://api.asap.repair/`, and the connected CRM
 | Google Tag Manager container | Not installed | No `GTM-...` container found; site uses direct `gtag.js` | Not applicable unless a future GTM migration is planned |
 | Microsoft Ads UET / Bing Ads pixel | Not installed | No `uetq`, UET tag, or `bat.bing.com` script found in public source | Would be needed only if Microsoft Ads conversion tracking is required |
 | Meta/Facebook Pixel | Not installed | No `fbq` or Meta pixel script found in public source | Not applicable unless Meta ads are launched |
-| Hotjar / PostHog / Plausible / FullStory | Not installed | No matching tags found in public source | Not applicable |
+| CallRail / call tracking script | Not installed | No CallRail/calltracking script found in public source | Phone clicks are tracked by site events; dynamic number insertion is not active |
+| Hotjar / PostHog / Plausible / FullStory / Segment / Mixpanel | Not installed | No matching tags found in public source | Not applicable |
 
 ## Website event flow
 
@@ -67,8 +68,9 @@ Live API-host checks on 2026-07-03:
 
 Crawler status at this verification point:
 
-- Live sitemap/custom-domain check after borough deployment: 102 canonical HTML URLs returned `200`, included GA4, Clarity, `/components/loader.js?v=20260703n`, and `/main.js?v=20260703n`, with no `noindex` on sitemap pages.
+- Live sitemap/custom-domain check after contrast deployment: 102 canonical HTML URLs returned `200`, included GA4, Clarity, `/components/loader.js?v=20260703p`, and `/main.js?v=20260703p`, with no `noindex` on sitemap pages.
 - IndexNow: updated 102-URL sitemap set submitted on 2026-07-03 and returned HTTP `200 OK`.
+- Lighthouse contrast re-check: refrigerator installation and window AC installation mobile runs are now Accessibility `100`, SEO `100`, and `color-contrast` score `1` after the calculator UI contrast fix.
 - Ahrefs crawl: `Now Crawling`, started `Today 04:51 AM`, latest check showed 1,021 URLs crawled, 411 scheduled, and 96 billed pages. Wait for completion before treating Ahrefs issue counts as final.
 - Bing Site Scan: old `ASAP full site scan 2026-07-02` was stopped after being queued for 22+ hours; new `ASAP full site scan 2026-07-03 post-api-routing` is still `Queued 34 minutes ago` with no pages/errors/warnings available yet.
 
@@ -89,4 +91,4 @@ These are business acquisition sources and should be reconciled in CRM/GA4 by le
 - CRM business workflow should make paid conversion measurement deterministic: website/chat lead -> CRM lead/contact -> scheduled job/appointment -> estimate/invoice -> QuickBooks paid status -> CRM paid state -> GA4 `purchase`.
 - Bing Site Scan is queue-dependent; re-check the 2026-07-03 scan before treating Bing's site-audit state as known.
 - Ahrefs crawl should be reviewed after completion to confirm redirect warnings remain canonical-only and no new errors appeared after the API host routing change.
-- Cloudflare Pages custom domain `api.asap.repair` was live-working but still `pending` in the Pages domain API immediately after setup, with `verification_status=active` and `validation_status=pending`; re-check until the panel shows `active`.
+- Cloudflare Pages custom domain `api.asap.repair` is live-working but still `pending` in the Pages domain API; re-check until the panel shows `active`.
