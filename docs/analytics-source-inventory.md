@@ -1,6 +1,6 @@
 # Repair ASAP analytics/source inventory
 
-Last verified: 2026-07-03, after API routing cleanup commit `a963185` and inventory commit `c812e5c`.
+Last verified: 2026-07-03, after borough landing page deployment commit `ed3a80b` and live 102-URL sitemap verification.
 
 Scope: `https://asap.repair/`, `https://api.asap.repair/`, and the connected CRM/organic tooling used for Repair ASAP lead and revenue measurement.
 
@@ -8,8 +8,8 @@ Scope: `https://asap.repair/`, `https://api.asap.repair/`, and the connected CRM
 
 | Source | Current status | Evidence | Primary use |
 | --- | --- | --- | --- |
-| Google Analytics 4 | Installed on public HTML pages | `gtag.js?id=G-1ZRVGCMZ43` in 96 live public HTML pages | Page views, CTA events, quote/chat lead events, paid conversion measurement from CRM |
-| Microsoft Clarity | Installed on public HTML pages | Clarity tag id `wyzjzrud6n` in 96 live public HTML pages | Session recordings, heatmaps, smart events, bot/session quality, AI Visibility beta |
+| Google Analytics 4 | Installed on public HTML pages | `gtag.js?id=G-1ZRVGCMZ43` in 102 live public HTML pages | Page views, CTA events, quote/chat lead events, paid conversion measurement from CRM |
+| Microsoft Clarity | Installed on public HTML pages | Clarity tag id `wyzjzrud6n` in 102 live public HTML pages | Session recordings, heatmaps, smart events, bot/session quality, AI Visibility beta |
 | Trustindex reviews widget | Installed on homepage | `https://cdn.trustindex.io/loader.js?e086e0f6537a0927ee66b407e2f` on `/` | Review/social proof rendering; not primary conversion analytics |
 | Cloudflare Browser Insights / Web Analytics beacon | Not currently injected in live HTML | Live `/` did not include `static.cloudflareinsights.com` or `beacon.min.js`; CSP only allows it | Cloudflare zone/server analytics still exist separately, but no client beacon was confirmed |
 | Google Tag Manager container | Not installed | No `GTM-...` container found; site uses direct `gtag.js` | Not applicable unless a future GTM migration is planned |
@@ -62,13 +62,15 @@ Live API-host checks on 2026-07-03:
 | IndexNow | Active | Fast URL submission for Bing/Yandex-compatible consumers |
 | Ahrefs Site Audit | Active; new crawl started on 2026-07-03 at 04:51 AM New York time | External technical SEO crawl, redirect/title/link warnings |
 | Local Lighthouse | Active fallback because PageSpeed API hit 429 in this environment | Performance/SEO/accessibility/best-practices baselines |
-| `llms.txt` / `llms-full.txt` | Live and discoverable | LLM/AI-crawler service facts, priority service URLs, quote-prep details |
-| `facts.json` | Live and discoverable through LLM files, not XML sitemap | Structured business/service facts for AI/search use |
+| `llms.txt` / `llms-full.txt` | Live and discoverable | LLM/AI-crawler service facts, priority service URLs, borough landing page URLs, quote-prep details |
+| `facts.json` | Live and discoverable through LLM files, not XML sitemap | Structured business/service facts, priority service URLs, and service-area page URLs for AI/search use |
 
 Crawler status at this verification point:
 
-- Ahrefs crawl: `Now Crawling`, started `Today 04:51 AM`, 17 URLs crawled, 99 scheduled, latest checked service URLs returning `200` with about 88-93 ms load time.
-- Bing Site Scan: old `ASAP full site scan 2026-07-02` was stopped after being queued for 22+ hours; new `ASAP full site scan 2026-07-03 post-api-routing` was created and is `Queued Just now`.
+- Live sitemap/custom-domain check: 102 canonical HTML URLs returned `200`, included GA4, Clarity, `/components/loader.js?v=20260703n`, and `/main.js?v=20260703n`, with no `noindex` on sitemap pages.
+- IndexNow: updated 102-URL sitemap set submitted on 2026-07-03 and returned HTTP `200 OK`.
+- Ahrefs crawl: `Now Crawling`, started `Today 04:51 AM`, latest check showed 1,021 URLs crawled, 411 scheduled, and 96 billed pages. Wait for completion before treating Ahrefs issue counts as final.
+- Bing Site Scan: old `ASAP full site scan 2026-07-02` was stopped after being queued for 22+ hours; new `ASAP full site scan 2026-07-03 post-api-routing` is still `Queued 34 minutes ago` with no pages/errors/warnings available yet.
 
 ## Lead/marketplace sources outside site code
 
