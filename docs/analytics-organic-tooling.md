@@ -96,11 +96,12 @@ Important CRM DB note:
 
 - Do not run plain `prisma migrate deploy` against production yet. `prisma migrate status` reports many historical migrations as not applied, which means production has likely been advanced with `db push`/manual schema changes instead of a fully baselined migration ledger. For future migrations, either baseline the existing production schema into `_prisma_migrations` first or apply narrow, reviewed, idempotent SQL for each additive change.
 
-Pending CRM attribution rollout:
+CRM attribution rollout completed:
 
-- PR #456 (`Fix website quote booking attribution`) is open at `https://github.com/nlylov/bazas-crm/pull/456`, branch `claude/asap-revenue-attribution`, head `b7676fd2`.
-- PR #456 is mergeable and Vercel checks are green as of 2026-07-02 03:31 AM. Targeted tests passed: `npx tsx --test tests/unit/quickbooks-payment-invoice-link.test.ts tests/unit/marketing-conversion-pipeline.test.ts tests/unit/widget-session-context-attribution.test.ts` (9/9) and `npx tsc --noEmit`.
-- Production `crm.asap.repair/api/version` still reports `main` commit `77fb6d3e2f3861a464f2572783526ee90c0a5181`, so PR #456 is not live until an explicit merge/deploy step.
+- PR #456 (`Fix website quote booking attribution`) was merged into `bazas-crm` `main` on 2026-07-03 at merge commit `7f22479e96bb917d604baf60782eda36e229e11d`.
+- Pre-merge validation passed in a clean worktree: `npx tsx --test tests/unit/quickbooks-payment-invoice-link.test.ts tests/unit/marketing-conversion-pipeline.test.ts tests/unit/widget-session-context-attribution.test.ts` (9/9) and `npx tsc --noEmit`.
+- Production `crm.asap.repair/api/version` now reports `service=bazas-crm`, `branch=main`, `environment=production`, commit `7f22479e96bb917d604baf60782eda36e229e11d`.
+- Business result: website quote submissions can carry attribution context, calculator custom fields, photo attachments, booking/job identifiers, and opaque CRM IDs; manual QuickBooks payments and cron-synced QuickBooks payments can now reconcile back to website leads for GA4 paid-conversion measurement.
 
 ## GA4 key events
 
