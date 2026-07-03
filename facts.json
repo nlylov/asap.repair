@@ -16,7 +16,7 @@
     "Western Long Island",
     "Nassau County"
   ],
-  "description": "Repair ASAP LLC is a licensed and insured NYC handyman service for repairs, installations, furniture assembly, TV mounting, appliance installation, painting, flooring, AC installation and cleaning, minor plumbing fixture work, electrical fixture/device replacement, and new apartment setup.",
+  "description": "Repair ASAP LLC is an insured NYC handyman service with COI support for repairs, installations, furniture assembly, TV mounting, appliance installation, painting, flooring, AC installation and cleaning, minor plumbing fixture work, electrical fixture/device replacement, and new apartment setup after scope review.",
   "serviceTypes": [
     "Furniture assembly",
     "TV mounting",
@@ -128,7 +128,7 @@
     "gasAppliances": "Gas-ready dryer or range replacement/setup is reviewed before booking and must fit existing code-ready conditions. Gas piping, corrections, DOB filing, or work beyond compatible setup may require Licensed Master Plumber/DOB handling depending on the building and work requested."
   },
   "trustSignals": [
-    "Licensed and insured",
+    "Insured business with COI support",
     "COI support for NYC co-ops and condos",
     "1-year labor warranty advertised",
     "Transparent quote before work begins",
