@@ -96,7 +96,10 @@ Use these exact pages when a user asks for a specific job rather than a broad ha
 - Chandelier installation: https://asap.repair/services/electrical/chandelier-installation/
 - Ceiling fan installation: https://asap.repair/services/electrical/ceiling-fan-installation/
 - Outlet installation: https://asap.repair/services/electrical/outlet-installation/
+- USB outlet installation: https://asap.repair/services/electrical/usb-outlet-installation/
 - Switch installation: https://asap.repair/services/electrical/switch-installation/
+- Smart device installation: https://asap.repair/services/electrical/smart-device-installation/
+- Electrical troubleshooting: https://asap.repair/services/electrical/electrical-troubleshooting/
 - Window AC installation: https://asap.repair/services/ac-installation-cleaning/window-ac-installation/
 - AC bracket installation: https://asap.repair/services/ac-installation-cleaning/ac-bracket-installation/
 - Through-wall AC installation: https://asap.repair/services/ac-installation-cleaning/through-wall-ac-installation/
@@ -109,6 +112,7 @@ Use these exact pages when a user asks for a specific job rather than a broad ha
 - Curtain rod installation: https://asap.repair/services/tv-wall-mounting/curtain-rod-installation/
 - Mirror mounting: https://asap.repair/services/tv-wall-mounting/mirror-installation/
 - Art and picture hanging: https://asap.repair/services/tv-wall-mounting/art-installation/
+- Wall cabinet installation: https://asap.repair/services/tv-wall-mounting/wall-cabinet-installation/
 - IKEA assembly: https://asap.repair/services/furniture-assembly/ikea-assembly/
 - Bed and bed frame assembly: https://asap.repair/services/furniture-assembly/bed-assembly/
 - Desk assembly: https://asap.repair/services/furniture-assembly/desk-assembly/
@@ -116,6 +120,8 @@ Use these exact pages when a user asks for a specific job rather than a broad ha
 - Wardrobe and closet assembly: https://asap.repair/services/furniture-assembly/wardrobe-assembly/
 - Wall bed / Murphy bed assembly: https://asap.repair/services/furniture-assembly/wall-bed-assembly/
 - Interior painting: https://asap.repair/services/painting/interior-painting/
+- Trim painting: https://asap.repair/services/painting/trim-painting/
+- Cabinet painting: https://asap.repair/services/painting/cabinet-painting/
 - Decorative plaster and Tadelakt-style finishes: https://asap.repair/services/painting/decorative-plaster-tadelakt/
 - Drywall repair: https://asap.repair/services/general-repairs/drywall-repair/
 - Door repair: https://asap.repair/services/general-repairs/door-repair/
