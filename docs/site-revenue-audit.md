@@ -130,22 +130,24 @@ The mobile sticky CTA is now truly global instead of homepage-only. The Call/Tex
 
 The services directory and smart device page were strengthened for SEO/AI answer visibility. `/services/` now includes visible planning/pricing FAQ content plus FAQPage JSON-LD covering handyman cost, quote-prep details, five-borough service area, and move-in service bundles. `/services/electrical/smart-device-installation/` now covers smart thermostat/lock/doorbell/device cost intent without promising fixed pricing. `llms.txt` and `llms-full.txt` now include smart device setup pricing guidance.
 
-Current local audit status after this pass: 142 HTML files in the repo, 96 indexable pages, 96 unique sitemap URLs, 77 service pages. No indexable page is missing from sitemap, no sitemap URL lacks a local page, no indexable page is missing canonical/meta description/JSON-LD, no indexable title is over 65 characters, no indexable meta description is over 155 characters, and all 77 service pages now carry FAQ/service schema, price-or-estimate intent, service-area language, and quote-prep guidance.
+Borough service-area landing pages were added for Manhattan, Brooklyn, Queens, the Bronx, Staten Island, and Western Long Island/Nassau. Each page has a canonical URL, FAQPage JSON-LD, Service JSON-LD with area-specific `areaServed`, priority service links, neighborhood coverage, quote-prep copy, and proof/case-study links where available. The global footer now links to these area pages, `sitemap.xml` lists them, and `facts.json`, `llms.txt`, and `llms-full.txt` expose the exact URLs for AI/search citation.
+
+Current local audit status after this pass: 147 HTML files in the repo, 102 indexable pages, 102 unique sitemap URLs, 77 service pages. No indexable page is missing from sitemap, no sitemap URL lacks a local page, no indexable page is missing canonical/meta description/JSON-LD, no indexable title is over 65 characters, no indexable meta description is over 155 characters, and all 77 service pages now carry FAQ/service schema, price-or-estimate intent, service-area language, and quote-prep guidance.
 
 ---
 
 ## Next 10 Highest-ROI Tasks
 
-1. **Borough landing pages** — Create `/handyman-manhattan/`, `/handyman-brooklyn/`, `/handyman-queens/` with unique content targeting local keywords
-2. **Review count update** — Schema shows `reviewCount: 97` — verify and update to current count
-3. **Before/after photo pairs** — Add real before/after images to high-traffic service pages
-4. **Google Business Profile deep link** — Add direct booking link from GBP to quote modal
-5. **Price anchors on service pages** — Add "Starting from $XX" to all 9 hub pages
-6. **Seasonal AC landing page** — "Window AC Installation NYC" peaks May-August — optimize now
-7. **Blog content cadence** — 2 posts/month targeting long-tail service + neighborhood keywords
-8. **Call tracking number** — Consider separate tracking number for website vs GBP to measure channel performance
-9. **A/B test hero CTA copy** — Test "Get Your Free Quote" vs "Book Your Handyman" vs "Schedule Today"
-10. **Exit-intent popup** — Show quote offer when user moves to leave the page (desktop only)
+1. **Review count update** — Verify current Google/Yelp/Thumbtack count before changing schema again
+2. **Before/after photo pairs** — Add real before/after images to high-traffic service pages
+3. **Google Business Profile deep link** — Add direct booking link from GBP to quote modal
+4. **Price anchors on service pages** — Add "Starting from $XX" to all 9 hub pages only after confirming current pricing
+5. **Seasonal AC landing page** — "Window AC Installation NYC" peaks May-August — optimize now
+6. **Blog content cadence** — 2 posts/month targeting long-tail service + neighborhood keywords
+7. **Call tracking number** — Consider separate tracking number for website vs GBP to measure channel performance
+8. **A/B test hero CTA copy** — Test "Get Your Free Quote" vs "Book Your Handyman" vs "Schedule Today"
+9. **Exit-intent popup** — Show quote offer when user moves to leave the page (desktop only)
+10. **Dedicated borough proof photos** — Add Manhattan/Brooklyn/Queens/Staten Island/Long Island project photos to the new service-area pages as real local proof accumulates
 
 ---
 

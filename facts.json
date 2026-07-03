@@ -107,6 +107,14 @@
     "Western Long Island",
     "Nassau County where scope and travel fit"
   ],
+  "serviceAreaPages": {
+    "manhattan": "https://asap.repair/handyman-manhattan/",
+    "brooklyn": "https://asap.repair/handyman-brooklyn/",
+    "queens": "https://asap.repair/handyman-queens/",
+    "bronx": "https://asap.repair/handyman-bronx/",
+    "statenIsland": "https://asap.repair/handyman-staten-island/",
+    "westernLongIslandAndNassau": "https://asap.repair/handyman-long-island/"
+  },
   "booking": {
     "primaryUrl": "https://asap.repair/",
     "quoteUrl": "https://asap.repair/#quote",
@@ -150,7 +158,13 @@
     "caseStudies": "https://asap.repair/case-studies/",
     "llms": "https://asap.repair/llms.txt",
     "fullLlmContext": "https://asap.repair/llms-full.txt",
-    "sitemap": "https://asap.repair/sitemap.xml"
+    "sitemap": "https://asap.repair/sitemap.xml",
+    "handymanManhattan": "https://asap.repair/handyman-manhattan/",
+    "handymanBrooklyn": "https://asap.repair/handyman-brooklyn/",
+    "handymanQueens": "https://asap.repair/handyman-queens/",
+    "handymanBronx": "https://asap.repair/handyman-bronx/",
+    "handymanStatenIsland": "https://asap.repair/handyman-staten-island/",
+    "handymanLongIsland": "https://asap.repair/handyman-long-island/"
   },
   "lastReviewed": "2026-07-03"
 }
