@@ -4,6 +4,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const ASSET_VERSION = '20260703p';
+const LOADER_ASSET_VERSION = '20260703t';
 const ROOT = new URL('..', import.meta.url).pathname;
 
 const serviceLinks = {
@@ -480,7 +481,7 @@ ${page.faq.map(faqItem).join('\n')}
     </main>
 
     <div id="site-footer"></div>
-    <script src="/components/loader.js?v=${ASSET_VERSION}"></script>
+    <script src="/components/loader.js?v=${LOADER_ASSET_VERSION}"></script>
     <script src="/main.js?v=${ASSET_VERSION}"></script>
 </body>
 
