@@ -364,7 +364,7 @@
       <div class="chat-header-info">
         <div>
             <div class="chat-header-title">Repair ASAP Support</div>
-            <div class="chat-header-status"><span class="status-dot"></span> Online 24/7</div>
+            <div class="chat-header-status"><span class="status-dot"></span> Online now</div>
         </div>
       </div>
       <button id="repair-asap-chat-close" type="button" aria-label="Close chat">

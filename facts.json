@@ -24,7 +24,7 @@
     "Flooring installation",
     "Interior painting and wall finishes",
     "AC installation and cleaning",
-    "Minor plumbing repairs",
+    "Minor plumbing fixture work",
     "Electrical fixture replacement",
     "General handyman repairs",
     "New apartment setup"
@@ -35,7 +35,7 @@
     "Toilet installation or replacement",
     "Faucet replacement and sink installation",
     "Garbage disposal installation",
-    "Shut-off valve replacement and small leak repair",
+    "Accessible shut-off valve replacement, visible leak repair, and bathroom fixture installation",
     "Ceiling fan, chandelier, light fixture, outlet, switch, USB outlet, and smart device replacement or installation when existing wiring and building rules fit",
     "Window AC installation, AC bracket installation, through-wall AC installation, PTAC installation, portable AC setup, AC removal, and AC deep cleaning",
     "TV mounting, over-fireplace TV mounting, wire concealment, shelf installation, curtain rod installation, mirror mounting, art hanging, and wall cabinet installation",
@@ -58,7 +58,8 @@
       "https://asap.repair/services/plumbing/toilet-installation/",
       "https://asap.repair/services/plumbing/garbage-disposal-installation/",
       "https://asap.repair/services/plumbing/shut-off-valve-installation/",
-      "https://asap.repair/services/plumbing/leak-repair/"
+      "https://asap.repair/services/plumbing/leak-repair/",
+      "https://asap.repair/services/plumbing/bathroom-fixture-installation/"
     ],
     "electricalFixtures": [
       "https://asap.repair/services/electrical/light-fixture-installation/",
@@ -111,7 +112,7 @@
   },
   "quotePreparationByCategory": {
     "applianceInstallation": "Send the appliance model number, installation space photo, existing hookups, delivery status, and building or COI requirements.",
-    "plumbingFixtures": "Send photos of the fixture, shut-off valves or under-sink area, new model if available, leak or damage area, and access requirements.",
+    "plumbingFixtures": "Send photos of the fixture, shut-off valves or under-sink area, new model if available, leak or damage area, cabinet/countertop access, and building or COI requirements.",
     "electricalFixtures": "Send photos of the current fixture, outlet, switch, or fan box, the new product model, ceiling or wall type, and building rules.",
     "tvAndWallMounting": "Send a wall photo, item size and weight, mount or hardware details, desired placement, and wall type.",
     "acInstallation": "Send the AC model or BTU label, window or sleeve photos, measurements, bracket requirements, and building or COI rules.",
