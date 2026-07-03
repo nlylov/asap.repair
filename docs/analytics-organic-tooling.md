@@ -240,13 +240,13 @@ Submit key URLs for manual indexing checks if Bing still shows low discovery:
 Current status:
 
 - Project: `Asap`, verified for `asap.repair/`.
-- Latest completed crawl: 2026-07-02 03:24 AM.
+- Latest completed crawl: 2026-07-02 04:41 AM.
 - Next scheduled crawl: 2026-07-04, 4-5 PM.
 - Health Score: `100%`.
-- Internal URLs crawled: 1,443.
+- Internal URLs crawled: 1,442.
 - Internal URLs with errors: 0.
-- Issues distribution: 0 errors, 3 warnings, 122 notices.
-- HTTP status distribution: 1,440 success `2xx`, 3 redirect `3xx`.
+- Issues distribution: 0 errors, 3 warnings, 24 notices.
+- Crawled URL distribution: 1,440 crawled URLs in the overview chart, including 99 internal HTML URLs and 1,341 resources; redirect notices remain only for canonical host/protocol variants.
 - Image references without alt text: 0.
 - Links to `4xx`: 0.
 - Robots-blocked links: 0.
@@ -279,13 +279,17 @@ Follow-up crawl check on 2026-07-02:
 - Canonical redirect matrix on 2026-07-02: `www.asap.repair` redirects correctly to canonical `asap.repair`; `api.asap.repair` is a Cloudflare zone-level redirect-only legacy host and is not the live API; `asap-repair.netlify.app` now returns Netlify `404` for `/`, `/sitemap.xml`, and service paths. Netlify redirect/consolidation would require Netlify dashboard access because this host is outside the current Cloudflare Pages repo.
 - Ahrefs manual crawl was started from the dashboard after the redirect fix. It was still `Now Crawling` when checked later on 2026-07-02, with `1,263 scheduled` visible in Crawl log. Because the crawl started before the plumbing/electrical compliance-copy deploy, do not treat it as final evidence for the new copy. Bing Site Scan remained `Queued` at the latest check; no pages/errors/warnings were available yet.
 - After deployment `31f972f`, Ahrefs Crawl log still showed `Crawling`, `Stop crawl`, and `1,263 scheduled`. The intermediate crawl log already showed key service URLs returning `200` with response times mostly around 100-250 ms and expected canonical redirects for `http://www`, `https://www`, and `http://asap.repair`; wait for crawl completion before treating issue counts as final. Bing Site Scan `ASAP full site scan 2026-07-02` was still `Queued` at the latest dashboard check.
-- Latest dashboard check after deployment `54f037f`: Ahrefs manual crawl started at 03:51 AM and was still `Crawling` with 661 URLs crawled, 775 scheduled, and 96 billed pages; wait for final issue counts before acting on Ahrefs. Bing Site Scan `ASAP full site scan 2026-07-02` was still `Queued` 2+ hours after creation with no pages/errors/warnings available.
+- Ahrefs manual crawl started at 03:51 AM on 2026-07-02 and completed at 04:41 AM with Health Score `100%`, 1,442 internal URLs, 0 errors, 3 warnings, and 24 notices. No new issues were reported versus the previous crawl.
+- Remaining Ahrefs rows after the 04:41 AM crawl: `3XX redirect` has 3 canonical root/protocol variants (`http://www.asap.repair/`, `https://www.asap.repair/`, `http://asap.repair/`) with no redirect loops and no redirect inlinks; `HTTP to HTTPS redirect` has 2 HTTP root variants; `Page and SERP titles do not match` has 16 rows that are mostly Google/Ahrefs title rewrites removing the brand suffix or adding a service category; `Pages to submit to IndexNow` has 3 changed appliance URLs already covered by the post-deploy 96-URL IndexNow submission; `Meta description changed` has 3 expected content-change rows.
+- Bing Site Scan `ASAP full site scan 2026-07-02` was still `Queued` when checked on 2026-07-03 after about 22 hours, with no pages/errors/warnings available. Treat this as a Bing dashboard blocker rather than a site finding until the scan produces results.
+- Compliance/AI-copy cleanup after the Ahrefs title-mismatch review: microwave, outlet, switch, light-fixture, ceiling-fan, window-AC, projector-screen, and gallery JSON copy were tightened so the site keeps high-intent service keywords while avoiding direct promises around dedicated outlets, wiring, panel/meter/circuit work, fan-rated box upgrades, and recessed-lighting layouts. The copy now routes regulated or uncertain work through photo-based scope review and Licensed Master Electrician/DOB escalation language where needed. Local validation passed: `facts.json`, `web_gallery.json`, and `website_picks_final.json` parsed; structured-data validator passed; review-schema validator passed; 128 HTML files had no indexable title over 65 characters or meta description over 155 characters; `git diff --check` passed.
 
 Remaining Ahrefs warnings/notices to work next:
 
-- Redirect chain: fixed after the crawl by adding the direct `www.asap.repair` Cloudflare redirect rule; wait for the next Ahrefs crawl to confirm the warning clears.
-- Page/SERP title mismatch: 16 rows remain. The checked rows are mostly Google/Ahrefs SERP title rewrites that remove the brand suffix (`| Repair ASAP` / `— Repair Asap LLC`) or add a category such as `- Plumbing`; treat this as a monitoring item rather than a direct source-code error.
-- Pages to submit to IndexNow: 57 rows remained in Ahrefs after the crawl; the current 96-URL sitemap set was resubmitted to IndexNow with HTTP `200 OK`.
+- Redirect warnings: current Ahrefs rows are canonical host/protocol variants only; monitor, but no source-code fix is needed while live redirects have no loops and no redirect inlinks.
+- Page/SERP title mismatch: 16 rows remain. Treat this as a monitoring/opportunity list rather than a direct source-code error; use Search Console/GA4 lead data before removing useful brand/category terms from titles.
+- Pages to submit to IndexNow: 3 rows remained in Ahrefs for changed appliance URLs; the current 96-URL sitemap set was already resubmitted to IndexNow with HTTP `200 OK`.
+- Bing Site Scan: still queued after about 22 hours; re-check later before creating another scan.
 - Link-building notice: few high-quality referring domains.
 
 ## PageSpeed / Lighthouse automation
