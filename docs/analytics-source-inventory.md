@@ -46,6 +46,7 @@ Attribution fields captured on inline quote, modal quote, photo quote, and chat 
 | QuickBooks -> CRM | Active integration, still needs business-process tightening | Invoice/payment status source for paid jobs |
 | CRM -> GA4 Measurement Protocol | Active | Sends server-side `purchase` / paid-conversion events once invoices/payments reconcile |
 | `api.asap.repair` | Technical API/webhook host, not an indexable website | Serves Pages Functions under `/api/*`; non-API paths redirect to canonical `asap.repair` |
+| `asap-repair.pages.dev` | Default Cloudflare Pages host; should not be indexed as a separate website | Redirects path-preserved to canonical `asap.repair` via Pages middleware |
 
 Live API-host checks on 2026-07-03:
 

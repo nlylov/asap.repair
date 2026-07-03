@@ -2,6 +2,7 @@ const CANONICAL_HOST = 'asap.repair';
 
 const PRESERVE_PATH_HOSTS = new Set([
     'www.asap.repair',
+    'asap-repair.pages.dev',
     'asap-repair.netlify.app',
 ]);
 
