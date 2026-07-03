@@ -128,6 +128,10 @@ Added comprehensive event tracking:
 
 The mobile sticky CTA is now truly global instead of homepage-only. The Call/Text/Free Quote bar lives in `components/footer.html`, and `main.js` binds its footer-visibility behavior after the shared components load. Local mobile browser smoke at 390x844 confirmed exactly one sticky CTA on `/` and `/services/electrical/outlet-installation/`, correct `tel:`/`sms:` targets, quote modal open from the sticky button, and no browser console errors.
 
+The services directory and smart device page were strengthened for SEO/AI answer visibility. `/services/` now includes visible planning/pricing FAQ content plus FAQPage JSON-LD covering handyman cost, quote-prep details, five-borough service area, and move-in service bundles. `/services/electrical/smart-device-installation/` now covers smart thermostat/lock/doorbell/device cost intent without promising fixed pricing. `llms.txt` and `llms-full.txt` now include smart device setup pricing guidance.
+
+Current local audit status after this pass: 142 HTML files in the repo, 96 indexable pages, 96 unique sitemap URLs, 77 service pages. No indexable page is missing from sitemap, no sitemap URL lacks a local page, no indexable page is missing canonical/meta description/JSON-LD, no indexable title is over 65 characters, no indexable meta description is over 155 characters, and all 77 service pages now carry FAQ/service schema, price-or-estimate intent, service-area language, and quote-prep guidance.
+
 ---
 
 ## Next 10 Highest-ROI Tasks
