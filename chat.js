@@ -1,6 +1,4 @@
 (function () {
-  console.log('Chat Widget v5 (Site-Matched Dark/Gold) loaded');
-
   // --- КОНФИГУРАЦИЯ ---
   const config = {
     apiEndpoint: 'https://crm.asap.repair',
@@ -12,7 +10,13 @@
   const containerId = 'repair-asap-chatbot';
   // --------------------
 
-  let state = { threadId: null, isOpen: false, isLoading: false, threadPromise: null };
+  let state = {
+    threadId: null,
+    isOpen: false,
+    isLoading: false,
+    threadPromise: null,
+    threadValidationPromise: null,
+  };
 
   function injectStyles() {
     const style = document.createElement('style');
@@ -495,7 +499,7 @@
   }
 
   async function notifyWidgetVisit(threadId) {
-    if (!threadId) return;
+    if (!threadId) return false;
 
     try {
       const body = Object.assign(
@@ -503,17 +507,31 @@
         { threadId: threadId },
         getSessionContext()
       );
-      await fetch(`${config.visitEndpoint}?org=repair-asap`, {
+      const response = await fetch(`${config.visitEndpoint}?org=repair-asap`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
+
+      if (response.status === 404) {
+        removeStoredThreadId();
+        if (state.threadId === threadId) state.threadId = null;
+        return false;
+      }
+
+      if (!response.ok) {
+        console.warn(`Visit notification failed with HTTP ${response.status}`);
+      }
+
+      return true;
     } catch (e) {
       console.warn('Visit notification failed', e);
+      return true;
     }
   }
 
   async function ensureThread() {
+    if (state.threadValidationPromise) await state.threadValidationPromise;
     if (state.threadId) return state.threadId;
     if (state.threadPromise) return state.threadPromise;
 
@@ -547,7 +565,12 @@
       removeStoredThreadId();
     } else if (storedThreadId) {
       state.threadId = storedThreadId;
-      notifyWidgetVisit(storedThreadId);
+      const validationPromise = notifyWidgetVisit(storedThreadId).finally(() => {
+        if (state.threadValidationPromise === validationPromise) {
+          state.threadValidationPromise = null;
+        }
+      });
+      state.threadValidationPromise = validationPromise;
       if (document.getElementById('repair-asap-chat-messages').children.length === 0) {
         addMessageToUI('bot', 'Hi! 👋 I\'m here to help with your project. What do you need done?');
       }
