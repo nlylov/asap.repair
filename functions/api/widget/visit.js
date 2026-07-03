@@ -18,6 +18,11 @@ function setIfValue(headers, name, value) {
     if (value) headers.set(name, String(value));
 }
 
+function setCorsHeaders(headers, request) {
+    headers.set('access-control-allow-origin', request.headers.get('origin') || '*');
+    headers.set('vary', 'Origin');
+}
+
 async function forward(request) {
     const startedAt = Date.now();
     const url = new URL(request.url);
@@ -50,13 +55,15 @@ async function forward(request) {
             redirect: 'follow',
         });
     } catch (err) {
+        const headers = new Headers({ 'content-type': 'application/json' });
+        setCorsHeaders(headers, request);
         return new Response(JSON.stringify({
             error: 'Bad Gateway — CF Pages widget visit forwarder could not reach CRM',
             target: targetUrl,
             message: err instanceof Error ? err.message : String(err),
         }), {
             status: 502,
-            headers: { 'content-type': 'application/json' },
+            headers,
         });
     }
 
@@ -68,6 +75,7 @@ async function forward(request) {
     }
     respHeaders.set('X-Forwarded-Target', targetUrl);
     respHeaders.set('X-Forwarded-Latency-Ms', String(Date.now() - startedAt));
+    setCorsHeaders(respHeaders, request);
 
     return new Response(upstream.body, {
         status: upstream.status,
