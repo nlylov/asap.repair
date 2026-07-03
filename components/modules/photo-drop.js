@@ -61,7 +61,7 @@ export default function photoDrop(container) {
         <div class="mod-photo">
             <span class="section-tag">Quick Estimate</span>
             <h2 class="section-title">Send a Photo, <span class="text-accent">Get a Quote</span></h2>
-            <p class="mod-photo__subtitle">Upload a photo, leave your number — we'll text you a flat-rate quote within 30 minutes.</p>
+            <p class="mod-photo__subtitle">Upload a photo, leave your number — we'll review the scope and text you back during business hours.</p>
             <div class="mod-photo__form-wrap">
                 <form class="mod-photo__form" id="${uid}-form" novalidate data-clarity-mask="True">
                     <!-- Photo Upload -->
@@ -131,7 +131,7 @@ export default function photoDrop(container) {
                         <polyline points="22 4 12 14.01 9 11.01"/>
                     </svg>
                     <h3 style="font-size:22px;margin-bottom:10px;">Quote Request Received</h3>
-                    <p style="color:var(--text-secondary);font-size:15px;line-height:1.7;">Thank you! We'll text you a flat-rate quote within 30 minutes.</p>
+                    <p style="color:var(--text-secondary);font-size:15px;line-height:1.7;">Thank you! We'll review the scope and text you back during business hours.</p>
                 </div>
             </div>
         </div>

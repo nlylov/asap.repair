@@ -662,7 +662,7 @@
                     ].filter(Boolean).join('');
                 } else {
                     titleEl.textContent = 'Quote Request Received';
-                    msgEl.textContent = 'Thank you! We\'ll get back to you within 30 minutes during business hours.';
+                    msgEl.textContent = 'Thank you! We\'ll review your request and get back to you during business hours.';
                     detailsEl.style.display = 'none';
                 }
 

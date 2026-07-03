@@ -716,7 +716,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <polyline points="22 4 12 14.01 9 11.01"/>
                   </svg>
                   <h3 style="font-size:24px; margin-bottom:12px;">Quote Request Received</h3>
-                  <p style="color:var(--text-secondary); font-size:16px; line-height:1.7;">Thank you! We'll get back to you within 30 minutes during business hours.</p>
+                  <p style="color:var(--text-secondary); font-size:16px; line-height:1.7;">Thank you! We'll review your request and get back to you during business hours.</p>
                 </div>
               `;
             }
