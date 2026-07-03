@@ -3,7 +3,6 @@ const CANONICAL_HOST = 'asap.repair';
 const PRESERVE_PATH_HOSTS = new Set([
     'www.asap.repair',
     'asap-repair.netlify.app',
-    'api.asap.repair',
 ]);
 
 function canonicalPathname(pathname) {
@@ -19,6 +18,16 @@ function canonicalPathname(pathname) {
 
 export async function onRequest(context) {
     const url = new URL(context.request.url);
+
+    if (url.hostname === 'api.asap.repair') {
+        if (url.pathname.startsWith('/api/')) {
+            return context.next();
+        }
+
+        url.hostname = CANONICAL_HOST;
+        url.pathname = canonicalPathname(url.pathname);
+        return Response.redirect(url.toString(), 301);
+    }
 
     if (PRESERVE_PATH_HOSTS.has(url.hostname)) {
         url.hostname = CANONICAL_HOST;
