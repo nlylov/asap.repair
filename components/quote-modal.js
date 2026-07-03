@@ -599,6 +599,9 @@
         // Show loading state
         submitBtn.classList.add('loading');
         submitBtn.disabled = true;
+        const sessionContext = window.repairAsapGetSessionContextAsync
+            ? await window.repairAsapGetSessionContextAsync()
+            : (window.repairAsapGetSessionContext?.() || null);
 
         // Build payload
         const payload = {
@@ -616,7 +619,7 @@
             })),
             time: timeInput?.value || '',
             address: addressInput?.value?.trim() || '',
-            sessionContext: window.repairAsapGetSessionContext?.() || null,
+            sessionContext,
             // CRM custom fields from the smart calculator (set by main.js when CTA clicked)
             custom_fields: window._calcQuoteData ? { ...window._calcQuoteData } : {},
         };

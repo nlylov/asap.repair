@@ -467,6 +467,14 @@
     return sessionContext;
   }
 
+  async function getSessionContextAsync() {
+    if (typeof window.repairAsapGetSessionContextAsync === 'function') {
+      return window.repairAsapGetSessionContextAsync();
+    }
+
+    return getSessionContext();
+  }
+
   function getGaClientId() {
     try {
       const cookie = document.cookie
@@ -527,10 +535,11 @@
     const visitSource = options.source || 'chat_widget';
 
     const promise = (async () => {
+      const sessionContext = await getSessionContextAsync();
       const body = Object.assign(
         {},
         { threadId: threadId, visitSource: visitSource },
-        getSessionContext()
+        sessionContext
       );
       const response = await fetch(`${config.visitEndpoint}?org=repair-asap`, {
         method: 'POST',
@@ -579,7 +588,7 @@
     if (state.threadPromise) return state.threadPromise;
 
     state.threadPromise = (async () => {
-      const sessionContext = getSessionContext();
+      const sessionContext = await getSessionContextAsync();
       const response = await fetch(`${config.apiEndpoint}/api/widget/thread?org=repair-asap`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

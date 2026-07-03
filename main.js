@@ -4,6 +4,9 @@
 
 // ---- Analytics helpers ----
 const REPAIR_ASAP_VISITOR_KEY = 'repair_asap_visitor_id';
+const REPAIR_ASAP_GA4_ID = 'G-1ZRVGCMZ43';
+const REPAIR_ASAP_GA_CLIENT_TIMEOUT_MS = 800;
+let repairAsapGaClientIdPromise = null;
 
 function repairAsapTrackEvent(eventName, params) {
   const safeParams = params || {};
@@ -69,23 +72,76 @@ function repairAsapGetGaClientId() {
   }
 }
 
-function repairAsapGetSessionContext() {
+function repairAsapGetGaClientIdAsync() {
+  const cookieClientId = repairAsapGetGaClientId();
+  if (cookieClientId) return Promise.resolve(cookieClientId);
+  if (repairAsapGaClientIdPromise) return repairAsapGaClientIdPromise;
+
+  repairAsapGaClientIdPromise = new Promise((resolve) => {
+    let settled = false;
+    const finish = (clientId = '') => {
+      if (settled) return;
+      settled = true;
+      resolve(clientId || '');
+    };
+    const timer = setTimeout(() => finish(''), REPAIR_ASAP_GA_CLIENT_TIMEOUT_MS);
+
+    try {
+      if (typeof gtag !== 'function') {
+        clearTimeout(timer);
+        finish('');
+        return;
+      }
+
+      gtag('get', REPAIR_ASAP_GA4_ID, 'client_id', (clientId) => {
+        clearTimeout(timer);
+        finish(typeof clientId === 'string' ? clientId : '');
+      });
+    } catch (_) {
+      clearTimeout(timer);
+      finish('');
+    }
+  }).then((clientId) => {
+    const resolvedClientId = clientId || repairAsapGetGaClientId();
+    if (!resolvedClientId) repairAsapGaClientIdPromise = null;
+    return resolvedClientId;
+  });
+
+  return repairAsapGaClientIdPromise;
+}
+
+function repairAsapBuildSessionContext() {
   const sessionContext = {};
   try { sessionContext.page = window.location.href; } catch (_) {}
   try { sessionContext.referrer = document.referrer || ''; } catch (_) {}
   try { sessionContext.language = navigator.language || ''; } catch (_) {}
   try { sessionContext.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (_) {}
+  sessionContext.visitorId = repairAsapGetOrCreateVisitorId();
+  return sessionContext;
+}
+
+function repairAsapGetSessionContext() {
+  const sessionContext = repairAsapBuildSessionContext();
   try {
     const gaClientId = repairAsapGetGaClientId();
     if (gaClientId) sessionContext.gaClientId = gaClientId;
   } catch (_) {}
-  sessionContext.visitorId = repairAsapGetOrCreateVisitorId();
+  return sessionContext;
+}
+
+async function repairAsapGetSessionContextAsync() {
+  const sessionContext = repairAsapBuildSessionContext();
+  try {
+    const gaClientId = await repairAsapGetGaClientIdAsync();
+    if (gaClientId) sessionContext.gaClientId = gaClientId;
+  } catch (_) {}
   return sessionContext;
 }
 
 window.repairAsapTrackEvent = repairAsapTrackEvent;
 window.repairAsapBuildLeadEventParams = repairAsapBuildLeadEventParams;
 window.repairAsapGetSessionContext = repairAsapGetSessionContext;
+window.repairAsapGetSessionContextAsync = repairAsapGetSessionContextAsync;
 
 // ---- Google Places Autocomplete ----
 function getAddressComponentValue(components, type, preferShort = false) {
@@ -653,6 +709,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show loading state
         submitBtn.classList.add('loading');
         submitBtn.disabled = true;
+        const sessionContext = window.repairAsapGetSessionContextAsync
+          ? await window.repairAsapGetSessionContextAsync()
+          : (window.repairAsapGetSessionContext?.() || null);
 
         const payload = {
           name: form.querySelector('#name').value.trim(),
@@ -665,7 +724,7 @@ document.addEventListener('DOMContentLoaded', () => {
           photos: [],
           time: inlineTimeInput?.value || '',
           address: inlineAddressInput?.value?.trim() || '',
-          sessionContext: window.repairAsapGetSessionContext?.() || null,
+          sessionContext,
         };
 
         try {
