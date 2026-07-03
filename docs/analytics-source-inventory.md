@@ -35,7 +35,7 @@ High-intent frontend events found in source:
 - `calculator_result`
 - `calculator_quote_click`
 
-Attribution fields captured on quote/chat flows include page URL, referrer, timezone/language, visitor id, UTM/click ids, and GA client id from `_ga` where available.
+Attribution fields captured on quote/chat flows include page URL, referrer, timezone/language, visitor id, UTM/click ids, and GA client id from `_ga` or GA4 `gtag('get')` where available.
 
 ## CRM/revenue measurement
 
@@ -67,7 +67,7 @@ Live API-host checks on 2026-07-03:
 
 Crawler status at this verification point:
 
-- Live sitemap/custom-domain check: 102 canonical HTML URLs returned `200`, included GA4, Clarity, `/components/loader.js?v=20260703o`, and `/main.js?v=20260703o`, with no `noindex` on sitemap pages.
+- Live sitemap/custom-domain check after borough deployment: 102 canonical HTML URLs returned `200`, included GA4, Clarity, `/components/loader.js?v=20260703n`, and `/main.js?v=20260703n`, with no `noindex` on sitemap pages.
 - IndexNow: updated 102-URL sitemap set submitted on 2026-07-03 and returned HTTP `200 OK`.
 - Ahrefs crawl: `Now Crawling`, started `Today 04:51 AM`, latest check showed 1,021 URLs crawled, 411 scheduled, and 96 billed pages. Wait for completion before treating Ahrefs issue counts as final.
 - Bing Site Scan: old `ASAP full site scan 2026-07-02` was stopped after being queued for 22+ hours; new `ASAP full site scan 2026-07-03 post-api-routing` is still `Queued 34 minutes ago` with no pages/errors/warnings available yet.
