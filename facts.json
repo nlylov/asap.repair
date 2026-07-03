@@ -38,10 +38,25 @@
     "Accessible shut-off valve replacement, visible leak repair, and bathroom fixture installation",
     "Ceiling fan, chandelier, light fixture, outlet, switch, USB outlet, smart device setup, and electrical troubleshooting for fixture/device symptoms when existing wiring and building rules fit",
     "Window AC installation, AC bracket installation, through-wall AC installation, PTAC installation, portable AC setup, AC removal, and AC deep cleaning",
-    "TV mounting, over-fireplace TV mounting, wire concealment, shelf installation, curtain rod installation, mirror mounting, art hanging, and wall cabinet installation",
+    "TV mounting, over-fireplace TV mounting, wire concealment, shelf installation, curtain rod installation, mirror mounting, art hanging, projector installation, projector screen installation, and wall cabinet installation",
+    "Laminate flooring, vinyl plank flooring, click-lock flooring, peel-and-stick flooring, baseboards, subfloor preparation, floor repair, and checkerboard floor painting after room and material review",
+    "IKEA assembly, bed assembly, desk assembly, dresser assembly, wardrobe/PAX assembly, and wall bed/Murphy bed assembly after product, room, anchoring, and access review",
+    "Door installation, blind installation, cabinet hardware installation, caulking, window repair, and gazebo assembly after photo, measurement, building-access, and site-condition review",
     "New apartment setup and COI-ready co-op/condo punch-list work",
-    "Interior painting, drywall repair, decorative plaster, Tadelakt-style finishes, lime plaster, Venetian plaster, and accent wall work"
+    "Interior painting, drywall repair, cabinet painting, trim painting, wallpaper installation/removal, decorative plaster, Tadelakt-style finishes, lime plaster, Venetian plaster, and accent wall work"
   ],
+  "serviceCategoryPages": {
+    "allServices": "https://asap.repair/services/",
+    "acInstallationAndCleaning": "https://asap.repair/services/ac-installation-cleaning/",
+    "applianceServices": "https://asap.repair/services/appliance-services/",
+    "electrical": "https://asap.repair/services/electrical/",
+    "flooringInstallation": "https://asap.repair/services/flooring-installation/",
+    "furnitureAssembly": "https://asap.repair/services/furniture-assembly/",
+    "generalRepairs": "https://asap.repair/services/general-repairs/",
+    "paintingWallFinishes": "https://asap.repair/services/painting/",
+    "plumbingFixtures": "https://asap.repair/services/plumbing/",
+    "tvAndWallMounting": "https://asap.repair/services/tv-wall-mounting/"
+  },
   "priorityServicePages": {
     "applianceInstallation": [
       "https://asap.repair/services/appliance-services/dishwasher-installation/",
@@ -86,16 +101,47 @@
       "https://asap.repair/services/tv-wall-mounting/curtain-rod-installation/",
       "https://asap.repair/services/tv-wall-mounting/mirror-installation/",
       "https://asap.repair/services/tv-wall-mounting/art-installation/",
+      "https://asap.repair/services/tv-wall-mounting/projector-installation/",
+      "https://asap.repair/services/tv-wall-mounting/projector-screen-installation/",
       "https://asap.repair/services/tv-wall-mounting/wall-cabinet-installation/"
+    ],
+    "flooringInstallation": [
+      "https://asap.repair/services/flooring-installation/laminate-floor-installation/",
+      "https://asap.repair/services/flooring-installation/vinyl-floor-installation/",
+      "https://asap.repair/services/flooring-installation/click-lock-floor-installation/",
+      "https://asap.repair/services/flooring-installation/peel-stick-floor-installation/",
+      "https://asap.repair/services/flooring-installation/baseboard-installation/",
+      "https://asap.repair/services/flooring-installation/subfloor-preparation/",
+      "https://asap.repair/services/flooring-installation/floor-repair/"
+    ],
+    "furnitureAssembly": [
+      "https://asap.repair/services/furniture-assembly/ikea-assembly/",
+      "https://asap.repair/services/furniture-assembly/bed-assembly/",
+      "https://asap.repair/services/furniture-assembly/desk-assembly/",
+      "https://asap.repair/services/furniture-assembly/dresser-assembly/",
+      "https://asap.repair/services/furniture-assembly/wardrobe-assembly/",
+      "https://asap.repair/services/furniture-assembly/wall-bed-assembly/"
     ],
     "paintingWallFinishesAndRepairs": [
       "https://asap.repair/services/painting/interior-painting/",
+      "https://asap.repair/services/painting/accent-wall-painting/",
       "https://asap.repair/services/painting/decorative-plaster-tadelakt/",
       "https://asap.repair/services/general-repairs/drywall-repair/",
       "https://asap.repair/services/painting/trim-painting/",
       "https://asap.repair/services/painting/cabinet-painting/",
+      "https://asap.repair/services/painting/wallpaper-installation/",
+      "https://asap.repair/services/painting/wallpaper-removal/",
+      "https://asap.repair/services/painting/checkerboard-floor-painting/"
+    ],
+    "generalRepairsAndInstallations": [
       "https://asap.repair/services/general-repairs/door-repair/",
-      "https://asap.repair/services/general-repairs/lock-installation/"
+      "https://asap.repair/services/general-repairs/door-installation/",
+      "https://asap.repair/services/general-repairs/lock-installation/",
+      "https://asap.repair/services/general-repairs/blind-installation/",
+      "https://asap.repair/services/general-repairs/cabinet-hardware-installation/",
+      "https://asap.repair/services/general-repairs/caulking/",
+      "https://asap.repair/services/general-repairs/window-repair/",
+      "https://asap.repair/services/general-repairs/gazebo-assembly/"
     ]
   },
   "priorityMarkets": [
@@ -126,6 +172,7 @@
     "electricalFixtures": "Send photos of the current fixture, outlet, switch, thermostat, doorbell, lock, or fan box, the new product model, fixture weight if relevant, ceiling or wall type, box depth/support, WiFi/app requirements for smart devices, and building rules.",
     "tvAndWallMounting": "Send a wall photo, item size and weight, mount or hardware details, desired placement, and wall type.",
     "acInstallation": "Send the AC model or BTU label, window or sleeve photos, measurements, bracket requirements, and building or COI rules.",
+    "flooringInstallation": "Send room photos, dimensions, current floor/subfloor condition, product link or material details, transition/baseboard needs, moisture or leveling concerns, and building or COI requirements.",
     "paintingAndWallFinishes": "Send room photos, wall dimensions, finish references, paint or material details, moisture concerns, and access requirements.",
     "furnitureAssembly": "Send the product link or model, box count, room photo, delivery status, room access, and whether wall anchoring, anti-tip restraints, ceiling clearance, packaging removal, or COI paperwork is required.",
     "generalRepairs": "Send clear photos, measurements, product links if parts are involved, timing, and building access requirements."
