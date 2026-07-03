@@ -142,6 +142,8 @@ Commercial snippet cleanup on 2026-07-03: the high-opportunity general-repair pa
 
 Sitewide snippet/metadata cleanup on 2026-07-03: homepage/about Open Graph and AboutPage JSON-LD, service Open Graph descriptions, selected service H1s, and gallery captions were swept for old broad-claim phrases such as `Licensed, insured`, `any type`, `all other brands`, and `many types`. Public snippets now describe insured, scope-reviewed work, COI support, product/photo review, subfloor/wall/access review, or specific compatible scope instead of broad license/all-scope promises. Live custom-domain checks confirmed the updated homepage/about/washer/flooring/gallery surfaces, and the 102-URL canonical sitemap set was resubmitted to IndexNow with HTTP `200 OK`.
 
+Mobile conversion UI follow-up on 2026-07-03: while screenshot-checking the edited service H1s, the mobile sticky CTA bar was found to crop the quote button in narrow headless captures. The shared footer CTA now uses shorter `Quote` text with an accessible label, grid-based three-column sizing, explicit `100vw` bounds, and updated footer trust copy that no longer says `Licensed, insured`. Component and stylesheet cache-busting was bumped to `20260703s`. Local mobile screenshots confirmed the shortened H1s fit; Lighthouse mobile on the local homepage scored Performance `84`, Accessibility `100`, Best Practices `100`, SEO `100`, CLS `0.028`.
+
 ---
 
 ## Next 10 Highest-ROI Tasks
