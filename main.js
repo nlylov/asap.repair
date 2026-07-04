@@ -11,6 +11,10 @@ let repairAsapGaClientIdPromise = null;
 function repairAsapTrackEvent(eventName, params) {
   const safeParams = params || {};
 
+  if (typeof window.repairAsapLoadAnalyticsVendors === 'function') {
+    window.repairAsapLoadAnalyticsVendors();
+  }
+
   if (typeof gtag === 'function') {
     gtag('event', eventName, safeParams);
   }
@@ -87,6 +91,10 @@ function repairAsapGetGaClientIdAsync() {
     const timer = setTimeout(() => finish(''), REPAIR_ASAP_GA_CLIENT_TIMEOUT_MS);
 
     try {
+      if (typeof window.repairAsapLoadAnalyticsVendors === 'function') {
+        window.repairAsapLoadAnalyticsVendors();
+      }
+
       if (typeof gtag !== 'function') {
         clearTimeout(timer);
         finish('');

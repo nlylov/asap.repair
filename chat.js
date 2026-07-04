@@ -513,6 +513,10 @@
       const timer = setTimeout(() => finish(''), GA_CLIENT_TIMEOUT_MS);
 
       try {
+        if (typeof window.repairAsapLoadAnalyticsVendors === 'function') {
+          window.repairAsapLoadAnalyticsVendors();
+        }
+
         if (typeof window.gtag !== 'function') {
           clearTimeout(timer);
           finish('');

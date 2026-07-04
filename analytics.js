@@ -3,6 +3,8 @@
   var CLARITY_ID = 'wyzjzrud6n';
   var hostname = window.location.hostname;
   var analyticsEnabled = hostname === 'asap.repair' || hostname === 'www.asap.repair';
+  var vendorsLoaded = false;
+  var vendorLoadTimer = null;
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag() {
@@ -31,19 +33,40 @@
   }
 
   function loadAnalyticsVendors() {
+    if (vendorsLoaded) return;
+    vendorsLoaded = true;
+    if (vendorLoadTimer) {
+      window.clearTimeout(vendorLoadTimer);
+      vendorLoadTimer = null;
+    }
     loadScript('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA4_ID));
     loadScript('https://www.clarity.ms/tag/' + CLARITY_ID);
   }
 
+  window.repairAsapLoadAnalyticsVendors = loadAnalyticsVendors;
+
   function scheduleVendorLoad() {
-    if ('requestIdleCallback' in window) {
-      window.requestIdleCallback(loadAnalyticsVendors, { timeout: 2500 });
+    var interactionEvents = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
+    interactionEvents.forEach(function (eventName) {
+      window.addEventListener(eventName, loadAnalyticsVendors, { once: true, passive: true });
+    });
+
+    function scheduleAfterLoad() {
+      vendorLoadTimer = window.setTimeout(function () {
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(loadAnalyticsVendors, { timeout: 2000 });
+          return;
+        }
+        loadAnalyticsVendors();
+      }, 4500);
+    }
+
+    if (document.readyState === 'complete') {
+      scheduleAfterLoad();
       return;
     }
 
-    window.addEventListener('load', function () {
-      window.setTimeout(loadAnalyticsVendors, 800);
-    }, { once: true });
+    window.addEventListener('load', scheduleAfterLoad, { once: true });
   }
 
   scheduleVendorLoad();
