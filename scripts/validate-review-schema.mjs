@@ -4,8 +4,6 @@ import { join, relative } from 'node:path';
 import { readdirSync, statSync } from 'node:fs';
 
 const root = process.cwd();
-const EXPECTED_AGGREGATE_REVIEW_COUNT = '73';
-const EXPECTED_AGGREGATE_RATING = '4.9';
 
 function* walk(dir) {
   for (const entry of readdirSync(dir)) {
@@ -75,32 +73,19 @@ for (const file of walk(root)) {
     }
   }
 
-  if (!html.includes('AggregateRating')) continue;
-
-  const reviewCounts = [...html.matchAll(/"reviewCount"\s*:\s*"?([0-9]+)/g)].map((m) => m[1]);
-  const aggregateRatingMatch = html.match(/"@type"\s*:\s*"AggregateRating"[\s\S]*?"ratingValue"\s*:\s*"?([0-9.]+)/);
-  const aggregateReviewCountMatch = html.match(/"@type"\s*:\s*"AggregateRating"[\s\S]*?"reviewCount"\s*:\s*"?([0-9]+)/);
-
-  if (aggregateReviewCountMatch) {
-    aggregateBlocks += 1;
-    if (aggregateReviewCountMatch[1] !== EXPECTED_AGGREGATE_REVIEW_COUNT) {
-      errors.push(`${rel}: AggregateRating reviewCount=${aggregateReviewCountMatch[1]} expected ${EXPECTED_AGGREGATE_REVIEW_COUNT}`);
-    }
-  } else if (reviewCounts.length) {
-    errors.push(`${rel}: found reviewCount fields but no AggregateRating reviewCount match`);
+  const aggregateRatingMatches = html.match(/"@type"\s*:\s*"AggregateRating"/g);
+  if (aggregateRatingMatches) {
+    aggregateBlocks += aggregateRatingMatches.length;
+    errors.push(`${rel}: found ${aggregateRatingMatches.length} AggregateRating block(s). Keep business-owned ratings visible in HTML/AI facts, but do not publish self-serving review rich-result markup.`);
   }
-
-  if (aggregateRatingMatch && aggregateRatingMatch[1] !== EXPECTED_AGGREGATE_RATING) {
-    errors.push(`${rel}: AggregateRating ratingValue=${aggregateRatingMatch[1]} expected ${EXPECTED_AGGREGATE_RATING}`);
-  }
-}
-
-if (aggregateBlocks === 0) {
-  errors.push('No AggregateRating blocks found. Validator likely ran in the wrong directory.');
 }
 
 if (reviewBlocks > 0) {
   errors.push(`Found ${reviewBlocks} individual Review JSON-LD blocks. Keep customer reviews visible in HTML, but do not publish self-serving Review structured data for this LocalBusiness site.`);
+}
+
+if (aggregateBlocks > 0) {
+  errors.push(`Found ${aggregateBlocks} AggregateRating JSON-LD blocks. Keep review/rating claims out of schema.org markup for this business-owned LocalBusiness site.`);
 }
 
 if (reviewMicrodataBlocks > 0 || reviewItempropBlocks > 0) {
@@ -113,4 +98,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Review schema validation OK: ${aggregateBlocks} AggregateRating blocks use reviewCount=${EXPECTED_AGGREGATE_REVIEW_COUNT}, ratingValue=${EXPECTED_AGGREGATE_RATING}.`);
+console.log('Review schema validation OK: no individual Review JSON-LD, AggregateRating JSON-LD, or review microdata found.');

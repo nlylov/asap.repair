@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <script src="/analytics.js?v=20260703q"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Repair Asap LLC — New York City's Premier Handyman Service</title>
@@ -43,70 +42,15 @@
   </noscript>
 
   <!-- Preload critical above-the-fold image -->
-  <link rel="preload" as="image" type="image/webp" href="/assets/images/hero-image.webp">
+  <link rel="preload" as="image" type="image/webp" href="/assets/images/hero-image.webp" fetchpriority="high">
 
   <link rel="stylesheet" href="/styles.css?v=20260703s">
-  <!-- Interactive Services by Room -->
-  <link rel="stylesheet" href="room-services.css">
+  <!-- Interactive Services by Room (below the fold) -->
+  <link rel="preload" as="style" href="/room-services.css?v=20260704a" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/room-services.css?v=20260704a"></noscript>
 
   <!-- Schema.org: LocalBusiness -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "HomeAndConstructionBusiness",
-    "name": "Repair Asap LLC",
-    "alternateName": "Repair ASAP",
-    "url": "https://asap.repair",
-    "logo": "https://asap.repair/assets/images/logo-header.webp",
-    "image": "https://asap.repair/assets/images/og-image.png",
-    "description": "Insured handyman service in NYC with COI support. Furniture assembly, TV mounting, painting, electrical fixture/device replacement, plumbing fixture help, AC and repairs after scope review.",
-    "telephone": "+1-775-310-7770",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "99-60 64th Ave",
-      "addressLocality": "Rego Park",
-      "addressRegion": "NY",
-      "postalCode": "11374",
-      "addressCountry": "US"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 40.7282,
-      "longitude": -73.8526
-    },
-    "areaServed": [
-      { "@type": "City", "name": "New York" },
-      { "@type": "State", "name": "New York" }
-    ],
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "09:00",
-        "closes": "19:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Saturday", "Sunday"],
-        "opens": "10:00",
-        "closes": "16:00"
-      }
-    ],
-    "priceRange": "$$",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "73",
-      "bestRating": "5"
-    },
-    "sameAs": [
-      "https://www.yelp.com/biz/repair-asap-brooklyn",
-      "https://g.page/r/CSK3M3n6T8_qEBM",
-      "https://www.google.com/maps/place/Repair+Asap+LLC/",
-      "https://www.thumbtack.com/ny/new-york/handyman/repair-asap-llc/service/437267985498792024"
-    ]
-  }
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"Repair Asap LLC","alternateName":"Repair ASAP","url":"https://asap.repair","logo":"https://asap.repair/assets/images/logo-header.webp","image":"https://asap.repair/assets/images/og-image.png","description":"Insured handyman service in NYC with COI support. Furniture assembly, TV mounting, painting, electrical fixture/device replacement, plumbing fixture help, AC and repairs after scope review.","telephone":"+1-775-310-7770","address":{"@type":"PostalAddress","streetAddress":"99-60 64th Ave","addressLocality":"Rego Park","addressRegion":"NY","postalCode":"11374","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":40.7282,"longitude":-73.8526},"areaServed":[{"@type":"City","name":"New York"},{"@type":"State","name":"New York"}],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday"],"opens":"10:00","closes":"16:00"}],"priceRange":"$$","sameAs":["https://www.yelp.com/biz/repair-asap-brooklyn","https://g.page/r/CSK3M3n6T8_qEBM","https://www.google.com/maps/place/Repair+Asap+LLC/","https://www.thumbtack.com/ny/new-york/handyman/repair-asap-llc/service/437267985498792024"]}</script>
 
   <!-- Schema.org: WebSite (for sitelinks search box) -->
   <script type="application/ld+json">
@@ -117,6 +61,7 @@
     "url": "https://asap.repair"
   }
   </script>
+  <script defer src="/analytics.js?v=20260704a"></script>
 </head>
 
 <body>
@@ -1003,7 +948,7 @@
   </script>
   <script defer src="/main.js?v=20260703p"></script>
   <!-- Interactive Services by Room -->
-  <script defer src="/room-services.js"></script>
+  <script defer src="/room-services.js?v=20260704a"></script>
 
   <!-- Lazy-load Trustindex widget when scrolled into view -->
   <script>
