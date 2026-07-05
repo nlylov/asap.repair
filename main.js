@@ -4,8 +4,10 @@
 
 // ---- Analytics helpers ----
 const REPAIR_ASAP_VISITOR_KEY = 'repair_asap_visitor_id';
+const REPAIR_ASAP_THREAD_KEY = 'repair_asap_thread_id';
 const REPAIR_ASAP_GA4_ID = 'G-1ZRVGCMZ43';
 const REPAIR_ASAP_GA_CLIENT_TIMEOUT_MS = 800;
+const REPAIR_ASAP_PHONE_CLICK_ENDPOINT = 'https://crm.asap.repair/api/widget/phone-click?org=repair-asap';
 let repairAsapGaClientIdPromise = null;
 
 function repairAsapTrackEvent(eventName, params) {
@@ -58,6 +60,14 @@ function repairAsapGetOrCreateVisitorId() {
     return visitorId;
   } catch (_) {
     return `volatile_${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  }
+}
+
+function repairAsapGetStoredThreadId() {
+  try {
+    return localStorage.getItem(REPAIR_ASAP_THREAD_KEY) || '';
+  } catch (_) {
+    return '';
   }
 }
 
@@ -146,10 +156,45 @@ async function repairAsapGetSessionContextAsync() {
   return sessionContext;
 }
 
+function repairAsapPostJsonBeacon(url, payload) {
+  const body = JSON.stringify(payload);
+
+  try {
+    if (navigator.sendBeacon) {
+      const blob = new Blob([body], { type: 'text/plain' });
+      if (navigator.sendBeacon(url, blob)) return;
+    }
+  } catch (_) {}
+
+  try {
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body,
+      keepalive: true,
+    }).catch(() => {});
+  } catch (_) {}
+}
+
+function repairAsapTrackPhoneClickToCrm(telLink) {
+  if (!telLink) return;
+
+  const sessionContext = repairAsapGetSessionContext();
+  const payload = {
+    threadId: repairAsapGetStoredThreadId(),
+    phoneHref: telLink.href || '',
+    phoneLabel: (telLink.textContent || '').trim(),
+    sessionContext,
+  };
+
+  repairAsapPostJsonBeacon(REPAIR_ASAP_PHONE_CLICK_ENDPOINT, payload);
+}
+
 window.repairAsapTrackEvent = repairAsapTrackEvent;
 window.repairAsapBuildLeadEventParams = repairAsapBuildLeadEventParams;
 window.repairAsapGetSessionContext = repairAsapGetSessionContext;
 window.repairAsapGetSessionContextAsync = repairAsapGetSessionContextAsync;
+window.repairAsapTrackPhoneClickToCrm = repairAsapTrackPhoneClickToCrm;
 
 // ---- Google Places Autocomplete ----
 function getAddressComponentValue(components, type, preferShort = false) {
@@ -391,6 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
         event_label: telLink.textContent.trim(),
         link_url: telLink.href,
       });
+      window.repairAsapTrackPhoneClickToCrm?.(telLink);
     }
 
     // Track SMS link clicks
