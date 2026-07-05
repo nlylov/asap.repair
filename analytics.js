@@ -3,8 +3,10 @@
   var CLARITY_ID = 'wyzjzrud6n';
   var hostname = window.location.hostname;
   var analyticsEnabled = hostname === 'asap.repair' || hostname === 'www.asap.repair';
-  var vendorsLoaded = false;
-  var vendorLoadTimer = null;
+  var gaLoaded = false;
+  var clarityLoaded = false;
+  var gaLoadTimer = null;
+  var clarityLoadTimer = null;
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag() {
@@ -32,18 +34,41 @@
     document.head.appendChild(script);
   }
 
-  function loadAnalyticsVendors() {
-    if (vendorsLoaded) return;
-    vendorsLoaded = true;
-    if (vendorLoadTimer) {
-      window.clearTimeout(vendorLoadTimer);
-      vendorLoadTimer = null;
-    }
+  function clearScheduledTimer(timer) {
+    if (timer) window.clearTimeout(timer);
+  }
+
+  function loadGoogleAnalytics() {
+    if (gaLoaded) return;
+    gaLoaded = true;
+    clearScheduledTimer(gaLoadTimer);
+    gaLoadTimer = null;
     loadScript('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA4_ID));
+  }
+
+  function loadClarityVendor() {
+    if (clarityLoaded) return;
+    clarityLoaded = true;
+    clearScheduledTimer(clarityLoadTimer);
+    clarityLoadTimer = null;
     loadScript('https://www.clarity.ms/tag/' + CLARITY_ID);
   }
 
+  function loadAnalyticsVendors() {
+    loadGoogleAnalytics();
+    loadClarityVendor();
+  }
+
+  function runWhenIdle(callback, timeout) {
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(callback, { timeout: timeout });
+      return;
+    }
+    callback();
+  }
+
   window.repairAsapLoadAnalyticsVendors = loadAnalyticsVendors;
+  window.repairAsapLoadGoogleAnalytics = loadGoogleAnalytics;
 
   function scheduleVendorLoad() {
     var interactionEvents = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
@@ -52,13 +77,13 @@
     });
 
     function scheduleAfterLoad() {
-      vendorLoadTimer = window.setTimeout(function () {
-        if ('requestIdleCallback' in window) {
-          window.requestIdleCallback(loadAnalyticsVendors, { timeout: 2000 });
-          return;
-        }
-        loadAnalyticsVendors();
-      }, 4500);
+      gaLoadTimer = window.setTimeout(function () {
+        runWhenIdle(loadGoogleAnalytics, 2000);
+      }, 1500);
+
+      clarityLoadTimer = window.setTimeout(function () {
+        runWhenIdle(loadClarityVendor, 2500);
+      }, 5500);
     }
 
     if (document.readyState === 'complete') {
