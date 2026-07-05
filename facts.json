@@ -157,6 +157,40 @@
       "https://asap.repair/services/general-repairs/gazebo-assembly/"
     ]
   },
+  "revenuePriorityRoutes": {
+    "windowAcInstallation": {
+      "url": "https://asap.repair/services/ac-installation-cleaning/window-ac-installation/",
+      "matchWhen": "window AC installation, summer AC setup, AC support bracket, co-op or condo AC COI help, apartment air conditioner installation, old window AC removal or reinstall"
+    },
+    "applianceInstallation": {
+      "url": "https://asap.repair/services/appliance-services/",
+      "matchWhen": "broad appliance installation, dishwasher, washer, dryer, gas-ready dryer, range, refrigerator, microwave, appliance delivery setup, existing-hookup review"
+    },
+    "furnitureAssembly": {
+      "url": "https://asap.repair/services/furniture-assembly/",
+      "matchWhen": "furniture assembly, IKEA or PAX assembly, Wayfair furniture, bed frame, dresser, desk, wardrobe, wall bed, move-in furniture setup"
+    },
+    "projectorMounting": {
+      "url": "https://asap.repair/services/tv-wall-mounting/projector-installation/",
+      "matchWhen": "projector mounting, ceiling projector mount, home theater projector setup, office or classroom projector installation, projector alignment, projector cable path review"
+    },
+    "toiletInstallation": {
+      "url": "https://asap.repair/services/plumbing/toilet-installation/",
+      "matchWhen": "toilet installation, toilet replacement, running toilet repair, bidet-seat install, loose toilet reset, leak at toilet base when fixture-level scope fits"
+    },
+    "lockInstallation": {
+      "url": "https://asap.repair/services/general-repairs/lock-installation/",
+      "matchWhen": "deadbolt installation, smart lock setup, keypad lock, latch or strike alignment, apartment door hardware upgrade, lock installation after move-in"
+    },
+    "blindInstallation": {
+      "url": "https://asap.repair/services/general-repairs/blind-installation/",
+      "matchWhen": "blind installation, blackout shades, roller shades, cellular shades, Roman shades, compatible motorized blinds, multi-window apartment blinds"
+    },
+    "caulkingAndSealing": {
+      "url": "https://asap.repair/services/general-repairs/caulking/",
+      "matchWhen": "tub re-caulking, shower caulk replacement, sink sealing, backsplash edge sealing, window gap sealing, countertop seams, wet-area caulk replacement where no hidden leak is active"
+    }
+  },
   "priorityMarkets": [
     "Queens",
     "Manhattan",
@@ -226,5 +260,5 @@
     "handymanStatenIsland": "https://asap.repair/handyman-staten-island/",
     "handymanLongIsland": "https://asap.repair/handyman-long-island/"
   },
-  "lastReviewed": "2026-07-03"
+  "lastReviewed": "2026-07-05"
 }

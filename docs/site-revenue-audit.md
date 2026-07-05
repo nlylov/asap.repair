@@ -154,6 +154,12 @@ Self-serving rating schema cleanup on 2026-07-04: all remaining `AggregateRating
 
 Performance/analytics follow-up on 2026-07-04: all 102 active runtime pages now reference deferred `/analytics.js?v=20260704b`. The loader still defines `gtag()` and `clarity()` immediately so lead events can queue, but external GA4 and Microsoft Clarity vendor scripts now load on first user interaction, lead-event demand, or delayed post-load idle on production hostnames only. Homepage `room-services.css` was moved off the render-blocking path because that module is below the fold. Local Lighthouse on the changed homepage scored Performance `89`, Accessibility `100`, Best Practices `100`, SEO `100`, LCP `3.6s`, FCP `2.1s`, TBT `0ms`, CLS `0.028`, compared with the live pre-change baseline of Performance `69`, Best Practices `77`, and LCP about `6.5s`.
 
+## 2026-07-05 Follow-up
+
+Revenue-priority AI/search routing was strengthened on six high-intent pages: window AC installation, projector mounting, toilet installation, lock installation, blind installation, and caulking. The changed pages now include clearer "best match" routing language, quote-prep details, five-borough/Western Long Island service-area language, richer Service JSON-LD descriptions where they were thin, and safer scope boundaries for plumbing/electrical/hidden-leak cases. `llms.txt`, `llms-full.txt`, and `facts.json` now expose the same revenue-priority route map so AI answer engines can choose the specific service page instead of the generic services directory.
+
+Local validation passed after this pass: `facts.json` parsed, structured-data validation passed with `291` JSON-LD blocks and `10` Article blocks, review-schema validation found no Review/AggregateRating markup, `git diff --check` passed, and a targeted audit confirmed all 6 edited priority pages are in sitemap, `llms.txt`/`llms-full.txt`, and `facts.json`, with priority-routing copy present and visible word counts at or above 700 words.
+
 ---
 
 ## Next 10 Highest-ROI Tasks
