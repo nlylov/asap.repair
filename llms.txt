@@ -338,4 +338,4 @@ Do not index helper/component paths such as `/components/`, `/_data/`, or `/.wel
 
 ## Last updated
 
-2026-07-03
+2026-07-05
