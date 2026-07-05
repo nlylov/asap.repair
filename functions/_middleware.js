@@ -6,6 +6,10 @@ const PRESERVE_PATH_HOSTS = new Set([
     'asap-repair.netlify.app',
 ]);
 
+function isPreservePathHost(hostname) {
+    return PRESERVE_PATH_HOSTS.has(hostname) || hostname.endsWith('.asap-repair.pages.dev');
+}
+
 const LEGACY_PATH_REDIRECTS = new Map([
     ['/ac_install', '/services/ac-installation-cleaning/'],
     ['/ac_install/', '/services/ac-installation-cleaning/'],
@@ -45,7 +49,7 @@ export async function onRequest(context) {
         return Response.redirect(url.toString(), 301);
     }
 
-    if (PRESERVE_PATH_HOSTS.has(url.hostname)) {
+    if (isPreservePathHost(url.hostname)) {
         url.hostname = CANONICAL_HOST;
         url.pathname = canonicalPathname(url.pathname);
         return Response.redirect(url.toString(), 301);
