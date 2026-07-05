@@ -160,6 +160,10 @@ Revenue-priority AI/search routing was strengthened on six high-intent pages: wi
 
 Local validation passed after this pass: `facts.json` parsed, structured-data validation passed with `291` JSON-LD blocks and `10` Article blocks, review-schema validation found no Review/AggregateRating markup, `git diff --check` passed, and a targeted audit confirmed all 6 edited priority pages are in sitemap, `llms.txt`/`llms-full.txt`, and `facts.json`, with priority-routing copy present and visible word counts at or above 700 words.
 
+Dashboard/indexing recheck on 2026-07-05: Search Console overview now shows `170` web-search clicks, `44` indexed pages, and `77` not indexed as of the 2026-06-29 coverage update. The not-indexed reasons remain `5` old 404 rows, `2` redirect rows, `48` discovered-not-indexed, and `22` crawled-currently-not-indexed. Current live technical crawl across all `102` sitemap URLs found `0` status/canonical/title/meta/H1/JSON-LD/version/preload issues, so the remaining GSC work is recrawl monitoring plus strengthening pages that Google has discovered or crawled but not yet chosen to index. Bing Sitemaps is healthy (`0` errors, `0` warnings, canonical sitemap `Success`, `102` canonical URLs), and IndexNow shows the 2026-07-05 self-submission of `102` URLs. Bing Search Performance and Bing AI Performance remain effectively zero, and Bing's only real strategic recommendation is inbound-link authority; its IndexNow recommendation is stale because IndexNow is already active.
+
+Internal-linking fix on 2026-07-05: the six borough/Long Island landing pages were in the sitemap but had `0` raw-HTML inlinks because area navigation was not exposed as static links. Homepage and `/services/` now include visible static links to Manhattan, Brooklyn, Queens, Bronx, Staten Island, and Long Island pages; local link-graph validation shows each area page now has `2` static inlinks before deploy.
+
 ---
 
 ## Next 10 Highest-ROI Tasks
