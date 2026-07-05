@@ -164,6 +164,8 @@ Dashboard/indexing recheck on 2026-07-05: Search Console overview now shows `170
 
 Internal-linking fix on 2026-07-05: the six borough/Long Island landing pages were in the sitemap but had `0` raw-HTML inlinks because area navigation was not exposed as static links. Homepage, `/services/`, `/about/`, and `/faq/` now include visible static links to Manhattan, Brooklyn, Queens, Bronx, Staten Island, and Long Island pages; live link-graph validation shows each area page now has `4` static inlinks and no sitemap URL has 0 or 1 inlink. The FAQ page also now includes Bronx in both visible service-area copy and LocalBusiness/FAQPage schema. The post-deploy live crawl covered all `102` sitemap URLs with `0` status/canonical/title/meta/H1/JSON-LD/analytics issues, and IndexNow accepted the updated `102` URL set with HTTP `200 OK`.
 
+Service-area consistency pass on 2026-07-05: 35 service HTML pages were updated where old visible copy said service covered only Manhattan, Brooklyn, Queens, and Staten Island. The revised copy includes the Bronx plus Western Long Island or Nassau County when scope and travel fit. Local validation found `0` remaining lines that mention Manhattan, Brooklyn, Queens, and Staten Island together while omitting Bronx.
+
 ---
 
 ## Next 10 Highest-ROI Tasks
