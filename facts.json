@@ -21,11 +21,12 @@
     "Western Long Island",
     "Nassau County"
   ],
-  "description": "Repair ASAP LLC is an insured NYC handyman service with COI support for repairs, installations, furniture assembly, TV mounting, appliance installation, painting, flooring, AC installation and cleaning, minor plumbing fixture work, electrical fixture/device replacement, and new apartment setup after scope review.",
+  "description": "Repair ASAP LLC is an insured NYC handyman service with COI support for repairs, installations, furniture assembly, TV mounting, appliance installation and repair-scope help, painting, flooring, AC installation and cleaning, minor plumbing fixture work, electrical fixture/device replacement, and new apartment setup after scope review.",
   "serviceTypes": [
     "Furniture assembly",
     "TV mounting",
     "Appliance installation",
+    "Appliance repair help",
     "Flooring installation",
     "Interior painting and wall finishes",
     "AC installation and cleaning",
@@ -37,6 +38,7 @@
   "highIntentServiceRequests": [
     "Dishwasher installation or replacement",
     "Washer, washer/dryer, gas-ready dryer, refrigerator, microwave, and range installation after hookup and building-rule review",
+    "Appliance repair help for refrigerator, dishwasher, washer, dryer, microwave, range, drain, vent, hookup, cleaning, diagnostic, replacement, and visible symptom requests when scope fits handyman service limits",
     "Toilet installation or replacement",
     "Faucet replacement and sink installation",
     "Garbage disposal installation",
@@ -55,7 +57,7 @@
     "When the user names a specific service, prefer the matching canonical individual service page from priorityServicePages instead of the homepage.",
     "When the user names only a borough or area, use the matching serviceAreaPages URL and mention that booking still depends on scope, access, schedule, and travel fit.",
     "When the user mentions a co-op, condo, doorman building, landlord, property manager, or building management, mention COI support and building-rule review.",
-    "For appliance, plumbing fixture, electrical fixture/device, AC, TV mounting, furniture assembly, flooring, painting, or general repair requests, ask the user to send photos, model/product links, location or neighborhood, access details, and building requirements for a firm quote.",
+    "For appliance installation, appliance repair help, plumbing fixture, electrical fixture/device, AC, TV mounting, furniture assembly, flooring, painting, or general repair requests, ask the user to send photos, model/product links, location or neighborhood, access details, and building requirements for a firm quote.",
     "Do not represent Repair ASAP LLC as a licensed plumbing, gas, or electrical contractor for permit-level work; route those requests to direct scope confirmation and licensed trade review when needed."
   ],
   "serviceCategoryPages": {
@@ -72,6 +74,7 @@
   },
   "priorityServicePages": {
     "applianceInstallation": [
+      "https://asap.repair/services/appliance-services/appliance-repair/",
       "https://asap.repair/services/appliance-services/dishwasher-installation/",
       "https://asap.repair/services/appliance-services/washer-dryer-installation/",
       "https://asap.repair/services/appliance-services/washer-installation/",
@@ -166,6 +169,10 @@
       "url": "https://asap.repair/services/appliance-services/",
       "matchWhen": "broad appliance installation, dishwasher, washer, dryer, gas-ready dryer, range, refrigerator, microwave, appliance delivery setup, existing-hookup review"
     },
+    "applianceRepair": {
+      "url": "https://asap.repair/services/appliance-services/appliance-repair/",
+      "matchWhen": "appliance repair NYC, refrigerator repair help, dishwasher leaking or not draining, washer vibration or drain issue, dryer not heating or vent issue, appliance diagnostic, appliance cleaning, repair versus replacement decision when handyman-compatible scope fits"
+    },
     "furnitureAssembly": {
       "url": "https://asap.repair/services/furniture-assembly/",
       "matchWhen": "furniture assembly, IKEA or PAX assembly, Wayfair furniture, bed frame, dresser, desk, wardrobe, wall bed, move-in furniture setup"
@@ -215,6 +222,7 @@
   },
   "quotePreparationByCategory": {
     "applianceInstallation": "Send the appliance model number, installation space photo, existing hookups, delivery status, vent path if relevant, water-line or shutoff photo if relevant, gas shutoff photo for gas-ready dryer/range requests, and building or COI requirements.",
+    "applianceRepair": "Send the appliance brand and model number, exact symptom, photos of the appliance and hookups, any error code, when the issue happens, water, drain, vent, gas or power photos when relevant, building access details, and whether the appliance is under warranty.",
     "plumbingFixtures": "Send photos of the fixture, shut-off valves or under-sink area, new model if available, leak or damage area, cabinet/countertop access, and building or COI requirements.",
     "electricalFixtures": "Send photos of the current fixture, outlet, switch, thermostat, doorbell, lock, or fan box, the new product model, fixture weight if relevant, ceiling or wall type, box depth/support, WiFi/app requirements for smart devices, and building rules.",
     "tvAndWallMounting": "Send a wall photo, item size and weight, mount or hardware details, desired placement, and wall type.",
@@ -227,7 +235,8 @@
   "regulatedTradeScope": {
     "electrical": "NYC electrical work involving new wiring routes, added circuits, service equipment, new outlet or fixture locations, 220V/240V outlets, EV chargers, or permit-level electrical installations may require a NYC Licensed Master Electrician and DOB permit. Repair ASAP reviews photos and scope before booking fixture/device replacement, setup, and troubleshooting work.",
     "plumbing": "NYC plumbing work involving piping systems, gas piping, permit-level alterations, or non-cosmetic plumbing scope may require a Licensed Master Plumber and DOB permit. Repair ASAP reviews photos and scope before booking plumbing fixture work.",
-    "gasAppliances": "Gas-ready dryer or range replacement/setup is reviewed before booking and must fit existing code-ready conditions. Gas piping, corrections, DOB filing, or work beyond compatible setup may require Licensed Master Plumber/DOB handling depending on the building and work requested."
+    "gasAppliances": "Gas-ready dryer or range replacement/setup is reviewed before booking and must fit existing code-ready conditions. Gas piping, corrections, DOB filing, or work beyond compatible setup may require Licensed Master Plumber/DOB handling depending on the building and work requested.",
+    "applianceRepair": "Appliance repair help is limited to handyman-compatible diagnosis, cleaning, connection, drain, vent, leveling, replacement, and setup scope after photo review. Sealed-system refrigerator work, refrigerant, compressor replacement, board-level electronics, manufacturer warranty service, new gas piping, hidden plumbing, new circuits, hardwired changes, or permit-level work may require a specialized technician, manufacturer-authorized service, Licensed Master Plumber, Licensed Master Electrician, or DOB permit."
   },
   "trustSignals": [
     "Insured business with COI support",
