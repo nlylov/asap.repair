@@ -5,9 +5,11 @@
 // ---- Analytics helpers ----
 const REPAIR_ASAP_VISITOR_KEY = 'repair_asap_visitor_id';
 const REPAIR_ASAP_THREAD_KEY = 'repair_asap_thread_id';
+const REPAIR_ASAP_ATTRIBUTION_KEY = 'repair_asap_attribution';
 const REPAIR_ASAP_GA4_ID = 'G-1ZRVGCMZ43';
 const REPAIR_ASAP_GA_CLIENT_TIMEOUT_MS = 800;
 const REPAIR_ASAP_PHONE_CLICK_ENDPOINT = 'https://crm.asap.repair/api/widget/phone-click?org=repair-asap';
+const REPAIR_ASAP_TRACKING_PARAM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'gbraid', 'wbraid', 'msclkid', 'fbclid', 'ttclid'];
 let repairAsapGaClientIdPromise = null;
 
 function repairAsapTrackEvent(eventName, params) {
@@ -69,6 +71,63 @@ function repairAsapGetStoredThreadId() {
   } catch (_) {
     return '';
   }
+}
+
+function repairAsapReadStoredJson(key) {
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+  } catch (_) {
+    return {};
+  }
+}
+
+function repairAsapCollectTrackingParams() {
+  const out = {};
+  try {
+    const params = new URLSearchParams(window.location.search);
+    REPAIR_ASAP_TRACKING_PARAM_KEYS.forEach((name) => {
+      const value = params.get(name);
+      if (value) out[name] = value;
+    });
+  } catch (_) {}
+  return out;
+}
+
+function repairAsapGetAttributionContext() {
+  const out = {};
+  const stored = repairAsapReadStoredJson(REPAIR_ASAP_ATTRIBUTION_KEY);
+  let page = '';
+  let referrer = '';
+  try { page = window.location.href; } catch (_) {}
+  try { referrer = document.referrer || ''; } catch (_) {}
+  const now = new Date().toISOString();
+  const params = repairAsapCollectTrackingParams();
+
+  if (!stored.landingPage && page) stored.landingPage = page;
+  if (!stored.firstReferrer && referrer) stored.firstReferrer = referrer;
+  if (!stored.firstTouchAt) stored.firstTouchAt = now;
+  if (page) stored.latestPage = page;
+  if (referrer) stored.latestReferrer = referrer;
+  stored.latestTouchAt = now;
+
+  REPAIR_ASAP_TRACKING_PARAM_KEYS.forEach((name) => {
+    if (params[name] && !stored[name]) stored[name] = params[name];
+  });
+
+  try {
+    localStorage.setItem(REPAIR_ASAP_ATTRIBUTION_KEY, JSON.stringify(stored));
+  } catch (_) {}
+
+  ['landingPage', 'firstReferrer', 'latestReferrer', 'firstTouchAt', 'latestTouchAt'].forEach((name) => {
+    if (stored[name]) out[name] = stored[name];
+  });
+  REPAIR_ASAP_TRACKING_PARAM_KEYS.forEach((name) => {
+    if (stored[name]) out[name] = stored[name];
+  });
+  return out;
 }
 
 function repairAsapGetGaClientId() {
@@ -135,6 +194,7 @@ function repairAsapBuildSessionContext() {
   try { sessionContext.language = navigator.language || ''; } catch (_) {}
   try { sessionContext.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (_) {}
   sessionContext.visitorId = repairAsapGetOrCreateVisitorId();
+  Object.assign(sessionContext, repairAsapGetAttributionContext());
   return sessionContext;
 }
 
