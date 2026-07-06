@@ -170,6 +170,8 @@ Service-area consistency pass on 2026-07-05: 35 service HTML pages were updated 
 
 AI/LLM citation coverage was tightened after a fresh live crawl. The public 102-URL sitemap set returned 0 live technical issues for status, canonical, title/meta/H1 counts, JSON-LD parsing, analytics-loader presence, noindex, or self-serving review-rich-result signals. `llms.txt` now explicitly cites the three indexable blog guides for furniture-assembly cost, NYC apartment TV mounting, and Queens handyman comparison intent; `llms-full.txt` now cites `/about/` as the trust, insurance, COI, and service-standards page. `scripts/validate-ai-guide-coverage.mjs` now confirms every sitemap URL except intentionally noncommercial `/privacy-policy/` and `/terms-of-service/` is referenced from the AI-readable files, and IndexNow accepted the 102-URL set with HTTP `200 OK`.
 
+Blog snippet freshness follow-up on 2026-07-06: the three indexable blog guides and `/blog/` index no longer show `2025` in visible titles, H1s, cards, OG titles, or cost-section headings. Article `datePublished` remains `2025-04-01`, while `dateModified` now reflects `2026-07-06`. This avoids stale-looking search/AI snippets without pretending the pricing tables were newly repriced.
+
 ---
 
 ## Next 10 Highest-ROI Tasks
