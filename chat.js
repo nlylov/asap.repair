@@ -5,11 +5,13 @@
     visitEndpoint: '/api/widget/visit',
     fontFamily: "'Outfit', 'Inter', sans-serif",
     storageKey: 'repair_asap_thread_id',
-    visitorStorageKey: 'repair_asap_visitor_id'
+    visitorStorageKey: 'repair_asap_visitor_id',
+    attributionStorageKey: 'repair_asap_attribution'
   };
   const containerId = 'repair-asap-chatbot';
   const GA4_ID = 'G-1ZRVGCMZ43';
   const GA_CLIENT_TIMEOUT_MS = 800;
+  const TRACKING_PARAM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'gbraid', 'wbraid', 'msclkid', 'fbclid', 'ttclid'];
   // --------------------
 
   let state = {
@@ -467,7 +469,65 @@
       if (gaClientId) sessionContext.gaClientId = gaClientId;
     } catch (_) {}
     sessionContext.visitorId = getOrCreateVisitorId();
+    Object.assign(sessionContext, getAttributionContext());
     return sessionContext;
+  }
+
+  function getStoredJson(key) {
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return {};
+      const parsed = JSON.parse(raw);
+      return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+    } catch (_) {
+      return {};
+    }
+  }
+
+  function collectTrackingParams() {
+    const out = {};
+    try {
+      const params = new URLSearchParams(window.location.search);
+      TRACKING_PARAM_KEYS.forEach((name) => {
+        const value = params.get(name);
+        if (value) out[name] = value;
+      });
+    } catch (_) {}
+    return out;
+  }
+
+  function getAttributionContext() {
+    const out = {};
+    const stored = getStoredJson(config.attributionStorageKey);
+    let page = '';
+    let referrer = '';
+    try { page = window.location.href; } catch (_) {}
+    try { referrer = document.referrer || ''; } catch (_) {}
+    const now = new Date().toISOString();
+    const params = collectTrackingParams();
+
+    if (!stored.landingPage && page) stored.landingPage = page;
+    if (!stored.firstReferrer && referrer) stored.firstReferrer = referrer;
+    if (!stored.firstTouchAt) stored.firstTouchAt = now;
+    if (page) stored.latestPage = page;
+    if (referrer) stored.latestReferrer = referrer;
+    stored.latestTouchAt = now;
+
+    TRACKING_PARAM_KEYS.forEach((name) => {
+      if (params[name] && !stored[name]) stored[name] = params[name];
+    });
+
+    try {
+      localStorage.setItem(config.attributionStorageKey, JSON.stringify(stored));
+    } catch (_) {}
+
+    ['landingPage', 'firstReferrer', 'latestReferrer', 'firstTouchAt', 'latestTouchAt'].forEach((name) => {
+      if (stored[name]) out[name] = stored[name];
+    });
+    TRACKING_PARAM_KEYS.forEach((name) => {
+      if (stored[name]) out[name] = stored[name];
+    });
+    return out;
   }
 
   async function getSessionContextAsync() {
