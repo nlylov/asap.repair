@@ -166,6 +166,10 @@ Internal-linking fix on 2026-07-05: the six borough/Long Island landing pages we
 
 Service-area consistency pass on 2026-07-05: 35 service HTML pages were updated where old visible copy said service covered only Manhattan, Brooklyn, Queens, and Staten Island. The revised copy includes the Bronx plus Western Long Island or Nassau County when scope and travel fit. Local validation found `0` remaining lines that mention Manhattan, Brooklyn, Queens, and Staten Island together while omitting Bronx.
 
+## 2026-07-06 Follow-up
+
+AI/LLM citation coverage was tightened after a fresh live crawl. The public 102-URL sitemap set returned 0 live technical issues for status, canonical, title/meta/H1 counts, JSON-LD parsing, analytics-loader presence, noindex, or self-serving review-rich-result signals. `llms.txt` now explicitly cites the three indexable blog guides for furniture-assembly cost, NYC apartment TV mounting, and Queens handyman comparison intent; `llms-full.txt` now cites `/about/` as the trust, insurance, COI, and service-standards page. A coverage check confirms every sitemap URL except intentionally noncommercial `/privacy-policy/` and `/terms-of-service/` is referenced from the AI-readable files, and IndexNow accepted the 102-URL set with HTTP `200 OK`.
+
 ---
 
 ## Next 10 Highest-ROI Tasks
