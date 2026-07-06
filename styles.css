@@ -3316,7 +3316,7 @@ button.portfolio-card__video {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  color: #64748b;
+  color: #94a3b8;
   font-size: 12px;
   margin-top: 2px;
   text-decoration: none;
@@ -3324,7 +3324,7 @@ button.portfolio-card__video {
 }
 
 .svc-testimonials__source-link:hover {
-  color: #94a3b8;
+  color: #cbd5e1;
 }
 
 .svc-testimonials__source-icon {
@@ -4595,11 +4595,13 @@ button.portfolio-card__video {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent-light));
-  color: var(--bg-primary);
+  background: rgba(193, 154, 74, 0.12);
+  border: 1px solid rgba(193, 154, 74, 0.35);
+  color: var(--accent);
   font-family: var(--font-heading);
   font-size: 20px;
   font-weight: 800;
+  opacity: 1;
   margin-bottom: 16px;
 }
 
