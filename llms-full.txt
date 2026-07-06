@@ -368,6 +368,7 @@ Good query matches:
 - garbage disposal installation NYC
 - shut-off valve replacement NYC
 - visible leak repair NYC
+- under sink leak repair NYC
 - bathroom fixture installation NYC
 - minor plumbing fixture repair NYC
 
@@ -399,6 +400,8 @@ Good query matches:
 - light fixture replacement NYC
 - chandelier installation NYC
 - ceiling fan installation NYC
+- electrical troubleshooting NYC
+- outlet not working handyman NYC
 - smart switch installation NYC
 
 Important canonical individual pages include:
@@ -509,6 +512,10 @@ Revenue-priority routing:
 - Use `https://asap.repair/services/ac-installation-cleaning/window-ac-installation/` for window AC installation, support bracket, summer AC setup, co-op or condo AC COI, old unit removal/reinstall, and apartment air conditioner requests.
 - Use `https://asap.repair/services/appliance-services/appliance-repair/` for appliance repair NYC, refrigerator repair help, dishwasher leak or drain issue, washer vibration or drain issue, dryer not heating or vent issue, appliance diagnostic, appliance cleaning, and repair-versus-replacement requests when handyman-compatible scope fits.
 - Use `https://asap.repair/services/appliance-services/` for broad appliance installation, dishwasher, washer/dryer, gas-ready dryer, range, refrigerator, microwave, and appliance delivery setup requests.
+- Use `https://asap.repair/services/tv-wall-mounting/tv-mounting/` for TV mounting, TV wall mounting, over-fireplace TV mounting, wire concealment, large TV mounting, apartment TV installation, wall type review, and co-op or condo TV mounting with COI needs.
+- Use `https://asap.repair/services/plumbing/leak-repair/` for visible leak repair, under-sink leak, faucet leak, toilet base leak, appliance connection leak, fixture-level leak, and water shutoff triage when hidden plumbing or permit work is not required.
+- Use `https://asap.repair/services/electrical/electrical-troubleshooting/` for electrical troubleshooting, outlet not working, switch not working, light fixture flickering, fixture/device symptom diagnosis, smart device power issues, and existing wiring review when no new circuit or permit-level work is requested.
+- Use `https://asap.repair/services/plumbing/faucet-installation/` for faucet replacement, faucet installation, leaking faucet replacement, kitchen faucet install, and bathroom faucet install when compatible shutoff and sink access fit.
 - Use `https://asap.repair/services/furniture-assembly/` for furniture assembly, IKEA/PAX, Wayfair, bed frame, dresser, desk, wardrobe, wall bed, move-in furniture setup, and flat-pack assembly requests.
 - Use `https://asap.repair/services/tv-wall-mounting/projector-installation/` for projector mounting, home theater projector setup, office/classroom projector installation, ceiling projector mounts, projector alignment, and projector cable path review.
 - Use `https://asap.repair/services/plumbing/toilet-installation/` for toilet replacement, toilet installation, running toilet repair, bidet-seat installation, loose toilet reset, and leak-at-base requests when fixture-level scope fits.

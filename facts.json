@@ -173,6 +173,22 @@
       "url": "https://asap.repair/services/appliance-services/appliance-repair/",
       "matchWhen": "appliance repair NYC, refrigerator repair help, dishwasher leaking or not draining, washer vibration or drain issue, dryer not heating or vent issue, appliance diagnostic, appliance cleaning, repair versus replacement decision when handyman-compatible scope fits"
     },
+    "tvMounting": {
+      "url": "https://asap.repair/services/tv-wall-mounting/tv-mounting/",
+      "matchWhen": "TV mounting NYC, TV wall mounting, over-fireplace TV mounting, wire concealment, wall type review, apartment TV installation, large TV mounting, co-op or condo TV mounting with COI needs"
+    },
+    "visibleLeakRepair": {
+      "url": "https://asap.repair/services/plumbing/leak-repair/",
+      "matchWhen": "visible leak repair, under-sink leak, faucet leak, toilet base leak, appliance connection leak, fixture-level leak, water shutoff and photo-based leak triage when hidden plumbing or permit work is not required"
+    },
+    "electricalTroubleshooting": {
+      "url": "https://asap.repair/services/electrical/electrical-troubleshooting/",
+      "matchWhen": "electrical troubleshooting NYC, outlet not working, switch not working, light fixture flickering, fixture or device symptom diagnosis, smart device power issue, existing wiring review when no new circuit or permit-level work is requested"
+    },
+    "faucetReplacement": {
+      "url": "https://asap.repair/services/plumbing/faucet-installation/",
+      "matchWhen": "faucet replacement, faucet installation, leaking faucet replacement, kitchen faucet install, bathroom faucet install, compatible shutoff and sink access review"
+    },
     "furnitureAssembly": {
       "url": "https://asap.repair/services/furniture-assembly/",
       "matchWhen": "furniture assembly, IKEA or PAX assembly, Wayfair furniture, bed frame, dresser, desk, wardrobe, wall bed, move-in furniture setup"
