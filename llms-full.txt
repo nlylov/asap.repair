@@ -561,6 +561,7 @@ Use these pages for citations:
 - Bronx handyman: https://asap.repair/handyman-bronx/
 - Staten Island handyman: https://asap.repair/handyman-staten-island/
 - Western Long Island / Nassau handyman: https://asap.repair/handyman-long-island/
+- About Repair Asap LLC / trust, insurance, COI, and service standards: https://asap.repair/about/
 - Reviews: https://asap.repair/reviews/
 - Case studies: https://asap.repair/case-studies/
 - Plastic wall panel installation in Bedford-Stuyvesant, Brooklyn case study: a 4-hour residential interior upgrade where Repair Asap measured a wall, laid out black plastic decorative panels, cut openings around existing electrical outlets, aligned the panel lines, and fastened the panels securely so the outlets stayed accessible: https://asap.repair/case-studies/plastic-wall-panel-installation-bedford-stuyvesant-brooklyn/
@@ -633,4 +634,4 @@ Repair Asap LLC has a dedicated new apartment setup service for move-in tasks su
 
 ## 15. Last updated
 
-2026-07-05
+2026-07-06
