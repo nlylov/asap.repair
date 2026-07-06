@@ -9,6 +9,7 @@ const REPAIR_ASAP_ATTRIBUTION_KEY = 'repair_asap_attribution';
 const REPAIR_ASAP_GA4_ID = 'G-1ZRVGCMZ43';
 const REPAIR_ASAP_GA_CLIENT_TIMEOUT_MS = 800;
 const REPAIR_ASAP_PHONE_CLICK_ENDPOINT = 'https://crm.asap.repair/api/widget/phone-click?org=repair-asap';
+const REPAIR_ASAP_SMS_CLICK_ENDPOINT = 'https://crm.asap.repair/api/widget/sms-click?org=repair-asap';
 const REPAIR_ASAP_TRACKING_PARAM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'gbraid', 'wbraid', 'msclkid', 'fbclid', 'ttclid'];
 let repairAsapGaClientIdPromise = null;
 
@@ -250,11 +251,26 @@ function repairAsapTrackPhoneClickToCrm(telLink) {
   repairAsapPostJsonBeacon(REPAIR_ASAP_PHONE_CLICK_ENDPOINT, payload);
 }
 
+function repairAsapTrackSmsClickToCrm(smsLink) {
+  if (!smsLink) return;
+
+  const sessionContext = repairAsapGetSessionContext();
+  const payload = {
+    threadId: repairAsapGetStoredThreadId(),
+    smsHref: smsLink.href || '',
+    smsLabel: (smsLink.textContent || '').trim(),
+    sessionContext,
+  };
+
+  repairAsapPostJsonBeacon(REPAIR_ASAP_SMS_CLICK_ENDPOINT, payload);
+}
+
 window.repairAsapTrackEvent = repairAsapTrackEvent;
 window.repairAsapBuildLeadEventParams = repairAsapBuildLeadEventParams;
 window.repairAsapGetSessionContext = repairAsapGetSessionContext;
 window.repairAsapGetSessionContextAsync = repairAsapGetSessionContextAsync;
 window.repairAsapTrackPhoneClickToCrm = repairAsapTrackPhoneClickToCrm;
+window.repairAsapTrackSmsClickToCrm = repairAsapTrackSmsClickToCrm;
 
 // ---- Google Places Autocomplete ----
 function getAddressComponentValue(components, type, preferShort = false) {
@@ -507,6 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
         event_label: smsLink.textContent.trim(),
         link_url: smsLink.href,
       });
+      window.repairAsapTrackSmsClickToCrm?.(smsLink);
     }
   });
 
