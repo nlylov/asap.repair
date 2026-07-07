@@ -171,6 +171,14 @@
       "url": "https://asap.repair/services/appliance-services/",
       "matchWhen": "broad appliance installation, dishwasher, washer, dryer, gas-ready dryer, range, refrigerator, microwave, appliance delivery setup, existing-hookup review"
     },
+    "dishwasherInstallation": {
+      "url": "https://asap.repair/services/appliance-services/dishwasher-installation/",
+      "matchWhen": "dishwasher installation, dishwasher replacement, dishwasher delivery setup, existing water supply and drain review, under-counter fit check, dishwasher leak or drain concern after model and hookup photos"
+    },
+    "washerDryerInstallation": {
+      "url": "https://asap.repair/services/appliance-services/washer-dryer-installation/",
+      "matchWhen": "washer dryer installation, stacked washer dryer setup, washer hookup, dryer hookup, laundry appliance delivery setup, vent path review, drain and shutoff photo review, apartment laundry installation"
+    },
     "applianceRepair": {
       "url": "https://asap.repair/services/appliance-services/appliance-repair/",
       "matchWhen": "appliance repair NYC, refrigerator repair help, dishwasher leaking or not draining, washer vibration or drain issue, dryer not heating or vent issue, appliance diagnostic, appliance cleaning, repair versus replacement decision when handyman-compatible scope fits"
@@ -187,9 +195,25 @@
       "url": "https://asap.repair/services/electrical/electrical-troubleshooting/",
       "matchWhen": "electrical troubleshooting NYC, outlet not working, switch not working, light fixture flickering, fixture or device symptom diagnosis, smart device power issue, existing wiring review when no new circuit or permit-level work is requested"
     },
+    "ceilingFanInstallation": {
+      "url": "https://asap.repair/services/electrical/ceiling-fan-installation/",
+      "matchWhen": "ceiling fan installation, ceiling fan replacement, fan box support review, fan remote setup, apartment ceiling fan install, existing box and wiring compatibility check"
+    },
+    "lightFixtureChandelierInstallation": {
+      "url": "https://asap.repair/services/electrical/light-fixture-installation/",
+      "matchWhen": "light fixture installation, chandelier installation, pendant light replacement, flush mount light install, sconce replacement, fixture weight and box support review when existing wiring fits"
+    },
+    "smartDeviceInstallation": {
+      "url": "https://asap.repair/services/electrical/smart-device-installation/",
+      "matchWhen": "smart thermostat setup, smart lock installation, video doorbell installation, smart switch or smart device setup, app pairing, WiFi compatibility, door fit, C-wire or transformer review"
+    },
     "faucetReplacement": {
       "url": "https://asap.repair/services/plumbing/faucet-installation/",
       "matchWhen": "faucet replacement, faucet installation, leaking faucet replacement, kitchen faucet install, bathroom faucet install, compatible shutoff and sink access review"
+    },
+    "garbageDisposalInstallation": {
+      "url": "https://asap.repair/services/plumbing/garbage-disposal-installation/",
+      "matchWhen": "garbage disposal installation, garbage disposal replacement, under-sink disposal swap, disposal leak or jam replacement, sink drain and electrical outlet compatibility review"
     },
     "furnitureAssembly": {
       "url": "https://asap.repair/services/furniture-assembly/",
@@ -295,5 +319,5 @@
     "handymanStatenIsland": "https://asap.repair/handyman-staten-island/",
     "handymanLongIsland": "https://asap.repair/handyman-long-island/"
   },
-  "lastReviewed": "2026-07-05"
+  "lastReviewed": "2026-07-07"
 }
