@@ -150,6 +150,7 @@
       "https://asap.repair/services/painting/checkerboard-floor-painting/"
     ],
     "generalRepairsAndInstallations": [
+      "https://asap.repair/services/general-repairs/coi-handyman/",
       "https://asap.repair/services/general-repairs/door-repair/",
       "https://asap.repair/services/general-repairs/door-installation/",
       "https://asap.repair/services/general-repairs/lock-installation/",
@@ -204,6 +205,10 @@
     "lockInstallation": {
       "url": "https://asap.repair/services/general-repairs/lock-installation/",
       "matchWhen": "deadbolt installation, smart lock setup, keypad lock, latch or strike alignment, apartment door hardware upgrade, lock installation after move-in"
+    },
+    "coiHandyman": {
+      "url": "https://asap.repair/services/general-repairs/coi-handyman/",
+      "matchWhen": "handyman with COI NYC, insured handyman NYC, co-op handyman, condo handyman, doorman building handyman, property manager punch list, building management COI requirements, apartment move-in work requiring certificate of insurance"
     },
     "blindInstallation": {
       "url": "https://asap.repair/services/general-repairs/blind-installation/",
