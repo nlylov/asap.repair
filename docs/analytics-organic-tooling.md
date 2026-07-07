@@ -6,6 +6,7 @@ Scope: `https://asap.repair/` static marketing site for the Repair ASAP tenant/c
 
 - GA4 is installed on all generated HTML pages with measurement ID `G-1ZRVGCMZ43`.
 - GA4 and Microsoft Clarity are loaded through `/analytics.js`, which only injects external analytics tags on production hostnames (`asap.repair` / `www.asap.repair`) so local previews do not pollute production reporting.
+- Cloudflare Web Analytics is in JS Snippet/manual mode and is injected by `/analytics.js` only on the public marketing hostnames; live verification on 2026-07-07 showed 1 Cloudflare beacon on `asap.repair` and 0 beacons on `crm.asap.repair`.
 - Public discovery files are live: `/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/llms-full.txt`.
 - Sitemap currently lists 102 unique HTML URLs.
 - Microsoft Clarity is installed with project ID `wyzjzrud6n`.
