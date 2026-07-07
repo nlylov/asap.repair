@@ -10,7 +10,7 @@
   };
   const containerId = 'repair-asap-chatbot';
   const GA4_ID = 'G-1ZRVGCMZ43';
-  const GA_CLIENT_TIMEOUT_MS = 800;
+  const GA_CLIENT_TIMEOUT_MS = 2200;
   const TRACKING_PARAM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'gbraid', 'wbraid', 'msclkid', 'fbclid', 'ttclid'];
   // --------------------
 
@@ -23,6 +23,7 @@
     visitPromise: null,
   };
   let gaClientIdPromise = null;
+  let gaClientIdCached = '';
 
   function injectStyles() {
     const style = document.createElement('style');
@@ -543,18 +544,24 @@
     return sessionContext;
   }
 
+  function cacheGaClientId(clientId) {
+    const value = typeof clientId === 'string' ? clientId.trim() : '';
+    if (value) gaClientIdCached = value;
+    return value;
+  }
+
   function getGaClientId() {
     try {
       const cookie = document.cookie
         .split(';')
         .map(part => part.trim())
         .find(part => part.startsWith('_ga='));
-      if (!cookie) return '';
+      if (!cookie) return gaClientIdCached;
       const value = decodeURIComponent(cookie.slice(4));
       const match = value.match(/^GA\d+\.\d+\.(\d+\.\d+)$/);
-      return match ? match[1] : '';
+      return match ? cacheGaClientId(match[1]) : gaClientIdCached;
     } catch (_) {
-      return '';
+      return gaClientIdCached;
     }
   }
 
@@ -568,7 +575,7 @@
       const finish = (clientId = '') => {
         if (settled) return;
         settled = true;
-        resolve(clientId || '');
+        resolve(cacheGaClientId(clientId) || '');
       };
       const timer = setTimeout(() => finish(''), GA_CLIENT_TIMEOUT_MS);
 
@@ -592,7 +599,7 @@
         finish('');
       }
     }).then((clientId) => {
-      const resolvedClientId = clientId || getGaClientId();
+      const resolvedClientId = cacheGaClientId(clientId) || getGaClientId();
       if (!resolvedClientId) gaClientIdPromise = null;
       return resolvedClientId;
     });

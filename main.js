@@ -7,11 +7,13 @@ const REPAIR_ASAP_VISITOR_KEY = 'repair_asap_visitor_id';
 const REPAIR_ASAP_THREAD_KEY = 'repair_asap_thread_id';
 const REPAIR_ASAP_ATTRIBUTION_KEY = 'repair_asap_attribution';
 const REPAIR_ASAP_GA4_ID = 'G-1ZRVGCMZ43';
-const REPAIR_ASAP_GA_CLIENT_TIMEOUT_MS = 800;
+const REPAIR_ASAP_GA_CLIENT_TIMEOUT_MS = 2200;
+const REPAIR_ASAP_GA_CLIENT_PRIME_DELAY_MS = 2600;
 const REPAIR_ASAP_PHONE_CLICK_ENDPOINT = 'https://crm.asap.repair/api/widget/phone-click?org=repair-asap';
 const REPAIR_ASAP_SMS_CLICK_ENDPOINT = 'https://crm.asap.repair/api/widget/sms-click?org=repair-asap';
 const REPAIR_ASAP_TRACKING_PARAM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'gbraid', 'wbraid', 'msclkid', 'fbclid', 'ttclid'];
 let repairAsapGaClientIdPromise = null;
+let repairAsapGaClientIdCached = '';
 
 function repairAsapTrackEvent(eventName, params) {
   const safeParams = params || {};
@@ -131,18 +133,24 @@ function repairAsapGetAttributionContext() {
   return out;
 }
 
+function repairAsapCacheGaClientId(clientId) {
+  const value = typeof clientId === 'string' ? clientId.trim() : '';
+  if (value) repairAsapGaClientIdCached = value;
+  return value;
+}
+
 function repairAsapGetGaClientId() {
   try {
     const cookie = document.cookie
       .split(';')
       .map(part => part.trim())
       .find(part => part.startsWith('_ga='));
-    if (!cookie) return '';
+    if (!cookie) return repairAsapGaClientIdCached;
     const value = decodeURIComponent(cookie.slice(4));
     const match = value.match(/^GA\d+\.\d+\.(\d+\.\d+)$/);
-    return match ? match[1] : '';
+    return match ? repairAsapCacheGaClientId(match[1]) : repairAsapGaClientIdCached;
   } catch (_) {
-    return '';
+    return repairAsapGaClientIdCached;
   }
 }
 
@@ -156,7 +164,7 @@ function repairAsapGetGaClientIdAsync() {
     const finish = (clientId = '') => {
       if (settled) return;
       settled = true;
-      resolve(clientId || '');
+      resolve(repairAsapCacheGaClientId(clientId) || '');
     };
     const timer = setTimeout(() => finish(''), REPAIR_ASAP_GA_CLIENT_TIMEOUT_MS);
 
@@ -180,12 +188,35 @@ function repairAsapGetGaClientIdAsync() {
       finish('');
     }
   }).then((clientId) => {
-    const resolvedClientId = clientId || repairAsapGetGaClientId();
+    const resolvedClientId = repairAsapCacheGaClientId(clientId) || repairAsapGetGaClientId();
     if (!resolvedClientId) repairAsapGaClientIdPromise = null;
     return resolvedClientId;
   });
 
   return repairAsapGaClientIdPromise;
+}
+
+function repairAsapPrimeGaClientId() {
+  if (repairAsapGetGaClientId()) return;
+  repairAsapGetGaClientIdAsync().catch(() => {});
+}
+
+function repairAsapInstallGaClientPriming() {
+  try {
+    ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach((eventName) => {
+      window.addEventListener(eventName, repairAsapPrimeGaClientId, { once: true, passive: true });
+    });
+
+    const schedulePrime = () => {
+      window.setTimeout(repairAsapPrimeGaClientId, REPAIR_ASAP_GA_CLIENT_PRIME_DELAY_MS);
+    };
+
+    if (document.readyState === 'complete') {
+      schedulePrime();
+    } else {
+      window.addEventListener('load', schedulePrime, { once: true });
+    }
+  } catch (_) {}
 }
 
 function repairAsapBuildSessionContext() {
@@ -269,8 +300,11 @@ window.repairAsapTrackEvent = repairAsapTrackEvent;
 window.repairAsapBuildLeadEventParams = repairAsapBuildLeadEventParams;
 window.repairAsapGetSessionContext = repairAsapGetSessionContext;
 window.repairAsapGetSessionContextAsync = repairAsapGetSessionContextAsync;
+window.repairAsapPrimeGaClientId = repairAsapPrimeGaClientId;
 window.repairAsapTrackPhoneClickToCrm = repairAsapTrackPhoneClickToCrm;
 window.repairAsapTrackSmsClickToCrm = repairAsapTrackSmsClickToCrm;
+
+repairAsapInstallGaClientPriming();
 
 // ---- Google Places Autocomplete ----
 function getAddressComponentValue(components, type, preferShort = false) {
