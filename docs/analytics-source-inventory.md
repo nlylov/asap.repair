@@ -115,6 +115,7 @@ These are business acquisition sources and should be reconciled in CRM/GA4 by le
 ## Immediate gaps to keep tracking
 
 - CRM business workflow should make paid conversion measurement deterministic: website/chat lead -> CRM lead/contact -> scheduled job/appointment -> estimate/invoice -> QuickBooks paid status -> CRM paid state -> GA4 `purchase` / `close_convert_lead`. CRM production commit `d95b4e6bf6694a63b64106e4464d87f10023ee9c` covers lead-stage event emission and safer invoice/job linking in code; business-process discipline still matters so invoices are created or linked under the right CRM contact/job before payment.
+- Email authentication is still monitor-first: `_dmarc.asap.repair` now collects aggregate reports at `info@asap.repair` with `p=none`, but DKIM records still need exact values from Microsoft 365, Mailgun/LeadConnector, and Amazon SES/QuickBooks-related senders before DMARC can be safely tightened.
 - GSC examples/drilldowns for the 5 old 404 rows and 2 redirect rows should be rechecked from the Search Console UI after the next coverage update; the aggregate reason counts are confirmed, but the UI export/drilldown was unstable during the 2026-07-05 recheck.
 - Bing Site Scan is queue-dependent; re-check the 2026-07-03 scan before treating Bing's site-audit state as known.
 - Bing must recrawl the old AC warning URLs before any historical Site Explorer warning count clears.
