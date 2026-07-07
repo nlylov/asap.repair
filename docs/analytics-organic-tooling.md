@@ -7,13 +7,14 @@ Scope: `https://asap.repair/` static marketing site for the Repair ASAP tenant/c
 - GA4 is installed on all generated HTML pages with measurement ID `G-1ZRVGCMZ43`.
 - GA4 and Microsoft Clarity are loaded through `/analytics.js`, which only injects external analytics tags on production hostnames (`asap.repair` / `www.asap.repair`) so local previews do not pollute production reporting.
 - Cloudflare Web Analytics is in JS Snippet/manual mode and is injected by `/analytics.js` only on the public marketing hostnames; live verification on 2026-07-07 showed 1 Cloudflare beacon on `asap.repair` and 0 beacons on `crm.asap.repair`.
-- Public discovery files are live: `/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/llms-full.txt`.
+- Public discovery files are live: `/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/llms-full.txt`, and `/.well-known/security.txt`.
 - Sitemap currently lists 102 unique HTML URLs.
 - Microsoft Clarity is installed with project ID `wyzjzrud6n`.
 - GA4 is linked to the Search Console domain property `asap.repair` for the web stream `asap.repair` (`13645884964`).
 - Bing Webmaster Tools has the `asap.repair` property and a successful canonical sitemap submission.
 - Ahrefs Site Audit project exists for `asap.repair/` and is verified in Ahrefs.
 - Current analytics/source inventory is tracked in `docs/analytics-source-inventory.md`.
+- Security disclosure discovery was added on 2026-07-07: `/.well-known/security.txt` returns `200 text/plain` with `Contact`, `Expires`, `Preferred-Languages`, and `Canonical`; `/security.txt` redirects to the canonical well-known URL.
 
 ## 2026-07-02 implementation log
 
