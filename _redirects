@@ -26,6 +26,7 @@
 /booking                              /                                  301
 /booking.html                         /                                  301
 /labs/*                              /services/                         301
+/security.txt                        /.well-known/security.txt          301
 /service-conditions/                  /terms-of-service/                 301
 /service-conditions                   /terms-of-service/                 301
 /service-conditions.html              /terms-of-service/                 301

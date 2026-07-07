@@ -1,0 +1,4 @@
+Contact: mailto:info@asap.repair
+Expires: 2027-06-30T23:59:00Z
+Preferred-Languages: en
+Canonical: https://asap.repair/.well-known/security.txt
