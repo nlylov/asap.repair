@@ -2,7 +2,7 @@
 # https://asap.repair
 # Goal: maximize discovery by search engines and AI answer engines while keeping private data/helper paths out of indexes while allowing shared header/footer components crawlers need to render navigation.
 # Cloudflare note: if Managed robots / AI crawler controls are enabled, Cloudflare may prepend conflicting rules.
-# Live Cloudflare settings must preserve these allow rules and the Sitemap directive.
+# Live Cloudflare settings must preserve these allow rules and the Sitemap directive. Header rechecked: 2026-07-07.
 
 User-agent: *
 Allow: /
