@@ -15,6 +15,8 @@ Scope: `https://asap.repair/` static marketing site for the Repair ASAP tenant/c
 - Ahrefs Site Audit project exists for `asap.repair/` and is verified in Ahrefs.
 - Current analytics/source inventory is tracked in `docs/analytics-source-inventory.md`.
 - Security disclosure discovery was added on 2026-07-07: `/.well-known/security.txt` returns `200 text/plain` with `Contact`, `Expires`, `Preferred-Languages`, and `Canonical`; `/security.txt` redirects to the canonical well-known URL.
+- DNS proxy hygiene was corrected on 2026-07-07 from the Cloudflare UI because the current API token cannot read DNS records. Microsoft/verification CNAME records `autodiscover.asap.repair`, `lyncdiscover.asap.repair`, `sip.asap.repair`, `msoid.asap.repair`, and `_domainconnect.asap.repair` were switched from Proxied to DNS-only without changing their targets. Live `dig` verification then showed CNAME targets `autodiscover.outlook.com`, `webdir.online.lync.com`, `sipdir.online.lync.com`, `clientconfig.microsoftonline-p.net`, and `_domainconnect.gd.domaincontrol.com`. Web hosts `asap.repair`, `www.asap.repair`, `api.asap.repair`, `crm.asap.repair`, and `pay.asap.repair` remain proxied.
+- Email-auth follow-up from the same DNS pass: apex MX points to Microsoft 365 and has one SPF record, `_dmarc.asap.repair` is present but currently `p=none`, and common DKIM selectors checked from public DNS did not resolve. Do not guess DKIM records; pull exact selector values from Microsoft 365, Mailgun/LeadConnector, and SES/QuickBooks-related senders before changing deliverability settings.
 
 ## 2026-07-02 implementation log
 
