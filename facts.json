@@ -150,6 +150,7 @@
       "https://asap.repair/services/painting/checkerboard-floor-painting/"
     ],
     "generalRepairsAndInstallations": [
+      "https://asap.repair/services/general-repairs/apartment-turnover/",
       "https://asap.repair/services/general-repairs/coi-handyman/",
       "https://asap.repair/services/general-repairs/door-repair/",
       "https://asap.repair/services/general-repairs/door-installation/",
@@ -209,6 +210,10 @@
     "coiHandyman": {
       "url": "https://asap.repair/services/general-repairs/coi-handyman/",
       "matchWhen": "handyman with COI NYC, insured handyman NYC, co-op handyman, condo handyman, doorman building handyman, property manager punch list, building management COI requirements, apartment move-in work requiring certificate of insurance"
+    },
+    "apartmentTurnover": {
+      "url": "https://asap.repair/services/general-repairs/apartment-turnover/",
+      "matchWhen": "apartment turnover handyman NYC, rental turnover repairs, landlord handyman, property manager punch list, make-ready repairs, tenant move-out repairs, apartment ready for next tenant, rental unit repair list"
     },
     "blindInstallation": {
       "url": "https://asap.repair/services/general-repairs/blind-installation/",

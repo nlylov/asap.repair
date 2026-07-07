@@ -378,6 +378,12 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://asap.repair/services/general-repairs/apartment-turnover/</loc>
+        <lastmod>2026-07-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://asap.repair/services/general-repairs/caulking/</loc>
         <lastmod>2026-03-08</lastmod>
         <changefreq>monthly</changefreq>
