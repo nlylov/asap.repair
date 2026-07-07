@@ -18,9 +18,10 @@ Scope: `https://asap.repair/` static marketing site for the Repair ASAP tenant/c
 
 Live site source of truth:
 
-- Repository/worktree: `/Users/nikita/Developer/sitehandy`.
+- Repository/worktree: `/Users/nikita/Developer/asap.repair`.
 - Cloudflare Pages project: `asap-repair`.
-- GitHub remote still accepts pushes at `nlylov/sitehandy`, while GitHub reports the repository moved to `nlylov/asap.repair`.
+- GitHub canonical repository: `nlylov/asap.repair`. The historical `nlylov/sitehandy` URL redirects there and currently resolves to the same `main` branch/commit.
+- Cloudflare Pages may still display the historical `nlylov/sitehandy` slug in Git settings. The UI only offers `Disconnect Git` for changing that binding, which would stop automatic deployments until the repo is reconnected.
 - Check the current production source with `npx wrangler pages deployment list --project-name asap-repair`; do not treat this document as a static deployment pointer.
 
 Implemented and verified:

@@ -1,4 +1,12 @@
-# Deployment Instructions: Quote API Route
+# Deprecated Deployment Notes: Old Quote API Route
+
+Deprecated: this file describes the old Vercel/proxy quote-route setup. The
+current Repair ASAP site deploys from the canonical GitHub repository
+`nlylov/asap.repair` to the Cloudflare Pages project `asap-repair`, with the
+local worktree at `/Users/nikita/Developer/asap.repair`.
+
+Do not use this file as the current production deployment procedure. It remains
+only as historical context for the old proxy migration.
 
 ## 1. Copy the API route handler
 Copy `api-quote.js` to your Vercel project:
@@ -25,7 +33,7 @@ cors: {
         'https://asap.repair',
         'https://www.asap.repair',
         'https://api.asap.repair',
-        'https://sitehandy.netlify.app',     // ← ADD THIS
+        'https://sitehandy.netlify.app',     // historical Netlify preview
         'http://127.0.0.1:5500',             // ← ADD THIS for dev
         process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : null,
     ].filter(Boolean),
