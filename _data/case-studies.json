@@ -1714,7 +1714,26 @@
       "servicesTitle": "Need drywall repair after AC installation?",
       "servicesSubtitle": "This project connects to drywall repair, interior painting, general handyman repairs, and AC-related wall finish work.",
       "ctaTitle": "Need a wall repaired after AC, plumbing, or electrical work?",
-      "ctaText": "Send photos of the opening or damage and Repair ASAP can help patch, prep, and paint the wall."
+      "ctaText": "Send photos of the opening or damage and Repair ASAP can help patch, prep, and paint the wall.",
+      "faqTitle": "Mini-split drywall repair FAQ",
+      "faqs": [
+        {
+          "q": "Can drywall be repaired after a mini-split AC installation?",
+          "a": "Yes. If the indoor unit is already installed and the wall was left with open cuts or rough edges, the damaged drywall can usually be patched, compounded, sanded, and painted around the existing lines without removing the unit."
+        },
+        {
+          "q": "Can you patch drywall around existing AC lines or pipes?",
+          "a": "Yes, as long as the lines have enough clearance and the repair area is accessible. The patch has to be fit around the existing lines carefully so the finished wall looks clean without pinching or blocking access."
+        },
+        {
+          "q": "Will the repaired wall need to be painted?",
+          "a": "Usually yes. Drywall compound and sanding leave a visible repair area, so the wall should be primed or painted afterward. A close color match may be possible, but older paint can fade, so the best finish sometimes requires painting a larger wall area."
+        },
+        {
+          "q": "How long does mini-split drywall repair take?",
+          "a": "Small repairs can sometimes be completed quickly, but compound drying time controls the final schedule. The number of visits depends on the opening size, how much finishing is needed, and whether painting is included."
+        }
+      ]
     },
     "images": [
       {
