@@ -1866,7 +1866,7 @@
     "title": "Custom Wooden Planter With Built-In Bench",
     "shortTitle": "Custom Planter Bench",
     "seoTitle": "Custom Planter Bench Assembly in Brooklyn | Repair Asap",
-    "description": "Repair Asap case study: a custom wooden flower bed and planter with a built-in bench, documented from bare dirt and fence before photos through one-technician assembly from client drawings and final video stills.",
+    "description": "Repair Asap case study: a custom wooden flower bed and planter with a built-in bench, documented from bare dirt and fence before photos through one-technician assembly from client drawings to a finished outdoor seating area.",
     "metaDescription": "Brooklyn custom planter bench case study: wooden flower bed and built-in bench assembled from client drawings with field adjustments.",
     "excerpt": "A bare fenced dirt area was turned into a custom wooden planter with a built-in bench. Repair Asap followed client drawings, adjusted the board layout on site, and finished the planter with clean seating and soil-ready planting areas.",
     "client": "Residential client",
@@ -1907,7 +1907,7 @@
     ],
     "challenge": "The client provided drawings, instructions, materials, and prepared boards, but the first site photos showed only bare ground and several boards did not match the planned sequence.",
     "solution": "One Repair Asap technician followed the drawings, set supports, attached boards, adjusted and refit mislabeled or incorrectly prepared pieces on site, and installed the built-in bench last.",
-    "result": "The completed custom wooden flower bed and integrated bench were documented with final stills selected from the last videos in the album.",
+    "result": "The completed custom wooden flower bed and integrated bench were documented with a clean final wide photo plus final detail stills from the end of the project.",
     "relatedServices": [
       {
         "title": "Furniture Assembly",
@@ -1935,6 +1935,35 @@
         "Several prepared boards had to be adjusted or refit because labels/prep did not match the plan.",
         "The bench was installed last by the same technician, and the best final views were selected from the last videos."
       ],
+      "comparisonEyebrow": "Before and after",
+      "comparisonTitle": "Bare yard strip turned into a custom planter bench",
+      "comparisonSubtitle": "These photos show the strongest proof from the project: an empty dirt area, support layout and board assembly, then a finished wooden planter with integrated bench seating.",
+      "comparisonPairs": [
+        {
+          "title": "Empty dirt area to finished planter bench",
+          "before": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/before-empty-dirt-yard-fence.webp",
+          "after": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/final-planter-bench-true-final-hero.webp",
+          "beforeAlt": "Bare fenced dirt area before custom wooden planter bench installation",
+          "afterAlt": "Finished custom wooden planter with built-in bench and clean soil bed",
+          "caption": "The yard started as a bare fenced dirt strip. After layout, field fitting, assembly, and cleanup, the space had a U-shaped wooden planter with an integrated bench."
+        },
+        {
+          "title": "Support layout to planter shell",
+          "before": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/process-supports-and-boards-assembly.webp",
+          "after": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/final-soil-moved-into-planter-wide.webp",
+          "beforeAlt": "Support posts and planter boards during custom flower bed assembly",
+          "afterAlt": "Finished planter shell with soil moved into planting areas",
+          "caption": "The prepared boards still needed on-site layout, support setting, fastening, and adjustment before the planter shell could be finished and filled."
+        },
+        {
+          "title": "Field fitting to built-in bench detail",
+          "before": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/process-planter-supports-board-layout.webp",
+          "after": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/final-built-in-bench-seat-video-still.webp",
+          "beforeAlt": "Custom planter support layout and board fitting in progress",
+          "afterAlt": "Built-in wooden bench seat integrated into the custom planter",
+          "caption": "The bench was not a separate store-bought piece. It was fit into the planter structure after the boards and supports were aligned on site."
+        }
+      ],
       "beforeTitle": "Before: bare fenced dirt, no planter yet",
       "beforeSubtitle": "The project started as an empty fenced dirt strip along the back of the yard, with no planter, flower bed, or bench in place.",
       "processGalleryTitle": "Build sequence: supports, boards, and planter shell",
@@ -1943,10 +1972,10 @@
       "focusTitle": "Prepared lumber still needed careful carpentry judgment",
       "focusParagraphs": [
         "The project looks simple only after completion. In practice, the photos show a full sequence from bare ground to layout, support setting, board fastening, board rework, and final bench installation.",
-        "Because no single wide final photo was available, the finished result is documented with the clearest final video stills and detail frames from the end of the album."
+        "The strongest final photo now shows the cleaned planter bench as a usable outdoor seating area, while the detail frames document the bench fit and corner joinery."
       ],
-      "afterTitle": "Finished flower bed and built-in bench",
-      "afterSubtitle": "Final video stills of the completed planter and integrated bench, with close-ups of the bench seat and corner joinery.",
+      "afterTitle": "Finished flower bed, soil beds, and built-in bench",
+      "afterSubtitle": "Final photos show the completed planter bench after cleanup, with close-ups of the bench seat and corner joinery.",
       "servicesTitle": "Need custom assembly or repair work?",
       "servicesSubtitle": "This project connects to Repair ASAP service areas for assembly, general repairs, and custom handyman work.",
       "ctaTitle": "Planning a custom planter, bench, or outdoor assembly?",
@@ -2007,9 +2036,9 @@
       },
       {
         "index": "04",
-        "src": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/final-planter-bench-overview-video-still.webp",
-        "alt": "Final overview of the custom wooden flower bed with built-in bench",
-        "caption": "Final: the completed wooden flower bed and planter, with the integrated bench in place.",
+        "src": "/assets/case-studies/custom-wooden-flower-bed-built-in-bench/final-planter-bench-true-final-hero.webp",
+        "alt": "Finished custom wooden planter with built-in bench and clean soil bed",
+        "caption": "Final: the completed wooden flower bed and planter, with the integrated bench and clean soil beds in place.",
         "stage": "after",
         "width": 1920,
         "height": 1080
