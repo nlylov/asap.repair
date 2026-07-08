@@ -18,7 +18,7 @@ DATA_PATH = ROOT / "_data" / "case-studies.json"
 PUBLIC_DATA_PATH = ROOT / "assets" / "data" / "case-studies.json"
 CASE_DIR = ROOT / "case-studies"
 SITE = "https://asap.repair"
-ASSET_VERSION = "20260708i"
+ASSET_VERSION = "20260708j"
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 LOCAL_URL_RE = re.compile(r"^/[A-Za-z0-9/_#?=&.%+-]*$")
 
