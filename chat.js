@@ -648,7 +648,7 @@
     if (state.visitThreadId === threadId) return true;
     if (state.visitPromise?.threadId === threadId) return state.visitPromise.promise;
 
-    const clearOnNotFound = options.clearOnNotFound !== false;
+    const clearOnInvalidThread = options.clearOnNotFound !== false;
     const visitSource = options.source || 'chat_widget';
 
     const promise = (async () => {
@@ -664,8 +664,8 @@
         body: JSON.stringify(body),
       });
 
-      if (response.status === 404) {
-        if (clearOnNotFound) {
+      if ([400, 404, 410].includes(response.status)) {
+        if (clearOnInvalidThread) {
           removeStoredThreadId();
           if (state.threadId === threadId) state.threadId = null;
         }

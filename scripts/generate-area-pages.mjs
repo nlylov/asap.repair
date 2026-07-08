@@ -3,8 +3,8 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-const ASSET_VERSION = '20260708b';
-const LOADER_ASSET_VERSION = '20260708b';
+const ASSET_VERSION = '20260708l';
+const LOADER_ASSET_VERSION = '20260708l';
 const ROOT = new URL('..', import.meta.url).pathname;
 
 const serviceLinks = {
@@ -222,11 +222,6 @@ function schemaFor(page) {
       addressRegion: 'NY',
       postalCode: '11374',
       addressCountry: 'US',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '73',
     },
   };
 

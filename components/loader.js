@@ -6,7 +6,7 @@
 (function () {
     'use strict';
 
-    const ASSET_VERSION = '20260707b';
+    const ASSET_VERSION = '20260708l';
     const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
     const localHostnames = new Set(['localhost', '127.0.0.1', '::1']);
     const useExtensionlessComponents = window.location.protocol !== 'file:' && !localHostnames.has(window.location.hostname);
