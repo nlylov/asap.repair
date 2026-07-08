@@ -248,12 +248,11 @@ def render_comparison_pairs(study: dict, content: dict) -> str:
 def render_optional_focus_section(study: dict, content: dict) -> str:
     if content.get("hideFocusSection"):
         return ""
-    eyebrow = content.get("focusEyebrow", "Custom finish")
-    title = content.get("focusTitle", "Wood slat partition with integrated lighting")
-    paragraphs = content.get("focusParagraphs") or [
-        "A drywall partition was built to separate the dining/break area from the main customer space, then finished with vertical wood slat panels and integrated accent lighting.",
-        "This detail gave the barbershop a warmer, more premium look while keeping the space practical for day-to-day commercial use.",
-    ]
+    title = content.get("focusTitle")
+    paragraphs = content.get("focusParagraphs") or []
+    if not title or not paragraphs:
+        return ""
+    eyebrow = content.get("focusEyebrow", "Project detail")
     split = max(1, len(paragraphs) // 2)
     left_paragraphs = paragraph_html(paragraphs[:split])
     right_paragraphs = paragraph_html(paragraphs[split:])

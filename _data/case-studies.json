@@ -371,7 +371,7 @@
       ],
       "processGalleryTitle": "Process: measuring outlet openings and checking alignment",
       "processGallerySubtitle": "Selected details from the layout and cutout work before the panels were fastened to the wall.",
-      "hideFocusSection": false,
+      "hideFocusSection": true,
       "detailTitle": "Details: outlet cutouts kept accessible",
       "detailSubtitle": "The outlets were measured before cutting so the finished panel surface could sit cleanly around each receptacle.",
       "afterTitle": "After: finished black plastic panel accent wall",
@@ -1194,6 +1194,14 @@
         "url": "/services/general-repairs/"
       }
     ],
+    "content": {
+      "focusEyebrow": "Custom finish",
+      "focusTitle": "Wood slat partition with integrated lighting",
+      "focusParagraphs": [
+        "A drywall partition was built to separate the dining/break area from the main customer space, then finished with vertical wood slat panels and integrated accent lighting.",
+        "This detail gave the barbershop a warmer, more premium look while keeping the space practical for day-to-day commercial use."
+      ]
+    },
     "images": [
       {
         "index": "002",
