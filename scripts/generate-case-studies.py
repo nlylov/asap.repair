@@ -18,7 +18,7 @@ DATA_PATH = ROOT / "_data" / "case-studies.json"
 PUBLIC_DATA_PATH = ROOT / "assets" / "data" / "case-studies.json"
 CASE_DIR = ROOT / "case-studies"
 SITE = "https://asap.repair"
-ASSET_VERSION = "20260708b"
+ASSET_VERSION = "20260708c"
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 LOCAL_URL_RE = re.compile(r"^/[A-Za-z0-9/_#?=&.%+-]*$")
 
@@ -93,6 +93,12 @@ def load_studies() -> list[dict]:
             validate_local_url(src, "images.src", slug)
             if src.startswith("/") and not (ROOT / src.lstrip("/")).exists():
                 raise SystemExit(f"Missing gallery image {src} for {study['slug']}")
+        for pair in study.get("content", {}).get("comparisonPairs", []):
+            for field in ["before", "after"]:
+                src = pair.get(field, "")
+                validate_local_url(src, f"comparisonPairs.{field}", slug)
+                if src.startswith("/") and not (ROOT / src.lstrip("/")).exists():
+                    raise SystemExit(f"Missing comparison image {src} for {study['slug']}")
     return published
 
 
@@ -198,6 +204,45 @@ def section_gallery(study: dict, stage: str, title: str, subtitle: str) -> str:
 
 def paragraph_html(paragraphs: list[str]) -> str:
     return "\n          ".join(f"<p>{e(paragraph)}</p>" for paragraph in paragraphs if paragraph)
+
+
+def render_comparison_pairs(study: dict, content: dict) -> str:
+    pairs = content.get("comparisonPairs") or []
+    if not pairs:
+        return ""
+    cards = []
+    for pair in pairs:
+        title = pair.get("title", "Before and after")
+        before_alt = pair.get("beforeAlt") or f"{title} before"
+        after_alt = pair.get("afterAlt") or f"{title} after"
+        cards.append(
+            f"""<article class="project-comparison-card">
+          <h3>{e(title)}</h3>
+          <div class="project-comparison-card__media">
+            <figure>
+              <span>Before</span>
+              <img src="{e(pair['before'])}" alt="{e(before_alt)}" loading="lazy">
+            </figure>
+            <figure>
+              <span>After</span>
+              <img src="{e(pair['after'])}" alt="{e(after_alt)}" loading="lazy">
+            </figure>
+          </div>
+          <p>{e(pair.get('caption', ''))}</p>
+        </article>"""
+        )
+    return f"""<section class="project-section project-section--comparison">
+      <div class="container">
+        <div class="section-header section-header--left">
+          <span class="project-eyebrow">{e(content.get('comparisonEyebrow', 'Before and after'))}</span>
+          <h2 class="section-title">{e(content.get('comparisonTitle', 'Proof from the same job'))}</h2>
+          <p class="section-subtitle">{e(content.get('comparisonSubtitle', 'Side-by-side project photos show the starting condition and the finished result.'))}</p>
+        </div>
+        <div class="project-comparison-grid">
+          {''.join(cards)}
+        </div>
+      </div>
+    </section>"""
 
 
 def render_optional_focus_section(study: dict, content: dict) -> str:
@@ -342,6 +387,8 @@ def render_detail(study: dict, studies: list[dict]) -> str:
         </div>
       </div>
     </section>
+
+    {render_comparison_pairs(study, content)}
 
     {section_gallery(study, 'before', content.get('beforeTitle', 'Before: unfinished and damaged areas'), content.get('beforeSubtitle', 'The project started with damaged drywall, exposed rough-ins, missing ceiling sections, and uneven wall surfaces.'))}
 

@@ -1,6 +1,6 @@
 # Case Study Visual Audit — 2026-07-08
 
-Scope: desktop and mobile browser review of the 7 published case-study pages plus `/previews/one-bedroom-renovation-draft/`.
+Scope: desktop and mobile browser review of the published case-study pages plus the former `/previews/one-bedroom-renovation-draft/` draft.
 
 ## Fixed in this pass
 
@@ -13,6 +13,9 @@ Scope: desktop and mobile browser review of the 7 published case-study pages plu
 - Case-study generator now preserves current cache-bust versions for analytics, CSS, loader, and main JS.
 - Area-page generator was updated to avoid emitting stale analytics/cache-bust versions in future generated pages.
 - Apartment turnover preview still stays `noindex`, but the visible internal contact-sheet audit block was removed.
+- Apartment turnover was migrated into the canonical case-study system at `/case-studies/one-bedroom-apartment-turnover-nyc/`.
+- A reusable before/after comparison-pair block was added to the case-study generator.
+- The apartment turnover service page now links directly to the new case study and references it from Service structured data.
 
 ## Current page-by-page notes
 
@@ -58,22 +61,22 @@ Status: improved after removing internal wording.
 
 Needs: stronger before/process/after ordering and a clearer final-result intro. It can sell custom carpentry and outdoor assembly, but the story should feel less like project documentation.
 
-### One-Bedroom Apartment Turnover Draft
+### One-Bedroom Apartment Turnover
 
-Status: promising, but should remain unpublished/noindex until migrated into the case-study system.
+Status: published as a canonical case study at `/case-studies/one-bedroom-apartment-turnover-nyc/`.
 
-Needs before publish:
+Completed:
 
-- choose a canonical slug, likely `/case-studies/one-bedroom-apartment-turnover-nyc/`
-- move structured data into `_data/case-studies.json`
-- add related service links for painting, flooring, bathroom refresh, general repairs, and apartment turnover/move-in work
-- confirm location/privacy wording before indexation
-- select final hero and before/after photos from the existing album
-- remove any remaining internal-only language before linking from `/case-studies/`
+- canonical slug selected: `/case-studies/one-bedroom-apartment-turnover-nyc/`
+- structured data moved into `_data/case-studies.json`
+- related service links added for apartment turnover, painting, flooring, caulking, window repair, and drywall repair
+- location/privacy wording kept broad as `New York, NY`
+- final hero and before/after photos selected from the existing album
+- preview URL redirected to the canonical case-study URL
+- apartment turnover service page linked directly to this case study
 
 ## Next Content Priority
 
-1. Finish and publish the apartment turnover case study after privacy/location confirmation.
-2. Upgrade Mini-Split Drywall Repair and Plastic Wall Panel Installation with stronger before/after proof.
-3. Add commercial-focused copy improvements to Crown Royal Barbershop Renovation.
-4. Then add new real jobs to portfolio using the same one-job, one-canonical-URL system.
+1. Upgrade Mini-Split Drywall Repair and Plastic Wall Panel Installation with stronger before/after proof.
+2. Add commercial-focused copy improvements to Crown Royal Barbershop Renovation.
+3. Then add new real jobs to portfolio using the same one-job, one-canonical-URL system.

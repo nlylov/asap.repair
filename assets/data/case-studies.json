@@ -1,6 +1,39 @@
 {
   "studies": [
     {
+      "slug": "one-bedroom-apartment-turnover-nyc",
+      "title": "One-Bedroom Apartment Turnover in NYC",
+      "excerpt": "A tired one-bedroom rental was made move-in ready between tenants. Repair Asap repainted the apartment, refinished hardwood floors, refreshed the bathroom, repaired window sills and trim, and installed new hallway flooring in about five days.",
+      "thumbnail": "/assets/case-studies/one-bedroom-apartment-turnover-nyc/thumbnail.webp",
+      "location": "New York, NY",
+      "category": "general_repairs",
+      "categories": [
+        "general_repairs",
+        "painting",
+        "flooring"
+      ],
+      "tags": [
+        "apartment turnover",
+        "rental make-ready",
+        "interior painting",
+        "floor refinishing",
+        "bathroom refresh",
+        "vinyl flooring",
+        "window sill repair",
+        "NYC landlord repairs"
+      ],
+      "serviceSlugs": [
+        "general-repairs/apartment-turnover",
+        "painting/interior-painting",
+        "flooring-installation/floor-repair",
+        "flooring-installation/vinyl-floor-installation",
+        "general-repairs/caulking",
+        "general-repairs/window-repair",
+        "general-repairs/drywall-repair"
+      ],
+      "featured": true
+    },
+    {
       "slug": "plastic-wall-panel-installation-bedford-stuyvesant-brooklyn",
       "title": "Plastic Wall Panel Installation in Bed-Stuy, Brooklyn",
       "excerpt": "A plain room wall was upgraded with black plastic decorative panels. Repair Asap measured the layout, checked alignment, cut openings around electrical outlets, and fastened the panels securely in about four hours.",
