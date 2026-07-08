@@ -13,8 +13,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"></noscript>
-  <link rel="stylesheet" href="/styles.css?v=20260706c">
-  <link rel="stylesheet" href="/case-studies/case-studies.css?v=20260614-faq-contrast">
+  <link rel="stylesheet" href="/styles.css?v=20260708b">
+  <link rel="stylesheet" href="/case-studies/case-studies.css?v=20260708b">
   <style>
     /* ---- Draft preview banner (internal only) ---- */
     .preview-banner{
@@ -27,6 +27,7 @@
       letter-spacing: .02em;
       text-align: center;
       padding: 9px 16px;
+      margin-top: 74px;
     }
     /* ---- Before/After slider — styled to match the case-study gallery ---- */
     .ba-grid{
@@ -124,6 +125,12 @@
     .sill-step figcaption{ padding: 10px 12px 12px; color: var(--text-secondary); font-size: 12.5px; line-height: 1.5; }
     .sill-step figcaption b{ font-family: var(--font-heading); color: var(--text-primary); display: block; margin-bottom: 2px; }
     @media (max-width: 720px){
+      .preview-banner{
+        margin-top: 66px;
+        padding: 7px 12px;
+        font-size: 11px;
+        line-height: 1.35;
+      }
       .ba-grid{ grid-template-columns: 1fr; }
       .sill-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
       .sill-step figcaption{ font-size: 12px; padding: 8px 10px 10px; }
@@ -313,22 +320,12 @@
         <h2>Turning over a unit between tenants?</h2>
         <p>Send a few photos and we'll turn it around fast — paint, floors, bathrooms, and repairs in one trip.</p>
         <button class="btn btn--accent btn--lg" data-open-quote>Get a Free Quote</button>
-
-        <details class="preview-audit">
-          <summary>Audit trail — full 300-item album contact sheets</summary>
-          <p>Every range of the intake album, kept for internal verification that the case study draws from the whole shoot, not just the first photos.</p>
-          <img src="/assets/previews/one-bedroom-renovation-draft/contact-001-060.webp" alt="Contact sheet 001-060" loading="lazy">
-          <img src="/assets/previews/one-bedroom-renovation-draft/contact-061-120.webp" alt="Contact sheet 061-120" loading="lazy">
-          <img src="/assets/previews/one-bedroom-renovation-draft/contact-121-180.webp" alt="Contact sheet 121-180" loading="lazy">
-          <img src="/assets/previews/one-bedroom-renovation-draft/contact-181-240.webp" alt="Contact sheet 181-240" loading="lazy">
-          <img src="/assets/previews/one-bedroom-renovation-draft/contact-241-300.webp" alt="Contact sheet 241-300" loading="lazy">
-        </details>
       </div>
     </section>
   </main>
   <div id="site-footer"></div>
-  <script src="/components/loader.js?v=20260707b" defer></script>
-  <script src="/main.js?v=20260707b" defer></script>
+  <script src="/components/loader.js?v=20260708b" defer></script>
+  <script src="/main.js?v=20260708b" defer></script>
   <script>
     (function () {
       document.querySelectorAll('.ba').forEach(function (ba) {

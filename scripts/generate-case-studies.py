@@ -18,6 +18,7 @@ DATA_PATH = ROOT / "_data" / "case-studies.json"
 PUBLIC_DATA_PATH = ROOT / "assets" / "data" / "case-studies.json"
 CASE_DIR = ROOT / "case-studies"
 SITE = "https://asap.repair"
+ASSET_VERSION = "20260708b"
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 LOCAL_URL_RE = re.compile(r"^/[A-Za-z0-9/_#?=&.%+-]*$")
 
@@ -160,8 +161,8 @@ def render_head(study: dict) -> str:
   <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
   <link href=\"https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap\" rel=\"stylesheet\" media=\"print\" onload=\"this.media='all'\">
   <noscript><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap\"></noscript>
-  <link rel=\"stylesheet\" href=\"/styles.css\">
-  <link rel="stylesheet" href="/case-studies/case-studies.css?v=20260614-faq-contrast">
+  <link rel=\"stylesheet\" href=\"/styles.css?v={ASSET_VERSION}\">
+  <link rel="stylesheet" href="/case-studies/case-studies.css?v={ASSET_VERSION}">
   <script type=\"application/ld+json\">{json_ld(schema)}</script>
   <script type=\"application/ld+json\">{json_ld(breadcrumbs)}</script>{faq_script}"""
 
@@ -275,7 +276,7 @@ def render_detail(study: dict, studies: list[dict]) -> str:
         f'<a class="project-service-link" href="{e(s["url"])}">{e(s["title"])}<span>→</span></a>'
         for s in study.get("relatedServices", [])
     )
-    tags = "".join(f"<span>{e(tag)}</span>" for tag in study.get("tags", [])[:10])
+    tags = "".join(f"<span>{e(tag)}</span>" for tag in study.get("tags", [])[:6])
     starting_paragraphs = content.get("startingParagraphs") or [
         study["challenge"],
         "The restroom was only roughed in with plumbing and drain lines. The main room had old drywall, visible damage, and uneven surfaces left by previous tenants.",
@@ -293,7 +294,7 @@ def render_detail(study: dict, studies: list[dict]) -> str:
     return f"""<!DOCTYPE html>
 <html lang=\"en\">
 <head>
-  <script src=\"/analytics.js?v=20260703q\"></script>
+  <script defer src=\"/analytics.js?v={ASSET_VERSION}\"></script>
 {render_head(study)}
 </head>
 <body>
@@ -386,8 +387,8 @@ def render_detail(study: dict, studies: list[dict]) -> str:
     </section>
   </main>
   <div id=\"site-footer\"></div>
-  <script src=\"/components/loader.js?v=20260703l\" defer></script>
-  <script src=\"/main.js?v=20260703l\" defer></script>
+  <script src=\"/components/loader.js?v={ASSET_VERSION}\" defer></script>
+  <script src=\"/main.js?v={ASSET_VERSION}\" defer></script>
 </body>
 </html>
 """
@@ -415,7 +416,7 @@ def render_index(studies: list[dict]) -> str:
     return f"""<!DOCTYPE html>
 <html lang=\"en\">
 <head>
-  <script src=\"/analytics.js?v=20260703q\"></script>
+  <script defer src=\"/analytics.js?v={ASSET_VERSION}\"></script>
   <meta charset=\"UTF-8\">
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
   <title>NYC Handyman Case Studies | Repair Asap</title>
@@ -437,8 +438,8 @@ def render_index(studies: list[dict]) -> str:
   <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
   <link href=\"https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap\" rel=\"stylesheet\" media=\"print\" onload=\"this.media='all'\">
   <noscript><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap\"></noscript>
-  <link rel=\"stylesheet\" href=\"/styles.css\">
-  <link rel="stylesheet" href="/case-studies/case-studies.css?v=20260614-faq-contrast">
+  <link rel=\"stylesheet\" href=\"/styles.css?v={ASSET_VERSION}\">
+  <link rel="stylesheet" href="/case-studies/case-studies.css?v={ASSET_VERSION}">
   <script type=\"application/ld+json\">{json_ld(schema)}</script>
 </head>
 <body>
@@ -478,8 +479,8 @@ def render_index(studies: list[dict]) -> str:
     </section>
   </main>
   <div id=\"site-footer\"></div>
-  <script src=\"/components/loader.js?v=20260703l\" defer></script>
-  <script src=\"/main.js?v=20260703l\" defer></script>
+  <script src=\"/components/loader.js?v={ASSET_VERSION}\" defer></script>
+  <script src=\"/main.js?v={ASSET_VERSION}\" defer></script>
 </body>
 </html>
 """
