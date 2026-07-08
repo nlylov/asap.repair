@@ -18,7 +18,7 @@ DATA_PATH = ROOT / "_data" / "case-studies.json"
 PUBLIC_DATA_PATH = ROOT / "assets" / "data" / "case-studies.json"
 CASE_DIR = ROOT / "case-studies"
 SITE = "https://asap.repair"
-ASSET_VERSION = "20260708l"
+ASSET_VERSION = "20260708m"
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 LOCAL_URL_RE = re.compile(r"^/[A-Za-z0-9/_#?=&.%+-]*$")
 
@@ -265,14 +265,15 @@ def render_comparison_pairs(study: dict, content: dict) -> str:
                 card_classes.append("project-comparison-card--wide")
             position = pair.get("initialPosition", 50)
             aspect_ratio = pair.get("aspectRatio", "4/3")
-            media = f"""<figure class="ba" style="--ar:{e(aspect_ratio)}">
-            <div class="ba__media">
+            media = f"""<figure class="ba" style="--ar:{e(aspect_ratio)}; --pos:{e(str(position))}%;" data-position="{e(str(position))}">
+            <div class="ba__media" role="slider" tabindex="0" aria-label="Slide to compare {e(title)} before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{e(str(position))}" aria-valuetext="{e(str(position))}% before">
               <img class="ba__after" src="{e(pair['after'])}" alt="{e(after_alt)}" loading="lazy">
               <div class="ba__before-wrap"><img src="{e(pair['before'])}" alt="{e(before_alt)}" loading="lazy"></div>
-              <span class="ba__tag ba__tag--before">Before</span>
-              <span class="ba__tag ba__tag--after">After</span>
+              <div class="ba__labels" aria-hidden="true">
+                <span class="ba__tag ba__tag--before" translate="no">Before</span>
+                <span class="ba__tag ba__tag--after" translate="no">After</span>
+              </div>
               <div class="ba__divider"><span class="ba__grip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span></div>
-              <input class="ba__range" type="range" min="0" max="100" value="{e(str(position))}" aria-label="Slide to compare {e(title)} before and after">
             </div>
           </figure>"""
         else:
@@ -293,7 +294,7 @@ def render_comparison_pairs(study: dict, content: dict) -> str:
           <p>{e(pair.get('caption', ''))}</p>
         </article>"""
         )
-    return f"""<section class="project-section project-section--comparison">
+    return f"""<section id="project-comparison" class="project-section project-section--comparison">
       <div class="container">
         <div class="section-header section-header--left">
           <span class="project-eyebrow">{e(content.get('comparisonEyebrow', 'Before and after'))}</span>
@@ -315,17 +316,17 @@ def render_before_after_slider_script(content: dict) -> str:
     (function () {
       document.querySelectorAll('.ba').forEach(function (ba) {
         var media = ba.querySelector('.ba__media');
-        var range = ba.querySelector('.ba__range');
         var wrap = ba.querySelector('.ba__before-wrap');
         var div = ba.querySelector('.ba__divider');
-        if (!media || !range || !wrap || !div) return;
+        if (!media || !wrap || !div) return;
 
         function set(v) {
           v = Math.max(0, Math.min(100, v));
+          ba.style.setProperty('--pos', v + '%');
           wrap.style.width = v + '%';
           div.style.left = v + '%';
-          range.value = v;
-          range.setAttribute('aria-valuetext', Math.round(v) + '% before');
+          media.setAttribute('aria-valuenow', Math.round(v));
+          media.setAttribute('aria-valuetext', Math.round(v) + '% before');
         }
 
         function setFromX(clientX) {
@@ -333,9 +334,22 @@ def render_before_after_slider_script(content: dict) -> str:
           if (r.width) set(((clientX - r.left) / r.width) * 100);
         }
 
-        range.addEventListener('input', function () {
-          set(parseFloat(range.value));
+        media.addEventListener('keydown', function (event) {
+          var current = parseFloat(media.getAttribute('aria-valuenow') || '50');
+          var step = event.shiftKey ? 10 : 5;
+          var next = null;
+          if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') next = current - step;
+          if (event.key === 'ArrowRight' || event.key === 'ArrowUp') next = current + step;
+          if (event.key === 'PageDown') next = current - 10;
+          if (event.key === 'PageUp') next = current + 10;
+          if (event.key === 'Home') next = 0;
+          if (event.key === 'End') next = 100;
+          if (next === null) return;
+          event.preventDefault();
+          set(next);
         });
+
+        set(parseFloat(ba.getAttribute('data-position') || media.getAttribute('aria-valuenow') || '50'));
 
         var dragging = false;
         var pending = false;
