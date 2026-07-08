@@ -1195,12 +1195,35 @@
       }
     ],
     "content": {
+      "heroCtaText": "Request a Commercial Renovation Quote",
+      "startingTitle": "From damaged shell space to customer-ready barbershop",
+      "startingParagraphs": [
+        "The barbershop space had old damaged drywall from previous tenants, an unfinished restroom with only rough plumbing, missing ceiling sections, leak-damaged ceiling areas, and uneven walls throughout the customer-facing room.",
+        "The restroom was only roughed in with plumbing and drain lines. The main room had old drywall, visible damage, and uneven surfaces left by previous tenants."
+      ],
+      "beforeTitle": "Before: unfinished and damaged areas",
+      "beforeSubtitle": "The project started with damaged drywall, exposed rough-ins, missing ceiling sections, and uneven wall surfaces.",
+      "processEyebrow": "Build-out process",
+      "processTitle": "Drywall, ceiling repair, tile, painting, and lighting",
+      "processParagraphs": [
+        "Repair Asap rebuilt the restroom walls and ceiling, repaired and leveled drywall across the main space, installed durable porcelain floor tile and subway wall tile, restored leak-damaged ceiling sections with an access panel, painted the interior, installed lighting, and built a custom wood slat partition with integrated accent lighting.",
+        "The work was completed on a tight commercial schedule. Most of the build-out was handled solo, with helpers brought in for grout and finish-support days.",
+        "Durable finishes were prioritized: porcelain tile flooring, restroom tile, subway tile in the customer area, repaired ceilings, and practical access for future maintenance."
+      ],
+      "processGalleryTitle": "Process: drywall, tile, and surface preparation",
+      "processGallerySubtitle": "Selected progress photos show the transformation from rough construction to durable commercial finishes.",
       "focusEyebrow": "Custom finish",
       "focusTitle": "Wood slat partition with integrated lighting",
       "focusParagraphs": [
         "A drywall partition was built to separate the dining/break area from the main customer space, then finished with vertical wood slat panels and integrated accent lighting.",
         "This detail gave the barbershop a warmer, more premium look while keeping the space practical for day-to-day commercial use."
-      ]
+      ],
+      "detailTitle": "Details: custom feature wall and finish work",
+      "detailSubtitle": "Feature-wall and finish details that helped turn the space into a branded customer-facing interior.",
+      "afterTitle": "After: finished Manhattan barbershop interior",
+      "afterSubtitle": "Final photos after painting, lighting, tile, shelving, artwork, and cleanup.",
+      "ctaTitle": "Planning a commercial renovation or restroom build-out?",
+      "ctaText": "Send photos, describe the scope, and Repair ASAP will help plan the next step."
     },
     "images": [
       {

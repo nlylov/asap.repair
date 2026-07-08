@@ -323,12 +323,12 @@ def render_detail(study: dict, studies: list[dict]) -> str:
     tags = "".join(f"<span>{e(tag)}</span>" for tag in study.get("tags", [])[:6])
     starting_paragraphs = content.get("startingParagraphs") or [
         study["challenge"],
-        "The restroom was only roughed in with plumbing and drain lines. The main room had old drywall, visible damage, and uneven surfaces left by previous tenants.",
+        "Repair Asap reviewed the site conditions, access needs, materials, and finish requirements before sequencing the work.",
     ]
     process_paragraphs = content.get("processParagraphs") or [
         study["solution"],
-        "The work was completed on a tight commercial schedule. Most of the build-out was handled solo, with helpers brought in for grout and finish-support days.",
-        "Durable finishes were prioritized: porcelain tile flooring, restroom tile, subway tile in the customer area, repaired ceilings, and practical access for future maintenance.",
+        "The work was sequenced around the existing conditions, material requirements, and final cleanup needed for a ready-to-use result.",
+        "Progress photos document the main steps from preparation through completion.",
     ]
     process_split = max(1, len(process_paragraphs) // 2)
     faq_section = render_faq(study)
@@ -353,7 +353,7 @@ def render_detail(study: dict, studies: list[dict]) -> str:
           <p class=\"project-hero__lede\">{e(study['excerpt'])}</p>
           <div class=\"project-tags\">{tags}</div>
           <div class=\"project-hero__actions\">
-            <button class=\"btn btn--accent btn--lg\" data-open-quote>{e(content.get('heroCtaText', 'Request a Commercial Renovation Quote'))}</button>
+            <button class=\"btn btn--accent btn--lg\" data-open-quote>{e(content.get('heroCtaText', 'Request a Project Quote'))}</button>
             <a class=\"btn btn--secondary btn--lg\" href=\"/case-studies/\">View More Projects</a>
           </div>
         </div>
@@ -377,7 +377,7 @@ def render_detail(study: dict, studies: list[dict]) -> str:
       <div class=\"container project-two-col\">
         <div>
           <span class=\"project-eyebrow\">{e(content.get('startingEyebrow', 'Starting condition'))}</span>
-          <h2>{e(content.get('startingTitle', 'From damaged shell space to customer-ready barbershop'))}</h2>
+          <h2>{e(content.get('startingTitle', 'Starting condition and project scope'))}</h2>
           {paragraph_html(starting_paragraphs)}
         </div>
         <div class=\"project-scope-card\">
@@ -389,13 +389,13 @@ def render_detail(study: dict, studies: list[dict]) -> str:
 
     {render_comparison_pairs(study, content)}
 
-    {section_gallery(study, 'before', content.get('beforeTitle', 'Before: unfinished and damaged areas'), content.get('beforeSubtitle', 'The project started with damaged drywall, exposed rough-ins, missing ceiling sections, and uneven wall surfaces.'))}
+    {section_gallery(study, 'before', content.get('beforeTitle', 'Before: starting condition'), content.get('beforeSubtitle', 'Before photos show the site conditions and details that needed attention before the work could be completed.'))}
 
     <section class=\"project-section project-section--dark\">
       <div class=\"container project-two-col\">
         <div>
-          <span class=\"project-eyebrow\">{e(content.get('processEyebrow', 'Build-out process'))}</span>
-          <h2>{e(content.get('processTitle', 'Drywall, ceiling repair, tile, painting, and lighting'))}</h2>
+          <span class=\"project-eyebrow\">{e(content.get('processEyebrow', 'Work process'))}</span>
+          <h2>{e(content.get('processTitle', 'Planning, preparation, installation, and finishing'))}</h2>
           {paragraph_html(process_paragraphs[:process_split])}
         </div>
         <div>
@@ -404,12 +404,12 @@ def render_detail(study: dict, studies: list[dict]) -> str:
       </div>
     </section>
 
-    {section_gallery(study, 'process', content.get('processGalleryTitle', 'Process: drywall, tile, and surface preparation'), content.get('processGallerySubtitle', 'Selected progress photos show the transformation from rough construction to durable commercial finishes.'))}
+    {section_gallery(study, 'process', content.get('processGalleryTitle', 'Process: selected progress photos'), content.get('processGallerySubtitle', 'Selected progress photos show how the work moved from preparation to finished condition.'))}
 
     {render_optional_focus_section(study, content)}
 
-    {section_gallery(study, 'detail', content.get('detailTitle', 'Details: custom feature wall and finish work'), content.get('detailSubtitle', 'Feature-wall and finish details that helped turn the space into a branded customer-facing interior.'))}
-    {section_gallery(study, 'after', content.get('afterTitle', 'After: finished Manhattan barbershop interior'), content.get('afterSubtitle', 'Final photos after painting, lighting, tile, shelving, artwork, and cleanup.'))}
+    {section_gallery(study, 'detail', content.get('detailTitle', 'Details: finish work and field adjustments'), content.get('detailSubtitle', 'Detail photos show the finish decisions and field adjustments behind the completed project.'))}
+    {section_gallery(study, 'after', content.get('afterTitle', 'After: completed project'), content.get('afterSubtitle', 'Final photos show the completed work after installation, finishing, and cleanup.'))}
 
     {related_projects_block}
 
@@ -426,7 +426,7 @@ def render_detail(study: dict, studies: list[dict]) -> str:
 
     <section class=\"project-cta\">
       <div class=\"container\">
-        <h2>{e(content.get('ctaTitle', 'Planning a commercial renovation or restroom build-out?'))}</h2>
+        <h2>{e(content.get('ctaTitle', 'Planning a repair, installation, or renovation project?'))}</h2>
         <p>{e(content.get('ctaText', 'Send photos, describe the scope, and Repair ASAP will help plan the next step.'))}</p>
         <button class=\"btn btn--accent btn--lg\" data-open-quote>Get a Free Quote</button>
       </div>
