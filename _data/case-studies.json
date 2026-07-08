@@ -3,16 +3,16 @@
     "slug": "one-bedroom-apartment-turnover-nyc",
     "status": "published",
     "featured": true,
-    "title": "One-Bedroom Apartment Turnover in NYC",
-    "shortTitle": "Apartment Turnover, NYC",
-    "seoTitle": "NYC Apartment Turnover Case Study | Repair Asap",
-    "description": "Repair Asap turned a worn one-bedroom rental apartment in New York City into a clean, move-in-ready unit in about five days with full interior painting, hardwood floor refinishing, bathroom refresh work, new hallway flooring, window sill repair, trim work, and wall patching.",
-    "metaDescription": "NYC apartment turnover case study: one-bedroom rental made move-in ready in about five days with painting, floor refinishing, bathroom refresh, and repairs.",
-    "excerpt": "A tired one-bedroom rental was made move-in ready between tenants. Repair Asap repainted the apartment, refinished hardwood floors, refreshed the bathroom, repaired window sills and trim, and installed new hallway flooring in about five days.",
+    "title": "One-Bedroom Apartment Turnover in Flatlands, Brooklyn",
+    "shortTitle": "Apartment Turnover, Brooklyn",
+    "seoTitle": "Flatlands Brooklyn Apartment Turnover | Repair Asap",
+    "description": "Repair Asap turned a worn one-bedroom rental apartment in Flatlands, Brooklyn into a clean, move-in-ready unit in about five days with full interior painting, hardwood floor refinishing, bathroom refresh work, new hallway flooring, window sill repair, trim work, and wall patching.",
+    "metaDescription": "Flatlands Brooklyn apartment turnover case study: one-bedroom rental made move-in ready with painting, floor refinishing, bathroom refresh, and repairs.",
+    "excerpt": "A tired one-bedroom rental in Flatlands, Brooklyn was made move-in ready between tenants. Repair Asap repainted the apartment, refinished hardwood floors, refreshed the bathroom, repaired window sills and trim, and installed new hallway flooring in about five days.",
     "client": "Property owner",
-    "location": "New York, NY",
-    "locationShort": "New York, NY",
-    "borough": "New York, NY",
+    "location": "Flatlands, Brooklyn, NY",
+    "locationShort": "Flatlands, Brooklyn",
+    "borough": "Brooklyn, NY",
     "projectType": "Apartment Turnover",
     "industry": "Residential rental apartment",
     "dateRange": "About 5 days",
@@ -32,7 +32,8 @@
       "bathroom refresh",
       "vinyl flooring",
       "window sill repair",
-      "NYC landlord repairs"
+      "Flatlands Brooklyn",
+      "Brooklyn landlord repairs"
     ],
     "thumbnail": "/assets/case-studies/one-bedroom-apartment-turnover-nyc/thumbnail.webp",
     "heroImage": "/assets/case-studies/one-bedroom-apartment-turnover-nyc/finished-living-room-hero.webp",
@@ -95,27 +96,34 @@
       "comparisonPairs": [
         {
           "title": "Bedroom repaint and floor refinish",
+          "display": "slider",
+          "wide": true,
+          "aspectRatio": "4/3",
           "before": "/assets/case-studies/one-bedroom-apartment-turnover-nyc/bedroom-before-worn-walls-trim.webp",
           "after": "/assets/case-studies/one-bedroom-apartment-turnover-nyc/bedroom-after-painted-refinished-floor.webp",
           "beforeAlt": "Bedroom before apartment turnover with worn walls and scuffed trim",
           "afterAlt": "Bedroom after apartment turnover with fresh paint and refinished parquet floor",
-          "caption": "The bedroom went from worn walls, loose-looking details, and scuffed trim to a clean room with fresh paint and refinished parquet."
+          "caption": "Same room and close matching angle: worn walls, loose wiring, and scuffed trim became freshly painted walls, clean white trim, and refinished parquet."
         },
         {
           "title": "Bathroom refresh",
-          "before": "/assets/case-studies/one-bedroom-apartment-turnover-nyc/bathroom-before-tub-tile.webp",
+          "display": "slider",
+          "aspectRatio": "3/4",
+          "before": "/assets/case-studies/one-bedroom-apartment-turnover-nyc/bathroom-before-slider-curtain.webp",
           "after": "/assets/case-studies/one-bedroom-apartment-turnover-nyc/bathroom-after-refreshed-tub-tile.webp",
-          "beforeAlt": "Bathroom before turnover with dated tub and tile condition",
+          "beforeAlt": "Bathroom before turnover with old shower curtain and dated tub tile condition",
           "afterAlt": "Bathroom after refresh with clean tub tile and fixtures",
-          "caption": "The bathroom was cleaned up, re-caulked where needed, and brought back to a brighter rental-ready condition."
+          "caption": "Same tub and window: the bathroom was deep-cleaned, re-caulked, and refreshed with cleaner tile, tub, and fixture details."
         },
         {
           "title": "Hallway flooring",
+          "display": "slider",
+          "aspectRatio": "3/4",
           "before": "/assets/case-studies/one-bedroom-apartment-turnover-nyc/hallway-before-worn-floor.webp",
-          "after": "/assets/case-studies/one-bedroom-apartment-turnover-nyc/hallway-after-click-lock-vinyl.webp",
+          "after": "/assets/case-studies/one-bedroom-apartment-turnover-nyc/hallway-after-slider-click-lock.webp",
           "beforeAlt": "Hallway before apartment turnover with worn old flooring",
           "afterAlt": "Hallway after apartment turnover with new click-lock vinyl flooring",
-          "caption": "Worn hallway flooring was replaced with clean click-lock vinyl and fresh trim for a better first impression."
+          "caption": "Same hallway looking in: worn flooring was replaced with new click-lock vinyl and the trim was repainted crisp white."
         }
       ],
       "beforeTitle": "Before: the apartment needed make-ready work",
@@ -130,8 +138,11 @@
       "processGalleryTitle": "Process: the work behind the finished photos",
       "processGallerySubtitle": "Selected progress photos show painting prep and window sill restoration, two details that strongly affect the final look.",
       "hideFocusSection": true,
-      "detailTitle": "Detail repair: damaged window sills",
-      "detailSubtitle": "Water-damaged and peeling sill areas were stripped, rebuilt with filler, primed, and painted clean.",
+      "detailEyebrow": "Window sill repair",
+      "detailLayout": "sillSequence",
+      "detailSequenceKicker": "The same sill, start to finish",
+      "detailTitle": "Restoring a damaged window sill",
+      "detailSubtitle": "One of the worst spots in the unit had blistered old paint and water-worn wood. The same sill was documented through damage, stripping, filler work, and final paint.",
       "afterTitle": "After: move-in-ready apartment",
       "afterSubtitle": "Finished photos show a cleaner, brighter, neutral unit ready for listing, showing, or tenant move-in.",
       "servicesTitle": "Need a rental unit turned around?",
@@ -195,7 +206,8 @@
         "stage": "detail",
         "src": "/assets/case-studies/one-bedroom-apartment-turnover-nyc/window-sill-before-damaged.webp",
         "alt": "Damaged window sill before restoration",
-        "caption": "Damaged sill with old paint blistering and flaking.",
+        "stepTitle": "Damaged",
+        "caption": "Old paint blistered and flaking off the sill in sheets, exposing bare, water-worn wood.",
         "width": 820,
         "height": 615
       },
@@ -203,7 +215,8 @@
         "stage": "detail",
         "src": "/assets/case-studies/one-bedroom-apartment-turnover-nyc/window-sill-stripped.webp",
         "alt": "Window sill stripped and sanded during repair",
-        "caption": "Loose coating scraped and sanded back.",
+        "stepTitle": "Stripped",
+        "caption": "All loose coating was scraped off and sanded back to a sound, level surface.",
         "width": 820,
         "height": 615
       },
@@ -211,7 +224,8 @@
         "stage": "detail",
         "src": "/assets/case-studies/one-bedroom-apartment-turnover-nyc/window-sill-rebuilt-filler.webp",
         "alt": "Window sill rebuilt with repair filler before paint",
-        "caption": "Filler used to rebuild gouged and uneven areas.",
+        "stepTitle": "Rebuilt",
+        "caption": "Wood-repair filler was troweled over gouges and pinholes, then leveled flush.",
         "width": 820,
         "height": 615
       },
@@ -219,7 +233,8 @@
         "stage": "detail",
         "src": "/assets/case-studies/one-bedroom-apartment-turnover-nyc/window-sill-after-painted.webp",
         "alt": "Window sill after primer and paint",
-        "caption": "Primed and painted sill ready for the next tenant.",
+        "stepTitle": "Painted",
+        "caption": "The sill was primed and repainted to a smooth, clean white finish, ready for the next tenant.",
         "width": 820,
         "height": 617
       },
@@ -985,6 +1000,35 @@
         "When the project started, the bathroom was just rough-in: water supply lines, a drain/sewer connection, and ventilation against bare framing, exposed brick, and open ceiling joists.",
         "There were no finished walls, no ceiling, and no shower. Everything that makes a bathroom usable still had to be built, waterproofed, and tiled from scratch."
       ],
+      "comparisonEyebrow": "Before and after",
+      "comparisonTitle": "Rough plumbing turned into a tiled shower",
+      "comparisonSubtitle": "The strongest proof on this bathroom build-out is the progression from exposed utilities and open framing to a waterproofed, tiled wet area with a bench, niche, and mosaic shower floor.",
+      "comparisonPairs": [
+        {
+          "title": "Rough-in to finished shower",
+          "before": "/assets/case-studies/bathroom-build-out-rough-plumbing-to-tiled-shower-queens/before-rough-plumbing-utilities.webp",
+          "after": "/assets/case-studies/bathroom-build-out-rough-plumbing-to-tiled-shower-queens/tiled-marble-shower-niche-mosaic.webp",
+          "beforeAlt": "Bathroom rough plumbing and open framing before shower build-out in Queens",
+          "afterAlt": "Tiled marble-look shower with niche and mosaic floor after bathroom build-out in Queens",
+          "caption": "The wet area went from exposed utilities and bare framing to a tiled shower with a recessed niche, built-in bench, and mosaic floor."
+        },
+        {
+          "title": "Open framing to finished wall tile",
+          "before": "/assets/case-studies/bathroom-build-out-rough-plumbing-to-tiled-shower-queens/before-bare-framing-no-ceiling.webp",
+          "after": "/assets/case-studies/bathroom-build-out-rough-plumbing-to-tiled-shower-queens/marble-feature-wall.webp",
+          "beforeAlt": "Bare bathroom framing and open ceiling before wall build-out",
+          "afterAlt": "Finished large-format marble-look porcelain bathroom wall tile",
+          "caption": "The room started with exposed framing and no finished ceiling, then received finished wall surfaces and large-format porcelain tile."
+        },
+        {
+          "title": "Waterproofed base to mosaic shower floor",
+          "before": "/assets/case-studies/bathroom-build-out-rough-plumbing-to-tiled-shower-queens/cement-board-waterproofing-shower-pan.webp",
+          "after": "/assets/case-studies/bathroom-build-out-rough-plumbing-to-tiled-shower-queens/marble-shower-corner-hex-floor.webp",
+          "beforeAlt": "Cement backer board waterproofing and sloped shower pan before tile",
+          "afterAlt": "Hexagon mosaic shower floor and marble-look wall tile after installation",
+          "caption": "The shower base was built and waterproofed before the hexagon mosaic floor and marble-look wall tile were installed."
+        }
+      ],
       "beforeTitle": "Before: bare framing over rough plumbing",
       "beforeSubtitle": "The room began as rough utilities only — supply lines, drain, and ventilation with no finished surfaces.",
       "processEyebrow": "Build-out process",
@@ -1002,7 +1046,30 @@
       "servicesTitle": "Planning a bathroom build-out or shower tile job?",
       "servicesSubtitle": "This project connects to tile and flooring, drywall, plumbing, bathroom fixtures, and waterproofing/caulking work.",
       "ctaTitle": "Have a rough-plumbed or unfinished bathroom in NYC?",
-      "ctaText": "Send photos of the space and Repair ASAP can help build it out — walls, waterproofing, shower pan, and tile."
+      "ctaText": "Send photos of the space and Repair ASAP can help build it out — walls, waterproofing, shower pan, and tile.",
+      "faqTitle": "Bathroom build-out questions",
+      "faqs": [
+        {
+          "q": "Can Repair ASAP build out a bathroom that is only rough-plumbed?",
+          "a": "Repair ASAP can help with many bathroom build-out scopes around an existing rough-in, including wall and ceiling build-out, cement backer board, waterproofing, shower pan prep, tile, fixture-level finish work, and punch-list repairs. Plumbing, electrical, permits, and licensed-trade requirements depend on the building and scope."
+        },
+        {
+          "q": "Why does waterproofing matter before shower tile?",
+          "a": "Tile and grout are finish surfaces, not the full waterproofing system. A shower needs the right substrate, waterproofing, and slope to the drain before tile is installed so the wet area can perform properly."
+        },
+        {
+          "q": "Can you build a sloped shower pan and install mosaic floor tile?",
+          "a": "Yes, after reviewing the site conditions. On this project the shower base was built to slope toward the drain, then finished with white hexagon mosaic tile."
+        },
+        {
+          "q": "Can you install large-format marble-look porcelain tile?",
+          "a": "Yes. Large-format tile requires careful substrate prep, layout, cutting, spacing, and leveling so the wall looks clean and the joints stay consistent."
+        },
+        {
+          "q": "What should I send for a bathroom build-out quote?",
+          "a": "Send photos or videos of the whole bathroom, close-ups of plumbing and walls, rough measurements, tile or fixture choices if you have them, building access rules, COI or management requirements, and the deadline you are trying to meet."
+        }
+      ]
     },
     "images": [
       {

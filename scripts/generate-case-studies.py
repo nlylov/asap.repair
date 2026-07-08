@@ -202,6 +202,49 @@ def section_gallery(study: dict, stage: str, title: str, subtitle: str) -> str:
   </section>"""
 
 
+def render_detail_gallery(study: dict, content: dict) -> str:
+    images = [img for img in study.get("images", []) if img.get("stage") == "detail"]
+    if not images:
+        return ""
+    title = content.get("detailTitle", "Details: finish work and field adjustments")
+    subtitle = content.get(
+        "detailSubtitle",
+        "Detail photos show the finish decisions and field adjustments behind the completed project.",
+    )
+    if content.get("detailLayout") != "sillSequence":
+        return section_gallery(study, "detail", title, subtitle)
+
+    steps = []
+    for index, img in enumerate(images, start=1):
+        step_title = img.get("stepTitle") or f"Step {index}"
+        steps.append(
+            f"""<figure class="sill-step">
+              <div class="sill-step__media"><span class="sill-step__num">{index}</span><img src="{e(img['src'])}" alt="{e(img.get('alt') or img.get('caption'))}" loading="lazy" width="{e(img.get('width', 1200))}" height="{e(img.get('height', 900))}"></div>
+              <figcaption><strong>{e(step_title)}</strong><span>{e(img.get('caption'))}</span></figcaption>
+            </figure>"""
+        )
+    kicker = content.get("detailSequenceKicker", "Step-by-step sequence")
+    return f"""
+  <section class=\"project-section project-section--gallery project-section--sill-sequence\">
+    <div class=\"container\">
+      <div class=\"section-header section-header--left\">
+        <span class=\"project-eyebrow\">{e(content.get('detailEyebrow', 'Project detail'))}</span>
+        <h2 class=\"section-title\">{e(title)}</h2>
+        <p class=\"section-subtitle\">{e(subtitle)}</p>
+      </div>
+      <div class=\"sill-seq\">
+        <div class=\"sill-seq__head\">
+          <h3>{e(kicker)}</h3>
+          <span>{len(images)} documented stages</span>
+        </div>
+        <div class=\"sill-grid\">
+          {''.join(steps)}
+        </div>
+      </div>
+    </div>
+  </section>"""
+
+
 def paragraph_html(paragraphs: list[str]) -> str:
     return "\n          ".join(f"<p>{e(paragraph)}</p>" for paragraph in paragraphs if paragraph)
 
@@ -215,10 +258,25 @@ def render_comparison_pairs(study: dict, content: dict) -> str:
         title = pair.get("title", "Before and after")
         before_alt = pair.get("beforeAlt") or f"{title} before"
         after_alt = pair.get("afterAlt") or f"{title} after"
-        cards.append(
-            f"""<article class="project-comparison-card">
-          <h3>{e(title)}</h3>
-          <div class="project-comparison-card__media">
+        card_classes = ["project-comparison-card"]
+        if pair.get("display") == "slider":
+            card_classes.append("project-comparison-card--slider")
+            if pair.get("wide"):
+                card_classes.append("project-comparison-card--wide")
+            position = pair.get("initialPosition", 50)
+            aspect_ratio = pair.get("aspectRatio", "4/3")
+            media = f"""<figure class="ba" style="--ar:{e(aspect_ratio)}">
+            <div class="ba__media">
+              <img class="ba__after" src="{e(pair['after'])}" alt="{e(after_alt)}" loading="lazy">
+              <div class="ba__before-wrap"><img src="{e(pair['before'])}" alt="{e(before_alt)}" loading="lazy"></div>
+              <span class="ba__tag ba__tag--before">Before</span>
+              <span class="ba__tag ba__tag--after">After</span>
+              <div class="ba__divider"><span class="ba__grip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span></div>
+              <input class="ba__range" type="range" min="0" max="100" value="{e(str(position))}" aria-label="Slide to compare {e(title)} before and after">
+            </div>
+          </figure>"""
+        else:
+            media = f"""<div class="project-comparison-card__media">
             <figure>
               <span>Before</span>
               <img src="{e(pair['before'])}" alt="{e(before_alt)}" loading="lazy">
@@ -227,7 +285,11 @@ def render_comparison_pairs(study: dict, content: dict) -> str:
               <span>After</span>
               <img src="{e(pair['after'])}" alt="{e(after_alt)}" loading="lazy">
             </figure>
-          </div>
+          </div>"""
+        cards.append(
+            f"""<article class="{e(' '.join(card_classes))}">
+          <h3>{e(title)}</h3>
+          {media}
           <p>{e(pair.get('caption', ''))}</p>
         </article>"""
         )
@@ -243,6 +305,121 @@ def render_comparison_pairs(study: dict, content: dict) -> str:
         </div>
       </div>
     </section>"""
+
+
+def render_before_after_slider_script(content: dict) -> str:
+    pairs = content.get("comparisonPairs") or []
+    if not any(pair.get("display") == "slider" for pair in pairs):
+        return ""
+    return """  <script>
+    (function () {
+      document.querySelectorAll('.ba').forEach(function (ba) {
+        var media = ba.querySelector('.ba__media');
+        var range = ba.querySelector('.ba__range');
+        var wrap = ba.querySelector('.ba__before-wrap');
+        var div = ba.querySelector('.ba__divider');
+        if (!media || !range || !wrap || !div) return;
+
+        function set(v) {
+          v = Math.max(0, Math.min(100, v));
+          wrap.style.width = v + '%';
+          div.style.left = v + '%';
+          range.value = v;
+          range.setAttribute('aria-valuetext', Math.round(v) + '% before');
+        }
+
+        function setFromX(clientX) {
+          var r = media.getBoundingClientRect();
+          if (r.width) set(((clientX - r.left) / r.width) * 100);
+        }
+
+        range.addEventListener('input', function () {
+          set(parseFloat(range.value));
+        });
+
+        var dragging = false;
+        var pending = false;
+        var startX = 0;
+        var startY = 0;
+        var SLOP = 6;
+
+        media.addEventListener('pointerdown', function (event) {
+          if (event.pointerType === 'mouse' && event.button !== 0) return;
+          startX = event.clientX;
+          startY = event.clientY;
+          if (event.pointerType === 'mouse') {
+            dragging = true;
+            try { media.setPointerCapture(event.pointerId); } catch (_) {}
+            setFromX(event.clientX);
+            event.preventDefault();
+          } else {
+            pending = true;
+          }
+        });
+
+        media.addEventListener('pointermove', function (event) {
+          if (pending) {
+            var dx = event.clientX - startX;
+            var dy = event.clientY - startY;
+            if (Math.abs(dx) < SLOP && Math.abs(dy) < SLOP) return;
+            if (Math.abs(dy) > Math.abs(dx)) {
+              pending = false;
+              return;
+            }
+            pending = false;
+            dragging = true;
+            try { media.setPointerCapture(event.pointerId); } catch (_) {}
+          }
+          if (!dragging) return;
+          event.preventDefault();
+          setFromX(event.clientX);
+        });
+
+        function end(event) {
+          pending = false;
+          dragging = false;
+          try { media.releasePointerCapture(event.pointerId); } catch (_) {}
+        }
+
+        media.addEventListener('pointerup', end);
+        media.addEventListener('pointercancel', end);
+
+        if (!('PointerEvent' in window)) {
+          media.addEventListener('touchstart', function (event) {
+            var touch = event.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+            pending = true;
+          }, { passive: false });
+
+          media.addEventListener('touchmove', function (event) {
+            var touch = event.touches[0];
+            if (pending) {
+              var dx = touch.clientX - startX;
+              var dy = touch.clientY - startY;
+              if (Math.abs(dx) < SLOP && Math.abs(dy) < SLOP) return;
+              if (Math.abs(dy) > Math.abs(dx)) {
+                pending = false;
+                return;
+              }
+              pending = false;
+              dragging = true;
+            }
+            if (!dragging) return;
+            event.preventDefault();
+            setFromX(touch.clientX);
+          }, { passive: false });
+
+          media.addEventListener('touchend', function () {
+            pending = false;
+            dragging = false;
+          });
+        }
+
+        set(parseFloat(range.value) || 50);
+      });
+    })();
+  </script>"""
 
 
 def render_optional_focus_section(study: dict, content: dict) -> str:
@@ -335,6 +512,8 @@ def render_detail(study: dict, studies: list[dict]) -> str:
     faq_block = f"\n\n    {faq_section}" if faq_section else ""
     related_projects = related_project_section(study, studies)
     related_projects_block = f"\n\n    {related_projects}" if related_projects else ""
+    slider_script = render_before_after_slider_script(content)
+    slider_script_block = f"\n{slider_script}" if slider_script else ""
     return f"""<!DOCTYPE html>
 <html lang=\"en\">
 <head>
@@ -408,7 +587,7 @@ def render_detail(study: dict, studies: list[dict]) -> str:
 
     {render_optional_focus_section(study, content)}
 
-    {section_gallery(study, 'detail', content.get('detailTitle', 'Details: finish work and field adjustments'), content.get('detailSubtitle', 'Detail photos show the finish decisions and field adjustments behind the completed project.'))}
+    {render_detail_gallery(study, content)}
     {section_gallery(study, 'after', content.get('afterTitle', 'After: completed project'), content.get('afterSubtitle', 'Final photos show the completed work after installation, finishing, and cleanup.'))}
 
     {related_projects_block}
@@ -434,7 +613,7 @@ def render_detail(study: dict, studies: list[dict]) -> str:
   </main>
   <div id=\"site-footer\"></div>
   <script src=\"/components/loader.js?v={ASSET_VERSION}\" defer></script>
-  <script src=\"/main.js?v={ASSET_VERSION}\" defer></script>
+  <script src=\"/main.js?v={ASSET_VERSION}\" defer></script>{slider_script_block}
 </body>
 </html>
 """

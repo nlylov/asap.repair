@@ -2,10 +2,10 @@
   "studies": [
     {
       "slug": "one-bedroom-apartment-turnover-nyc",
-      "title": "One-Bedroom Apartment Turnover in NYC",
-      "excerpt": "A tired one-bedroom rental was made move-in ready between tenants. Repair Asap repainted the apartment, refinished hardwood floors, refreshed the bathroom, repaired window sills and trim, and installed new hallway flooring in about five days.",
+      "title": "One-Bedroom Apartment Turnover in Flatlands, Brooklyn",
+      "excerpt": "A tired one-bedroom rental in Flatlands, Brooklyn was made move-in ready between tenants. Repair Asap repainted the apartment, refinished hardwood floors, refreshed the bathroom, repaired window sills and trim, and installed new hallway flooring in about five days.",
       "thumbnail": "/assets/case-studies/one-bedroom-apartment-turnover-nyc/thumbnail.webp",
-      "location": "New York, NY",
+      "location": "Flatlands, Brooklyn",
       "category": "general_repairs",
       "categories": [
         "general_repairs",
@@ -20,7 +20,8 @@
         "bathroom refresh",
         "vinyl flooring",
         "window sill repair",
-        "NYC landlord repairs"
+        "Flatlands Brooklyn",
+        "Brooklyn landlord repairs"
       ],
       "serviceSlugs": [
         "general-repairs/apartment-turnover",
