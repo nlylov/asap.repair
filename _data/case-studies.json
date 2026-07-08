@@ -1922,6 +1922,29 @@
       "servicesSubtitle": "This project connects to Repair ASAP service areas for assembly, general repairs, and custom handyman work.",
       "ctaTitle": "Planning a custom planter, bench, or outdoor assembly?",
       "ctaText": "Send photos, drawings, measurements, or project notes and Repair ASAP can help plan the next step.",
+      "faqTitle": "Custom planter and outdoor assembly FAQ",
+      "faqs": [
+        {
+          "q": "Can Repair ASAP build a custom planter or bench from client drawings?",
+          "a": "Yes, many custom assembly projects can start from client drawings, photos, measurements, or a materials list. The estimate depends on how complete the drawings are, whether materials are supplied, and how much field adjustment is needed on site."
+        },
+        {
+          "q": "What should I send for a custom planter or outdoor bench quote?",
+          "a": "Send photos of the area, rough measurements, drawings or sketches, preferred materials, access details, and any deadline. If you already have boards or a kit, include photos of the parts and instructions so the scope can be reviewed accurately."
+        },
+        {
+          "q": "Do prepared or labeled boards make the project faster?",
+          "a": "They can help, but they do not remove the need for layout checks and field fitting. On this project some prepared pieces still needed adjustment because labels or prep did not match the plan exactly."
+        },
+        {
+          "q": "Can boards be adjusted on site if the plan does not match perfectly?",
+          "a": "Often yes. Small layout conflicts, board sequence issues, or fit problems can usually be corrected on site, but the time and cost depend on the amount of rework and the tools/materials needed."
+        },
+        {
+          "q": "Should outdoor wood planters be sealed or protected?",
+          "a": "Outdoor wood is exposed to water, soil, and seasonal movement, so sealing or using appropriate exterior-rated material is usually recommended. The right finish depends on the wood, desired look, and how the planter will be used."
+        }
+      ],
       "editorialNote": "Opening bare-ground images are before photos; drawings and instructions were supplied by the client; final stills were selected from the last videos because they show the completed structure.",
       "futureImagePrompt": "Photorealistic final documentation photo, same NYC backyard, white brick walls, horizontal wood fence, U-shaped raised wooden planter/flower bed with integrated bench, natural cedar boards, no people, no extra structures, realistic dirt bed, preserve proportions, no gazebo."
     },
