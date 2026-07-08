@@ -870,6 +870,35 @@
         "The table had already been coated by someone else before Repair Asap arrived, but the top coat never cured into a durable surface. The polyurethane stayed soft in places, felt tacky, and showed rings and pressure marks when cups or other objects were left on the table.",
         "Because the surface needed controlled prep, sanding, stain work, and drying time, the technician brought the table to a workshop instead of attempting a rushed on-site patch."
       ],
+      "comparisonEyebrow": "Before and after",
+      "comparisonTitle": "Sticky failed finish restored to a protected tabletop",
+      "comparisonSubtitle": "The photos show the problem customers notice first: white cup rings, cloudy soft spots, and a tacky coating replaced by a cleaner stained surface and protective polyurethane top coat.",
+      "comparisonPairs": [
+        {
+          "title": "Cup rings to clean tabletop",
+          "before": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/before-white-cup-ring-sticky-finish.webp",
+          "after": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/after-refinished-tabletop-wide.webp",
+          "beforeAlt": "Sticky polyurethane table finish before refinishing with white cup rings and cloudy marks",
+          "afterAlt": "Refinished wood tabletop after stain and protective polyurethane finish",
+          "caption": "The failed soft coating kept holding cup rings and cloudy marks. After stripping, sanding, stain work, and a new protective top coat, the tabletop read clean again."
+        },
+        {
+          "title": "Failed coating removed",
+          "before": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/before-failed-soft-finish-closeup.webp",
+          "after": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/process-sanded-table-raw-wood.webp",
+          "beforeAlt": "Close-up of cloudy failed polyurethane coating before table refinishing",
+          "afterAlt": "Wood table surface sanded back after failed finish removal",
+          "caption": "The cloudy, uneven coating was not covered up. It was removed so the new stain and finish could bond to a prepared wood surface."
+        },
+        {
+          "title": "Stain color to protective finish",
+          "before": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/process-stain-color-check.webp",
+          "after": "/assets/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/finish-detail-protective-coat.webp",
+          "beforeAlt": "Wood table during stain color check before protective polyurethane",
+          "afterAlt": "Detail of protective polyurethane finish over refinished wood grain",
+          "caption": "The stain tone was checked before the protective coat, then finished with a clearer surface that still shows the wood grain."
+        }
+      ],
       "beforeTitle": "Before: a failed soft finish that kept taking marks",
       "beforeSubtitle": "Only clean tabletop photos are used here — no screenshots, faces, or private chat details. The failed coating showed marks, cloudy areas, and tacky spots.",
       "processEyebrow": "Workshop process",
@@ -902,6 +931,10 @@
         {
           "q": "How long does table refinishing take?",
           "a": "This table was completed over two days to allow stripping, stain drying, polyurethane application, and drying/curing time. Timelines vary by table size, the condition of the old coating, and the finish system used."
+        },
+        {
+          "q": "Can table refinishing be done inside the apartment?",
+          "a": "Sometimes small touch-ups can be done on site, but sticky finish repair usually needs more controlled sanding, stain, ventilation, drying, and curing conditions. On this project the table was handled in a workshop instead of rushing the repair inside the apartment."
         }
       ]
     }
