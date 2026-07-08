@@ -1203,6 +1203,35 @@
       ],
       "beforeTitle": "Before: unfinished and damaged areas",
       "beforeSubtitle": "The project started with damaged drywall, exposed rough-ins, missing ceiling sections, and uneven wall surfaces.",
+      "comparisonEyebrow": "Before and after",
+      "comparisonTitle": "Commercial shell space turned into a finished barbershop",
+      "comparisonSubtitle": "Selected pairs show the main customer area, restroom/tile work, and the custom feature wall that changed the space from rough build-out conditions to a customer-ready shop.",
+      "comparisonPairs": [
+        {
+          "title": "Main customer area",
+          "before": "/assets/case-studies/crown-royal-barbershop-renovation-manhattan/before-commercial-space-walls.webp",
+          "after": "/assets/case-studies/crown-royal-barbershop-renovation-manhattan/finished-barbershop-interior.webp",
+          "beforeAlt": "Main Crown Royal Barbershop customer area before drywall repair and finish work",
+          "afterAlt": "Finished Crown Royal Barbershop customer area after renovation",
+          "caption": "The customer-facing room went from uneven damaged walls and rough commercial conditions to a finished shop with tile, lighting, mirrors, stations, and clean wall surfaces."
+        },
+        {
+          "title": "Restroom and tile build-out",
+          "before": "/assets/case-studies/crown-royal-barbershop-renovation-manhattan/before-restroom-plumbing-rough-in.webp",
+          "after": "/assets/case-studies/crown-royal-barbershop-renovation-manhattan/bathroom-wall-tile-installation.webp",
+          "beforeAlt": "Restroom rough plumbing before Crown Royal Barbershop bathroom build-out",
+          "afterAlt": "Restroom wall tile installed during Crown Royal Barbershop build-out",
+          "caption": "The restroom started with rough plumbing and open surfaces, then moved through drywall, ceiling, tile, and fixture-ready finish work."
+        },
+        {
+          "title": "Custom feature wall",
+          "before": "/assets/case-studies/crown-royal-barbershop-renovation-manhattan/paint-and-wall-prep-progress.webp",
+          "after": "/assets/case-studies/crown-royal-barbershop-renovation-manhattan/wood-slat-feature-wall-lighting.webp",
+          "beforeAlt": "Main room wall preparation before custom wood slat feature wall",
+          "afterAlt": "Wood slat feature wall with integrated accent lighting after installation",
+          "caption": "The custom slat partition and integrated lighting gave the shop a warmer premium finish while keeping the layout practical for daily commercial use."
+        }
+      ],
       "processEyebrow": "Build-out process",
       "processTitle": "Drywall, ceiling repair, tile, painting, and lighting",
       "processParagraphs": [
@@ -1223,7 +1252,26 @@
       "afterTitle": "After: finished Manhattan barbershop interior",
       "afterSubtitle": "Final photos after painting, lighting, tile, shelving, artwork, and cleanup.",
       "ctaTitle": "Planning a commercial renovation or restroom build-out?",
-      "ctaText": "Send photos, describe the scope, and Repair ASAP will help plan the next step."
+      "ctaText": "Send photos, describe the scope, and Repair ASAP will help plan the next step.",
+      "faqTitle": "Commercial renovation questions",
+      "faqs": [
+        {
+          "q": "Can Repair ASAP handle commercial interior build-out work in NYC?",
+          "a": "Repair ASAP can help with many commercial interior scopes such as drywall repair, finish prep, painting, tile, fixture-level work, lighting coordination, and detail carpentry. The exact scope depends on permits, building rules, trade requirements, and the condition of the space."
+        },
+        {
+          "q": "What should a business owner send before requesting a commercial renovation quote?",
+          "a": "Send photos or videos of each area, the business type, address or neighborhood, target opening date, landlord or building requirements, insurance or COI needs, material preferences, and any drawings or punch-list notes."
+        },
+        {
+          "q": "Can the work be sequenced around a business opening deadline?",
+          "a": "Often yes, but timing depends on access, materials, inspections, drying time, building rules, and whether licensed trades are needed. The best first step is to review the space photos and the required opening date together."
+        },
+        {
+          "q": "Does Repair ASAP work on commercial restrooms and tile?",
+          "a": "Repair ASAP can help with many restroom finish and tile scopes. Plumbing, electrical, or permit-heavy items may require licensed trade coordination depending on the building and the work requested."
+        }
+      ]
     },
     "images": [
       {
