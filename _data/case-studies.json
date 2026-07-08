@@ -269,7 +269,7 @@
     "slug": "plastic-wall-panel-installation-bedford-stuyvesant-brooklyn",
     "status": "published",
     "featured": false,
-    "title": "Plastic Wall Panel Installation in Bed-Stuy, Brooklyn",
+    "title": "Plastic Wall Panels in Bed-Stuy, Brooklyn",
     "shortTitle": "Plastic Wall Panels, Brooklyn",
     "seoTitle": "Bed-Stuy Wall Panel Installation | Repair Asap",
     "description": "Repair Asap installed black plastic decorative wall panels in a Bedford-Stuyvesant, Brooklyn room, laying out the wall, checking alignment, cutting clean openings for electrical outlets, and fastening the panels securely in about four hours.",
@@ -338,6 +338,27 @@
       "startingParagraphs": [
         "The project started with a plain interior wall in a Bedford-Stuyvesant, Brooklyn room. The client wanted a cleaner accent-wall look using black plastic decorative panels.",
         "Before fastening anything, the wall and outlet positions had to be measured so the panels would line up and the electrical receptacles would remain accessible."
+      ],
+      "comparisonEyebrow": "Before and after",
+      "comparisonTitle": "Plain wall turned into a finished accent wall",
+      "comparisonSubtitle": "The strongest proof on this job is the change from a blank wall to a clean black panel surface, plus the detail work around outlets.",
+      "comparisonPairs": [
+        {
+          "title": "Room wall transformation",
+          "before": "/assets/case-studies/plastic-wall-panel-installation-bedford-stuyvesant-brooklyn/before-room-ready-for-panels.webp",
+          "after": "/assets/case-studies/plastic-wall-panel-installation-bedford-stuyvesant-brooklyn/after-accent-wall-room-context.webp",
+          "beforeAlt": "Plain bedroom wall before black plastic wall panel installation in Brooklyn",
+          "afterAlt": "Bedroom after black plastic wall panel accent wall installation in Brooklyn",
+          "caption": "The same wall went from plain painted drywall to a dark vertical-slat accent wall that changes the feel of the room."
+        },
+        {
+          "title": "Outlet access and panel alignment",
+          "before": "/assets/case-studies/plastic-wall-panel-installation-bedford-stuyvesant-brooklyn/before-open-outlet-box-bare-wall.webp",
+          "after": "/assets/case-studies/plastic-wall-panel-installation-bedford-stuyvesant-brooklyn/after-finished-slat-panel-wall.webp",
+          "beforeAlt": "Electrical outlet box measured before plastic wall panel cutout",
+          "afterAlt": "Finished plastic wall panels with electrical outlets accessible",
+          "caption": "The outlet locations were measured before cutting so the finished panels stayed aligned and the outlets remained usable."
+        }
       ],
       "beforeTitle": "Before: wall layout and outlet locations checked",
       "beforeSubtitle": "The room wall was measured and checked before panel placement, with outlet locations marked for cutouts.",
@@ -1396,7 +1417,7 @@
     "slug": "drywall-repair-after-mini-split-installation-brooklyn",
     "status": "published",
     "featured": false,
-    "title": "Mini-Split Drywall Repair in East Williamsburg, Brooklyn",
+    "title": "Mini-Split Wall Repair in Brooklyn",
     "shortTitle": "Mini-Split Drywall Repair",
     "seoTitle": "Brooklyn Mini-Split Drywall Repair | Repair Asap",
     "description": "Repair Asap restored drywall around an indoor mini-split AC unit in East Williamsburg, Brooklyn after the wall was cut during installation, then patched, compounded, dried, and painted the area for a clean finish.",
@@ -1465,6 +1486,27 @@
       "startingParagraphs": [
         "The indoor split AC unit was in place, but the surrounding drywall was left cut open with exposed edges and rough access areas below the unit.",
         "This kind of repair needs careful patching because the wall has to be closed neatly around existing AC lines without creating a bulky or uneven finish."
+      ],
+      "comparisonEyebrow": "Before and after",
+      "comparisonTitle": "Open AC cutouts closed into a clean painted wall",
+      "comparisonSubtitle": "The key value was making the mini-split installation look finished instead of leaving rough construction openings around the unit.",
+      "comparisonPairs": [
+        {
+          "title": "Wall around the mini-split",
+          "before": "/assets/case-studies/drywall-repair-after-mini-split-installation-brooklyn/mini-split-drywall-damage-before.webp",
+          "after": "/assets/case-studies/drywall-repair-after-mini-split-installation-brooklyn/finished-wall-after-mini-split-drywall-repair.webp",
+          "beforeAlt": "Mini-split indoor unit with open drywall cutouts before repair",
+          "afterAlt": "Mini-split indoor unit with clean painted wall after drywall repair",
+          "caption": "The open drywall cuts around the installed indoor unit were patched, finished, and painted so the wall reads as complete."
+        },
+        {
+          "title": "Patch work to painted finish",
+          "before": "/assets/case-studies/drywall-repair-after-mini-split-installation-brooklyn/drywall-patch-before-compound.webp",
+          "after": "/assets/case-studies/drywall-repair-after-mini-split-installation-brooklyn/painted-wall-after-drywall-repair.webp",
+          "beforeAlt": "Drywall patch installed around mini-split before compound and paint",
+          "afterAlt": "Painted wall after drywall patch and finish work around mini-split",
+          "caption": "The patch was fastened, compounded, dried, prepped, and painted to blend the repair back into the wall."
+        }
       ],
       "beforeTitle": "Before: open drywall around the AC unit",
       "beforeSubtitle": "The repair started with visible cutouts, rough drywall edges, and an unfinished wall below the indoor mini-split unit.",

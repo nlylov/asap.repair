@@ -366,6 +366,11 @@
   padding: 88px 0;
 }
 
+.project-section .section-title,
+.project-two-col h2 {
+  letter-spacing: 0;
+}
+
 .project-section--dark {
   background: var(--bg-secondary);
   border-top: 1px solid var(--border);
@@ -638,9 +643,24 @@
 }
 
 @media (max-width: 600px) {
+  .project-hero > .container,
+  .project-snapshot > .container,
+  .project-section > .container,
+  .project-cta > .container,
+  .cs-hero > .container,
+  .cs-strategy > .container,
+  .cs-grid-section > .container,
+  .cs-cta > .container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
   .cs-hero,
   .project-hero {
     padding-top: 78px;
+    overflow-x: clip;
   }
 
   .cs-hero {
@@ -653,12 +673,15 @@
 
   .project-hero__grid {
     gap: 18px;
+    min-width: 0;
   }
 
   .project-hero__image {
     order: -1;
     border-radius: var(--radius-lg);
     box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+    width: 100%;
+    max-width: 100%;
   }
 
   .project-hero__image img {
@@ -678,14 +701,16 @@
   }
 
   .project-hero h1 {
-    font-size: clamp(28px, 9vw, 36px);
+    font-size: clamp(26px, 7.8vw, 30px);
     line-height: 1.06;
     margin: 12px 0;
+    overflow-wrap: anywhere;
   }
 
   .project-hero__lede {
     font-size: 15px;
     line-height: 1.6;
+    overflow-wrap: anywhere;
   }
 
   .project-tags {
@@ -696,6 +721,14 @@
   .project-tags span {
     font-size: 11px;
     padding: 4px 8px;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .section-subtitle,
+  .project-comparison-card p,
+  .project-gallery__item figcaption {
+    overflow-wrap: anywhere;
   }
 
   .cs-grid-section {
@@ -721,6 +754,16 @@
 
   .project-gallery {
     grid-template-columns: 1fr;
+    min-width: 0;
+  }
+
+  .project-two-col,
+  .project-scope-card,
+  .project-scope-card li,
+  .project-two-col p {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
 
   .project-gallery__image {
@@ -734,10 +777,12 @@
   .project-comparison-grid {
     grid-template-columns: 1fr;
     gap: 18px;
+    min-width: 0;
   }
 
   .project-comparison-card h3 {
     font-size: 18px;
+    overflow-wrap: break-word;
   }
 
   .project-comparison-card img {

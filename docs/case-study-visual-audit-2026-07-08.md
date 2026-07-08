@@ -16,14 +16,15 @@ Scope: desktop and mobile browser review of the published case-study pages plus 
 - Apartment turnover was migrated into the canonical case-study system at `/case-studies/one-bedroom-apartment-turnover-nyc/`.
 - A reusable before/after comparison-pair block was added to the case-study generator.
 - The apartment turnover service page now links directly to the new case study and references it from Service structured data.
+- Plastic Wall Panel Installation and Mini-Split Drywall Repair now use top-of-page before/after comparison proof blocks.
 
 ## Current page-by-page notes
 
 ### Plastic Wall Panel Installation
 
-Status: usable, but visually thin after the hero.
+Status: improved with a top-of-page before/after proof block.
 
-Needs: 1-2 stronger process photos or a clean before/after pairing. The current before gallery feels small because the best proof is mostly the final wall.
+Needs: future close-up final photos if available. The current proof now shows the room wall transformation and outlet-access detail near the top.
 
 ### Gazebo & Outdoor Kitchen
 
@@ -51,9 +52,9 @@ Needs: more direct commercial CTA language and potentially a before/after strip 
 
 ### Mini-Split Drywall Repair
 
-Status: useful SEO proof, but visually weakest hero.
+Status: improved with a top-of-page before/after proof block.
 
-Needs: before/after comparison near the top. The current hero shows the AC unit more than the repair result, so users may not immediately understand the transformation.
+Needs: future tighter final detail photo if available. The current proof now shows open drywall cutouts versus the clean painted wall near the top.
 
 ### Custom Wooden Planter With Built-In Bench
 
@@ -77,6 +78,6 @@ Completed:
 
 ## Next Content Priority
 
-1. Upgrade Mini-Split Drywall Repair and Plastic Wall Panel Installation with stronger before/after proof.
-2. Add commercial-focused copy improvements to Crown Royal Barbershop Renovation.
+1. Add commercial-focused copy improvements to Crown Royal Barbershop Renovation.
+2. Add a tighter before/after comparison near the top of Wood Table Refinishing.
 3. Then add new real jobs to portfolio using the same one-job, one-canonical-URL system.
