@@ -1,0 +1,241 @@
+{
+  "version": "2026-07-09",
+  "market": "New York City, five boroughs, Western Long Island, Nassau County when scope and travel fit",
+  "leadClassification": {
+    "marketSegment": [
+      "residential",
+      "landlord_property_manager",
+      "commercial_food_service",
+      "commercial_laundry",
+      "office_retail",
+      "other"
+    ],
+    "serviceVertical": [
+      "appliance_installation",
+      "appliance_repair",
+      "ac_install_cleaning",
+      "commercial_refrigeration",
+      "restaurant_equipment",
+      "general_handyman"
+    ],
+    "leadIntent": [
+      "quote",
+      "diagnostic",
+      "emergency",
+      "repair_or_replace",
+      "maintenance",
+      "installation",
+      "follow_up"
+    ],
+    "urgency": [
+      "same_day",
+      "24_48_hours",
+      "this_week",
+      "planned"
+    ]
+  },
+  "equipment": {
+    "applianceType": [
+      "refrigerator",
+      "freezer",
+      "dishwasher",
+      "washer",
+      "dryer",
+      "washer_dryer_combo",
+      "range_oven",
+      "microwave",
+      "garbage_disposal",
+      "window_ac",
+      "through_wall_ac",
+      "ptac",
+      "portable_ac",
+      "reach_in_cooler",
+      "walk_in_cooler",
+      "prep_table",
+      "beverage_cooler",
+      "ice_machine",
+      "commercial_dishwasher",
+      "other"
+    ],
+    "symptomGroup": [
+      "not_cooling",
+      "too_cold",
+      "leaking",
+      "not_draining",
+      "not_heating",
+      "not_spinning",
+      "noise_vibration",
+      "error_code",
+      "airflow_vent",
+      "power_issue",
+      "installation_replacement",
+      "cleaning_maintenance",
+      "emergency_down",
+      "unknown"
+    ],
+    "warrantyStatus": [
+      "unknown",
+      "in_warranty",
+      "out_of_warranty",
+      "landlord_owned",
+      "customer_owned"
+    ]
+  },
+  "complianceFlags": [
+    "refrigerant_work_possible",
+    "sealed_system_possible",
+    "gas_scope_possible",
+    "new_plumbing_possible",
+    "new_electrical_possible",
+    "permit_scope_possible",
+    "manufacturer_authorized_required",
+    "licensed_trade_required",
+    "epa_608_required",
+    "partner_referral_required",
+    "coi_required",
+    "building_rules_required"
+  ],
+  "commercialFields": {
+    "businessType": [
+      "restaurant",
+      "deli",
+      "cafe",
+      "bar",
+      "grocery",
+      "florist",
+      "office",
+      "property_management",
+      "other"
+    ],
+    "booleans": [
+      "food_loss_risk",
+      "equipment_down",
+      "after_hours_requested",
+      "maintenance_plan_candidate"
+    ],
+    "measurements": [
+      "temperature_reading",
+      "target_temperature"
+    ]
+  },
+  "serviceCatalog": [
+    {
+      "crmCode": "appliance_diagnostic_visit",
+      "label": "Appliance Diagnostic Visit",
+      "priority": 1,
+      "defaultVertical": "appliance_repair",
+      "defaultIntent": "diagnostic",
+      "quickbooksItem": "Appliance Diagnostic Visit",
+      "publicRoute": "/services/appliance-services/appliance-repair/"
+    },
+    {
+      "crmCode": "refrigerator_repair_help",
+      "label": "Refrigerator Repair Help",
+      "priority": 1,
+      "defaultVertical": "appliance_repair",
+      "defaultIntent": "repair_or_replace",
+      "quickbooksItem": "Refrigerator Repair Help",
+      "publicRoute": "/services/appliance-services/appliance-repair/",
+      "complianceFlagsWhenRelevant": [
+        "refrigerant_work_possible",
+        "sealed_system_possible",
+        "epa_608_required",
+        "manufacturer_authorized_required"
+      ]
+    },
+    {
+      "crmCode": "dishwasher_repair_help",
+      "label": "Dishwasher Repair Help",
+      "priority": 1,
+      "defaultVertical": "appliance_repair",
+      "defaultIntent": "repair_or_replace",
+      "quickbooksItem": "Dishwasher Repair Help",
+      "publicRoute": "/services/appliance-services/appliance-repair/",
+      "complianceFlagsWhenRelevant": [
+        "new_plumbing_possible",
+        "new_electrical_possible",
+        "permit_scope_possible"
+      ]
+    },
+    {
+      "crmCode": "washer_repair_help",
+      "label": "Washer Repair Help",
+      "priority": 1,
+      "defaultVertical": "appliance_repair",
+      "defaultIntent": "repair_or_replace",
+      "quickbooksItem": "Washer Repair Help",
+      "publicRoute": "/services/appliance-services/appliance-repair/"
+    },
+    {
+      "crmCode": "dryer_repair_help",
+      "label": "Dryer Repair Help",
+      "priority": 1,
+      "defaultVertical": "appliance_repair",
+      "defaultIntent": "repair_or_replace",
+      "quickbooksItem": "Dryer Repair Help",
+      "publicRoute": "/services/appliance-services/appliance-repair/",
+      "complianceFlagsWhenRelevant": [
+        "gas_scope_possible",
+        "new_electrical_possible",
+        "permit_scope_possible"
+      ]
+    },
+    {
+      "crmCode": "commercial_refrigeration_triage",
+      "label": "Commercial Refrigeration Triage",
+      "priority": 2,
+      "defaultVertical": "commercial_refrigeration",
+      "defaultIntent": "diagnostic",
+      "quickbooksItem": "Commercial Refrigeration Triage",
+      "publicRoute": "/services/appliance-services/appliance-repair/",
+      "requiresOperationalConfirmationBeforeDedicatedPage": true,
+      "complianceFlagsWhenRelevant": [
+        "refrigerant_work_possible",
+        "sealed_system_possible",
+        "epa_608_required",
+        "partner_referral_required",
+        "manufacturer_authorized_required"
+      ]
+    },
+    {
+      "crmCode": "commercial_refrigeration_maintenance",
+      "label": "Commercial Refrigeration Preventive Maintenance",
+      "priority": 3,
+      "defaultVertical": "commercial_refrigeration",
+      "defaultIntent": "maintenance",
+      "quickbooksItem": "Commercial Refrigeration Preventive Maintenance",
+      "publicRoute": "/services/appliance-services/appliance-repair/",
+      "requiresOperationalConfirmationBeforeDedicatedPage": true
+    },
+    {
+      "crmCode": "ac_deep_cleaning",
+      "label": "AC Deep Cleaning",
+      "priority": 2,
+      "defaultVertical": "ac_install_cleaning",
+      "defaultIntent": "cleaning_maintenance",
+      "quickbooksItem": "AC Deep Cleaning",
+      "publicRoute": "/services/ac-installation-cleaning/ac-deep-cleaning/"
+    },
+    {
+      "crmCode": "appliance_replacement_setup",
+      "label": "Appliance Replacement Setup",
+      "priority": 1,
+      "defaultVertical": "appliance_installation",
+      "defaultIntent": "installation",
+      "quickbooksItem": "Appliance Replacement Setup",
+      "publicRoute": "/services/appliance-services/"
+    }
+  ],
+  "conversionStages": [
+    "lead_created",
+    "qualified",
+    "appointment_scheduled",
+    "estimate_sent",
+    "estimate_approved",
+    "job_completed",
+    "invoice_sent",
+    "paid",
+    "lost"
+  ],
+  "paidConversionRule": "Send GA4/ads paid conversion only after payment_status is paid and paid_amount is attached to original first-touch and last-touch attribution."
+}

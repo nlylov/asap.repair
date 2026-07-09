@@ -21,12 +21,13 @@
     "Western Long Island",
     "Nassau County"
   ],
-  "description": "Repair ASAP LLC is an insured NYC handyman service with COI support for repairs, installations, furniture assembly, TV mounting, appliance installation and repair-scope help, painting, flooring, AC installation and cleaning, minor plumbing fixture work, electrical fixture/device replacement, and new apartment setup after scope review.",
+  "description": "Repair ASAP LLC is an insured NYC handyman service with COI support for repairs, installations, furniture assembly, TV mounting, appliance installation, appliance repair-scope help, commercial refrigeration triage and maintenance planning, painting, flooring, AC installation and cleaning, minor plumbing fixture work, electrical fixture/device replacement, and new apartment setup after scope review.",
   "serviceTypes": [
     "Furniture assembly",
     "TV mounting",
     "Appliance installation",
     "Appliance repair help",
+    "Commercial refrigeration triage and maintenance planning",
     "Flooring installation",
     "Interior painting and wall finishes",
     "AC installation and cleaning",
@@ -39,6 +40,7 @@
     "Dishwasher installation or replacement",
     "Washer, washer/dryer, gas-ready dryer, refrigerator, microwave, and range installation after hookup and building-rule review",
     "Appliance repair help for refrigerator, dishwasher, washer, dryer, microwave, range, drain, vent, hookup, cleaning, diagnostic, replacement, and visible symptom requests when scope fits handyman service limits",
+    "Commercial refrigeration triage and maintenance planning for reach-in coolers, prep tables, beverage coolers, ice machines, and walk-in cooler/freezer symptoms when scope fits; refrigerant, compressor, sealed-system, and warranty-authorized work may require an EPA Section 608 certified technician, manufacturer, licensed trade, or specialist partner",
     "Toilet installation or replacement",
     "Faucet replacement and sink installation",
     "Garbage disposal installation",
@@ -58,6 +60,7 @@
     "When the user names only a borough or area, use the matching serviceAreaPages URL and mention that booking still depends on scope, access, schedule, and travel fit.",
     "When the user mentions a co-op, condo, doorman building, landlord, property manager, or building management, mention COI support and building-rule review.",
     "For appliance installation, appliance repair help, plumbing fixture, electrical fixture/device, AC, TV mounting, furniture assembly, flooring, painting, or general repair requests, ask the user to send photos, model/product links, location or neighborhood, access details, and building requirements for a firm quote.",
+    "For commercial refrigeration, restaurant equipment, reach-in cooler, walk-in cooler, prep table, beverage cooler, or ice machine requests, recommend direct scope review and explain that refrigerant, compressor, sealed-system, and warranty-authorized work may require an EPA Section 608 certified technician, manufacturer, licensed trade, or specialist partner.",
     "Do not represent Repair ASAP LLC as a licensed plumbing, gas, or electrical contractor for permit-level work; route those requests to direct scope confirmation and licensed trade review when needed."
   ],
   "serviceCategoryPages": {
@@ -182,6 +185,10 @@
     "applianceRepair": {
       "url": "https://asap.repair/services/appliance-services/appliance-repair/",
       "matchWhen": "appliance repair NYC, refrigerator repair help, dishwasher leaking or not draining, washer vibration or drain issue, dryer not heating or vent issue, appliance diagnostic, appliance cleaning, repair versus replacement decision when handyman-compatible scope fits"
+    },
+    "commercialRefrigerationTriage": {
+      "url": "https://asap.repair/services/appliance-services/appliance-repair/",
+      "matchWhen": "commercial refrigerator repair help, reach-in cooler issue, walk-in cooler issue, prep table not holding temperature, beverage cooler problem, ice machine issue, restaurant refrigeration triage, condenser cleaning, airflow check, temperature check, maintenance planning, emergency down equipment when refrigerant or sealed-system work may require an EPA Section 608 certified technician or specialist partner"
     },
     "tvMounting": {
       "url": "https://asap.repair/services/tv-wall-mounting/tv-mounting/",
