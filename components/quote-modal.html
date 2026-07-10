@@ -22,6 +22,11 @@
         </noscript>
 
         <form class="quote-modal__form" id="quoteModalForm" novalidate>
+            <!-- Spam honeypot: hidden from humans, checked server-side (non-empty = rejected) -->
+            <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
+                <label for="modal-website">Website</label>
+                <input type="text" id="modal-website" name="website" tabindex="-1" autocomplete="off">
+            </div>
             <div class="form-row">
                 <div class="form-group">
                     <label for="modal-name" class="form-label">Full Name <span class="required-mark" aria-hidden="true">*</span></label>

@@ -699,6 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const inlineAddressInput = document.getElementById('inline-address');
   const inlineDateClear = document.getElementById('inlineDateClear');
   const SLOTS_API = 'https://crm.asap.repair/api/calendar/slots?org=repair-asap';
+  let inlineSlotsLoadFailed = false; // true when the slots API errored for the selected date
 
   // Date change → fetch time slots
   if (inlineDateInput) {
@@ -711,6 +712,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!date || !inlineTimeSlotGroup || !inlineTimeSlotsEl) return;
 
       inlineTimeInput.value = '';
+      inlineSlotsLoadFailed = false;
       inlineTimeSlotGroup.style.display = 'block';
       if (inlineAddressGroup) inlineAddressGroup.style.display = 'block';
       // Mark ZIP as required for booking
@@ -743,6 +745,7 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         });
       } catch (err) {
+        inlineSlotsLoadFailed = true;
         inlineTimeSlotsEl.innerHTML = '<p class="time-slots__empty">Failed to load times. You can still submit without a time selection.</p>';
       }
     });
@@ -823,9 +826,13 @@ document.addEventListener('DOMContentLoaded', () => {
         service.classList.add('success');
       }
 
+      // Booking mode = date chosen and slots actually loaded; if the slots API
+      // failed, degrade to a plain quote with a preferred-date note.
+      const inlineBookingMode = Boolean(inlineDateInput && inlineDateInput.value && !inlineSlotsLoadFailed);
+
       // Validate ZIP code (optional normally, REQUIRED when booking)
       const zip = form.querySelector('#zip');
-      if (inlineDateInput && inlineDateInput.value) {
+      if (inlineBookingMode) {
         // Booking mode: ZIP is required
         if (!zip?.value.trim() || !/^\d{5}$/.test(zip.value.trim())) {
           showError(zip);
@@ -852,7 +859,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Address required when date selected — must be real address
-      if (inlineDateInput && inlineDateInput.value && inlineAddressInput) {
+      if (inlineBookingMode && inlineAddressInput) {
         const addr = inlineAddressInput.value.trim();
         if (!addr || addr.length < 10 || !/[a-zA-Z]/.test(addr)) {
           showError(inlineAddressInput);
@@ -864,8 +871,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // Time slot required when date is selected
-      if (inlineDateInput && inlineDateInput.value && inlineTimeInput && !inlineTimeInput.value) {
+      // Time slot required when date is selected (unless slots failed to load)
+      if (inlineBookingMode && inlineTimeInput && !inlineTimeInput.value) {
         if (inlineTimeSlotGroup) inlineTimeSlotGroup.classList.add('has-error');
         isValid = false;
       }
@@ -878,17 +885,29 @@ document.addEventListener('DOMContentLoaded', () => {
           ? await window.repairAsapGetSessionContextAsync()
           : (window.repairAsapGetSessionContext?.() || null);
 
+        let inlineMessage = form.querySelector('#message')?.value.trim() || '';
+        let inlineDate = form.querySelector('#date')?.value || '';
+        let inlineTime = inlineTimeInput?.value || '';
+        if (inlineDate && !inlineBookingMode) {
+          // Slots API failed: degrade to a plain quote request so the server
+          // doesn't reject a date without a bookable time slot.
+          inlineMessage = `${inlineMessage ? inlineMessage + '\n' : ''}Preferred date: ${inlineDate} (time slots unavailable at submission)`;
+          inlineDate = '';
+          inlineTime = '';
+        }
         const payload = {
           name: form.querySelector('#name').value.trim(),
           phone: form.querySelector('#phone').value.trim(),
           email: email?.value.trim() || '',
           zip: zip?.value.trim() || '',
           service: service.value,
-          date: form.querySelector('#date')?.value || '',
-          message: form.querySelector('#message')?.value.trim() || '',
+          date: inlineDate,
+          message: inlineMessage,
           photos: [],
-          time: inlineTimeInput?.value || '',
+          time: inlineTime,
           address: inlineAddressInput?.value?.trim() || '',
+          // Spam honeypot: hidden field humans never fill; CRM rejects non-empty.
+          website: form.querySelector('#contact-website')?.value || '',
           sessionContext,
         };
 

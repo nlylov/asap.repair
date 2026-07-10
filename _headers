@@ -83,6 +83,9 @@
   Content-Type: application/json; charset=utf-8
   X-Robots-Tag: noindex, follow
 
+/tz_crm_system_v2.docx
+  X-Robots-Tag: noindex, nofollow
+
 /website_picks_final.json
   Content-Type: application/json; charset=utf-8
   X-Robots-Tag: noindex, follow

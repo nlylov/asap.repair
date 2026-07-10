@@ -39,6 +39,7 @@
     const addressInput = document.getElementById('modal-address');
 
     let selectedPhotos = []; // Array of { file, dataUrl, base64, name, type }
+    let slotsLoadFailed = false; // true when the slots API errored for the selected date
 
     // Set min date
     if (dateInput) {
@@ -52,6 +53,7 @@
 
             // Reset previous selection
             timeInput.value = '';
+            slotsLoadFailed = false;
             timeSlotGroup.style.display = 'block';
             // Show address field and mark ZIP required when date is selected
             if (addressGroup) {
@@ -97,6 +99,7 @@
                     });
                 });
             } catch (err) {
+                slotsLoadFailed = true;
                 timeSlotsEl.innerHTML = '<p class="time-slots__empty">Failed to load times. You can still submit without a time selection.</p>';
             }
         });
@@ -242,6 +245,7 @@
         if (addressGroup) addressGroup.style.display = 'none';
         if (addressInput) { window.clearPlacesAutocompleteField ? window.clearPlacesAutocompleteField(addressInput) : (addressInput.value = ''); }
         if (dateClearBtn) dateClearBtn.style.display = 'none';
+        slotsLoadFailed = false;
         customerChecked = false;
         const wb = document.getElementById('welcomeBanner');
         if (wb) wb.remove();
@@ -288,6 +292,23 @@
             if (path.includes('/services/' + slug)) return value;
         }
         return null;
+    }
+
+    // Structured page context for the CRM: which exact page (and sub-service)
+    // the quote came from. Rides in custom_fields; the calculator's own
+    // custom fields win on key conflicts.
+    function pageQuoteContext() {
+        const ctx = {};
+        const path = window.location.pathname;
+        if (path && path !== '/') {
+            ctx.source_page = path.slice(0, 240);
+        }
+        const svc = path.match(/^\/services\/([a-z0-9-]+)\/([a-z0-9-]+)\/?$/);
+        if (svc) {
+            ctx.service_category = svc[1];
+            ctx.sub_service = svc[2];
+        }
+        return ctx;
     }
 
     // ---- CTA Interceptors ----
@@ -546,9 +567,13 @@
             serviceSelect.classList.add('success');
         }
 
+        // Booking mode = a date is chosen and slots actually loaded; if the slots
+        // API failed, the request degrades to a plain quote with a preferred date.
+        const bookingMode = Boolean(dateInput && dateInput.value && !slotsLoadFailed);
+
         // ZIP code (optional normally, REQUIRED when booking a date)
         const zip = form.querySelector('#modal-zip');
-        if (dateInput && dateInput.value) {
+        if (bookingMode) {
             // Booking mode: ZIP is required
             if (!zip?.value.trim() || !/^\d{5}$/.test(zip.value.trim())) {
                 showError(zip);
@@ -575,7 +600,7 @@
         }
 
         // Address (required only when date is selected = booking a visit)
-        if (dateInput && dateInput.value && addressInput) {
+        if (bookingMode && addressInput) {
             const addr = addressInput.value.trim();
             if (!addr || addr.length < 10 || !/[a-zA-Z]/.test(addr)) {
                 showError(addressInput);
@@ -588,8 +613,8 @@
             }
         }
 
-        // Time slot required when date is selected
-        if (dateInput && dateInput.value && timeInput && !timeInput.value) {
+        // Time slot required when date is selected (unless slots failed to load)
+        if (bookingMode && timeInput && !timeInput.value) {
             if (timeSlotGroup) timeSlotGroup.classList.add('has-error');
             isValid = false;
         }
@@ -604,24 +629,36 @@
             : (window.repairAsapGetSessionContext?.() || null);
 
         // Build payload
+        let message = form.querySelector('#modal-message')?.value.trim() || '';
+        let date = form.querySelector('#modal-date')?.value || '';
+        let time = timeInput?.value || '';
+        if (date && !bookingMode) {
+            // Slots API failed: degrade to a plain quote request so the server
+            // doesn't reject a date without a bookable time slot.
+            message = `${message ? message + '\n' : ''}Preferred date: ${date} (time slots unavailable at submission)`;
+            date = '';
+            time = '';
+        }
         const payload = {
             name: form.querySelector('#modal-name').value.trim(),
             phone: form.querySelector('#modal-phone').value.trim(),
             email: form.querySelector('#modal-email')?.value.trim() || '',
             zip: form.querySelector('#modal-zip')?.value.trim() || '',
             service: serviceSelect ? serviceSelect.value : '',
-            date: form.querySelector('#modal-date')?.value || '',
-            message: form.querySelector('#modal-message')?.value.trim() || '',
+            date,
+            message,
             photos: selectedPhotos.map(p => ({
                 data: p.base64,
                 name: p.name,
                 type: p.type,
             })),
-            time: timeInput?.value || '',
+            time,
             address: addressInput?.value?.trim() || '',
+            // Spam honeypot: hidden field humans never fill; CRM rejects non-empty.
+            website: form.querySelector('#modal-website')?.value || '',
             sessionContext,
-            // CRM custom fields from the smart calculator (set by main.js when CTA clicked)
-            custom_fields: window._calcQuoteData ? { ...window._calcQuoteData } : {},
+            // Page context first; smart-calculator custom fields (set by main.js) win on conflicts.
+            custom_fields: { ...pageQuoteContext(), ...(window._calcQuoteData || {}) },
         };
 
         try {
