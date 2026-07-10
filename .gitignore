@@ -25,3 +25,7 @@ __pycache__/
 *.docx
 *.xlsx
 *.pptx
+
+# local design drafts (never deploy)
+/index-calm.html
+/_mobile-preview.html
