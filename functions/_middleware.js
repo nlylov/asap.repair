@@ -1,5 +1,27 @@
 const CANONICAL_HOST = 'asap.repair';
 
+// Internal repo paths that must never be served publicly.
+// The files stay in the repo (docs, sources, tooling) — the edge just refuses them.
+const PRIVATE_PATH_PREFIXES = [
+    '/docs/',
+    '/deploy/',
+    '/scripts/',
+    '/tests/',
+    '/_data/',
+    '/gbp-images/',
+];
+
+const PRIVATE_PATHS = new Set([
+    '/AGENTS.md',
+    '/web_gallery.json',
+    '/website_picks_final.json',
+]);
+
+function isPrivatePath(pathname) {
+    if (PRIVATE_PATHS.has(pathname)) return true;
+    return PRIVATE_PATH_PREFIXES.some((prefix) => pathname.startsWith(prefix));
+}
+
 const PRESERVE_PATH_HOSTS = new Set([
     'www.asap.repair',
     'asap-repair.pages.dev',
@@ -31,6 +53,13 @@ function canonicalPathname(pathname) {
 
 export async function onRequest(context) {
     const url = new URL(context.request.url);
+
+    if (isPrivatePath(url.pathname)) {
+        return new Response('Not found', {
+            status: 404,
+            headers: { 'X-Robots-Tag': 'noindex, nofollow' },
+        });
+    }
 
     if (url.hostname === 'api.asap.repair' && url.pathname.startsWith('/api/')) {
         return context.next();
