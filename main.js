@@ -724,6 +724,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         const resp = await fetch(`${SLOTS_API}&date=${date}`);
+        if (!resp.ok) throw new Error(`slots request failed: ${resp.status}`);
         const data = await resp.json();
 
         if (!data.slots || data.slots.length === 0) {
@@ -747,6 +748,11 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (err) {
         inlineSlotsLoadFailed = true;
         inlineTimeSlotsEl.innerHTML = '<p class="time-slots__empty">Failed to load times. You can still submit without a time selection.</p>';
+        // Not in booking mode anymore: restore ZIP as optional
+        const zipLbl = form?.querySelector('#zip')?.closest('.form-group')?.querySelector('.form-label');
+        if (zipLbl && zipLbl.querySelector('.zip-required')) {
+          zipLbl.innerHTML = 'ZIP Code <span style="color:var(--text-muted);font-weight:400">(optional)</span>';
+        }
       }
     });
   }
