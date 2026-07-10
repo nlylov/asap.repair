@@ -40,13 +40,13 @@ const pages = [
     "slug": "refrigerator-repair",
     "crumb": "Refrigerator Repair",
     "title": "Refrigerator Repair Help NYC | Cooling & Leak Triage",
-    "description": "NYC refrigerator repair help for not-cooling, ice buildup, leaking, noisy, dirty condenser and replacement decisions after model, photo and scope review.",
+    "description": "Fridge not cooling in NYC? Free photo estimate, $99 on-site assessment credited toward the fix, honest repair-or-replace advice. Same-day when available.",
     "ogTitle": "Refrigerator Repair Help in NYC | Repair Asap LLC",
-    "ogDescription": "Photo-reviewed refrigerator repair help in NYC for cooling symptoms, ice buildup, leaks, airflow, cleaning and repair-or-replace decisions.",
+    "ogDescription": "Fridge not cooling in NYC? Free photo estimate, $99 on-site assessment credited toward the fix, honest repair-or-replace advice. Same-day when available.",
     "badge": "Refrigerator Repair Help",
     "h1": "Refrigerator Repair Help in NYC",
     "accent": "Cooling, Leak & Airflow Triage",
-    "subtitle": "Photo-reviewed refrigerator diagnostics, condenser cleaning, airflow checks, leveling, water-line observations and repair-or-replace guidance across NYC.",
+    "subtitle": "Fridge not cooling? Text photos now and get a real answer for free \u2014 honest repair-or-replace advice, same-day visits when available, all five boroughs.",
     "serviceType": "Refrigerator Repair Help",
     "serviceName": "Refrigerator Repair Help in NYC",
     "serviceDescription": "Photo-reviewed refrigerator repair help in New York City for not-cooling, ice buildup, leaking, noisy operation, dirty condenser, airflow, leveling, water-line observations, and repair-or-replace decisions when scope fits handyman service limits.",
@@ -163,13 +163,13 @@ const pages = [
     "slug": "dishwasher-repair",
     "crumb": "Dishwasher Repair",
     "title": "Dishwasher Repair Help NYC | Leak & Drain Triage",
-    "description": "NYC dishwasher repair help for leaks, not draining, loose connections, leveling, odor and replacement decisions after model, hookup and photo review.",
+    "description": "Dishwasher leaking or not draining in NYC? Free photo estimate, $99 assessment credited toward the job, honest repair-or-replace advice. Book online today.",
     "ogTitle": "Dishwasher Repair Help in NYC | Repair Asap LLC",
-    "ogDescription": "Photo-reviewed dishwasher repair help in NYC for leaks, drain issues, supply hookups, leveling, odor and repair-or-replace decisions.",
+    "ogDescription": "Dishwasher leaking or not draining in NYC? Free photo estimate, $99 assessment credited toward the job, honest repair-or-replace advice. Book online today.",
     "badge": "Dishwasher Repair Help",
     "h1": "Dishwasher Repair Help in NYC",
     "accent": "Leak, Drain & Hookup Triage",
-    "subtitle": "Dishwasher leak, drain, supply, leveling, odor and replacement guidance after photos, model details and existing-hookup review.",
+    "subtitle": "Leaking or not draining? Send photos and get a real price for free \u2014 fast, insured dishwasher help for NYC kitchens, quoted before anyone shows up.",
     "serviceType": "Dishwasher Repair Help",
     "serviceName": "Dishwasher Repair Help in NYC",
     "serviceDescription": "Photo-reviewed dishwasher repair help in New York City for leaks, not draining, supply and drain hookup issues, leveling, odor, visible connection problems, and repair-or-replace decisions when scope fits handyman service limits.",
@@ -241,7 +241,7 @@ const pages = [
       ],
       [
         "Error code and when the issue happens",
-        "A code plus cycle stage — fill, wash or drain — narrows the fault dramatically before we arrive."
+        "A code plus cycle stage \u2014 fill, wash or drain \u2014 narrows the fault dramatically before we arrive."
       ],
       [
         "Outlet or hardwire photo if accessible",
@@ -286,13 +286,13 @@ const pages = [
     "slug": "washer-repair",
     "crumb": "Washer Repair",
     "title": "Washer Repair Help NYC | Drain, Leak & Vibration Triage",
-    "description": "NYC washer repair help for drain issues, vibration, visible leaks, supply hoses, leveling and repair-or-replace decisions after model and photo review.",
+    "description": "Washer not draining, leaking or shaking in NYC? Free photo estimate, $99 assessment credited toward the fix, honest advice. Same-day visits when available.",
     "ogTitle": "Washer Repair Help in NYC | Repair Asap LLC",
-    "ogDescription": "Photo-reviewed washer repair help in NYC for not draining, vibration, visible leaks, supply hoses, leveling and replacement decisions.",
+    "ogDescription": "Washer not draining, leaking or shaking in NYC? Free photo estimate, $99 assessment credited toward the fix, honest advice. Same-day visits when available.",
     "badge": "Washer Repair Help",
     "h1": "Washer Repair Help in NYC",
     "accent": "Drain, Leak & Vibration Triage",
-    "subtitle": "Washer drain, supply, vibration, leveling, visible leak and replacement guidance for apartments, rentals and laundry closets after photo review.",
+    "subtitle": "Shaking, leaking or not draining? Get a free photo estimate first \u2014 you only pay when real work is booked, and every price is confirmed up front.",
     "serviceType": "Washer Repair Help",
     "serviceName": "Washer Repair Help in NYC",
     "serviceDescription": "Photo-reviewed washer repair help in New York City for drain issues, visible leaks, vibration, supply hose conditions, leveling, setup concerns, and repair-or-replace decisions when scope fits handyman service limits.",
@@ -409,13 +409,13 @@ const pages = [
     "slug": "dryer-repair",
     "crumb": "Dryer Repair",
     "title": "Dryer Repair Help NYC | Vent, Heat & Connection Triage",
-    "description": "NYC dryer repair help for not heating, vent restriction, lint buildup, vibration, connection review and replacement decisions after model and photo review.",
+    "description": "Dryer not heating or drying slowly in NYC? Often it's the vent. Free photo estimate, $99 assessment credited toward the fix, vent cleaning from $150.",
     "ogTitle": "Dryer Repair Help in NYC | Repair Asap LLC",
-    "ogDescription": "Photo-reviewed dryer repair help in NYC for vent, heat, lint, vibration, gas-ready or electric connection and replacement decisions.",
+    "ogDescription": "Dryer not heating or drying slowly in NYC? Often it's the vent. Free photo estimate, $99 assessment credited toward the fix, vent cleaning from $150.",
     "badge": "Dryer Repair Help",
     "h1": "Dryer Repair Help in NYC",
     "accent": "Vent, Heat & Connection Triage",
-    "subtitle": "Dryer vent, heat, lint, vibration, cord, plug and gas-ready setup observations after model, hookup and building-rule review.",
+    "subtitle": "Not heating or drying forever? It's often just the vent \u2014 free photo triage tells you what's wrong before you pay anyone a dollar.",
     "serviceType": "Dryer Repair Help",
     "serviceName": "Dryer Repair Help in NYC",
     "serviceDescription": "Photo-reviewed dryer repair help in New York City for not-heating symptoms, vent restriction, lint buildup, vibration, dryer connection review, electric or gas-ready setup observations, and repair-or-replace decisions when scope fits handyman service limits.",
@@ -439,7 +439,7 @@ const pages = [
       ],
       [
         "Electric cord, plug or outlet compatibility observation",
-        "We observe whether your cord, plug style and existing outlet match the dryer — mismatches get flagged, not forced."
+        "We observe whether your cord, plug style and existing outlet match the dryer \u2014 mismatches get flagged, not forced."
       ],
       [
         "Gas-ready dryer replacement scope review",
@@ -453,7 +453,7 @@ const pages = [
     "outOfScope": [
       [
         "Gas piping changes or gas corrections",
-        "All gas piping, valve and leak work goes to a Licensed Master Plumber — no exceptions, flagged before scheduling."
+        "All gas piping, valve and leak work goes to a Licensed Master Plumber \u2014 no exceptions, flagged before scheduling."
       ],
       [
         "New 240V outlet, circuit or electrical panel work",
@@ -479,7 +479,7 @@ const pages = [
       ],
       [
         "Photos of vent path, lint condition and rear connection",
-        "Vent photos reveal crushed ducts, lint accumulation and loose rear joints — the usual suspects behind weak drying."
+        "Vent photos reveal crushed ducts, lint accumulation and loose rear joints \u2014 the usual suspects behind weak drying."
       ],
       [
         "Plug, cord or outlet photo for electric dryers",
@@ -532,13 +532,13 @@ const pages = [
     "slug": "oven-range-repair",
     "crumb": "Oven & Range Repair",
     "title": "Oven & Range Repair Help NYC | Burner & Door Triage",
-    "description": "NYC oven, stove and range repair help for not heating, burners not lighting, door and knob issues, leveling, anti-tip brackets and replacement decisions.",
+    "description": "Oven or range trouble in NYC? Burners, doors, knobs, leveling and anti-tip fixed with honest gas/electric routing. Free photo estimate \u2014 text us today.",
     "ogTitle": "Oven & Range Repair Help in NYC | Repair Asap LLC",
-    "ogDescription": "Photo-reviewed oven, stove and cooktop repair help in NYC for burner and igniter cleaning, doors, knobs, leveling, anti-tip brackets and repair-or-replace decisions.",
+    "ogDescription": "Oven or range trouble in NYC? Burners, doors, knobs, leveling and anti-tip fixed with honest gas/electric routing. Free photo estimate \u2014 text us today.",
     "badge": "Oven & Range Repair Help",
     "h1": "Oven & Range Repair Help in NYC",
     "accent": "Burner, Door & Leveling Triage",
-    "subtitle": "Photo-reviewed oven, stove and cooktop triage — burner and igniter surface cleaning, door hinge and gasket review, knob replacement, leveling, anti-tip brackets and repair-or-replace guidance across NYC.",
+    "subtitle": "Burner won't light? Door won't close? Free photo estimate first, then a $99 assessment that's credited toward the fix \u2014 honest gas and electric routing always.",
     "serviceType": "Oven & Range Repair Help",
     "serviceName": "Oven & Range Repair Help in NYC",
     "serviceDescription": "Photo-reviewed oven, stove, range and cooktop repair help in New York City for not-heating symptoms, burners not lighting, clicking igniters, door hinge and gasket issues, knob replacement, leveling, anti-tip brackets, hood filter cleaning, and repair-or-replace decisions when scope fits handyman service limits.",
@@ -598,7 +598,7 @@ const pages = [
     "intake": [
       [
         "Brand and model number",
-        "The model plate — usually inside the door frame, behind the storage drawer or on the back — confirms knob fit, parts and gas versus electric."
+        "The model plate \u2014 usually inside the door frame, behind the storage drawer or on the back \u2014 confirms knob fit, parts and gas versus electric."
       ],
       [
         "Photos of the range and problem area",
@@ -606,7 +606,7 @@ const pages = [
       ],
       [
         "Exact symptom and when it started",
-        "Not heating, clicking without lighting, uneven baking or a door that will not shut — the specific symptom and its timing steer the triage."
+        "Not heating, clicking without lighting, uneven baking or a door that will not shut \u2014 the specific symptom and its timing steer the triage."
       ],
       [
         "Gas or electric, plus any error code",
@@ -654,11 +654,11 @@ const pages = [
       ],
       [
         "My gas burner keeps clicking but will not light. Can you help?",
-        "Often yes — constant clicking is frequently grease or food debris on the igniter tip or blocked burner ports, which fits accessible surface cleaning scope. If cleaning does not restore a clean light, the issue may sit with an internal igniter or the gas supply, and we route that to the right specialist instead of guessing."
+        "Often yes \u2014 constant clicking is frequently grease or food debris on the igniter tip or blocked burner ports, which fits accessible surface cleaning scope. If cleaning does not restore a clean light, the issue may sit with an internal igniter or the gas supply, and we route that to the right specialist instead of guessing."
       ],
       [
         "What should I do if I smell gas near my stove?",
-        "Leave the area immediately without touching light switches or appliances, then call 911 and Con Edison's gas emergency line from outside. A suspected gas leak is never a handyman visit — that work belongs to the utility or a licensed emergency plumber, and we will tell you the same if you contact us first."
+        "Leave the area immediately without touching light switches or appliances, then call 911 and Con Edison's gas emergency line from outside. A suspected gas leak is never a handyman visit \u2014 that work belongs to the utility or a licensed emergency plumber, and we will tell you the same if you contact us first."
       ],
       [
         "Can you fix an oven that will not heat or bakes unevenly?",
@@ -674,20 +674,20 @@ const pages = [
     "slug": "dryer-vent-cleaning",
     "crumb": "Dryer Vent Cleaning",
     "title": "Dryer Vent Cleaning NYC | Lint & Airflow Service",
-    "description": "NYC dryer vent cleaning for long dry times, lint buildup and fire-risk reduction: accessible duct runs, transition hose replacement and airflow checks.",
+    "description": "Dryer vent cleaning in NYC from $150: lint removal, airflow check, transition hose replacement. Faster drying, lower fire risk. Book your visit today.",
     "ogTitle": "Dryer Vent Cleaning in NYC | Repair Asap LLC",
-    "ogDescription": "Lint removal from accessible dryer duct runs, transition hose replacement, before-and-after airflow checks and recurring maintenance plans for NYC homes and landlords.",
+    "ogDescription": "Dryer vent cleaning in NYC from $150: lint removal, airflow check, transition hose replacement. Faster drying, lower fire risk. Book your visit today.",
     "badge": "Dryer Vent Cleaning",
     "h1": "Dryer Vent Cleaning in NYC",
     "accent": "Shorter Dry Times, Lower Fire Risk",
-    "subtitle": "Lint removal from accessible duct runs, transition hose replacement, before-and-after airflow checks and recurring maintenance plans for NYC homes, landlords and laundry closets.",
+    "subtitle": "Faster drying, lower fire risk, smaller electric bills \u2014 accessible vent cleaning from $150 with a before/after airflow check in one visit.",
     "serviceType": "Dryer Vent Cleaning",
     "serviceName": "Dryer Vent Cleaning in NYC",
     "serviceDescription": "Dryer vent cleaning in New York City: lint removal from accessible duct runs, transition hose replacement, dryer pull-out and reconnection, before-and-after airflow checks, reachable exterior vent cap checks, and recurring maintenance planning for homes, landlords and laundry closets when scope fits handyman service limits.",
     "intro": [
-      "A dryer that needs two cycles for one load is usually not failing — its vent is choking on lint. In NYC apartments and laundry closets, long duct runs and crushed transition hoses trap lint that slows drying, overworks the dryer and is a leading factor in dryer fires. Repair Asap LLC reviews photos of the dryer, the vent path and the termination point before booking, so the visit arrives with the right expectations and tools.",
+      "A dryer that needs two cycles for one load is usually not failing \u2014 its vent is choking on lint. In NYC apartments and laundry closets, long duct runs and crushed transition hoses trap lint that slows drying, overworks the dryer and is a leading factor in dryer fires. Repair Asap LLC reviews photos of the dryer, the vent path and the termination point before booking, so the visit arrives with the right expectations and tools.",
       "Good-fit dryer vent cleaning includes lint removal from accessible duct runs, transition hose replacement, pulling the dryer out and reconnecting the vent, a before-and-after airflow check, a reachable exterior vent cap check, and recurring maintenance planning for homeowners, landlords and buildings with in-unit laundry.",
-      "In-wall or riser duct rebuilds, high-rise common exhaust systems, roof terminations, masonry alterations and permit-level ductwork may require building management, a licensed HVAC or duct contractor, or a specialist partner — we do not do roof work, and we flag that before scheduling. If you smell gas near a gas dryer, call 911 and your utility first; that is never a cleaning appointment."
+      "In-wall or riser duct rebuilds, high-rise common exhaust systems, roof terminations, masonry alterations and permit-level ductwork may require building management, a licensed HVAC or duct contractor, or a specialist partner \u2014 we do not do roof work, and we flag that before scheduling. If you smell gas near a gas dryer, call 911 and your utility first; that is never a cleaning appointment."
     ],
     "goodFit": [
       [
@@ -748,7 +748,7 @@ const pages = [
       ],
       [
         "Exterior vent cap location",
-        "A photo or description of where the vent exits — wall, window buck or roof — tells us whether the cap is reachable without roof work."
+        "A photo or description of where the vent exits \u2014 wall, window buck or roof \u2014 tells us whether the cap is reachable without roof work."
       ],
       [
         "Symptom and timing",
@@ -760,7 +760,7 @@ const pages = [
       ],
       [
         "Building access, COI and landlord details",
-        "Doorman, freight elevator and COI requirements — plus the unit list, for landlords booking multiple apartments in one trip."
+        "Doorman, freight elevator and COI requirements \u2014 plus the unit list, for landlords booking multiple apartments in one trip."
       ]
     ],
     "offers": [
@@ -815,7 +815,7 @@ const pages = [
     "goodFitTag": "Service Scope",
     "goodFitTitle": "What the Visit <span class=\"text-accent\">Covers</span>",
     "relatedTitle": "Related Laundry & Appliance Services",
-    "relatedSubtitle": "If the dryer itself is misbehaving — no heat, error codes, vibration — start with dryer repair triage instead.",
+    "relatedSubtitle": "If the dryer itself is misbehaving \u2014 no heat, error codes, vibration \u2014 start with dryer repair triage instead.",
     "crossSubtitle": "Vent cleaning visits often uncover outlet, access or turnover work in the same laundry area.",
     "faq": [
       [
@@ -832,11 +832,11 @@ const pages = [
       ],
       [
         "Can you set up recurring dryer vent cleaning for landlords or multifamily buildings?",
-        "Yes. We can batch multiple units in one visit, keep notes per apartment, provide COI support, and put the building on an annual or semi-annual schedule. Shared high-rise exhaust risers stay with building management and its duct contractor — we cover the accessible in-unit runs."
+        "Yes. We can batch multiple units in one visit, keep notes per apartment, provide COI support, and put the building on an annual or semi-annual schedule. Shared high-rise exhaust risers stay with building management and its duct contractor \u2014 we cover the accessible in-unit runs."
       ],
       [
         "Will cleaning the vent fix a dryer that takes too long?",
-        "Often, yes — a restricted vent is the most common reason a working dryer suddenly needs two cycles. We check airflow before and after cleaning so the improvement is measurable, not assumed. If the duct is clear and drying is still slow, the problem points to the appliance itself and we route you to dryer repair triage."
+        "Often, yes \u2014 a restricted vent is the most common reason a working dryer suddenly needs two cycles. We check airflow before and after cleaning so the improvement is measurable, not assumed. If the duct is clear and drying is still slow, the problem points to the appliance itself and we route you to dryer repair triage."
       ]
     ]
   },
@@ -844,24 +844,24 @@ const pages = [
     "slug": "ac-repair-help",
     "crumb": "AC Repair",
     "title": "AC Repair Help NYC | Not-Cooling & Leak Triage",
-    "description": "NYC AC repair help for window, through-wall, portable and PTAC units: not-cooling triage, filter and coil cleaning, drain leak checks and swap planning.",
+    "description": "AC not cooling in NYC? Window, through-wall, portable and PTAC triage: free photo estimate, deep cleaning, re-seal or replacement advice. Text photos now.",
     "ogTitle": "AC Repair Help in NYC | Repair Asap LLC",
-    "ogDescription": "Photo-reviewed AC repair help in NYC for window, through-wall, portable and PTAC units — cooling triage, cleaning, condensate-leak checks and swap planning.",
+    "ogDescription": "AC not cooling in NYC? Window, through-wall, portable and PTAC triage: free photo estimate, deep cleaning, re-seal or replacement advice. Text photos now.",
     "badge": "AC Repair Help",
     "h1": "AC Repair Help in NYC",
     "accent": "Not-Cooling & Water-Leak Triage",
-    "subtitle": "Photo-reviewed triage for window, through-wall, portable and PTAC units — cooling symptoms, water leaks, loose fit, cleaning and unit swap planning across NYC.",
+    "subtitle": "AC not cooling? Get free photo triage today \u2014 cleaning, drain fixes, re-sealing or smart replacement, sorted before the summer heat wins.",
     "serviceType": "AC Repair Help",
     "serviceName": "AC Repair Help in NYC",
     "serviceDescription": "Photo-reviewed AC repair help in New York City for window, through-wall, portable and PTAC units: not-cooling triage, filter and accessible coil cleaning, drain and condensate leak observation, re-seating and resealing loose units, seasonal removal and reinstallation, and repair-or-replace decisions when scope fits handyman service limits.",
     "intro": [
-      "Between April and September, a failed air conditioner turns an NYC apartment, home office or storefront hot enough to disrupt sleep and work within hours. Repair Asap LLC reviews the unit type — window, through-wall, portable or PTAC — plus the model or BTU label, photos, symptom timeline and building access before booking a triage, cleaning or re-secure visit.",
+      "Between April and September, a failed air conditioner turns an NYC apartment, home office or storefront hot enough to disrupt sleep and work within hours. Repair Asap LLC reviews the unit type \u2014 window, through-wall, portable or PTAC \u2014 plus the model or BTU label, photos, symptom timeline and building access before booking a triage, cleaning or re-secure visit.",
       "Good-fit AC repair help includes not-cooling triage from photos and the model label, filter and accessible coil cleaning, drain and condensate observation when water drips inside, re-seating and re-securing units that shifted in the window or sleeve, sealing gaps around side panels, seasonal remove-store-reinstall service, and planning a replacement unit when the old one is not worth fixing.",
       "We do not handle refrigerant-line service or sealed-system repair. Refrigerant diagnosis or recharge may require an EPA Section 608 certified technician, compressor and sealed-system failures may require the manufacturer or a specialist partner, central or ducted systems and mini-split internal service may require an HVAC specialist, and breaker-tripping or wiring faults may require a Licensed Master Electrician. We flag that before scheduling."
     ],
     "goodFit": [
       [
-        "AC not cooling — window, through-wall or portable",
+        "AC not cooling \u2014 window, through-wall or portable",
         "Weak or warm airflow is triaged from the model label, filter and coil photos and a symptom timeline before the visit is booked."
       ],
       [
@@ -892,7 +892,7 @@ const pages = [
       ],
       [
         "Sealed-system or compressor repair",
-        "Compressor and sealed-system failures may require the manufacturer or a specialist partner — for room units this is usually a replace-the-unit conversation."
+        "Compressor and sealed-system failures may require the manufacturer or a specialist partner \u2014 for room units this is usually a replace-the-unit conversation."
       ],
       [
         "Central or ducted split-system service",
@@ -910,7 +910,7 @@ const pages = [
     "intake": [
       [
         "Unit type and model or BTU label",
-        "Window, through-wall, portable or PTAC — the label photo tells us capacity, age and likely part availability."
+        "Window, through-wall, portable or PTAC \u2014 the label photo tells us capacity, age and likely part availability."
       ],
       [
         "Photos of the filter and front grille",
@@ -918,11 +918,11 @@ const pages = [
       ],
       [
         "Exact symptom and when it started",
-        "Warm air, weak airflow, short cycling or dripping — plus whether it began suddenly or faded over weeks."
+        "Warm air, weak airflow, short cycling or dripping \u2014 plus whether it began suddenly or faded over weeks."
       ],
       [
         "Photo or video of any water leak",
-        "Where the water shows up — sill, wall or floor — points to the drain, tilt or seal issue."
+        "Where the water shows up \u2014 sill, wall or floor \u2014 points to the drain, tilt or seal issue."
       ],
       [
         "Window, sleeve or bracket photos",
@@ -943,10 +943,10 @@ const pages = [
     "faq": [
       [
         "Do you repair air conditioners in NYC?",
-        "Repair Asap LLC helps with window, through-wall, portable and PTAC units when the symptom fits photo-reviewed triage, filter and coil cleaning, drain observation, re-seating, resealing or replacement planning. We do not handle refrigerant-line service or sealed-system repair — that may require an EPA Section 608 certified technician or the manufacturer, and we flag it before scheduling."
+        "Repair Asap LLC helps with window, through-wall, portable and PTAC units when the symptom fits photo-reviewed triage, filter and coil cleaning, drain observation, re-seating, resealing or replacement planning. We do not handle refrigerant-line service or sealed-system repair \u2014 that may require an EPA Section 608 certified technician or the manufacturer, and we flag it before scheduling."
       ],
       [
-        "My AC runs but blows warm air — can you fix it?",
+        "My AC runs but blows warm air \u2014 can you fix it?",
         "We start with the model label, filter and coil photos and a symptom timeline, because clogged filters, dirty coils, blocked airflow and seal gaps cause many warm-air complaints. If the evidence points to refrigerant loss or a compressor failure instead, we route the unit to an EPA Section 608 certified technician or a replacement conversation before booking a visit."
       ],
       [
@@ -955,7 +955,7 @@ const pages = [
       ],
       [
         "Do you service PTAC units in co-ops and condos?",
-        "Yes — PTAC triage, filter and accessible coil cleaning, and like-for-like swaps in existing sleeves are a good fit, and we plan around co-op rules, COI requirements and freight-elevator access. Internal refrigerant components stay with an EPA Section 608 certified technician or the manufacturer, which we flag first."
+        "Yes \u2014 PTAC triage, filter and accessible coil cleaning, and like-for-like swaps in existing sleeves are a good fit, and we plan around co-op rules, COI requirements and freight-elevator access. Internal refrigerant components stay with an EPA Section 608 certified technician or the manufacturer, which we flag first."
       ],
       [
         "Can you take my AC out for winter and put it back in spring?",
@@ -1014,20 +1014,20 @@ const pages = [
     "slug": "commercial-refrigeration",
     "crumb": "Commercial Refrigeration",
     "title": "Commercial Refrigeration Help NYC | Walk-In Cooler Triage",
-    "description": "NYC commercial refrigeration triage for walk-in coolers, reach-ins and prep tables: temperature checks, coil cleaning, gasket review and maintenance planning.",
+    "description": "Walk-in or reach-in trouble in NYC? Same-business-day triage when available: coils, gaskets, doors, 41\u00b0F checks. Free photo estimate \u2014 text photos now.",
     "ogTitle": "Commercial Refrigeration Triage in NYC | Repair Asap LLC",
-    "ogDescription": "Same-business-day triage when available for walk-in coolers, reach-ins and prep tables in NYC: temperature checks, condenser cleaning, gasket planning and quarterly maintenance for restaurants, delis and groceries.",
+    "ogDescription": "Walk-in or reach-in trouble in NYC? Same-business-day triage when available: coils, gaskets, doors, 41\u00b0F checks. Free photo estimate \u2014 text photos now.",
     "badge": "Commercial Refrigeration Triage",
     "h1": "Commercial Refrigeration Help in NYC",
     "accent": "Cooler, Coil & Gasket Triage",
-    "subtitle": "Walk-in cooler, reach-in, prep table and beverage cooler triage for NYC food businesses: temperature checks, condenser coil cleaning, gasket replacement planning, drain line cleaning and quarterly maintenance scheduling.",
+    "subtitle": "Cooler drifting above 41\u00b0F? Same-business-day triage when available \u2014 don't pay a specialist's emergency rate for a dirty coil or a torn gasket.",
     "serviceType": "Commercial Refrigeration Triage",
     "serviceName": "Commercial Refrigeration Triage in NYC",
     "serviceDescription": "Commercial refrigeration triage in New York City for walk-in coolers, reach-in refrigerators, prep tables and beverage coolers: temperature checks and logging observations, condenser coil and airflow cleaning, door gasket, hinge, latch and closer replacement planning, visible drain line cleaning, door sweeps and strip curtains, leveling, quarterly maintenance planning and COI support, with refrigerant, compressor, sealed-system and warranty work routed to an EPA Section 608 certified technician or refrigeration specialist.",
     "intro": [
-      "A walk-in cooler or reach-in that stops holding temperature is urgent for a restaurant, deli, grocery, bar or cafe: NYC food code requires cold food held at 41°F or below, so a failing unit is a food-loss risk and an inspection risk at the same time. Repair Asap LLC offers same-business-day triage when available during business hours — we review the unit type, model and serial number, current and target temperatures, photos of the condenser area and door seals, and how much stock is at risk before booking the visit.",
+      "A walk-in cooler or reach-in that stops holding temperature is urgent for a restaurant, deli, grocery, bar or cafe: NYC food code requires cold food held at 41\u00b0F or below, so a failing unit is a food-loss risk and an inspection risk at the same time. Repair Asap LLC offers same-business-day triage when available during business hours \u2014 we review the unit type, model and serial number, current and target temperatures, photos of the condenser area and door seals, and how much stock is at risk before booking the visit.",
       "Good-fit commercial refrigeration triage includes temperature checks and logging observations, condenser coil and airflow cleaning, door gasket, hinge, latch and closer review with replacement planning, visible drain line cleaning, door sweeps and strip curtains, unit leveling, and quarterly maintenance planning so coils and gaskets are handled before they take a box down mid-service. We also clean and maintain ice machines, and we support COI paperwork for commercial buildings and property managers.",
-      "Refrigerant charging or recovery, compressor and sealed-system work, board-level electronics and manufacturer warranty service may require an EPA Section 608 certified technician, a refrigeration specialist or the manufacturer. We flag that before scheduling — and triage first means you do not pay a specialist's emergency rate to find out the real problem was a dirty condenser coil or a worn door gasket."
+      "Refrigerant charging or recovery, compressor and sealed-system work, board-level electronics and manufacturer warranty service may require an EPA Section 608 certified technician, a refrigeration specialist or the manufacturer. We flag that before scheduling \u2014 and triage first means you do not pay a specialist's emergency rate to find out the real problem was a dirty condenser coil or a worn door gasket."
     ],
     "goodFit": [
       [
@@ -1084,7 +1084,7 @@ const pages = [
       ],
       [
         "Current and target temperature readings",
-        "The actual box temperature against the 41°F food-safety line sets the urgency of the visit."
+        "The actual box temperature against the 41\u00b0F food-safety line sets the urgency of the visit."
       ],
       [
         "Photos of the unit, condenser area and door seals",
@@ -1113,7 +1113,7 @@ const pages = [
     "faq": [
       [
         "Do you repair walk-in coolers in NYC?",
-        "We triage them. Repair Asap LLC handles the walk-in scope a handyman does well: temperature checks, condenser coil and airflow cleaning, door gasket, hinge and closer replacement planning, visible drain line cleaning, sweeps, curtains and leveling. Refrigerant, compressor and sealed-system work is routed to an EPA Section 608 certified technician or refrigeration specialist — and triage often shows the real problem was a dirty coil or a bad gasket."
+        "We triage them. Repair Asap LLC handles the walk-in scope a handyman does well: temperature checks, condenser coil and airflow cleaning, door gasket, hinge and closer replacement planning, visible drain line cleaning, sweeps, curtains and leveling. Refrigerant, compressor and sealed-system work is routed to an EPA Section 608 certified technician or refrigeration specialist \u2014 and triage often shows the real problem was a dirty coil or a bad gasket."
       ],
       [
         "How fast can you get to a cooler that is down?",
@@ -1129,7 +1129,7 @@ const pages = [
       ],
       [
         "Do you offer maintenance plans for commercial refrigeration?",
-        "Yes. We plan quarterly cleaning schedules covering condenser coils, door gaskets and closers, visible drain lines, sweeps and curtains, and temperature checks across your units, including ice machines. A regular routine keeps boxes at 41°F or below and reduces failures during service hours."
+        "Yes. We plan quarterly cleaning schedules covering condenser coils, door gaskets and closers, visible drain lines, sweeps and curtains, and temperature checks across your units, including ice machines. A regular routine keeps boxes at 41\u00b0F or below and reduces failures during service hours."
       ]
     ],
     "related": [
@@ -1176,13 +1176,13 @@ const pages = [
     "slug": "ice-machine-cleaning",
     "crumb": "Ice Machine Cleaning",
     "title": "Ice Machine Cleaning NYC | Descale, Sanitize & Triage",
-    "description": "NYC ice machine cleaning for restaurants, bars and offices: manufacturer-cycle descale and sanitize, filter swaps, slime and off-taste triage, COI support.",
+    "description": "Ice machine cleaning in NYC from $150: manufacturer-cycle descale and sanitize, filter swaps, ice-quality triage. Inspection-ready \u2014 book your visit.",
     "ogTitle": "Ice Machine Cleaning in NYC | Repair Asap LLC",
-    "ogDescription": "Manufacturer-cycle descale and sanitize, filter replacement, slime and off-taste triage, and recurring cleaning schedules for NYC bars, restaurants and offices.",
+    "ogDescription": "Ice machine cleaning in NYC from $150: manufacturer-cycle descale and sanitize, filter swaps, ice-quality triage. Inspection-ready \u2014 book your visit.",
     "badge": "Ice Machine Cleaning",
     "h1": "Ice Machine Cleaning in NYC",
     "accent": "Descale, Sanitize & Ice Quality Triage",
-    "subtitle": "Manufacturer-cycle descale and sanitize visits, filter replacement, line and bin cleaning, and ice quality triage for bars, restaurants, cafes, offices and healthcare waiting rooms across NYC.",
+    "subtitle": "Cloudy ice, low output or slime in the bin? Manufacturer-cycle cleaning and sanitizing from $150 \u2014 inspection-ready ice for bars, cafes and offices.",
     "serviceType": "Ice Machine Cleaning",
     "serviceName": "Ice Machine Cleaning in NYC",
     "serviceDescription": "Ice machine cleaning in New York City: manufacturer-cycle descale and sanitize following the unit's documented procedure, accessible water filter replacement, visible water and drain line cleaning, bin and condenser cleaning, ice quality triage, and recurring cleaning schedule planning for restaurants, bars, cafes, offices and healthcare waiting rooms.",
@@ -1279,7 +1279,7 @@ const pages = [
       ],
       [
         "What ice machine brands do you clean?",
-        "Any brand that publishes a documented cleaning procedure. Hoshizaki, Manitowoc and Scotsman are common examples — each publishes a step-by-step descale and sanitize cycle in its manual, and we follow the manufacturer's procedure rather than improvising."
+        "Any brand that publishes a documented cleaning procedure. Hoshizaki, Manitowoc and Scotsman are common examples \u2014 each publishes a step-by-step descale and sanitize cycle in its manual, and we follow the manufacturer's procedure rather than improvising."
       ],
       [
         "Is dirty ice a health-inspection issue in NYC?",
@@ -1340,6 +1340,12 @@ const pages = [
 
 const GALLERY_DATA = JSON.parse(
   readFileSync(new URL('./appliance-gallery-data.json', import.meta.url), 'utf8'),
+);
+
+// Real job photos as hero backgrounds (generated 640x640 webp) — falls back
+// to the category stock image when a page has no real-photo hero yet.
+const HERO_IMAGES = JSON.parse(
+  readFileSync(new URL('./appliance-hero-images.json', import.meta.url), 'utf8'),
 );
 
 // data-config keys must exist in components/modules/calculator.js CONFIGS
@@ -1637,6 +1643,7 @@ function withPricingFaq(page) {
 function pageHtml(page) {
   page = { ...page, faq: withPricingFaq(page) };
   const category = pageCategory(page);
+  const heroImage = HERO_IMAGES[page.slug] || category.heroImage;
   const canonical = `${BASE_URL}${category.url}${page.slug}/`;
   const breadcrumb = {
     '@context': 'https://schema.org',
@@ -1707,7 +1714,7 @@ function pageHtml(page) {
         rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"></noscript>
-    <link rel="preload" as="image" type="image/webp" href="${category.heroImage}" fetchpriority="high">
+    <link rel="preload" as="image" type="image/webp" href="${heroImage}" fetchpriority="high">
     <link rel="stylesheet" href="/styles.css?v=${CSS_VERSION}">
 </head>
 
@@ -1750,7 +1757,7 @@ function pageHtml(page) {
 
     <main id="main-content">
         <section class="svc-hero" aria-label="Service overview">
-            <div class="svc-hero__bg"><img src="${category.heroImage}"
+            <div class="svc-hero__bg"><img src="${heroImage}"
                     alt="${escapeHtml(page.serviceName)}" class="svc-hero__img" loading="eager" fetchpriority="high"
                     width="640" height="640">
                 <div class="svc-hero__overlay"></div>

@@ -207,5 +207,69 @@
    "full": "/assets/photo/appliance-services/washer-dryer-installation/7eaf2114ab0d6e9b.webp",
    "caption": "Appliance diagnostics and performance inspection"
   }
+ ],
+ "commercial-refrigeration": [
+  {
+   "type": "after",
+   "full": "/assets/photo/appliance-services/refrigerator-installation/ff0968cc14dc5f45.webp",
+   "caption": "Technician using infrared thermometer inside commercial walk-in cooler showing 34\u00b0F temperature reading"
+  },
+  {
+   "type": "after",
+   "full": "/assets/photo/appliance-services/refrigerator-installation/d639eef9b7569791.webp",
+   "caption": "Hoshizaki commercial refrigerator displaying 34\u00b0F after successful repair and temperature calibration service in NYC"
+  },
+  {
+   "type": "after",
+   "full": "/assets/photo/appliance-services/refrigerator-installation/ed51c034bf0ff130.webp",
+   "caption": "Serv-Ware commercial stainless steel freezer unit after successful repair service by Repair ASAP LLC NYC"
+  },
+  {
+   "type": "before",
+   "full": "/assets/photo/appliance-services/refrigerator-installation/1367668018feaf9a.webp",
+   "caption": "Heavily dust-clogged commercial refrigerator condenser coils before cleaning service in New York City"
+  },
+  {
+   "type": "after",
+   "full": "/assets/photo/appliance-services/refrigerator-installation/97aa468581f50292.webp",
+   "caption": "Clean commercial refrigerator condenser coils after professional deep cleaning service by Repair ASAP LLC"
+  },
+  {
+   "type": "before",
+   "full": "/assets/photo/appliance-services/refrigerator-installation/668ce9fcf4cd207d.webp",
+   "caption": "Frost-covered evaporator coils before refrigerator service"
+  },
+  {
+   "type": "after",
+   "full": "/assets/photo/appliance-services/refrigerator-installation/8d100c27a094a7a0.webp",
+   "caption": "Clean commercial refrigerator interior with dual evaporator fans and defrost coil after professional servicing"
+  },
+  {
+   "type": "after",
+   "full": "/assets/photo/appliance-services/refrigerator-installation/7e495bd2c86185fc.webp",
+   "caption": "Beverage-Air commercial under-counter refrigerator unit serviced and operational in NYC commercial kitchen"
+  }
+ ],
+ "ice-machine-cleaning": [
+  {
+   "type": "after",
+   "full": "/assets/photo/appliance-services/refrigerator-installation/fcbf84dad7fd6b66.webp",
+   "caption": "Indigo NXT commercial ice machine control panel displaying 'Making Ice' status after repair service in NYC"
+  },
+  {
+   "type": "after",
+   "full": "/assets/photo/appliance-services/refrigerator-installation/0b23dd20e6cdefce.webp",
+   "caption": "Technician pressure washing a commercial refrigeration condenser coil during appliance maintenance in NYC"
+  },
+  {
+   "type": "after",
+   "full": "/assets/photo/appliance-services/refrigerator-installation/2308b5cee87121c4.webp",
+   "caption": "Clean condenser coils on commercial refrigeration unit after professional servicing and maintenance in NYC"
+  },
+  {
+   "type": "after",
+   "full": "/assets/photo/appliance-services/refrigerator-installation/bec922ee0dd84fee.webp",
+   "caption": "Clean condenser filter and fins after professional appliance servicing"
+  }
  ]
 }

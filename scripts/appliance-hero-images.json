@@ -1,0 +1,11 @@
+{
+ "refrigerator-repair": "/assets/services/heroes/hero-refrigerator-repair.webp",
+ "dishwasher-repair": "/assets/services/heroes/hero-dishwasher-repair.webp",
+ "washer-repair": "/assets/services/heroes/hero-washer-repair.webp",
+ "dryer-repair": "/assets/services/heroes/hero-dryer-repair.webp",
+ "oven-range-repair": "/assets/services/heroes/hero-oven-range-repair.webp",
+ "ac-repair-help": "/assets/services/heroes/hero-ac-repair-help.webp",
+ "dryer-vent-cleaning": "/assets/services/heroes/hero-dryer-vent-cleaning.webp",
+ "commercial-refrigeration": "/assets/services/heroes/hero-commercial-refrigeration.webp",
+ "ice-machine-cleaning": "/assets/services/heroes/hero-ice-machine-cleaning.webp"
+}
