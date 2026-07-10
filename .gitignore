@@ -20,3 +20,8 @@ reports/
 venv/
 __pycache__/
 *.pyc
+
+# Office documents never belong on the public site
+*.docx
+*.xlsx
+*.pptx
