@@ -135,7 +135,7 @@
       "defaultVertical": "appliance_repair",
       "defaultIntent": "repair_or_replace",
       "quickbooksItem": "Refrigerator Repair Help",
-      "publicRoute": "/services/appliance-services/appliance-repair/",
+      "publicRoute": "/services/appliance-services/refrigerator-repair/",
       "complianceFlagsWhenRelevant": [
         "refrigerant_work_possible",
         "sealed_system_possible",
@@ -150,7 +150,7 @@
       "defaultVertical": "appliance_repair",
       "defaultIntent": "repair_or_replace",
       "quickbooksItem": "Dishwasher Repair Help",
-      "publicRoute": "/services/appliance-services/appliance-repair/",
+      "publicRoute": "/services/appliance-services/dishwasher-repair/",
       "complianceFlagsWhenRelevant": [
         "new_plumbing_possible",
         "new_electrical_possible",
@@ -164,7 +164,7 @@
       "defaultVertical": "appliance_repair",
       "defaultIntent": "repair_or_replace",
       "quickbooksItem": "Washer Repair Help",
-      "publicRoute": "/services/appliance-services/appliance-repair/"
+      "publicRoute": "/services/appliance-services/washer-repair/"
     },
     {
       "crmCode": "dryer_repair_help",
@@ -173,12 +173,72 @@
       "defaultVertical": "appliance_repair",
       "defaultIntent": "repair_or_replace",
       "quickbooksItem": "Dryer Repair Help",
-      "publicRoute": "/services/appliance-services/appliance-repair/",
+      "publicRoute": "/services/appliance-services/dryer-repair/",
       "complianceFlagsWhenRelevant": [
         "gas_scope_possible",
         "new_electrical_possible",
         "permit_scope_possible"
       ]
+    },
+    {
+      "crmCode": "oven_range_repair_help",
+      "label": "Oven & Range Repair Help",
+      "priority": 2,
+      "defaultVertical": "appliance_repair",
+      "defaultIntent": "repair_or_replace",
+      "quickbooksItem": "Oven & Range Repair Help",
+      "publicRoute": "/services/appliance-services/oven-range-repair/",
+      "complianceFlagsWhenRelevant": [
+        "gas_scope_possible",
+        "new_electrical_possible",
+        "manufacturer_authorized_required"
+      ]
+    },
+    {
+      "crmCode": "dryer_vent_cleaning",
+      "label": "Dryer Vent Cleaning",
+      "priority": 1,
+      "defaultVertical": "appliance_repair",
+      "defaultIntent": "cleaning_maintenance",
+      "quickbooksItem": "Dryer Vent Cleaning",
+      "publicRoute": "/services/appliance-services/dryer-vent-cleaning/"
+    },
+    {
+      "crmCode": "ac_repair_help",
+      "label": "AC Repair Help",
+      "priority": 2,
+      "defaultVertical": "ac_install_cleaning",
+      "defaultIntent": "repair_or_replace",
+      "quickbooksItem": "AC Repair Help",
+      "publicRoute": "/services/ac-installation-cleaning/ac-repair-help/",
+      "complianceFlagsWhenRelevant": [
+        "refrigerant_work_possible",
+        "sealed_system_possible",
+        "epa_608_required"
+      ]
+    },
+    {
+      "crmCode": "ice_machine_cleaning",
+      "label": "Ice Machine Cleaning",
+      "priority": 2,
+      "defaultVertical": "commercial_refrigeration",
+      "defaultIntent": "cleaning_maintenance",
+      "quickbooksItem": "Ice Machine Cleaning",
+      "publicRoute": "/services/appliance-services/ice-machine-cleaning/",
+      "complianceFlagsWhenRelevant": [
+        "refrigerant_work_possible",
+        "epa_608_required",
+        "partner_referral_required"
+      ]
+    },
+    {
+      "crmCode": "preventive_maintenance_visit",
+      "label": "Preventive Maintenance Visit",
+      "priority": 2,
+      "defaultVertical": "appliance_repair",
+      "defaultIntent": "maintenance",
+      "quickbooksItem": "Preventive Maintenance Visit",
+      "publicRoute": "/preventive-maintenance/"
     },
     {
       "crmCode": "commercial_refrigeration_triage",
@@ -187,15 +247,16 @@
       "defaultVertical": "commercial_refrigeration",
       "defaultIntent": "diagnostic",
       "quickbooksItem": "Commercial Refrigeration Triage",
-      "publicRoute": "/services/appliance-services/appliance-repair/",
-      "requiresOperationalConfirmationBeforeDedicatedPage": true,
+      "publicRoute": "/services/appliance-services/commercial-refrigeration/",
+      "requiresOperationalConfirmationBeforeDedicatedPage": false,
       "complianceFlagsWhenRelevant": [
         "refrigerant_work_possible",
         "sealed_system_possible",
         "epa_608_required",
         "partner_referral_required",
         "manufacturer_authorized_required"
-      ]
+      ],
+      "dedicatedPageNote": "Dedicated page shipped 2026-07-10 with triage/maintenance-only framing; repair-capability claims still gated on operational confirmation."
     },
     {
       "crmCode": "commercial_refrigeration_maintenance",
@@ -204,8 +265,9 @@
       "defaultVertical": "commercial_refrigeration",
       "defaultIntent": "maintenance",
       "quickbooksItem": "Commercial Refrigeration Preventive Maintenance",
-      "publicRoute": "/services/appliance-services/appliance-repair/",
-      "requiresOperationalConfirmationBeforeDedicatedPage": true
+      "publicRoute": "/services/appliance-services/commercial-refrigeration/",
+      "requiresOperationalConfirmationBeforeDedicatedPage": false,
+      "dedicatedPageNote": "Dedicated page shipped 2026-07-10 with triage/maintenance-only framing; repair-capability claims still gated on operational confirmation."
     },
     {
       "crmCode": "ac_deep_cleaning",

@@ -3,8 +3,8 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-const ASSET_VERSION = '20260708m';
-const LOADER_ASSET_VERSION = '20260708m';
+const ASSET_VERSION = '20260710a';
+const LOADER_ASSET_VERSION = '20260710a';
 const ROOT = new URL('..', import.meta.url).pathname;
 
 const serviceLinks = {
@@ -12,6 +12,7 @@ const serviceLinks = {
   furniture: { name: 'Furniture assembly', url: '/services/furniture-assembly/' },
   tvMounting: { name: 'TV and wall mounting', url: '/services/tv-wall-mounting/' },
   appliances: { name: 'Appliance installation', url: '/services/appliance-services/' },
+  applianceRepair: { name: 'Appliance repair help', url: '/services/appliance-services/appliance-repair/' },
   ac: { name: 'AC installation and cleaning', url: '/services/ac-installation-cleaning/' },
   plumbing: { name: 'Plumbing fixture work', url: '/services/plumbing/' },
   electrical: { name: 'Electrical fixture and device work', url: '/services/electrical/' },
@@ -34,7 +35,7 @@ const pages = [
     subtitle: 'COI-ready handyman help for Manhattan apartments, co-ops, condos, offices, doorman buildings, pre-war walls, and high-rise move-ins.',
     localContext: 'Manhattan jobs often need tight elevator windows, doorman or super coordination, COI paperwork, wall-type checks, and careful scheduling around building work hours. Repair ASAP reviews photos, access details, and building rules before confirming the visit.',
     neighborhoods: ['Upper East Side', 'Upper West Side', 'Midtown', 'Chelsea', 'Greenwich Village', 'Financial District', 'Tribeca', 'SoHo', 'Hell\'s Kitchen', 'Lower East Side', 'Harlem', 'Washington Heights'],
-    services: ['tvMounting', 'furniture', 'apartmentSetup', 'painting', 'electrical', 'plumbing', 'ac', 'drywall'],
+    services: ['tvMounting', 'furniture', 'apartmentSetup', 'painting', 'electrical', 'plumbing', 'ac', 'drywall', 'applianceRepair'],
     proofLinks: [
       { label: 'Crown Royal Barbershop renovation in Manhattan', url: '/case-studies/crown-royal-barbershop-renovation-manhattan/' },
       { label: 'Lower Manhattan fence project on the homepage', url: '/#portfolio' },
@@ -58,7 +59,7 @@ const pages = [
     subtitle: 'Insured handyman help for Brooklyn apartments, brownstones, condos, rentals, storefronts, and punch-list repairs after photo and scope review.',
     localContext: 'Brooklyn work can range from older plaster walls and brownstone details to newer condo finishes, roof decks, storefront build-outs, and tight parking. Repair ASAP checks the wall, access, materials, and building requirements before scheduling.',
     neighborhoods: ['Williamsburg', 'Park Slope', 'Bed-Stuy', 'Bushwick', 'Bay Ridge', 'DUMBO', 'Carroll Gardens', 'Brooklyn Heights', 'Greenpoint', 'Crown Heights', 'Flatbush', 'Fort Greene'],
-    services: ['tvMounting', 'drywall', 'furniture', 'appliances', 'painting', 'locks', 'ac', 'plumbing'],
+    services: ['tvMounting', 'drywall', 'furniture', 'appliances', 'painting', 'locks', 'ac', 'plumbing', 'applianceRepair'],
     proofLinks: [
       { label: 'Drywall repair after mini-split installation in Brooklyn', url: '/case-studies/drywall-repair-after-mini-split-installation-brooklyn/' },
       { label: 'Plastic wall panel installation in Bedford-Stuyvesant', url: '/case-studies/plastic-wall-panel-installation-bedford-stuyvesant-brooklyn/' },
@@ -82,7 +83,7 @@ const pages = [
     subtitle: 'Local Queens handyman help for apartments, co-ops, condos, single-family homes, storefronts, and move-in punch lists.',
     localContext: 'Repair ASAP is based in Rego Park, so Queens is a primary service area. Queens jobs often include apartment move-ins, window AC installs, furniture assembly, TV mounting, appliance setup, small plumbing fixture work, and repairs across many building types.',
     neighborhoods: ['Forest Hills', 'Rego Park', 'Astoria', 'Long Island City', 'Flushing', 'Bayside', 'Jackson Heights', 'Elmhurst', 'Jamaica', 'Woodside', 'Sunnyside', 'Howard Beach'],
-    services: ['apartmentSetup', 'furniture', 'tvMounting', 'ac', 'appliances', 'plumbing', 'electrical', 'drywall'],
+    services: ['apartmentSetup', 'furniture', 'tvMounting', 'ac', 'appliances', 'plumbing', 'electrical', 'drywall', 'applianceRepair'],
     proofLinks: [
       { label: 'Bathroom build-out from rough plumbing to tiled shower in Queens', url: '/case-studies/bathroom-build-out-rough-plumbing-to-tiled-shower-queens/' },
       { label: 'Wood table refinishing in Astoria, Queens', url: '/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/' },
@@ -107,7 +108,7 @@ const pages = [
     subtitle: 'Insured handyman service for Bronx apartments, co-ops, condos, homes, and light commercial punch-list work after scope review.',
     localContext: 'Bronx jobs can involve large apartment buildings, co-ops, older walls, elevator scheduling, building management rules, and residential repairs. Repair ASAP confirms scope, timing, and travel before booking so the visit is realistic.',
     neighborhoods: ['Riverdale', 'Kingsbridge', 'Fordham', 'Pelham Bay', 'Throgs Neck', 'Morris Park', 'Mott Haven', 'Soundview', 'Concourse', 'Norwood', 'Parkchester', 'Wakefield'],
-    services: ['drywall', 'furniture', 'tvMounting', 'ac', 'plumbing', 'electrical', 'painting', 'locks'],
+    services: ['drywall', 'furniture', 'tvMounting', 'ac', 'plumbing', 'electrical', 'painting', 'locks', 'applianceRepair'],
     proofLinks: [
       { label: 'General repair services', url: '/services/general-repairs/' },
       { label: 'All handyman service categories', url: '/services/' },
@@ -131,7 +132,7 @@ const pages = [
     subtitle: 'Handyman help for Staten Island homes, apartments, rentals, and larger bundled repair lists when scope and travel fit.',
     localContext: 'Staten Island appointments work best when tasks are bundled: mounting, assembly, repairs, flooring touch-ups, painting, AC, fixtures, and punch-list work. Repair ASAP confirms the route, materials, access, and job size before scheduling.',
     neighborhoods: ['St. George', 'Tompkinsville', 'New Dorp', 'Great Kills', 'Tottenville', 'West Brighton', 'Dongan Hills', 'Annadale', 'Huguenot', 'Eltingville', 'Rosebank', 'Westerleigh'],
-    services: ['drywall', 'flooring', 'painting', 'tvMounting', 'furniture', 'appliances', 'plumbing', 'ac'],
+    services: ['drywall', 'flooring', 'painting', 'tvMounting', 'furniture', 'appliances', 'plumbing', 'ac', 'applianceRepair'],
     proofLinks: [
       { label: 'All repair and installation services', url: '/services/' },
       { label: 'General repair services', url: '/services/general-repairs/' },
@@ -155,7 +156,7 @@ const pages = [
     subtitle: 'Repair ASAP accepts Western Long Island and Nassau County work when the project scope, schedule, and travel fit.',
     localContext: 'Long Island and Nassau appointments are strongest for larger or bundled work: outdoor assembly, gazebo and patio-related projects, appliance or fixture setup, repairs, painting, flooring, mounting, and home punch lists. Scope and travel are confirmed before booking.',
     neighborhoods: ['Great Neck', 'Port Washington', 'Manhasset', 'Mineola', 'Garden City', 'New Hyde Park', 'Roslyn', 'Glen Cove', 'Hempstead', 'Valley Stream', 'Long Beach', 'Locust Valley'],
-    services: ['drywall', 'flooring', 'painting', 'tvMounting', 'furniture', 'appliances', 'plumbing', 'ac'],
+    services: ['drywall', 'flooring', 'painting', 'tvMounting', 'furniture', 'appliances', 'plumbing', 'ac', 'applianceRepair'],
     proofLinks: [
       { label: 'Gazebo and outdoor kitchen installation in Nassau County', url: '/case-studies/gazebo-outdoor-kitchen-installation-lattingtown-long-island/' },
       { label: 'All handyman service categories', url: '/services/' },

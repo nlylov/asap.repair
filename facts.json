@@ -76,8 +76,26 @@
     "tvAndWallMounting": "https://asap.repair/services/tv-wall-mounting/"
   },
   "priorityServicePages": {
-    "applianceInstallation": [
+    "applianceRepair": [
       "https://asap.repair/services/appliance-services/appliance-repair/",
+      "https://asap.repair/services/appliance-services/refrigerator-repair/",
+      "https://asap.repair/services/appliance-services/dishwasher-repair/",
+      "https://asap.repair/services/appliance-services/washer-repair/",
+      "https://asap.repair/services/appliance-services/dryer-repair/",
+      "https://asap.repair/services/appliance-services/oven-range-repair/"
+    ],
+    "applianceMaintenanceAndCleaning": [
+      "https://asap.repair/services/appliance-services/dryer-vent-cleaning/",
+      "https://asap.repair/services/appliance-services/ice-machine-cleaning/",
+      "https://asap.repair/preventive-maintenance/"
+    ],
+    "commercialAndB2B": [
+      "https://asap.repair/services/appliance-services/commercial-refrigeration/",
+      "https://asap.repair/services/appliance-services/ice-machine-cleaning/",
+      "https://asap.repair/for-restaurants/",
+      "https://asap.repair/for-property-managers/"
+    ],
+    "applianceInstallation": [
       "https://asap.repair/services/appliance-services/dishwasher-installation/",
       "https://asap.repair/services/appliance-services/washer-dryer-installation/",
       "https://asap.repair/services/appliance-services/washer-installation/",
@@ -106,6 +124,7 @@
       "https://asap.repair/services/electrical/electrical-troubleshooting/"
     ],
     "acInstallationAndCleaning": [
+      "https://asap.repair/services/ac-installation-cleaning/ac-repair-help/",
       "https://asap.repair/services/ac-installation-cleaning/window-ac-installation/",
       "https://asap.repair/services/ac-installation-cleaning/ac-bracket-installation/",
       "https://asap.repair/services/ac-installation-cleaning/through-wall-ac-installation/",
@@ -186,9 +205,57 @@
       "url": "https://asap.repair/services/appliance-services/appliance-repair/",
       "matchWhen": "appliance repair NYC, refrigerator repair help, dishwasher leaking or not draining, washer vibration or drain issue, dryer not heating or vent issue, appliance diagnostic, appliance cleaning, repair versus replacement decision when handyman-compatible scope fits"
     },
+    "refrigeratorRepair": {
+      "url": "https://asap.repair/services/appliance-services/refrigerator-repair/",
+      "matchWhen": "refrigerator repair NYC, fridge not cooling, freezer not cold, ice buildup, dirty condenser coils, refrigerator leaking, refrigerator airflow issue, refrigerator noise, refrigerator repair or replace decision when sealed-system or refrigerant work is not assumed"
+    },
+    "dishwasherRepair": {
+      "url": "https://asap.repair/services/appliance-services/dishwasher-repair/",
+      "matchWhen": "dishwasher repair NYC, dishwasher leaking, dishwasher not draining, dishwasher standing water, dishwasher drain hose, dishwasher high loop, dishwasher supply connection, dishwasher odor, dishwasher repair or replace decision"
+    },
+    "washerRepair": {
+      "url": "https://asap.repair/services/appliance-services/washer-repair/",
+      "matchWhen": "washer repair NYC, washing machine not draining, washer leaking, washer vibration, washer shaking, washer supply hose issue, washer drain hose issue, washer leveling, washer repair or replace decision"
+    },
+    "dryerRepair": {
+      "url": "https://asap.repair/services/appliance-services/dryer-repair/",
+      "matchWhen": "dryer repair NYC, dryer not heating, dryer vent issue, lint buildup, dryer vibration, dryer connection review, electric dryer plug or cord issue, gas-ready dryer scope review, dryer repair or replace decision"
+    },
+    "ovenRangeRepair": {
+      "url": "https://asap.repair/services/appliance-services/oven-range-repair/",
+      "matchWhen": "oven repair NYC, stove not working, range burner not lighting, oven door or hinge issue, knob replacement, range leveling, anti-tip bracket, oven not heating triage, oven repair or replace decision when gas piping, new 240V circuits and internal elements are routed to licensed or specialized service"
+    },
+    "dryerVentCleaning": {
+      "url": "https://asap.repair/services/appliance-services/dryer-vent-cleaning/",
+      "matchWhen": "dryer vent cleaning NYC, dryer takes too long to dry, lint buildup, dryer fire risk, airflow check, transition hose replacement, annual dryer vent maintenance for homes, landlords and laundry closets"
+    },
+    "iceMachineCleaning": {
+      "url": "https://asap.repair/services/appliance-services/ice-machine-cleaning/",
+      "matchWhen": "ice machine cleaning NYC, ice machine descaling, ice machine sanitizing, ice tastes bad, cloudy ice, ice machine slime, low ice production triage, recurring ice machine maintenance for restaurants, bars and offices"
+    },
+    "acRepairHelp": {
+      "url": "https://asap.repair/services/ac-installation-cleaning/ac-repair-help/",
+      "matchWhen": "AC repair NYC, air conditioner not cooling, window AC problem, PTAC issue, AC leaking water, AC drain issue, AC re-seat or re-seal, AC repair or replace review when refrigerant and sealed-system work is routed to EPA Section 608 certified service"
+    },
+    "sameDayHelp": {
+      "url": "https://asap.repair/same-day-handyman-nyc/",
+      "matchWhen": "same day handyman NYC, urgent repair help today, fast handyman visit, what fits a same-day slot, urgent appliance triage during business hours"
+    },
+    "preventiveMaintenance": {
+      "url": "https://asap.repair/preventive-maintenance/",
+      "matchWhen": "preventive maintenance plan NYC, seasonal maintenance visits, quarterly maintenance, apartment maintenance program, building maintenance bundles for homes, landlords and small businesses"
+    },
+    "forRestaurants": {
+      "url": "https://asap.repair/for-restaurants/",
+      "matchWhen": "restaurant handyman NYC, restaurant equipment help, commercial kitchen cold-side triage, restaurant maintenance vendor, deli bar cafe equipment and space repairs"
+    },
+    "forPropertyManagers": {
+      "url": "https://asap.repair/for-property-managers/",
+      "matchWhen": "handyman for property managers NYC, landlord repair vendor, building super support, multi-unit appliance triage, turnover and COI building work coordination"
+    },
     "commercialRefrigerationTriage": {
-      "url": "https://asap.repair/services/appliance-services/appliance-repair/",
-      "matchWhen": "commercial refrigerator repair help, reach-in cooler issue, walk-in cooler issue, prep table not holding temperature, beverage cooler problem, ice machine issue, restaurant refrigeration triage, condenser cleaning, airflow check, temperature check, maintenance planning, emergency down equipment when refrigerant or sealed-system work may require an EPA Section 608 certified technician or specialist partner"
+      "url": "https://asap.repair/services/appliance-services/commercial-refrigeration/",
+      "matchWhen": "commercial refrigeration help, reach-in cooler issue, walk-in cooler issue, prep table not holding temperature, beverage cooler problem, restaurant refrigeration triage, condenser coil cleaning, gasket replacement planning, temperature check, maintenance planning, emergency down equipment triage when refrigerant or sealed-system work may require an EPA Section 608 certified technician or specialist partner"
     },
     "tvMounting": {
       "url": "https://asap.repair/services/tv-wall-mounting/tv-mounting/",
@@ -306,7 +373,11 @@
     "averageVisibleRating": 4.9,
     "verifiedReviewCount": 73,
     "structuredReviewCount": 0,
-    "includedSources": ["Google", "Yelp", "Thumbtack"],
+    "includedSources": [
+      "Google",
+      "Yelp",
+      "Thumbtack"
+    ],
     "countNotes": "verifiedReviewCount (73) is the visible review count summarized from Google, Yelp and Thumbtack. Customer reviews remain visible as normal page content, but Repair ASAP does not publish self-serving Review or AggregateRating schema.org markup for business-owned review rich results.",
     "excludedFromAggregate": "Additional TaskRabbit testimonials from a previous profile are shown on the reviews page but are not counted in the 73-review aggregate rating.",
     "reviewsPage": "https://asap.repair/reviews/"
@@ -324,7 +395,11 @@
     "handymanQueens": "https://asap.repair/handyman-queens/",
     "handymanBronx": "https://asap.repair/handyman-bronx/",
     "handymanStatenIsland": "https://asap.repair/handyman-staten-island/",
-    "handymanLongIsland": "https://asap.repair/handyman-long-island/"
+    "handymanLongIsland": "https://asap.repair/handyman-long-island/",
+    "sameDayHelp": "https://asap.repair/same-day-handyman-nyc/",
+    "preventiveMaintenance": "https://asap.repair/preventive-maintenance/",
+    "forRestaurants": "https://asap.repair/for-restaurants/",
+    "forPropertyManagers": "https://asap.repair/for-property-managers/"
   },
-  "lastReviewed": "2026-07-07"
+  "lastReviewed": "2026-07-10"
 }
