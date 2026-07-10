@@ -1001,14 +1001,15 @@
     </div>
   </div>
 
-  <script defer src="/components/loader.js?v=20260710a"></script>
+  <script defer src="/components/loader.js?v=20260710b"></script>
   <script>
-    window.__repairAsapPlacesScriptSrc = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB11jssTUP9P1ntNvQIYvt-D0MO4hMVIgY&libraries=places&loading=async&callback=initPlacesAutocomplete';
+    // The Maps (Places) loader src is defined once in components/loader.js.
+    // This stub only guards the async-load race before main.js defines the real callback.
     window.initPlacesAutocomplete = window.initPlacesAutocomplete || function () {
       window.__placesAutocompletePending = true;
     };
   </script>
-  <script defer src="/main.js?v=20260710a"></script>
+  <script defer src="/main.js?v=20260710b"></script>
   <!-- Interactive Services by Room -->
   <script defer src="/room-services.js?v=20260704a"></script>
 

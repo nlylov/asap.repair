@@ -6,8 +6,14 @@
 (function () {
     'use strict';
 
-    const ASSET_VERSION = '20260710a';
+    const ASSET_VERSION = '20260710b';
     const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
+
+    // Single source of truth for the browser Google Maps (Places) loader.
+    // Loaded on every page so the quote-modal address field gets autocomplete
+    // site-wide, not just on the homepage. Key is referrer-restricted to asap.repair.
+    window.__repairAsapPlacesScriptSrc = window.__repairAsapPlacesScriptSrc
+        || 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDt_R6gxJoHBQXQcu2m-qLLYIfcadMVGPw&libraries=places&loading=async&callback=initPlacesAutocomplete';
     const localHostnames = new Set(['localhost', '127.0.0.1', '::1']);
     const useExtensionlessComponents = window.location.protocol !== 'file:' && !localHostnames.has(window.location.hostname);
 

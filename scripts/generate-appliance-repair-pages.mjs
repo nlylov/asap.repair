@@ -3,7 +3,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-const ASSET_VERSION = '20260710a';
+const ASSET_VERSION = '20260710b';
 const CSS_VERSION = '20260706c';
 const ROOT = new URL('..', import.meta.url).pathname;
 const BASE_URL = 'https://asap.repair';
