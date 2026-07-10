@@ -1,6 +1,35 @@
 {
   "studies": [
     {
+      "slug": "entry-door-and-frame-replacement-staten-island",
+      "title": "Entry Door and Frame Replacement in Staten Island",
+      "excerpt": "A tired rear entry had an old aluminum storm door and a glass-insert door hung in a worn frame. Repair Asap removed both doors and the frame, set a new prehung entry door plumb and level, installed a single lock, capped the unused second lock hole, and sealed the perimeter with spray foam in about three and a half hours.",
+      "thumbnail": "/assets/case-studies/entry-door-and-frame-replacement-staten-island/thumbnail.webp",
+      "location": "Staten Island",
+      "category": "general_repairs",
+      "categories": [
+        "general_repairs"
+      ],
+      "tags": [
+        "entry door replacement",
+        "exterior door installation",
+        "door frame replacement",
+        "prehung door install",
+        "storm door removal",
+        "lock installation",
+        "spray foam sealing",
+        "Staten Island",
+        "NYC handyman"
+      ],
+      "serviceSlugs": [
+        "general-repairs/door-installation",
+        "general-repairs/door-repair",
+        "general-repairs/lock-installation",
+        "general-repairs/caulking"
+      ],
+      "featured": true
+    },
+    {
       "slug": "one-bedroom-apartment-turnover-nyc",
       "title": "One-Bedroom Apartment Turnover in Flatlands, Brooklyn",
       "excerpt": "A tired one-bedroom rental in Flatlands, Brooklyn was made move-in ready between tenants. Repair Asap repainted the apartment, refinished hardwood floors, refreshed the bathroom, repaired window sills and trim, and installed new hallway flooring in about five days.",
