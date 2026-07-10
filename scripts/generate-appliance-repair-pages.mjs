@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
 import { mkdir, writeFile } from 'node:fs/promises';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-const ASSET_VERSION = '20260710b';
+const ASSET_VERSION = '20260710c';
 const CSS_VERSION = '20260706c';
 const ROOT = new URL('..', import.meta.url).pathname;
 const BASE_URL = 'https://asap.repair';
@@ -1335,6 +1336,169 @@ const pages = [
   }
 ];
 
+// ---- Conversion layer: calculator config, curated photos, verified reviews ----
+
+const GALLERY_DATA = JSON.parse(
+  readFileSync(new URL('./appliance-gallery-data.json', import.meta.url), 'utf8'),
+);
+
+// data-config keys must exist in components/modules/calculator.js CONFIGS
+const CALC_CONFIG = {
+  'refrigerator-repair': 'refrigerator-repair',
+  'dishwasher-repair': 'dishwasher-repair',
+  'washer-repair': 'washer-repair',
+  'dryer-repair': 'dryer-repair',
+  'oven-range-repair': 'oven-range-repair',
+  'ac-repair-help': 'ac-repair-help',
+  'commercial-refrigeration': 'commercial-refrigeration',
+  'dryer-vent-cleaning': 'dryer-vent-cleaning',
+  'ice-machine-cleaning': 'ice-machine-cleaning',
+};
+
+// Real quotes from _data/reviews_database.md (63 five-star reviews).
+// Long quotes are trimmed with an ellipsis, never altered.
+const REVIEWS = {
+  'refrigerator-repair': [
+    ['Tanya Z.', 'Yelp · Nov 2025', 'Fast quote on Yelp and came out quick to service my apt. Listened to my concerns about wanting repair vs replacement services. Got the job done in one visit. Competitive prices.'],
+    ['Jay C.', 'Thumbtack · Dec 2023', 'He showed up on time. He found the root cause right away. What he did exceeded our expectation. His charge is very reasonable with the time and quality.'],
+    ['Christine Yi', 'Google · Jun 2025', 'They were able to book an appointment for me the day of, even on a weekend. Very communicative and responsive as well.'],
+  ],
+  'dishwasher-repair': [
+    ['Kerry C.', 'Yelp · Jan 2026', 'He responded immediately to a repair request and set an appointment. He explained what needed to be done and completed the job. Punctual, respectful, and left the workspace clean.'],
+    ['Liza K.', 'Thumbtack · Nov 2021', 'Extremely quick and responsive. I was so happy with the job.'],
+    ['Jordan W.', 'Thumbtack · Dec 2021', 'He did a good job and worked really quickly.'],
+  ],
+  'washer-repair': [
+    ['Taylor O.', 'Thumbtack · Nov 2022', 'Very professional and efficient work! Definitely will be hiring again.'],
+    ['Atika L.', 'Thumbtack · Dec 2023', 'Punctual, excellent work.'],
+    ['Alex A.', 'Thumbtack · Dec 2021', 'Great experience. Would hire again.'],
+  ],
+  'dryer-repair': [
+    ['Artem Eliseyev', 'Google · May 2025', 'Communicated early on his ETA, showed up with two bags of tools and got to work right away. Fixed the issue and everything is working great again!'],
+    ['Erin M.', 'Thumbtack · Nov 2021', 'Amazing job. Very professional. Would recommend to anyone.'],
+    ['Sarry N.', 'Thumbtack · Dec 2021', 'Great and very professional.'],
+  ],
+  'oven-range-repair': [
+    ['Patricia S.', 'Yelp · Jan 2026', "Very efficient and did high quality work. He installed my oven hood that I didn't have a cabinet to install it under and mounted it to the wall sturdily. It can support 100+ pounds!"],
+    ['Carly K.', 'Thumbtack · Aug 2022', 'Highly recommend! He was willing to help with anything and couldn\'t do enough.'],
+    ['Andrew D.', 'Thumbtack · Dec 2021', 'Great! Strongly recommend.'],
+  ],
+  'ac-repair-help': [
+    ['Dominic P.', 'Thumbtack · Sep 2025', 'Had an issue with my mini splits. He came and repaired it well. Would definitely leverage his services again.'],
+    ['Riaz A.', 'Thumbtack · Jul 2025', 'On time, professional, and came fully prepared with all the necessary tools. Installed a sturdy support bracket and carefully mounted a large 12,000 BTU unit with precision and care.'],
+    ['Vivek K.', 'Thumbtack · Oct 2025', 'Did a great job helping me with replacing my window seals and mounting my new PTAC units. On time, responsive and easy to work with.'],
+  ],
+  'dryer-vent-cleaning': [
+    ['Nyjazz N.', 'Yelp · Dec 2025', 'Good work, done in quick time. Worker arrived on time and had the right equipment for the job.'],
+    ['Artemisia M.', 'Thumbtack · Jul 2022', 'Very professional. Will hire again!'],
+    ['LIOR a.', 'Thumbtack · Aug 2022', 'Thank you for the great help today! See you again next week.'],
+  ],
+  'commercial-refrigeration': [
+    ['Roxanna F.', 'Thumbtack · Aug 2025', 'Wonderful to work with and did an excellent job. Professional, responsive and took the time to explain what needed to be completed. Fantastic service!'],
+    ['Damian P.', 'Yelp · May 2025', 'Amazing! He communicated the entire time before the project and his estimate was great. On time and efficient. Extremely happy I found him! Great value! Great work!'],
+    ['JV H.', 'Thumbtack · Jun 2025', 'Arrived on time, was courteous and professional, and explained everything clearly before getting started. The work was done quickly and efficiently, and he even cleaned up afterward.'],
+  ],
+  'ice-machine-cleaning': [
+    ['Lory L.', 'Thumbtack · Aug 2022', 'Extremely knowledgeable and efficient with his work. Very helpful with tips! He is super!'],
+    ['Jenna l.', 'Thumbtack · Aug 2022', 'Amazing!'],
+    ['Jordan W.', 'Thumbtack · Dec 2021', 'He did a good job and worked really quickly.'],
+  ],
+};
+
+function thumbFor(fullPath) {
+  const thumb = fullPath.replace('/assets/photo/', '/assets/photo/thumbnails/');
+  return existsSync(join(ROOT, ...thumb.split('/').filter(Boolean))) ? thumb : fullPath;
+}
+
+function pricingPanelSection(page) {
+  return `        <section class="svc-features" id="pricing" aria-label="Pricing model">
+            <div class="container">
+                <span class="section-tag">Simple, Honest Pricing</span>
+                <h2 class="section-title">Know the Cost <span class="text-accent">Before Anyone Shows Up</span></h2>
+                <div class="svc-features__grid">
+                    <div class="svc-features__card">
+                        <div class="svc-features__icon">${iconSvg('camera')}</div>
+                        <h3>1. Free Photo Estimate</h3>
+                        <p>Text photos and the model number to <a href="sms:+17753107770">+1 (775) 310-7770</a> or send them through the form — you get a real answer and a price range for free.</p>
+                    </div>
+                    <div class="svc-features__card">
+                        <div class="svc-features__icon">${iconSvg('check')}</div>
+                        <h3>2. $99 On-Site Assessment</h3>
+                        <p>Can't tell from photos? We come out and diagnose on site. The $99 is credited toward the job if you hire us — so the assessment costs $0 when we do the work.</p>
+                    </div>
+                    <div class="svc-features__card">
+                        <div class="svc-features__icon">${iconSvg('alert')}</div>
+                        <h3>3. Work From $150</h3>
+                        <p>Every job is quoted and approved before work starts — no surprises. $150 work minimum; NYC sales tax is added separately where applicable.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+`;
+}
+
+function calculatorSection(slug) {
+  const key = CALC_CONFIG[slug];
+  if (!key) return '';
+  return `        <section class="spoke-module" id="calculator">
+            <div class="container">
+                <div data-module="calculator" data-config="${key}"></div>
+            </div>
+        </section>
+`;
+}
+
+function gallerySection(slug, page) {
+  const photos = GALLERY_DATA[slug];
+  if (!photos || photos.length === 0) return '';
+  const cards = photos
+    .map((photo) => `                    <div class="svc-gallery__card" data-type="${photo.type}">
+                        <div class="svc-gallery__img-wrap" data-full="${photo.full}" data-caption="${escapeHtml(photo.caption)}">
+                            <span class="svc-gallery__badge svc-gallery__badge--${photo.type}">${photo.type === 'before' ? 'Before' : 'After'}</span>
+                            <img src="${thumbFor(photo.full)}" alt="${escapeHtml(photo.caption)}" loading="lazy" width="400" height="400">
+                        </div>
+                        <div class="svc-gallery__caption">${escapeHtml(photo.caption)}</div>
+                    </div>`)
+    .join('\n');
+  return `        <section class="svc-gallery" id="gallery" aria-label="Recent work photos">
+            <div class="container">
+                <span class="section-tag">Real Jobs</span>
+                <h2 class="section-title">Our Work, <span class="text-accent">Not Stock Photos</span></h2>
+                <p class="section-subtitle">Recent ${escapeHtml(page.category ? 'AC' : 'appliance')} jobs completed by our team across NYC.</p>
+                <div class="svc-gallery__grid">
+${cards}
+                </div>
+            </div>
+        </section>
+`;
+}
+
+function reviewsSection(slug) {
+  const reviews = REVIEWS[slug];
+  if (!reviews || reviews.length === 0) return '';
+  const cards = reviews
+    .map(([name, source, text]) => `                    <div class="review-card">
+                        <div class="review-card__stars">★★★★★</div>
+                        <p class="review-card__text">"${escapeHtml(text)}"</p>
+                        <div class="review-card__author">
+                            <div class="review-card__name">${escapeHtml(name)}</div>
+                            <div class="review-card__loc">${escapeHtml(source)}</div>
+                        </div>
+                    </div>`)
+    .join('\n');
+  return `        <section class="svc-features" id="reviews" aria-label="Customer reviews">
+            <div class="container">
+                <span class="section-tag">Verified Reviews</span>
+                <h2 class="section-title">4.9★ Across <span class="text-accent">73 Verified Reviews</span></h2>
+                <p class="section-subtitle">Real feedback from Google, Yelp and Thumbtack customers. <a href="/reviews/">Read more reviews →</a></p>
+                <div class="reviews__grid">
+${cards}
+                </div>
+            </div>
+        </section>
+`;
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -1455,7 +1619,23 @@ function renderLinkGrid(links) {
     .join('\n');
 }
 
+// Standard pricing FAQ appended to every page (featured-snippet target).
+// Wording must stay in lockstep with the CRM KB pricing model.
+function withPricingFaq(page) {
+  const topic = page.crumb.toLowerCase();
+  const alreadyCovered = page.faq.some(([q]) => /how much|cost|price/i.test(q));
+  if (alreadyCovered) return page.faq;
+  return [
+    ...page.faq,
+    [
+      `How much does ${topic} cost in NYC?`,
+      'Photo and text estimates are free — send the model number and photos and you get a real price range. An on-site assessment visit is $99, credited toward the job if you hire us. Actual work starts at the $150 work minimum and is quoted before anything begins; NYC sales tax is added separately where applicable.',
+    ],
+  ];
+}
+
 function pageHtml(page) {
+  page = { ...page, faq: withPricingFaq(page) };
   const category = pageCategory(page);
   const canonical = `${BASE_URL}${category.url}${page.slug}/`;
   const breadcrumb = {
@@ -1588,17 +1768,21 @@ function pageHtml(page) {
                 <div class="svc-hero__trust">
                     <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>4.9★ · 73 Verified Reviews</div>
+                    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                         </svg>Insured Business</div>
                     <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2">
                             <polyline points="20 6 9 17 4 12" />
-                        </svg>Photo Review</div>
+                        </svg>Free Photo Estimates</div>
                     <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="10" />
                             <polyline points="12 6 12 12 16 14" />
-                        </svg>Scheduled Visits</div>
+                        </svg>Same-Day When Available</div>
                 </div>
             </div>
         </section>
@@ -1612,6 +1796,7 @@ function pageHtml(page) {
             </div>
         </section>
 
+${pricingPanelSection(page)}${calculatorSection(page.slug)}
         <section class="svc-features">
             <div class="container">
                 <span class="section-tag">${escapeHtml(page.goodFitTag || 'Good Fit')}</span>
@@ -1632,6 +1817,7 @@ ${featureCards(page.outOfScope, 'alert')}
             </div>
         </section>
 
+${gallerySection(page.slug, page)}
         <section class="svc-process">
             <div class="container">
                 <span class="section-tag">Quote Prep</span>
@@ -1666,6 +1852,7 @@ ${intakeList(page.intake)}
             </div>
         </section>
 
+${reviewsSection(page.slug)}
         <section class="svc-faq" id="faq" aria-label="Frequently asked questions">
             <div class="container"><span class="section-tag">Common Questions</span>
                 <h2 class="section-title">${escapeHtml(page.crumb)} FAQ</h2>

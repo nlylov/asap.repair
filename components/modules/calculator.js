@@ -1591,6 +1591,274 @@ const CONFIGS = {
     }
 };
 
+/* ---- Visit-mode configs (repair / diagnostic pages) ----
+   mode:'visit' pricing values are VISIT paths, not menu-priced work:
+   [0,0] = free photo estimate, [99,99] = on-site assessment (credited),
+   [150,N] = defined work like cleaning/tune-ups ($150 work minimum applies).
+   The $150 floor is intentionally NOT applied in visit mode so the $99
+   assessment (and the free photo option) can render truthfully. */
+
+const VISIT_PATH_OPTIONS = (workLabel, workRange) => ({
+    options: [
+        { value: '', label: 'How do you want to start?' },
+        { value: 'photo', label: 'Text photos — free estimate' },
+        { value: 'visit', label: 'Book on-site assessment ($99, credited)' },
+        ...(workLabel ? [{ value: 'work', label: workLabel }] : []),
+    ],
+    pricing: { photo: [0, 0], visit: [99, 99], ...(workRange ? { work: workRange } : {}) },
+});
+
+function visitConfig({ title, subtitle, symptoms, workLabel, workRange, ctaText }) {
+    const start = VISIT_PATH_OPTIONS(workLabel, workRange);
+    const optionSets = {};
+    const pricing = {};
+    symptoms.forEach(([value, label]) => {
+        optionSets[value] = start.options;
+        pricing[value] = start.pricing;
+    });
+    return {
+        mode: 'visit',
+        title,
+        subtitle,
+        categories: [
+            {
+                label: "What's happening?",
+                id: 'series',
+                options: [{ value: '', label: 'Choose the symptom…' }, ...symptoms.map(([value, label]) => ({ value, label }))],
+            },
+            { label: 'Your first step', id: 'size', dependsOn: 'series', optionSets },
+        ],
+        pricing,
+        priceLabel: 'Your Cost To Start',
+        cta: { text: ctaText || 'Start My Repair Request', href: '/#contact' },
+        disclaimer: 'Photo and text estimates are always free. The $99 on-site assessment is credited toward the job if you hire us — you never pay it twice.',
+        floorNote: 'Actual repair or cleaning work starts at the $150 work minimum, quoted before anything begins.',
+        placeholder: 'Pick a symptom to see how to start — free options included',
+        resultNotes: {
+            photo: 'Free — text photos and the model number, get a real answer fast.',
+            visit: 'Credited toward the work if you proceed, so assessment costs $0 when we do the job.',
+            work: 'Estimated range for the defined work — confirmed before booking. NYC sales tax separate.',
+        },
+    };
+}
+
+const VISIT_CONFIGS = {
+    'refrigerator-repair': visitConfig({
+        title: 'What Will My Refrigerator Visit Cost?',
+        subtitle: 'Pick the symptom and see your options — starting with a free photo estimate.',
+        symptoms: [
+            ['not-cooling', 'Not cooling / not cold enough'],
+            ['ice-frost', 'Ice buildup or frost'],
+            ['leaking', 'Leaking water'],
+            ['noisy', 'Noisy or vibrating'],
+            ['dirty-coils', 'Never had coils cleaned'],
+            ['replace', 'Thinking about replacing it'],
+        ],
+        workLabel: 'Condenser coil deep clean ($150–$225)',
+        workRange: [150, 225],
+    }),
+    'dishwasher-repair': visitConfig({
+        title: 'What Will My Dishwasher Visit Cost?',
+        subtitle: 'Pick the symptom and see your options — starting with a free photo estimate.',
+        symptoms: [
+            ['leaking', 'Leaking'],
+            ['not-draining', 'Not draining / standing water'],
+            ['odor', 'Odor or residue on dishes'],
+            ['loose', 'Loose, tilted or rocking'],
+            ['hookup', 'Hookup or high-loop concern'],
+            ['replace', 'Thinking about replacing it'],
+        ],
+        workLabel: 'Filter + drain-path service ($150–$225)',
+        workRange: [150, 225],
+    }),
+    'washer-repair': visitConfig({
+        title: 'What Will My Washer Visit Cost?',
+        subtitle: 'Pick the symptom and see your options — starting with a free photo estimate.',
+        symptoms: [
+            ['not-draining', 'Not draining'],
+            ['shaking', 'Shaking or walking'],
+            ['leaking', 'Leaking'],
+            ['hoses', 'Old / suspect supply hoses'],
+            ['stacking', 'Stacking or leveling issue'],
+            ['replace', 'Thinking about replacing it'],
+        ],
+        workLabel: 'Leveling + hose refresh ($150–$250)',
+        workRange: [150, 250],
+    }),
+    'dryer-repair': visitConfig({
+        title: 'What Will My Dryer Visit Cost?',
+        subtitle: 'Pick the symptom and see your options — starting with a free photo estimate.',
+        symptoms: [
+            ['not-heating', 'Not heating / clothes stay damp'],
+            ['long-dry', 'Takes forever to dry'],
+            ['vent', 'Lint or vent concern'],
+            ['noisy', 'Noisy or vibrating'],
+            ['connection', 'Cord / plug / gas-ready question'],
+            ['replace', 'Thinking about replacing it'],
+        ],
+        workLabel: 'Vent cleaning + reconnect ($150–$325)',
+        workRange: [150, 325],
+    }),
+    'oven-range-repair': visitConfig({
+        title: 'What Will My Oven or Range Visit Cost?',
+        subtitle: 'Pick the symptom and see your options — starting with a free photo estimate.',
+        symptoms: [
+            ['burner', 'Burner not lighting / not heating'],
+            ['door', 'Door, hinge or gasket issue'],
+            ['knobs', 'Broken knobs or handles'],
+            ['level', 'Not level / no anti-tip bracket'],
+            ['hood', 'Range hood filter or light'],
+            ['replace', 'Thinking about replacing it'],
+        ],
+        workLabel: 'Burner + door tune-up ($150–$250)',
+        workRange: [150, 250],
+    }),
+    'ac-repair-help': visitConfig({
+        title: 'What Will My AC Visit Cost?',
+        subtitle: 'Window, through-wall, portable or PTAC — pick the symptom to see your options.',
+        symptoms: [
+            ['not-cooling', 'Not cooling like it used to'],
+            ['leaking', 'Leaking or dripping water'],
+            ['noisy', 'Noisy or rattling'],
+            ['airflow', 'Weak airflow / dirty filter'],
+            ['seal', 'Gaps or bad seal around the unit'],
+            ['replace', 'Thinking about replacing it'],
+        ],
+        workLabel: 'Deep clean + re-seat ($150–$300)',
+        workRange: [150, 300],
+    }),
+    'commercial-refrigeration': visitConfig({
+        title: 'What Will a Commercial Triage Visit Cost?',
+        subtitle: 'Walk-in, reach-in, prep table or beverage cooler — see how to start before paying specialist rates.',
+        symptoms: [
+            ['not-holding', 'Not holding temperature (41°F risk)'],
+            ['gasket', 'Torn gasket / door not sealing'],
+            ['coils', 'Dirty condenser coils'],
+            ['drain', 'Drain line / water pooling'],
+            ['door', 'Door hinge, latch or closer'],
+            ['plan', 'Want a maintenance plan'],
+        ],
+        workLabel: 'Coil clean + gasket/door service ($175–$450)',
+        workRange: [175, 450],
+        ctaText: 'Request Commercial Triage',
+    }),
+};
+
+Object.assign(CONFIGS, VISIT_CONFIGS, {
+    'dryer-vent-cleaning': {
+        title: 'Dryer Vent Cleaning Estimate',
+        subtitle: 'Select your setup for an estimated price range.',
+        categories: [
+            {
+                label: 'Dryer Setup',
+                id: 'series',
+                options: [
+                    { value: '', label: 'Choose your setup…' },
+                    { value: 'standard', label: 'Side-by-side, vent within reach' },
+                    { value: 'stacked', label: 'Stacked unit in a closet' },
+                    { value: 'long-run', label: 'Longer duct run (10ft+)' },
+                    { value: 'multi', label: 'Multiple units (landlord / building)' },
+                ],
+            },
+            {
+                label: 'Scope',
+                id: 'size',
+                dependsOn: 'series',
+                optionSets: {
+                    standard: [
+                        { value: '', label: 'Choose scope…' },
+                        { value: 'sm', label: 'Cleaning + airflow check' },
+                        { value: 'md', label: '+ transition hose replacement' },
+                        { value: 'lg', label: '+ dryer pull-out & reconnect' },
+                    ],
+                    stacked: [
+                        { value: '', label: 'Choose scope…' },
+                        { value: 'sm', label: 'Cleaning + airflow check' },
+                        { value: 'md', label: '+ transition hose replacement' },
+                        { value: 'lg', label: '+ unstack / restack service' },
+                    ],
+                    'long-run': [
+                        { value: '', label: 'Choose scope…' },
+                        { value: 'sm', label: 'Accessible run cleaning' },
+                        { value: 'md', label: '+ exterior cap check (reachable)' },
+                        { value: 'lg', label: 'Full accessible path + hose' },
+                    ],
+                    multi: [
+                        { value: '', label: 'Choose scope…' },
+                        { value: 'sm', label: '2–3 units, one visit' },
+                        { value: 'md', label: '4–6 units, one visit' },
+                        { value: 'lg', label: 'Building program (recurring)' },
+                    ],
+                },
+            },
+        ],
+        pricing: {
+            standard: { sm: [150, 195], md: [175, 240], lg: [210, 295] },
+            stacked: { sm: [165, 225], md: [195, 270], lg: [250, 350] },
+            'long-run': { sm: [175, 250], md: [195, 280], lg: [240, 340] },
+            multi: { sm: [280, 420], md: [480, 750], lg: [750, 1200] },
+        },
+        cta: { text: 'Book My Vent Cleaning', href: '/#contact' },
+        disclaimer: 'Estimates cover accessible duct runs. In-wall or riser ductwork is flagged and routed separately. Final price confirmed after photos.',
+    },
+    'ice-machine-cleaning': {
+        title: 'Ice Machine Cleaning Estimate',
+        subtitle: 'Select your machine for an estimated cleaning price.',
+        categories: [
+            {
+                label: 'Machine Type',
+                id: 'series',
+                options: [
+                    { value: '', label: 'Choose machine type…' },
+                    { value: 'undercounter', label: 'Undercounter / bar unit' },
+                    { value: 'modular', label: 'Modular head + bin' },
+                    { value: 'countertop', label: 'Countertop / office unit' },
+                    { value: 'multiple', label: 'Multiple machines' },
+                ],
+            },
+            {
+                label: 'Service',
+                id: 'size',
+                dependsOn: 'series',
+                optionSets: {
+                    undercounter: [
+                        { value: '', label: 'Choose service…' },
+                        { value: 'sm', label: 'Manufacturer-cycle clean + sanitize' },
+                        { value: 'md', label: '+ water filter replacement' },
+                        { value: 'lg', label: '+ quarterly plan setup' },
+                    ],
+                    modular: [
+                        { value: '', label: 'Choose service…' },
+                        { value: 'sm', label: 'Manufacturer-cycle clean + sanitize' },
+                        { value: 'md', label: '+ water filter replacement' },
+                        { value: 'lg', label: '+ quarterly plan setup' },
+                    ],
+                    countertop: [
+                        { value: '', label: 'Choose service…' },
+                        { value: 'sm', label: 'Manufacturer-cycle clean + sanitize' },
+                        { value: 'md', label: '+ water filter replacement' },
+                        { value: 'lg', label: '+ quarterly plan setup' },
+                    ],
+                    multiple: [
+                        { value: '', label: 'Choose service…' },
+                        { value: 'sm', label: '2 machines, one visit' },
+                        { value: 'md', label: '3–4 machines, one visit' },
+                        { value: 'lg', label: 'Recurring program' },
+                    ],
+                },
+            },
+        ],
+        pricing: {
+            undercounter: { sm: [175, 250], md: [210, 295], lg: [250, 350] },
+            modular: { sm: [210, 310], md: [250, 360], lg: [295, 420] },
+            countertop: { sm: [150, 210], md: [180, 250], lg: [220, 310] },
+            multiple: { sm: [320, 480], md: [450, 680], lg: [600, 950] },
+        },
+        cta: { text: 'Book My Machine Cleaning', href: '/#contact' },
+        disclaimer: 'Cleaning follows the manufacturer’s documented procedure. Refrigerant or sealed-system faults found during cleaning are flagged and routed to a specialist. Final price confirmed after photos.',
+    },
+});
+
 export default function calculator(container) {
     const configKey = container.dataset.config || 'ikea';
     const cfg = CONFIGS[configKey];
@@ -1637,15 +1905,16 @@ export default function calculator(container) {
                         <span>${cfg.placeholder || 'Select service details to see estimate'}</span>
                     </div>
                     <div class="mod-calc__result-price" style="display:none">
-                        <div class="mod-calc__price-label">Estimated Price</div>
+                        <div class="mod-calc__price-label">${cfg.priceLabel || 'Estimated Price'}</div>
                         <div class="mod-calc__price-range">
                             <span class="mod-calc__price-lo">$0</span>
                             <span class="mod-calc__price-sep">–</span>
                             <span class="mod-calc__price-hi">$0</span>
                         </div>
+                        <p class="mod-calc__disclaimer mod-calc__result-note" style="display:none;font-weight:500"></p>
                         <button type="button" class="btn btn--accent btn--lg mod-calc__cta">${cfg.cta.text}</button>
                         <p class="mod-calc__disclaimer">${cfg.disclaimer}</p>
-                        <p class="mod-calc__disclaimer" style="margin-top:6px;font-weight:500">⚠️ Minimum repair visit: $150 (any install/attach job)</p>
+                        <p class="mod-calc__disclaimer" style="margin-top:6px;font-weight:500">${cfg.floorNote || '⚠️ Minimum repair visit: $150 (any install/attach job)'}</p>
                         <p class="mod-calc__disclaimer" style="margin-top:4px">Price shown is for the work only — NYC sales tax (8.875%) is added separately where applicable. Some capital-improvement installs are tax-exempt with Form ST-124; we'll confirm on your invoice.</p>
                     </div>
                 </div>
@@ -1709,6 +1978,9 @@ export default function calculator(container) {
     //     capital improvements with Form ST-124, so we don't hard-add it to every quote).
     const PRICING = { REPAIR_MINIMUM: 150, ASSESSMENT_VISIT_FEE: 99, SALES_TAX_RATE: 0.08875 };
     function flooredRange(lo, hi) {
+        // Visit mode prices non-work paths (free photo estimate, $99 credited
+        // assessment) — those are legitimate sub-$150 figures, so no floor.
+        if (cfg.mode === 'visit') return [lo, hi];
         return [Math.max(lo, PRICING.REPAIR_MINIMUM), Math.max(hi, PRICING.REPAIR_MINIMUM)];
     }
 
@@ -1741,14 +2013,28 @@ export default function calculator(container) {
         // Animate numbers; collapse to a single figure when the floor makes lo === hi
         // (e.g. one curtain rod → "$150", not an awkward "$150–$150").
         const sep = container.querySelector('.mod-calc__price-sep');
-        animateNumber(priceLo, lo);
-        if (hi > lo) {
-            animateNumber(priceHi, hi);
-            priceHi.style.display = '';
-            if (sep) sep.style.display = '';
-        } else {
+        if (lo === 0 && hi === 0) {
+            priceLo.textContent = 'FREE';
             priceHi.style.display = 'none';
             if (sep) sep.style.display = 'none';
+        } else {
+            animateNumber(priceLo, lo);
+            if (hi > lo) {
+                animateNumber(priceHi, hi);
+                priceHi.style.display = '';
+                if (sep) sep.style.display = '';
+            } else {
+                priceHi.style.display = 'none';
+                if (sep) sep.style.display = 'none';
+            }
+        }
+
+        // Per-option note (visit mode): explains what the figure means
+        const noteEl = container.querySelector('.mod-calc__result-note');
+        if (noteEl) {
+            const note = cfg.resultNotes?.[size];
+            noteEl.textContent = note || '';
+            noteEl.style.display = note ? '' : 'none';
         }
 
         placeholder.style.display = 'none';
@@ -1797,9 +2083,20 @@ export default function calculator(container) {
                 const sizeLabel = sizeSelectEl?.selectedOptions?.[0]?.text || size;
 
                 // Price is for the work only; NYC sales tax is separate (disclosed below).
-                description = hi > lo
-                    ? `${seriesLabel} — ${sizeLabel} (estimated $${lo}–$${hi}, work only — NYC sales tax separate)`
-                    : `${seriesLabel} — ${sizeLabel} (estimated $${lo} minimum repair visit, work only — NYC sales tax separate)`;
+                if (cfg.mode === 'visit') {
+                    const pathText = size === 'photo'
+                        ? 'free photo estimate requested'
+                        : size === 'visit'
+                            ? '$99 on-site assessment, credited toward the work'
+                            : `estimated $${lo}–$${hi}, work only — NYC sales tax separate`;
+                    // Drop the label's own "(...)" price hint so it isn't repeated next to pathText
+                    const cleanSizeLabel = sizeLabel.replace(/\s*\([^)]*\)\s*$/, '');
+                    description = `${seriesLabel} — ${cleanSizeLabel} (${pathText})`;
+                } else {
+                    description = hi > lo
+                        ? `${seriesLabel} — ${sizeLabel} (estimated $${lo}–$${hi}, work only — NYC sales tax separate)`
+                        : `${seriesLabel} — ${sizeLabel} (estimated $${lo} minimum repair visit, work only — NYC sales tax separate)`;
+                }
             }
 
             // Store for quote-modal custom_fields

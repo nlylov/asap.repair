@@ -6,7 +6,7 @@
 (function () {
     'use strict';
 
-    const ASSET_VERSION = '20260710b';
+    const ASSET_VERSION = '20260710c';
     const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
 
     // Single source of truth for the browser Google Maps (Places) loader.
