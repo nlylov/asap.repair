@@ -1598,15 +1598,21 @@ const CONFIGS = {
    The $150 floor is intentionally NOT applied in visit mode so the $99
    assessment (and the free photo option) can render truthfully. */
 
-const VISIT_PATH_OPTIONS = (workLabel, workRange) => ({
-    options: [
-        { value: '', label: 'How do you want to start?' },
-        { value: 'photo', label: 'Text photos — free estimate' },
-        { value: 'visit', label: 'Book on-site assessment ($99, credited)' },
-        ...(workLabel ? [{ value: 'work', label: workLabel }] : []),
-    ],
-    pricing: { photo: [0, 0], visit: [99, 99], ...(workRange ? { work: workRange } : {}) },
-});
+const VISIT_PATH_OPTIONS = (workLabel, workRange) => {
+    // 'work' is a real job path: require BOTH label and range, and hold the
+    // $150 work minimum here since visit mode bypasses the shared floor.
+    const hasWork = Boolean(workLabel && workRange);
+    const flooredWork = hasWork ? [Math.max(workRange[0], 150), Math.max(workRange[1], 150)] : null;
+    return {
+        options: [
+            { value: '', label: 'How do you want to start?' },
+            { value: 'photo', label: 'Text photos — free estimate' },
+            { value: 'visit', label: 'Book on-site assessment ($99, credited)' },
+            ...(hasWork ? [{ value: 'work', label: workLabel }] : []),
+        ],
+        pricing: { photo: [0, 0], visit: [99, 99], ...(hasWork ? { work: flooredWork } : {}) },
+    };
+};
 
 function visitConfig({ title, subtitle, symptoms, workLabel, workRange, ctaText }) {
     const start = VISIT_PATH_OPTIONS(workLabel, workRange);
