@@ -6,9 +6,9 @@
     "title": "Entry Door and Frame Replacement in Staten Island",
     "shortTitle": "Entry Door Replacement, Staten Island",
     "seoTitle": "Staten Island Entry Door & Frame Replacement | Repair Asap",
-    "description": "Repair Asap replaced a rear entry door and worn frame at a Staten Island home, removing an old aluminum storm door and a glass-insert door, setting a new prehung door level and square, installing a single lock, capping the unused second lock bore, and sealing the perimeter with spray foam in about three and a half hours.",
+    "description": "Repair Asap replaced a rear entry door and worn frame at a Staten Island home, removing an old aluminum storm door and a glass-insert door, setting a new prehung door level and square, installing a single lock, capping the unused second lock bore, and sealing the perimeter with spray foam in about three and a half hours. A new storm door was then installed over the entry door, with the frame mounted to the new casing and the handle openings cut on site.",
     "metaDescription": "Staten Island entry door replacement: old storm door and glass door removed, new prehung door set level, single lock installed, extra bore capped, perimeter foamed and sealed.",
-    "excerpt": "A tired rear entry had an old aluminum storm door and a glass-insert door hung in a worn frame. Repair Asap removed both doors and the frame, set a new prehung entry door plumb and level, installed a single lock, capped the unused second lock hole, and sealed the perimeter with spray foam in about three and a half hours.",
+    "excerpt": "A tired rear entry had an old aluminum storm door and a glass-insert door hung in a worn frame. Repair Asap removed both doors and the frame, set a new prehung entry door plumb and level, installed a single lock, capped the unused second lock hole, and sealed the perimeter with spray foam in about three and a half hours. A new storm door was installed over it afterward.",
     "client": "Residential client",
     "location": "Staten Island, NY",
     "locationShort": "Staten Island",
@@ -17,7 +17,7 @@
     "industry": "Residential home",
     "dateRange": "July 2026",
     "datePublished": "2026-07-10",
-    "dateModified": "2026-07-10",
+    "dateModified": "2026-07-11",
     "category": "general_repairs",
     "categories": [
       "general_repairs"
@@ -28,6 +28,7 @@
       "door frame replacement",
       "prehung door install",
       "storm door removal",
+      "storm door installation",
       "lock installation",
       "spray foam sealing",
       "Staten Island",
@@ -47,11 +48,12 @@
       "Install a single lockset and handle",
       "Cap the unused second lock bore with a finish cover plate",
       "Seal the perimeter with low-expansion spray foam and sealant",
-      "Reinstall interior casing and clean up"
+      "Reinstall interior casing and clean up",
+      "Install a new storm door, with handle and latch openings cut on site"
     ],
     "challenge": "The rear entry had an aging aluminum storm door in front of an older glass-insert door, both hung in a frame that was past its service life. The customer had bought a new prehung exterior door, but it arrived bored for two locks even though only one lockset was wanted, so the extra hole had to be closed cleanly.",
     "solution": "Repair Asap removed the storm door, the old glass-insert door, and the worn frame, then set a new prehung door frame into the opening and shimmed it plumb, level, and square. The new door was hung and adjusted to swing and latch correctly, a single lockset was installed, and the unused second bore was capped with a finish cover plate before the perimeter was sealed with low-expansion spray foam.",
-    "result": "The home gained a solid, weather-tight entry door that opens and closes cleanly with a single keyed lock, a finished interior casing, and a fully sealed, insulated perimeter — completed in about three and a half hours and built to last for years.",
+    "result": "The home gained a solid, weather-tight entry door that opens and closes cleanly with a single keyed lock, a finished interior casing, and a fully sealed, insulated perimeter — completed in about three and a half hours and built to last for years. A new storm door was then installed over the entry door, adding one more layer of protection from the weather.",
     "relatedServices": [
       {
         "title": "Door Installation",
@@ -141,8 +143,15 @@
         {
           "q": "Do you remove and haul away the old door and storm door?",
           "a": "Yes. Both the old storm door and the existing entry door are removed and set aside for haul-away as part of the replacement, so you are left with a clean, finished entry."
+        },
+        {
+          "q": "Can you install a new storm door over a new entry door?",
+          "a": "Yes. On this project a new storm door was installed after the entry door was in: the storm door frame was mounted to the new casing, the handle and latch openings were cut on site, and the swing was checked from both sides."
         }
-      ]
+      ],
+      "detailEyebrow": "One more upgrade",
+      "detailTitle": "A new storm door over the new entry door",
+      "detailSubtitle": "The entry got a second layer: a new storm door, with its frame mounted to the new casing and the handle openings cut on site."
     },
     "images": [
       {
@@ -226,6 +235,38 @@
         "height": 1280
       },
       {
+        "src": "/assets/case-studies/entry-door-and-frame-replacement-staten-island/storm-door-hung-on-frame.webp",
+        "alt": "New storm door hung on the entry and checked against the opening",
+        "caption": "The new storm door, hung and checked against the opening.",
+        "stage": "detail",
+        "width": 960,
+        "height": 1280
+      },
+      {
+        "src": "/assets/case-studies/entry-door-and-frame-replacement-staten-island/storm-door-frame-drilling.webp",
+        "alt": "Drilling the storm door frame to fasten it to the entry casing",
+        "caption": "The storm door frame, fastened to the new entry casing.",
+        "stage": "detail",
+        "width": 960,
+        "height": 1280
+      },
+      {
+        "src": "/assets/case-studies/entry-door-and-frame-replacement-staten-island/storm-door-hardware-hole-saw.webp",
+        "alt": "Cutting the storm door handle opening with a hole saw",
+        "caption": "Handle and latch openings were cut on site with a hole saw.",
+        "stage": "detail",
+        "width": 960,
+        "height": 1280
+      },
+      {
+        "src": "/assets/case-studies/entry-door-and-frame-replacement-staten-island/storm-door-fitting-from-inside.webp",
+        "alt": "Checking the storm door fit and swing from inside the home",
+        "caption": "Fit and swing checked from inside.",
+        "stage": "detail",
+        "width": 960,
+        "height": 1280
+      },
+      {
         "src": "/assets/case-studies/entry-door-and-frame-replacement-staten-island/new-entry-door-interior-finished.webp",
         "alt": "Finished new entry door from inside with new casing and a single lever lock",
         "caption": "Inside, new casing was installed and a single lever lockset fitted, with the extra bore neatly covered.",
@@ -237,6 +278,14 @@
         "src": "/assets/case-studies/entry-door-and-frame-replacement-staten-island/new-entry-door-exterior-dusk.webp",
         "alt": "New white entry door installed at a Staten Island home, lit from inside at dusk",
         "caption": "The finished door at dusk: solid, sealed, and weather-tight for years of use.",
+        "stage": "after",
+        "width": 960,
+        "height": 1280
+      },
+      {
+        "src": "/assets/case-studies/entry-door-and-frame-replacement-staten-island/new-storm-door-installed.webp",
+        "alt": "New storm door installed over the new entry door in Staten Island",
+        "caption": "The finished entry: a new storm door over the new entry door.",
         "stage": "after",
         "width": 960,
         "height": 1280
