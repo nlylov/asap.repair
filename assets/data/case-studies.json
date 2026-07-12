@@ -1,6 +1,36 @@
 {
   "studies": [
     {
+      "slug": "black-room-painting-slat-accent-wall-bedford-stuyvesant",
+      "title": "All-Black Lounge Room With a Wood Slat Accent Wall in Bed-Stuy, Brooklyn",
+      "excerpt": "A bright white spare room in Bedford-Stuyvesant became a dark, moody lounge. Repair Asap masked off the whole room — including a closet full of clothes — then painted the ceiling, walls, baseboards and doors black in two finishes, and finished one wall with warm wood slat panels.",
+      "thumbnail": "/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/thumbnail.webp",
+      "location": "Bedford-Stuyvesant, Brooklyn",
+      "category": "painting",
+      "categories": [
+        "painting",
+        "general_repairs"
+      ],
+      "tags": [
+        "painting a room black",
+        "black ceiling",
+        "matte black walls",
+        "high gloss paint",
+        "wood slat accent wall",
+        "black lounge room",
+        "club room",
+        "accent wall",
+        "Bedford-Stuyvesant",
+        "Brooklyn"
+      ],
+      "serviceSlugs": [
+        "painting/accent-wall-painting",
+        "painting/interior-painting",
+        "painting/trim-painting"
+      ],
+      "featured": true
+    },
+    {
       "slug": "chess-pattern-painted-floor-baldwin-long-island",
       "title": "Chess-Pattern Painted Floor in Baldwin, Long Island",
       "excerpt": "A stained wood floor had already been painted into a chess pattern once, but the homeowner wasn't happy with the result. Repair Asap taped out a fresh diagonal diamond grid, painted it in two coats, and sealed the finish with a two-coat epoxy-based polyurethane topcoat over four visits.",
