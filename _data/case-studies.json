@@ -75,21 +75,10 @@
       ],
       "comparisonEyebrow": "Before and after",
       "comparisonTitle": "From bright white to all black",
-      "comparisonSubtitle": "The same room, before and after. Drag the door slider to watch the white closet doors turn black, and see the full room flip below.",
+      "comparisonSubtitle": "The same room, shot from the same corner — bright white before, all black after.",
       "comparisonPairs": [
         {
-          "title": "The doors: white to black",
-          "display": "slider",
-          "aspectRatio": "2 / 3",
-          "initialPosition": 50,
-          "before": "/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/slider-doors-before-white.webp",
-          "after": "/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/slider-doors-after-black.webp",
-          "beforeAlt": "White closet doors before painting, Bedford-Stuyvesant Brooklyn",
-          "afterAlt": "The same closet doors painted black, Bedford-Stuyvesant Brooklyn",
-          "caption": "Drag the slider: the same set of closet doors, before and after. The hardware was taken off first so the handles and hinges stayed clean."
-        },
-        {
-          "title": "The whole room, before and after",
+          "title": "The room, before and after",
           "before": "/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/before-white-room-doors.webp",
           "after": "/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/after-black-doors-room.webp",
           "beforeAlt": "Bright white room with skylight and wood floor before painting, Brooklyn",
@@ -213,22 +202,6 @@
         "stage": "after",
         "width": 1500,
         "height": 2000
-      },
-      {
-        "src": "/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/after-slat-wall-black-room.webp",
-        "alt": "All-black lounge room with a wood slat accent wall and skylight, Brooklyn",
-        "caption": "Black ceiling and walls, the slat wall, and the skylight bringing in daylight.",
-        "stage": "after",
-        "width": 1500,
-        "height": 2000
-      },
-      {
-        "src": "/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/hero-black-room-slat-wall.webp",
-        "alt": "Finished all-black lounge room with wood slat wall and skylight in Bedford-Stuyvesant, Brooklyn",
-        "caption": "The finished lounge — a dark, moody room ready for a disco ball and a bar.",
-        "stage": "after",
-        "width": 1580,
-        "height": 2400
       }
     ]
   },
