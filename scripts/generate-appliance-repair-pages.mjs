@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { mkdir, writeFile } from 'node:fs/promises';
+import { execSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -1798,7 +1799,7 @@ function pageHtml(page) {
             <div class="container">
                 <div class="svc-seo-text__content">
                     ${page.intro.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('\n                    ')}
-                    <p class="svc-service-area-note">${escapeHtml(page.serviceAreaNote || 'We quote appliance repair help across Queens, Manhattan, Brooklyn, the Bronx, Staten Island, and Western Long Island or Nassau County when scope and travel fit. Text the model number, photos, symptom, error code and building requirements for the fastest review.')}</p>
+                    <p class="svc-service-area-note">${escapeHtml(page.serviceAreaNote || 'We quote appliance repair help across Queens, Manhattan, Brooklyn, the Bronx, Staten Island, and Western Long Island or Nassau County when scope and travel fit. Based in Rego Park, we are often fastest in Forest Hills, Elmhurst, Middle Village, Corona and nearby Queens neighborhoods. Text the model number, photos, symptom, error code and building requirements for the fastest review.')}</p>
                 </div>
             </div>
         </section>
@@ -1910,3 +1911,6 @@ for (const page of pages) {
   await writeFile(join(dir, 'index.html'), pageHtml(page), 'utf8');
   console.log(`Generated ${category.url}${page.slug}/`);
 }
+
+// Re-bake static header/footer into the freshly generated pages
+execSync(`node ${new URL('./bake-components.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });

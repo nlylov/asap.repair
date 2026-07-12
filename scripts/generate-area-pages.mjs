@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { mkdir, writeFile } from 'node:fs/promises';
+import { execSync } from 'node:child_process';
 import { join } from 'node:path';
 
 const ASSET_VERSION = '20260710c';
@@ -232,7 +233,7 @@ function schemaFor(page) {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://asap.repair/' },
-        { '@type': 'ListItem', position: 2, name: 'Service Areas', item: 'https://asap.repair/services/' },
+        { '@type': 'ListItem', position: 2, name: 'Service Areas', item: 'https://asap.repair/service-areas/' },
         { '@type': 'ListItem', position: 3, name: page.areaName, item: canonical },
       ],
     },
@@ -365,7 +366,7 @@ ${schemas}
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="9 18 15 12 9 6" />
                     </svg></li>
-                <li class="breadcrumbs__item"><a href="/services/" class="breadcrumbs__link">Services</a><svg
+                <li class="breadcrumbs__item"><a href="/service-areas/" class="breadcrumbs__link">Service Areas</a><svg
                         class="breadcrumbs__sep" width="14" height="14" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="9 18 15 12 9 6" />
@@ -492,3 +493,6 @@ for (const page of pages) {
 }
 
 console.log(`Generated ${pages.length} area landing pages.`);
+
+// Re-bake static header/footer into the freshly generated pages
+execSync(`node ${new URL('./bake-components.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });

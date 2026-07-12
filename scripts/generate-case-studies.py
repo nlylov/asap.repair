@@ -787,3 +787,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
+import subprocess as _sp, os as _os
+_sp.run(["node", _os.path.join(_os.path.dirname(__file__), "bake-components.mjs")], check=False)
