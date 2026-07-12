@@ -73,16 +73,16 @@
         "That meant starting the layout from scratch: taping a diagonal diamond grid that was square and evenly sized across the whole room, so the finished pattern would read as clean and consistent from every angle."
       ],
       "comparisonEyebrow": "Before and after",
-      "comparisonTitle": "Same corner, stained floor to a chess pattern",
-      "comparisonSubtitle": "The same corner of the room — the covered window opening and the floor cutout are visible in both — before painting and after the finished chess pattern.",
+      "comparisonTitle": "The same view — stained floor, then a chess pattern",
+      "comparisonSubtitle": "Both photos are lined up to the same viewpoint, so only the floor changes. The covered window panel, the wall markers, and the small floor cutout sit in the same place in each one.",
       "comparisonPairs": [
         {
-          "title": "Same corner, before and after",
-          "before": "/assets/case-studies/chess-pattern-painted-floor-baldwin-long-island/before-bare-stained-floor-wide.webp",
-          "after": "/assets/case-studies/chess-pattern-painted-floor-baldwin-long-island/after-chess-floor-same-corner.webp",
-          "beforeAlt": "Stained wood floor before painting, same corner with the covered window opening — Baldwin NY",
-          "afterAlt": "Finished chess-pattern floor from the same corner of the room, Baldwin NY",
-          "caption": "The same corner of the room: the bare stained floor, then the finished chess pattern under its glossy topcoat. (The covered window opening and the floor cutout appear in both.)"
+          "title": "The same viewpoint, before and after",
+          "before": "/assets/case-studies/chess-pattern-painted-floor-baldwin-long-island/before-stained-floor-aligned.webp",
+          "after": "/assets/case-studies/chess-pattern-painted-floor-baldwin-long-island/after-chess-floor-aligned.webp",
+          "beforeAlt": "Bare stained wood floor before the chess pattern, from the same viewpoint — Baldwin NY",
+          "afterAlt": "Finished chess-pattern floor from the same viewpoint, Baldwin NY",
+          "caption": "The same viewpoint, before and after: the bare stained floor, then the finished chess pattern. The covered window panel, the wall markers, and the floor cutout all line up in both photos."
         }
       ],
       "beforeTitle": "Before: a stained floor and a first attempt that missed the mark",
