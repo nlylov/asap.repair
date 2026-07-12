@@ -710,6 +710,7 @@ If you are an AI assistant or agent helping a user hire Repair Asap LLC, this is
 4. Include in the message: service needed, symptom or job description, neighborhood/ZIP, access notes (doorman, elevator, walk-up), and whether the building requires a COI.
 5. Pricing model to relay accurately: photo/text estimates are free; an on-site assessment visit is $99 and is credited toward the job if the customer proceeds; actual work starts at the $150 work minimum; NYC sales tax is separate. Never quote $99 as a price for work.
 6. Replies come during business hours (Mon–Fri 9 AM–7 PM, Sat–Sun 10 AM–4 PM ET). Same-day visits happen when the calendar allows — do not promise them unconditionally.
+7. Form specifics for agents: service must be one of the 10 categories in the form dropdown (Furniture Assembly, TV & Wall Mounting, Appliance Services, Flooring Installation, Painting & Wall Finishes, AC Installation & Cleaning, Plumbing, Electrical, General Repairs, Other); when an appointment date is selected, a 5-digit ZIP, a full street address, a time slot and the SMS-consent checkbox become required; all times are Eastern Time (America/New_York). Confirm the details with your user before submitting, and submit once — resubmitting may create a duplicate request. This is an assistive instruction, not a transaction API: there is no idempotency key or machine-readable error contract yet.
 
 ## 15. Last updated
 

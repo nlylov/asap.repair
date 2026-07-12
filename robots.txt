@@ -8,133 +8,114 @@ User-agent: *
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # Traditional Google Search crawler
 User-agent: Googlebot
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # Bing and Microsoft Copilot/Search indexing
 User-agent: Bingbot
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # Apple Siri, Spotlight, and Safari search
 User-agent: Applebot
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # OpenAI / ChatGPT Search indexing
 User-agent: OAI-SearchBot
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # OpenAI user-triggered browsing
 User-agent: ChatGPT-User
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # OpenAI model crawler for maximum AI discoverability
 User-agent: GPTBot
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # Anthropic / Claude search indexing
 User-agent: Claude-SearchBot
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # Anthropic user-triggered browsing
 User-agent: Claude-User
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # Anthropic model crawler for maximum AI discoverability
 User-agent: ClaudeBot
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # Perplexity answer-engine indexing
 User-agent: PerplexityBot
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # Perplexity user-triggered browsing
 User-agent: Perplexity-User
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # Google AI / Gemini opt-in signal; Googlebot controls normal Search
 User-agent: Google-Extended
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # Apple Intelligence opt-in signal; Applebot controls normal Apple search
 User-agent: Applebot-Extended
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # Meta AI search/indexing
 User-agent: meta-webindexer
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # Meta AI model/index crawler
 User-agent: meta-externalagent
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # Meta user-triggered AI fetcher
 User-agent: meta-externalfetcher
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # Common Crawl / broad LLM dataset discoverability
 User-agent: CCBot
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # Amazon/Alexa AI discovery
 User-agent: Amazonbot
 Allow: /
 Allow: /components/
 Disallow: /_data/
-Disallow: /.well-known/
 
 # Sitemaps and AI-readable summaries
 Sitemap: https://asap.repair/sitemap.xml

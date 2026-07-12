@@ -341,8 +341,30 @@
   },
   "booking": {
     "primaryUrl": "https://asap.repair/",
-    "quoteUrl": "https://asap.repair/#quote",
-    "instructions": "Call or text photos, location, timing, and building requirements for a quote before work begins."
+    "quoteUrl": "https://asap.repair/#contact",
+    "phone": "+1-775-310-7770",
+    "smsPreferred": true,
+    "email": "info@asap.repair",
+    "instructions": "Fastest: text photos, the model number when relevant, the symptom, the NYC neighborhood, and building/COI requirements to +1 (775) 310-7770. The on-page quote form (button \"Get a Free Quote\") accepts name, phone, service category, message, up to 5 photos, and an optional appointment date with real-time available slots.",
+    "serviceCategories": [
+      "Furniture Assembly",
+      "TV & Wall Mounting",
+      "Appliance Services",
+      "Flooring Installation",
+      "Painting & Wall Finishes",
+      "AC Installation & Cleaning",
+      "Plumbing",
+      "Electrical",
+      "General Repairs",
+      "Other"
+    ],
+    "requiredWhenBookingDate": [
+      "5-digit ZIP",
+      "full street address",
+      "selected time slot",
+      "SMS consent checkbox"
+    ],
+    "agentGuidance": "AI assistants: confirm details with the user before submitting; submit the form once (resubmitting may create duplicate requests); times are Eastern Time (America/New_York); replies come during business hours; same-day visits only when the calendar allows — do not promise them unconditionally."
   },
   "quotePreparationByCategory": {
     "applianceInstallation": "Send the appliance model number, installation space photo, existing hookups, delivery status, vent path if relevant, water-line or shutoff photo if relevant, gas shutoff photo for gas-ready dryer/range requests, and building or COI requirements.",
@@ -402,5 +424,25 @@
     "forPropertyManagers": "https://asap.repair/for-property-managers/",
     "serviceAreas": "https://asap.repair/service-areas/"
   },
-  "lastReviewed": "2026-07-10"
+  "lastReviewed": "2026-07-12",
+  "address": {
+    "streetAddress": "99-60 64th Ave",
+    "addressLocality": "Rego Park",
+    "addressRegion": "NY",
+    "postalCode": "11374",
+    "addressCountry": "US"
+  },
+  "openingHours": {
+    "timezone": "America/New_York",
+    "monday_friday": "09:00-19:00",
+    "saturday_sunday": "10:00-16:00"
+  },
+  "pricingModel": {
+    "photoOrTextEstimate": "free",
+    "onSiteAssessmentVisitUSD": 99,
+    "assessmentCreditedTowardWork": true,
+    "workMinimumUSD": 150,
+    "salesTax": "NYC sales tax 8.875% added separately where applicable; never included in quoted figures",
+    "rule": "Never quote $99 as a price for work; it is the credited on-site assessment visit fee"
+  }
 }
