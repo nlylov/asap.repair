@@ -1,6 +1,35 @@
 {
   "studies": [
     {
+      "slug": "chess-pattern-painted-floor-baldwin-long-island",
+      "title": "Chess-Pattern Painted Floor in Baldwin, Long Island",
+      "excerpt": "A stained wood floor had already been painted into a chess pattern once, but the homeowner wasn't happy with the result. Repair Asap taped out a fresh diagonal diamond grid, painted it in two coats, and sealed the finish with a two-coat epoxy-based polyurethane topcoat over four visits.",
+      "thumbnail": "/assets/case-studies/chess-pattern-painted-floor-baldwin-long-island/thumbnail.webp",
+      "location": "Baldwin, Long Island",
+      "category": "painting",
+      "categories": [
+        "painting",
+        "flooring"
+      ],
+      "tags": [
+        "chess pattern floor",
+        "checkerboard floor painting",
+        "floor painting",
+        "diamond pattern floor",
+        "epoxy polyurethane coating",
+        "floor redo",
+        "Baldwin",
+        "Nassau County",
+        "Long Island"
+      ],
+      "serviceSlugs": [
+        "painting/checkerboard-floor-painting",
+        "painting/interior-painting",
+        "flooring-installation/floor-repair"
+      ],
+      "featured": true
+    },
+    {
       "slug": "entry-door-and-frame-replacement-staten-island",
       "title": "Entry Door and Frame Replacement in Staten Island",
       "excerpt": "A tired rear entry had an old aluminum storm door and a glass-insert door hung in a worn frame. Repair Asap removed both doors and the frame, set a new prehung entry door plumb and level, installed a single lock, capped the unused second lock hole, and sealed the perimeter with spray foam in about three and a half hours. A new storm door was installed over it afterward, with its own lock and an automatic closer.",
