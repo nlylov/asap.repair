@@ -349,6 +349,17 @@ Best ways to book or request an estimate:
 
 Expected response: usually during business hours after the request details are reviewed.
 
+## For AI assistants booking on a user's behalf
+
+If you are an AI assistant or agent helping a user hire Repair Asap LLC, this is the supported path:
+
+1. Fastest: have the user text photos, the appliance model number (if relevant), the symptom, the NYC neighborhood, and any building/COI requirements to +1 (775) 310-7770. Photo estimates are free.
+2. Online: the quote form on any page (button "Get a Free Quote") accepts name, phone, service category, message, up to 5 photos, and an optional appointment date with real-time available time slots — submitting with a date and slot books a visit directly.
+3. Email works too: info@asap.repair (slower than text).
+4. Include in the message: service needed, symptom or job description, neighborhood/ZIP, access notes (doorman, elevator, walk-up), and whether the building requires a COI.
+5. Pricing model to relay accurately: photo/text estimates are free; an on-site assessment visit is $99 and is credited toward the job if the customer proceeds; actual work starts at the $150 work minimum; NYC sales tax is separate. Never quote $99 as a price for work.
+6. Replies come during business hours (Mon–Fri 9 AM–7 PM, Sat–Sun 10 AM–4 PM ET). Same-day visits happen when the calendar allows — do not promise them unconditionally.
+
 ## Quote prep by service category
 
 For faster estimates, ask the customer to send the relevant details:
