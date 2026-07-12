@@ -73,17 +73,16 @@
         "That meant starting the layout from scratch: taping a diagonal diamond grid that was square and evenly sized across the whole room, so the finished pattern would read as clean and consistent from every angle."
       ],
       "comparisonEyebrow": "Before and after",
-      "comparisonTitle": "Same corner, stained floor to sealed chess pattern",
-      "comparisonSubtitle": "Shot from the same spot in the room: the plain stained floor before work began, and the finished glossy chess pattern after painting and topcoat.",
+      "comparisonTitle": "Same corner, stained floor to a chess pattern",
+      "comparisonSubtitle": "The same corner of the room — the covered window opening and the floor cutout are visible in both — before painting and after the finished chess pattern.",
       "comparisonPairs": [
         {
-          "title": "Same room, same corner",
-          "before": "/assets/case-studies/chess-pattern-painted-floor-baldwin-long-island/before-existing-stained-floor.webp",
-          "after": "/assets/case-studies/chess-pattern-painted-floor-baldwin-long-island/after-finished-glossy-chess-floor.webp",
-          "beforeAlt": "Stained wood floor before the chess pattern was painted, Baldwin NY",
-          "afterAlt": "Finished glossy chess-pattern floor from the same corner of the room",
-          "caption": "The same doorway and floor cutout are visible in both photos — one floor, before and after the chess pattern and topcoat.",
-          "display": "slider"
+          "title": "Same corner, before and after",
+          "before": "/assets/case-studies/chess-pattern-painted-floor-baldwin-long-island/before-bare-stained-floor-wide.webp",
+          "after": "/assets/case-studies/chess-pattern-painted-floor-baldwin-long-island/after-chess-floor-same-corner.webp",
+          "beforeAlt": "Stained wood floor before painting, same corner with the covered window opening — Baldwin NY",
+          "afterAlt": "Finished chess-pattern floor from the same corner of the room, Baldwin NY",
+          "caption": "The same corner of the room: the bare stained floor, then the finished chess pattern under its glossy topcoat. (The covered window opening and the floor cutout appear in both.)"
         }
       ],
       "beforeTitle": "Before: a stained floor and a first attempt that missed the mark",
@@ -131,6 +130,14 @@
       ]
     },
     "images": [
+      {
+        "src": "/assets/case-studies/chess-pattern-painted-floor-baldwin-long-island/before-bare-stained-floor-wide.webp",
+        "alt": "Wide view of the bare stained wood floor before the chess pattern, Baldwin NY",
+        "caption": "The bare stained floor before the layout began — the base color for the pattern.",
+        "stage": "before",
+        "width": 1800,
+        "height": 2400
+      },
       {
         "src": "/assets/case-studies/chess-pattern-painted-floor-baldwin-long-island/before-existing-stained-floor.webp",
         "alt": "Stained wood floor before the chess pattern was painted, Baldwin NY",

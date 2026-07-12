@@ -156,6 +156,8 @@ def render_head(study: dict) -> str:
   <meta property=\"og:type\" content=\"article\">
   <meta property=\"og:url\" content=\"{url}\">
   <meta property=\"og:image\" content=\"{absolute(study.get('ogImage') or study['heroImage'])}\">
+  <meta property=\"og:image:width\" content=\"1200\">
+  <meta property=\"og:image:height\" content=\"630\">
   <meta property=\"og:image:alt\" content=\"{e(study['title'])}\">
   <meta name=\"twitter:card\" content=\"summary_large_image\">
   <meta name=\"twitter:image\" content=\"{absolute(study.get('ogImage') or study['heroImage'])}\">
@@ -666,6 +668,8 @@ def render_index(studies: list[dict]) -> str:
   <meta property=\"og:type\" content=\"website\">
   <meta property=\"og:url\" content=\"https://asap.repair/case-studies/\">
   <meta property=\"og:image\" content=\"https://asap.repair/assets/images/og-image.png\">
+  <meta property=\"og:image:width\" content=\"1200\">
+  <meta property=\"og:image:height\" content=\"630\">
   <meta property=\"og:image:alt\" content=\"Repair Asap LLC case studies in New York City\">
   <meta name=\"twitter:card\" content=\"summary_large_image\">
   <meta name=\"twitter:image\" content=\"https://asap.repair/assets/images/og-image.png\">
