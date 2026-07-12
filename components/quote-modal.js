@@ -664,7 +664,15 @@
             website: form.querySelector('#modal-website')?.value || '',
             sessionContext,
             // Page context first; smart-calculator custom fields (set by main.js) win on conflicts.
-            custom_fields: { ...pageQuoteContext(), ...(window._calcQuoteData || {}) },
+            // consent_* records the checkbox evidence server-side (checkbox is
+            // client-required for every submission; backend stores custom_fields).
+            custom_fields: {
+                ...pageQuoteContext(),
+                consent_sms: 'granted',
+                consent_at: new Date().toISOString(),
+                consent_policy: 'privacy-policy+tos 2026',
+                ...(window._calcQuoteData || {}),
+            },
         };
 
         try {

@@ -1,0 +1,27 @@
+name: Validate site surfaces
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      # Sitemap ↔ llms.txt/llms-full.txt coverage (every public URL must be
+      # present in both AI guides — catches the recurring desync class)
+      - name: AI guide coverage
+        run: node scripts/validate-ai-guide-coverage.mjs
+      # JSON-LD parses and follows house rules on every page
+      - name: Structured data
+        run: node scripts/validate-structured-data.mjs
+      # No self-serving Review/AggregateRating markup (Google policy)
+      - name: Review schema policy
+        run: node scripts/validate-review-schema.mjs
+      - name: facts.json is valid JSON
+        run: node -e "JSON.parse(require('fs').readFileSync('facts.json','utf8')); console.log('facts.json OK')"

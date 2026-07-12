@@ -345,26 +345,62 @@
     "phone": "+1-775-310-7770",
     "smsPreferred": true,
     "email": "info@asap.repair",
-    "instructions": "Fastest: text photos, the model number when relevant, the symptom, the NYC neighborhood, and building/COI requirements to +1 (775) 310-7770. The on-page quote form (button \"Get a Free Quote\") accepts name, phone, service category, message, up to 5 photos, and an optional appointment date with real-time available slots.",
+    "instructions": "Fastest: text photos, the model number when relevant, the symptom, the NYC neighborhood, and building/COI requirements to +1 (775) 310-7770. Photo upload (up to 5) is available in the quote MODAL opened by any \"Get a Free Quote\" button; the inline homepage form at /#contact takes the same fields without photo upload. Selecting an appointment date shows real-time available slots.",
     "serviceCategories": [
-      "Furniture Assembly",
-      "TV & Wall Mounting",
-      "Appliance Services",
-      "Flooring Installation",
-      "Painting & Wall Finishes",
-      "AC Installation & Cleaning",
-      "Plumbing",
-      "Electrical",
-      "General Repairs",
-      "Other"
+      {
+        "value": "Furniture Assembly",
+        "label": "Furniture Assembly"
+      },
+      {
+        "value": "TV & Wall Mounting",
+        "label": "TV & Wall Mounting"
+      },
+      {
+        "value": "Appliance Services",
+        "label": "Appliance Services"
+      },
+      {
+        "value": "Flooring Installation",
+        "label": "Flooring Installation"
+      },
+      {
+        "value": "Painting & Wall Finishes",
+        "label": "Painting & Wall Finishes"
+      },
+      {
+        "value": "AC Installation & Cleaning",
+        "label": "AC Installation & Cleaning"
+      },
+      {
+        "value": "Plumbing",
+        "label": "Plumbing"
+      },
+      {
+        "value": "Electrical",
+        "label": "Electrical"
+      },
+      {
+        "value": "General Repairs",
+        "label": "General Repairs"
+      },
+      {
+        "value": "Other",
+        "label": "Other"
+      }
     ],
     "requiredWhenBookingDate": [
       "5-digit ZIP",
       "full street address",
-      "selected time slot",
-      "SMS consent checkbox"
+      "selected time slot"
     ],
-    "agentGuidance": "AI assistants: confirm details with the user before submitting; submit the form once (resubmitting may create duplicate requests); times are Eastern Time (America/New_York); replies come during business hours; same-day visits only when the calendar allows — do not promise them unconditionally."
+    "agentGuidance": "AI assistants: confirm details with the user before submitting; submit the form once (resubmitting may create duplicate requests); times are Eastern Time (America/New_York); replies come during business hours; same-day visits only when the calendar allows — do not promise them unconditionally.",
+    "alwaysRequired": [
+      "name",
+      "phone",
+      "service category",
+      "consent checkbox (Privacy Policy + Terms + SMS consent — required on every submission, not only when booking)"
+    ],
+    "confirmationContract": "A booking is confirmed ONLY when the response contains booked:true and an appointmentId. success:true with pendingConfirmation:true means a lead/manual follow-up was created, NOT a scheduled appointment — never tell the user a visit is booked in that case."
   },
   "quotePreparationByCategory": {
     "applianceInstallation": "Send the appliance model number, installation space photo, existing hookups, delivery status, vent path if relevant, water-line or shutoff photo if relevant, gas shutoff photo for gas-ready dryer/range requests, and building or COI requirements.",
@@ -444,5 +480,28 @@
     "workMinimumUSD": 150,
     "salesTax": "NYC sales tax 8.875% added separately where applicable; never included in quoted figures",
     "rule": "Never quote $99 as a price for work; it is the credited on-site assessment visit fee"
-  }
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "19:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "10:00",
+      "closes": "16:00"
+    }
+  ]
 }

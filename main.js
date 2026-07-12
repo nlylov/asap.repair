@@ -915,6 +915,12 @@ document.addEventListener('DOMContentLoaded', () => {
           // Spam honeypot: hidden field humans never fill; CRM rejects non-empty.
           website: form.querySelector('#contact-website')?.value || '',
           sessionContext,
+          // Consent evidence (checkbox is client-required on every submission)
+          custom_fields: {
+            consent_sms: 'granted',
+            consent_at: new Date().toISOString(),
+            consent_policy: 'privacy-policy+tos 2026',
+          },
         };
 
         try {

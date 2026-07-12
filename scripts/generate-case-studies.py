@@ -772,6 +772,40 @@ def update_sitemap(studies: list[dict]) -> None:
     path.write_text(text)
 
 
+
+
+def ensure_llms_coverage(studies: list[dict]) -> None:
+    """Auto-append missing case-study lines to llms.txt / llms-full.txt, then
+    run the coverage validator and fail loudly if parity is still broken.
+    Publishing a study without these lines repeatedly caused live desyncs."""
+    import subprocess
+    import sys
+    for fname, rich in (("llms.txt", False), ("llms-full.txt", True)):
+        path = ROOT / fname
+        text = path.read_text()
+        lines = text.split("\n")
+        changed = False
+        for study in studies:
+            url = f"{SITE}/case-studies/{study['slug']}/"
+            if url in text:
+                continue
+            short = study.get("shortTitle", study.get("title", study["slug"]))
+            desc = (study.get("metaDescription") or study.get("description", ""))[:140]
+            entry = (f"- {short} case study: {desc}: {url}" if rich
+                     else f"- {short} case study: {url}")
+            cs_lines = [i for i, l in enumerate(lines) if "/case-studies/" in l and l.startswith("- ")]
+            if not cs_lines:
+                continue
+            lines.insert(cs_lines[-1] + 1, entry)
+            text = "\n".join(lines)
+            changed = True
+            print(f"[llms-sync] added {study['slug']} to {fname}")
+        if changed:
+            path.write_text(text)
+    result = subprocess.run(["node", str(ROOT / "scripts" / "validate-ai-guide-coverage.mjs")])
+    if result.returncode != 0:
+        sys.exit("AI guide coverage failed - fix llms.txt/llms-full.txt before publishing")
+
 def main() -> None:
     studies = load_studies()
     CASE_DIR.mkdir(exist_ok=True)
@@ -782,6 +816,7 @@ def main() -> None:
     (CASE_DIR / "index.html").write_text(clean_text(render_index(studies)))
     generate_public_data(studies)
     update_sitemap(studies)
+    ensure_llms_coverage(studies)
     print(f"Generated {len(studies)} case study page(s).")
 
 
