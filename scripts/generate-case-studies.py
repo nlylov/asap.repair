@@ -267,7 +267,9 @@ def render_comparison_pairs(study: dict, content: dict) -> str:
                 card_classes.append("project-comparison-card--wide")
             position = pair.get("initialPosition", 50)
             aspect_ratio = pair.get("aspectRatio", "4/3")
-            media = f"""<figure class="ba" style="--ar:{e(aspect_ratio)}; --pos:{e(str(position))}%;" data-position="{e(str(position))}">
+            _mw = pair.get("maxWidth")
+            _mw_style = f" max-width:{int(_mw)}px; margin-left:auto; margin-right:auto;" if _mw else ""
+            media = f"""<figure class="ba" style="--ar:{e(aspect_ratio)}; --pos:{e(str(position))}%;{_mw_style}" data-position="{e(str(position))}">
             <div class="ba__media" role="slider" tabindex="0" aria-label="Slide to compare {e(title)} before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{e(str(position))}" aria-valuetext="{e(str(position))}% before">
               <img class="ba__after" src="{e(pair['after'])}" alt="{e(after_alt)}" loading="lazy">
               <div class="ba__before-wrap"><img src="{e(pair['before'])}" alt="{e(before_alt)}" loading="lazy"></div>
