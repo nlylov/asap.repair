@@ -13,7 +13,10 @@ const apartmentSource = fs.readFileSync(
   path.join(root, 'case-studies', 'one-bedroom-apartment-turnover-nyc', 'index.html'),
   'utf8',
 );
-const apartmentData = JSON.parse(fs.readFileSync(path.join(root, '_data', 'case-studies.json'), 'utf8'))[0];
+const caseStudyData = JSON.parse(fs.readFileSync(path.join(root, '_data', 'case-studies.json'), 'utf8'));
+const apartmentData = caseStudyData.find((caseStudy) => caseStudy.slug === 'one-bedroom-apartment-turnover-nyc');
+
+assert.ok(apartmentData);
 
 test('case study before/after sliders do not render a native range control overlay', () => {
   assert.match(generatorSource, /class="ba__media" role="slider" tabindex="0"/);
