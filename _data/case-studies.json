@@ -80,13 +80,14 @@
         {
           "title": "The room, before and after",
           "display": "slider",
-          "aspectRatio": "16 / 25",
+          "aspectRatio": "3 / 2",
           "initialPosition": 50,
-          "before": "/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/room-slider-before-white.webp",
-          "after": "/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/room-slider-after-black.webp",
+          "before": "/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/room-wide-before-white.webp",
+          "after": "/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/room-wide-after-black.webp",
           "beforeAlt": "Bright white room with closet doors and skylight before painting, Bedford-Stuyvesant Brooklyn",
           "afterAlt": "The same room painted all black — walls, ceiling and doors, Bedford-Stuyvesant Brooklyn",
-          "caption": "Drag the slider: the same corner of the room, from bright white to an all-black lounge. The closet doors line up; the two photos were taken on different days, so the far side shifts a little."
+          "caption": "Drag the slider: the same corner of the room, from bright white to an all-black lounge. The closet doors line up; the two photos were taken on different days, so the far side shifts a little.",
+          "wide": true
         }
       ],
       "beforeTitle": "Before: white walls, a skylight, and a clean slate",
