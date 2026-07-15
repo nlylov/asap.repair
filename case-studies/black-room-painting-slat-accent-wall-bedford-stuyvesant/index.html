@@ -157,22 +157,23 @@
         <div class="section-header section-header--left">
           <span class="project-eyebrow">Before and after</span>
           <h2 class="section-title">From bright white to all black</h2>
-          <p class="section-subtitle">The same room, shot from the same corner — bright white before, all black after.</p>
+          <p class="section-subtitle">Drag the handle to compare — the same room, from bright white to all black.</p>
         </div>
         <div class="project-comparison-grid">
-          <article class="project-comparison-card">
+          <article class="project-comparison-card project-comparison-card--slider project-comparison-card--wide">
           <h3>The room, before and after</h3>
-          <div class="project-comparison-card__media">
-            <figure>
-              <span>Before</span>
-              <img src="/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/before-white-room-doors.webp" alt="Bright white room with closet doors, skylight and wood floor before painting, Bedford-Stuyvesant Brooklyn" loading="lazy">
-            </figure>
-            <figure>
-              <span>After</span>
-              <img src="/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/after-black-doors-room.webp" alt="The same room painted all black — walls, ceiling and doors, Bedford-Stuyvesant Brooklyn" loading="lazy">
-            </figure>
-          </div>
-          <p>Shot from the same corner: the room went from bright white, with a skylight and wood floor, to an all-black lounge. (The floor is still covered with protection in the after photo.)</p>
+          <figure class="ba" style="--ar:1 / 1; --pos:50%;" data-position="50">
+            <div class="ba__media" role="slider" tabindex="0" aria-label="Slide to compare The room, before and after before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50% before">
+              <img class="ba__after" src="/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/room-slider-after-black.webp" alt="The same room painted all black, Bedford-Stuyvesant Brooklyn" loading="lazy">
+              <div class="ba__before-wrap"><img src="/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/room-slider-before-white.webp" alt="Bright white room with closet doors before painting, Bedford-Stuyvesant Brooklyn" loading="lazy"></div>
+              <div class="ba__labels" aria-hidden="true">
+                <span class="ba__tag ba__tag--before" translate="no">Before</span>
+                <span class="ba__tag ba__tag--after" translate="no">After</span>
+              </div>
+              <div class="ba__divider"><span class="ba__grip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span></div>
+            </div>
+          </figure>
+          <p>Drag the slider to compare the same corner, bright white to all black. The two photos were taken on different days, so the far side does not line up perfectly.</p>
         </article>
         </div>
       </div>
@@ -421,5 +422,127 @@
 <!--/baked--></div>
   <script src="/components/loader.js?v=20260710c" defer></script>
   <script src="/main.js?v=20260710c" defer></script>
+  <script>
+    (function () {
+      document.querySelectorAll('.ba').forEach(function (ba) {
+        var media = ba.querySelector('.ba__media');
+        var wrap = ba.querySelector('.ba__before-wrap');
+        var div = ba.querySelector('.ba__divider');
+        if (!media || !wrap || !div) return;
+
+        function set(v) {
+          v = Math.max(0, Math.min(100, v));
+          ba.style.setProperty('--pos', v + '%');
+          wrap.style.width = v + '%';
+          div.style.left = v + '%';
+          media.setAttribute('aria-valuenow', Math.round(v));
+          media.setAttribute('aria-valuetext', Math.round(v) + '% before');
+        }
+
+        function setFromX(clientX) {
+          var r = media.getBoundingClientRect();
+          if (r.width) set(((clientX - r.left) / r.width) * 100);
+        }
+
+        media.addEventListener('keydown', function (event) {
+          var current = parseFloat(media.getAttribute('aria-valuenow') || '50');
+          var step = event.shiftKey ? 10 : 5;
+          var next = null;
+          if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') next = current - step;
+          if (event.key === 'ArrowRight' || event.key === 'ArrowUp') next = current + step;
+          if (event.key === 'PageDown') next = current - 10;
+          if (event.key === 'PageUp') next = current + 10;
+          if (event.key === 'Home') next = 0;
+          if (event.key === 'End') next = 100;
+          if (next === null) return;
+          event.preventDefault();
+          set(next);
+        });
+
+        set(parseFloat(ba.getAttribute('data-position') || media.getAttribute('aria-valuenow') || '50'));
+
+        var dragging = false;
+        var pending = false;
+        var startX = 0;
+        var startY = 0;
+        var SLOP = 6;
+
+        media.addEventListener('pointerdown', function (event) {
+          if (event.pointerType === 'mouse' && event.button !== 0) return;
+          startX = event.clientX;
+          startY = event.clientY;
+          if (event.pointerType === 'mouse') {
+            dragging = true;
+            try { media.setPointerCapture(event.pointerId); } catch (_) {}
+            setFromX(event.clientX);
+            event.preventDefault();
+          } else {
+            pending = true;
+          }
+        });
+
+        media.addEventListener('pointermove', function (event) {
+          if (pending) {
+            var dx = event.clientX - startX;
+            var dy = event.clientY - startY;
+            if (Math.abs(dx) < SLOP && Math.abs(dy) < SLOP) return;
+            if (Math.abs(dy) > Math.abs(dx)) {
+              pending = false;
+              return;
+            }
+            pending = false;
+            dragging = true;
+            try { media.setPointerCapture(event.pointerId); } catch (_) {}
+          }
+          if (!dragging) return;
+          event.preventDefault();
+          setFromX(event.clientX);
+        });
+
+        function end(event) {
+          pending = false;
+          dragging = false;
+          try { media.releasePointerCapture(event.pointerId); } catch (_) {}
+        }
+
+        media.addEventListener('pointerup', end);
+        media.addEventListener('pointercancel', end);
+
+        if (!('PointerEvent' in window)) {
+          media.addEventListener('touchstart', function (event) {
+            var touch = event.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+            pending = true;
+          }, { passive: false });
+
+          media.addEventListener('touchmove', function (event) {
+            var touch = event.touches[0];
+            if (pending) {
+              var dx = touch.clientX - startX;
+              var dy = touch.clientY - startY;
+              if (Math.abs(dx) < SLOP && Math.abs(dy) < SLOP) return;
+              if (Math.abs(dy) > Math.abs(dx)) {
+                pending = false;
+                return;
+              }
+              pending = false;
+              dragging = true;
+            }
+            if (!dragging) return;
+            event.preventDefault();
+            setFromX(touch.clientX);
+          }, { passive: false });
+
+          media.addEventListener('touchend', function () {
+            pending = false;
+            dragging = false;
+          });
+        }
+
+        set(parseFloat(range.value) || 50);
+      });
+    })();
+  </script>
 </body>
 </html>

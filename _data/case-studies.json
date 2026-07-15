@@ -75,15 +75,19 @@
       ],
       "comparisonEyebrow": "Before and after",
       "comparisonTitle": "From bright white to all black",
-      "comparisonSubtitle": "The same room, shot from the same corner — bright white before, all black after.",
+      "comparisonSubtitle": "Drag the handle to compare — the same room, from bright white to all black.",
       "comparisonPairs": [
         {
           "title": "The room, before and after",
-          "before": "/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/before-white-room-doors.webp",
-          "after": "/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/after-black-doors-room.webp",
-          "beforeAlt": "Bright white room with closet doors, skylight and wood floor before painting, Bedford-Stuyvesant Brooklyn",
-          "afterAlt": "The same room painted all black — walls, ceiling and doors, Bedford-Stuyvesant Brooklyn",
-          "caption": "Shot from the same corner: the room went from bright white, with a skylight and wood floor, to an all-black lounge. (The floor is still covered with protection in the after photo.)"
+          "display": "slider",
+          "aspectRatio": "1 / 1",
+          "initialPosition": 50,
+          "wide": true,
+          "before": "/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/room-slider-before-white.webp",
+          "after": "/assets/case-studies/black-room-painting-slat-accent-wall-bedford-stuyvesant/room-slider-after-black.webp",
+          "beforeAlt": "Bright white room with closet doors before painting, Bedford-Stuyvesant Brooklyn",
+          "afterAlt": "The same room painted all black, Bedford-Stuyvesant Brooklyn",
+          "caption": "Drag the slider to compare the same corner, bright white to all black. The two photos were taken on different days, so the far side does not line up perfectly."
         }
       ],
       "beforeTitle": "Before: white walls, a skylight, and a clean slate",
