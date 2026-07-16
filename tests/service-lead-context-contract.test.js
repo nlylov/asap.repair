@@ -13,10 +13,14 @@ const modalHtml = fs.readFileSync(path.join(root, 'components', 'quote-modal.htm
 const homepageHtml = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 
 test('frontend quote payloads include normalized CRM service taxonomy context', () => {
-  assert.match(mainSource, /REPAIR_ASAP_CRM_TAXONOMY_VERSION = '2026-07-15'/);
+  assert.match(mainSource, /REPAIR_ASAP_CRM_TAXONOMY_VERSION = '2026-07-16'/);
   assert.match(mainSource, /'commercial-refrigeration': \{[\s\S]*serviceCode: 'commercial_refrigeration_triage'/);
   assert.match(mainSource, /'commercial-refrigeration': \{[\s\S]*vertical: 'commercial_refrigeration'/);
   assert.match(mainSource, /'commercial-refrigeration': \{[\s\S]*'epa_608_required'/);
+  assert.match(mainSource, /'reach-in-cooler-repair': \{[\s\S]*serviceCode: 'reach_in_cooler_repair_help'/);
+  assert.match(mainSource, /'walk-in-cooler-repair': \{[\s\S]*equipmentFamily: 'walk_in_cooler'/);
+  assert.match(mainSource, /'restaurant-refrigeration-repair': \{[\s\S]*marketSegment: 'commercial_food_service'/);
+  assert.match(mainSource, /'ice-machine-repair': \{[\s\S]*quickbooksItem: 'Ice Machine Diagnostic'/);
   assert.match(mainSource, /window\.repairAsapBuildServiceLeadContext = repairAsapBuildServiceLeadContext/);
 });
 
@@ -31,6 +35,11 @@ test('homepage and modal dropdowns expose high-intent appliance and commercial o
   for (const html of [homepageHtml, modalHtml]) {
     assert.match(html, /<option value="Refrigerator Repair Help">Refrigerator Repair Help<\/option>/);
     assert.match(html, /<option value="Commercial Refrigeration Triage">Commercial Refrigeration Triage<\/option>/);
+    assert.match(html, /<option value="Reach-In Cooler Repair Help">Reach-In Cooler Repair Help<\/option>/);
+    assert.match(html, /<option value="Walk-In Cooler Repair Help">Walk-In Cooler Repair Help<\/option>/);
+    assert.match(html, /<option value="Prep Table Refrigerator Repair Help">Prep Table Refrigerator Repair Help<\/option>/);
+    assert.match(html, /<option value="Restaurant Refrigeration Repair Help">Restaurant Refrigeration Repair Help<\/option>/);
+    assert.match(html, /<option value="Ice Machine Repair Help">Ice Machine Repair Help<\/option>/);
     assert.match(html, /<option value="Ice Machine Cleaning">Ice Machine Cleaning<\/option>/);
     assert.match(html, /<option value="AC Repair Help">AC Repair Help<\/option>/);
   }

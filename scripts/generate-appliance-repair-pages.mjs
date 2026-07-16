@@ -5,7 +5,7 @@ import { execSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-const ASSET_VERSION = '20260715a';
+const ASSET_VERSION = '20260716a';
 const CSS_VERSION = '20260706c';
 const ROOT = new URL('..', import.meta.url).pathname;
 const BASE_URL = 'https://asap.repair';
@@ -1337,6 +1337,369 @@ const pages = [
   }
 ];
 
+const commercialOutOfScope = [
+  [
+    'Refrigerant charging or recovery',
+    'Any refrigerant handling must be routed to an EPA Section 608 certified technician; we flag that before scheduling.',
+  ],
+  [
+    'Compressor or sealed-system replacement',
+    'If triage points to a sealed-system failure, the repair belongs with a refrigeration specialist or manufacturer-authorized service.',
+  ],
+  [
+    'Board-level electronic repair',
+    'Failed controllers, sensors and control boards may require specialist diagnostics or manufacturer parts support.',
+  ],
+  [
+    'Manufacturer warranty-authorized service',
+    'Units under active warranty should be routed to the authorized network so coverage is not put at risk.',
+  ],
+  [
+    'New circuits, plumbing, gas or permit-level buildout',
+    'Dedicated power, new outlets, new piping and permit-level changes may require licensed trades or DOB handling.',
+  ],
+];
+
+const commercialIntake = [
+  [
+    'Business type and unit role',
+    'Restaurant, deli, bar, grocery, cafe, office or property-management context changes urgency and access planning.',
+  ],
+  [
+    'Brand, model and serial number',
+    'The data plate tells us the equipment family, age, common issues and whether the request may need a specialist.',
+  ],
+  [
+    'Current temperature and target temperature',
+    'Actual readings, timing and whether food is at risk determine whether this is urgent triage or scheduled service.',
+  ],
+  [
+    'Photos of condenser area, door seals and inside cabinet',
+    'Coil condition, airflow clearance, frost, gasket tears and door alignment are often visible before a visit.',
+  ],
+  [
+    'When the symptom started and what changed',
+    'A slow temperature drift, sudden shutdown, recent cleaning, delivery or door damage point to different first checks.',
+  ],
+  [
+    'Access hours, COI requirements and warranty status',
+    'Kitchen hours, loading access, freight elevator rules and warranty coverage are confirmed before scheduling.',
+  ],
+];
+
+function commercialTriagePage({
+  slug,
+  crumb,
+  title,
+  description,
+  badge,
+  h1,
+  accent,
+  subtitle,
+  serviceType,
+  serviceName,
+  serviceDescription,
+  equipment,
+  businessUse,
+  goodFit,
+  offers,
+  faq,
+  related = [],
+}) {
+  return {
+    slug,
+    crumb,
+    title,
+    description,
+    ogTitle: `${serviceName} | Repair Asap LLC`,
+    ogDescription: description,
+    badge,
+    h1,
+    accent,
+    subtitle,
+    serviceType,
+    serviceName,
+    serviceDescription,
+    intro: [
+      `${equipment} problems are urgent in NYC ${businessUse} because temperature drift can mean spoiled inventory, service disruption and inspection risk. Repair Asap LLC starts with photos, model details, temperature readings and access rules so the first visit is scoped as practical triage instead of a blind emergency call.`,
+      `Good-fit work includes temperature checks, condenser coil and airflow cleaning, visible drain observations, door gasket, hinge, latch and closer review, leveling, clearance review and maintenance planning. If a replacement, gasket order or specialist handoff is smarter, we document that before the job is booked.`,
+      'Refrigerant charging or recovery, compressor work, sealed-system repair, control-board diagnostics and warranty-authorized service may require an EPA Section 608 certified technician, refrigeration specialist or manufacturer. We keep that boundary clear so the lead is routed correctly.',
+    ],
+    goodFit,
+    outOfScope: commercialOutOfScope,
+    intake: commercialIntake,
+    offers,
+    faq,
+    related: [
+      { label: 'Commercial Refrigeration Triage', url: '/services/appliance-services/commercial-refrigeration/' },
+      { label: 'Ice Machine Cleaning', url: '/services/appliance-services/ice-machine-cleaning/' },
+      { label: 'Restaurant Handyman', url: '/for-restaurants/' },
+      ...related,
+    ],
+    crossLinks: [
+      { label: 'Preventive Maintenance', url: '/preventive-maintenance/' },
+      { label: 'Visible Leak Repair', url: '/services/plumbing/leak-repair/' },
+      { label: 'Electrical Troubleshooting', url: '/services/electrical/electrical-troubleshooting/' },
+    ],
+    ctaLabel: 'Request Commercial Triage',
+    goodFitTag: 'Commercial Scope',
+    goodFitTitle: 'What We Can <span class="text-accent">Triage</span>',
+    relatedTitle: 'Related Commercial Services',
+    relatedSubtitle: 'Start with the most specific refrigeration page, or use the general commercial triage page when the exact equipment type is unclear.',
+    crossSubtitle: 'Commercial cold-side issues often overlap with drains, power, doors, access, COI and preventive maintenance.',
+    serviceAreaNote: 'We quote commercial refrigeration triage across Queens, Manhattan, Brooklyn, the Bronx, Staten Island, and Western Long Island or Nassau County when scope and travel fit. Text the unit type, model and serial number, temperature readings, photos, urgency and COI requirements for the fastest review.',
+  };
+}
+
+const commercialChildPages = [
+  commercialTriagePage({
+    slug: 'reach-in-cooler-repair',
+    crumb: 'Reach-In Cooler Repair',
+    title: 'Reach-In Cooler Repair Help NYC | Restaurant Refrigeration Triage',
+    description: 'Reach-in cooler running warm in NYC? Fast commercial refrigeration triage for coils, airflow, gaskets, drains and temperature checks.',
+    badge: 'Reach-In Cooler Repair Help',
+    h1: 'Reach-In Cooler Repair Help in NYC',
+    accent: 'Coil, Door Seal & Temperature Triage',
+    subtitle: 'Reach-in cooler drifting warm? Text temperatures, model and photos before you pay specialist emergency rates.',
+    serviceType: 'Reach-In Cooler Repair Help',
+    serviceName: 'Reach-In Cooler Repair Help in NYC',
+    serviceDescription: 'Reach-in cooler repair triage in New York City for restaurants, delis, bars, cafes and grocery locations: temperature checks, condenser coil cleaning, airflow review, gasket and door hardware planning, visible drain observations and specialist routing when refrigerant or sealed-system work is suspected.',
+    equipment: 'Reach-in cooler and reach-in refrigerator',
+    businessUse: 'restaurants, delis, bars, cafes and food-service spaces',
+    goodFit: [
+      ['Reach-in cooler not holding temperature', 'We compare current readings to the target and inspect airflow, condenser condition and door-seal loss.'],
+      ['Dirty condenser coils or blocked clearance', 'Grease and dust around the condenser can make a good unit run warm; accessible coils are cleaned first.'],
+      ['Torn gasket or door not sealing', 'We inspect and measure gaskets, hinges, latches and closers so replacement parts can be quoted correctly.'],
+      ['Water pooling or visible drain concern', 'Accessible drain paths, pan conditions and cabinet pitch are reviewed before water reaches stock or flooring.'],
+      ['Repair-or-replace guidance', 'Older reach-ins with repeated failures get a practical repair-versus-replacement discussion before more money is spent.'],
+    ],
+    offers: [
+      'Temperature check and logging observation',
+      'Accessible condenser coil cleaning',
+      'Door gasket, hinge and latch planning',
+      'Visible drain and airflow review',
+      'Repair-or-replace recommendation',
+    ],
+    faq: [
+      ['Do you repair reach-in coolers in NYC?', 'Repair Asap LLC provides reach-in cooler triage for temperature, airflow, condenser coil, gasket, hinge, drain and maintenance issues. Refrigerant, compressor and sealed-system work may require an EPA Section 608 certified technician or refrigeration specialist.'],
+      ['What should I send for reach-in cooler help?', 'Send the brand, model, serial number, current temperature, target temperature, photos of the cabinet, condenser area, door seals, any frost or water, business hours, COI requirements and warranty status.'],
+      ['Can you help before a full refrigeration specialist visit?', 'Yes. We can often identify dirty coils, blocked airflow, damaged gaskets, door issues and drain concerns before a specialist is needed, then route refrigerant or sealed-system work correctly if the evidence points there.'],
+    ],
+  }),
+  commercialTriagePage({
+    slug: 'walk-in-cooler-repair',
+    crumb: 'Walk-In Cooler Repair',
+    title: 'Walk-In Cooler Repair Help NYC | Restaurant Cooler Triage',
+    description: 'Walk-in cooler not holding temperature in NYC? Commercial triage for gaskets, doors, strip curtains, drains, coils and 41°F risk.',
+    badge: 'Walk-In Cooler Repair Help',
+    h1: 'Walk-In Cooler Repair Help in NYC',
+    accent: 'Door, Gasket & 41°F Triage',
+    subtitle: 'Walk-in box running warm? Start with door seals, airflow, drains and temperatures before escalating to sealed-system work.',
+    serviceType: 'Walk-In Cooler Repair Help',
+    serviceName: 'Walk-In Cooler Repair Help in NYC',
+    serviceDescription: 'Walk-in cooler repair triage in New York City for food businesses: temperature checks, door gasket and closer review, strip curtain planning, visible drain observations, airflow and coil cleaning, leveling and specialist routing when refrigerant or compressor work is suspected.',
+    equipment: 'Walk-in cooler and walk-in freezer',
+    businessUse: 'restaurants, grocery stores, delis, cafes, bars and commercial kitchens',
+    goodFit: [
+      ['Walk-in cooler above safe holding temperature', 'We document readings and check whether door loss, blocked airflow or maintenance issues are causing the drift.'],
+      ['Door gasket, sweep, closer or latch failure', 'Door hardware that leaks cold air all day is reviewed, adjusted when possible and measured for replacement.'],
+      ['Strip curtain or air-loss planning', 'Missing or damaged strip curtains are planned as a practical way to reduce temperature swings during service.'],
+      ['Visible ice, water or drain issue', 'Accessible drain and pan conditions are checked so water and ice do not spread into the kitchen.'],
+      ['Quarterly maintenance setup', 'Coils, doors, drains and temperature logs can be planned as a recurring program for the box.'],
+    ],
+    offers: [
+      'Temperature check and risk documentation',
+      'Door seal, sweep and closer review',
+      'Strip curtain planning',
+      'Visible drain and airflow review',
+      'Quarterly maintenance planning',
+    ],
+    faq: [
+      ['Do you repair walk-in coolers?', 'Repair Asap LLC provides walk-in cooler triage for doors, gaskets, closers, strip curtains, drains, airflow, coil cleaning and temperature documentation. Refrigerant, compressor and sealed-system work is routed to an EPA Section 608 certified technician or refrigeration specialist.'],
+      ['Is a walk-in cooler above 41°F urgent?', 'Yes. If food is at risk, move stock to a working unit where possible, keep the door closed, record temperatures and send photos immediately so the visit can be routed correctly.'],
+      ['Can you replace walk-in door gaskets or curtains?', 'We can review, measure and plan gasket, sweep, closer and strip-curtain replacement when parts and access fit. Custom or manufacturer-specific parts are quoted after model and photos.'],
+    ],
+  }),
+  commercialTriagePage({
+    slug: 'prep-table-refrigerator-repair',
+    crumb: 'Prep Table Refrigerator Repair',
+    title: 'Prep Table Refrigerator Repair Help NYC | Sandwich Unit Triage',
+    description: 'Prep table refrigerator running warm in NYC? Triage for airflow, pans, coils, gaskets, drains and food-service temperature problems.',
+    badge: 'Prep Table Refrigerator Repair',
+    h1: 'Prep Table Refrigerator Repair Help in NYC',
+    accent: 'Pan Rail, Airflow & Coil Triage',
+    subtitle: 'Sandwich prep table not staying cold? Check pans, airflow, coils and gaskets before a full specialist call.',
+    serviceType: 'Prep Table Refrigerator Repair Help',
+    serviceName: 'Prep Table Refrigerator Repair Help in NYC',
+    serviceDescription: 'Prep table refrigerator repair triage in New York City for sandwich units, pizza prep tables and refrigerated rail equipment: temperature checks, pan loading review, airflow and condenser cleaning, gasket planning, visible drain observations and specialist routing when sealed-system work is suspected.',
+    equipment: 'Prep table refrigerator, sandwich unit and pizza prep table',
+    businessUse: 'delis, restaurants, sandwich shops, pizza shops, cafes and ghost kitchens',
+    goodFit: [
+      ['Pan rail or cabinet not holding temperature', 'We check readings, pan loading, lid use, airflow path and cabinet temperature before deeper routing.'],
+      ['Blocked airflow from product or pan setup', 'Overfilled pans and blocked vents are common causes of warm rails; layout is reviewed first.'],
+      ['Dirty condenser coils in a hot kitchen', 'Grease-loaded coils make prep tables work harder; accessible coils and clearance are cleaned and reviewed.'],
+      ['Gasket, lid or drawer seal wear', 'Air leaks around drawers, doors and lids are measured and planned before parts are ordered.'],
+      ['Visible drain or water pooling issue', 'Accessible drain and pan observations help separate cleaning scope from plumbing or refrigeration scope.'],
+    ],
+    offers: [
+      'Pan rail and cabinet temperature review',
+      'Pan loading and airflow check',
+      'Accessible condenser coil cleaning',
+      'Drawer, door and lid gasket planning',
+      'Visible drain and water review',
+    ],
+    faq: [
+      ['Do you service prep table refrigerators?', 'Repair Asap LLC provides prep table refrigerator triage for temperature, airflow, coil, gasket, drawer, lid and visible drain issues. Refrigerant or sealed-system work is routed to a certified refrigeration specialist.'],
+      ['Why is my prep table rail warm but the cabinet cold?', 'Warm rails can come from pan loading, blocked airflow, lid use, fan issues, coil condition or refrigeration faults. We start with photos, temperatures and accessible airflow checks.'],
+      ['What photos should I send?', 'Send the model tag, wide photos of the prep table, pan rail, drawers or doors, condenser area, current temperature readings, frost or water photos and business access rules.'],
+    ],
+  }),
+  commercialTriagePage({
+    slug: 'beverage-cooler-repair',
+    crumb: 'Beverage Cooler Repair',
+    title: 'Beverage Cooler Repair Help NYC | Bar & Merchandiser Triage',
+    description: 'Beverage cooler not cold in NYC? Triage for bar coolers, merchandisers, wine coolers, coils, doors, gaskets and airflow.',
+    badge: 'Beverage Cooler Repair Help',
+    h1: 'Beverage Cooler Repair Help in NYC',
+    accent: 'Bar Cooler, Door Seal & Airflow Triage',
+    subtitle: 'Beverage cooler warm or sweating? Start with door seals, airflow, coils and temperatures before sealed-system routing.',
+    serviceType: 'Beverage Cooler Repair Help',
+    serviceName: 'Beverage Cooler Repair Help in NYC',
+    serviceDescription: 'Beverage cooler repair triage in New York City for bar coolers, merchandisers and wine coolers: temperature checks, condenser cleaning, fan and airflow observations, door gasket planning, leveling, water or condensation review and specialist routing when refrigerant work is suspected.',
+    equipment: 'Beverage cooler, bar cooler, merchandiser and wine cooler',
+    businessUse: 'bars, cafes, restaurants, offices, retail counters and residential kitchens with built-in coolers',
+    goodFit: [
+      ['Beverage cooler not cold enough', 'We check actual readings, set point, airflow, condenser condition and door seal loss first.'],
+      ['Glass door sweating or gasket leak', 'Condensation often points to gasket, door alignment, room humidity or airflow problems that can be reviewed visually.'],
+      ['Dirty coils or blocked intake', 'Bar and retail coolers collect dust fast; accessible coils and intake clearance are cleaned and documented.'],
+      ['Fan noise, vibration or leveling issue', 'Rattles and vibration are reviewed around leveling feet, shelving, fan guards and cabinet placement.'],
+      ['Wine cooler repair-or-replace decision', 'Small wine coolers often become replacement candidates; we review age, model and symptom before booking.'],
+    ],
+    offers: [
+      'Temperature and set-point review',
+      'Accessible condenser coil cleaning',
+      'Door gasket and condensation review',
+      'Fan, vibration and leveling observation',
+      'Repair-or-replace recommendation',
+    ],
+    faq: [
+      ['Do you repair beverage coolers?', 'Repair Asap LLC provides beverage cooler triage for temperature, airflow, coils, gaskets, condensation, fan noise, leveling and replacement planning. Sealed-system and refrigerant work is routed to certified refrigeration service.'],
+      ['Can you help with a wine cooler?', 'Yes, when the issue fits cleaning, airflow, door seal, temperature confirmation, leveling or replacement planning. Compressor, refrigerant and control-board issues may require a specialist or replacement.'],
+      ['What should I send?', 'Send the brand, model, current temperature, target temperature, photos of the front, inside, door seals, condenser area, any frost or condensation, and business access requirements.'],
+    ],
+  }),
+  commercialTriagePage({
+    slug: 'commercial-freezer-repair',
+    crumb: 'Commercial Freezer Repair',
+    title: 'Commercial Freezer Repair Help NYC | Reach-In & Walk-In Triage',
+    description: 'Commercial freezer trouble in NYC? Triage for frost, airflow, doors, gaskets, drains, coils and specialist routing when sealed-system work is likely.',
+    badge: 'Commercial Freezer Repair Help',
+    h1: 'Commercial Freezer Repair Help in NYC',
+    accent: 'Frost, Door Seal & Defrost Triage',
+    subtitle: 'Commercial freezer warming up or icing over? Document temperatures, frost, doors and coils before the specialist call.',
+    serviceType: 'Commercial Freezer Repair Help',
+    serviceName: 'Commercial Freezer Repair Help in NYC',
+    serviceDescription: 'Commercial freezer repair triage in New York City for reach-in and walk-in freezers: temperature documentation, frost and airflow observations, condenser cleaning, door gasket and closer planning, visible drain review and specialist routing when defrost, compressor, refrigerant or sealed-system work is suspected.',
+    equipment: 'Commercial freezer, reach-in freezer and walk-in freezer',
+    businessUse: 'food-service businesses, grocery locations, commissaries, restaurants and property-managed kitchens',
+    goodFit: [
+      ['Freezer not holding target temperature', 'Temperature readings and stock risk are documented while airflow, coil and door conditions are checked first.'],
+      ['Heavy frost or ice buildup', 'Frost pattern photos help separate door air leaks and drain issues from defrost or sealed-system problems.'],
+      ['Door gasket, sweep, hinge or closer issue', 'Air leaks create frost and warming; hardware is reviewed, adjusted when possible and measured for replacement.'],
+      ['Condenser coil and clearance issue', 'Accessible condenser cleaning and clearance checks can prevent overheating and repeated freezer failures.'],
+      ['Specialist routing with useful evidence', 'If defrost, refrigerant or compressor work is likely, you get temperatures and photos ready for the specialist.'],
+    ],
+    offers: [
+      'Freezer temperature documentation',
+      'Frost pattern and airflow review',
+      'Accessible condenser cleaning',
+      'Door gasket and closer planning',
+      'Specialist routing notes',
+    ],
+    faq: [
+      ['Do you repair commercial freezers?', 'Repair Asap LLC provides commercial freezer triage for temperature, frost, door, gasket, drain, coil and maintenance issues. Refrigerant, compressor, defrost-system and sealed-system repairs may require an EPA Section 608 certified technician or refrigeration specialist.'],
+      ['What should I do if my freezer is warming up?', 'Move at-risk stock to a working unit if possible, keep the door closed, record temperatures and send model photos, frost photos, door seal photos and the timeline of the failure.'],
+      ['Can you fix frost buildup?', 'We can review gasket leaks, door closers, airflow, visible drains and maintenance issues. Internal defrost components or sealed-system faults are routed to a specialist when indicated.'],
+    ],
+  }),
+  commercialTriagePage({
+    slug: 'restaurant-refrigeration-repair',
+    crumb: 'Restaurant Refrigeration Repair',
+    title: 'Restaurant Refrigeration Repair Help NYC | Cooler & Prep Table Triage',
+    description: 'Restaurant refrigeration help in NYC for walk-ins, reach-ins, prep tables, beverage coolers, coils, gaskets, drains and maintenance planning.',
+    badge: 'Restaurant Refrigeration Repair',
+    h1: 'Restaurant Refrigeration Help in NYC',
+    accent: 'Walk-In, Reach-In & Prep Table Triage',
+    subtitle: 'Restaurant cold-side trouble? One triage route for walk-ins, reach-ins, prep tables, beverage coolers and ice-machine overlap.',
+    serviceType: 'Restaurant Refrigeration Repair Help',
+    serviceName: 'Restaurant Refrigeration Repair Help in NYC',
+    serviceDescription: 'Restaurant refrigeration repair triage in New York City for walk-in coolers, reach-ins, prep tables, beverage coolers, ice-machine overlap, temperature checks, coil cleaning, gasket planning, visible drain observations, maintenance programs and specialist routing when refrigerant or sealed-system work is suspected.',
+    equipment: 'Restaurant refrigeration equipment',
+    businessUse: 'restaurants, delis, bars, cafes, ghost kitchens and small food-service operators',
+    goodFit: [
+      ['Multiple cold-side units need review', 'Walk-ins, reach-ins, prep tables, beverage coolers and ice machines can be reviewed in one visit plan.'],
+      ['Temperature risk during service hours', 'We prioritize units by current temperature, stock value, service timing and whether food is at risk.'],
+      ['Coils, gaskets, doors and drains', 'Common maintenance failures are reviewed before expensive refrigerant or compressor assumptions are made.'],
+      ['COI and building-access coordination', 'Commercial buildings, food halls and managed kitchens often require COI paperwork and service-window planning.'],
+      ['Recurring maintenance route', 'Quarterly cold-side maintenance reduces surprise failures during lunch, dinner or inspection windows.'],
+    ],
+    offers: [
+      'Multi-unit cold-side triage',
+      'Temperature risk prioritization',
+      'Coil, gasket, door and drain review',
+      'COI and access coordination',
+      'Recurring maintenance planning',
+    ],
+    faq: [
+      ['Do you handle restaurant refrigeration?', 'Repair Asap LLC handles restaurant refrigeration triage, cleaning, gasket planning, drain observations, temperature checks and maintenance planning. Refrigerant, compressor and sealed-system work is routed to an EPA Section 608 certified technician or refrigeration specialist.'],
+      ['Can you review more than one unit in the same visit?', 'Yes. Send a list of units, model photos, temperatures and symptoms for each unit so we can plan one practical triage route.'],
+      ['Do restaurants need preventive maintenance?', 'Yes. Coils, door seals, drains and temperature logs are low-cost maintenance compared with food loss, emergency rates and inspection problems.'],
+    ],
+  }),
+  commercialTriagePage({
+    slug: 'ice-machine-repair',
+    crumb: 'Ice Machine Repair',
+    title: 'Ice Machine Repair Help NYC | Low Ice & Cleaning Triage',
+    description: 'Ice machine not making enough ice in NYC? Triage for cleaning, filters, drains, condenser airflow and specialist routing when refrigeration work is likely.',
+    badge: 'Ice Machine Repair Help',
+    h1: 'Ice Machine Repair Help in NYC',
+    accent: 'Low Ice, Filter & Condenser Triage',
+    subtitle: 'Low ice or bad ice quality? Start with cleaning, filters, drains and airflow before assuming a sealed-system failure.',
+    serviceType: 'Ice Machine Repair Help',
+    serviceName: 'Ice Machine Repair Help in NYC',
+    serviceDescription: 'Ice machine repair triage in New York City for low ice production, bad ice quality, condenser airflow, filters, visible drains, bin cleaning, manufacturer-cycle cleaning and specialist routing when refrigerant, compressor or sealed-system work is suspected.',
+    equipment: 'Commercial ice machine',
+    businessUse: 'bars, restaurants, cafes, offices, medical offices and hospitality spaces',
+    goodFit: [
+      ['Low ice production', 'We review filter age, cleaning history, condenser airflow, water and drain conditions before deeper routing.'],
+      ['Cloudy, bad-taste or dirty ice', 'Cleaning, sanitizing and filter replacement are checked first because ice is handled like food.'],
+      ['Condenser dust or airflow issue', 'Air-cooled ice machines fail fast when condenser fins are clogged; accessible airflow is cleaned and documented.'],
+      ['Visible drain, bin or slime issue', 'Reachable drains, bin surfaces and slime buildup are handled through cleaning scope when the machine design allows.'],
+      ['Recurring cleaning schedule', 'Commercial ice machines need regular descale and sanitize visits; we can set the maintenance cadence.'],
+    ],
+    offers: [
+      'Low-production triage',
+      'Manufacturer-cycle cleaning review',
+      'Accessible filter and drain review',
+      'Condenser airflow cleaning',
+      'Recurring cleaning schedule planning',
+    ],
+    faq: [
+      ['Do you repair ice machines?', 'Repair Asap LLC provides ice machine triage around cleaning, filters, drain, condenser airflow, bin condition and maintenance planning. Refrigerant, compressor and sealed-system work may require an EPA Section 608 certified technician or manufacturer service.'],
+      ['Is ice machine repair different from cleaning?', 'Yes. Cleaning addresses scale, slime, filters, airflow and sanitation. Repair triage decides whether low production comes from maintenance issues or needs refrigeration/electronic specialist service.'],
+      ['What should I send before booking?', 'Send the brand, model number, machine photos, bin photos, current symptom, filter age, last cleaning date, error codes, business access and COI requirements.'],
+    ],
+    related: [{ label: 'Ice Machine Cleaning', url: '/services/appliance-services/ice-machine-cleaning/' }],
+  }),
+];
+
+const iceMachineIndex = pages.findIndex((page) => page.slug === 'ice-machine-cleaning');
+if (iceMachineIndex === -1) {
+  pages.push(...commercialChildPages);
+} else {
+  pages.splice(iceMachineIndex, 0, ...commercialChildPages);
+}
+
 // ---- Conversion layer: calculator config, curated photos, verified reviews ----
 
 const GALLERY_DATA = JSON.parse(
@@ -1349,6 +1712,16 @@ const HERO_IMAGES = JSON.parse(
   readFileSync(new URL('./appliance-hero-images.json', import.meta.url), 'utf8'),
 );
 
+const PAGE_ASSET_FALLBACK = {
+  'reach-in-cooler-repair': 'commercial-refrigeration',
+  'walk-in-cooler-repair': 'commercial-refrigeration',
+  'prep-table-refrigerator-repair': 'commercial-refrigeration',
+  'beverage-cooler-repair': 'commercial-refrigeration',
+  'commercial-freezer-repair': 'commercial-refrigeration',
+  'restaurant-refrigeration-repair': 'commercial-refrigeration',
+  'ice-machine-repair': 'ice-machine-cleaning',
+};
+
 // data-config keys must exist in components/modules/calculator.js CONFIGS
 const CALC_CONFIG = {
   'refrigerator-repair': 'refrigerator-repair',
@@ -1358,6 +1731,13 @@ const CALC_CONFIG = {
   'oven-range-repair': 'oven-range-repair',
   'ac-repair-help': 'ac-repair-help',
   'commercial-refrigeration': 'commercial-refrigeration',
+  'reach-in-cooler-repair': 'commercial-refrigeration',
+  'walk-in-cooler-repair': 'commercial-refrigeration',
+  'prep-table-refrigerator-repair': 'commercial-refrigeration',
+  'beverage-cooler-repair': 'commercial-refrigeration',
+  'commercial-freezer-repair': 'commercial-refrigeration',
+  'restaurant-refrigeration-repair': 'commercial-refrigeration',
+  'ice-machine-repair': 'ice-machine-cleaning',
   'dryer-vent-cleaning': 'dryer-vent-cleaning',
   'ice-machine-cleaning': 'ice-machine-cleaning',
 };
@@ -1456,7 +1836,7 @@ function calculatorSection(slug) {
 }
 
 function gallerySection(slug, page) {
-  const photos = GALLERY_DATA[slug];
+  const photos = GALLERY_DATA[slug] || GALLERY_DATA[PAGE_ASSET_FALLBACK[slug]];
   if (!photos || photos.length === 0) return '';
   const cards = photos
     .map((photo) => `                    <div class="svc-gallery__card" data-type="${photo.type}">
@@ -1481,7 +1861,7 @@ ${cards}
 }
 
 function reviewsSection(slug) {
-  const reviews = REVIEWS[slug];
+  const reviews = REVIEWS[slug] || REVIEWS[PAGE_ASSET_FALLBACK[slug]];
   if (!reviews || reviews.length === 0) return '';
   const cards = reviews
     .map(([name, source, text]) => `                    <div class="review-card">
@@ -1644,7 +2024,7 @@ function withPricingFaq(page) {
 function pageHtml(page) {
   page = { ...page, faq: withPricingFaq(page) };
   const category = pageCategory(page);
-  const heroImage = HERO_IMAGES[page.slug] || category.heroImage;
+  const heroImage = HERO_IMAGES[page.slug] || HERO_IMAGES[PAGE_ASSET_FALLBACK[page.slug]] || category.heroImage;
   const canonical = `${BASE_URL}${category.url}${page.slug}/`;
   const breadcrumb = {
     '@context': 'https://schema.org',

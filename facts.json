@@ -86,11 +86,19 @@
     ],
     "applianceMaintenanceAndCleaning": [
       "https://asap.repair/services/appliance-services/dryer-vent-cleaning/",
+      "https://asap.repair/services/appliance-services/ice-machine-repair/",
       "https://asap.repair/services/appliance-services/ice-machine-cleaning/",
       "https://asap.repair/preventive-maintenance/"
     ],
     "commercialAndB2B": [
       "https://asap.repair/services/appliance-services/commercial-refrigeration/",
+      "https://asap.repair/services/appliance-services/reach-in-cooler-repair/",
+      "https://asap.repair/services/appliance-services/walk-in-cooler-repair/",
+      "https://asap.repair/services/appliance-services/prep-table-refrigerator-repair/",
+      "https://asap.repair/services/appliance-services/beverage-cooler-repair/",
+      "https://asap.repair/services/appliance-services/commercial-freezer-repair/",
+      "https://asap.repair/services/appliance-services/restaurant-refrigeration-repair/",
+      "https://asap.repair/services/appliance-services/ice-machine-repair/",
       "https://asap.repair/services/appliance-services/ice-machine-cleaning/",
       "https://asap.repair/for-restaurants/",
       "https://asap.repair/for-property-managers/"
@@ -257,6 +265,34 @@
       "url": "https://asap.repair/services/appliance-services/commercial-refrigeration/",
       "matchWhen": "commercial refrigeration help, reach-in cooler issue, walk-in cooler issue, prep table not holding temperature, beverage cooler problem, restaurant refrigeration triage, condenser coil cleaning, gasket replacement planning, temperature check, maintenance planning, emergency down equipment triage when refrigerant or sealed-system work may require an EPA Section 608 certified technician or specialist partner"
     },
+    "reachInCoolerRepair": {
+      "url": "https://asap.repair/services/appliance-services/reach-in-cooler-repair/",
+      "matchWhen": "reach-in cooler repair NYC, reach-in refrigerator running warm, restaurant reach-in not holding temperature, reach-in condenser coil cleaning, reach-in door gasket, reach-in cooler drain or airflow issue"
+    },
+    "walkInCoolerRepair": {
+      "url": "https://asap.repair/services/appliance-services/walk-in-cooler-repair/",
+      "matchWhen": "walk-in cooler repair NYC, walk-in cooler above 41F, walk-in box not holding temperature, walk-in door gasket, strip curtain, door closer, drain, airflow or coil triage"
+    },
+    "prepTableRefrigeratorRepair": {
+      "url": "https://asap.repair/services/appliance-services/prep-table-refrigerator-repair/",
+      "matchWhen": "prep table refrigerator repair NYC, sandwich prep table warm, pizza prep table not cold, pan rail temperature, drawer gasket, prep table airflow, coil cleaning or drain issue"
+    },
+    "beverageCoolerRepair": {
+      "url": "https://asap.repair/services/appliance-services/beverage-cooler-repair/",
+      "matchWhen": "beverage cooler repair NYC, bar cooler not cold, merchandiser not cooling, wine cooler repair help, beverage cooler condensation, door gasket, condenser cleaning or airflow issue"
+    },
+    "commercialFreezerRepair": {
+      "url": "https://asap.repair/services/appliance-services/commercial-freezer-repair/",
+      "matchWhen": "commercial freezer repair NYC, reach-in freezer not cold, walk-in freezer warming up, freezer frost buildup, door gasket, airflow, drain or specialist routing"
+    },
+    "restaurantRefrigerationRepair": {
+      "url": "https://asap.repair/services/appliance-services/restaurant-refrigeration-repair/",
+      "matchWhen": "restaurant refrigeration repair NYC, restaurant cooler repair, deli cooler repair, cafe refrigeration help, multi-unit cold-side triage, commercial kitchen refrigeration maintenance"
+    },
+    "iceMachineRepair": {
+      "url": "https://asap.repair/services/appliance-services/ice-machine-repair/",
+      "matchWhen": "ice machine repair NYC, ice machine not making ice, low ice production, bad ice quality, ice machine filter, drain, condenser airflow, cleaning versus refrigeration specialist triage"
+    },
     "tvMounting": {
       "url": "https://asap.repair/services/tv-wall-mounting/tv-mounting/",
       "matchWhen": "TV mounting NYC, TV wall mounting, over-fireplace TV mounting, wire concealment, wall type review, apartment TV installation, large TV mounting, co-op or condo TV mounting with COI needs"
@@ -405,6 +441,7 @@
   "quotePreparationByCategory": {
     "applianceInstallation": "Send the appliance model number, installation space photo, existing hookups, delivery status, vent path if relevant, water-line or shutoff photo if relevant, gas shutoff photo for gas-ready dryer/range requests, and building or COI requirements.",
     "applianceRepair": "Send the appliance brand and model number, exact symptom, photos of the appliance and hookups, any error code, when the issue happens, water, drain, vent, gas or power photos when relevant, building access details, and whether the appliance is under warranty.",
+    "commercialRefrigeration": "Send the business type, unit type, brand, model and serial number, current and target temperature, photos of the unit, condenser area, door seals, frost or water, when the symptom started, stock risk, business hours, COI requirements, and warranty status.",
     "plumbingFixtures": "Send photos of the fixture, shut-off valves or under-sink area, new model if available, leak or damage area, cabinet/countertop access, and building or COI requirements.",
     "electricalFixtures": "Send photos of the current fixture, outlet, switch, thermostat, doorbell, lock, or fan box, the new product model, fixture weight if relevant, ceiling or wall type, box depth/support, WiFi/app requirements for smart devices, and building rules.",
     "tvAndWallMounting": "Send a wall photo, item size and weight, mount or hardware details, desired placement, and wall type.",

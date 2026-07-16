@@ -4,8 +4,8 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { execSync } from 'node:child_process';
 import { join } from 'node:path';
 
-const ASSET_VERSION = '20260715a';
-const LOADER_ASSET_VERSION = '20260715a';
+const ASSET_VERSION = '20260716a';
+const LOADER_ASSET_VERSION = '20260716a';
 const ROOT = new URL('..', import.meta.url).pathname;
 
 const serviceLinks = {
