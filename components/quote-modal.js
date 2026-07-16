@@ -303,7 +303,11 @@
     // Structured page context for the CRM: which exact page (and sub-service)
     // the quote came from. Rides in custom_fields; the calculator's own
     // custom fields win on key conflicts.
-    function pageQuoteContext() {
+    function pageQuoteContext(serviceValue) {
+        if (window.repairAsapBuildServiceLeadContext) {
+            return window.repairAsapBuildServiceLeadContext({ service: serviceValue });
+        }
+
         const ctx = {};
         const path = window.location.pathname;
         if (path && path !== '/') {
@@ -667,7 +671,7 @@
             // consent_* records the checkbox evidence server-side (checkbox is
             // client-required for every submission; backend stores custom_fields).
             custom_fields: {
-                ...pageQuoteContext(),
+                ...pageQuoteContext(serviceSelect ? serviceSelect.value : ''),
                 consent_sms: 'granted',
                 consent_at: new Date().toISOString(),
                 consent_policy: 'privacy-policy+tos 2026',

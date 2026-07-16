@@ -253,6 +253,12 @@ export default function photoDrop(container) {
             message: form.querySelector(`#${uid}-msg`)?.value.trim() || '',
             photos: selectedPhotos.map(p => ({ data: p.base64, name: p.name, type: p.type })),
             sessionContext,
+            custom_fields: {
+                ...(window.repairAsapBuildServiceLeadContext?.({ service: detectedService }) || {}),
+                consent_sms: 'granted',
+                consent_at: new Date().toISOString(),
+                consent_policy: 'privacy-policy+tos 2026',
+            },
         };
 
         try {

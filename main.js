@@ -12,6 +12,133 @@ const REPAIR_ASAP_GA_CLIENT_PRIME_DELAY_MS = 2600;
 const REPAIR_ASAP_PHONE_CLICK_ENDPOINT = 'https://crm.asap.repair/api/widget/phone-click?org=repair-asap';
 const REPAIR_ASAP_SMS_CLICK_ENDPOINT = 'https://crm.asap.repair/api/widget/sms-click?org=repair-asap';
 const REPAIR_ASAP_TRACKING_PARAM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'gbraid', 'wbraid', 'msclkid', 'fbclid', 'ttclid'];
+const REPAIR_ASAP_CRM_TAXONOMY_VERSION = '2026-07-15';
+const REPAIR_ASAP_SERVICE_TAXONOMY = {
+  'appliance-repair': {
+    serviceCode: 'appliance_diagnostic_visit',
+    label: 'Appliance Diagnostic Visit',
+    vertical: 'appliance_repair',
+    intent: 'diagnostic',
+    quickbooksItem: 'Appliance Diagnostic Visit',
+    marketSegment: 'residential',
+    publicRoute: '/services/appliance-services/appliance-repair/',
+  },
+  'refrigerator-repair': {
+    serviceCode: 'refrigerator_repair_help',
+    label: 'Refrigerator Repair Help',
+    vertical: 'appliance_repair',
+    intent: 'repair_or_replace',
+    quickbooksItem: 'Refrigerator Repair Help',
+    marketSegment: 'residential',
+    applianceType: 'refrigerator',
+    publicRoute: '/services/appliance-services/refrigerator-repair/',
+    complianceFlags: ['refrigerant_work_possible', 'sealed_system_possible', 'epa_608_required', 'manufacturer_authorized_required'],
+  },
+  'dishwasher-repair': {
+    serviceCode: 'dishwasher_repair_help',
+    label: 'Dishwasher Repair Help',
+    vertical: 'appliance_repair',
+    intent: 'repair_or_replace',
+    quickbooksItem: 'Dishwasher Repair Help',
+    marketSegment: 'residential',
+    applianceType: 'dishwasher',
+    publicRoute: '/services/appliance-services/dishwasher-repair/',
+    complianceFlags: ['new_plumbing_possible', 'new_electrical_possible', 'permit_scope_possible'],
+  },
+  'washer-repair': {
+    serviceCode: 'washer_repair_help',
+    label: 'Washer Repair Help',
+    vertical: 'appliance_repair',
+    intent: 'repair_or_replace',
+    quickbooksItem: 'Washer Repair Help',
+    marketSegment: 'residential',
+    applianceType: 'washer',
+    publicRoute: '/services/appliance-services/washer-repair/',
+  },
+  'dryer-repair': {
+    serviceCode: 'dryer_repair_help',
+    label: 'Dryer Repair Help',
+    vertical: 'appliance_repair',
+    intent: 'repair_or_replace',
+    quickbooksItem: 'Dryer Repair Help',
+    marketSegment: 'residential',
+    applianceType: 'dryer',
+    publicRoute: '/services/appliance-services/dryer-repair/',
+    complianceFlags: ['gas_scope_possible', 'new_electrical_possible', 'permit_scope_possible'],
+  },
+  'oven-range-repair': {
+    serviceCode: 'oven_range_repair_help',
+    label: 'Oven & Range Repair Help',
+    vertical: 'appliance_repair',
+    intent: 'repair_or_replace',
+    quickbooksItem: 'Oven & Range Repair Help',
+    marketSegment: 'residential',
+    applianceType: 'range_oven',
+    publicRoute: '/services/appliance-services/oven-range-repair/',
+    complianceFlags: ['gas_scope_possible', 'new_electrical_possible', 'manufacturer_authorized_required'],
+  },
+  'dryer-vent-cleaning': {
+    serviceCode: 'dryer_vent_cleaning',
+    label: 'Dryer Vent Cleaning',
+    vertical: 'appliance_repair',
+    intent: 'cleaning_maintenance',
+    quickbooksItem: 'Dryer Vent Cleaning',
+    marketSegment: 'residential',
+    applianceType: 'dryer',
+    publicRoute: '/services/appliance-services/dryer-vent-cleaning/',
+  },
+  'commercial-refrigeration': {
+    serviceCode: 'commercial_refrigeration_triage',
+    label: 'Commercial Refrigeration Triage',
+    vertical: 'commercial_refrigeration',
+    intent: 'diagnostic',
+    quickbooksItem: 'Commercial Refrigeration Triage',
+    marketSegment: 'commercial_food_service',
+    equipmentFamily: 'commercial_refrigeration',
+    publicRoute: '/services/appliance-services/commercial-refrigeration/',
+    complianceFlags: ['refrigerant_work_possible', 'sealed_system_possible', 'epa_608_required', 'partner_referral_required', 'manufacturer_authorized_required'],
+  },
+  'ice-machine-cleaning': {
+    serviceCode: 'ice_machine_cleaning',
+    label: 'Ice Machine Cleaning',
+    vertical: 'commercial_refrigeration',
+    intent: 'cleaning_maintenance',
+    quickbooksItem: 'Ice Machine Cleaning',
+    marketSegment: 'commercial_food_service',
+    applianceType: 'ice_machine',
+    publicRoute: '/services/appliance-services/ice-machine-cleaning/',
+    complianceFlags: ['refrigerant_work_possible', 'epa_608_required', 'partner_referral_required'],
+  },
+  'ac-repair-help': {
+    serviceCode: 'ac_repair_help',
+    label: 'AC Repair Help',
+    vertical: 'ac_install_cleaning',
+    intent: 'repair_or_replace',
+    quickbooksItem: 'AC Repair Help',
+    marketSegment: 'residential',
+    applianceType: 'window_ac',
+    publicRoute: '/services/ac-installation-cleaning/ac-repair-help/',
+    complianceFlags: ['refrigerant_work_possible', 'sealed_system_possible', 'epa_608_required'],
+  },
+  'ac-deep-cleaning': {
+    serviceCode: 'ac_deep_cleaning',
+    label: 'AC Deep Cleaning',
+    vertical: 'ac_install_cleaning',
+    intent: 'cleaning_maintenance',
+    quickbooksItem: 'AC Deep Cleaning',
+    marketSegment: 'residential',
+    applianceType: 'window_ac',
+    publicRoute: '/services/ac-installation-cleaning/ac-deep-cleaning/',
+  },
+};
+const REPAIR_ASAP_SERVICE_LABEL_TO_SLUG = Object.keys(REPAIR_ASAP_SERVICE_TAXONOMY).reduce((acc, slug) => {
+  const label = REPAIR_ASAP_SERVICE_TAXONOMY[slug].label;
+  acc[label.toLowerCase()] = slug;
+  return acc;
+}, {
+  'appliance services': 'appliance-repair',
+  'ac installation & cleaning': 'ac-deep-cleaning',
+});
 let repairAsapGaClientIdPromise = null;
 let repairAsapGaClientIdCached = '';
 
@@ -50,6 +177,62 @@ function repairAsapBuildLeadEventParams(payload, result, formType) {
   if (payload?.date) params.requested_date = payload.date;
 
   return params;
+}
+
+function repairAsapBuildPageServiceContext(pathname) {
+  const ctx = {};
+  const path = typeof pathname === 'string' && pathname ? pathname : window.location.pathname;
+  if (path && path !== '/') {
+    ctx.source_page = path.slice(0, 240);
+  }
+
+  const svc = path.match(/^\/services\/([a-z0-9-]+)(?:\/([a-z0-9-]+))?\/?$/);
+  if (svc) {
+    ctx.service_category = svc[1];
+    if (svc[2]) ctx.sub_service = svc[2];
+  }
+
+  return ctx;
+}
+
+function repairAsapBuildServiceLeadContext(options = {}) {
+  const serviceLabel = typeof options.service === 'string' ? options.service.trim() : '';
+  const path = typeof options.path === 'string' ? options.path : window.location.pathname;
+  const ctx = {
+    crm_taxonomy_version: REPAIR_ASAP_CRM_TAXONOMY_VERSION,
+    ...repairAsapBuildPageServiceContext(path),
+  };
+
+  if (serviceLabel) {
+    ctx.requested_service_label = serviceLabel.slice(0, 160);
+  }
+
+  const serviceSlug = ctx.sub_service || REPAIR_ASAP_SERVICE_LABEL_TO_SLUG[serviceLabel.toLowerCase()];
+  const taxonomy = serviceSlug ? REPAIR_ASAP_SERVICE_TAXONOMY[serviceSlug] : null;
+  if (!taxonomy) return ctx;
+
+  ctx.service_code = taxonomy.serviceCode;
+  ctx.service_label = taxonomy.label;
+  ctx.service_vertical = taxonomy.vertical;
+  ctx.lead_intent = taxonomy.intent;
+  ctx.market_segment = taxonomy.marketSegment;
+  ctx.quickbooks_item = taxonomy.quickbooksItem;
+  ctx.crm_public_route = taxonomy.publicRoute;
+
+  if (taxonomy.applianceType) {
+    ctx.appliance_type = taxonomy.applianceType;
+  }
+  if (taxonomy.equipmentFamily) {
+    ctx.equipment_family = taxonomy.equipmentFamily;
+  }
+  if (taxonomy.complianceFlags?.length) {
+    ctx.compliance_flags = taxonomy.complianceFlags.join('|');
+    taxonomy.complianceFlags.forEach((flag) => {
+      ctx[flag] = 'possible';
+    });
+  }
+
+  return ctx;
 }
 
 function repairAsapGetOrCreateVisitorId() {
@@ -298,6 +481,7 @@ function repairAsapTrackSmsClickToCrm(smsLink) {
 
 window.repairAsapTrackEvent = repairAsapTrackEvent;
 window.repairAsapBuildLeadEventParams = repairAsapBuildLeadEventParams;
+window.repairAsapBuildServiceLeadContext = repairAsapBuildServiceLeadContext;
 window.repairAsapGetSessionContext = repairAsapGetSessionContext;
 window.repairAsapGetSessionContextAsync = repairAsapGetSessionContextAsync;
 window.repairAsapPrimeGaClientId = repairAsapPrimeGaClientId;
@@ -917,6 +1101,7 @@ document.addEventListener('DOMContentLoaded', () => {
           sessionContext,
           // Consent evidence (checkbox is client-required on every submission)
           custom_fields: {
+            ...(window.repairAsapBuildServiceLeadContext?.({ service: service.value }) || {}),
             consent_sms: 'granted',
             consent_at: new Date().toISOString(),
             consent_policy: 'privacy-policy+tos 2026',
