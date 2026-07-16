@@ -1,6 +1,34 @@
 {
   "studies": [
     {
+      "slug": "powder-room-botanical-wallpaper-dark-ceiling-upper-west-side",
+      "title": "A Bold Botanical Wallpaper Powder Room on the Upper West Side",
+      "excerpt": "A plain white powder room on the Upper West Side turned into a dark, enveloping jewel box. The ceiling, door and trim were primed and painted a deep dark color, then a large-scale botanical wallpaper was hung on the walls — a small room made unforgettable.",
+      "thumbnail": "/assets/case-studies/powder-room-botanical-wallpaper-dark-ceiling-upper-west-side/thumbnail.webp",
+      "location": "Upper West Side, Manhattan",
+      "category": "painting",
+      "categories": [
+        "painting"
+      ],
+      "tags": [
+        "powder room wallpaper",
+        "botanical wallpaper",
+        "dark ceiling paint",
+        "wallpaper installation",
+        "moody powder room",
+        "accent wallpaper",
+        "Upper West Side",
+        "Manhattan",
+        "bathroom wallpaper"
+      ],
+      "serviceSlugs": [
+        "painting/wallpaper-installation",
+        "painting/interior-painting",
+        "painting/trim-painting"
+      ],
+      "featured": true
+    },
+    {
       "slug": "black-room-painting-slat-accent-wall-bedford-stuyvesant",
       "title": "All-Black Lounge Room With a Wood Slat Accent Wall in Bed-Stuy, Brooklyn",
       "excerpt": "A bright white spare room in Bedford-Stuyvesant became a dark, moody lounge. Repair Asap masked off the whole room — including a closet full of clothes — then painted the ceiling, walls, baseboards and doors black in two finishes, and finished one wall with warm wood slat panels.",
