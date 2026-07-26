@@ -52,7 +52,23 @@ function fit(base, budget) {
   return cut.slice(0, budget).replace(/\s+\S*$/, '');
 }
 
-const files = execFileSync('git', ['ls-files', 'services/*/*/index.html'], {
+/* Every page a searcher can land on with buying intent: service leaves, the
+   category hubs above them, and the borough / audience landers. Not the legal
+   pages, blog posts or case studies — those are read, not shopped. */
+const PATTERNS = [
+  'services/*/*/index.html',
+  'services/*/index.html',
+  'services/index.html',
+  'handyman-*/index.html',
+  'same-day-handyman-nyc/index.html',
+  'for-restaurants/index.html',
+  'for-property-managers/index.html',
+  'new-apartment-setup/index.html',
+  'preventive-maintenance/index.html',
+  'service-areas/index.html',
+];
+
+const files = execFileSync('git', ['ls-files', ...PATTERNS], {
   cwd: ROOT,
   encoding: 'utf8',
 })
