@@ -41,7 +41,12 @@ let changed = 0;
 for (const rel of files) {
   const path = join(ROOT, rel);
   const html = readFileSync(path, 'utf8');
-  if (!html.includes('fonts.googleapis.com') && !html.includes('fonts.gstatic.com')) continue;
+  /* Two separate jobs: strip the Google tags (only some pages still have them)
+     and guarantee the preloads (regenerated pages come out of the template with
+     neither). Bailing out on "no Google tags" left 43 pages with no preload. */
+  const needsStrip = html.includes('fonts.googleapis.com') || html.includes('fonts.gstatic.com');
+  const needsPreload = !html.includes('/assets/fonts/') && html.includes('/styles.css');
+  if (!needsStrip && !needsPreload) continue;
 
   let next = html
     // the whole Google font block: preconnects, preload, async stylesheet, noscript fallback
