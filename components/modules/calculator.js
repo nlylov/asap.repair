@@ -1865,6 +1865,10520 @@ Object.assign(CONFIGS, VISIT_CONFIGS, {
     },
 });
 
+// ---- Category configs authored 2026-07-26 (AC, electrical, flooring,
+// general repairs, painting, plumbing). Every range respects the $150 work
+// minimum; [99, 99] marks the on-site assessment path used where a symptom
+// is diagnosed but the repair itself routes to a licensed trade.
+Object.assign(CONFIGS, {
+    "interior-painting": {
+        "title": "What Will Painting This Room Cost?",
+        "subtitle": "Pick the space and how much of it we're painting for an estimated labor range.",
+        "categories": [
+            {
+                "label": "What are we painting?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose the space…"
+                    },
+                    {
+                        "value": "bedroom",
+                        "label": "Bedroom / small room (up to ~120 sq ft floor)"
+                    },
+                    {
+                        "value": "living",
+                        "label": "Living room / large room (150–250 sq ft floor)"
+                    },
+                    {
+                        "value": "hallway",
+                        "label": "Hallway, entry or staircase"
+                    },
+                    {
+                        "value": "apartment",
+                        "label": "Whole apartment (multiple rooms)"
+                    },
+                    {
+                        "value": "ceiling",
+                        "label": "Ceilings only"
+                    },
+                    {
+                        "value": "touchup",
+                        "label": "Touch-ups / one wall repainted"
+                    }
+                ]
+            },
+            {
+                "label": "Scope & wall condition",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "bedroom": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Walls only — sound walls, similar color"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Walls + ceiling — minor patching, 2 coats"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Walls + ceiling + trim — heavy patching or color change"
+                        }
+                    ],
+                    "living": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Walls only — sound walls, similar color"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Walls + ceiling — minor patching, 2 coats"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Walls + ceiling + trim — heavy patching or color change"
+                        }
+                    ],
+                    "hallway": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Hallway walls only (standard 8–9 ft ceiling)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Walls + ceiling — minor patching"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Staircase or 10 ft+ ceiling — ladder / scaffold work"
+                        }
+                    ],
+                    "apartment": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Studio / 1BR — walls only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1–2BR — walls + ceilings"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "3BR+ — walls, ceilings + all trim"
+                        }
+                    ],
+                    "ceiling": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One room ceiling — flat, no stains"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 room ceilings"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Ceilings + stain blocking (old water marks)"
+                        }
+                    ],
+                    "touchup": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One wall, matching the existing color"
+                        },
+                        {
+                            "value": "md",
+                            "label": "One wall + patching (holes, anchors, dings)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Several patch areas across rooms"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "bedroom": {
+                "sm": [
+                    375,
+                    575
+                ],
+                "md": [
+                    525,
+                    800
+                ],
+                "lg": [
+                    750,
+                    1150
+                ]
+            },
+            "living": {
+                "sm": [
+                    500,
+                    750
+                ],
+                "md": [
+                    700,
+                    1050
+                ],
+                "lg": [
+                    975,
+                    1450
+                ]
+            },
+            "hallway": {
+                "sm": [
+                    325,
+                    525
+                ],
+                "md": [
+                    475,
+                    750
+                ],
+                "lg": [
+                    750,
+                    1250
+                ]
+            },
+            "apartment": {
+                "sm": [
+                    1400,
+                    2200
+                ],
+                "md": [
+                    2600,
+                    4000
+                ],
+                "lg": [
+                    4200,
+                    6800
+                ]
+            },
+            "ceiling": {
+                "sm": [
+                    225,
+                    375
+                ],
+                "md": [
+                    450,
+                    750
+                ],
+                "lg": [
+                    600,
+                    975
+                ]
+            },
+            "touchup": {
+                "sm": [
+                    150,
+                    275
+                ],
+                "md": [
+                    225,
+                    375
+                ],
+                "lg": [
+                    350,
+                    600
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Painting Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Labor only: furniture moved and covered, floors protected, holes patched and sanded, spot primer, two coats, and cleanup. Paint and materials are not included — use paint you supply, or we pick it up and bill it at cost. Wallpapered walls and blown or cracked plaster get flagged and quoted separately instead of painted over. Mold or an active leak we do not paint over and do not take on — we flag it and route you to a licensed mold remediation contractor or a NYC Licensed Master Plumber first, and we come back once the wall is dry and sound. In pre-1978 buildings we stop and flag suspected lead paint before sanding. Final price confirmed after photos or a walkthrough."
+    },
+    "accent-wall": {
+        "title": "What Will My Accent Wall Cost?",
+        "subtitle": "Pick the look and the wall size for an estimated labor range.",
+        "categories": [
+            {
+                "label": "Accent wall style",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose the look…"
+                    },
+                    {
+                        "value": "solid",
+                        "label": "Solid color feature wall"
+                    },
+                    {
+                        "value": "two-tone",
+                        "label": "Two-tone / color block"
+                    },
+                    {
+                        "value": "stripes",
+                        "label": "Stripes or chevron"
+                    },
+                    {
+                        "value": "geometric",
+                        "label": "Custom geometric pattern"
+                    },
+                    {
+                        "value": "dark",
+                        "label": "Deep or bold color over a light wall"
+                    },
+                    {
+                        "value": "multiple",
+                        "label": "Multiple accent walls"
+                    }
+                ]
+            },
+            {
+                "label": "Wall size & condition",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "solid": [
+                        {
+                            "value": "",
+                            "label": "Choose wall size…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Standard wall (up to ~12 ft wide, 8–9 ft ceiling)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Large wall (12–18 ft) or minor patching first"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "10 ft+ ceiling or heavy patching / skim coat"
+                        }
+                    ],
+                    "two-tone": [
+                        {
+                            "value": "",
+                            "label": "Choose layout…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Standard wall, one clean tape line"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Large wall or two tape lines"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Tall wall / wraps a corner or trim"
+                        }
+                    ],
+                    "stripes": [
+                        {
+                            "value": "",
+                            "label": "Choose pattern density…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Wide stripes, standard wall"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Narrow stripes or large wall"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Tall wall or many stripes / two colors + base"
+                        }
+                    ],
+                    "geometric": [
+                        {
+                            "value": "",
+                            "label": "Choose complexity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Simple shapes, standard wall"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Multi-shape layout or 3 colors"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Complex pattern, tall wall, or outlets/shelves in the design"
+                        }
+                    ],
+                    "dark": [
+                        {
+                            "value": "",
+                            "label": "Choose coverage…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Standard wall — tinted primer + 2 coats"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Large wall or 3 coats for full coverage"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Tall wall / heavy coverage + patching"
+                        }
+                    ],
+                    "multiple": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "2 walls, solid color"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2 walls with pattern, or 3 walls solid"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "3+ walls with pattern / whole-room feature scheme"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "solid": {
+                "sm": [
+                    150,
+                    300
+                ],
+                "md": [
+                    275,
+                    450
+                ],
+                "lg": [
+                    400,
+                    625
+                ]
+            },
+            "two-tone": {
+                "sm": [
+                    225,
+                    375
+                ],
+                "md": [
+                    350,
+                    550
+                ],
+                "lg": [
+                    500,
+                    775
+                ]
+            },
+            "stripes": {
+                "sm": [
+                    325,
+                    500
+                ],
+                "md": [
+                    475,
+                    725
+                ],
+                "lg": [
+                    675,
+                    975
+                ]
+            },
+            "geometric": {
+                "sm": [
+                    425,
+                    650
+                ],
+                "md": [
+                    625,
+                    950
+                ],
+                "lg": [
+                    900,
+                    1400
+                ]
+            },
+            "dark": {
+                "sm": [
+                    225,
+                    375
+                ],
+                "md": [
+                    350,
+                    550
+                ],
+                "lg": [
+                    500,
+                    800
+                ]
+            },
+            "multiple": {
+                "sm": [
+                    325,
+                    525
+                ],
+                "md": [
+                    525,
+                    850
+                ],
+                "lg": [
+                    850,
+                    1400
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Accent Wall Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Labor only: floor and trim protection, small holes patched, taping and layout, primer where the color change needs it, two coats, and clean edges. Paint, primer, and tape are not included unless you ask us to supply them. Pattern layouts are confirmed against a straight-on photo of your actual wall before we start — outlets, shelves, and out-of-square corners change how a pattern lands. Wallpapered, textured, or damaged walls need prep or removal quoted separately."
+    },
+    "cabinet-painting": {
+        "title": "What Will Cabinet Painting Cost?",
+        "subtitle": "Cabinet painting is priced by door and drawer-front count — pick yours for an estimated labor range.",
+        "categories": [
+            {
+                "label": "What are we refinishing?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose what we're painting…"
+                    },
+                    {
+                        "value": "kitchen",
+                        "label": "Kitchen cabinets"
+                    },
+                    {
+                        "value": "bathroom",
+                        "label": "Bathroom vanity"
+                    },
+                    {
+                        "value": "island",
+                        "label": "Island or one cabinet run"
+                    },
+                    {
+                        "value": "builtin",
+                        "label": "Built-ins / bookcases / closet doors"
+                    },
+                    {
+                        "value": "furniture",
+                        "label": "Freestanding furniture piece"
+                    }
+                ]
+            },
+            {
+                "label": "Doors + drawer fronts",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "kitchen": [
+                        {
+                            "value": "",
+                            "label": "Count doors + drawer fronts…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Up to 15 doors + drawer fronts (galley / small kitchen)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "16–30 doors + drawer fronts"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "31+ doors + drawer fronts (large kitchen)"
+                        }
+                    ],
+                    "bathroom": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Single vanity (2–4 doors / drawers)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Large vanity (5–8) or two vanities"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Vanity + linen or medicine cabinet"
+                        }
+                    ],
+                    "island": [
+                        {
+                            "value": "",
+                            "label": "Count doors + drawer fronts…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Island only (up to 6 doors / drawers)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "One run, 7–14 doors / drawers"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Island + run, 15+ doors / drawers"
+                        }
+                    ],
+                    "builtin": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 unit (up to 4 doors) or open shelving"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 units (5–12 doors)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Wall-to-wall built-ins (13+ doors)"
+                        }
+                    ],
+                    "furniture": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 small piece (nightstand, small cabinet)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 large piece (dresser, hutch, sideboard)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "2+ pieces or a matching set"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "kitchen": {
+                "sm": [
+                    950,
+                    1600
+                ],
+                "md": [
+                    1600,
+                    2800
+                ],
+                "lg": [
+                    2800,
+                    4500
+                ]
+            },
+            "bathroom": {
+                "sm": [
+                    275,
+                    475
+                ],
+                "md": [
+                    475,
+                    800
+                ],
+                "lg": [
+                    750,
+                    1250
+                ]
+            },
+            "island": {
+                "sm": [
+                    425,
+                    750
+                ],
+                "md": [
+                    750,
+                    1350
+                ],
+                "lg": [
+                    1300,
+                    2200
+                ]
+            },
+            "builtin": {
+                "sm": [
+                    350,
+                    600
+                ],
+                "md": [
+                    600,
+                    1100
+                ],
+                "lg": [
+                    1100,
+                    1900
+                ]
+            },
+            "furniture": {
+                "sm": [
+                    175,
+                    325
+                ],
+                "md": [
+                    325,
+                    600
+                ],
+                "lg": [
+                    575,
+                    1050
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Cabinet Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Labor only: hardware and doors removed and labeled, degreasing, sanding, bonding primer, two coats of cabinet-grade paint, and reinstallation with hinges adjusted. Paint, primer, and any new hardware are not included unless you ask us to supply them. Peeling veneer, swollen MDF, water damage, or failing hinges are flagged before paint — if refacing or replacement is the honest answer, we say so instead of painting over it. In pre-1978 buildings we stop and flag suspected lead paint before sanding any original millwork, built-ins, or old painted doors. Cabinet paint needs cure time, so the kitchen is partly out of use for a few days; a full kitchen typically runs 3–5 days."
+    },
+    "trim-painting": {
+        "title": "What Will Trim Painting Cost?",
+        "subtitle": "Trim is priced by run length and piece count — pick yours for an estimated labor range.",
+        "categories": [
+            {
+                "label": "Which trim?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose the trim…"
+                    },
+                    {
+                        "value": "baseboard",
+                        "label": "Baseboards (and shoe / quarter round)"
+                    },
+                    {
+                        "value": "doors",
+                        "label": "Doors + door casings"
+                    },
+                    {
+                        "value": "windows",
+                        "label": "Window casings & sills"
+                    },
+                    {
+                        "value": "crown",
+                        "label": "Crown molding"
+                    },
+                    {
+                        "value": "wainscot",
+                        "label": "Wainscoting / chair rail / paneling"
+                    },
+                    {
+                        "value": "all",
+                        "label": "All trim in the room(s)"
+                    }
+                ]
+            },
+            {
+                "label": "How much trim?",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "baseboard": [
+                        {
+                            "value": "",
+                            "label": "Estimate the run…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One room (up to ~40 linear ft)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 rooms (~40–120 linear ft)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Whole apartment (120+ linear ft)"
+                        }
+                    ],
+                    "doors": [
+                        {
+                            "value": "",
+                            "label": "Count the doors…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–2 doors + casings"
+                        },
+                        {
+                            "value": "md",
+                            "label": "3–5 doors + casings"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6+ doors + casings"
+                        }
+                    ],
+                    "windows": [
+                        {
+                            "value": "",
+                            "label": "Count the windows…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–2 windows"
+                        },
+                        {
+                            "value": "md",
+                            "label": "3–5 windows"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6+ windows / bay window"
+                        }
+                    ],
+                    "crown": [
+                        {
+                            "value": "",
+                            "label": "Estimate the run…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One room (up to ~40 linear ft)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 rooms (~40–120 linear ft)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "120+ linear ft or 10 ft+ ceilings (ladder work)"
+                        }
+                    ],
+                    "wainscot": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One wall / short run"
+                        },
+                        {
+                            "value": "md",
+                            "label": "One full room"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Multiple rooms or a hallway run"
+                        }
+                    ],
+                    "all": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One room — baseboard, door + window casing"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 rooms"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Whole apartment"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "baseboard": {
+                "sm": [
+                    200,
+                    350
+                ],
+                "md": [
+                    400,
+                    700
+                ],
+                "lg": [
+                    750,
+                    1300
+                ]
+            },
+            "doors": {
+                "sm": [
+                    175,
+                    325
+                ],
+                "md": [
+                    375,
+                    650
+                ],
+                "lg": [
+                    700,
+                    1200
+                ]
+            },
+            "windows": {
+                "sm": [
+                    175,
+                    300
+                ],
+                "md": [
+                    325,
+                    575
+                ],
+                "lg": [
+                    600,
+                    1050
+                ]
+            },
+            "crown": {
+                "sm": [
+                    250,
+                    425
+                ],
+                "md": [
+                    500,
+                    875
+                ],
+                "lg": [
+                    900,
+                    1600
+                ]
+            },
+            "wainscot": {
+                "sm": [
+                    225,
+                    400
+                ],
+                "md": [
+                    500,
+                    900
+                ],
+                "lg": [
+                    950,
+                    1700
+                ]
+            },
+            "all": {
+                "sm": [
+                    400,
+                    700
+                ],
+                "md": [
+                    800,
+                    1400
+                ],
+                "lg": [
+                    1500,
+                    2600
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Trim Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Labor only: nail holes filled, gaps caulked, sanding, spot primer, flooring and wall edges masked, and two coats of durable semi-gloss. Paint, caulk, and filler are not included unless you ask us to supply them. Prewar trim carrying many old layers, peeling paint, or paint bonded to the floor may need stripping or replacement — we flag that before painting rather than adding another coat, and pre-1978 buildings get a lead-paint caution before sanding. Damaged or missing trim pieces are quoted separately. Bundling trim with wall painting is cheaper than booking it on its own."
+    },
+    "wallpaper-install": {
+        "title": "What Will Wallpaper Installation Cost?",
+        "subtitle": "Pick the paper type and how much wall it covers for an estimated labor range.",
+        "categories": [
+            {
+                "label": "Wallpaper type",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose the paper…"
+                    },
+                    {
+                        "value": "peel-stick",
+                        "label": "Peel-and-stick"
+                    },
+                    {
+                        "value": "prepasted",
+                        "label": "Pre-pasted / traditional paste"
+                    },
+                    {
+                        "value": "vinyl",
+                        "label": "Vinyl / commercial-grade"
+                    },
+                    {
+                        "value": "grasscloth",
+                        "label": "Grasscloth / natural fiber"
+                    },
+                    {
+                        "value": "mural",
+                        "label": "Mural / numbered panel set"
+                    }
+                ]
+            },
+            {
+                "label": "How much wall?",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "peel-stick": [
+                        {
+                            "value": "",
+                            "label": "Choose coverage…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One accent wall (up to ~100 sq ft)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Large wall or 2 walls (~100–250 sq ft)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Full room (~250–450 sq ft)"
+                        }
+                    ],
+                    "prepasted": [
+                        {
+                            "value": "",
+                            "label": "Choose coverage…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One accent wall (up to ~100 sq ft)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Large wall or 2 walls (~100–250 sq ft)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Full room (~250–450 sq ft)"
+                        }
+                    ],
+                    "vinyl": [
+                        {
+                            "value": "",
+                            "label": "Choose coverage…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One accent wall (up to ~100 sq ft)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Large wall or 2 walls (~100–250 sq ft)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Full room (~250–450 sq ft)"
+                        }
+                    ],
+                    "grasscloth": [
+                        {
+                            "value": "",
+                            "label": "Choose coverage…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One accent wall (up to ~100 sq ft)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Large wall or 2 walls (~100–250 sq ft)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Full room (~250–450 sq ft)"
+                        }
+                    ],
+                    "mural": [
+                        {
+                            "value": "",
+                            "label": "Choose coverage…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Single mural on a standard wall"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Large mural / multi-panel set"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Mural + surrounding walls papered"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "peel-stick": {
+                "sm": [
+                    275,
+                    475
+                ],
+                "md": [
+                    500,
+                    950
+                ],
+                "lg": [
+                    950,
+                    1750
+                ]
+            },
+            "prepasted": {
+                "sm": [
+                    375,
+                    625
+                ],
+                "md": [
+                    650,
+                    1200
+                ],
+                "lg": [
+                    1150,
+                    2100
+                ]
+            },
+            "vinyl": {
+                "sm": [
+                    400,
+                    675
+                ],
+                "md": [
+                    700,
+                    1250
+                ],
+                "lg": [
+                    1250,
+                    2300
+                ]
+            },
+            "grasscloth": {
+                "sm": [
+                    525,
+                    875
+                ],
+                "md": [
+                    900,
+                    1550
+                ],
+                "lg": [
+                    1550,
+                    2800
+                ]
+            },
+            "mural": {
+                "sm": [
+                    425,
+                    725
+                ],
+                "md": [
+                    725,
+                    1250
+                ],
+                "lg": [
+                    1250,
+                    2200
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Wallpaper Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Labor only: wall prep, wallpaper primer where needed, pattern matching, bubble-free application, and clean cuts around outlets, windows, and corners. The picker above carries the labor range — paper type, pattern repeat, wall height, and how square your corners are move it more than square footage does, so we confirm the number from photos. Wallpaper, primer, and paste are not included — we hang the paper you buy and will help you calculate roll count before you order. Textured, uneven, or previously papered walls may need a liner, skim coat, or removal first, quoted separately. Send the product link and a straight-on wall photo so we can confirm the repeat lays out cleanly on your actual wall."
+    },
+    "wallpaper-removal": {
+        "title": "What Will Wallpaper Removal Cost?",
+        "subtitle": "What's on the wall matters more than the square footage — pick your situation for an estimated labor range.",
+        "categories": [
+            {
+                "label": "What's on the wall now?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose the condition…"
+                    },
+                    {
+                        "value": "single-layer",
+                        "label": "Single layer, peels in sheets"
+                    },
+                    {
+                        "value": "vinyl",
+                        "label": "Vinyl / washable paper"
+                    },
+                    {
+                        "value": "grasscloth",
+                        "label": "Grasscloth / fabric-backed"
+                    },
+                    {
+                        "value": "multi-layer",
+                        "label": "Multiple layers (older apartment)"
+                    },
+                    {
+                        "value": "painted-over",
+                        "label": "Painted-over wallpaper"
+                    },
+                    {
+                        "value": "glue-residue",
+                        "label": "Paper is off — glue residue left behind"
+                    }
+                ]
+            },
+            {
+                "label": "How much wall?",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "single-layer": [
+                        {
+                            "value": "",
+                            "label": "Choose coverage…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One wall (up to ~100 sq ft)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Large wall or 2 walls (~100–250 sq ft)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Full room (~250–450 sq ft)"
+                        }
+                    ],
+                    "vinyl": [
+                        {
+                            "value": "",
+                            "label": "Choose coverage…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One wall (up to ~100 sq ft)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Large wall or 2 walls (~100–250 sq ft)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Full room (~250–450 sq ft)"
+                        }
+                    ],
+                    "grasscloth": [
+                        {
+                            "value": "",
+                            "label": "Choose coverage…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One wall (up to ~100 sq ft)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Large wall or 2 walls (~100–250 sq ft)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Full room (~250–450 sq ft)"
+                        }
+                    ],
+                    "multi-layer": [
+                        {
+                            "value": "",
+                            "label": "Choose coverage…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One wall (up to ~100 sq ft)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Large wall or 2 walls (~100–250 sq ft)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Full room — plaster or unprimed drywall underneath"
+                        }
+                    ],
+                    "painted-over": [
+                        {
+                            "value": "",
+                            "label": "Choose coverage…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One wall — score, soak, steam"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Large wall or 2 walls (~100–250 sq ft)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Full room (~250–450 sq ft)"
+                        }
+                    ],
+                    "glue-residue": [
+                        {
+                            "value": "",
+                            "label": "Choose coverage…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One wall — wash + scrape"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Large wall or 2 walls (~100–250 sq ft)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Full room — paper off, glue washed, walls left clean"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "single-layer": {
+                "sm": [
+                    200,
+                    350
+                ],
+                "md": [
+                    350,
+                    650
+                ],
+                "lg": [
+                    675,
+                    1200
+                ]
+            },
+            "vinyl": {
+                "sm": [
+                    250,
+                    425
+                ],
+                "md": [
+                    425,
+                    775
+                ],
+                "lg": [
+                    775,
+                    1400
+                ]
+            },
+            "grasscloth": {
+                "sm": [
+                    325,
+                    550
+                ],
+                "md": [
+                    550,
+                    975
+                ],
+                "lg": [
+                    975,
+                    1750
+                ]
+            },
+            "multi-layer": {
+                "sm": [
+                    350,
+                    600
+                ],
+                "md": [
+                    600,
+                    1050
+                ],
+                "lg": [
+                    1050,
+                    1900
+                ]
+            },
+            "painted-over": {
+                "sm": [
+                    400,
+                    675
+                ],
+                "md": [
+                    675,
+                    1200
+                ],
+                "lg": [
+                    1200,
+                    2100
+                ]
+            },
+            "glue-residue": {
+                "sm": [
+                    150,
+                    275
+                ],
+                "md": [
+                    275,
+                    500
+                ],
+                "lg": [
+                    500,
+                    900
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Removal Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Labor only: scoring, steaming or chemical stripping, adhesive washdown, light smoothing, floor and trim protection, and debris removal. The picker above carries the labor range — how many layers are up there and how the paper releases matter far more than square footage, so we confirm the number after a test strip. Stripper, primer, and skim-coat materials are not included. What is behind the paper decides the real number — unprimed drywall, blown plaster, or a torn paper face usually needs patching, skim coat, or primer before it is paint-ready, and that is quoted separately once the wall is exposed rather than guessed at up front. If we uncover mold or a wet wall we stop and route you to a licensed remediation contractor or a NYC Licensed Master Plumber before any paint goes on. Pre-1978 buildings get a lead-paint caution before any scraping or sanding. We do a test strip in a corner first so the estimate is based on how your wall actually releases."
+    },
+    "laminate-flooring": {
+        "title": "Laminate Flooring Installation Estimate",
+        "subtitle": "Pick your room size and how much prep the floor needs for an estimated labor range.",
+        "categories": [
+            {
+                "label": "Room Size",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose room size…"
+                    },
+                    {
+                        "value": "closet",
+                        "label": "Closet, entry or bath — under 60 sq ft"
+                    },
+                    {
+                        "value": "small",
+                        "label": "Small room — 60–149 sq ft"
+                    },
+                    {
+                        "value": "room",
+                        "label": "Bedroom or living room — 150–249 sq ft"
+                    },
+                    {
+                        "value": "large",
+                        "label": "Large room — 250–349 sq ft"
+                    },
+                    {
+                        "value": "multi",
+                        "label": "Two–three rooms — 350–599 sq ft"
+                    },
+                    {
+                        "value": "apartment",
+                        "label": "Whole apartment — 600–1,000 sq ft"
+                    }
+                ]
+            },
+            {
+                "label": "Prep & Extras",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "closet": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ],
+                    "small": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ],
+                    "room": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ],
+                    "large": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ],
+                    "multi": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ],
+                    "apartment": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "closet": {
+                "sm": [
+                    275,
+                    425
+                ],
+                "md": [
+                    375,
+                    575
+                ],
+                "lg": [
+                    525,
+                    800
+                ]
+            },
+            "small": {
+                "sm": [
+                    425,
+                    675
+                ],
+                "md": [
+                    575,
+                    900
+                ],
+                "lg": [
+                    800,
+                    1250
+                ]
+            },
+            "room": {
+                "sm": [
+                    700,
+                    1050
+                ],
+                "md": [
+                    900,
+                    1400
+                ],
+                "lg": [
+                    1250,
+                    1900
+                ]
+            },
+            "large": {
+                "sm": [
+                    975,
+                    1500
+                ],
+                "md": [
+                    1300,
+                    1950
+                ],
+                "lg": [
+                    1750,
+                    2600
+                ]
+            },
+            "multi": {
+                "sm": [
+                    1500,
+                    2300
+                ],
+                "md": [
+                    1950,
+                    2900
+                ],
+                "lg": [
+                    2600,
+                    3900
+                ]
+            },
+            "apartment": {
+                "sm": [
+                    2300,
+                    3600
+                ],
+                "md": [
+                    3000,
+                    4600
+                ],
+                "lg": [
+                    3900,
+                    6200
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Laminate Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Ranges cover labor only: layout, plank cutting, underlayment, expansion gaps, door-jamb undercuts, transition strips, and baseboard or quarter-round reinstallation. Laminate, underlayment, transitions and trim stock are not included — supply your own or we can source them. Soft or rotted subfloor, active leaks, joist-level damage, and suspected asbestos tile or adhesive (common under old 9×9 tile in pre-1980 NYC buildings) are flagged, never disturbed, and routed to the right licensed specialist. Floors larger than about 1,000 sq ft are quoted from a floor plan or an on-site measure instead of the range above. Final scope confirmed after photos or an on-site measure.",
+        "placeholder": "Select room size and prep scope to see your estimate"
+    },
+    "vinyl-plank-flooring": {
+        "title": "Vinyl Plank Flooring Installation Estimate",
+        "subtitle": "Pick your room size and how much prep the floor needs for an estimated labor range.",
+        "categories": [
+            {
+                "label": "Room Size",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose room size…"
+                    },
+                    {
+                        "value": "closet",
+                        "label": "Closet, entry or bath — under 60 sq ft"
+                    },
+                    {
+                        "value": "small",
+                        "label": "Small room — 60–149 sq ft"
+                    },
+                    {
+                        "value": "room",
+                        "label": "Bedroom or living room — 150–249 sq ft"
+                    },
+                    {
+                        "value": "large",
+                        "label": "Large room — 250–349 sq ft"
+                    },
+                    {
+                        "value": "multi",
+                        "label": "Two–three rooms — 350–599 sq ft"
+                    },
+                    {
+                        "value": "apartment",
+                        "label": "Whole apartment — 600–1,000 sq ft"
+                    }
+                ]
+            },
+            {
+                "label": "Prep & Extras",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "closet": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + floating old-floor pull-up & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ],
+                    "small": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + floating old-floor pull-up & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ],
+                    "room": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + floating old-floor pull-up & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ],
+                    "large": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + floating old-floor pull-up & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ],
+                    "multi": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + floating old-floor pull-up & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ],
+                    "apartment": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + floating old-floor pull-up & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "closet": {
+                "sm": [
+                    295,
+                    450
+                ],
+                "md": [
+                    400,
+                    600
+                ],
+                "lg": [
+                    550,
+                    850
+                ]
+            },
+            "small": {
+                "sm": [
+                    450,
+                    700
+                ],
+                "md": [
+                    600,
+                    925
+                ],
+                "lg": [
+                    825,
+                    1275
+                ]
+            },
+            "room": {
+                "sm": [
+                    700,
+                    1075
+                ],
+                "md": [
+                    925,
+                    1425
+                ],
+                "lg": [
+                    1275,
+                    1950
+                ]
+            },
+            "large": {
+                "sm": [
+                    975,
+                    1475
+                ],
+                "md": [
+                    1300,
+                    1950
+                ],
+                "lg": [
+                    1750,
+                    2600
+                ]
+            },
+            "multi": {
+                "sm": [
+                    1450,
+                    2250
+                ],
+                "md": [
+                    1900,
+                    2850
+                ],
+                "lg": [
+                    2550,
+                    3800
+                ]
+            },
+            "apartment": {
+                "sm": [
+                    2200,
+                    3450
+                ],
+                "md": [
+                    2900,
+                    4400
+                ],
+                "lg": [
+                    3800,
+                    6000
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Vinyl Plank Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Ranges cover labor only: layout, cuts around cabinets, toilets and door jambs, underlayment where the product calls for it, expansion gaps, transition strips and stair noses, plus baseboard or quarter-round reinstallation. LVP/SPC planks, underlayment, transitions and trim are not included. Removal pricing covers floating floors only (click-lock, loose-lay, tack-strip carpet). Glued-down tile or sheet vinyl, soft or moisture-damaged subfloor, active leaks, and anything that could be asbestos-era tile or adhesive are flagged, never disturbed, and routed to a licensed abatement or flooring specialist — we quote those only after testing clears them. Floors larger than about 1,000 sq ft are quoted from a floor plan or an on-site measure instead of the range above. Final scope confirmed after photos or an on-site measure.",
+        "placeholder": "Select room size and prep scope to see your estimate"
+    },
+    "click-lock-flooring": {
+        "title": "Click-Lock Tile Installation Estimate",
+        "subtitle": "Pick your room size and how much prep the floor needs for an estimated labor range.",
+        "categories": [
+            {
+                "label": "Room Size",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose room size…"
+                    },
+                    {
+                        "value": "closet",
+                        "label": "Closet, entry or bath — under 60 sq ft"
+                    },
+                    {
+                        "value": "small",
+                        "label": "Small room — 60–149 sq ft"
+                    },
+                    {
+                        "value": "room",
+                        "label": "Bedroom or living room — 150–249 sq ft"
+                    },
+                    {
+                        "value": "large",
+                        "label": "Large room — 250–349 sq ft"
+                    },
+                    {
+                        "value": "multi",
+                        "label": "Two–three rooms — 350–599 sq ft"
+                    },
+                    {
+                        "value": "apartment",
+                        "label": "Whole apartment — 600–1,000 sq ft"
+                    }
+                ]
+            },
+            {
+                "label": "Prep & Extras",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "closet": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ],
+                    "small": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ],
+                    "room": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ],
+                    "large": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ],
+                    "multi": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ],
+                    "apartment": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Empty room, floor ready — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + subfloor leveling + transitions & baseboard"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "closet": {
+                "sm": [
+                    350,
+                    525
+                ],
+                "md": [
+                    475,
+                    700
+                ],
+                "lg": [
+                    650,
+                    975
+                ]
+            },
+            "small": {
+                "sm": [
+                    525,
+                    800
+                ],
+                "md": [
+                    700,
+                    1100
+                ],
+                "lg": [
+                    975,
+                    1500
+                ]
+            },
+            "room": {
+                "sm": [
+                    850,
+                    1300
+                ],
+                "md": [
+                    1100,
+                    1700
+                ],
+                "lg": [
+                    1500,
+                    2300
+                ]
+            },
+            "large": {
+                "sm": [
+                    1200,
+                    1800
+                ],
+                "md": [
+                    1600,
+                    2400
+                ],
+                "lg": [
+                    2100,
+                    3200
+                ]
+            },
+            "multi": {
+                "sm": [
+                    1800,
+                    2800
+                ],
+                "md": [
+                    2400,
+                    3600
+                ],
+                "lg": [
+                    3200,
+                    4800
+                ]
+            },
+            "apartment": {
+                "sm": [
+                    2800,
+                    4300
+                ],
+                "md": [
+                    3600,
+                    5500
+                ],
+                "lg": [
+                    4800,
+                    7400
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Click-Lock Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Ranges cover labor only: dry-fit layout, panel cuts at edges, corners and door jambs, expansion gaps, transition strips, and trim reinstallation — no mortar or grout. Tile panels, underlayment, transitions and trim stock are not included. Interlocking tile needs a flat, stable substrate, so out-of-tolerance floors get leveling quoted first. Rot, active leaks, and suspected asbestos tile or adhesive are flagged, never disturbed, and routed to a licensed specialist. Floors larger than about 1,000 sq ft are quoted from a floor plan or an on-site measure instead of the range above.",
+        "placeholder": "Select room size and prep scope to see your estimate"
+    },
+    "peel-stick-flooring": {
+        "title": "Peel & Stick Flooring Estimate",
+        "subtitle": "Pick your room size and how much surface prep the floor needs for an estimated labor range.",
+        "categories": [
+            {
+                "label": "Room Size",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose room size…"
+                    },
+                    {
+                        "value": "closet",
+                        "label": "Closet, bath or utility area — under 60 sq ft"
+                    },
+                    {
+                        "value": "small",
+                        "label": "Small room — 60–149 sq ft"
+                    },
+                    {
+                        "value": "room",
+                        "label": "Bedroom or living room — 150–249 sq ft"
+                    },
+                    {
+                        "value": "large",
+                        "label": "Large room — 250–349 sq ft"
+                    },
+                    {
+                        "value": "multi",
+                        "label": "Multiple rooms — 350–599 sq ft"
+                    },
+                    {
+                        "value": "apartment",
+                        "label": "Whole apartment — 600–1,000 sq ft"
+                    }
+                ]
+            },
+            {
+                "label": "Surface Prep",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "closet": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Clean, smooth, empty floor — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + surface prep / primer + transitions"
+                        }
+                    ],
+                    "small": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Clean, smooth, empty floor — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + surface prep / primer + transitions"
+                        }
+                    ],
+                    "room": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Clean, smooth, empty floor — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + surface prep / primer + transitions"
+                        }
+                    ],
+                    "large": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Clean, smooth, empty floor — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + surface prep / primer + transitions"
+                        }
+                    ],
+                    "multi": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Clean, smooth, empty floor — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + surface prep / primer + transitions"
+                        }
+                    ],
+                    "apartment": [
+                        {
+                            "value": "",
+                            "label": "Choose prep scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Clean, smooth, empty floor — install only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Furniture moving + old floor removal & disposal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Removal + surface prep / primer + transitions"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "closet": {
+                "sm": [
+                    175,
+                    300
+                ],
+                "md": [
+                    250,
+                    400
+                ],
+                "lg": [
+                    350,
+                    550
+                ]
+            },
+            "small": {
+                "sm": [
+                    275,
+                    450
+                ],
+                "md": [
+                    400,
+                    625
+                ],
+                "lg": [
+                    550,
+                    850
+                ]
+            },
+            "room": {
+                "sm": [
+                    425,
+                    675
+                ],
+                "md": [
+                    600,
+                    925
+                ],
+                "lg": [
+                    850,
+                    1300
+                ]
+            },
+            "large": {
+                "sm": [
+                    600,
+                    925
+                ],
+                "md": [
+                    850,
+                    1250
+                ],
+                "lg": [
+                    1150,
+                    1750
+                ]
+            },
+            "multi": {
+                "sm": [
+                    925,
+                    1500
+                ],
+                "md": [
+                    1300,
+                    2000
+                ],
+                "lg": [
+                    1750,
+                    2700
+                ]
+            },
+            "apartment": {
+                "sm": [
+                    1500,
+                    2350
+                ],
+                "md": [
+                    2000,
+                    3100
+                ],
+                "lg": [
+                    2700,
+                    4200
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Peel & Stick Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Ranges cover labor only: surface cleaning and prep, layout, cutting, rolling, and thresholds. Tile or plank, primer, skim compound and transition strips are not included. Peel-and-stick only holds on a clean, dry, smooth surface — textured, waxed, damp or crumbling floors get prep quoted first, or we will tell you straight that a more durable vinyl product is the better buy. Suspected asbestos tile or adhesive is flagged, never disturbed, and routed to a licensed abatement contractor. Floors larger than about 1,000 sq ft are quoted from a floor plan or an on-site measure instead of the range above.",
+        "placeholder": "Select room size and prep scope to see your estimate"
+    },
+    "floor-repair": {
+        "title": "Floor Repair Estimate",
+        "subtitle": "Tell us what failed and how much of the floor it affects for an estimated labor range.",
+        "categories": [
+            {
+                "label": "What's Wrong?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose the problem…"
+                    },
+                    {
+                        "value": "planks",
+                        "label": "Loose, lifted or damaged planks"
+                    },
+                    {
+                        "value": "water",
+                        "label": "Water damage / swollen boards"
+                    },
+                    {
+                        "value": "scratch",
+                        "label": "Scratches, dents or gouges"
+                    },
+                    {
+                        "value": "squeak",
+                        "label": "Squeaks, movement or hollow spots"
+                    },
+                    {
+                        "value": "tile",
+                        "label": "Cracked or loose tile / click-lock panels"
+                    },
+                    {
+                        "value": "transition",
+                        "label": "Transitions, thresholds & quarter round"
+                    }
+                ]
+            },
+            {
+                "label": "How Much Is Affected?",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "planks": [
+                        {
+                            "value": "",
+                            "label": "Choose extent…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–3 boards, spare material on hand"
+                        },
+                        {
+                            "value": "md",
+                            "label": "4–10 boards, or we source the match"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Section replacement, 25+ sq ft"
+                        }
+                    ],
+                    "water": [
+                        {
+                            "value": "",
+                            "label": "Choose extent…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Small spot, subfloor looks dry"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Corner or under an appliance, needs drying"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Large area + subfloor patch"
+                        }
+                    ],
+                    "scratch": [
+                        {
+                            "value": "",
+                            "label": "Choose extent…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "A few scratches or one dent"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Several areas in one room"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Multiple rooms / heavy wear"
+                        }
+                    ],
+                    "squeak": [
+                        {
+                            "value": "",
+                            "label": "Choose extent…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One spot"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Several spots in one room"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Hallway or whole room, boards lifted to fix"
+                        }
+                    ],
+                    "tile": [
+                        {
+                            "value": "",
+                            "label": "Choose extent…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–3 tiles or panels, spares available"
+                        },
+                        {
+                            "value": "md",
+                            "label": "4–10 tiles or panels"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Larger area + substrate correction"
+                        }
+                    ],
+                    "transition": [
+                        {
+                            "value": "",
+                            "label": "Choose extent…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One doorway or threshold"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–4 doorways, or one room of quarter round"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Whole apartment thresholds + shoe molding"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "planks": {
+                "sm": [
+                    150,
+                    275
+                ],
+                "md": [
+                    275,
+                    475
+                ],
+                "lg": [
+                    525,
+                    950
+                ]
+            },
+            "water": {
+                "sm": [
+                    225,
+                    375
+                ],
+                "md": [
+                    400,
+                    700
+                ],
+                "lg": [
+                    750,
+                    1500
+                ]
+            },
+            "scratch": {
+                "sm": [
+                    150,
+                    250
+                ],
+                "md": [
+                    250,
+                    425
+                ],
+                "lg": [
+                    450,
+                    850
+                ]
+            },
+            "squeak": {
+                "sm": [
+                    175,
+                    300
+                ],
+                "md": [
+                    300,
+                    525
+                ],
+                "lg": [
+                    575,
+                    1100
+                ]
+            },
+            "tile": {
+                "sm": [
+                    175,
+                    325
+                ],
+                "md": [
+                    325,
+                    600
+                ],
+                "lg": [
+                    650,
+                    1200
+                ]
+            },
+            "transition": {
+                "sm": [
+                    150,
+                    250
+                ],
+                "md": [
+                    250,
+                    475
+                ],
+                "lg": [
+                    500,
+                    950
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Floor Repair Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Ranges cover labor only: damage assessment, material matching, removing and replacing the affected sections, refastening, and blending the finish. Replacement planks, tiles, adhesive and finish are not included — leftover material from the original install gives the closest match. Water-damaged flooring is replaced only after the source of the water is fixed: an active leak goes to a Licensed Master Plumber first, rot or joist/structural damage to a licensed contractor, and suspected asbestos tile or adhesive is flagged and never disturbed. Whole-floor hardwood sand-and-refinish is quoted as a separate specialty scope.",
+        "placeholder": "Select the problem and how much is affected to see your estimate"
+    },
+    "baseboard-trim": {
+        "title": "Baseboard & Trim Installation Estimate",
+        "subtitle": "Pick how much trim you need and how finished you want it for an estimated labor range.",
+        "categories": [
+            {
+                "label": "How Much Trim?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose linear footage…"
+                    },
+                    {
+                        "value": "lf25",
+                        "label": "Small room — up to 25 linear ft"
+                    },
+                    {
+                        "value": "lf50",
+                        "label": "One room — 26–50 linear ft"
+                    },
+                    {
+                        "value": "lf100",
+                        "label": "Room + hallway or two rooms — 51–100 linear ft"
+                    },
+                    {
+                        "value": "lf175",
+                        "label": "Most of an apartment — 101–175 linear ft"
+                    },
+                    {
+                        "value": "lf300",
+                        "label": "Whole apartment — 176–300 linear ft"
+                    },
+                    {
+                        "value": "casing",
+                        "label": "Door casing / window trim only"
+                    }
+                ]
+            },
+            {
+                "label": "Finish Level",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "lf25": [
+                        {
+                            "value": "",
+                            "label": "Choose finish level…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Install new trim only — paint-ready"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Remove old trim + fill, caulk & clean edges"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Remove old + caulk + painted finish"
+                        }
+                    ],
+                    "lf50": [
+                        {
+                            "value": "",
+                            "label": "Choose finish level…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Install new trim only — paint-ready"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Remove old trim + fill, caulk & clean edges"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Remove old + caulk + painted finish"
+                        }
+                    ],
+                    "lf100": [
+                        {
+                            "value": "",
+                            "label": "Choose finish level…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Install new trim only — paint-ready"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Remove old trim + fill, caulk & clean edges"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Remove old + caulk + painted finish"
+                        }
+                    ],
+                    "lf175": [
+                        {
+                            "value": "",
+                            "label": "Choose finish level…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Install new trim only — paint-ready"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Remove old trim + fill, caulk & clean edges"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Remove old + caulk + painted finish"
+                        }
+                    ],
+                    "lf300": [
+                        {
+                            "value": "",
+                            "label": "Choose finish level…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Install new trim only — paint-ready"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Remove old trim + fill, caulk & clean edges"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Remove old + caulk + painted finish"
+                        }
+                    ],
+                    "casing": [
+                        {
+                            "value": "",
+                            "label": "Choose how many openings…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–2 doorways or windows"
+                        },
+                        {
+                            "value": "md",
+                            "label": "3–5 openings"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6–10 openings"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "lf25": {
+                "sm": [
+                    175,
+                    300
+                ],
+                "md": [
+                    250,
+                    400
+                ],
+                "lg": [
+                    350,
+                    575
+                ]
+            },
+            "lf50": {
+                "sm": [
+                    275,
+                    450
+                ],
+                "md": [
+                    400,
+                    650
+                ],
+                "lg": [
+                    550,
+                    875
+                ]
+            },
+            "lf100": {
+                "sm": [
+                    475,
+                    750
+                ],
+                "md": [
+                    675,
+                    1050
+                ],
+                "lg": [
+                    900,
+                    1400
+                ]
+            },
+            "lf175": {
+                "sm": [
+                    800,
+                    1250
+                ],
+                "md": [
+                    1100,
+                    1750
+                ],
+                "lg": [
+                    1500,
+                    2300
+                ]
+            },
+            "lf300": {
+                "sm": [
+                    1300,
+                    2000
+                ],
+                "md": [
+                    1800,
+                    2800
+                ],
+                "lg": [
+                    2400,
+                    3700
+                ]
+            },
+            "casing": {
+                "sm": [
+                    175,
+                    350
+                ],
+                "md": [
+                    350,
+                    700
+                ],
+                "lg": [
+                    700,
+                    1400
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Baseboard Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Ranges cover labor only: measuring, miter and cope cuts, scribing to the wall, fastening, nail-hole filling, caulking, and paint where selected. Baseboard, shoe molding, casing stock, caulk and paint are quoted separately by profile and footage — we can supply them or install material you already have. Runs over 300 linear feet, or more than 10 casing openings, are quoted from a measure or a floor plan instead of the range above. Wavy walls, uneven floors or heavily glued old trim may need patching, sanding, or a shoe-molding detail to close the gap; we say so before we start rather than after.",
+        "placeholder": "Select linear footage and finish level to see your estimate"
+    },
+    "subfloor-prep": {
+        "title": "Subfloor Preparation Estimate",
+        "subtitle": "Pick what the subfloor needs and how large the area is for an estimated labor range.",
+        "categories": [
+            {
+                "label": "What Does the Subfloor Need?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose the work…"
+                    },
+                    {
+                        "value": "level",
+                        "label": "Leveling dips & grinding high spots"
+                    },
+                    {
+                        "value": "plywood",
+                        "label": "Damaged plywood panel / soft spot over sound joists"
+                    },
+                    {
+                        "value": "squeak",
+                        "label": "Squeaks & refastening a loose subfloor"
+                    },
+                    {
+                        "value": "demo",
+                        "label": "Old adhesive, staples & underlayment removal"
+                    },
+                    {
+                        "value": "moisture",
+                        "label": "Moisture test & vapor barrier over concrete"
+                    },
+                    {
+                        "value": "underlayment",
+                        "label": "Underlayment install before new flooring"
+                    }
+                ]
+            },
+            {
+                "label": "How Large an Area?",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "level": [
+                        {
+                            "value": "",
+                            "label": "Choose area…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Spot fix — up to 50 sq ft"
+                        },
+                        {
+                            "value": "md",
+                            "label": "One room — 51–250 sq ft"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Multi-room — 251–600 sq ft"
+                        }
+                    ],
+                    "plywood": [
+                        {
+                            "value": "",
+                            "label": "Choose area…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Spot fix — up to 50 sq ft"
+                        },
+                        {
+                            "value": "md",
+                            "label": "One room — 51–250 sq ft"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Multi-room — 251–600 sq ft"
+                        }
+                    ],
+                    "squeak": [
+                        {
+                            "value": "",
+                            "label": "Choose area…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Spot fix — up to 50 sq ft"
+                        },
+                        {
+                            "value": "md",
+                            "label": "One room — 51–250 sq ft"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Multi-room — 251–600 sq ft"
+                        }
+                    ],
+                    "demo": [
+                        {
+                            "value": "",
+                            "label": "Choose area…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Spot fix — up to 50 sq ft"
+                        },
+                        {
+                            "value": "md",
+                            "label": "One room — 51–250 sq ft"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Multi-room — 251–600 sq ft"
+                        }
+                    ],
+                    "moisture": [
+                        {
+                            "value": "",
+                            "label": "Choose area…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Spot fix — up to 50 sq ft"
+                        },
+                        {
+                            "value": "md",
+                            "label": "One room — 51–250 sq ft"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Multi-room — 251–600 sq ft"
+                        }
+                    ],
+                    "underlayment": [
+                        {
+                            "value": "",
+                            "label": "Choose area…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Spot fix — up to 50 sq ft"
+                        },
+                        {
+                            "value": "md",
+                            "label": "One room — 51–250 sq ft"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Multi-room — 251–600 sq ft"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "level": {
+                "sm": [
+                    175,
+                    325
+                ],
+                "md": [
+                    350,
+                    900
+                ],
+                "lg": [
+                    900,
+                    1800
+                ]
+            },
+            "plywood": {
+                "sm": [
+                    225,
+                    425
+                ],
+                "md": [
+                    450,
+                    1100
+                ],
+                "lg": [
+                    1100,
+                    2200
+                ]
+            },
+            "squeak": {
+                "sm": [
+                    150,
+                    275
+                ],
+                "md": [
+                    300,
+                    650
+                ],
+                "lg": [
+                    650,
+                    1250
+                ]
+            },
+            "demo": {
+                "sm": [
+                    175,
+                    325
+                ],
+                "md": [
+                    350,
+                    850
+                ],
+                "lg": [
+                    850,
+                    1700
+                ]
+            },
+            "moisture": {
+                "sm": [
+                    150,
+                    250
+                ],
+                "md": [
+                    275,
+                    650
+                ],
+                "lg": [
+                    650,
+                    1300
+                ]
+            },
+            "underlayment": {
+                "sm": [
+                    150,
+                    250
+                ],
+                "md": [
+                    275,
+                    600
+                ],
+                "lg": [
+                    600,
+                    1200
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Subfloor Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Ranges cover labor only: inspection, straightedge and moisture readings, refastening, patching, leveling or panel replacement, and underlayment where selected. Leveling compound, plywood, fasteners, vapor barrier and underlayment are not included. A moisture reading on its own is part of the $99 on-site assessment, credited toward the work. Cutting out and replacing a damaged plywood panel that sits over sound joists is handyman scope; rot in the joists themselves, real floor movement or any framing work is structural scope for a licensed contractor, and an active leak goes to a Licensed Master Plumber before we touch the floor. Suspected asbestos tile or adhesive is flagged and never disturbed. Areas over 600 sq ft are quoted from an on-site measure instead of the range above.",
+        "placeholder": "Select the work and area size to see your estimate"
+    },
+    "faucet": {
+        "title": "Faucet Installation Estimate",
+        "subtitle": "Pick your faucet type and what shape the shut-offs are in for an estimated range.",
+        "categories": [
+            {
+                "label": "Faucet Type",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose faucet type…"
+                    },
+                    {
+                        "value": "kitchen",
+                        "label": "Kitchen — single-hole / pull-down"
+                    },
+                    {
+                        "value": "bathroom",
+                        "label": "Bathroom — single-hole / centerset"
+                    },
+                    {
+                        "value": "widespread",
+                        "label": "Widespread — 3-hole / 8″ spread"
+                    },
+                    {
+                        "value": "wall-bar",
+                        "label": "Wall-mount or bar / prep faucet"
+                    },
+                    {
+                        "value": "laundry",
+                        "label": "Laundry / utility faucet"
+                    },
+                    {
+                        "value": "shower-tub",
+                        "label": "Tub or shower faucet trim (existing valve)"
+                    }
+                ]
+            },
+            {
+                "label": "Scope & Shut-Off Condition",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "kitchen": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Straight swap — shut-offs turn, lines reusable"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Swap + new supply lines + old faucet haul-away"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Swap + replace 2 seized shut-off valves / tight cabinet"
+                        }
+                    ],
+                    "bathroom": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Straight swap — shut-offs turn, lines reusable"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Swap + new supply lines + pop-up drain assembly"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Swap + replace 2 seized shut-off valves / tight vanity"
+                        }
+                    ],
+                    "widespread": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Swap into existing 3-hole layout — shut-offs turn"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Swap + new supply lines + pop-up drain assembly"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Swap + shut-off valves + corroded/stuck mounting nuts"
+                        }
+                    ],
+                    "wall-bar": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Direct swap onto existing stub-outs"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Swap + new supply lines / escutcheons + haul-away"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Swap + shut-off valves + tile or awkward access"
+                        }
+                    ],
+                    "laundry": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Straight swap — valves turn, lines reusable"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Swap + new supply lines + old faucet haul-away"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Swap + replace both shut-off valves / basement access"
+                        }
+                    ],
+                    "shower-tub": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Trim plate + handle swap only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Trim + cartridge replacement (existing valve body)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Trim + cartridge + tub spout & diverter"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "kitchen": {
+                "sm": [
+                    150,
+                    220
+                ],
+                "md": [
+                    220,
+                    310
+                ],
+                "lg": [
+                    310,
+                    440
+                ]
+            },
+            "bathroom": {
+                "sm": [
+                    150,
+                    210
+                ],
+                "md": [
+                    200,
+                    290
+                ],
+                "lg": [
+                    290,
+                    410
+                ]
+            },
+            "widespread": {
+                "sm": [
+                    180,
+                    260
+                ],
+                "md": [
+                    260,
+                    360
+                ],
+                "lg": [
+                    360,
+                    500
+                ]
+            },
+            "wall-bar": {
+                "sm": [
+                    165,
+                    240
+                ],
+                "md": [
+                    240,
+                    340
+                ],
+                "lg": [
+                    340,
+                    470
+                ]
+            },
+            "laundry": {
+                "sm": [
+                    150,
+                    210
+                ],
+                "md": [
+                    210,
+                    300
+                ],
+                "lg": [
+                    300,
+                    420
+                ]
+            },
+            "shower-tub": {
+                "sm": [
+                    165,
+                    240
+                ],
+                "md": [
+                    240,
+                    340
+                ],
+                "lg": [
+                    340,
+                    470
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get Exact Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers removing the old faucet, cleaning the mounting area, setting the new fixture, connecting compatible supply lines, and leak testing before we close out. Faucet, supply lines, valves and drain parts are not included — you supply them or we source them at cost after you approve. Fixture-level work only: new supply or drain locations, concealed piping, riser or main valves, countertop drilling for extra holes, and any permit or DOB work route to a Licensed Master Plumber (stone counters route to a fabricator)."
+    },
+    "sink": {
+        "title": "Sink Installation Estimate",
+        "subtitle": "Pick your sink type and how much of the hookup is being redone.",
+        "categories": [
+            {
+                "label": "Sink Type",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose sink type…"
+                    },
+                    {
+                        "value": "drop-in",
+                        "label": "Drop-in / top-mount (kitchen or bath)"
+                    },
+                    {
+                        "value": "undermount",
+                        "label": "Undermount (existing cutout)"
+                    },
+                    {
+                        "value": "vessel",
+                        "label": "Vessel sink on counter"
+                    },
+                    {
+                        "value": "pedestal",
+                        "label": "Pedestal / wall-mount sink"
+                    },
+                    {
+                        "value": "vanity",
+                        "label": "Vanity + sink top (combo unit)"
+                    },
+                    {
+                        "value": "utility",
+                        "label": "Utility / laundry sink"
+                    }
+                ]
+            },
+            {
+                "label": "Hookup Scope",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "drop-in": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Same-size swap — reuse drain, trap & valves"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Swap + new drain assembly, P-trap & supply lines"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Swap + faucet pairing + valve replacement + haul-away"
+                        }
+                    ],
+                    "undermount": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Reset / re-secure into existing cutout"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Swap + clips, sealing, new drain & trap"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Swap + faucet pairing + valve replacement + haul-away"
+                        }
+                    ],
+                    "vessel": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Set on existing drilled counter, reuse trap"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Set + new drain, tailpiece & supply lines"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Set + tall faucet pairing + valve replacement"
+                        }
+                    ],
+                    "pedestal": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Swap onto existing anchors & stub-outs"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Swap + new drain, trap & supply lines"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Swap + faucet pairing + valve replacement + haul-away"
+                        }
+                    ],
+                    "vanity": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Same-footprint vanity swap, reuse drain & valves"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Vanity + top + faucet + new drain and supplies"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Vanity + top + faucet + valves + old unit haul-away"
+                        }
+                    ],
+                    "utility": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Freestanding swap onto existing hookup"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Swap + new drain, trap & supply lines"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Swap + faucet pairing + valve replacement + haul-away"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "drop-in": {
+                "sm": [
+                    180,
+                    260
+                ],
+                "md": [
+                    260,
+                    370
+                ],
+                "lg": [
+                    370,
+                    520
+                ]
+            },
+            "undermount": {
+                "sm": [
+                    230,
+                    330
+                ],
+                "md": [
+                    330,
+                    470
+                ],
+                "lg": [
+                    470,
+                    650
+                ]
+            },
+            "vessel": {
+                "sm": [
+                    200,
+                    290
+                ],
+                "md": [
+                    290,
+                    410
+                ],
+                "lg": [
+                    410,
+                    570
+                ]
+            },
+            "pedestal": {
+                "sm": [
+                    230,
+                    330
+                ],
+                "md": [
+                    330,
+                    460
+                ],
+                "lg": [
+                    460,
+                    640
+                ]
+            },
+            "vanity": {
+                "sm": [
+                    260,
+                    380
+                ],
+                "md": [
+                    380,
+                    540
+                ],
+                "lg": [
+                    540,
+                    760
+                ]
+            },
+            "utility": {
+                "sm": [
+                    180,
+                    260
+                ],
+                "md": [
+                    260,
+                    370
+                ],
+                "lg": [
+                    370,
+                    510
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get Exact Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers disconnecting the old sink, setting the new one in the existing opening, drain assembly and P-trap alignment, compatible supply connections, silicone sealing, and a leak test. Sink, faucet, drain parts and valves are not included. Fixture-level work only: cutting or enlarging a countertop opening, new supply or drain locations, moving the drain, concealed piping, and permit work are separate — those route to a Licensed Master Plumber, and stone counter cutting routes to a fabricator. Old-sink haul-away depends on building disposal rules."
+    },
+    "toilet": {
+        "title": "Toilet Installation Estimate",
+        "subtitle": "Pick your toilet type and whether the valve, supply and haul-away are in scope.",
+        "categories": [
+            {
+                "label": "Toilet Type",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose toilet type…"
+                    },
+                    {
+                        "value": "standard",
+                        "label": "Standard two-piece (round or elongated)"
+                    },
+                    {
+                        "value": "comfort",
+                        "label": "Comfort-height / dual-flush two-piece"
+                    },
+                    {
+                        "value": "one-piece",
+                        "label": "One-piece or skirted toilet"
+                    },
+                    {
+                        "value": "bidet-smart",
+                        "label": "Bidet seat / smart toilet (outlet exists)"
+                    },
+                    {
+                        "value": "wall-hung",
+                        "label": "Wall-hung on existing carrier"
+                    },
+                    {
+                        "value": "repair",
+                        "label": "Repair only — running toilet / loose & rocking"
+                    }
+                ]
+            },
+            {
+                "label": "Scope",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "standard": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Straight swap — flange & floor sound, valve turns"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Swap + new shut-off valve & supply line"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Swap + valve + old toilet removal & haul-away"
+                        }
+                    ],
+                    "comfort": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Straight swap — flange & floor sound, valve turns"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Swap + new shut-off valve & supply line"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Swap + valve + old toilet removal & haul-away"
+                        }
+                    ],
+                    "one-piece": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Straight swap — flange & floor sound, valve turns"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Swap + new shut-off valve & supply line"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Swap + valve + heavy unit carry & haul-away"
+                        }
+                    ],
+                    "bidet-smart": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Bidet seat on existing toilet — tee off supply"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Bidet seat + new shut-off valve & supply line"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Full smart toilet swap (GFCI outlet already there)"
+                        }
+                    ],
+                    "wall-hung": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Bowl swap on existing carrier & seal"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Bowl swap + surface actuator plate & new seals"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Bowl + actuator plate + tight bathroom access & old bowl haul-away"
+                        }
+                    ],
+                    "repair": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Running toilet — fill valve, flapper, handle or tank hardware rebuild"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Loose or rocking — pull, new wax ring, bolts, re-level & caulk"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Reset + tank hardware rebuild + new shut-off valve & supply line"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "standard": {
+                "sm": [
+                    180,
+                    260
+                ],
+                "md": [
+                    260,
+                    350
+                ],
+                "lg": [
+                    330,
+                    450
+                ]
+            },
+            "comfort": {
+                "sm": [
+                    200,
+                    280
+                ],
+                "md": [
+                    280,
+                    380
+                ],
+                "lg": [
+                    350,
+                    480
+                ]
+            },
+            "one-piece": {
+                "sm": [
+                    230,
+                    320
+                ],
+                "md": [
+                    320,
+                    430
+                ],
+                "lg": [
+                    400,
+                    540
+                ]
+            },
+            "bidet-smart": {
+                "sm": [
+                    165,
+                    240
+                ],
+                "md": [
+                    240,
+                    340
+                ],
+                "lg": [
+                    400,
+                    560
+                ]
+            },
+            "wall-hung": {
+                "sm": [
+                    260,
+                    370
+                ],
+                "md": [
+                    340,
+                    470
+                ],
+                "lg": [
+                    430,
+                    600
+                ]
+            },
+            "repair": {
+                "sm": [
+                    150,
+                    210
+                ],
+                "md": [
+                    180,
+                    250
+                ],
+                "lg": [
+                    240,
+                    330
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get Exact Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers disconnecting the existing toilet, a new wax ring or seal, fresh closet bolts, supply-line connection, base caulking, and multi-flush leak testing. Toilet, seat, valve and supply line are not included — you supply them or we source them at cost once approved. Fixture-level work only: a damaged or sunken flange, soft or rotted floor, rough-in changes, concealed piping and stack issues route to a Licensed Master Plumber. On a wall-hung toilet we swap the bowl on the existing carrier and the surface actuator plate only — the concealed tank, its fill and flush valves, and the in-wall carrier itself are behind-the-wall work we don't touch, and route to a Licensed Master Plumber. Smart toilets need an existing GFCI outlet — a new outlet or circuit is a Licensed Master Electrician job. Haul-away depends on building disposal rules."
+    },
+    "garbage-disposal": {
+        "title": "Garbage Disposal Installation Estimate",
+        "subtitle": "Pick the job type and the unit size / power setup under your sink.",
+        "categories": [
+            {
+                "label": "Job Type",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose job type…"
+                    },
+                    {
+                        "value": "swap-same",
+                        "label": "Direct swap — same brand & mount ring"
+                    },
+                    {
+                        "value": "swap-diff",
+                        "label": "Replacement — different brand / new mount ring"
+                    },
+                    {
+                        "value": "new-install",
+                        "label": "First disposal in this sink (power already there)"
+                    },
+                    {
+                        "value": "repair",
+                        "label": "Jammed, humming, or leaking unit"
+                    },
+                    {
+                        "value": "remove",
+                        "label": "Remove disposal — convert back to standard drain"
+                    }
+                ]
+            },
+            {
+                "label": "Unit Size & Power Setup",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "swap-same": [
+                        {
+                            "value": "",
+                            "label": "Choose setup…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1/3–1/2 HP — plug-in outlet under sink, reuse drain parts"
+                        },
+                        {
+                            "value": "md",
+                            "label": "3/4 HP — new drain parts / dishwasher knockout & tie-in"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "1 HP — existing hardwired or air-switch setup + haul-away"
+                        }
+                    ],
+                    "swap-diff": [
+                        {
+                            "value": "",
+                            "label": "Choose setup…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1/3–1/2 HP — plug-in outlet, new mount ring & flange"
+                        },
+                        {
+                            "value": "md",
+                            "label": "3/4 HP — new flange, drain parts & dishwasher tie-in"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "1 HP — existing hardwired or air-switch setup + haul-away"
+                        }
+                    ],
+                    "new-install": [
+                        {
+                            "value": "",
+                            "label": "Choose setup…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1/3–1/2 HP — switched outlet ready, drain lines up"
+                        },
+                        {
+                            "value": "md",
+                            "label": "3/4 HP — new flange, trap rework & dishwasher tie-in"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "1 HP — tight cabinet, old drain parts, full trap rebuild"
+                        }
+                    ],
+                    "repair": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Jam clear / reset — unit otherwise sound"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Leak diagnosis + flange re-seal or drain-part swap"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Diagnose, then replace the unit the same visit"
+                        }
+                    ],
+                    "remove": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Remove unit, install standard basket strainer"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Remove + new strainer, tailpiece & trap"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Remove + drain rework + dishwasher drain rerouted"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "swap-same": {
+                "sm": [
+                    150,
+                    220
+                ],
+                "md": [
+                    200,
+                    280
+                ],
+                "lg": [
+                    260,
+                    360
+                ]
+            },
+            "swap-diff": {
+                "sm": [
+                    180,
+                    260
+                ],
+                "md": [
+                    240,
+                    330
+                ],
+                "lg": [
+                    310,
+                    420
+                ]
+            },
+            "new-install": {
+                "sm": [
+                    230,
+                    330
+                ],
+                "md": [
+                    310,
+                    430
+                ],
+                "lg": [
+                    400,
+                    550
+                ]
+            },
+            "repair": {
+                "sm": [
+                    150,
+                    210
+                ],
+                "md": [
+                    190,
+                    270
+                ],
+                "lg": [
+                    280,
+                    400
+                ]
+            },
+            "remove": {
+                "sm": [
+                    150,
+                    210
+                ],
+                "md": [
+                    190,
+                    270
+                ],
+                "lg": [
+                    250,
+                    340
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get Exact Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers mounting ring and flange fit, drain and trap tie-in, dishwasher knockout when needed, connecting to the existing switched power, and running the unit under water to leak test. Disposal unit and drain parts are not included. Requires power that is already there — a new outlet, new switched circuit, or rewiring routes to a Licensed Master Electrician. New drain lines, moving the trap arm, concealed piping, old galvanized drain replacement, and permit work route to a Licensed Master Plumber. Haul-away of the old unit depends on building disposal rules."
+    },
+    "shut-off-valve": {
+        "title": "Shut-Off Valve Replacement Estimate",
+        "subtitle": "Pick the fixture and how many valves — plus whether water shuts off locally.",
+        "categories": [
+            {
+                "label": "Which Fixture Valve",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose the fixture…"
+                    },
+                    {
+                        "value": "toilet",
+                        "label": "Toilet supply valve"
+                    },
+                    {
+                        "value": "sink",
+                        "label": "Sink / faucet valves (hot & cold)"
+                    },
+                    {
+                        "value": "appliance",
+                        "label": "Dishwasher or ice-maker valve"
+                    },
+                    {
+                        "value": "washer",
+                        "label": "Washing machine hose bibs (exposed / surface-mounted only)"
+                    },
+                    {
+                        "value": "multi",
+                        "label": "Several fixtures in one visit"
+                    }
+                ]
+            },
+            {
+                "label": "Count, Condition & Water Shutoff",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "toilet": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 valve — accessible, water isolates locally"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 valve — corroded / seized, extra removal time"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Valve + supply line, building shutoff window needed"
+                        }
+                    ],
+                    "sink": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 valve — accessible, water isolates locally"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Both hot & cold — corroded, tight cabinet"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Both valves + supplies, building shutoff window needed"
+                        }
+                    ],
+                    "appliance": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 valve — accessible, water isolates locally"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 valve — behind appliance, pull-out & reset needed"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Valve + new supply line, building shutoff window needed"
+                        }
+                    ],
+                    "washer": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 valve in an accessible box"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Both exposed hot & cold bibs — corroded handles"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Both exposed bibs + machine pull-out & reconnect"
+                        }
+                    ],
+                    "multi": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "2 valves, one room, water isolates locally"
+                        },
+                        {
+                            "value": "md",
+                            "label": "3–4 valves across the apartment"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "5+ valves / whole-apartment sweep with shutoff window"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "toilet": {
+                "sm": [
+                    150,
+                    210
+                ],
+                "md": [
+                    200,
+                    280
+                ],
+                "lg": [
+                    280,
+                    390
+                ]
+            },
+            "sink": {
+                "sm": [
+                    150,
+                    220
+                ],
+                "md": [
+                    220,
+                    300
+                ],
+                "lg": [
+                    300,
+                    410
+                ]
+            },
+            "appliance": {
+                "sm": [
+                    165,
+                    230
+                ],
+                "md": [
+                    230,
+                    320
+                ],
+                "lg": [
+                    320,
+                    440
+                ]
+            },
+            "washer": {
+                "sm": [
+                    180,
+                    260
+                ],
+                "md": [
+                    260,
+                    360
+                ],
+                "lg": [
+                    360,
+                    500
+                ]
+            },
+            "multi": {
+                "sm": [
+                    240,
+                    340
+                ],
+                "md": [
+                    340,
+                    470
+                ],
+                "lg": [
+                    470,
+                    650
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get Exact Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers isolating the water, removing the old fixture valve, fitting a new quarter-turn valve on the existing accessible stub-out, reconnecting the supply, and pressure and leak testing. Valves and supply lines are not included. Accessible fixture valves only: main or riser valves, concealed and in-wall valves, pipe alterations behind the wall, corroded galvanized or lead-joint pipe, and permit work route to a Licensed Master Plumber. If water cannot be isolated locally, your building superintendent has to schedule the shutoff window before we book. Recessed washer boxes are in-wall work: if the valve bodies sit inside the wall cavity we stop, send photos free of charge and route you to a Licensed Master Plumber."
+    },
+    "leak-repair": {
+        "title": "Leak Repair Estimate",
+        "subtitle": "Tell us where the water is coming from and how easy it is to reach.",
+        "categories": [
+            {
+                "label": "Where Is The Leak",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose the leak location…"
+                    },
+                    {
+                        "value": "faucet",
+                        "label": "Faucet — dripping spout or leaking at the base"
+                    },
+                    {
+                        "value": "under-sink",
+                        "label": "Under the sink — supply line, trap or drain fitting"
+                    },
+                    {
+                        "value": "toilet",
+                        "label": "Toilet — supply, tank, or leaking at the base"
+                    },
+                    {
+                        "value": "disposal",
+                        "label": "Garbage disposal — leaking body or flange"
+                    },
+                    {
+                        "value": "shower-tub",
+                        "label": "Shower or tub — head, trim, spout or diverter"
+                    },
+                    {
+                        "value": "unsure",
+                        "label": "Not sure — water shows up, source unclear"
+                    }
+                ]
+            },
+            {
+                "label": "Access & Scope",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "faucet": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Cartridge, washer or aerator — open access"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Re-seat & re-seal the faucet, new supply lines"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Faucet has to be replaced to stop it / tight cabinet"
+                        }
+                    ],
+                    "under-sink": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Tighten / re-seal one visible connection"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Replace supply lines, tailpiece or P-trap"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Full drain assembly rebuild / cabinet packed & tight"
+                        }
+                    ],
+                    "toilet": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Supply line, tank-bolt or tank-to-bowl gasket leak"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Leaking at the base — pull, new wax ring, bolts, reset & caulk"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Base reset + tank hardware rebuild + new shut-off valve"
+                        }
+                    ],
+                    "disposal": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Leak at a drain or dishwasher hose connection"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Sink flange re-seal or drain-part replacement"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Body is leaking — unit replaced to stop it"
+                        }
+                    ],
+                    "shower-tub": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Shower head, arm or hose connection re-sealed"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Trim + cartridge replacement (existing valve body)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Trim + cartridge + tub spout / diverter, tile access"
+                        }
+                    ],
+                    "unsure": [
+                        {
+                            "value": "",
+                            "label": "Choose what you're seeing…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Only wet when a fixture runs — easy to reach"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Slow stain or intermittent drip, cabinet access"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "More than one fixture wet, or a slow leak behind a cabinet or appliance"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "faucet": {
+                "sm": [
+                    150,
+                    210
+                ],
+                "md": [
+                    200,
+                    290
+                ],
+                "lg": [
+                    290,
+                    410
+                ]
+            },
+            "under-sink": {
+                "sm": [
+                    150,
+                    220
+                ],
+                "md": [
+                    210,
+                    300
+                ],
+                "lg": [
+                    300,
+                    420
+                ]
+            },
+            "toilet": {
+                "sm": [
+                    150,
+                    210
+                ],
+                "md": [
+                    180,
+                    250
+                ],
+                "lg": [
+                    240,
+                    330
+                ]
+            },
+            "disposal": {
+                "sm": [
+                    150,
+                    220
+                ],
+                "md": [
+                    190,
+                    270
+                ],
+                "lg": [
+                    280,
+                    400
+                ]
+            },
+            "shower-tub": {
+                "sm": [
+                    165,
+                    240
+                ],
+                "md": [
+                    240,
+                    340
+                ],
+                "lg": [
+                    340,
+                    470
+                ]
+            },
+            "unsure": {
+                "sm": [
+                    150,
+                    230
+                ],
+                "md": [
+                    230,
+                    330
+                ],
+                "lg": [
+                    330,
+                    470
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get Exact Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Photo and text estimates are free, and if we can't tell from photos the $99 on-site assessment is credited toward the work. The range covers tracing the visible source, correcting the approved fixture-level issue, and testing dry — replacement parts are not included. Accessible fixture leaks only: leaks inside walls, ceilings or floors, concealed piping, risers, stacks, water heaters and boilers, and building-system leaks route to a Licensed Master Plumber or your building's maintenance. A stain on the ceiling below you, or water coming from the apartment above, is a concealed or building leak — we don't price that as a repair here; send photos and we'll tell you free who to call, and if it needs eyes on site the $99 assessment is credited toward any fixture work we do end up doing. Drywall, tile and paint repair after the plumbing fix is quoted separately. If the water can't be shut off, call your superintendent first."
+    },
+    "bathroom-fixture": {
+        "title": "Bathroom Fixture Installation Estimate",
+        "subtitle": "Pick what's going up and what it's going into — drywall or tile.",
+        "categories": [
+            {
+                "label": "Fixture Type",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose fixture type…"
+                    },
+                    {
+                        "value": "showerhead",
+                        "label": "Shower head / handheld / rain head"
+                    },
+                    {
+                        "value": "shower-trim",
+                        "label": "Shower valve trim plate & handle"
+                    },
+                    {
+                        "value": "accessories",
+                        "label": "Towel bars, hooks, TP holder, shelves (1–3 pieces)"
+                    },
+                    {
+                        "value": "full-set",
+                        "label": "Full matching accessory set (4+ pieces)"
+                    },
+                    {
+                        "value": "grab-bar",
+                        "label": "Grab bar / safety rail"
+                    },
+                    {
+                        "value": "mirror-cabinet",
+                        "label": "Mirror or medicine cabinet"
+                    }
+                ]
+            },
+            {
+                "label": "Wall Type & Quantity",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "showerhead": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Head swap on the existing shower arm"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Handheld + slide bar, or a new shower arm"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Rain head + arm & bracket set, drilling into tile"
+                        }
+                    ],
+                    "shower-trim": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Trim plate + handle swap only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Trim + cartridge replacement (existing valve body)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Trim + cartridge + tub spout & diverter"
+                        }
+                    ],
+                    "accessories": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 piece on drywall"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 pieces on drywall"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "2–3 pieces drilled into tile, or old holes to patch"
+                        }
+                    ],
+                    "full-set": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "4–5 pieces on drywall"
+                        },
+                        {
+                            "value": "md",
+                            "label": "4–5 pieces drilled into tile"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6–8 pieces — tile, old hardware removed & holes patched"
+                        }
+                    ],
+                    "grab-bar": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 bar into studs or existing blocking"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2 bars, tile drilling, heavy-duty anchors"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "3+ bars / full tub-and-shower safety set in tile"
+                        }
+                    ],
+                    "mirror-cabinet": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Mirror hung on drywall"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Surface-mount medicine cabinet"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Recessed cabinet into an existing opening / tile"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "showerhead": {
+                "sm": [
+                    150,
+                    200
+                ],
+                "md": [
+                    190,
+                    270
+                ],
+                "lg": [
+                    270,
+                    380
+                ]
+            },
+            "shower-trim": {
+                "sm": [
+                    165,
+                    240
+                ],
+                "md": [
+                    240,
+                    340
+                ],
+                "lg": [
+                    340,
+                    470
+                ]
+            },
+            "accessories": {
+                "sm": [
+                    150,
+                    200
+                ],
+                "md": [
+                    190,
+                    265
+                ],
+                "lg": [
+                    265,
+                    370
+                ]
+            },
+            "full-set": {
+                "sm": [
+                    280,
+                    390
+                ],
+                "md": [
+                    370,
+                    510
+                ],
+                "lg": [
+                    480,
+                    660
+                ]
+            },
+            "grab-bar": {
+                "sm": [
+                    165,
+                    240
+                ],
+                "md": [
+                    240,
+                    340
+                ],
+                "lg": [
+                    340,
+                    470
+                ]
+            },
+            "mirror-cabinet": {
+                "sm": [
+                    165,
+                    240
+                ],
+                "md": [
+                    240,
+                    340
+                ],
+                "lg": [
+                    380,
+                    540
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get Exact Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers stud finding, anchor selection, level mounting, and a secure function test; water-connected fixtures also get a shut-off review and a leak test. Fixtures, anchors, trim kits and cartridges are not included. Surface-level work only: opening the wall, replacing a behind-wall valve body, moving a shower arm or supply to a new location, cutting a new recess for a cabinet, re-tiling, concealed piping, and permit work route to a Licensed Master Plumber. Brittle tile, plaster, metal studs or hidden anchors can change the method — photos before the visit keep the quote accurate."
+    },
+    "ceiling-fan": {
+        "title": "What Will My Ceiling Fan Install Cost?",
+        "subtitle": "Pick the fan and your ceiling — free photo estimates, price confirmed before we book.",
+        "categories": [
+            {
+                "label": "What kind of fan?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose fan type…"
+                    },
+                    {
+                        "value": "swap",
+                        "label": "Like-for-like fan replacement"
+                    },
+                    {
+                        "value": "hugger",
+                        "label": "Hugger / low-profile flush mount"
+                    },
+                    {
+                        "value": "downrod",
+                        "label": "Standard downrod fan"
+                    },
+                    {
+                        "value": "light-remote",
+                        "label": "Fan with light kit + remote"
+                    },
+                    {
+                        "value": "outdoor",
+                        "label": "Outdoor / damp-rated (balcony, terrace)"
+                    },
+                    {
+                        "value": "other",
+                        "label": "Other / not sure yet"
+                    }
+                ]
+            },
+            {
+                "label": "Ceiling height and existing support",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "swap": [
+                        {
+                            "value": "",
+                            "label": "Choose your ceiling…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "8–9 ft, fan-rated box already there"
+                        },
+                        {
+                            "value": "md",
+                            "label": "10–12 ft, or box needs a fan-rated brace"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "13 ft+, sloped ceiling or two-person lift"
+                        }
+                    ],
+                    "hugger": [
+                        {
+                            "value": "",
+                            "label": "Choose your ceiling…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "8–9 ft, fan-rated box already there"
+                        },
+                        {
+                            "value": "md",
+                            "label": "10–12 ft, or box needs a fan-rated brace"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "13 ft+, sloped ceiling or two-person lift"
+                        }
+                    ],
+                    "downrod": [
+                        {
+                            "value": "",
+                            "label": "Choose your ceiling…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "8–9 ft, fan-rated box already there"
+                        },
+                        {
+                            "value": "md",
+                            "label": "10–12 ft, or box needs a fan-rated brace"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "13 ft+, sloped ceiling or two-person lift"
+                        }
+                    ],
+                    "light-remote": [
+                        {
+                            "value": "",
+                            "label": "Choose your ceiling…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "8–9 ft, fan-rated box already there"
+                        },
+                        {
+                            "value": "md",
+                            "label": "10–12 ft, or box needs a fan-rated brace"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "13 ft+, sloped ceiling or two-person lift"
+                        }
+                    ],
+                    "outdoor": [
+                        {
+                            "value": "",
+                            "label": "Choose your ceiling…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "8–9 ft, fan-rated box already there"
+                        },
+                        {
+                            "value": "md",
+                            "label": "10–12 ft, or box needs a fan-rated brace"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "13 ft+, exposed or two-person lift"
+                        }
+                    ],
+                    "other": [
+                        {
+                            "value": "",
+                            "label": "Choose your ceiling…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "8–9 ft, fan-rated box already there"
+                        },
+                        {
+                            "value": "md",
+                            "label": "10–12 ft, or box needs a fan-rated brace"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "13 ft+, sloped ceiling or two-person lift"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "swap": {
+                "sm": [
+                    150,
+                    200
+                ],
+                "md": [
+                    210,
+                    300
+                ],
+                "lg": [
+                    310,
+                    440
+                ]
+            },
+            "hugger": {
+                "sm": [
+                    150,
+                    215
+                ],
+                "md": [
+                    225,
+                    320
+                ],
+                "lg": [
+                    330,
+                    470
+                ]
+            },
+            "downrod": {
+                "sm": [
+                    165,
+                    240
+                ],
+                "md": [
+                    250,
+                    350
+                ],
+                "lg": [
+                    360,
+                    510
+                ]
+            },
+            "light-remote": {
+                "sm": [
+                    180,
+                    260
+                ],
+                "md": [
+                    270,
+                    380
+                ],
+                "lg": [
+                    390,
+                    550
+                ]
+            },
+            "outdoor": {
+                "sm": [
+                    190,
+                    275
+                ],
+                "md": [
+                    285,
+                    400
+                ],
+                "lg": [
+                    410,
+                    580
+                ]
+            },
+            "other": {
+                "sm": [
+                    150,
+                    240
+                ],
+                "md": [
+                    250,
+                    360
+                ],
+                "lg": [
+                    370,
+                    540
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Fan Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers removing the old fixture or fan, checking fan-rated support, hanging on the existing wiring, blade balancing, light-kit assembly, remote pairing, and a full speed and direction test. The fan, downrod, brace box and remote kit are not included. New fan locations, new switch legs or wiring runs, added circuits and panel work are outside handyman scope — we flag them and route you to a NYC Licensed Master Electrician. Send a ceiling photo, ceiling height and the fan model and we confirm the exact price for free."
+    },
+    "chandelier": {
+        "title": "What Will My Chandelier Install Cost?",
+        "subtitle": "Weight and ceiling height drive the price — send photos and the estimate is free.",
+        "categories": [
+            {
+                "label": "What kind of fixture?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose fixture type…"
+                    },
+                    {
+                        "value": "standard",
+                        "label": "Standard chandelier (15–34 lb)"
+                    },
+                    {
+                        "value": "crystal",
+                        "label": "Crystal / multi-tier (crystals to assemble)"
+                    },
+                    {
+                        "value": "heavy",
+                        "label": "Heavy fixture (35–50 lb, two-person)"
+                    },
+                    {
+                        "value": "oversize",
+                        "label": "Over 50 lb, or the box is not rated for it"
+                    },
+                    {
+                        "value": "cluster",
+                        "label": "Pendant cluster on one canopy / multi-point fixture"
+                    },
+                    {
+                        "value": "other",
+                        "label": "Other / not sure yet"
+                    }
+                ]
+            },
+            {
+                "label": "Ceiling height and access",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "standard": [
+                        {
+                            "value": "",
+                            "label": "Choose height and access…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "8–9 ft ceiling, clear access"
+                        },
+                        {
+                            "value": "md",
+                            "label": "10–12 ft, or dining table to work around"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "13 ft+, stairwell or scaffold access"
+                        }
+                    ],
+                    "crystal": [
+                        {
+                            "value": "",
+                            "label": "Choose height and access…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "8–9 ft ceiling, clear access"
+                        },
+                        {
+                            "value": "md",
+                            "label": "10–12 ft, or dining table to work around"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "13 ft+, stairwell or scaffold access"
+                        }
+                    ],
+                    "heavy": [
+                        {
+                            "value": "",
+                            "label": "Choose height and access…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "8–9 ft, clear access, box already rated for the weight"
+                        },
+                        {
+                            "value": "md",
+                            "label": "10–12 ft or furniture to work around, box rated for the weight"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "13 ft+, stairwell or scaffold, box rated for the weight"
+                        }
+                    ],
+                    "cluster": [
+                        {
+                            "value": "",
+                            "label": "Choose height and access…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "8–9 ft ceiling, one canopy"
+                        },
+                        {
+                            "value": "md",
+                            "label": "10–12 ft, or several hang points"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "13 ft+, stairwell or scaffold access"
+                        }
+                    ],
+                    "other": [
+                        {
+                            "value": "",
+                            "label": "Choose height and access…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "8–9 ft ceiling, clear access"
+                        },
+                        {
+                            "value": "md",
+                            "label": "10–12 ft, or furniture to work around"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "13 ft+, stairwell or scaffold access"
+                        }
+                    ],
+                    "oversize": [
+                        {
+                            "value": "",
+                            "label": "Choose what we are looking at…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Fixture over 50 lb, box looks solid — on-site assessment ($99, credited)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Box or brace not rated for the weight — on-site assessment ($99, credited)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Needs structural blocking or a new support point — on-site assessment ($99, credited)"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "standard": {
+                "sm": [
+                    185,
+                    265
+                ],
+                "md": [
+                    275,
+                    390
+                ],
+                "lg": [
+                    400,
+                    570
+                ]
+            },
+            "crystal": {
+                "sm": [
+                    260,
+                    380
+                ],
+                "md": [
+                    390,
+                    560
+                ],
+                "lg": [
+                    570,
+                    820
+                ]
+            },
+            "heavy": {
+                "sm": [
+                    300,
+                    430
+                ],
+                "md": [
+                    440,
+                    620
+                ],
+                "lg": [
+                    630,
+                    900
+                ]
+            },
+            "cluster": {
+                "sm": [
+                    230,
+                    340
+                ],
+                "md": [
+                    350,
+                    500
+                ],
+                "lg": [
+                    510,
+                    730
+                ]
+            },
+            "other": {
+                "sm": [
+                    165,
+                    280
+                ],
+                "md": [
+                    290,
+                    430
+                ],
+                "lg": [
+                    440,
+                    650
+                ]
+            },
+            "oversize": {
+                "sm": [
+                    99,
+                    99
+                ],
+                "md": [
+                    99,
+                    99
+                ],
+                "lg": [
+                    99,
+                    99
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Chandelier Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers removing the accessible old fixture, checking the existing box rating against the fixture weight, mounting plate fit, hanging and leveling, crystal or shade assembly, canopy coverage, dimmer and bulb check, and a function test on the existing wiring. The fixture, bulbs and any added support hardware are not included, and we protect the floor and furniture underneath. We hang up to 50 lb, and only on a box or brace already rated for that weight. Fixtures over 50 lb, boxes that are not rated, ceilings that need structural blocking, new fixture locations, added circuits and panel work are outside handyman scope — those carry no work price here: you get a free photo review, an on-site assessment ($99, credited) if photos are not enough, and the support or wiring itself is routed to a NYC Licensed Master Electrician or building management. Single pendants and flush fixtures under 15 lb are priced on our light fixture installation page. Send the product link, fixture weight and ceiling height for a free exact quote."
+    },
+    "light-fixture": {
+        "title": "What Will My Light Fixture Install Cost?",
+        "subtitle": "Replacing existing fixtures — pick the type and how many for a real range.",
+        "categories": [
+            {
+                "label": "What kind of fixture?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose fixture type…"
+                    },
+                    {
+                        "value": "flush",
+                        "label": "Flush / semi-flush ceiling light"
+                    },
+                    {
+                        "value": "pendant",
+                        "label": "Pendant / mini-chandelier (separate pendants)"
+                    },
+                    {
+                        "value": "sconce-vanity",
+                        "label": "Wall sconce / vanity light bar"
+                    },
+                    {
+                        "value": "track",
+                        "label": "Track lighting (existing box or track)"
+                    },
+                    {
+                        "value": "under-cabinet",
+                        "label": "Under-cabinet LED strip or puck"
+                    },
+                    {
+                        "value": "other",
+                        "label": "Other / not sure yet"
+                    }
+                ]
+            },
+            {
+                "label": "How many, and how high?",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "flush": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity and height…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 fixture, standard 8–9 ft ceiling"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 fixtures, or one at 10–12 ft"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 fixtures, or 13 ft+ / stairwell"
+                        }
+                    ],
+                    "pendant": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity and height…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 pendant, standard 8–9 ft ceiling"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 pendants, or one at 10–12 ft"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 pendants, or 13 ft+ / stairwell"
+                        }
+                    ],
+                    "sconce-vanity": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 sconce or vanity bar"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 sconces or bars"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 sconces, or high / awkward mounting"
+                        }
+                    ],
+                    "track": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 track run, standard 8–9 ft ceiling"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2 runs, or one at 10–12 ft"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "3–4 runs, or 13 ft+ / commercial ceiling"
+                        }
+                    ],
+                    "under-cabinet": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 cabinet run, plug-in or existing feed"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 runs with linking and driver"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 runs / full kitchen, surface raceway or cord channel"
+                        }
+                    ],
+                    "other": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity and height…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 fixture, standard 8–9 ft ceiling"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 fixtures, or one at 10–12 ft"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 fixtures, or 13 ft+ / stairwell"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "flush": {
+                "sm": [
+                    150,
+                    200
+                ],
+                "md": [
+                    210,
+                    310
+                ],
+                "lg": [
+                    320,
+                    480
+                ]
+            },
+            "pendant": {
+                "sm": [
+                    160,
+                    230
+                ],
+                "md": [
+                    240,
+                    350
+                ],
+                "lg": [
+                    360,
+                    540
+                ]
+            },
+            "sconce-vanity": {
+                "sm": [
+                    150,
+                    215
+                ],
+                "md": [
+                    225,
+                    330
+                ],
+                "lg": [
+                    340,
+                    510
+                ]
+            },
+            "track": {
+                "sm": [
+                    190,
+                    270
+                ],
+                "md": [
+                    280,
+                    400
+                ],
+                "lg": [
+                    410,
+                    600
+                ]
+            },
+            "under-cabinet": {
+                "sm": [
+                    165,
+                    240
+                ],
+                "md": [
+                    250,
+                    360
+                ],
+                "lg": [
+                    370,
+                    550
+                ]
+            },
+            "other": {
+                "sm": [
+                    150,
+                    230
+                ],
+                "md": [
+                    240,
+                    360
+                ],
+                "lg": [
+                    370,
+                    560
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Fixture Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers replacing fixtures on existing boxes and existing wiring: old fixture removal, box and mounting-plate check, fixture weight review, canopy coverage over the old opening, dimmer and bulb compatibility, and a function test. Fixtures, bulbs and drivers are not included. Under-cabinet lighting is surface work — we use surface raceway or cord channel and never conceal cable inside a finished wall, because in-wall cable runs are licensed-electrician work. New fixture locations, new ceiling boxes, recessed-lighting layouts, added circuits and panel work are outside handyman scope — flagged and routed to a NYC Licensed Master Electrician, with a DOB permit where required. The counts above cover a room at a time; bigger than that is still our job, it just gets a custom quote instead of a calculator range. Text photos of the current fixture and canopy plus the product link for a free exact quote."
+    },
+    "outlet": {
+        "title": "What Will My Outlet Replacement Cost?",
+        "subtitle": "Device-level replacement in the existing box — pick the device and how many.",
+        "categories": [
+            {
+                "label": "What are we replacing?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose device type…"
+                    },
+                    {
+                        "value": "standard",
+                        "label": "Standard outlet swap (15A / 20A)"
+                    },
+                    {
+                        "value": "gfci",
+                        "label": "GFCI outlet (kitchen, bath, laundry)"
+                    },
+                    {
+                        "value": "usb",
+                        "label": "USB / combo charging outlet (mixed types)"
+                    },
+                    {
+                        "value": "smart",
+                        "label": "Smart Wi-Fi outlet"
+                    },
+                    {
+                        "value": "damaged",
+                        "label": "Loose, cracked or not holding plugs"
+                    },
+                    {
+                        "value": "plates",
+                        "label": "Cover plates / faceplate refresh"
+                    }
+                ]
+            },
+            {
+                "label": "How many outlets?",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "standard": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 outlet"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 outlets"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 outlets (one room)"
+                        }
+                    ],
+                    "gfci": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 GFCI outlet"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 GFCI outlets"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–5 GFCI outlets"
+                        }
+                    ],
+                    "usb": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 outlet"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 outlets"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 outlets"
+                        }
+                    ],
+                    "smart": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 smart outlet + app pairing"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 smart outlets + app setup"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 smart outlets + scenes"
+                        }
+                    ],
+                    "damaged": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 outlet"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 outlets"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 outlets"
+                        }
+                    ],
+                    "plates": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–3 plates"
+                        },
+                        {
+                            "value": "md",
+                            "label": "4–8 plates"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "9–15 plates"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "standard": {
+                "sm": [
+                    150,
+                    185
+                ],
+                "md": [
+                    190,
+                    270
+                ],
+                "lg": [
+                    280,
+                    410
+                ]
+            },
+            "gfci": {
+                "sm": [
+                    150,
+                    215
+                ],
+                "md": [
+                    220,
+                    320
+                ],
+                "lg": [
+                    330,
+                    490
+                ]
+            },
+            "usb": {
+                "sm": [
+                    150,
+                    215
+                ],
+                "md": [
+                    220,
+                    320
+                ],
+                "lg": [
+                    330,
+                    470
+                ]
+            },
+            "smart": {
+                "sm": [
+                    150,
+                    220
+                ],
+                "md": [
+                    230,
+                    340
+                ],
+                "lg": [
+                    350,
+                    520
+                ]
+            },
+            "damaged": {
+                "sm": [
+                    150,
+                    205
+                ],
+                "md": [
+                    210,
+                    300
+                ],
+                "lg": [
+                    310,
+                    460
+                ]
+            },
+            "plates": {
+                "sm": [
+                    150,
+                    165
+                ],
+                "md": [
+                    170,
+                    215
+                ],
+                "lg": [
+                    220,
+                    300
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Outlet Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers replacing the device in an existing box on existing wiring: box and visible wiring condition, correct line and load orientation on GFCI, grounding check, secure mounting, flat faceplate fit, and a tester check on every outlet we touch. Devices, plates and materials are not included. New outlet locations, added circuits, higher-voltage outlets (dryer, oven, AC, EV charger), and any panel or service work are outside handyman scope — we flag them and route you to a NYC Licensed Master Electrician, with a DOB permit where required. If an outlet is warm, scorched, sparking or buzzing, do not use it and do not order a swap here — that is a safety symptom, it goes to the $99 on-site assessment on our electrical troubleshooting page, and the repair is routed to a Licensed Master Electrician. For exact USB-A, USB-C or GFCI-protected USB pricing use our USB outlet page; the counts above cover a room at a time, and anything larger gets a custom quote instead of a calculator range."
+    },
+    "usb-outlet": {
+        "title": "What Will My USB Outlet Cost?",
+        "subtitle": "USB-A, USB-C and combo receptacles in your existing boxes — pick the type and quantity.",
+        "categories": [
+            {
+                "label": "Which USB outlet?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose USB outlet type…"
+                    },
+                    {
+                        "value": "usb-a",
+                        "label": "USB-A + standard receptacle"
+                    },
+                    {
+                        "value": "usb-c",
+                        "label": "USB-C fast charge (PD) + receptacle"
+                    },
+                    {
+                        "value": "combo",
+                        "label": "Combo USB-A + USB-C"
+                    },
+                    {
+                        "value": "usb-gfci",
+                        "label": "USB in a kitchen or bath (GFCI-protected)"
+                    },
+                    {
+                        "value": "usb-plate",
+                        "label": "USB charging faceplate (no device swap)"
+                    },
+                    {
+                        "value": "other",
+                        "label": "Not sure / mixed types"
+                    }
+                ]
+            },
+            {
+                "label": "How many outlets?",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "usb-a": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 outlet"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 outlets"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 outlets (desk, kitchen, bedsides)"
+                        }
+                    ],
+                    "usb-c": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 outlet"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 outlets"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 outlets (desk, kitchen, bedsides)"
+                        }
+                    ],
+                    "combo": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 outlet"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 outlets"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 outlets (desk, kitchen, bedsides)"
+                        }
+                    ],
+                    "usb-gfci": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 outlet"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 outlets"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–5 outlets (kitchen counter)"
+                        }
+                    ],
+                    "usb-plate": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–2 plates"
+                        },
+                        {
+                            "value": "md",
+                            "label": "3–5 plates"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6–10 plates"
+                        }
+                    ],
+                    "other": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 outlet"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 outlets"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 outlets"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "usb-a": {
+                "sm": [
+                    150,
+                    195
+                ],
+                "md": [
+                    200,
+                    285
+                ],
+                "lg": [
+                    295,
+                    420
+                ]
+            },
+            "usb-c": {
+                "sm": [
+                    150,
+                    205
+                ],
+                "md": [
+                    210,
+                    300
+                ],
+                "lg": [
+                    310,
+                    440
+                ]
+            },
+            "combo": {
+                "sm": [
+                    150,
+                    215
+                ],
+                "md": [
+                    220,
+                    315
+                ],
+                "lg": [
+                    325,
+                    460
+                ]
+            },
+            "usb-gfci": {
+                "sm": [
+                    155,
+                    225
+                ],
+                "md": [
+                    235,
+                    340
+                ],
+                "lg": [
+                    350,
+                    500
+                ]
+            },
+            "usb-plate": {
+                "sm": [
+                    150,
+                    180
+                ],
+                "md": [
+                    185,
+                    250
+                ],
+                "lg": [
+                    260,
+                    360
+                ]
+            },
+            "other": {
+                "sm": [
+                    150,
+                    215
+                ],
+                "md": [
+                    220,
+                    320
+                ],
+                "lg": [
+                    330,
+                    470
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My USB Outlet Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers swapping the receptacle in your existing box on existing wiring: box depth check, wiring and grounding condition, correct rating for the room, tamper-resistant hardware where code calls for it, flat faceplate fit, and a live charge test on every port. USB outlets are physically deeper than older receptacles — if the existing box is too shallow we tell you before we start rather than forcing it. Devices and plates are not included. New outlet locations, added circuits and any panel work are outside handyman scope and get routed to a NYC Licensed Master Electrician. If an outlet is warm, scorched, sparking or buzzing, stop using it and send it to our electrical troubleshooting page instead — that is the $99 on-site assessment path, not a device swap. The counts above cover a room at a time; larger jobs are still ours, they just get a custom quote instead of a calculator range. Text a straight-on photo of the outlet plus the product link for a free exact quote."
+    },
+    "switch": {
+        "title": "What Will My Switch Replacement Cost?",
+        "subtitle": "Standard, dimmer, smart or 3-way — replacement on the wiring you already have.",
+        "categories": [
+            {
+                "label": "What kind of switch?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose switch type…"
+                    },
+                    {
+                        "value": "standard",
+                        "label": "Standard single-pole switch"
+                    },
+                    {
+                        "value": "dimmer",
+                        "label": "Dimmer switch"
+                    },
+                    {
+                        "value": "three-way",
+                        "label": "3-way / multi-location (existing 3-way wiring)"
+                    },
+                    {
+                        "value": "smart",
+                        "label": "Smart switch (Lutron, TP-Link, Leviton)"
+                    },
+                    {
+                        "value": "timer-fan",
+                        "label": "Timer, humidity or fan-speed control"
+                    },
+                    {
+                        "value": "other",
+                        "label": "Worn or loose switch, or not sure"
+                    }
+                ]
+            },
+            {
+                "label": "How many switches?",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "standard": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 switch"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 switches (or a 2–3 gang plate)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 switches (one room or hallway)"
+                        }
+                    ],
+                    "dimmer": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 dimmer"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 dimmers"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 dimmers"
+                        }
+                    ],
+                    "three-way": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 pair (2 locations, one fixture)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2 pairs, or a 3-way plus dimmer"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "3–4 pairs (hallway or stair runs)"
+                        }
+                    ],
+                    "smart": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 smart switch or dimmer + app pairing"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 smart switches + app scenes"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 smart switches + scenes"
+                        }
+                    ],
+                    "timer-fan": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 control"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 controls"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 controls"
+                        }
+                    ],
+                    "other": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 switch"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 switches"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 switches"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "standard": {
+                "sm": [
+                    150,
+                    180
+                ],
+                "md": [
+                    185,
+                    260
+                ],
+                "lg": [
+                    270,
+                    390
+                ]
+            },
+            "dimmer": {
+                "sm": [
+                    150,
+                    200
+                ],
+                "md": [
+                    205,
+                    290
+                ],
+                "lg": [
+                    300,
+                    430
+                ]
+            },
+            "three-way": {
+                "sm": [
+                    155,
+                    215
+                ],
+                "md": [
+                    225,
+                    320
+                ],
+                "lg": [
+                    330,
+                    480
+                ]
+            },
+            "smart": {
+                "sm": [
+                    150,
+                    220
+                ],
+                "md": [
+                    230,
+                    335
+                ],
+                "lg": [
+                    345,
+                    500
+                ]
+            },
+            "timer-fan": {
+                "sm": [
+                    150,
+                    210
+                ],
+                "md": [
+                    215,
+                    305
+                ],
+                "lg": [
+                    315,
+                    450
+                ]
+            },
+            "other": {
+                "sm": [
+                    150,
+                    215
+                ],
+                "md": [
+                    220,
+                    320
+                ],
+                "lg": [
+                    330,
+                    470
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Switch Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers replacing switches in existing boxes on existing wiring: box depth, visible wiring layout, neutral availability, load type, dimmer and bulb compatibility, gang-plate fit, and a function test from every location that controls the fixture. Switches, dimmers and plates are not included. Smart switches usually need a neutral wire in the box — that is the most common reason a job changes scope, and we check it before we quote. Converting a single switch to a 3-way, adding switch locations, new wiring runs, added circuits and panel work are outside handyman scope and get routed to a NYC Licensed Master Electrician. If a switch crackles, sparks, feels warm or smells hot, stop using it — that is a safety symptom, not a swap: it goes to the $99 on-site assessment on our electrical troubleshooting page and the repair is routed to a Licensed Master Electrician. Smart switch pricing here matches our smart device page exactly. The counts above cover a room at a time; a whole-apartment refresh is still our job, it just gets a custom quote instead of a calculator range. Send a photo of the existing switch and the product link for a free exact quote."
+    },
+    "smart-device": {
+        "title": "What Will My Smart Device Setup Cost?",
+        "subtitle": "Thermostats, locks, doorbells, lighting and sensors — mounted, paired and tested.",
+        "categories": [
+            {
+                "label": "Which device?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose device type…"
+                    },
+                    {
+                        "value": "thermostat",
+                        "label": "Smart thermostat (Nest, ecobee, Honeywell)"
+                    },
+                    {
+                        "value": "lock",
+                        "label": "Smart lock / keypad deadbolt"
+                    },
+                    {
+                        "value": "doorbell",
+                        "label": "Video doorbell (existing wired chime)"
+                    },
+                    {
+                        "value": "lighting",
+                        "label": "Smart switches, dimmers or bulbs"
+                    },
+                    {
+                        "value": "plugs-sensors",
+                        "label": "Smart plugs, sensors or a hub"
+                    },
+                    {
+                        "value": "camera-other",
+                        "label": "Indoor camera / other smart device"
+                    }
+                ]
+            },
+            {
+                "label": "Scope of the setup",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "thermostat": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 thermostat, C-wire present, app ready"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 thermostat + adapter or power kit"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "2 thermostats, each a 1-for-1 swap on its own existing wiring, + app and scenes"
+                        }
+                    ],
+                    "lock": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 lock, door and deadbolt fit as-is"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 lock + strike, bore or alignment work"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "2–3 doors, or keypad plus hub and app setup"
+                        }
+                    ],
+                    "doorbell": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Existing wired doorbell, chime compatible"
+                        },
+                        {
+                            "value": "md",
+                            "label": "+ chime adapter or low-voltage-side fit at the existing chime"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "2 units, or wedge mount plus full app setup"
+                        }
+                    ],
+                    "lighting": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 smart switch, dimmer or bulb + app pairing"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 smart switches, dimmers or bulbs + app scenes"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 smart switches, dimmers or bulbs + scenes"
+                        }
+                    ],
+                    "plugs-sensors": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–3 plug-in smart plugs or sensors + app"
+                        },
+                        {
+                            "value": "md",
+                            "label": "4–8 devices + hub pairing"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "9–12 devices + hub pairing and automations"
+                        }
+                    ],
+                    "camera-other": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 device, power and mounting point ready"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 devices + app setup"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4–6 devices / multi-room setup"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "thermostat": {
+                "sm": [
+                    150,
+                    215
+                ],
+                "md": [
+                    225,
+                    320
+                ],
+                "lg": [
+                    330,
+                    490
+                ]
+            },
+            "lock": {
+                "sm": [
+                    160,
+                    230
+                ],
+                "md": [
+                    240,
+                    350
+                ],
+                "lg": [
+                    360,
+                    540
+                ]
+            },
+            "doorbell": {
+                "sm": [
+                    165,
+                    240
+                ],
+                "md": [
+                    250,
+                    360
+                ],
+                "lg": [
+                    370,
+                    550
+                ]
+            },
+            "lighting": {
+                "sm": [
+                    150,
+                    220
+                ],
+                "md": [
+                    230,
+                    335
+                ],
+                "lg": [
+                    345,
+                    500
+                ]
+            },
+            "plugs-sensors": {
+                "sm": [
+                    150,
+                    200
+                ],
+                "md": [
+                    210,
+                    320
+                ],
+                "lg": [
+                    330,
+                    560
+                ]
+            },
+            "camera-other": {
+                "sm": [
+                    150,
+                    215
+                ],
+                "md": [
+                    225,
+                    330
+                ],
+                "lg": [
+                    340,
+                    520
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Smart Setup Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers installing the device on the existing wiring or mounting point, Wi-Fi and app pairing, account sign-in with you present, and a function test of every feature before we leave. Devices, adapters, hubs, bulbs and batteries are not included, and you need your account login and Wi-Fi password on site or we cannot finish the pairing. Smart switches usually need a neutral wire and most smart thermostats need a C-wire or an approved adapter — send a wiring photo first so we confirm fit before booking. Doorbell work here is the low-voltage side only: an existing chime, chime adapter or plug-in adapter. Replacing or adding a 120V doorbell transformer at a junction box or panel is line-voltage work and is routed to a NYC Licensed Master Electrician. Running a new C-wire or low-voltage cable, drilling exterior penetrations, zoning, damper or any other HVAC control change, added circuits and panel work are also outside handyman scope — routed to a NYC Licensed Master Electrician or an HVAC specialist. Smart switch and dimmer pricing here matches our switch installation page exactly. The counts above cover a normal apartment setup; bigger installs are still our job, they just get a custom quote instead of a calculator range."
+    },
+    "electrical-troubleshooting": {
+        "title": "What Will It Cost to Find and Fix It?",
+        "subtitle": "Photo estimates are free, the $99 on-site diagnosis is credited toward the fix, and work starts at $150.",
+        "categories": [
+            {
+                "label": "What is happening?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose the symptom…"
+                    },
+                    {
+                        "value": "dead-outlet",
+                        "label": "Outlet or wall plug is dead"
+                    },
+                    {
+                        "value": "partial-power",
+                        "label": "Half a room or several outlets are out"
+                    },
+                    {
+                        "value": "breaker-trips",
+                        "label": "Breaker trips over and over — safety stop"
+                    },
+                    {
+                        "value": "flicker",
+                        "label": "Lights flicker or dim (LED / dimmer mismatch)"
+                    },
+                    {
+                        "value": "buzz-heat",
+                        "label": "Outlet or switch buzzes, feels warm or sparks — safety stop"
+                    },
+                    {
+                        "value": "after-install",
+                        "label": "Stopped working after a recent install"
+                    }
+                ]
+            },
+            {
+                "label": "What is involved",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "dead-outlet": [
+                        {
+                            "value": "",
+                            "label": "Choose the likely fix…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Diagnose, then repair at the existing device"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Diagnose + replace the dead outlet or its GFCI"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Diagnose + trace the run, several devices"
+                        }
+                    ],
+                    "partial-power": [
+                        {
+                            "value": "",
+                            "label": "Choose the likely fix…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Diagnose + restore at the device we find"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Diagnose + replace the failed device in the run"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Diagnose + trace the whole run, several devices"
+                        }
+                    ],
+                    "breaker-trips": [
+                        {
+                            "value": "",
+                            "label": "Choose what is happening…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One appliance or one room involved — on-site assessment ($99, credited)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Several rooms, or it trips when one device runs — on-site assessment ($99, credited)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Trips with nothing plugged in, or after a leak or storm — on-site assessment ($99, credited)"
+                        }
+                    ],
+                    "flicker": [
+                        {
+                            "value": "",
+                            "label": "Choose the likely fix…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Diagnose + correct bulb or dimmer mismatch"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Diagnose + replace the switch, dimmer or fixture"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Diagnose + tighten and test several connections"
+                        }
+                    ],
+                    "buzz-heat": [
+                        {
+                            "value": "",
+                            "label": "Choose what is happening…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One outlet or switch involved — on-site assessment ($99, credited)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Several devices, or it started recently — on-site assessment ($99, credited)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Burning smell, scorch marks or sparks — stop using it now; on-site assessment ($99, credited)"
+                        }
+                    ],
+                    "after-install": [
+                        {
+                            "value": "",
+                            "label": "Choose the likely fix…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Diagnose + correct the connection"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Diagnose + replace the device or fixture"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Diagnose + redo the install properly"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "dead-outlet": {
+                "sm": [
+                    150,
+                    215
+                ],
+                "md": [
+                    225,
+                    330
+                ],
+                "lg": [
+                    340,
+                    520
+                ]
+            },
+            "partial-power": {
+                "sm": [
+                    165,
+                    260
+                ],
+                "md": [
+                    270,
+                    400
+                ],
+                "lg": [
+                    410,
+                    620
+                ]
+            },
+            "breaker-trips": {
+                "sm": [
+                    99,
+                    99
+                ],
+                "md": [
+                    99,
+                    99
+                ],
+                "lg": [
+                    99,
+                    99
+                ]
+            },
+            "flicker": {
+                "sm": [
+                    150,
+                    225
+                ],
+                "md": [
+                    235,
+                    340
+                ],
+                "lg": [
+                    350,
+                    530
+                ]
+            },
+            "buzz-heat": {
+                "sm": [
+                    99,
+                    99
+                ],
+                "md": [
+                    99,
+                    99
+                ],
+                "lg": [
+                    99,
+                    99
+                ]
+            },
+            "after-install": {
+                "sm": [
+                    150,
+                    200
+                ],
+                "md": [
+                    210,
+                    310
+                ],
+                "lg": [
+                    320,
+                    490
+                ]
+            }
+        },
+        "cta": {
+            "text": "Start My Diagnosis Request",
+            "href": "/#contact"
+        },
+        "disclaimer": "Text photos or a short video first — remote estimates are always free. If we cannot tell from photos, the $99 on-site assessment covers meter testing and a written finding, and it is credited toward any work we do for you, so the diagnosis costs $0 when we do the job. Work ranges above are for that diagnosis plus a defined device-level fix on existing wiring; replacement outlets, switches and fixtures are not included and every repair is quoted and approved before a single part comes out. Two symptoms carry no repair price on purpose: repeated breaker trips, and a device that buzzes, feels warm, sparks, smells like burning or shows scorch marks. Those are safety stops — stop using that circuit, we come out for the $99 assessment and give you a written finding, and the repair itself goes to a NYC Licensed Master Electrician or building maintenance. Aluminum wiring, panel or breaker work, new circuits and new outlet locations are outside handyman scope the same way — we route them, we never guess at them."
+    },
+    "ac-through-wall": {
+        "title": "Through-Wall AC Installation Estimate",
+        "subtitle": "Select your unit size and sleeve condition for an estimated price range.",
+        "categories": [
+            {
+                "label": "AC Unit Size",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose unit size…"
+                    },
+                    {
+                        "value": "upto12k",
+                        "label": "Up to 12,000 BTU (bedroom / office)"
+                    },
+                    {
+                        "value": "12to18k",
+                        "label": "12,000 – 18,000 BTU (living room)"
+                    },
+                    {
+                        "value": "over18k",
+                        "label": "18,000+ BTU (heavy / two-person lift)"
+                    },
+                    {
+                        "value": "unknown",
+                        "label": "Not sure — I'll send the model label"
+                    }
+                ]
+            },
+            {
+                "label": "Sleeve Condition & Scope",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "upto12k": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Sleeve fits — seat, foam seal, startup test"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Install + old unit pulled and carried out"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Install + trim / gap work or grille cleanup + old unit out"
+                        }
+                    ],
+                    "12to18k": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Sleeve fits — seat, foam seal, startup test"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Install + old unit pulled and carried out"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Install + trim / gap work or grille cleanup + old unit out"
+                        }
+                    ],
+                    "over18k": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Sleeve fits — seat, foam seal, startup test"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Install + old unit pulled and carried out"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Install + trim / gap work or grille cleanup + old unit out"
+                        }
+                    ],
+                    "unknown": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Straight swap into an existing sleeve"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Swap + old unit removed from the wall"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Swap + sleeve trim / seal work + old unit out"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "upto12k": {
+                "sm": [
+                    150,
+                    210
+                ],
+                "md": [
+                    200,
+                    275
+                ],
+                "lg": [
+                    265,
+                    360
+                ]
+            },
+            "12to18k": {
+                "sm": [
+                    185,
+                    250
+                ],
+                "md": [
+                    240,
+                    325
+                ],
+                "lg": [
+                    310,
+                    420
+                ]
+            },
+            "over18k": {
+                "sm": [
+                    240,
+                    325
+                ],
+                "md": [
+                    300,
+                    405
+                ],
+                "lg": [
+                    380,
+                    510
+                ]
+            },
+            "unknown": {
+                "sm": [
+                    150,
+                    325
+                ],
+                "md": [
+                    200,
+                    405
+                ],
+                "lg": [
+                    265,
+                    510
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get Exact Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers labor to fit a unit into an existing sleeve: fit check, foam seal, trim review, drainage slope and a startup test. AC unit, sleeve, grille and trim materials are not included. We do not cut new wall openings, replace or re-set sleeves, cut masonry or touch the facade — that work is not handyman scope and goes to your building and a licensed masonry / facade contractor or GC. New outlets, dedicated circuits and any 208V/230V/240V change go to a NYC Licensed Master Electrician on the permit path. No refrigerant or sealed-system work. Until we see the model label, the \"not sure\" range spans every unit size on this page — send a photo and we tighten it before booking."
+    },
+    "ac-ptac": {
+        "title": "PTAC Installation Estimate",
+        "subtitle": "Select your PTAC job type and scope for an estimated price range.",
+        "categories": [
+            {
+                "label": "PTAC Job Type",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose job type…"
+                    },
+                    {
+                        "value": "swap",
+                        "label": "Like-for-like replacement (same sleeve & plug)"
+                    },
+                    {
+                        "value": "brand-change",
+                        "label": "Different brand / model (adapter & grille check)"
+                    },
+                    {
+                        "value": "first-fit",
+                        "label": "First unit into an existing empty sleeve"
+                    },
+                    {
+                        "value": "reseat",
+                        "label": "Re-seat, re-seal or drainage correction"
+                    },
+                    {
+                        "value": "multi",
+                        "label": "Multiple units (hotel / building / office)"
+                    }
+                ]
+            },
+            {
+                "label": "Scope per Visit",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "swap": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 unit — sleeve OK, old unit stays on site"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 unit — old unit carried out to storage / curb"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "1 unit — sleeve cleanup & insulation + old unit out"
+                        }
+                    ],
+                    "brand-change": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 unit — sleeve fits, grille reused"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 unit — adapter / trim kit + old unit out"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "1 unit — adapter + grille swap + sleeve cleanup"
+                        }
+                    ],
+                    "first-fit": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 unit — sleeve clean and ready"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 unit — sleeve cleaned, sealed and insulated"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "1 unit — sleeve prep + trim / grille fit + drain check"
+                        }
+                    ],
+                    "reseat": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Pull, reseat and re-seal 1 unit"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Reseat + drain pan / condensate path correction"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Reseat + insulation, trim and grille correction"
+                        }
+                    ],
+                    "multi": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "2–3 units, same visit — same scope each"
+                        },
+                        {
+                            "value": "md",
+                            "label": "4–6 units, same visit — same scope each"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "7–12 units, scheduled by floor — same scope each"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "swap": {
+                "sm": [
+                    200,
+                    280
+                ],
+                "md": [
+                    265,
+                    360
+                ],
+                "lg": [
+                    340,
+                    460
+                ]
+            },
+            "brand-change": {
+                "sm": [
+                    240,
+                    325
+                ],
+                "md": [
+                    310,
+                    415
+                ],
+                "lg": [
+                    395,
+                    530
+                ]
+            },
+            "first-fit": {
+                "sm": [
+                    230,
+                    310
+                ],
+                "md": [
+                    295,
+                    395
+                ],
+                "lg": [
+                    375,
+                    500
+                ]
+            },
+            "reseat": {
+                "sm": [
+                    165,
+                    230
+                ],
+                "md": [
+                    215,
+                    295
+                ],
+                "lg": [
+                    275,
+                    375
+                ]
+            },
+            "multi": {
+                "sm": [
+                    400,
+                    760
+                ],
+                "md": [
+                    750,
+                    1480
+                ],
+                "lg": [
+                    1300,
+                    2900
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get Exact Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers labor: sleeve assessment, insulation check, secure mounting of the packaged unit, trim and gap review, condensate path check and a heat/cool test cycle. PTAC unit, sleeve, grille, adapter kits and trim are not included. Send the model number, sleeve photos and the electrical label first — plug type, amperage and voltage are verified before booking. New sleeves, new or enlarged sleeve openings and any facade change are not handyman scope and go to your building and a licensed masonry / facade contractor or GC. New circuits, rewiring, receptacle changes and any 208V/230V/240V work go to a NYC Licensed Master Electrician on the permit path. No refrigerant or sealed-system work. Multi-unit pricing assumes the same scope on every unit; 13+ units — send a floor list and we quote from a walkthrough."
+    },
+    "ac-portable": {
+        "title": "Portable AC Setup Estimate",
+        "subtitle": "Select your window type and setup scope for an estimated price range.",
+        "categories": [
+            {
+                "label": "Window / Vent Path or Job Type",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose window type…"
+                    },
+                    {
+                        "value": "double-hung",
+                        "label": "Double-hung window (standard kit)"
+                    },
+                    {
+                        "value": "slider",
+                        "label": "Slider window or sliding door"
+                    },
+                    {
+                        "value": "casement",
+                        "label": "Casement / outswing window"
+                    },
+                    {
+                        "value": "tall-narrow",
+                        "label": "Tall or odd-shaped opening (custom panel)"
+                    },
+                    {
+                        "value": "multi",
+                        "label": "Multiple portable units, one visit"
+                    },
+                    {
+                        "value": "unsure",
+                        "label": "Not sure — I'll send window photos"
+                    }
+                ]
+            },
+            {
+                "label": "Setup Scope",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "double-hung": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 unit — kit fits, hose routed, cooling check"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 unit — panel trim, weatherstrip seal + drain setup"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "1 unit — custom-cut insert, long hose route + drain setup"
+                        }
+                    ],
+                    "slider": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 unit — kit fits, hose routed, cooling check"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 unit — panel extension / trim + weatherstrip seal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "1 unit — full-height insert for a sliding door + drain setup"
+                        }
+                    ],
+                    "casement": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 unit — adapter kit fits as supplied"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 unit — panel cut to fit + weatherstrip seal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "1 unit — custom-cut insert + drain setup"
+                        }
+                    ],
+                    "tall-narrow": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 unit — kit fits with minor trim"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 unit — panel trimmed / extended + sealed"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "1 unit — custom-cut insert + drain setup"
+                        }
+                    ],
+                    "multi": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "2 units — standard kit fit each"
+                        },
+                        {
+                            "value": "md",
+                            "label": "3–4 units — standard kit fit each"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "5–8 units, scheduled by room — standard kit fit each"
+                        }
+                    ],
+                    "unsure": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 unit — basic vent kit + hose routing"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 unit — trim, sealing and drainage setup"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "1 unit — a custom vent panel is likely"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "double-hung": {
+                "sm": [
+                    150,
+                    190
+                ],
+                "md": [
+                    175,
+                    235
+                ],
+                "lg": [
+                    250,
+                    340
+                ]
+            },
+            "slider": {
+                "sm": [
+                    150,
+                    205
+                ],
+                "md": [
+                    195,
+                    265
+                ],
+                "lg": [
+                    285,
+                    385
+                ]
+            },
+            "casement": {
+                "sm": [
+                    175,
+                    240
+                ],
+                "md": [
+                    230,
+                    310
+                ],
+                "lg": [
+                    330,
+                    445
+                ]
+            },
+            "tall-narrow": {
+                "sm": [
+                    165,
+                    225
+                ],
+                "md": [
+                    215,
+                    290
+                ],
+                "lg": [
+                    310,
+                    420
+                ]
+            },
+            "multi": {
+                "sm": [
+                    280,
+                    430
+                ],
+                "md": [
+                    400,
+                    800
+                ],
+                "lg": [
+                    650,
+                    1500
+                ]
+            },
+            "unsure": {
+                "sm": [
+                    150,
+                    240
+                ],
+                "md": [
+                    175,
+                    310
+                ],
+                "lg": [
+                    250,
+                    445
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get Exact Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers setup labor: venting-kit fit, panel trimming where practical, weatherstrip sealing, exhaust hose routing without sharp bends, drainage-mode setup and a cooling check. The portable unit, manufacturer window kit, adapter panels and weatherstrip materials are not included unless quoted. An existing window, sliding door or an already-approved exterior vent is required. We do not cut new wall openings or new exterior vent penetrations — that is facade / structural work and goes to your building and a licensed contractor. We never vent into a dryer duct, a chimney or a shared shaft. No refrigerant or sealed-system work. Multi-unit pricing assumes the standard kit fit on every unit; 9+ units — send a room list and we quote from a walkthrough. Until we see photos, the \"not sure\" range spans every window type on this page."
+    },
+    "ac-bracket": {
+        "title": "AC Bracket Installation Estimate",
+        "subtitle": "Select your support type, then the floor level and scope, for an estimated price range.",
+        "categories": [
+            {
+                "label": "Support Type",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose support type…"
+                    },
+                    {
+                        "value": "universal",
+                        "label": "Universal support bracket (under-unit)"
+                    },
+                    {
+                        "value": "no-drill",
+                        "label": "No-drill / sill-mount bracket"
+                    },
+                    {
+                        "value": "rail",
+                        "label": "Mounting rail / angle support (fastened inside)"
+                    },
+                    {
+                        "value": "heavy-duty",
+                        "label": "Heavy-duty bracket (15,000+ BTU unit)"
+                    },
+                    {
+                        "value": "manufacturer",
+                        "label": "Manufacturer-specific / building-required support"
+                    },
+                    {
+                        "value": "unsure",
+                        "label": "Not sure — I'll send window photos"
+                    }
+                ]
+            },
+            {
+                "label": "Floor Level & Scope",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "universal": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1st–5th floor — bracket only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "6th floor+, masonry sill or COI — bracket only · or 1st–5th floor — bracket + AC seated and sealed"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6th floor+, masonry sill or COI — bracket + AC seated, sealed and stability-tested"
+                        }
+                    ],
+                    "no-drill": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1st–5th floor — bracket only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "6th floor+, masonry sill or COI — bracket only · or 1st–5th floor — bracket + AC seated and sealed"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6th floor+, masonry sill or COI — bracket + AC seated, sealed and stability-tested"
+                        }
+                    ],
+                    "rail": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1st–5th floor — rail / angles only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "6th floor+, masonry sill or COI — rail only · or 1st–5th floor — rail + AC seated and sealed"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6th floor+, masonry sill or COI — rail + AC seated, sealed and stability-tested"
+                        }
+                    ],
+                    "heavy-duty": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1st–5th floor — bracket only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "6th floor+, masonry sill or COI — bracket only · or 1st–5th floor — bracket + two-person AC lift"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6th floor+, masonry sill or COI — bracket + two-person AC lift, sealed and stability-tested"
+                        }
+                    ],
+                    "manufacturer": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1st–5th floor — support only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "6th floor+, masonry sill or COI — support only · or 1st–5th floor — support + AC seated and sealed"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6th floor+, masonry sill or COI — support + AC seated, sealed and stability-tested"
+                        }
+                    ],
+                    "unsure": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1st–5th floor — support only"
+                        },
+                        {
+                            "value": "md",
+                            "label": "6th floor+, masonry sill or COI — support only · or 1st–5th floor — support + AC seated and sealed"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6th floor+, masonry sill or COI — support + AC seated, sealed and stability-tested"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "universal": {
+                "sm": [
+                    150,
+                    200
+                ],
+                "md": [
+                    190,
+                    255
+                ],
+                "lg": [
+                    255,
+                    340
+                ]
+            },
+            "no-drill": {
+                "sm": [
+                    150,
+                    190
+                ],
+                "md": [
+                    175,
+                    235
+                ],
+                "lg": [
+                    235,
+                    310
+                ]
+            },
+            "rail": {
+                "sm": [
+                    150,
+                    205
+                ],
+                "md": [
+                    195,
+                    260
+                ],
+                "lg": [
+                    260,
+                    345
+                ]
+            },
+            "heavy-duty": {
+                "sm": [
+                    190,
+                    255
+                ],
+                "md": [
+                    245,
+                    330
+                ],
+                "lg": [
+                    325,
+                    430
+                ]
+            },
+            "manufacturer": {
+                "sm": [
+                    175,
+                    235
+                ],
+                "md": [
+                    225,
+                    300
+                ],
+                "lg": [
+                    300,
+                    400
+                ]
+            },
+            "unsure": {
+                "sm": [
+                    150,
+                    255
+                ],
+                "md": [
+                    175,
+                    330
+                ],
+                "lg": [
+                    235,
+                    430
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get Exact Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers labor: unit-weight and BTU-label review, window, sill and clearance check, bracket compatibility against the manufacturer's instructions, fastening into a sound existing sill or window frame, seating the AC where that tier includes it, gap sealing and a stability test. Bracket hardware and the AC unit are not included unless quoted. NYC DOB guidance requires window ACs to be securely supported and kept out of fire-escape windows and other required exits — we will not install one there. Rebuilding or repairing a sill, masonry and facade restoration, and fabricated or building-approved custom steel supports are not handyman scope — those go to a licensed masonry / facade contractor or your building's GC. If the sill is cracked, spalling, rotted or loose we stop and flag it instead of anchoring into it. Anchoring into a facade or a landmark building needs management approval and usually a COI, and we do not start without it. Until we see photos, the \"not sure\" range spans every support type on this page."
+    },
+    "ac-cleaning": {
+        "title": "AC Deep Cleaning Estimate",
+        "subtitle": "Select your unit type and cleaning depth for an estimated price range.",
+        "categories": [
+            {
+                "label": "Unit Type",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose unit type…"
+                    },
+                    {
+                        "value": "window",
+                        "label": "Window AC"
+                    },
+                    {
+                        "value": "ptac",
+                        "label": "PTAC / through-wall unit"
+                    },
+                    {
+                        "value": "mini-split",
+                        "label": "Ductless mini-split indoor head (accessible)"
+                    },
+                    {
+                        "value": "portable",
+                        "label": "Portable AC"
+                    },
+                    {
+                        "value": "multi-mixed",
+                        "label": "Multiple units in one visit"
+                    }
+                ]
+            },
+            {
+                "label": "Cleaning Depth / Quantity",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "window": [
+                        {
+                            "value": "",
+                            "label": "Choose depth…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 unit — cover, filter, accessible coil rinse"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 unit — deep clean: blower area, drain pan, odor treatment"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "1 unit — heavy buildup, or unit pulled from the window for full access"
+                        }
+                    ],
+                    "ptac": [
+                        {
+                            "value": "",
+                            "label": "Choose depth…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 unit — front cover, filters, accessible coil"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 unit — deep clean: blower wheel + drain pan"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "1 unit — heavy buildup, or chassis pulled for full access"
+                        }
+                    ],
+                    "mini-split": [
+                        {
+                            "value": "",
+                            "label": "Choose depth…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 head — filters, louvers, accessible coil"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 head — bib wash: coil + blower wheel"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "1 head — heavy buildup: extended bib wash + drain pan flush"
+                        }
+                    ],
+                    "portable": [
+                        {
+                            "value": "",
+                            "label": "Choose depth…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 unit — filters, accessible coil, hose"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 unit — deep clean + tank / drain service"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "1 unit — heavy buildup: full strip-down + tank / drain service"
+                        }
+                    ],
+                    "multi-mixed": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "2–3 units, same visit — standard depth each"
+                        },
+                        {
+                            "value": "md",
+                            "label": "4–6 units, same visit — standard depth each"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "7–12 units (building / hotel floor) — standard depth each"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "window": {
+                "sm": [
+                    150,
+                    190
+                ],
+                "md": [
+                    190,
+                    250
+                ],
+                "lg": [
+                    250,
+                    340
+                ]
+            },
+            "ptac": {
+                "sm": [
+                    165,
+                    215
+                ],
+                "md": [
+                    215,
+                    285
+                ],
+                "lg": [
+                    290,
+                    390
+                ]
+            },
+            "mini-split": {
+                "sm": [
+                    180,
+                    240
+                ],
+                "md": [
+                    230,
+                    310
+                ],
+                "lg": [
+                    310,
+                    420
+                ]
+            },
+            "portable": {
+                "sm": [
+                    150,
+                    190
+                ],
+                "md": [
+                    185,
+                    240
+                ],
+                "lg": [
+                    250,
+                    330
+                ]
+            },
+            "multi-mixed": {
+                "sm": [
+                    300,
+                    620
+                ],
+                "md": [
+                    520,
+                    1150
+                ],
+                "lg": [
+                    900,
+                    2200
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get Exact Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers accessible cleaning only: cover removal, filter wash, accessible coil rinse, blower-area cleaning, drain pan cleaning, reassembly and a performance check. Cleaning supplies are included; replacement filters and parts are not. No refrigerant, sealed-system or inaccessible exterior work — and cleaning will not fix a failed compressor or a unit low on refrigerant. We do not certify mold clearance or perform environmental mold remediation; heavy growth, recurring odor or water damage is flagged and routed to an HVAC specialist or a licensed remediation contractor. Multi-unit pricing assumes the standard cleaning depth on every unit — heavy buildup, a pulled chassis or a unit pulled from the window is added per unit after photos. 13+ units — send a floor list and we quote from a walkthrough."
+    },
+    "ac-removal": {
+        "title": "AC Removal Estimate",
+        "subtitle": "Select your unit type and where the unit needs to go for an estimated price range.",
+        "categories": [
+            {
+                "label": "Unit Type",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose unit type…"
+                    },
+                    {
+                        "value": "window-small",
+                        "label": "Window AC up to 12,000 BTU"
+                    },
+                    {
+                        "value": "window-large",
+                        "label": "Window AC 12,000+ BTU (two-person lift)"
+                    },
+                    {
+                        "value": "through-wall",
+                        "label": "Through-wall / sleeve unit"
+                    },
+                    {
+                        "value": "ptac",
+                        "label": "PTAC unit"
+                    },
+                    {
+                        "value": "multi",
+                        "label": "Multiple units (end of season / building)"
+                    }
+                ]
+            },
+            {
+                "label": "Bracket & Where It Goes",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "window-small": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Unit out, stays in the apartment — window closed & sealed"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Unit + bracket out, left inside the apartment"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Unit + bracket out, carried down & disposal coordinated"
+                        }
+                    ],
+                    "window-large": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Unit out, stays in the apartment — window closed & sealed"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Unit + bracket out, left inside the apartment"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Unit + bracket out, carried down & disposal coordinated"
+                        }
+                    ],
+                    "through-wall": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Unit pulled from the sleeve, sleeve covered / sealed"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Unit + bracket out, left inside the apartment"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Unit + bracket out, carried down & disposal coordinated"
+                        }
+                    ],
+                    "ptac": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Unit pulled from the sleeve, left on site"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Unit + bracket out, left inside the apartment"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Unit + bracket out, carried down & disposal coordinated"
+                        }
+                    ],
+                    "multi": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "2–3 units, same visit — same scope each"
+                        },
+                        {
+                            "value": "md",
+                            "label": "4–6 units, same visit — same scope each"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "7–12 units, scheduled by floor — same scope each"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "window-small": {
+                "sm": [
+                    150,
+                    190
+                ],
+                "md": [
+                    180,
+                    240
+                ],
+                "lg": [
+                    240,
+                    325
+                ]
+            },
+            "window-large": {
+                "sm": [
+                    175,
+                    235
+                ],
+                "md": [
+                    225,
+                    300
+                ],
+                "lg": [
+                    300,
+                    400
+                ]
+            },
+            "through-wall": {
+                "sm": [
+                    150,
+                    195
+                ],
+                "md": [
+                    200,
+                    270
+                ],
+                "lg": [
+                    270,
+                    360
+                ]
+            },
+            "ptac": {
+                "sm": [
+                    150,
+                    200
+                ],
+                "md": [
+                    205,
+                    275
+                ],
+                "lg": [
+                    275,
+                    370
+                ]
+            },
+            "multi": {
+                "sm": [
+                    300,
+                    640
+                ],
+                "md": [
+                    520,
+                    1200
+                ],
+                "lg": [
+                    900,
+                    2300
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get Exact Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Covers removal labor: safe takedown, bracket removal when requested, window closed, locked and checked for loose panels or sharp hardware, weatherstrip or foam seal where appropriate, and moving the unit to an agreed spot in the building or curbside. Disposal and carter fees are not included — in NYC, older CFC/HCFC (Freon) units normally need a DSNY appointment before collection, and newer R32 or R290 units may need manufacturer take-back or a private carter; we coordinate that path but do not bill it as labor. No refrigerant recovery or sealed-system work. We can cover, cap or weather-seal an empty sleeve, but removing the sleeve itself, patching the wall opening and any facade or exterior work are not handyman scope — those go to your building and a licensed masonry / facade contractor or GC. Multi-unit pricing assumes the same scope on every unit; 13+ units — send a floor list and we quote from a walkthrough."
+    },
+    "lock-installation": {
+        "title": "Lock Installation Estimate",
+        "subtitle": "Pick your lock type and how many doors for an estimated price range.",
+        "categories": [
+            {
+                "label": "What are we installing?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose lock type…"
+                    },
+                    {
+                        "value": "deadbolt",
+                        "label": "Deadbolt (single or double cylinder)"
+                    },
+                    {
+                        "value": "knob-lever",
+                        "label": "Knob or lever set (interior doors)"
+                    },
+                    {
+                        "value": "smart",
+                        "label": "Smart / keypad / WiFi lock"
+                    },
+                    {
+                        "value": "mortise",
+                        "label": "Mortise lock or apartment cylinder"
+                    },
+                    {
+                        "value": "strike",
+                        "label": "Strike plate, latch alignment, reinforcement"
+                    },
+                    {
+                        "value": "other",
+                        "label": "Other door hardware"
+                    }
+                ]
+            },
+            {
+                "label": "Scope",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "deadbolt": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 deadbolt — existing bore, direct swap"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 deadbolt — new bore drilled + strike prep"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "2–3 deadbolts / multiple doors"
+                        }
+                    ],
+                    "knob-lever": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 knob or lever set — existing bore"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 interior door sets"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4+ door sets (full apartment)"
+                        }
+                    ],
+                    "smart": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Retrofit over existing deadbolt (interior-side only)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Full smart deadbolt swap + app / WiFi setup"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "New bore, or metal / fire-rated apartment door"
+                        }
+                    ],
+                    "mortise": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Cylinder swap in existing mortise body"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Mortise body + trim replacement"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Metal fire door / heavy prep or pocket rework"
+                        }
+                    ],
+                    "strike": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 door — strike adjust + latch alignment"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 door — strike relocation + reinforcement plate"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "2–3 doors, or jamb repair before reinforcing"
+                        }
+                    ],
+                    "other": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 item (chain guard, viewer, closer)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 items or 1 door fully re-hardwared"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4+ items / several doors"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "deadbolt": {
+                "sm": [
+                    150,
+                    195
+                ],
+                "md": [
+                    190,
+                    265
+                ],
+                "lg": [
+                    265,
+                    395
+                ]
+            },
+            "knob-lever": {
+                "sm": [
+                    150,
+                    190
+                ],
+                "md": [
+                    190,
+                    275
+                ],
+                "lg": [
+                    285,
+                    425
+                ]
+            },
+            "smart": {
+                "sm": [
+                    150,
+                    210
+                ],
+                "md": [
+                    195,
+                    285
+                ],
+                "lg": [
+                    285,
+                    425
+                ]
+            },
+            "mortise": {
+                "sm": [
+                    160,
+                    225
+                ],
+                "md": [
+                    240,
+                    350
+                ],
+                "lg": [
+                    350,
+                    520
+                ]
+            },
+            "strike": {
+                "sm": [
+                    150,
+                    180
+                ],
+                "md": [
+                    175,
+                    255
+                ],
+                "lg": [
+                    260,
+                    390
+                ]
+            },
+            "other": {
+                "sm": [
+                    150,
+                    200
+                ],
+                "md": [
+                    200,
+                    300
+                ],
+                "lg": [
+                    300,
+                    455
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Lock Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Labor only — the lock hardware is yours to supply. Includes door and bore check, backset and thickness fit, strike plate, and a full key / thumb-turn / latch test. Smart locks: send the product link and photos of both sides of the door first so clearance, battery access, and WiFi or hub requirements are confirmed before the visit. Rekeying, lockouts, and lost keys are locksmith work — we'll say so rather than book it. Building or fire-code limits on apartment entry doors still come from your management."
+    },
+    "blind-installation": {
+        "title": "Blind & Shade Installation Estimate",
+        "subtitle": "Pick your blind type and how many windows for an estimated price range.",
+        "categories": [
+            {
+                "label": "Blind or shade type",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose blind type…"
+                    },
+                    {
+                        "value": "roller",
+                        "label": "Roller / solar shade"
+                    },
+                    {
+                        "value": "cellular",
+                        "label": "Cellular / honeycomb shade"
+                    },
+                    {
+                        "value": "slat",
+                        "label": "Venetian / faux-wood / mini blind"
+                    },
+                    {
+                        "value": "roman",
+                        "label": "Roman or blackout shade (side channels)"
+                    },
+                    {
+                        "value": "motorized",
+                        "label": "Motorized / battery smart shade"
+                    },
+                    {
+                        "value": "other",
+                        "label": "Other window covering"
+                    }
+                ]
+            },
+            {
+                "label": "How many windows?",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "roller": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–2 windows"
+                        },
+                        {
+                            "value": "md",
+                            "label": "3–5 windows"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6+ windows / whole apartment"
+                        }
+                    ],
+                    "cellular": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–2 windows"
+                        },
+                        {
+                            "value": "md",
+                            "label": "3–5 windows"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6+ windows / whole apartment"
+                        }
+                    ],
+                    "slat": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–2 windows"
+                        },
+                        {
+                            "value": "md",
+                            "label": "3–5 windows"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6+ windows / whole apartment"
+                        }
+                    ],
+                    "roman": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–2 windows"
+                        },
+                        {
+                            "value": "md",
+                            "label": "3–5 windows"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6+ windows / whole apartment"
+                        }
+                    ],
+                    "motorized": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–2 windows"
+                        },
+                        {
+                            "value": "md",
+                            "label": "3–5 windows"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6+ windows / whole apartment"
+                        }
+                    ],
+                    "other": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–2 windows"
+                        },
+                        {
+                            "value": "md",
+                            "label": "3–5 windows"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6+ windows / whole apartment"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "roller": {
+                "sm": [
+                    150,
+                    210
+                ],
+                "md": [
+                    230,
+                    340
+                ],
+                "lg": [
+                    380,
+                    570
+                ]
+            },
+            "cellular": {
+                "sm": [
+                    150,
+                    215
+                ],
+                "md": [
+                    240,
+                    355
+                ],
+                "lg": [
+                    395,
+                    590
+                ]
+            },
+            "slat": {
+                "sm": [
+                    155,
+                    225
+                ],
+                "md": [
+                    255,
+                    375
+                ],
+                "lg": [
+                    420,
+                    630
+                ]
+            },
+            "roman": {
+                "sm": [
+                    165,
+                    240
+                ],
+                "md": [
+                    270,
+                    395
+                ],
+                "lg": [
+                    440,
+                    660
+                ]
+            },
+            "motorized": {
+                "sm": [
+                    195,
+                    285
+                ],
+                "md": [
+                    330,
+                    480
+                ],
+                "lg": [
+                    545,
+                    810
+                ]
+            },
+            "other": {
+                "sm": [
+                    150,
+                    220
+                ],
+                "md": [
+                    240,
+                    360
+                ],
+                "lg": [
+                    400,
+                    600
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Blind Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Labor only — blinds, brackets, and any special anchors are yours to supply. Includes measuring, inside vs. outside mount decision, bracket layout, leveling, and a raise / lower / tilt / stop test on every window. Old-blind removal, cutting stock blinds to width, plaster, tile, masonry or steel-frame anchoring, and clearance work around radiators, AC units, or deep trim add to the range. Send the product link plus window width and height first — wrong sizing is the one thing photos can't fix on site. Hardwired motorized shades need the power feed done by a licensed electrician; we install battery and plug-in units."
+    },
+    "door-installation": {
+        "title": "Door Installation Estimate",
+        "subtitle": "Pick your door type and scope for an estimated price range.",
+        "categories": [
+            {
+                "label": "What kind of door?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose door type…"
+                    },
+                    {
+                        "value": "slab",
+                        "label": "Interior slab door (reuse existing frame)"
+                    },
+                    {
+                        "value": "prehung",
+                        "label": "Pre-hung door (new jamb included)"
+                    },
+                    {
+                        "value": "closet",
+                        "label": "Closet door — bi-fold or bypass/sliding"
+                    },
+                    {
+                        "value": "barn",
+                        "label": "Barn door — track and hardware"
+                    },
+                    {
+                        "value": "pocket",
+                        "label": "Pocket door — slab or track hardware"
+                    },
+                    {
+                        "value": "storm",
+                        "label": "Storm / screen door (exterior)"
+                    }
+                ]
+            },
+            {
+                "label": "Scope",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "slab": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 door — same size, existing hinge and bore lines up"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 door — trim to fit, mortise hinges, bore for hardware"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "2–3 doors"
+                        }
+                    ],
+                    "prehung": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 door — opening square, casing reused"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 door — shim and level, new casing installed"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "2–3 doors"
+                        }
+                    ],
+                    "closet": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 opening — bi-fold pair on existing track"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 opening — bypass/sliding with new track"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "2–3 closet openings"
+                        }
+                    ],
+                    "barn": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Single door — track into studs"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Single door — header board over plaster/masonry"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Double doors or oversized / heavy slab"
+                        }
+                    ],
+                    "pocket": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Re-hang a slab on the existing pocket track"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Track, rollers, and hardware replacement"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "2–3 pocket doors — slab, track and hardware on existing pocket frames"
+                        }
+                    ],
+                    "storm": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Direct swap into an existing storm-door frame"
+                        },
+                        {
+                            "value": "md",
+                            "label": "New storm door — drill, shim, seal, closer"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Oversized or out-of-square opening"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "slab": {
+                "sm": [
+                    150,
+                    215
+                ],
+                "md": [
+                    225,
+                    330
+                ],
+                "lg": [
+                    370,
+                    555
+                ]
+            },
+            "prehung": {
+                "sm": [
+                    230,
+                    330
+                ],
+                "md": [
+                    330,
+                    480
+                ],
+                "lg": [
+                    560,
+                    840
+                ]
+            },
+            "closet": {
+                "sm": [
+                    165,
+                    235
+                ],
+                "md": [
+                    225,
+                    325
+                ],
+                "lg": [
+                    370,
+                    555
+                ]
+            },
+            "barn": {
+                "sm": [
+                    255,
+                    370
+                ],
+                "md": [
+                    330,
+                    480
+                ],
+                "lg": [
+                    480,
+                    720
+                ]
+            },
+            "pocket": {
+                "sm": [
+                    180,
+                    265
+                ],
+                "md": [
+                    285,
+                    415
+                ],
+                "lg": [
+                    450,
+                    675
+                ]
+            },
+            "storm": {
+                "sm": [
+                    195,
+                    285
+                ],
+                "md": [
+                    285,
+                    415
+                ],
+                "lg": [
+                    415,
+                    620
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Door Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Labor only — doors, jambs, casing, and hardware are yours to supply (we can recommend sizes and suppliers). Includes measuring, hanging, hinge mortising, latch and strike fitting, floor clearance, and a swing test. Painting, staining, and finish trim are quoted separately. Out-of-square openings, loose or rotted jambs, and uneven floors get flagged with the adjustment needed before we book. Cutting a new opening, removing or re-framing studs, and anything at DOB permit level is not handyman scope and goes to a licensed contractor — a pocket-door frame kit is stud framing, so that part goes to your contractor and we hang the slab and fit the track and hardware once the frame is in. Confirm slab size and swing direction before the visit — label each door if you're doing several."
+    },
+    "door-repair": {
+        "title": "Door Repair Estimate",
+        "subtitle": "Tell us what the door is doing and we'll show an estimated price range.",
+        "categories": [
+            {
+                "label": "What's wrong with the door?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose the problem…"
+                    },
+                    {
+                        "value": "sticking",
+                        "label": "Sticks, rubs, sags, or won't close"
+                    },
+                    {
+                        "value": "latch",
+                        "label": "Won't latch — strike plate is off"
+                    },
+                    {
+                        "value": "hardware",
+                        "label": "Handle, knob, hinge, or door closer"
+                    },
+                    {
+                        "value": "frame",
+                        "label": "Damaged jamb, frame, or trim"
+                    },
+                    {
+                        "value": "hole",
+                        "label": "Hole, dent, or scratch in the door"
+                    },
+                    {
+                        "value": "slider",
+                        "label": "Closet slider or bi-fold off its track"
+                    }
+                ]
+            },
+            {
+                "label": "Scope",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "sticking": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 door — hinge adjustment / minor shave"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 door — plane the edge, re-hang, prime the cut"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "2–3 doors, or a warped slab we review for replacement"
+                        }
+                    ],
+                    "latch": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 door — strike adjustment"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 door — strike relocation + latch mortise rework"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "2–3 doors, or frame movement corrected first"
+                        }
+                    ],
+                    "hardware": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 knob/handle, or one pair of hinges"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 door — full hardware set or a door closer"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "2+ doors / full apartment hardware refresh"
+                        }
+                    ],
+                    "frame": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Loose stop, trim, or jamb screws"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Split jamb repair / strike-area reinforcement"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Jamb section replaced + new casing"
+                        }
+                    ],
+                    "hole": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Small dent or scratch — fill and sand, primer-ready"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Knob-size hollow-core hole — backer, fill, sand"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Large hole or multiple panels, or slab replacement review"
+                        }
+                    ],
+                    "slider": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 opening — back on track, rollers adjusted"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 opening — new rollers, track, or floor guides"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "2–3 openings / full bypass hardware replacement"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "sticking": {
+                "sm": [
+                    150,
+                    190
+                ],
+                "md": [
+                    190,
+                    275
+                ],
+                "lg": [
+                    285,
+                    430
+                ]
+            },
+            "latch": {
+                "sm": [
+                    150,
+                    180
+                ],
+                "md": [
+                    175,
+                    255
+                ],
+                "lg": [
+                    260,
+                    390
+                ]
+            },
+            "hardware": {
+                "sm": [
+                    150,
+                    190
+                ],
+                "md": [
+                    190,
+                    275
+                ],
+                "lg": [
+                    300,
+                    450
+                ]
+            },
+            "frame": {
+                "sm": [
+                    150,
+                    215
+                ],
+                "md": [
+                    235,
+                    345
+                ],
+                "lg": [
+                    370,
+                    555
+                ]
+            },
+            "hole": {
+                "sm": [
+                    150,
+                    200
+                ],
+                "md": [
+                    200,
+                    290
+                ],
+                "lg": [
+                    300,
+                    450
+                ]
+            },
+            "slider": {
+                "sm": [
+                    150,
+                    195
+                ],
+                "md": [
+                    200,
+                    290
+                ],
+                "lg": [
+                    320,
+                    480
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Door Repair Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Labor and standard fasteners, shims, and filler included; replacement hardware, jamb stock, and paint are yours to supply or we pick them up at cost. Every repair ends with an open / close / latch test, not just a tightened screw. Patched and filled areas are left primer-ready — finish painting is a separate quote. A warped slab that needs replacing, damage from an active leak, or frame movement from building settling usually means a material pickup or second visit, and we tell you that before booking instead of calling it a quick adjustment. Fire-rated apartment entry doors have building and code limits: changes there need management sign-off. Backed by our 1-year workmanship warranty."
+    },
+    "drywall-repair": {
+        "title": "Drywall Patch & Repair Estimate",
+        "subtitle": "Pick the damage and the finish you need for an estimated price range.",
+        "categories": [
+            {
+                "label": "What are we fixing?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose the damage…"
+                    },
+                    {
+                        "value": "small-holes",
+                        "label": "Nail, screw, and anchor holes"
+                    },
+                    {
+                        "value": "hole",
+                        "label": "Hole — doorknob to fist size"
+                    },
+                    {
+                        "value": "large-hole",
+                        "label": "Large opening — 12″+ or an access cut-out"
+                    },
+                    {
+                        "value": "crack",
+                        "label": "Cracks — wall or ceiling seams"
+                    },
+                    {
+                        "value": "water",
+                        "label": "Water-stained or water-damaged drywall"
+                    },
+                    {
+                        "value": "texture",
+                        "label": "Texture match / skim coat an area"
+                    }
+                ]
+            },
+            {
+                "label": "Size & finish level",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "small-holes": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Up to 9 holes, one room — primer-ready"
+                        },
+                        {
+                            "value": "md",
+                            "label": "10–20 holes across 2–3 rooms — primed"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "21–40 holes, up to a studio or 1BR — primed + touch-up in your paint"
+                        }
+                    ],
+                    "hole": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 hole — patch, sand, primer-ready"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 holes — patch, texture match, primed"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4+ holes, or 1 hole + repaint the full wall (your paint)"
+                        }
+                    ],
+                    "large-hole": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 opening — backer, tape, 3 coats, primer-ready"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 opening — + texture match and primed"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Multiple openings / access cuts, all primed"
+                        }
+                    ],
+                    "crack": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 short crack (under 3 ft) — tape and finish"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Long or multiple cracks, or one ceiling seam"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Ceiling cracks across a room — taped, feathered, primed"
+                        }
+                    ],
+                    "water": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Small stained area — cut out, patch, stain-block, prime"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Wall or ceiling section up to about 4 sq ft — source already fixed"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Larger section or several areas — once the leak is fixed and the area is dry"
+                        }
+                    ],
+                    "texture": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Blend one small patch area into existing texture"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Skim one wall section smooth"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Skim a full wall or ceiling"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "small-holes": {
+                "sm": [
+                    150,
+                    190
+                ],
+                "md": [
+                    190,
+                    285
+                ],
+                "lg": [
+                    430,
+                    645
+                ]
+            },
+            "hole": {
+                "sm": [
+                    150,
+                    210
+                ],
+                "md": [
+                    230,
+                    340
+                ],
+                "lg": [
+                    345,
+                    520
+                ]
+            },
+            "large-hole": {
+                "sm": [
+                    230,
+                    330
+                ],
+                "md": [
+                    310,
+                    455
+                ],
+                "lg": [
+                    480,
+                    720
+                ]
+            },
+            "crack": {
+                "sm": [
+                    150,
+                    215
+                ],
+                "md": [
+                    235,
+                    350
+                ],
+                "lg": [
+                    390,
+                    585
+                ]
+            },
+            "water": {
+                "sm": [
+                    190,
+                    275
+                ],
+                "md": [
+                    290,
+                    430
+                ],
+                "lg": [
+                    460,
+                    690
+                ]
+            },
+            "texture": {
+                "sm": [
+                    150,
+                    225
+                ],
+                "md": [
+                    255,
+                    375
+                ],
+                "lg": [
+                    420,
+                    630
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Drywall Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Labor plus standard compound, tape, mesh, and backing included. Paint is not — we prime the patch, and we'll apply your paint for touch-up where the color is available. Compound needs drying time between coats, so larger repairs are often two visits and the range reflects that. Orange peel, knockdown, and smooth finishes are blended as closely as the existing texture, paint age, and lighting allow; an invisible match on an aged wall isn't guaranteed. Active leaks, mold, loose plaster, and cracks that keep coming back get flagged and routed out first — a hidden leak to a Licensed Master Plumber, mold to a licensed remediation contractor, structural movement to your building — because compound fixes none of them. Water-damaged board is replaced only after the source is fixed, the area is dry, and there is no mold. Whole-apartment punch lists above a 1BR are quoted on our apartment turnover page, not here. Suspected asbestos or lead in pre-1980 plaster is routed to a licensed abatement contractor. Backed by our 1-year workmanship warranty."
+    },
+    "caulking": {
+        "title": "Caulking & Sealing Estimate",
+        "subtitle": "Pick the area and roughly how much joint for an estimated price range.",
+        "categories": [
+            {
+                "label": "Where does it need sealing?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose the area…"
+                    },
+                    {
+                        "value": "tub-shower",
+                        "label": "Tub or shower surround"
+                    },
+                    {
+                        "value": "sink-counter",
+                        "label": "Sink, vanity, or countertop edge"
+                    },
+                    {
+                        "value": "backsplash",
+                        "label": "Kitchen backsplash and counter seam"
+                    },
+                    {
+                        "value": "window-door",
+                        "label": "Window and door perimeter (drafts)"
+                    },
+                    {
+                        "value": "trim",
+                        "label": "Baseboard, trim, and crown gaps"
+                    },
+                    {
+                        "value": "other",
+                        "label": "Other joint or gap"
+                    }
+                ]
+            },
+            {
+                "label": "How much, and is old caulk coming out?",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "tub-shower": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One tub or shower — fresh bead on a clean, sound joint"
+                        },
+                        {
+                            "value": "md",
+                            "label": "One tub/shower — strip old caulk, clean, re-seal (to ~20 ft)"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Two bathrooms, or one bath with heavy old-caulk buildup stripped and fully re-sealed"
+                        }
+                    ],
+                    "sink-counter": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 sink or vanity edge (under 8 ft)"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 fixtures, old caulk removed"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Full bathroom or kitchen fixture set"
+                        }
+                    ],
+                    "backsplash": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One run under 8 linear ft"
+                        },
+                        {
+                            "value": "md",
+                            "label": "8–20 linear ft — strip and re-seal"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Full kitchen perimeter + appliance gaps"
+                        }
+                    ],
+                    "window-door": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–2 windows — interior perimeter"
+                        },
+                        {
+                            "value": "md",
+                            "label": "3–5 windows / doors — draft sealing"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "6+ openings / whole-apartment draft seal"
+                        }
+                    ],
+                    "trim": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "One room — baseboard and trim gaps"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 rooms"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Full apartment — paintable caulk ahead of painting"
+                        }
+                    ],
+                    "other": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Short run, under 8 linear ft"
+                        },
+                        {
+                            "value": "md",
+                            "label": "8–20 linear ft"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "More than 20 linear ft / multiple areas"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "tub-shower": {
+                "sm": [
+                    150,
+                    195
+                ],
+                "md": [
+                    190,
+                    275
+                ],
+                "lg": [
+                    300,
+                    450
+                ]
+            },
+            "sink-counter": {
+                "sm": [
+                    150,
+                    180
+                ],
+                "md": [
+                    175,
+                    255
+                ],
+                "lg": [
+                    260,
+                    390
+                ]
+            },
+            "backsplash": {
+                "sm": [
+                    150,
+                    190
+                ],
+                "md": [
+                    195,
+                    285
+                ],
+                "lg": [
+                    300,
+                    450
+                ]
+            },
+            "window-door": {
+                "sm": [
+                    150,
+                    200
+                ],
+                "md": [
+                    210,
+                    310
+                ],
+                "lg": [
+                    345,
+                    520
+                ]
+            },
+            "trim": {
+                "sm": [
+                    150,
+                    210
+                ],
+                "md": [
+                    230,
+                    340
+                ],
+                "lg": [
+                    370,
+                    555
+                ]
+            },
+            "other": {
+                "sm": [
+                    150,
+                    190
+                ],
+                "md": [
+                    200,
+                    295
+                ],
+                "lg": [
+                    320,
+                    480
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Caulking Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Labor and standard sealant included — mold-resistant silicone for wet areas, paintable acrylic for trim, polyurethane where movement is a factor. We choose per joint instead of using one tube everywhere. Stripping old or moldy caulk, scraping heavy buildup, and joints that need surface cleaning first add to the range. Silicone only bonds to a clean, dry joint, so a wet area usually needs to stay unused for 24 hours after we finish. Surface mold on the old bead comes out with the bead, but mold in or behind the wall — or mold that keeps coming back — is remediation work for a licensed contractor, not a caulk job. If there's an active leak, soft drywall, or loose tile, we flag it for the right trade before sealing — caulk will hide a leak, not fix it. Facade, roof, and exterior above-grade joints are outside handyman scope. Backed by our 1-year workmanship warranty."
+    },
+    "cabinet-hardware": {
+        "title": "Cabinet Hardware Installation Estimate",
+        "subtitle": "Pick your hardware situation and piece count for an estimated price range.",
+        "categories": [
+            {
+                "label": "What's the situation?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose the job…"
+                    },
+                    {
+                        "value": "knobs-existing",
+                        "label": "Knobs — existing holes line up"
+                    },
+                    {
+                        "value": "pulls-existing",
+                        "label": "Pulls — existing holes, same center-to-center"
+                    },
+                    {
+                        "value": "new-holes",
+                        "label": "No holes yet — template and drill from scratch"
+                    },
+                    {
+                        "value": "respace",
+                        "label": "Existing holes are wrong — fill, touch up, re-drill"
+                    },
+                    {
+                        "value": "hinges",
+                        "label": "Hinges — replace or upgrade to soft-close"
+                    },
+                    {
+                        "value": "slides",
+                        "label": "Drawer slides — replace or adjust"
+                    }
+                ]
+            },
+            {
+                "label": "How many pieces?",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "knobs-existing": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–10 knobs"
+                        },
+                        {
+                            "value": "md",
+                            "label": "11–25 knobs"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "26+ knobs (full kitchen)"
+                        }
+                    ],
+                    "pulls-existing": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–10 pulls"
+                        },
+                        {
+                            "value": "md",
+                            "label": "11–25 pulls"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "26+ pulls (full kitchen)"
+                        }
+                    ],
+                    "new-holes": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–10 pieces"
+                        },
+                        {
+                            "value": "md",
+                            "label": "11–25 pieces"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "26+ pieces (full kitchen)"
+                        }
+                    ],
+                    "respace": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–10 pieces"
+                        },
+                        {
+                            "value": "md",
+                            "label": "11–25 pieces"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "26+ pieces (full kitchen)"
+                        }
+                    ],
+                    "hinges": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–10 hinges"
+                        },
+                        {
+                            "value": "md",
+                            "label": "11–25 hinges"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "26+ hinges (full kitchen)"
+                        }
+                    ],
+                    "slides": [
+                        {
+                            "value": "",
+                            "label": "Choose quantity…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1–3 drawers"
+                        },
+                        {
+                            "value": "md",
+                            "label": "4–8 drawers"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "9+ drawers"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "knobs-existing": {
+                "sm": [
+                    150,
+                    180
+                ],
+                "md": [
+                    180,
+                    255
+                ],
+                "lg": [
+                    255,
+                    375
+                ]
+            },
+            "pulls-existing": {
+                "sm": [
+                    150,
+                    185
+                ],
+                "md": [
+                    190,
+                    275
+                ],
+                "lg": [
+                    280,
+                    420
+                ]
+            },
+            "new-holes": {
+                "sm": [
+                    150,
+                    215
+                ],
+                "md": [
+                    245,
+                    360
+                ],
+                "lg": [
+                    395,
+                    590
+                ]
+            },
+            "respace": {
+                "sm": [
+                    285,
+                    420
+                ],
+                "md": [
+                    490,
+                    730
+                ],
+                "lg": [
+                    790,
+                    1180
+                ]
+            },
+            "hinges": {
+                "sm": [
+                    150,
+                    200
+                ],
+                "md": [
+                    215,
+                    315
+                ],
+                "lg": [
+                    345,
+                    520
+                ]
+            },
+            "slides": {
+                "sm": [
+                    150,
+                    215
+                ],
+                "md": [
+                    245,
+                    360
+                ],
+                "lg": [
+                    395,
+                    590
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Hardware Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Labor only — knobs, pulls, hinges, and slides are yours to supply. Send the product link and, for pulls, the center-to-center measurement, plus a photo of the fronts showing whether holes already exist; wrong pull sizing is the most common reason a job stalls. Includes a drilling jig or template, spacing layout, alignment checked across the whole run, and secure mounting. Filling and re-drilling mis-spaced holes takes real time and the filled spot isn't always invisible on painted, laminate, or thermofoil doors — we'll do one door first and show you before committing the kitchen. Re-spacing runs roughly double a from-scratch install and usually needs a second visit while filler cures — the range reflects that. Cabinet boxes, door replacement, and refacing are separate quotes."
+    },
+    "window-repair": {
+        "title": "Window Repair Estimate",
+        "subtitle": "Tell us what the window is doing and how many for an estimated price range.",
+        "categories": [
+            {
+                "label": "What's the problem?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose the problem…"
+                    },
+                    {
+                        "value": "stuck",
+                        "label": "Stuck, painted shut, or won't stay open"
+                    },
+                    {
+                        "value": "hardware",
+                        "label": "Lock, latch, handle, or crank operator"
+                    },
+                    {
+                        "value": "balance",
+                        "label": "Broken balance, spring, or sash cord"
+                    },
+                    {
+                        "value": "weatherstrip",
+                        "label": "Drafts — weatherstripping and seals"
+                    },
+                    {
+                        "value": "screen",
+                        "label": "Screen torn, loose, or missing"
+                    },
+                    {
+                        "value": "glass",
+                        "label": "Cracked or broken glass"
+                    }
+                ]
+            },
+            {
+                "label": "Scope",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "stuck": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 window — free the sash, clean and wax the track"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 windows, or paint-sealed and needs scoring"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4+ windows / a full room serviced"
+                        }
+                    ],
+                    "hardware": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 window — latch or lock replacement"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–3 windows, or a crank operator swap"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "4+ windows"
+                        }
+                    ],
+                    "balance": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 window — one balance/spring set, part in hand"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 window — both balances, sash removed and re-set"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "2–3 windows"
+                        }
+                    ],
+                    "weatherstrip": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 window — replace weatherstrip, seal drafts"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–4 windows"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "5+ windows / whole-apartment draft seal"
+                        }
+                    ],
+                    "screen": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 screen — re-mesh or spline repair"
+                        },
+                        {
+                            "value": "md",
+                            "label": "2–4 screens"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "5+ screens, or new frames measured and ordered"
+                        }
+                    ],
+                    "glass": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "1 single-pane sash — glass cut, glazed, re-set"
+                        },
+                        {
+                            "value": "md",
+                            "label": "1 single-pane sash — measure, order, return to install"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "1 standard-size insulated glass unit (IGU) — measured, ordered, installed on a return visit"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "stuck": {
+                "sm": [
+                    150,
+                    195
+                ],
+                "md": [
+                    220,
+                    325
+                ],
+                "lg": [
+                    365,
+                    545
+                ]
+            },
+            "hardware": {
+                "sm": [
+                    150,
+                    200
+                ],
+                "md": [
+                    225,
+                    330
+                ],
+                "lg": [
+                    370,
+                    555
+                ]
+            },
+            "balance": {
+                "sm": [
+                    165,
+                    240
+                ],
+                "md": [
+                    240,
+                    350
+                ],
+                "lg": [
+                    400,
+                    600
+                ]
+            },
+            "weatherstrip": {
+                "sm": [
+                    150,
+                    195
+                ],
+                "md": [
+                    215,
+                    315
+                ],
+                "lg": [
+                    360,
+                    540
+                ]
+            },
+            "screen": {
+                "sm": [
+                    150,
+                    180
+                ],
+                "md": [
+                    180,
+                    265
+                ],
+                "lg": [
+                    290,
+                    435
+                ]
+            },
+            "glass": {
+                "sm": [
+                    190,
+                    275
+                ],
+                "md": [
+                    290,
+                    430
+                ],
+                "lg": [
+                    430,
+                    645
+                ]
+            }
+        },
+        "cta": {
+            "text": "Get My Window Repair Quote",
+            "href": "/#contact"
+        },
+        "disclaimer": "Labor only — balances, latches, operators, weatherstrip, screen mesh, and glass are priced separately once we see the window. Includes diagnosis and repeated open / close / lock testing after the repair, not a single try. Glass is measured first and almost always needs a second visit once the pane or IGU arrives; oversized, tempered, laminated, and landmark-building glass goes to a specialty glazier — we refer those out early instead of pricing them here. Full window or frame replacement, facade work, exterior access, and anything at DOB permit level is outside handyman scope. Pre-1980 buildings: painted sashes can involve lead paint, which changes the method — we tell you before we start scraping. Backed by our 1-year workmanship warranty."
+    },
+    "apartment-turnover": {
+        "title": "Apartment Turnover Estimate",
+        "subtitle": "Pick the unit size and how deep the punch list goes for a planning range.",
+        "categories": [
+            {
+                "label": "What are we turning over?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose the unit…"
+                    },
+                    {
+                        "value": "single-room",
+                        "label": "One room or one bathroom only"
+                    },
+                    {
+                        "value": "studio",
+                        "label": "Studio / alcove studio"
+                    },
+                    {
+                        "value": "1br",
+                        "label": "1 bedroom"
+                    },
+                    {
+                        "value": "2br",
+                        "label": "2 bedroom"
+                    },
+                    {
+                        "value": "3br",
+                        "label": "3+ bedroom or duplex"
+                    },
+                    {
+                        "value": "office",
+                        "label": "Small office or commercial unit"
+                    }
+                ]
+            },
+            {
+                "label": "How deep is the punch list?",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "single-room": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Light — anchor holes patched, fixtures tightened, caulk touch-up"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Standard — patches, caulk, door and hardware adjustments"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Deep — repairs + blinds + hardware + patch-and-prep for paint"
+                        }
+                    ],
+                    "studio": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Light — anchor holes patched, fixtures tightened, caulk touch-up"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Standard — patches, caulk, doors, locks, blinds, hardware"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Deep — multi-room repairs + fixtures + patch-and-prep for paint"
+                        }
+                    ],
+                    "1br": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Light — anchor holes patched, fixtures tightened, caulk touch-up"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Standard — patches, caulk, doors, locks, blinds, hardware"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Deep — multi-room repairs + fixtures + patch-and-prep for paint"
+                        }
+                    ],
+                    "2br": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Light — anchor holes patched, fixtures tightened, caulk touch-up"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Standard — patches, caulk, doors, locks, blinds, hardware"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Deep — multi-room repairs + fixtures + patch-and-prep for paint"
+                        }
+                    ],
+                    "3br": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Light — anchor holes patched, fixtures tightened, caulk touch-up"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Standard — patches, caulk, doors, locks, blinds, hardware"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Deep — multi-room repairs + fixtures + patch-and-prep for paint"
+                        }
+                    ],
+                    "office": [
+                        {
+                            "value": "",
+                            "label": "Choose scope…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "Light — wall patches, loose fixtures, door adjustments"
+                        },
+                        {
+                            "value": "md",
+                            "label": "Standard — patches, doors, locks, blinds, hardware, fixtures"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "Deep — multi-room repairs + fixtures + patch-and-prep for paint"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "single-room": {
+                "sm": [
+                    150,
+                    225
+                ],
+                "md": [
+                    265,
+                    395
+                ],
+                "lg": [
+                    460,
+                    690
+                ]
+            },
+            "studio": {
+                "sm": [
+                    225,
+                    330
+                ],
+                "md": [
+                    420,
+                    620
+                ],
+                "lg": [
+                    720,
+                    1080
+                ]
+            },
+            "1br": {
+                "sm": [
+                    280,
+                    410
+                ],
+                "md": [
+                    520,
+                    780
+                ],
+                "lg": [
+                    900,
+                    1350
+                ]
+            },
+            "2br": {
+                "sm": [
+                    370,
+                    545
+                ],
+                "md": [
+                    680,
+                    1020
+                ],
+                "lg": [
+                    1180,
+                    1770
+                ]
+            },
+            "3br": {
+                "sm": [
+                    480,
+                    720
+                ],
+                "md": [
+                    890,
+                    1330
+                ],
+                "lg": [
+                    1550,
+                    2320
+                ]
+            },
+            "office": {
+                "sm": [
+                    280,
+                    410
+                ],
+                "md": [
+                    520,
+                    780
+                ],
+                "lg": [
+                    900,
+                    1350
+                ]
+            }
+        },
+        "cta": {
+            "text": "Send My Turnover Punch List",
+            "href": "/#contact"
+        },
+        "disclaimer": "A planning range for a bundled make-ready visit, not a fixed bid — turnover work is confirmed from your room-by-room task list and photos, and the final scope is approved before anything starts. Labor only: blinds, locks, hardware, fixtures, filler, and paint are supplied by you or picked up at cost. Interior painting, floor refinishing, and tile work are separate quotes. Not included and routed to the right licensed trade: new circuits or 240V, panel work, gas piping, new or hidden plumbing lines, sealed-system appliance work, structural changes, DOB permit-level work, and large demolition or debris removal. Send COI wording, elevator and work-hour rules, super contact, and your deadline with the list — building approval still comes from management, not from us."
+    },
+    "coi-handyman": {
+        "title": "COI Handyman Estimate",
+        "subtitle": "Pick the work and what your building requires for an estimated price range.",
+        "categories": [
+            {
+                "label": "What work does the unit need?",
+                "id": "series",
+                "options": [
+                    {
+                        "value": "",
+                        "label": "Choose the work…"
+                    },
+                    {
+                        "value": "mounting",
+                        "label": "Mounting — TV, shelves, mirrors, art, curtain rods"
+                    },
+                    {
+                        "value": "assembly",
+                        "label": "Furniture assembly / closet system"
+                    },
+                    {
+                        "value": "repairs",
+                        "label": "Repairs — doors, locks, drywall, caulking"
+                    },
+                    {
+                        "value": "fixtures",
+                        "label": "Fixture swaps — lights, faucets, hardware"
+                    },
+                    {
+                        "value": "ac",
+                        "label": "Window AC install or removal"
+                    },
+                    {
+                        "value": "punch-list",
+                        "label": "Multi-task punch list / move-in setup"
+                    }
+                ]
+            },
+            {
+                "label": "What does the building require?",
+                "id": "size",
+                "dependsOn": "series",
+                "optionSets": {
+                    "mounting": [
+                        {
+                            "value": "",
+                            "label": "Choose building requirements…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "COI only — certificate holder + additional insured wording"
+                        },
+                        {
+                            "value": "md",
+                            "label": "COI + management packet, elevator or freight reservation"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "COI + vendor/alteration agreement, work-hour limits, floor protection, super escort"
+                        }
+                    ],
+                    "assembly": [
+                        {
+                            "value": "",
+                            "label": "Choose building requirements…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "COI only — certificate holder + additional insured wording"
+                        },
+                        {
+                            "value": "md",
+                            "label": "COI + management packet, elevator or freight reservation"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "COI + vendor/alteration agreement, work-hour limits, floor protection, super escort"
+                        }
+                    ],
+                    "repairs": [
+                        {
+                            "value": "",
+                            "label": "Choose building requirements…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "COI only — certificate holder + additional insured wording"
+                        },
+                        {
+                            "value": "md",
+                            "label": "COI + management packet, elevator or freight reservation"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "COI + vendor/alteration agreement, work-hour limits, floor protection, super escort"
+                        }
+                    ],
+                    "fixtures": [
+                        {
+                            "value": "",
+                            "label": "Choose building requirements…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "COI only — certificate holder + additional insured wording"
+                        },
+                        {
+                            "value": "md",
+                            "label": "COI + management packet, elevator or freight reservation"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "COI + vendor/alteration agreement, work-hour limits, floor protection, super escort"
+                        }
+                    ],
+                    "ac": [
+                        {
+                            "value": "",
+                            "label": "Choose building requirements…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "COI only — certificate holder + additional insured wording"
+                        },
+                        {
+                            "value": "md",
+                            "label": "COI + management packet, elevator or freight reservation"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "COI + vendor/alteration agreement, work-hour limits, floor protection, super escort"
+                        }
+                    ],
+                    "punch-list": [
+                        {
+                            "value": "",
+                            "label": "Choose building requirements…"
+                        },
+                        {
+                            "value": "sm",
+                            "label": "COI only — certificate holder + additional insured wording"
+                        },
+                        {
+                            "value": "md",
+                            "label": "COI + management packet, elevator or freight reservation"
+                        },
+                        {
+                            "value": "lg",
+                            "label": "COI + vendor/alteration agreement, work-hour limits, floor protection, super escort"
+                        }
+                    ]
+                }
+            }
+        ],
+        "pricing": {
+            "mounting": {
+                "sm": [
+                    150,
+                    230
+                ],
+                "md": [
+                    200,
+                    300
+                ],
+                "lg": [
+                    265,
+                    400
+                ]
+            },
+            "assembly": {
+                "sm": [
+                    150,
+                    250
+                ],
+                "md": [
+                    210,
+                    325
+                ],
+                "lg": [
+                    280,
+                    430
+                ]
+            },
+            "repairs": {
+                "sm": [
+                    175,
+                    255
+                ],
+                "md": [
+                    225,
+                    335
+                ],
+                "lg": [
+                    295,
+                    440
+                ]
+            },
+            "fixtures": {
+                "sm": [
+                    165,
+                    240
+                ],
+                "md": [
+                    215,
+                    315
+                ],
+                "lg": [
+                    285,
+                    425
+                ]
+            },
+            "ac": {
+                "sm": [
+                    190,
+                    275
+                ],
+                "md": [
+                    245,
+                    360
+                ],
+                "lg": [
+                    320,
+                    480
+                ]
+            },
+            "punch-list": {
+                "sm": [
+                    265,
+                    395
+                ],
+                "md": [
+                    330,
+                    490
+                ],
+                "lg": [
+                    420,
+                    630
+                ]
+            }
+        },
+        "cta": {
+            "text": "Start My COI Review",
+            "href": "/#contact"
+        },
+        "disclaimer": "The COI itself is free — this range is the work, labor only, including the real time that building coordination adds (elevator and freight reservations, restricted work hours, floor and lobby protection, super escort). Materials and fixtures are supplied by you or picked up at cost. Send the building's COI sample, certificate holder name and address, additional insured wording, management contact, service address, and your dates and we'll review before scheduling. A COI is not building approval: alteration agreements, board sign-off, and work-hour rules still come from management. New circuits or 240V, panel work, gas piping, new or hidden plumbing lines, sealed-system refrigerant work, roof or structural changes, and DOB permit-level alterations require a Licensed Master Electrician, Licensed Master Plumber, or a permitted contractor — we flag those before booking rather than after."
+    }
+});
+
 export default function calculator(container) {
     const configKey = container.dataset.config || 'ikea';
     const cfg = CONFIGS[configKey];
@@ -1983,10 +12497,20 @@ export default function calculator(container) {
     //     baked into the figure (most jobs are taxable labor, but a subset are non-taxable
     //     capital improvements with Form ST-124, so we don't hard-add it to every quote).
     const PRICING = { REPAIR_MINIMUM: 150, ASSESSMENT_VISIT_FEE: 99, SALES_TAX_RATE: 0.08875 };
+    function isAssessmentPath(lo, hi) {
+        // A config prices an out-of-scope symptom as the assessment visit
+        // (e.g. "breaker trips repeatedly" — we diagnose and route, we don't
+        // sell the repair). Exactly [99, 99] means that path, never work.
+        return lo === PRICING.ASSESSMENT_VISIT_FEE && hi === PRICING.ASSESSMENT_VISIT_FEE;
+    }
+
     function flooredRange(lo, hi) {
         // Visit mode prices non-work paths (free photo estimate, $99 credited
         // assessment) — those are legitimate sub-$150 figures, so no floor.
         if (cfg.mode === 'visit') return [lo, hi];
+        // Same exemption in menu mode for the explicit assessment path,
+        // otherwise a "$99, credited" option would render as $150.
+        if (isAssessmentPath(lo, hi)) return [lo, hi];
         return [Math.max(lo, PRICING.REPAIR_MINIMUM), Math.max(hi, PRICING.REPAIR_MINIMUM)];
     }
 
@@ -2035,10 +12559,13 @@ export default function calculator(container) {
             }
         }
 
-        // Per-option note (visit mode): explains what the figure means
+        // Per-option note: visit-mode paths, or the assessment escape used by
+        // menu-mode configs for symptoms we diagnose but do not repair.
         const noteEl = container.querySelector('.mod-calc__result-note');
         if (noteEl) {
-            const note = cfg.resultNotes?.[size];
+            const note = isAssessmentPath(lo, hi)
+                ? 'On-site assessment — credited toward the work if we do the job. This symptom needs eyes on it before anyone quotes a repair, and some fixes route to a licensed trade.'
+                : cfg.resultNotes?.[size];
             noteEl.textContent = note || '';
             noteEl.style.display = note ? '' : 'none';
         }
@@ -2098,6 +12625,8 @@ export default function calculator(container) {
                     // Drop the label's own "(...)" price hint so it isn't repeated next to pathText
                     const cleanSizeLabel = sizeLabel.replace(/\s*\([^)]*\)\s*$/, '');
                     description = `${seriesLabel} — ${cleanSizeLabel} (${pathText})`;
+                } else if (isAssessmentPath(lo, hi)) {
+                    description = `${seriesLabel} — ${sizeLabel} ($99 on-site assessment, credited toward the work; repair scope confirmed on site)`;
                 } else {
                     description = hi > lo
                         ? `${seriesLabel} — ${sizeLabel} (estimated $${lo}–$${hi}, work only — NYC sales tax separate)`
