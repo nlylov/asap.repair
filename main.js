@@ -557,6 +557,53 @@ function repairAsapTrackSmsClickToCrm(smsLink) {
 }
 
 window.repairAsapTrackEvent = repairAsapTrackEvent;
+
+/* --------------------------------------------------
+   CONVERSION-BLOCK VISIBILITY (GA4)
+   Fires once per block per pageview when a conversion
+   element scrolls into view, so we can tell which of
+   the new blocks (pricing panel, calculator, gallery,
+   reviews) actually precede a submitted quote.
+   -------------------------------------------------- */
+function repairAsapTrackConversionBlocks() {
+  if (!('IntersectionObserver' in window)) return;
+  const BLOCKS = [
+    ['#pricing', 'pricing_panel'],
+    ['[data-module="calculator"]', 'calculator'],
+    ['.svc-gallery', 'photo_gallery'],
+    ['.svc-testimonials, .review-card', 'reviews'],
+  ];
+  const seen = new Set();
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const name = entry.target.dataset.conversionBlock;
+      if (!name || seen.has(name)) return;
+      seen.add(name);
+      io.unobserve(entry.target);
+      repairAsapTrackEvent('conversion_block_view', {
+        event_category: 'engagement',
+        block: name,
+        page_path: window.location.pathname,
+      });
+    });
+  }, { threshold: 0.4 });
+
+  BLOCKS.forEach(([selector, name]) => {
+    const el = document.querySelector(selector);
+    if (!el) return;
+    el.dataset.conversionBlock = name;
+    io.observe(el);
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', repairAsapTrackConversionBlocks);
+} else {
+  repairAsapTrackConversionBlocks();
+}
+document.addEventListener('components-loaded', repairAsapTrackConversionBlocks);
+
 window.repairAsapBuildLeadEventParams = repairAsapBuildLeadEventParams;
 window.repairAsapBuildServiceLeadContext = repairAsapBuildServiceLeadContext;
 window.repairAsapGetSessionContext = repairAsapGetSessionContext;
