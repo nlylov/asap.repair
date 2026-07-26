@@ -4,8 +4,8 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { execSync } from 'node:child_process';
 import { join } from 'node:path';
 
-const ASSET_VERSION = '20260716a';
-const LOADER_ASSET_VERSION = '20260716a';
+const ASSET_VERSION = '20260726a';
+const LOADER_ASSET_VERSION = '20260726a';
 const ROOT = new URL('..', import.meta.url).pathname;
 
 const serviceLinks = {
@@ -315,16 +315,7 @@ function renderPage(page) {
     <meta name="theme-color" content="#0a0f1c">
     <link rel="icon" type="image/x-icon" href="/assets/favicons/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap">
     </noscript>
     <link rel="preload" as="image" type="${page.heroImage.endsWith('.png') ? 'image/png' : 'image/webp'}" href="${page.heroImage}">
     <link rel="stylesheet" href="/styles.css?v=${ASSET_VERSION}">
@@ -496,3 +487,6 @@ console.log(`Generated ${pages.length} area landing pages.`);
 
 // Re-bake static header/footer into the freshly generated pages
 execSync(`node ${new URL('./bake-components.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
+execSync(`node ${new URL('./vendor-fonts.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
+execSync(`node ${new URL('./sell-meta-descriptions.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
+execSync(`node ${new URL('./consolidate-entity-graph.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });

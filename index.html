@@ -29,28 +29,19 @@
   <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicons/favicon-64x64.png">
 
   <!-- Fonts (non-render-blocking) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
-    rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript>
-    <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap">
-  </noscript>
 
   <!-- Preload critical above-the-fold image -->
   <link rel="preload" as="image" type="image/webp" href="/assets/images/hero-image.webp" fetchpriority="high">
 
-  <link rel="stylesheet" href="/styles.css?v=20260706c">
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/PlusJakartaSans-800-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/Inter-400-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css?v=20260726a">
   <!-- Interactive Services by Room (below the fold) -->
   <link rel="preload" as="style" href="/room-services.css?v=20260704a" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/room-services.css?v=20260704a"></noscript>
 
   <!-- Schema.org: LocalBusiness -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"Repair Asap LLC","alternateName":"Repair ASAP","url":"https://asap.repair","logo":"https://asap.repair/assets/images/logo-header.webp","image":"https://asap.repair/assets/images/og-image.png","description":"Insured handyman service in NYC with COI support. Furniture assembly, TV mounting, painting, electrical fixture/device replacement, plumbing fixture help, AC and repairs after scope review.","telephone":"+1-775-310-7770","address":{"@type":"PostalAddress","streetAddress":"99-60 64th Ave","addressLocality":"Rego Park","addressRegion":"NY","postalCode":"11374","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":40.7282,"longitude":-73.8526},"areaServed":[{"@type":"City","name":"New York"},{"@type":"State","name":"New York"}],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday"],"opens":"10:00","closes":"16:00"}],"priceRange":"$$","sameAs":["https://www.yelp.com/biz/repair-asap-brooklyn","https://g.page/r/CSK3M3n6T8_qEBM","https://www.google.com/maps/place/Repair+Asap+LLC/","https://www.thumbtack.com/ny/new-york/handyman/repair-asap-llc/service/437267985498792024"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","@id":"https://asap.repair/#business","name":"Repair Asap LLC","alternateName":"Repair ASAP","url":"https://asap.repair","logo":"https://asap.repair/assets/images/logo-header.webp","image":"https://asap.repair/assets/images/og-image.png","description":"Insured handyman service in NYC with COI support. Furniture assembly, TV mounting, painting, electrical fixture/device replacement, plumbing fixture help, AC and repairs after scope review.","telephone":"+1-775-310-7770","address":{"@type":"PostalAddress","streetAddress":"99-60 64th Ave","addressLocality":"Rego Park","addressRegion":"NY","postalCode":"11374","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":40.7282,"longitude":-73.8526},"areaServed":[{"@type":"City","name":"New York"},{"@type":"State","name":"New York"}],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday"],"opens":"10:00","closes":"16:00"}],"priceRange":"$$","sameAs":["https://www.yelp.com/biz/repair-asap-brooklyn","https://g.page/r/CSK3M3n6T8_qEBM","https://www.google.com/maps/place/Repair+Asap+LLC/","https://www.thumbtack.com/ny/new-york/handyman/repair-asap-llc/service/437267985498792024"]}</script>
 
   <!-- Schema.org: WebSite (for sitelinks search box) -->
   <script type="application/ld+json">
@@ -61,7 +52,7 @@
     "url": "https://asap.repair"
   }
   </script>
-  <script defer src="/analytics.js?v=20260707a"></script>
+  <script defer src="/analytics.js?v=20260726a"></script>
 </head>
 
 <body>
@@ -1017,6 +1008,7 @@
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": "https://asap.repair/#faq",
     "mainEntity": [
       {
         "@type": "Question",
@@ -1224,7 +1216,7 @@
     </div>
   </div>
 
-  <script defer src="/components/loader.js?v=20260716a"></script>
+  <script defer src="/components/loader.js?v=20260726a"></script>
   <script>
     // The Maps (Places) loader src is defined once in components/loader.js.
     // This stub only guards the async-load race before main.js defines the real callback.
@@ -1232,7 +1224,7 @@
       window.__placesAutocompletePending = true;
     };
   </script>
-  <script defer src="/main.js?v=20260716a"></script>
+  <script defer src="/main.js?v=20260726a"></script>
   <!-- Interactive Services by Room -->
   <script defer src="/room-services.js?v=20260704a"></script>
 

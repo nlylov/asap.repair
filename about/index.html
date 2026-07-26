@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-      <script defer src="/analytics.js?v=20260707a"></script>
+      <script defer src="/analytics.js?v=20260726a"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us — Repair Asap LLC | NYC Handyman Services</title>
@@ -36,18 +36,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript>
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap">
-    </noscript>
-    <link rel="stylesheet" href="/styles.css?v=20260706c">
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/PlusJakartaSans-800-latin.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/Inter-400-latin.woff2" crossorigin>
+    <link rel="stylesheet" href="/styles.css?v=20260726a">
 
     <!-- Schema.org -->
     <script type="application/ld+json">
@@ -58,7 +49,8 @@
       "description": "NYC handyman service with insured, scope-reviewed work, COI support, and quality-focused repairs.",
       "url": "https://asap.repair/about/",
       "mainEntity": {
-        "@type": "LocalBusiness",
+        "@type": "HomeAndConstructionBusiness",
+        "@id": "https://asap.repair/#business",
         "name": "Repair Asap LLC",
         "telephone": "+1-775-310-7770",
         "url": "https://asap.repair",
@@ -70,9 +62,21 @@
           "postalCode": "11374",
           "addressCountry": "US"
         },
-        "areaServed": ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island", "Western Long Island", "Nassau County"],
+        "areaServed": [
+          "Manhattan",
+          "Brooklyn",
+          "Queens",
+          "Bronx",
+          "Staten Island",
+          "Western Long Island",
+          "Nassau County"
+        ],
         "foundingDate": "2019",
-        "numberOfEmployees": {"@type": "QuantitativeValue", "minValue": 5, "maxValue": 15}
+        "numberOfEmployees": {
+          "@type": "QuantitativeValue",
+          "minValue": 5,
+          "maxValue": 15
+        }
       }
     }
     </script>
@@ -517,8 +521,8 @@
     </button>
 </div>
 <!--/baked--></div>
-    <script src="/components/loader.js?v=20260716a"></script>
-    <script src="/main.js?v=20260716a" defer></script>
+    <script src="/components/loader.js?v=20260726a"></script>
+    <script src="/main.js?v=20260726a" defer></script>
 </body>
 
 </html>

@@ -5,8 +5,8 @@ import { execSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-const ASSET_VERSION = '20260716a';
-const CSS_VERSION = '20260706c';
+const ASSET_VERSION = '20260726a';
+const CSS_VERSION = '20260726a';
 const ROOT = new URL('..', import.meta.url).pathname;
 const BASE_URL = 'https://asap.repair';
 
@@ -1387,6 +1387,26 @@ const commercialIntake = [
   ],
 ];
 
+/* The commercial refrigeration cluster is one buying context: a restaurant with a
+   failing reach-in usually also owns a walk-in, a prep table and an ice machine.
+   Each page previously linked only to the hub, so the cluster had no lateral paths
+   for a visitor OR for crawl equity — every page sat two clicks from anywhere. */
+const COMMERCIAL_CLUSTER = [
+  ['reach-in-cooler-repair', 'Reach-In Cooler Repair'],
+  ['walk-in-cooler-repair', 'Walk-In Cooler Repair'],
+  ['commercial-freezer-repair', 'Commercial Freezer Repair'],
+  ['prep-table-refrigerator-repair', 'Prep Table Refrigerator Repair'],
+  ['beverage-cooler-repair', 'Beverage Cooler Repair'],
+  ['ice-machine-repair', 'Ice Machine Repair'],
+  ['restaurant-refrigeration-repair', 'Restaurant Refrigeration Repair'],
+];
+
+const clusterSiblings = (slug) =>
+  COMMERCIAL_CLUSTER.filter(([s]) => s !== slug).map(([s, label]) => ({
+    label,
+    url: `/services/appliance-services/${s}/`,
+  }));
+
 function commercialTriagePage({
   slug,
   crumb,
@@ -1435,6 +1455,7 @@ function commercialTriagePage({
       { label: 'Ice Machine Cleaning', url: '/services/appliance-services/ice-machine-cleaning/' },
       { label: 'Restaurant Handyman', url: '/for-restaurants/' },
       ...related,
+      ...clusterSiblings(slug),
     ],
     crossLinks: [
       { label: 'Preventive Maintenance', url: '/preventive-maintenance/' },
@@ -1455,7 +1476,7 @@ const commercialChildPages = [
   commercialTriagePage({
     slug: 'reach-in-cooler-repair',
     crumb: 'Reach-In Cooler Repair',
-    title: 'Reach-In Cooler Repair Help NYC | Restaurant Refrigeration Triage',
+    title: 'Reach-In Cooler Repair Help NYC | Restaurant Coolers',
     description: 'Reach-in cooler running warm in NYC? Fast commercial refrigeration triage for coils, airflow, gaskets, drains and temperature checks.',
     badge: 'Reach-In Cooler Repair Help',
     h1: 'Reach-In Cooler Repair Help in NYC',
@@ -1523,7 +1544,7 @@ const commercialChildPages = [
   commercialTriagePage({
     slug: 'prep-table-refrigerator-repair',
     crumb: 'Prep Table Refrigerator Repair',
-    title: 'Prep Table Refrigerator Repair Help NYC | Sandwich Unit Triage',
+    title: 'Prep Table Refrigerator Repair NYC | Sandwich Units',
     description: 'Prep table refrigerator running warm in NYC? Triage for airflow, pans, coils, gaskets, drains and food-service temperature problems.',
     badge: 'Prep Table Refrigerator Repair',
     h1: 'Prep Table Refrigerator Repair Help in NYC',
@@ -1591,7 +1612,7 @@ const commercialChildPages = [
   commercialTriagePage({
     slug: 'commercial-freezer-repair',
     crumb: 'Commercial Freezer Repair',
-    title: 'Commercial Freezer Repair Help NYC | Reach-In & Walk-In Triage',
+    title: 'Commercial Freezer Repair Help NYC | Reach-In & Walk-In',
     description: 'Commercial freezer trouble in NYC? Triage for frost, airflow, doors, gaskets, drains, coils and specialist routing when sealed-system work is likely.',
     badge: 'Commercial Freezer Repair Help',
     h1: 'Commercial Freezer Repair Help in NYC',
@@ -1625,7 +1646,7 @@ const commercialChildPages = [
   commercialTriagePage({
     slug: 'restaurant-refrigeration-repair',
     crumb: 'Restaurant Refrigeration Repair',
-    title: 'Restaurant Refrigeration Repair Help NYC | Cooler & Prep Table Triage',
+    title: 'Restaurant Refrigeration Repair NYC | Coolers & Prep Tables',
     description: 'Restaurant refrigeration help in NYC for walk-ins, reach-ins, prep tables, beverage coolers, coils, gaskets, drains and maintenance planning.',
     badge: 'Restaurant Refrigeration Repair',
     h1: 'Restaurant Refrigeration Help in NYC',
@@ -2086,15 +2107,6 @@ function pageHtml(page) {
     <meta name="theme-color" content="#0a0f1c">
     <link rel="icon" type="image/x-icon" href="/assets/favicons/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"></noscript>
     <link rel="preload" as="image" type="image/webp" href="${heroImage}" fetchpriority="high">
     <link rel="stylesheet" href="/styles.css?v=${CSS_VERSION}">
 </head>
@@ -2294,3 +2306,6 @@ for (const page of pages) {
 
 // Re-bake static header/footer into the freshly generated pages
 execSync(`node ${new URL('./bake-components.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
+execSync(`node ${new URL('./vendor-fonts.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
+execSync(`node ${new URL('./sell-meta-descriptions.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
+execSync(`node ${new URL('./consolidate-entity-graph.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });

@@ -18,8 +18,59 @@ DATA_PATH = ROOT / "_data" / "case-studies.json"
 PUBLIC_DATA_PATH = ROOT / "assets" / "data" / "case-studies.json"
 CASE_DIR = ROOT / "case-studies"
 SITE = "https://asap.repair"
-ASSET_VERSION = "20260715a"
+ASSET_VERSION = "20260726a"
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+
+_DIM_CACHE: dict[str, str] = {}
+
+
+def dims(src: str) -> str:
+    """Real width/height attributes for a local image, so the browser reserves
+    the right box before the file arrives (layout shift is a Core Web Vitals
+    ranking signal). Reads the container header directly — no Pillow, which
+    this interpreter does not have. Returns '' for anything unreadable so a
+    missing file degrades to today's behaviour instead of breaking the build."""
+    if src in _DIM_CACHE:
+        return _DIM_CACHE[src]
+    out = ""
+    path = ROOT / src.lstrip("/").split("?")[0]
+    try:
+        head = path.read_bytes()[:64]
+        w = h = 0
+        if head[:4] == b"RIFF" and head[8:12] == b"WEBP":
+            fmt = head[12:16]
+            if fmt == b"VP8X":
+                w = int.from_bytes(head[24:27], "little") + 1
+                h = int.from_bytes(head[27:30], "little") + 1
+            elif fmt == b"VP8 ":
+                w = int.from_bytes(head[26:28], "little") & 0x3FFF
+                h = int.from_bytes(head[28:30], "little") & 0x3FFF
+            elif fmt == b"VP8L":
+                bits = int.from_bytes(head[21:25], "little")
+                w = (bits & 0x3FFF) + 1
+                h = ((bits >> 14) & 0x3FFF) + 1
+        elif head[:8] == b"\x89PNG\r\n\x1a\n":
+            w = int.from_bytes(head[16:20], "big")
+            h = int.from_bytes(head[20:24], "big")
+        elif head[:2] == b"\xff\xd8":
+            data = path.read_bytes()
+            i = 2
+            while i < len(data) - 9:
+                if data[i] != 0xFF:
+                    i += 1
+                    continue
+                marker = data[i + 1]
+                if 0xC0 <= marker <= 0xCF and marker not in (0xC4, 0xC8, 0xCC):
+                    h = int.from_bytes(data[i + 5 : i + 7], "big")
+                    w = int.from_bytes(data[i + 7 : i + 9], "big")
+                    break
+                i += 2 + int.from_bytes(data[i + 2 : i + 4], "big")
+        if w and h:
+            out = f' width="{w}" height="{h}"'
+    except (OSError, IndexError, ValueError):
+        out = ""
+    _DIM_CACHE[src] = out
+    return out
 LOCAL_URL_RE = re.compile(r"^/[A-Za-z0-9/_#?=&.%+-]*$")
 
 
@@ -165,10 +216,6 @@ def render_head(study: dict) -> str:
   <meta name=\"robots\" content=\"index, follow\">
   <link rel=\"icon\" type=\"image/x-icon\" href=\"/assets/favicons/favicon.ico\">
   <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/assets/favicons/favicon-32x32.png\">
-  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
-  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
-  <link href=\"https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap\" rel=\"stylesheet\" media=\"print\" onload=\"this.media='all'\">
-  <noscript><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap\"></noscript>
   <link rel=\"stylesheet\" href=\"/styles.css?v={ASSET_VERSION}\">
   <link rel="stylesheet" href="/case-studies/case-studies.css?v={ASSET_VERSION}">
   <script type=\"application/ld+json\">{json_ld(schema)}</script>
@@ -271,8 +318,8 @@ def render_comparison_pairs(study: dict, content: dict) -> str:
             _mw_style = f" max-width:{int(_mw)}px; margin-left:auto; margin-right:auto;" if _mw else ""
             media = f"""<figure class="ba" style="--ar:{e(aspect_ratio)}; --pos:{e(str(position))}%;{_mw_style}" data-position="{e(str(position))}">
             <div class="ba__media" role="slider" tabindex="0" aria-label="Slide to compare {e(title)} before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{e(str(position))}" aria-valuetext="{e(str(position))}% before">
-              <img class="ba__after" src="{e(pair['after'])}" alt="{e(after_alt)}" loading="lazy">
-              <div class="ba__before-wrap"><img src="{e(pair['before'])}" alt="{e(before_alt)}" loading="lazy"></div>
+              <img class="ba__after" src="{e(pair['after'])}" alt="{e(after_alt)}" loading="lazy"{dims(pair['after'])}>
+              <div class="ba__before-wrap"><img src="{e(pair['before'])}" alt="{e(before_alt)}" loading="lazy"{dims(pair['before'])}></div>
               <div class="ba__labels" aria-hidden="true">
                 <span class="ba__tag ba__tag--before" translate="no">Before</span>
                 <span class="ba__tag ba__tag--after" translate="no">After</span>
@@ -284,11 +331,11 @@ def render_comparison_pairs(study: dict, content: dict) -> str:
             media = f"""<div class="project-comparison-card__media">
             <figure>
               <span>Before</span>
-              <img src="{e(pair['before'])}" alt="{e(before_alt)}" loading="lazy">
+              <img src="{e(pair['before'])}" alt="{e(before_alt)}" loading="lazy"{dims(pair['before'])}>
             </figure>
             <figure>
               <span>After</span>
-              <img src="{e(pair['after'])}" alt="{e(after_alt)}" loading="lazy">
+              <img src="{e(pair['after'])}" alt="{e(after_alt)}" loading="lazy"{dims(pair['after'])}>
             </figure>
           </div>"""
         cards.append(
@@ -679,10 +726,6 @@ def render_index(studies: list[dict]) -> str:
   <meta name=\"robots\" content=\"index, follow\">
   <link rel=\"icon\" type=\"image/x-icon\" href=\"/assets/favicons/favicon.ico\">
   <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/assets/favicons/favicon-32x32.png\">
-  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
-  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
-  <link href=\"https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap\" rel=\"stylesheet\" media=\"print\" onload=\"this.media='all'\">
-  <noscript><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap\"></noscript>
   <link rel=\"stylesheet\" href=\"/styles.css?v={ASSET_VERSION}\">
   <link rel="stylesheet" href="/case-studies/case-studies.css?v={ASSET_VERSION}">
   <script type=\"application/ld+json\">{json_ld(schema)}</script>
@@ -828,3 +871,5 @@ if __name__ == "__main__":
 
 import subprocess as _sp, os as _os
 _sp.run(["node", _os.path.join(_os.path.dirname(__file__), "bake-components.mjs")], check=False)
+_sp.run(["node", _os.path.join(_os.path.dirname(__file__), "vendor-fonts.mjs")], check=False)
+_sp.run(["node", _os.path.join(_os.path.dirname(__file__), "consolidate-entity-graph.mjs")], check=False)

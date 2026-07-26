@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <script defer src="/analytics.js?v=20260707a"></script>
+    <script defer src="/analytics.js?v=20260726a"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Furniture Assembly NYC | Same-Day When Available</title>
@@ -30,18 +30,11 @@
     <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicons/favicon-64x64.png">
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"></noscript>
 
         <link rel="preload" as="image" type="image/webp" href="/assets/services/service-furniture.webp" fetchpriority="high">
-    <link rel="stylesheet" href="/styles.css?v=20260706c">
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/PlusJakartaSans-800-latin.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/Inter-400-latin.woff2" crossorigin>
+    <link rel="stylesheet" href="/styles.css?v=20260726a">
 </head>
 
 <body>
@@ -155,97 +148,114 @@
         </div>
     </nav>
     <script type="application/ld+json">
-    {
+      {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
+        "@id": "https://asap.repair/services/furniture-assembly/#breadcrumb",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://asap.repair/" },
-            { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://asap.repair/services/" },
-            { "@type": "ListItem", "position": 3, "name": "Furniture Assembly", "item": "https://asap.repair/services/furniture-assembly/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://asap.repair/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://asap.repair/services/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Furniture Assembly",
+            "item": "https://asap.repair/services/furniture-assembly/"
+          }
         ]
-    }
-    </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"Furniture Assembly","name":"Furniture Assembly Service in NYC","description":"Professional furniture assembly in New York City for IKEA, Wayfair, West Elm, beds, desks, dressers, wardrobes, and flat-pack furniture. Scope, access, wall anchoring, and building requirements are reviewed before booking.","provider":{"@type":"LocalBusiness","name":"Repair Asap LLC","telephone":"+1-775-310-7770","url":"https://asap.repair","address":{"@type":"PostalAddress","streetAddress":"99-60 64th Ave","addressLocality":"Rego Park","addressRegion":"NY","postalCode":"11374","addressCountry":"US"}},"areaServed":[{"@type":"City","name":"New York City"},{"@type":"AdministrativeArea","name":"Queens"},{"@type":"AdministrativeArea","name":"Manhattan"},{"@type":"AdministrativeArea","name":"Brooklyn"},{"@type":"AdministrativeArea","name":"Bronx"},{"@type":"AdministrativeArea","name":"Staten Island"},{"@type":"Place","name":"Western Long Island"},{"@type":"AdministrativeArea","name":"Nassau County"}],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Furniture Assembly Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"IKEA Furniture Assembly"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Bed & Bed Frame Assembly"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Wardrobe & Closet Assembly"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Desk Assembly"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Dresser & Nightstand Assembly"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Murphy Bed Installation"}}]}}</script>
+      }
+      </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","@id":"https://asap.repair/services/furniture-assembly/#service","serviceType":"Furniture Assembly","name":"Furniture Assembly Service in NYC","description":"Professional furniture assembly in New York City for IKEA, Wayfair, West Elm, beds, desks, dressers, wardrobes, and flat-pack furniture. Scope, access, wall anchoring, and building requirements are reviewed before booking.","provider":{"@type":"HomeAndConstructionBusiness","@id":"https://asap.repair/#business","name":"Repair Asap LLC","telephone":"+1-775-310-7770","url":"https://asap.repair","address":{"@type":"PostalAddress","streetAddress":"99-60 64th Ave","addressLocality":"Rego Park","addressRegion":"NY","postalCode":"11374","addressCountry":"US"}},"areaServed":[{"@type":"City","name":"New York City"},{"@type":"AdministrativeArea","name":"Queens"},{"@type":"AdministrativeArea","name":"Manhattan"},{"@type":"AdministrativeArea","name":"Brooklyn"},{"@type":"AdministrativeArea","name":"Bronx"},{"@type":"AdministrativeArea","name":"Staten Island"},{"@type":"Place","name":"Western Long Island"},{"@type":"AdministrativeArea","name":"Nassau County"}],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Furniture Assembly Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","@id":"https://asap.repair/services/furniture-assembly/#service","name":"IKEA Furniture Assembly","mainEntityOfPage":"https://asap.repair/services/furniture-assembly/"}},{"@type":"Offer","itemOffered":{"@type":"Service","@id":"https://asap.repair/services/furniture-assembly/#service","name":"Bed & Bed Frame Assembly","mainEntityOfPage":"https://asap.repair/services/furniture-assembly/"}},{"@type":"Offer","itemOffered":{"@type":"Service","@id":"https://asap.repair/services/furniture-assembly/#service","name":"Wardrobe & Closet Assembly","mainEntityOfPage":"https://asap.repair/services/furniture-assembly/"}},{"@type":"Offer","itemOffered":{"@type":"Service","@id":"https://asap.repair/services/furniture-assembly/#service","name":"Desk Assembly","mainEntityOfPage":"https://asap.repair/services/furniture-assembly/"}},{"@type":"Offer","itemOffered":{"@type":"Service","@id":"https://asap.repair/services/furniture-assembly/#service","name":"Dresser & Nightstand Assembly","mainEntityOfPage":"https://asap.repair/services/furniture-assembly/"}},{"@type":"Offer","itemOffered":{"@type":"Service","@id":"https://asap.repair/services/furniture-assembly/#service","name":"Murphy Bed Installation","mainEntityOfPage":"https://asap.repair/services/furniture-assembly/"}}]},"mainEntityOfPage":"https://asap.repair/services/furniture-assembly/"}</script>
     <script type="application/ld+json">
-    {
+      {
         "@context": "https://schema.org",
         "@type": "FAQPage",
+        "@id": "https://asap.repair/services/furniture-assembly/#faq",
         "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "How much does furniture assembly cost in NYC?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Furniture assembly pricing in New York City depends on the item, box count, hardware condition, wall anchoring, building access, and cleanup requirements. Simple pieces like nightstands or small shelving units start around $150-$200. Mid-size items like bed frames or dressers typically run $150-$260. Large wardrobes, wall-unit systems, or Murphy beds require a scope review before a final quote."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Do you assemble IKEA furniture in Queens and Brooklyn?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes — we assemble IKEA furniture throughout Queens (Forest Hills, Rego Park, Astoria, Jackson Heights, Flushing, Bayside) and Brooklyn (Williamsburg, Park Slope, Bushwick, Bay Ridge, Flatbush). We handle common IKEA systems including PAX wardrobes, KALLAX shelving, MALM and HEMNES bedroom sets, and BESTA storage after confirming the product link, box count, and room access."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "How fast can you schedule furniture assembly in New York?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Scheduling depends on route, item count, building access, and whether wall anchoring or COI paperwork is needed. Send the product links, box count, room photos, delivery status, and borough so we can confirm the next realistic appointment window."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What NYC neighborhoods do you serve for furniture assembly?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "We serve all five boroughs. In Queens: Forest Hills, Rego Park, Astoria, Jackson Heights, Flushing, Long Island City, Bayside, Woodside, Sunnyside, Jamaica. In Brooklyn: Williamsburg, Park Slope, Bushwick, Bay Ridge, Flatbush, Bed-Stuy, DUMBO, Carroll Gardens. In Manhattan: Upper East Side, Upper West Side, Hell's Kitchen, Midtown, Chelsea, Greenwich Village, Financial District. Plus the Bronx and Staten Island."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Do I need to provide tools?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "No. Our technicians arrive with a full professional toolkit — power drills, torque drivers, levels, and all specialty bits. You don't need to provide anything except the furniture itself."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Can you assemble multiple items in one visit?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Absolutely. Most clients book us for multiple pieces — a bed frame, nightstands, and a dresser, for example. We'll bundle everything into one visit and one quote. The more items, the better the value."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What if parts are missing or damaged?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "If we discover missing or broken parts, we'll let you know immediately. For common hardware (screws, cam locks, dowels), we often carry replacements. For manufacturer-specific parts, we'll help you request them and return to finish the job once they arrive."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Do you remove packaging and boxes?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. We break down all cardboard, styrofoam, and packaging materials and take them to your building's recycling area. You're left with a clean, ready-to-use space."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What should I send for a furniture assembly quote?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Send product links or model numbers, box count, photos of the delivery labels or instructions, room photos, elevator or stair access, wall-anchoring needs, packaging removal needs, and any building or COI requirements."
-                }
+          {
+            "@type": "Question",
+            "name": "How much does furniture assembly cost in NYC?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Furniture assembly pricing in New York City depends on the item, box count, hardware condition, wall anchoring, building access, and cleanup requirements. Simple pieces like nightstands or small shelving units start around $150-$200. Mid-size items like bed frames or dressers typically run $150-$260. Large wardrobes, wall-unit systems, or Murphy beds require a scope review before a final quote."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you assemble IKEA furniture in Queens and Brooklyn?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes — we assemble IKEA furniture throughout Queens (Forest Hills, Rego Park, Astoria, Jackson Heights, Flushing, Bayside) and Brooklyn (Williamsburg, Park Slope, Bushwick, Bay Ridge, Flatbush). We handle common IKEA systems including PAX wardrobes, KALLAX shelving, MALM and HEMNES bedroom sets, and BESTA storage after confirming the product link, box count, and room access."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How fast can you schedule furniture assembly in New York?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Scheduling depends on route, item count, building access, and whether wall anchoring or COI paperwork is needed. Send the product links, box count, room photos, delivery status, and borough so we can confirm the next realistic appointment window."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What NYC neighborhoods do you serve for furniture assembly?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We serve all five boroughs. In Queens: Forest Hills, Rego Park, Astoria, Jackson Heights, Flushing, Long Island City, Bayside, Woodside, Sunnyside, Jamaica. In Brooklyn: Williamsburg, Park Slope, Bushwick, Bay Ridge, Flatbush, Bed-Stuy, DUMBO, Carroll Gardens. In Manhattan: Upper East Side, Upper West Side, Hell's Kitchen, Midtown, Chelsea, Greenwich Village, Financial District. Plus the Bronx and Staten Island."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need to provide tools?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Our technicians arrive with a full professional toolkit — power drills, torque drivers, levels, and all specialty bits. You don't need to provide anything except the furniture itself."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can you assemble multiple items in one visit?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. Most clients book us for multiple pieces — a bed frame, nightstands, and a dresser, for example. We'll bundle everything into one visit and one quote. The more items, the better the value."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if parts are missing or damaged?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If we discover missing or broken parts, we'll let you know immediately. For common hardware (screws, cam locks, dowels), we often carry replacements. For manufacturer-specific parts, we'll help you request them and return to finish the job once they arrive."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you remove packaging and boxes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. We break down all cardboard, styrofoam, and packaging materials and take them to your building's recycling area. You're left with a clean, ready-to-use space."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What should I send for a furniture assembly quote?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Send product links or model numbers, box count, photos of the delivery labels or instructions, room photos, elevator or stair access, wall-anchoring needs, packaging removal needs, and any building or COI requirements."
+            }
+          }
         ]
-    }
-    </script>
+      }
+      </script>
 
     <!-- ========== SERVICE HERO ========== -->
     <main id="main-content">
@@ -1044,8 +1054,8 @@
         </div>
     </noscript>
 
-    <script src="/components/loader.js?v=20260716a"></script>
-    <script src="/main.js?v=20260716a"></script>
+    <script src="/components/loader.js?v=20260726a"></script>
+    <script src="/main.js?v=20260726a"></script>
 </body>
 
 </html>
