@@ -76,20 +76,30 @@ function withId(node, id, type) {
    one to every entry nested in hasOfferCatalog/itemListElement declared 18 distinct
    sub-services on the appliance hub to be a single entity, and pointed each of them
    at the hub instead of at its own page. Nested nodes stay anonymous. */
-function walk(node, canonical, top = false) {
-  if (Array.isArray(node)) return node.map((n) => walk(n, canonical, top));
+function walk(node, canonical, top = false, ogImage = null) {
+  if (Array.isArray(node)) return node.map((n) => walk(n, canonical, top, ogImage));
   if (!node || typeof node !== 'object') return node;
 
   let out = node;
   if (isBusinessNode(out)) {
     out = withId({ ...out, ...CANONICAL }, BUSINESS_ID, BUSINESS_TYPE);
-  } else if (top && canonical && !out['@id']) {
+  } else if (top && canonical) {
     if (out['@type'] === 'Service') {
-      out = withId(out, `${canonical}#service`, 'Service');
+      /* Each property is filled independently of the others, so a node that
+         already got its @id on an earlier run still picks up the ones added
+         since — otherwise every new field would need a one-off backfill. */
+      // Copy before assigning: when the node already had an @id, `out` is still
+      // the caller's object, and writing through it mutated the very input the
+      // change-detection compares against — so every edit reported as a no-op.
+      out = out['@id'] ? { ...out } : withId(out, `${canonical}#service`, 'Service');
       if (!out.mainEntityOfPage) out.mainEntityOfPage = canonical;
-    } else if (out['@type'] === 'FAQPage') {
+      // Not one Service node carried an image, so nothing tied the service
+      // entity to a picture of the work. The page's own share card already
+      // shows that page's job photo — reuse it rather than invent a second one.
+      if (!out.image && ogImage) out.image = ogImage;
+    } else if (out['@type'] === 'FAQPage' && !out['@id']) {
       out = withId(out, `${canonical}#faq`, 'FAQPage');
-    } else if (out['@type'] === 'BreadcrumbList') {
+    } else if (out['@type'] === 'BreadcrumbList' && !out['@id']) {
       out = withId(out, `${canonical}#breadcrumb`, 'BreadcrumbList');
     }
   } else if (!top && canonical && PAGE_SCOPED.test(String(out['@id'] ?? ''))) {
@@ -102,7 +112,7 @@ function walk(node, canonical, top = false) {
   }
 
   const result = {};
-  for (const [key, value] of Object.entries(out)) result[key] = walk(value, canonical, false);
+  for (const [key, value] of Object.entries(out)) result[key] = walk(value, canonical, false, ogImage);
   return result;
 }
 
@@ -117,6 +127,7 @@ for (const rel of files) {
   const path = join(ROOT, rel);
   const html = readFileSync(path, 'utf8');
   const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1] || null;
+  const ogImage = html.match(/<meta property="og:image" content="([^"]+)"/)?.[1] || null;
   let next = html;
 
   /* The tag is hand-written on the older pages and wraps across lines
@@ -132,7 +143,7 @@ for (const rel of files) {
       } catch {
         return whole; // not our JSON to rewrite — leave it exactly as found
       }
-      const updated = walk(data, canonical, true);
+      const updated = walk(data, canonical, true, ogImage);
       const pretty = body.trim() !== body || /\n\s+"/.test(body);
       const indent = pretty ? (body.match(/\n(\s+)"/)?.[1]?.length ?? 4) - 2 : 0;
       const serialised = pretty
