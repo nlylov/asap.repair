@@ -1748,7 +1748,203 @@ const VISIT_CONFIGS = {
         workRange: [175, 450],
         ctaText: 'Request Commercial Triage',
     }),
+    /* The appliance-repair page covers every machine, so a price grid would have
+       to guess which one. The symptom-first path is the honest answer: a free
+       photo estimate for most, the $99 credited visit when it needs eyes on it. */
+    'appliance-repair': visitConfig({
+        title: 'What Will My Appliance Visit Cost?',
+        subtitle: 'Pick what the appliance is doing and see your options — most start free.',
+        symptoms: [
+            ['not-working', 'Not turning on or not running'],
+            ['not-cooling-heating', 'Not cooling or not heating'],
+            ['leaking', 'Leaking water'],
+            ['noisy', 'Noisy, shaking or vibrating'],
+            ['drain-vent', 'Not draining or not venting'],
+            ['install-replace', 'Installing or replacing a unit'],
+        ],
+        workLabel: 'Cleaning, hookup or adjustment work ($150–$300)',
+        workRange: [150, 300],
+        ctaText: 'Start My Appliance Request',
+    }),
 };
+
+Object.assign(CONFIGS, {
+    'ac-window': {
+            "title": "Window AC Installation Estimate",
+            "subtitle": "Pick the unit size and what the window needs for an estimated range.",
+            "categories": [
+                    {
+                            "label": "Unit Size",
+                            "id": "series",
+                            "options": [
+                                    {
+                                            "value": "",
+                                            "label": "Choose unit size…"
+                                    },
+                                    {
+                                            "value": "small",
+                                            "label": "Small — 5,000–8,000 BTU (one person can lift it)"
+                                    },
+                                    {
+                                            "value": "medium",
+                                            "label": "Medium — 10,000–14,000 BTU"
+                                    },
+                                    {
+                                            "value": "large",
+                                            "label": "Large — 18,000 BTU or heavier"
+                                    },
+                                    {
+                                            "value": "casement",
+                                            "label": "Casement or sliding window (needs a panel kit)"
+                                    }
+                            ]
+                    },
+                    {
+                            "label": "What The Window Needs",
+                            "id": "size",
+                            "dependsOn": "series",
+                            "optionSets": {
+                                    "small": [
+                                            {
+                                                    "value": "",
+                                                    "label": "Choose what the window needs…"
+                                            },
+                                            {
+                                                    "value": "drop",
+                                                    "label": "Drop-in — existing bracket or sill, window opens normally"
+                                            },
+                                            {
+                                                    "value": "seal",
+                                                    "label": "Install + side panels, foam sealing and drainage tilt"
+                                            },
+                                            {
+                                                    "value": "hard",
+                                                    "label": "Bracket or rails to install, high floor or awkward access"
+                                            }
+                                    ],
+                                    "medium": [
+                                            {
+                                                    "value": "",
+                                                    "label": "Choose what the window needs…"
+                                            },
+                                            {
+                                                    "value": "drop",
+                                                    "label": "Drop-in — existing bracket or sill, window opens normally"
+                                            },
+                                            {
+                                                    "value": "seal",
+                                                    "label": "Install + side panels, foam sealing and drainage tilt"
+                                            },
+                                            {
+                                                    "value": "hard",
+                                                    "label": "Bracket or rails to install, high floor or awkward access"
+                                            }
+                                    ],
+                                    "large": [
+                                            {
+                                                    "value": "",
+                                                    "label": "Choose what the window needs…"
+                                            },
+                                            {
+                                                    "value": "drop",
+                                                    "label": "Drop-in — existing bracket or sill, window opens normally"
+                                            },
+                                            {
+                                                    "value": "seal",
+                                                    "label": "Install + side panels, foam sealing and drainage tilt"
+                                            },
+                                            {
+                                                    "value": "hard",
+                                                    "label": "Bracket or rails to install, high floor or awkward access"
+                                            }
+                                    ],
+                                    "casement": [
+                                            {
+                                                    "value": "",
+                                                    "label": "Choose what the window needs…"
+                                            },
+                                            {
+                                                    "value": "drop",
+                                                    "label": "Drop-in — existing bracket or sill, window opens normally"
+                                            },
+                                            {
+                                                    "value": "seal",
+                                                    "label": "Install + side panels, foam sealing and drainage tilt"
+                                            },
+                                            {
+                                                    "value": "hard",
+                                                    "label": "Bracket or rails to install, high floor or awkward access"
+                                            }
+                                    ]
+                            }
+                    }
+            ],
+            "pricing": {
+                    "small": {
+                            "drop": [
+                                    150,
+                                    195
+                            ],
+                            "seal": [
+                                    195,
+                                    265
+                            ],
+                            "hard": [
+                                    255,
+                                    345
+                            ]
+                    },
+                    "medium": {
+                            "drop": [
+                                    165,
+                                    220
+                            ],
+                            "seal": [
+                                    220,
+                                    300
+                            ],
+                            "hard": [
+                                    290,
+                                    390
+                            ]
+                    },
+                    "large": {
+                            "drop": [
+                                    195,
+                                    260
+                            ],
+                            "seal": [
+                                    260,
+                                    350
+                            ],
+                            "hard": [
+                                    340,
+                                    460
+                            ]
+                    },
+                    "casement": {
+                            "drop": [
+                                    185,
+                                    245
+                            ],
+                            "seal": [
+                                    245,
+                                    330
+                            ],
+                            "hard": [
+                                    325,
+                                    435
+                            ]
+                    }
+            },
+            "cta": {
+                    "text": "Get My AC Install Quote",
+                    "href": "/#contact"
+            },
+            "disclaimer": "Ranges cover labor only: carrying the unit in, seating it in the window, securing it, fitting the side panels and sealing the gaps, then testing that it cools and drains outward. The unit, a support bracket, a panel kit and any foam or weatherstripping are not included. We do not run new electrical circuits — an AC that needs its own circuit or a different outlet type goes to a licensed electrician first. Buildings that require a bracket, a permit or a specific install method are quoted after we see the building rules. Above the 6th floor with no elevator, or any unit needing two people, is quoted from photos.",
+            "placeholder": "Select your unit size and window to see your estimate"
+    },
+});
 
 Object.assign(CONFIGS, VISIT_CONFIGS, {
     'dryer-vent-cleaning': {
@@ -12382,7 +12578,23 @@ Object.assign(CONFIGS, {
 export default function calculator(container) {
     const configKey = container.dataset.config || 'ikea';
     const cfg = CONFIGS[configKey];
-    if (!cfg) return;
+    if (!cfg) {
+        // Hub configs are derived from the leaf prices below and live in their own
+        // file, fetched only on the nine hub pages that ask for one. Inlining them
+        // would put 46KB on every page that renders any calculator.
+        if (configKey.startsWith('hub-') && !calculator._hubsLoaded) {
+            calculator._hubsLoaded = true;
+            fetch('/assets/data/hub-calculators.json')
+                .then((r) => (r.ok ? r.json() : null))
+                .then((data) => {
+                    if (!data || !data[configKey]) return;
+                    Object.assign(CONFIGS, data);
+                    calculator(container);
+                })
+                .catch(() => {});
+        }
+        return;
+    }
 
     // State
     let selected = {};

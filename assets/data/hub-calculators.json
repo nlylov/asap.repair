@@ -1,0 +1,3729 @@
+{
+  "hub-plumbing": {
+    "title": "Plumbing Fixture Estimate",
+    "subtitle": "Pick the job to see the range we quote for it, then open that page for the exact tiers.",
+    "categories": [
+      {
+        "label": "What do you need?",
+        "id": "series",
+        "options": [
+          {
+            "value": "",
+            "label": "Choose a service…"
+          },
+          {
+            "value": "faucet",
+            "label": "Faucet installation"
+          },
+          {
+            "value": "toilet",
+            "label": "Toilet installation"
+          },
+          {
+            "value": "sink",
+            "label": "Sink installation"
+          },
+          {
+            "value": "garbage-disposal",
+            "label": "Garbage disposal"
+          },
+          {
+            "value": "shut-off-valve",
+            "label": "Shut-off valve"
+          },
+          {
+            "value": "bathroom-fixture",
+            "label": "Bathroom fixtures"
+          },
+          {
+            "value": "leak-repair",
+            "label": "Visible leak repair"
+          }
+        ]
+      },
+      {
+        "label": "Which job?",
+        "id": "size",
+        "dependsOn": "series",
+        "optionSets": {
+          "faucet": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "kitchen",
+              "label": "Kitchen — single-hole / pull-down"
+            },
+            {
+              "value": "bathroom",
+              "label": "Bathroom — single-hole / centerset"
+            },
+            {
+              "value": "widespread",
+              "label": "Widespread — 3-hole / 8″ spread"
+            },
+            {
+              "value": "wall-bar",
+              "label": "Wall-mount or bar / prep faucet"
+            },
+            {
+              "value": "laundry",
+              "label": "Laundry / utility faucet"
+            },
+            {
+              "value": "shower-tub",
+              "label": "Tub or shower faucet trim (existing valve)"
+            }
+          ],
+          "toilet": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "standard",
+              "label": "Standard two-piece (round or elongated)"
+            },
+            {
+              "value": "comfort",
+              "label": "Comfort-height / dual-flush two-piece"
+            },
+            {
+              "value": "one-piece",
+              "label": "One-piece or skirted toilet"
+            },
+            {
+              "value": "bidet-smart",
+              "label": "Bidet seat / smart toilet (outlet exists)"
+            },
+            {
+              "value": "wall-hung",
+              "label": "Wall-hung on existing carrier"
+            },
+            {
+              "value": "repair",
+              "label": "Repair only — running toilet / loose & rocking"
+            }
+          ],
+          "sink": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "drop-in",
+              "label": "Drop-in / top-mount (kitchen or bath)"
+            },
+            {
+              "value": "undermount",
+              "label": "Undermount (existing cutout)"
+            },
+            {
+              "value": "vessel",
+              "label": "Vessel sink on counter"
+            },
+            {
+              "value": "pedestal",
+              "label": "Pedestal / wall-mount sink"
+            },
+            {
+              "value": "vanity",
+              "label": "Vanity + sink top (combo unit)"
+            },
+            {
+              "value": "utility",
+              "label": "Utility / laundry sink"
+            }
+          ],
+          "garbage-disposal": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "swap-same",
+              "label": "Direct swap — same brand & mount ring"
+            },
+            {
+              "value": "swap-diff",
+              "label": "Replacement — different brand / new mount ring"
+            },
+            {
+              "value": "new-install",
+              "label": "First disposal in this sink (power already there)"
+            },
+            {
+              "value": "repair",
+              "label": "Jammed, humming, or leaking unit"
+            },
+            {
+              "value": "remove",
+              "label": "Remove disposal — convert back to standard drain"
+            }
+          ],
+          "shut-off-valve": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "toilet",
+              "label": "Toilet supply valve"
+            },
+            {
+              "value": "sink",
+              "label": "Sink / faucet valves (hot & cold)"
+            },
+            {
+              "value": "appliance",
+              "label": "Dishwasher or ice-maker valve"
+            },
+            {
+              "value": "washer",
+              "label": "Washing machine hose bibs (exposed / surface-mounted only)"
+            },
+            {
+              "value": "multi",
+              "label": "Several fixtures in one visit"
+            }
+          ],
+          "bathroom-fixture": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "showerhead",
+              "label": "Shower head / handheld / rain head"
+            },
+            {
+              "value": "shower-trim",
+              "label": "Shower valve trim plate & handle"
+            },
+            {
+              "value": "accessories",
+              "label": "Towel bars, hooks, TP holder, shelves (1–3 pieces)"
+            },
+            {
+              "value": "full-set",
+              "label": "Full matching accessory set (4+ pieces)"
+            },
+            {
+              "value": "grab-bar",
+              "label": "Grab bar / safety rail"
+            },
+            {
+              "value": "mirror-cabinet",
+              "label": "Mirror or medicine cabinet"
+            }
+          ],
+          "leak-repair": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "faucet",
+              "label": "Faucet — dripping spout or leaking at the base"
+            },
+            {
+              "value": "under-sink",
+              "label": "Under the sink — supply line, trap or drain fitting"
+            },
+            {
+              "value": "toilet",
+              "label": "Toilet — supply, tank, or leaking at the base"
+            },
+            {
+              "value": "disposal",
+              "label": "Garbage disposal — leaking body or flange"
+            },
+            {
+              "value": "shower-tub",
+              "label": "Shower or tub — head, trim, spout or diverter"
+            },
+            {
+              "value": "unsure",
+              "label": "Not sure — water shows up, source unclear"
+            }
+          ]
+        }
+      }
+    ],
+    "pricing": {
+      "faucet": {
+        "kitchen": [
+          150,
+          440
+        ],
+        "bathroom": [
+          150,
+          410
+        ],
+        "widespread": [
+          180,
+          500
+        ],
+        "wall-bar": [
+          165,
+          470
+        ],
+        "laundry": [
+          150,
+          420
+        ],
+        "shower-tub": [
+          165,
+          470
+        ]
+      },
+      "toilet": {
+        "standard": [
+          180,
+          450
+        ],
+        "comfort": [
+          200,
+          480
+        ],
+        "one-piece": [
+          230,
+          540
+        ],
+        "bidet-smart": [
+          165,
+          560
+        ],
+        "wall-hung": [
+          260,
+          600
+        ],
+        "repair": [
+          150,
+          330
+        ]
+      },
+      "sink": {
+        "drop-in": [
+          180,
+          520
+        ],
+        "undermount": [
+          230,
+          650
+        ],
+        "vessel": [
+          200,
+          570
+        ],
+        "pedestal": [
+          230,
+          640
+        ],
+        "vanity": [
+          260,
+          760
+        ],
+        "utility": [
+          180,
+          510
+        ]
+      },
+      "garbage-disposal": {
+        "swap-same": [
+          180,
+          430
+        ],
+        "swap-diff": [
+          180,
+          420
+        ],
+        "new-install": [
+          300,
+          650
+        ],
+        "repair": [
+          150,
+          400
+        ],
+        "remove": [
+          150,
+          340
+        ]
+      },
+      "shut-off-valve": {
+        "toilet": [
+          150,
+          390
+        ],
+        "sink": [
+          200,
+          560
+        ],
+        "appliance": [
+          165,
+          440
+        ],
+        "washer": [
+          180,
+          500
+        ],
+        "multi": [
+          300,
+          850
+        ]
+      },
+      "bathroom-fixture": {
+        "showerhead": [
+          150,
+          260
+        ],
+        "shower-trim": [
+          165,
+          470
+        ],
+        "accessories": [
+          150,
+          370
+        ],
+        "full-set": [
+          280,
+          660
+        ],
+        "grab-bar": [
+          165,
+          470
+        ],
+        "mirror-cabinet": [
+          165,
+          540
+        ]
+      },
+      "leak-repair": {
+        "faucet": [
+          150,
+          410
+        ],
+        "under-sink": [
+          150,
+          420
+        ],
+        "toilet": [
+          150,
+          330
+        ],
+        "disposal": [
+          150,
+          400
+        ],
+        "shower-tub": [
+          165,
+          470
+        ],
+        "unsure": [
+          150,
+          470
+        ]
+      }
+    },
+    "cta": {
+      "text": "Get My Free Estimate",
+      "href": "/#contact"
+    },
+    "disclaimer": "These are the same ranges quoted on each service page, shown here end to end: the low figure is the simplest version of that job and the high figure the most involved one we quote without an on-site look. Labor only — fixtures, parts and materials are supplied by you or picked up at cost, and NYC sales tax is added separately where it applies. Open the service page for the exact tier that matches your job. Photo and text estimates are free; an on-site assessment is $99 and is credited toward the work.",
+    "placeholder": "Pick a service and job to see your range"
+  },
+  "hub-electrical": {
+    "title": "Electrical Work Estimate",
+    "subtitle": "Pick the job to see the range we quote for it, then open that page for the exact tiers.",
+    "categories": [
+      {
+        "label": "What do you need?",
+        "id": "series",
+        "options": [
+          {
+            "value": "",
+            "label": "Choose a service…"
+          },
+          {
+            "value": "light-fixture",
+            "label": "Light fixture"
+          },
+          {
+            "value": "ceiling-fan",
+            "label": "Ceiling fan"
+          },
+          {
+            "value": "chandelier",
+            "label": "Chandelier"
+          },
+          {
+            "value": "outlet",
+            "label": "Outlet replacement"
+          },
+          {
+            "value": "switch",
+            "label": "Switch replacement"
+          },
+          {
+            "value": "usb-outlet",
+            "label": "USB outlet"
+          },
+          {
+            "value": "smart-device",
+            "label": "Smart device"
+          },
+          {
+            "value": "electrical-troubleshooting",
+            "label": "Troubleshooting"
+          }
+        ]
+      },
+      {
+        "label": "Which job?",
+        "id": "size",
+        "dependsOn": "series",
+        "optionSets": {
+          "light-fixture": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "flush",
+              "label": "Flush / semi-flush ceiling light"
+            },
+            {
+              "value": "pendant",
+              "label": "Pendant / mini-chandelier (separate pendants)"
+            },
+            {
+              "value": "sconce-vanity",
+              "label": "Wall sconce / vanity light bar"
+            },
+            {
+              "value": "track",
+              "label": "Track lighting (existing box or track)"
+            },
+            {
+              "value": "under-cabinet",
+              "label": "Under-cabinet LED strip or puck"
+            },
+            {
+              "value": "other",
+              "label": "Other / not sure yet"
+            }
+          ],
+          "ceiling-fan": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "swap",
+              "label": "Like-for-like fan replacement"
+            },
+            {
+              "value": "hugger",
+              "label": "Hugger / low-profile flush mount"
+            },
+            {
+              "value": "downrod",
+              "label": "Standard downrod fan"
+            },
+            {
+              "value": "light-remote",
+              "label": "Fan with light kit + remote"
+            },
+            {
+              "value": "outdoor",
+              "label": "Outdoor / damp-rated (balcony, terrace)"
+            },
+            {
+              "value": "other",
+              "label": "Other / not sure yet"
+            }
+          ],
+          "chandelier": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "standard",
+              "label": "Standard chandelier (15–34 lb)"
+            },
+            {
+              "value": "crystal",
+              "label": "Crystal / multi-tier (crystals to assemble)"
+            },
+            {
+              "value": "heavy",
+              "label": "Heavy fixture (35–50 lb, two-person)"
+            },
+            {
+              "value": "cluster",
+              "label": "Pendant cluster on one canopy / multi-point fixture"
+            },
+            {
+              "value": "other",
+              "label": "Other / not sure yet"
+            },
+            {
+              "value": "oversize",
+              "label": "Over 50 lb, or the box is not rated for it"
+            }
+          ],
+          "outlet": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "standard",
+              "label": "Standard outlet swap (15A / 20A)"
+            },
+            {
+              "value": "gfci",
+              "label": "GFCI outlet (kitchen, bath, laundry)"
+            },
+            {
+              "value": "usb",
+              "label": "USB / combo charging outlet (mixed types)"
+            },
+            {
+              "value": "smart",
+              "label": "Smart Wi-Fi outlet"
+            },
+            {
+              "value": "damaged",
+              "label": "Loose, cracked or not holding plugs"
+            },
+            {
+              "value": "plates",
+              "label": "Cover plates / faceplate refresh"
+            }
+          ],
+          "switch": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "standard",
+              "label": "Standard single-pole switch"
+            },
+            {
+              "value": "dimmer",
+              "label": "Dimmer switch"
+            },
+            {
+              "value": "three-way",
+              "label": "3-way / multi-location (existing 3-way wiring)"
+            },
+            {
+              "value": "smart",
+              "label": "Smart switch (Lutron, TP-Link, Leviton)"
+            },
+            {
+              "value": "timer-fan",
+              "label": "Timer, humidity or fan-speed control"
+            },
+            {
+              "value": "other",
+              "label": "Worn or loose switch, or not sure"
+            }
+          ],
+          "usb-outlet": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "usb-a",
+              "label": "USB-A + standard receptacle"
+            },
+            {
+              "value": "usb-c",
+              "label": "USB-C fast charge (PD) + receptacle"
+            },
+            {
+              "value": "combo",
+              "label": "Combo USB-A + USB-C"
+            },
+            {
+              "value": "usb-gfci",
+              "label": "USB in a kitchen or bath (GFCI-protected)"
+            },
+            {
+              "value": "usb-plate",
+              "label": "USB charging faceplate (no device swap)"
+            },
+            {
+              "value": "other",
+              "label": "Not sure / mixed types"
+            }
+          ],
+          "smart-device": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "thermostat",
+              "label": "Smart thermostat (Nest, ecobee, Honeywell)"
+            },
+            {
+              "value": "lock",
+              "label": "Smart lock / keypad deadbolt"
+            },
+            {
+              "value": "doorbell",
+              "label": "Video doorbell (existing wired chime)"
+            },
+            {
+              "value": "lighting",
+              "label": "Smart switches, dimmers or bulbs"
+            },
+            {
+              "value": "plugs-sensors",
+              "label": "Smart plugs, sensors or a hub"
+            },
+            {
+              "value": "camera-other",
+              "label": "Indoor camera / other smart device"
+            }
+          ],
+          "electrical-troubleshooting": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "dead-outlet",
+              "label": "Outlet or wall plug is dead"
+            },
+            {
+              "value": "partial-power",
+              "label": "Half a room or several outlets are out"
+            },
+            {
+              "value": "breaker-trips",
+              "label": "Breaker trips over and over — safety stop"
+            },
+            {
+              "value": "flicker",
+              "label": "Lights flicker or dim (LED / dimmer mismatch)"
+            },
+            {
+              "value": "buzz-heat",
+              "label": "Outlet or switch buzzes, feels warm or sparks — safety stop"
+            },
+            {
+              "value": "after-install",
+              "label": "Stopped working after a recent install"
+            }
+          ]
+        }
+      }
+    ],
+    "pricing": {
+      "light-fixture": {
+        "flush": [
+          150,
+          480
+        ],
+        "pendant": [
+          160,
+          540
+        ],
+        "sconce-vanity": [
+          150,
+          510
+        ],
+        "track": [
+          190,
+          600
+        ],
+        "under-cabinet": [
+          420,
+          800
+        ],
+        "other": [
+          150,
+          560
+        ]
+      },
+      "ceiling-fan": {
+        "swap": [
+          150,
+          440
+        ],
+        "hugger": [
+          150,
+          470
+        ],
+        "downrod": [
+          165,
+          510
+        ],
+        "light-remote": [
+          180,
+          550
+        ],
+        "outdoor": [
+          190,
+          580
+        ],
+        "other": [
+          150,
+          540
+        ]
+      },
+      "chandelier": {
+        "standard": [
+          185,
+          570
+        ],
+        "crystal": [
+          260,
+          820
+        ],
+        "heavy": [
+          300,
+          900
+        ],
+        "cluster": [
+          230,
+          730
+        ],
+        "other": [
+          165,
+          650
+        ],
+        "oversize": [
+          99,
+          99
+        ]
+      },
+      "outlet": {
+        "standard": [
+          150,
+          410
+        ],
+        "gfci": [
+          150,
+          490
+        ],
+        "usb": [
+          150,
+          470
+        ],
+        "smart": [
+          150,
+          520
+        ],
+        "damaged": [
+          150,
+          460
+        ],
+        "plates": [
+          150,
+          300
+        ]
+      },
+      "switch": {
+        "standard": [
+          150,
+          390
+        ],
+        "dimmer": [
+          150,
+          430
+        ],
+        "three-way": [
+          155,
+          480
+        ],
+        "smart": [
+          150,
+          500
+        ],
+        "timer-fan": [
+          150,
+          450
+        ],
+        "other": [
+          150,
+          470
+        ]
+      },
+      "usb-outlet": {
+        "usb-a": [
+          150,
+          420
+        ],
+        "usb-c": [
+          150,
+          440
+        ],
+        "combo": [
+          150,
+          460
+        ],
+        "usb-gfci": [
+          155,
+          500
+        ],
+        "usb-plate": [
+          150,
+          360
+        ],
+        "other": [
+          150,
+          470
+        ]
+      },
+      "smart-device": {
+        "thermostat": [
+          150,
+          490
+        ],
+        "lock": [
+          330,
+          450
+        ],
+        "doorbell": [
+          165,
+          550
+        ],
+        "lighting": [
+          150,
+          500
+        ],
+        "plugs-sensors": [
+          150,
+          560
+        ],
+        "camera-other": [
+          150,
+          520
+        ]
+      },
+      "electrical-troubleshooting": {
+        "dead-outlet": [
+          150,
+          520
+        ],
+        "partial-power": [
+          165,
+          620
+        ],
+        "breaker-trips": [
+          99,
+          99
+        ],
+        "flicker": [
+          150,
+          530
+        ],
+        "buzz-heat": [
+          99,
+          99
+        ],
+        "after-install": [
+          150,
+          490
+        ]
+      }
+    },
+    "cta": {
+      "text": "Get My Free Estimate",
+      "href": "/#contact"
+    },
+    "disclaimer": "These are the same ranges quoted on each service page, shown here end to end: the low figure is the simplest version of that job and the high figure the most involved one we quote without an on-site look. Labor only — fixtures, parts and materials are supplied by you or picked up at cost, and NYC sales tax is added separately where it applies. Open the service page for the exact tier that matches your job. Photo and text estimates are free; an on-site assessment is $99 and is credited toward the work.",
+    "placeholder": "Pick a service and job to see your range"
+  },
+  "hub-furniture-assembly": {
+    "title": "Furniture Assembly Estimate",
+    "subtitle": "Pick the job to see the range we quote for it, then open that page for the exact tiers.",
+    "categories": [
+      {
+        "label": "What do you need?",
+        "id": "series",
+        "options": [
+          {
+            "value": "",
+            "label": "Choose a service…"
+          },
+          {
+            "value": "ikea",
+            "label": "IKEA furniture"
+          },
+          {
+            "value": "beds",
+            "label": "Bed frame"
+          },
+          {
+            "value": "wardrobes",
+            "label": "Wardrobe"
+          },
+          {
+            "value": "desk",
+            "label": "Desk"
+          },
+          {
+            "value": "dresser",
+            "label": "Dresser"
+          }
+        ]
+      },
+      {
+        "label": "Which job?",
+        "id": "size",
+        "dependsOn": "series",
+        "optionSets": {
+          "ikea": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "kallax",
+              "label": "KALLAX (Shelving)"
+            },
+            {
+              "value": "pax",
+              "label": "PAX (Wardrobe)"
+            },
+            {
+              "value": "malm",
+              "label": "MALM (Dresser / Bed)"
+            },
+            {
+              "value": "hemnes",
+              "label": "HEMNES (Dresser / Bed)"
+            },
+            {
+              "value": "besta",
+              "label": "BESTÅ (TV / Storage)"
+            },
+            {
+              "value": "billy",
+              "label": "BILLY (Bookcase)"
+            },
+            {
+              "value": "nordli",
+              "label": "NORDLI (Dresser / Bed)"
+            },
+            {
+              "value": "other",
+              "label": "Other IKEA Item"
+            }
+          ],
+          "beds": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "platform",
+              "label": "Platform Bed"
+            },
+            {
+              "value": "storage",
+              "label": "Storage Bed (Drawers / Hydraulic)"
+            },
+            {
+              "value": "bunk",
+              "label": "Bunk Bed"
+            },
+            {
+              "value": "loft",
+              "label": "Loft Bed"
+            },
+            {
+              "value": "adjustable",
+              "label": "Adjustable Base"
+            },
+            {
+              "value": "daybed",
+              "label": "Daybed / Trundle"
+            },
+            {
+              "value": "other",
+              "label": "Other Bed Frame"
+            }
+          ],
+          "wardrobes": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "freestanding",
+              "label": "Freestanding Wardrobe"
+            },
+            {
+              "value": "armoire",
+              "label": "Armoire"
+            },
+            {
+              "value": "closet-system",
+              "label": "Closet System (Multi-Unit)"
+            },
+            {
+              "value": "sliding-door",
+              "label": "Sliding Door Wardrobe"
+            },
+            {
+              "value": "walk-in",
+              "label": "Walk-In Closet Kit"
+            },
+            {
+              "value": "other",
+              "label": "Other Wardrobe"
+            }
+          ],
+          "desk": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "simple",
+              "label": "Simple Writing Desk"
+            },
+            {
+              "value": "lshaped",
+              "label": "L-Shaped / Corner Desk"
+            },
+            {
+              "value": "standing",
+              "label": "Standing / Adjustable Desk"
+            },
+            {
+              "value": "executive",
+              "label": "Executive / Large Desk"
+            },
+            {
+              "value": "gaming",
+              "label": "Gaming Desk"
+            },
+            {
+              "value": "other",
+              "label": "Other Desk"
+            }
+          ],
+          "dresser": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "standard",
+              "label": "Standard Dresser"
+            },
+            {
+              "value": "tall",
+              "label": "Tall / Chest of Drawers"
+            },
+            {
+              "value": "wide",
+              "label": "Wide / Double Dresser"
+            },
+            {
+              "value": "combo",
+              "label": "Dresser + Mirror Combo"
+            },
+            {
+              "value": "nightstand",
+              "label": "Nightstand / Side Table"
+            },
+            {
+              "value": "other",
+              "label": "Other Storage"
+            }
+          ]
+        }
+      }
+    ],
+    "pricing": {
+      "ikea": {
+        "kallax": [
+          65,
+          220
+        ],
+        "pax": [
+          120,
+          450
+        ],
+        "malm": [
+          65,
+          190
+        ],
+        "hemnes": [
+          75,
+          280
+        ],
+        "besta": [
+          99,
+          400
+        ],
+        "billy": [
+          50,
+          260
+        ],
+        "nordli": [
+          65,
+          230
+        ],
+        "other": [
+          50,
+          290
+        ]
+      },
+      "beds": {
+        "platform": [
+          65,
+          150
+        ],
+        "storage": [
+          99,
+          290
+        ],
+        "bunk": [
+          125,
+          350
+        ],
+        "loft": [
+          115,
+          310
+        ],
+        "adjustable": [
+          65,
+          230
+        ],
+        "daybed": [
+          65,
+          200
+        ],
+        "other": [
+          50,
+          250
+        ]
+      },
+      "wardrobes": {
+        "freestanding": [
+          85,
+          310
+        ],
+        "armoire": [
+          99,
+          350
+        ],
+        "closet-system": [
+          125,
+          530
+        ],
+        "sliding-door": [
+          130,
+          450
+        ],
+        "walk-in": [
+          165,
+          620
+        ],
+        "other": [
+          65,
+          370
+        ]
+      },
+      "desk": {
+        "simple": [
+          50,
+          200
+        ],
+        "lshaped": [
+          85,
+          295
+        ],
+        "standing": [
+          65,
+          250
+        ],
+        "executive": [
+          99,
+          370
+        ],
+        "gaming": [
+          55,
+          260
+        ],
+        "other": [
+          50,
+          280
+        ]
+      },
+      "dresser": {
+        "standard": [
+          50,
+          180
+        ],
+        "tall": [
+          55,
+          200
+        ],
+        "wide": [
+          65,
+          250
+        ],
+        "combo": [
+          65,
+          230
+        ],
+        "nightstand": [
+          35,
+          140
+        ],
+        "other": [
+          40,
+          230
+        ]
+      }
+    },
+    "cta": {
+      "text": "Get My Free Estimate",
+      "href": "/#contact"
+    },
+    "disclaimer": "These are the same ranges quoted on each service page, shown here end to end: the low figure is the simplest version of that job and the high figure the most involved one we quote without an on-site look. Labor only — fixtures, parts and materials are supplied by you or picked up at cost, and NYC sales tax is added separately where it applies. Open the service page for the exact tier that matches your job. Photo and text estimates are free; an on-site assessment is $99 and is credited toward the work.",
+    "placeholder": "Pick a service and job to see your range"
+  },
+  "hub-tv-wall-mounting": {
+    "title": "Mounting Estimate",
+    "subtitle": "Pick the job to see the range we quote for it, then open that page for the exact tiers.",
+    "categories": [
+      {
+        "label": "What do you need?",
+        "id": "series",
+        "options": [
+          {
+            "value": "",
+            "label": "Choose a service…"
+          },
+          {
+            "value": "tv",
+            "label": "TV mounting"
+          },
+          {
+            "value": "shelf",
+            "label": "Shelves"
+          },
+          {
+            "value": "mirror",
+            "label": "Mirror"
+          },
+          {
+            "value": "art",
+            "label": "Art and frames"
+          },
+          {
+            "value": "projector",
+            "label": "Projector"
+          }
+        ]
+      },
+      {
+        "label": "Which job?",
+        "id": "size",
+        "dependsOn": "series",
+        "optionSets": {
+          "tv": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "small",
+              "label": "32″ – 43″"
+            },
+            {
+              "value": "medium",
+              "label": "50″ – 55″"
+            },
+            {
+              "value": "large",
+              "label": "60″ – 75″"
+            },
+            {
+              "value": "xlarge",
+              "label": "77″ – 85″+"
+            }
+          ],
+          "shelf": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "floating",
+              "label": "Floating Shelf"
+            },
+            {
+              "value": "bracket",
+              "label": "Bracket Shelf"
+            },
+            {
+              "value": "ledge",
+              "label": "Picture Ledge / Decorative"
+            },
+            {
+              "value": "heavy",
+              "label": "Heavy-Duty / Garage Shelf"
+            },
+            {
+              "value": "corner",
+              "label": "Corner Shelf"
+            },
+            {
+              "value": "other",
+              "label": "Other Shelf Type"
+            }
+          ],
+          "mirror": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "vanity",
+              "label": "Bathroom Vanity Mirror"
+            },
+            {
+              "value": "full-length",
+              "label": "Full-Length Mirror"
+            },
+            {
+              "value": "decorative",
+              "label": "Decorative / Accent Mirror"
+            },
+            {
+              "value": "oversized",
+              "label": "Oversized / Heavy Mirror"
+            },
+            {
+              "value": "frameless",
+              "label": "Frameless Mirror"
+            },
+            {
+              "value": "other",
+              "label": "Other Mirror"
+            }
+          ],
+          "art": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "framed",
+              "label": "Framed Art / Photo"
+            },
+            {
+              "value": "canvas",
+              "label": "Canvas Print"
+            },
+            {
+              "value": "gallery-wall",
+              "label": "Gallery Wall (multiple pieces)"
+            },
+            {
+              "value": "heavy",
+              "label": "Heavy Frame (40+ lbs)"
+            },
+            {
+              "value": "mirror-decor",
+              "label": "Decorative Mirror"
+            },
+            {
+              "value": "other",
+              "label": "Other Art Piece"
+            }
+          ],
+          "projector": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "ceiling",
+              "label": "Ceiling Mount"
+            },
+            {
+              "value": "wall",
+              "label": "Wall Mount"
+            },
+            {
+              "value": "shelf",
+              "label": "Shelf / Table Bracket"
+            },
+            {
+              "value": "other",
+              "label": "Other Setup"
+            }
+          ]
+        }
+      }
+    ],
+    "pricing": {
+      "tv": {
+        "small": [
+          99,
+          230
+        ],
+        "medium": [
+          125,
+          280
+        ],
+        "large": [
+          165,
+          350
+        ],
+        "xlarge": [
+          230,
+          450
+        ]
+      },
+      "shelf": {
+        "floating": [
+          50,
+          260
+        ],
+        "bracket": [
+          40,
+          210
+        ],
+        "ledge": [
+          40,
+          200
+        ],
+        "heavy": [
+          65,
+          330
+        ],
+        "corner": [
+          50,
+          250
+        ],
+        "other": [
+          40,
+          250
+        ]
+      },
+      "mirror": {
+        "vanity": [
+          50,
+          180
+        ],
+        "full-length": [
+          50,
+          200
+        ],
+        "decorative": [
+          40,
+          165
+        ],
+        "oversized": [
+          99,
+          310
+        ],
+        "frameless": [
+          55,
+          215
+        ],
+        "other": [
+          40,
+          250
+        ]
+      },
+      "art": {
+        "framed": [
+          35,
+          215
+        ],
+        "canvas": [
+          35,
+          200
+        ],
+        "gallery-wall": [
+          99,
+          395
+        ],
+        "heavy": [
+          65,
+          260
+        ],
+        "mirror-decor": [
+          40,
+          180
+        ],
+        "other": [
+          35,
+          230
+        ]
+      },
+      "projector": {
+        "ceiling": [
+          125,
+          330
+        ],
+        "wall": [
+          99,
+          280
+        ],
+        "shelf": [
+          50,
+          180
+        ],
+        "other": [
+          85,
+          350
+        ]
+      }
+    },
+    "cta": {
+      "text": "Get My Free Estimate",
+      "href": "/#contact"
+    },
+    "disclaimer": "These are the same ranges quoted on each service page, shown here end to end: the low figure is the simplest version of that job and the high figure the most involved one we quote without an on-site look. Labor only — fixtures, parts and materials are supplied by you or picked up at cost, and NYC sales tax is added separately where it applies. Open the service page for the exact tier that matches your job. Photo and text estimates are free; an on-site assessment is $99 and is credited toward the work.",
+    "placeholder": "Pick a service and job to see your range"
+  },
+  "hub-painting": {
+    "title": "Painting & Wall Finish Estimate",
+    "subtitle": "Pick the job to see the range we quote for it, then open that page for the exact tiers.",
+    "categories": [
+      {
+        "label": "What do you need?",
+        "id": "series",
+        "options": [
+          {
+            "value": "",
+            "label": "Choose a service…"
+          },
+          {
+            "value": "interior-painting",
+            "label": "Interior painting"
+          },
+          {
+            "value": "accent-wall",
+            "label": "Accent wall"
+          },
+          {
+            "value": "trim-painting",
+            "label": "Trim and doors"
+          },
+          {
+            "value": "cabinet-painting",
+            "label": "Cabinet painting"
+          },
+          {
+            "value": "wallpaper-install",
+            "label": "Wallpaper install"
+          },
+          {
+            "value": "wallpaper-removal",
+            "label": "Wallpaper removal"
+          }
+        ]
+      },
+      {
+        "label": "Which job?",
+        "id": "size",
+        "dependsOn": "series",
+        "optionSets": {
+          "interior-painting": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "bedroom",
+              "label": "Bedroom / small room (up to ~120 sq ft floor)"
+            },
+            {
+              "value": "living",
+              "label": "Living room / large room (150–250 sq ft floor)"
+            },
+            {
+              "value": "hallway",
+              "label": "Hallway, entry or staircase"
+            },
+            {
+              "value": "apartment",
+              "label": "Whole apartment (multiple rooms)"
+            },
+            {
+              "value": "ceiling",
+              "label": "Ceilings only"
+            },
+            {
+              "value": "touchup",
+              "label": "Touch-ups / one wall repainted"
+            }
+          ],
+          "accent-wall": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "solid",
+              "label": "Solid color feature wall"
+            },
+            {
+              "value": "two-tone",
+              "label": "Two-tone / color block"
+            },
+            {
+              "value": "stripes",
+              "label": "Stripes or chevron"
+            },
+            {
+              "value": "geometric",
+              "label": "Custom geometric pattern"
+            },
+            {
+              "value": "dark",
+              "label": "Deep or bold color over a light wall"
+            },
+            {
+              "value": "multiple",
+              "label": "Multiple accent walls"
+            }
+          ],
+          "trim-painting": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "baseboard",
+              "label": "Baseboards (and shoe / quarter round)"
+            },
+            {
+              "value": "doors",
+              "label": "Doors + door casings"
+            },
+            {
+              "value": "windows",
+              "label": "Window casings & sills"
+            },
+            {
+              "value": "crown",
+              "label": "Crown molding"
+            },
+            {
+              "value": "wainscot",
+              "label": "Wainscoting / chair rail / paneling"
+            },
+            {
+              "value": "all",
+              "label": "All trim in the room(s)"
+            }
+          ],
+          "cabinet-painting": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "kitchen",
+              "label": "Kitchen cabinets"
+            },
+            {
+              "value": "bathroom",
+              "label": "Bathroom vanity"
+            },
+            {
+              "value": "island",
+              "label": "Island or one cabinet run"
+            },
+            {
+              "value": "builtin",
+              "label": "Built-ins / bookcases / closet doors"
+            },
+            {
+              "value": "furniture",
+              "label": "Freestanding furniture piece"
+            }
+          ],
+          "wallpaper-install": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "peel-stick",
+              "label": "Peel-and-stick"
+            },
+            {
+              "value": "prepasted",
+              "label": "Pre-pasted / traditional paste"
+            },
+            {
+              "value": "vinyl",
+              "label": "Vinyl / commercial-grade"
+            },
+            {
+              "value": "grasscloth",
+              "label": "Grasscloth / natural fiber"
+            },
+            {
+              "value": "mural",
+              "label": "Mural / numbered panel set"
+            }
+          ],
+          "wallpaper-removal": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "single-layer",
+              "label": "Single layer, peels in sheets"
+            },
+            {
+              "value": "vinyl",
+              "label": "Vinyl / washable paper"
+            },
+            {
+              "value": "grasscloth",
+              "label": "Grasscloth / fabric-backed"
+            },
+            {
+              "value": "multi-layer",
+              "label": "Multiple layers (older apartment)"
+            },
+            {
+              "value": "painted-over",
+              "label": "Painted-over wallpaper"
+            },
+            {
+              "value": "glue-residue",
+              "label": "Paper is off — glue residue left behind"
+            }
+          ]
+        }
+      }
+    ],
+    "pricing": {
+      "interior-painting": {
+        "bedroom": [
+          375,
+          1150
+        ],
+        "living": [
+          500,
+          1450
+        ],
+        "hallway": [
+          325,
+          1250
+        ],
+        "apartment": [
+          1400,
+          10000
+        ],
+        "ceiling": [
+          225,
+          975
+        ],
+        "touchup": [
+          150,
+          600
+        ]
+      },
+      "accent-wall": {
+        "solid": [
+          225,
+          625
+        ],
+        "two-tone": [
+          225,
+          775
+        ],
+        "stripes": [
+          325,
+          975
+        ],
+        "geometric": [
+          425,
+          1400
+        ],
+        "dark": [
+          225,
+          800
+        ],
+        "multiple": [
+          325,
+          1400
+        ]
+      },
+      "trim-painting": {
+        "baseboard": [
+          200,
+          1300
+        ],
+        "doors": [
+          175,
+          1200
+        ],
+        "windows": [
+          175,
+          1050
+        ],
+        "crown": [
+          250,
+          1300
+        ],
+        "wainscot": [
+          225,
+          1700
+        ],
+        "all": [
+          400,
+          2600
+        ]
+      },
+      "cabinet-painting": {
+        "kitchen": [
+          950,
+          4500
+        ],
+        "bathroom": [
+          275,
+          1250
+        ],
+        "island": [
+          425,
+          2200
+        ],
+        "builtin": [
+          350,
+          1900
+        ],
+        "furniture": [
+          175,
+          1050
+        ]
+      },
+      "wallpaper-install": {
+        "peel-stick": [
+          275,
+          1750
+        ],
+        "prepasted": [
+          375,
+          3000
+        ],
+        "vinyl": [
+          400,
+          2300
+        ],
+        "grasscloth": [
+          525,
+          4200
+        ],
+        "mural": [
+          425,
+          2200
+        ]
+      },
+      "wallpaper-removal": {
+        "single-layer": [
+          200,
+          1200
+        ],
+        "vinyl": [
+          250,
+          1400
+        ],
+        "grasscloth": [
+          325,
+          1750
+        ],
+        "multi-layer": [
+          350,
+          1900
+        ],
+        "painted-over": [
+          400,
+          2100
+        ],
+        "glue-residue": [
+          150,
+          900
+        ]
+      }
+    },
+    "cta": {
+      "text": "Get My Free Estimate",
+      "href": "/#contact"
+    },
+    "disclaimer": "These are the same ranges quoted on each service page, shown here end to end: the low figure is the simplest version of that job and the high figure the most involved one we quote without an on-site look. Labor only — fixtures, parts and materials are supplied by you or picked up at cost, and NYC sales tax is added separately where it applies. Open the service page for the exact tier that matches your job. Photo and text estimates are free; an on-site assessment is $99 and is credited toward the work.",
+    "placeholder": "Pick a service and job to see your range"
+  },
+  "hub-flooring-installation": {
+    "title": "Flooring Estimate",
+    "subtitle": "Pick the job to see the range we quote for it, then open that page for the exact tiers.",
+    "categories": [
+      {
+        "label": "What do you need?",
+        "id": "series",
+        "options": [
+          {
+            "value": "",
+            "label": "Choose a service…"
+          },
+          {
+            "value": "laminate-flooring",
+            "label": "Laminate"
+          },
+          {
+            "value": "vinyl-plank-flooring",
+            "label": "Vinyl plank"
+          },
+          {
+            "value": "click-lock-flooring",
+            "label": "Click-lock"
+          },
+          {
+            "value": "peel-stick-flooring",
+            "label": "Peel-and-stick"
+          },
+          {
+            "value": "baseboard-trim",
+            "label": "Baseboard and trim"
+          },
+          {
+            "value": "subfloor-prep",
+            "label": "Subfloor prep"
+          },
+          {
+            "value": "floor-repair",
+            "label": "Floor repair"
+          }
+        ]
+      },
+      {
+        "label": "Which job?",
+        "id": "size",
+        "dependsOn": "series",
+        "optionSets": {
+          "laminate-flooring": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "closet",
+              "label": "Closet, entry or bath — under 60 sq ft"
+            },
+            {
+              "value": "small",
+              "label": "Small room — 60–149 sq ft"
+            },
+            {
+              "value": "room",
+              "label": "Bedroom or living room — 150–249 sq ft"
+            },
+            {
+              "value": "large",
+              "label": "Large room — 250–349 sq ft"
+            },
+            {
+              "value": "multi",
+              "label": "Two–three rooms — 350–599 sq ft"
+            },
+            {
+              "value": "apartment",
+              "label": "Whole apartment — 600–1,000 sq ft"
+            }
+          ],
+          "vinyl-plank-flooring": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "closet",
+              "label": "Closet, entry or bath — under 60 sq ft"
+            },
+            {
+              "value": "small",
+              "label": "Small room — 60–149 sq ft"
+            },
+            {
+              "value": "room",
+              "label": "Bedroom or living room — 150–249 sq ft"
+            },
+            {
+              "value": "large",
+              "label": "Large room — 250–349 sq ft"
+            },
+            {
+              "value": "multi",
+              "label": "Two–three rooms — 350–599 sq ft"
+            },
+            {
+              "value": "apartment",
+              "label": "Whole apartment — 600–1,000 sq ft"
+            }
+          ],
+          "click-lock-flooring": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "closet",
+              "label": "Closet, entry or bath — under 60 sq ft"
+            },
+            {
+              "value": "small",
+              "label": "Small room — 60–149 sq ft"
+            },
+            {
+              "value": "room",
+              "label": "Bedroom or living room — 150–249 sq ft"
+            },
+            {
+              "value": "large",
+              "label": "Large room — 250–349 sq ft"
+            },
+            {
+              "value": "multi",
+              "label": "Two–three rooms — 350–599 sq ft"
+            },
+            {
+              "value": "apartment",
+              "label": "Whole apartment — 600–1,000 sq ft"
+            }
+          ],
+          "peel-stick-flooring": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "closet",
+              "label": "Closet, bath or utility area — under 60 sq ft"
+            },
+            {
+              "value": "small",
+              "label": "Small room — 60–149 sq ft"
+            },
+            {
+              "value": "room",
+              "label": "Bedroom or living room — 150–249 sq ft"
+            },
+            {
+              "value": "large",
+              "label": "Large room — 250–349 sq ft"
+            },
+            {
+              "value": "multi",
+              "label": "Multiple rooms — 350–599 sq ft"
+            },
+            {
+              "value": "apartment",
+              "label": "Whole apartment — 600–1,000 sq ft"
+            }
+          ],
+          "baseboard-trim": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "lf25",
+              "label": "Small room — up to 25 linear ft"
+            },
+            {
+              "value": "lf50",
+              "label": "One room — 26–50 linear ft"
+            },
+            {
+              "value": "lf100",
+              "label": "Room + hallway or two rooms — 51–100 linear ft"
+            },
+            {
+              "value": "lf175",
+              "label": "Most of an apartment — 101–175 linear ft"
+            },
+            {
+              "value": "lf300",
+              "label": "Whole apartment — 176–300 linear ft"
+            },
+            {
+              "value": "casing",
+              "label": "Door casing / window trim only"
+            }
+          ],
+          "subfloor-prep": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "level",
+              "label": "Leveling dips & grinding high spots"
+            },
+            {
+              "value": "plywood",
+              "label": "Damaged plywood panel / soft spot over sound joists"
+            },
+            {
+              "value": "squeak",
+              "label": "Squeaks & refastening a loose subfloor"
+            },
+            {
+              "value": "demo",
+              "label": "Old adhesive, staples & underlayment removal"
+            },
+            {
+              "value": "moisture",
+              "label": "Moisture test & vapor barrier over concrete"
+            },
+            {
+              "value": "underlayment",
+              "label": "Underlayment install before new flooring"
+            }
+          ],
+          "floor-repair": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "planks",
+              "label": "Loose, lifted or damaged planks"
+            },
+            {
+              "value": "water",
+              "label": "Water damage / swollen boards"
+            },
+            {
+              "value": "scratch",
+              "label": "Scratches, dents or gouges"
+            },
+            {
+              "value": "squeak",
+              "label": "Squeaks, movement or hollow spots"
+            },
+            {
+              "value": "tile",
+              "label": "Cracked or loose tile / click-lock panels"
+            },
+            {
+              "value": "transition",
+              "label": "Transitions, thresholds & quarter round"
+            }
+          ]
+        }
+      }
+    ],
+    "pricing": {
+      "laminate-flooring": {
+        "closet": [
+          275,
+          800
+        ],
+        "small": [
+          425,
+          1250
+        ],
+        "room": [
+          700,
+          1900
+        ],
+        "large": [
+          975,
+          2600
+        ],
+        "multi": [
+          1500,
+          3900
+        ],
+        "apartment": [
+          2300,
+          6200
+        ]
+      },
+      "vinyl-plank-flooring": {
+        "closet": [
+          295,
+          850
+        ],
+        "small": [
+          450,
+          1275
+        ],
+        "room": [
+          700,
+          1950
+        ],
+        "large": [
+          975,
+          2600
+        ],
+        "multi": [
+          1450,
+          3800
+        ],
+        "apartment": [
+          2200,
+          6000
+        ]
+      },
+      "click-lock-flooring": {
+        "closet": [
+          350,
+          975
+        ],
+        "small": [
+          525,
+          1500
+        ],
+        "room": [
+          850,
+          2300
+        ],
+        "large": [
+          1200,
+          3200
+        ],
+        "multi": [
+          1800,
+          4800
+        ],
+        "apartment": [
+          2800,
+          7400
+        ]
+      },
+      "peel-stick-flooring": {
+        "closet": [
+          175,
+          550
+        ],
+        "small": [
+          275,
+          850
+        ],
+        "room": [
+          425,
+          1300
+        ],
+        "large": [
+          600,
+          1750
+        ],
+        "multi": [
+          925,
+          2700
+        ],
+        "apartment": [
+          1500,
+          3400
+        ]
+      },
+      "baseboard-trim": {
+        "lf25": [
+          175,
+          575
+        ],
+        "lf50": [
+          275,
+          875
+        ],
+        "lf100": [
+          475,
+          1400
+        ],
+        "lf175": [
+          800,
+          2300
+        ],
+        "lf300": [
+          1300,
+          3700
+        ],
+        "casing": [
+          175,
+          1400
+        ]
+      },
+      "subfloor-prep": {
+        "level": [
+          175,
+          2600
+        ],
+        "plywood": [
+          225,
+          3600
+        ],
+        "squeak": [
+          150,
+          1250
+        ],
+        "demo": [
+          175,
+          1700
+        ],
+        "moisture": [
+          150,
+          1300
+        ],
+        "underlayment": [
+          150,
+          1200
+        ]
+      },
+      "floor-repair": {
+        "planks": [
+          150,
+          950
+        ],
+        "water": [
+          225,
+          1500
+        ],
+        "scratch": [
+          150,
+          850
+        ],
+        "squeak": [
+          175,
+          1100
+        ],
+        "tile": [
+          175,
+          1200
+        ],
+        "transition": [
+          150,
+          950
+        ]
+      }
+    },
+    "cta": {
+      "text": "Get My Free Estimate",
+      "href": "/#contact"
+    },
+    "disclaimer": "These are the same ranges quoted on each service page, shown here end to end: the low figure is the simplest version of that job and the high figure the most involved one we quote without an on-site look. Labor only — fixtures, parts and materials are supplied by you or picked up at cost, and NYC sales tax is added separately where it applies. Open the service page for the exact tier that matches your job. Photo and text estimates are free; an on-site assessment is $99 and is credited toward the work.",
+    "placeholder": "Pick a service and job to see your range"
+  },
+  "hub-ac-installation-cleaning": {
+    "title": "AC Work Estimate",
+    "subtitle": "Pick the job to see the range we quote for it, then open that page for the exact tiers.",
+    "categories": [
+      {
+        "label": "What do you need?",
+        "id": "series",
+        "options": [
+          {
+            "value": "",
+            "label": "Choose a service…"
+          },
+          {
+            "value": "ac-window",
+            "label": "Window AC install"
+          },
+          {
+            "value": "ac-cleaning",
+            "label": "AC deep cleaning"
+          },
+          {
+            "value": "ac-bracket",
+            "label": "AC bracket"
+          },
+          {
+            "value": "ac-through-wall",
+            "label": "Through-wall AC"
+          },
+          {
+            "value": "ac-ptac",
+            "label": "PTAC"
+          },
+          {
+            "value": "ac-portable",
+            "label": "Portable AC"
+          },
+          {
+            "value": "ac-removal",
+            "label": "AC removal"
+          }
+        ]
+      },
+      {
+        "label": "Which job?",
+        "id": "size",
+        "dependsOn": "series",
+        "optionSets": {
+          "ac-window": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "small",
+              "label": "Small — 5,000–8,000 BTU (one person can lift it)"
+            },
+            {
+              "value": "medium",
+              "label": "Medium — 10,000–14,000 BTU"
+            },
+            {
+              "value": "large",
+              "label": "Large — 18,000 BTU or heavier"
+            },
+            {
+              "value": "casement",
+              "label": "Casement or sliding window (needs a panel kit)"
+            }
+          ],
+          "ac-cleaning": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "window",
+              "label": "Window AC"
+            },
+            {
+              "value": "ptac",
+              "label": "PTAC / through-wall unit"
+            },
+            {
+              "value": "mini-split",
+              "label": "Ductless mini-split indoor head (accessible)"
+            },
+            {
+              "value": "portable",
+              "label": "Portable AC"
+            },
+            {
+              "value": "multi-mixed",
+              "label": "Multiple units in one visit"
+            }
+          ],
+          "ac-bracket": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "universal",
+              "label": "Universal support bracket (under-unit)"
+            },
+            {
+              "value": "no-drill",
+              "label": "No-drill / sill-mount bracket"
+            },
+            {
+              "value": "rail",
+              "label": "Mounting rail / angle support (fastened inside)"
+            },
+            {
+              "value": "heavy-duty",
+              "label": "Heavy-duty bracket (15,000+ BTU unit)"
+            },
+            {
+              "value": "manufacturer",
+              "label": "Manufacturer-specific / building-required support"
+            },
+            {
+              "value": "unsure",
+              "label": "Not sure — I'll send window photos"
+            }
+          ],
+          "ac-through-wall": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "upto12k",
+              "label": "Up to 12,000 BTU (bedroom / office)"
+            },
+            {
+              "value": "12to18k",
+              "label": "12,000 – 18,000 BTU (living room)"
+            },
+            {
+              "value": "over18k",
+              "label": "18,000+ BTU (heavy / two-person lift)"
+            },
+            {
+              "value": "unknown",
+              "label": "Not sure — I'll send the model label"
+            }
+          ],
+          "ac-ptac": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "swap",
+              "label": "Like-for-like replacement (same sleeve & plug)"
+            },
+            {
+              "value": "brand-change",
+              "label": "Different brand / model (adapter & grille check)"
+            },
+            {
+              "value": "first-fit",
+              "label": "First unit into an existing empty sleeve"
+            },
+            {
+              "value": "reseat",
+              "label": "Re-seat, re-seal or drainage correction"
+            },
+            {
+              "value": "multi",
+              "label": "Multiple units (hotel / building / office)"
+            }
+          ],
+          "ac-portable": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "double-hung",
+              "label": "Double-hung window (standard kit)"
+            },
+            {
+              "value": "slider",
+              "label": "Slider window or sliding door"
+            },
+            {
+              "value": "casement",
+              "label": "Casement / outswing window"
+            },
+            {
+              "value": "tall-narrow",
+              "label": "Tall or odd-shaped opening (custom panel)"
+            },
+            {
+              "value": "multi",
+              "label": "Multiple portable units, one visit"
+            },
+            {
+              "value": "unsure",
+              "label": "Not sure — I'll send window photos"
+            }
+          ],
+          "ac-removal": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "window-small",
+              "label": "Window AC up to 12,000 BTU"
+            },
+            {
+              "value": "window-large",
+              "label": "Window AC 12,000+ BTU (two-person lift)"
+            },
+            {
+              "value": "through-wall",
+              "label": "Through-wall / sleeve unit"
+            },
+            {
+              "value": "ptac",
+              "label": "PTAC unit"
+            },
+            {
+              "value": "multi",
+              "label": "Multiple units (end of season / building)"
+            }
+          ]
+        }
+      }
+    ],
+    "pricing": {
+      "ac-window": {
+        "small": [
+          150,
+          345
+        ],
+        "medium": [
+          165,
+          390
+        ],
+        "large": [
+          195,
+          460
+        ],
+        "casement": [
+          185,
+          435
+        ]
+      },
+      "ac-cleaning": {
+        "window": [
+          150,
+          340
+        ],
+        "ptac": [
+          165,
+          390
+        ],
+        "mini-split": [
+          180,
+          420
+        ],
+        "portable": [
+          150,
+          330
+        ],
+        "multi-mixed": [
+          300,
+          2200
+        ]
+      },
+      "ac-bracket": {
+        "universal": [
+          150,
+          340
+        ],
+        "no-drill": [
+          150,
+          310
+        ],
+        "rail": [
+          150,
+          345
+        ],
+        "heavy-duty": [
+          190,
+          430
+        ],
+        "manufacturer": [
+          175,
+          400
+        ],
+        "unsure": [
+          150,
+          430
+        ]
+      },
+      "ac-through-wall": {
+        "upto12k": [
+          150,
+          360
+        ],
+        "12to18k": [
+          185,
+          420
+        ],
+        "over18k": [
+          240,
+          510
+        ],
+        "unknown": [
+          150,
+          510
+        ]
+      },
+      "ac-ptac": {
+        "swap": [
+          200,
+          460
+        ],
+        "brand-change": [
+          240,
+          530
+        ],
+        "first-fit": [
+          230,
+          500
+        ],
+        "reseat": [
+          165,
+          375
+        ],
+        "multi": [
+          400,
+          3600
+        ]
+      },
+      "ac-portable": {
+        "double-hung": [
+          150,
+          340
+        ],
+        "slider": [
+          150,
+          385
+        ],
+        "casement": [
+          175,
+          445
+        ],
+        "tall-narrow": [
+          165,
+          420
+        ],
+        "multi": [
+          280,
+          1500
+        ],
+        "unsure": [
+          150,
+          445
+        ]
+      },
+      "ac-removal": {
+        "window-small": [
+          150,
+          325
+        ],
+        "window-large": [
+          175,
+          400
+        ],
+        "through-wall": [
+          150,
+          360
+        ],
+        "ptac": [
+          150,
+          370
+        ],
+        "multi": [
+          300,
+          2800
+        ]
+      }
+    },
+    "cta": {
+      "text": "Get My Free Estimate",
+      "href": "/#contact"
+    },
+    "disclaimer": "These are the same ranges quoted on each service page, shown here end to end: the low figure is the simplest version of that job and the high figure the most involved one we quote without an on-site look. Labor only — fixtures, parts and materials are supplied by you or picked up at cost, and NYC sales tax is added separately where it applies. Open the service page for the exact tier that matches your job. Photo and text estimates are free; an on-site assessment is $99 and is credited toward the work.",
+    "placeholder": "Pick a service and job to see your range"
+  },
+  "hub-general-repairs": {
+    "title": "General Repair Estimate",
+    "subtitle": "Pick the job to see the range we quote for it, then open that page for the exact tiers.",
+    "categories": [
+      {
+        "label": "What do you need?",
+        "id": "series",
+        "options": [
+          {
+            "value": "",
+            "label": "Choose a service…"
+          },
+          {
+            "value": "drywall-repair",
+            "label": "Drywall repair"
+          },
+          {
+            "value": "door-repair",
+            "label": "Door repair"
+          },
+          {
+            "value": "door-installation",
+            "label": "Door installation"
+          },
+          {
+            "value": "lock-installation",
+            "label": "Lock installation"
+          },
+          {
+            "value": "blind-installation",
+            "label": "Blinds"
+          },
+          {
+            "value": "cabinet-hardware",
+            "label": "Cabinet hardware"
+          },
+          {
+            "value": "caulking",
+            "label": "Caulking"
+          },
+          {
+            "value": "apartment-turnover",
+            "label": "Apartment turnover"
+          }
+        ]
+      },
+      {
+        "label": "Which job?",
+        "id": "size",
+        "dependsOn": "series",
+        "optionSets": {
+          "drywall-repair": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "small-holes",
+              "label": "Nail, screw, and anchor holes"
+            },
+            {
+              "value": "hole",
+              "label": "Hole — doorknob to fist size"
+            },
+            {
+              "value": "large-hole",
+              "label": "Large opening — 12″+ or an access cut-out"
+            },
+            {
+              "value": "crack",
+              "label": "Cracks — wall or ceiling seams"
+            },
+            {
+              "value": "water",
+              "label": "Water-stained or water-damaged drywall"
+            },
+            {
+              "value": "texture",
+              "label": "Texture match / skim coat an area"
+            }
+          ],
+          "door-repair": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "sticking",
+              "label": "Sticks, rubs, sags, or won't close"
+            },
+            {
+              "value": "latch",
+              "label": "Won't latch — strike plate is off"
+            },
+            {
+              "value": "hardware",
+              "label": "Handle, knob, hinge, or door closer"
+            },
+            {
+              "value": "frame",
+              "label": "Damaged jamb, frame, or trim"
+            },
+            {
+              "value": "hole",
+              "label": "Hole, dent, or scratch in the door"
+            },
+            {
+              "value": "slider",
+              "label": "Closet slider or bi-fold off its track"
+            }
+          ],
+          "door-installation": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "slab",
+              "label": "Interior slab door (reuse existing frame)"
+            },
+            {
+              "value": "prehung",
+              "label": "Pre-hung door (new jamb included)"
+            },
+            {
+              "value": "closet",
+              "label": "Closet door — bi-fold or bypass/sliding"
+            },
+            {
+              "value": "barn",
+              "label": "Barn door — track and hardware"
+            },
+            {
+              "value": "pocket",
+              "label": "Pocket door — slab or track hardware"
+            },
+            {
+              "value": "storm",
+              "label": "Storm / screen door (exterior)"
+            }
+          ],
+          "lock-installation": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "deadbolt",
+              "label": "Deadbolt (single or double cylinder)"
+            },
+            {
+              "value": "knob-lever",
+              "label": "Knob or lever set (interior doors)"
+            },
+            {
+              "value": "smart",
+              "label": "Smart / keypad / WiFi lock"
+            },
+            {
+              "value": "mortise",
+              "label": "Mortise lock or apartment cylinder"
+            },
+            {
+              "value": "strike",
+              "label": "Strike plate, latch alignment, reinforcement"
+            },
+            {
+              "value": "other",
+              "label": "Other door hardware"
+            }
+          ],
+          "blind-installation": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "roller",
+              "label": "Roller / solar shade"
+            },
+            {
+              "value": "cellular",
+              "label": "Cellular / honeycomb shade"
+            },
+            {
+              "value": "slat",
+              "label": "Venetian / faux-wood / mini blind"
+            },
+            {
+              "value": "roman",
+              "label": "Roman or blackout shade (side channels)"
+            },
+            {
+              "value": "motorized",
+              "label": "Motorized / battery smart shade"
+            },
+            {
+              "value": "other",
+              "label": "Other window covering"
+            }
+          ],
+          "cabinet-hardware": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "knobs-existing",
+              "label": "Knobs — existing holes line up"
+            },
+            {
+              "value": "pulls-existing",
+              "label": "Pulls — existing holes, same center-to-center"
+            },
+            {
+              "value": "new-holes",
+              "label": "No holes yet — template and drill from scratch"
+            },
+            {
+              "value": "respace",
+              "label": "Existing holes are wrong — fill, touch up, re-drill"
+            },
+            {
+              "value": "hinges",
+              "label": "Hinges — replace or upgrade to soft-close"
+            },
+            {
+              "value": "slides",
+              "label": "Drawer slides — replace or adjust"
+            }
+          ],
+          "caulking": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "tub-shower",
+              "label": "Tub or shower surround"
+            },
+            {
+              "value": "sink-counter",
+              "label": "Sink, vanity, or countertop edge"
+            },
+            {
+              "value": "backsplash",
+              "label": "Kitchen backsplash and counter seam"
+            },
+            {
+              "value": "window-door",
+              "label": "Window and door perimeter (drafts)"
+            },
+            {
+              "value": "trim",
+              "label": "Baseboard, trim, and crown gaps"
+            },
+            {
+              "value": "other",
+              "label": "Other joint or gap"
+            }
+          ],
+          "apartment-turnover": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "single-room",
+              "label": "One room or one bathroom only"
+            },
+            {
+              "value": "studio",
+              "label": "Studio / alcove studio"
+            },
+            {
+              "value": "1br",
+              "label": "1 bedroom"
+            },
+            {
+              "value": "2br",
+              "label": "2 bedroom"
+            },
+            {
+              "value": "3br",
+              "label": "3+ bedroom or duplex"
+            },
+            {
+              "value": "office",
+              "label": "Small office or commercial unit"
+            }
+          ]
+        }
+      }
+    ],
+    "pricing": {
+      "drywall-repair": {
+        "small-holes": [
+          150,
+          1000
+        ],
+        "hole": [
+          185,
+          520
+        ],
+        "large-hole": [
+          330,
+          720
+        ],
+        "crack": [
+          150,
+          585
+        ],
+        "water": [
+          190,
+          690
+        ],
+        "texture": [
+          150,
+          630
+        ]
+      },
+      "door-repair": {
+        "sticking": [
+          150,
+          430
+        ],
+        "latch": [
+          150,
+          390
+        ],
+        "hardware": [
+          150,
+          450
+        ],
+        "frame": [
+          150,
+          750
+        ],
+        "hole": [
+          150,
+          450
+        ],
+        "slider": [
+          150,
+          480
+        ]
+      },
+      "door-installation": {
+        "slab": [
+          150,
+          555
+        ],
+        "prehung": [
+          330,
+          840
+        ],
+        "closet": [
+          165,
+          555
+        ],
+        "barn": [
+          255,
+          720
+        ],
+        "pocket": [
+          230,
+          675
+        ],
+        "storm": [
+          195,
+          620
+        ]
+      },
+      "lock-installation": {
+        "deadbolt": [
+          150,
+          395
+        ],
+        "knob-lever": [
+          150,
+          425
+        ],
+        "smart": [
+          150,
+          425
+        ],
+        "mortise": [
+          160,
+          520
+        ],
+        "strike": [
+          150,
+          390
+        ],
+        "other": [
+          150,
+          455
+        ]
+      },
+      "blind-installation": {
+        "roller": [
+          150,
+          700
+        ],
+        "cellular": [
+          150,
+          590
+        ],
+        "slat": [
+          155,
+          630
+        ],
+        "roman": [
+          165,
+          660
+        ],
+        "motorized": [
+          225,
+          810
+        ],
+        "other": [
+          150,
+          600
+        ]
+      },
+      "cabinet-hardware": {
+        "knobs-existing": [
+          150,
+          375
+        ],
+        "pulls-existing": [
+          150,
+          420
+        ],
+        "new-holes": [
+          150,
+          590
+        ],
+        "respace": [
+          285,
+          1180
+        ],
+        "hinges": [
+          150,
+          520
+        ],
+        "slides": [
+          150,
+          590
+        ]
+      },
+      "caulking": {
+        "tub-shower": [
+          150,
+          450
+        ],
+        "sink-counter": [
+          150,
+          390
+        ],
+        "backsplash": [
+          150,
+          450
+        ],
+        "window-door": [
+          150,
+          520
+        ],
+        "trim": [
+          150,
+          555
+        ],
+        "other": [
+          150,
+          480
+        ]
+      },
+      "apartment-turnover": {
+        "single-room": [
+          150,
+          690
+        ],
+        "studio": [
+          225,
+          1080
+        ],
+        "1br": [
+          280,
+          1500
+        ],
+        "2br": [
+          370,
+          1770
+        ],
+        "3br": [
+          480,
+          4200
+        ],
+        "office": [
+          280,
+          1350
+        ]
+      }
+    },
+    "cta": {
+      "text": "Get My Free Estimate",
+      "href": "/#contact"
+    },
+    "disclaimer": "These are the same ranges quoted on each service page, shown here end to end: the low figure is the simplest version of that job and the high figure the most involved one we quote without an on-site look. Labor only — fixtures, parts and materials are supplied by you or picked up at cost, and NYC sales tax is added separately where it applies. Open the service page for the exact tier that matches your job. Photo and text estimates are free; an on-site assessment is $99 and is credited toward the work.",
+    "placeholder": "Pick a service and job to see your range"
+  },
+  "hub-appliance-services": {
+    "title": "Appliance Work Estimate",
+    "subtitle": "Pick the job to see the range we quote for it, then open that page for the exact tiers.",
+    "categories": [
+      {
+        "label": "What do you need?",
+        "id": "series",
+        "options": [
+          {
+            "value": "",
+            "label": "Choose a service…"
+          },
+          {
+            "value": "dishwasher",
+            "label": "Dishwasher install"
+          },
+          {
+            "value": "washer",
+            "label": "Washer install"
+          },
+          {
+            "value": "dryer",
+            "label": "Dryer install"
+          },
+          {
+            "value": "refrigerator",
+            "label": "Refrigerator install"
+          },
+          {
+            "value": "range",
+            "label": "Range install"
+          },
+          {
+            "value": "microwave",
+            "label": "Microwave install"
+          },
+          {
+            "value": "dryer-vent-cleaning",
+            "label": "Dryer vent cleaning"
+          }
+        ]
+      },
+      {
+        "label": "Which job?",
+        "id": "size",
+        "dependsOn": "series",
+        "optionSets": {
+          "dishwasher": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "swap",
+              "label": "Swap (replace existing)"
+            },
+            {
+              "value": "new",
+              "label": "New Install (no existing hookup)"
+            },
+            {
+              "value": "builtin",
+              "label": "Built-In / Panel-Ready"
+            },
+            {
+              "value": "other",
+              "label": "Other Setup"
+            }
+          ],
+          "washer": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "topload",
+              "label": "Top-Load Washer"
+            },
+            {
+              "value": "frontload",
+              "label": "Front-Load Washer"
+            },
+            {
+              "value": "stackable",
+              "label": "Stackable Washer"
+            },
+            {
+              "value": "portable",
+              "label": "Portable / Compact Washer"
+            },
+            {
+              "value": "other",
+              "label": "Other Washer"
+            }
+          ],
+          "dryer": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "electric",
+              "label": "Electric Dryer"
+            },
+            {
+              "value": "gas",
+              "label": "Gas Dryer"
+            },
+            {
+              "value": "ventless",
+              "label": "Ventless / Heat Pump Dryer"
+            },
+            {
+              "value": "stackable",
+              "label": "Stackable Dryer"
+            },
+            {
+              "value": "other",
+              "label": "Other Dryer"
+            }
+          ],
+          "refrigerator": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "freestanding",
+              "label": "Freestanding (Top / Bottom Freezer)"
+            },
+            {
+              "value": "french-door",
+              "label": "French Door"
+            },
+            {
+              "value": "side-by-side",
+              "label": "Side-by-Side"
+            },
+            {
+              "value": "counter-depth",
+              "label": "Counter-Depth / Built-In"
+            },
+            {
+              "value": "mini",
+              "label": "Mini / Wine Cooler"
+            },
+            {
+              "value": "other",
+              "label": "Other Refrigerator"
+            }
+          ],
+          "range": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "gas-freestanding",
+              "label": "Gas Freestanding Range"
+            },
+            {
+              "value": "electric-freestanding",
+              "label": "Electric Freestanding Range"
+            },
+            {
+              "value": "slide-in",
+              "label": "Slide-In Range (Gas or Electric)"
+            },
+            {
+              "value": "wall-oven",
+              "label": "Wall Oven"
+            },
+            {
+              "value": "cooktop",
+              "label": "Cooktop Only"
+            },
+            {
+              "value": "other",
+              "label": "Other Range / Oven"
+            }
+          ],
+          "microwave": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "otr",
+              "label": "Over-the-Range (OTR)"
+            },
+            {
+              "value": "builtin",
+              "label": "Built-In / Wall Oven Combo"
+            },
+            {
+              "value": "undermount",
+              "label": "Under-Cabinet Mount"
+            },
+            {
+              "value": "drawer",
+              "label": "Microwave Drawer"
+            },
+            {
+              "value": "other",
+              "label": "Other Microwave"
+            }
+          ],
+          "dryer-vent-cleaning": [
+            {
+              "value": "",
+              "label": "Choose the job…"
+            },
+            {
+              "value": "standard",
+              "label": "Side-by-side, vent within reach"
+            },
+            {
+              "value": "stacked",
+              "label": "Stacked unit in a closet"
+            },
+            {
+              "value": "long-run",
+              "label": "Longer duct run (10ft+)"
+            },
+            {
+              "value": "multi",
+              "label": "Multiple units (landlord / building)"
+            }
+          ]
+        }
+      }
+    ],
+    "pricing": {
+      "dishwasher": {
+        "swap": [
+          125,
+          290
+        ],
+        "new": [
+          200,
+          620
+        ],
+        "builtin": [
+          150,
+          450
+        ],
+        "other": [
+          125,
+          490
+        ]
+      },
+      "washer": {
+        "topload": [
+          99,
+          330
+        ],
+        "frontload": [
+          110,
+          360
+        ],
+        "stackable": [
+          110,
+          345
+        ],
+        "portable": [
+          50,
+          200
+        ],
+        "other": [
+          99,
+          370
+        ]
+      },
+      "dryer": {
+        "electric": [
+          99,
+          330
+        ],
+        "gas": [
+          125,
+          410
+        ],
+        "ventless": [
+          110,
+          370
+        ],
+        "stackable": [
+          125,
+          370
+        ],
+        "other": [
+          99,
+          410
+        ]
+      },
+      "refrigerator": {
+        "freestanding": [
+          85,
+          310
+        ],
+        "french-door": [
+          99,
+          330
+        ],
+        "side-by-side": [
+          99,
+          310
+        ],
+        "counter-depth": [
+          125,
+          410
+        ],
+        "mini": [
+          50,
+          215
+        ],
+        "other": [
+          85,
+          370
+        ]
+      },
+      "range": {
+        "gas-freestanding": [
+          125,
+          410
+        ],
+        "electric-freestanding": [
+          99,
+          330
+        ],
+        "slide-in": [
+          125,
+          410
+        ],
+        "wall-oven": [
+          150,
+          490
+        ],
+        "cooktop": [
+          110,
+          395
+        ],
+        "other": [
+          99,
+          450
+        ]
+      },
+      "microwave": {
+        "otr": [
+          99,
+          345
+        ],
+        "builtin": [
+          110,
+          370
+        ],
+        "undermount": [
+          85,
+          310
+        ],
+        "drawer": [
+          125,
+          410
+        ],
+        "other": [
+          85,
+          370
+        ]
+      },
+      "dryer-vent-cleaning": {
+        "standard": [
+          150,
+          295
+        ],
+        "stacked": [
+          165,
+          350
+        ],
+        "long-run": [
+          175,
+          340
+        ],
+        "multi": [
+          280,
+          1200
+        ]
+      }
+    },
+    "cta": {
+      "text": "Get My Free Estimate",
+      "href": "/#contact"
+    },
+    "disclaimer": "These are the same ranges quoted on each service page, shown here end to end: the low figure is the simplest version of that job and the high figure the most involved one we quote without an on-site look. Labor only — fixtures, parts and materials are supplied by you or picked up at cost, and NYC sales tax is added separately where it applies. Open the service page for the exact tier that matches your job. Photo and text estimates are free; an on-site assessment is $99 and is credited toward the work.",
+    "placeholder": "Pick a service and job to see your range"
+  }
+}
