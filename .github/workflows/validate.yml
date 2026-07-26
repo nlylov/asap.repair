@@ -12,7 +12,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # 22+: validate-structured-data.mjs imports globSync from node:fs,
+          # which does not exist on Node 20 (the gate failed on every run).
+          node-version: 22
       # Sitemap ↔ llms.txt/llms-full.txt coverage (every public URL must be
       # present in both AI guides — catches the recurring desync class)
       - name: AI guide coverage
