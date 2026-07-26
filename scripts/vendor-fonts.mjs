@@ -12,7 +12,10 @@
  * render-blocking and same-origin), so fonts are discovered in the first
  * stylesheet parse, and the two faces above the fold are preloaded.
  *
- * The woff2 files in assets/fonts/ were subset to latin + latin-ext — the
+ * The woff2 files are variable fonts, one per family per unicode-range. Google
+ * serves the same variable file once per requested weight, so the first cut of
+ * this shipped 16 files that were only 4 distinct payloads and a page pulled
+ * ~225KB where ~75KB would do. Subset to latin + latin-ext — the
  * cyrillic/greek/vietnamese faces Google serves are dead weight for an
  * English-language NYC site. unicode-range still gates what a browser fetches.
  *
@@ -28,8 +31,8 @@ const ROOT = new URL('..', import.meta.url).pathname;
 /* Above the fold on every page: the H1 (Plus Jakarta Sans 800) and body copy
    (Inter 400). Preloading more would compete with the hero image for bandwidth. */
 const PRELOAD = [
-  '/assets/fonts/PlusJakartaSans-800-latin.woff2',
-  '/assets/fonts/Inter-400-latin.woff2',
+  '/assets/fonts/PlusJakartaSans-variable-latin.woff2',
+  '/assets/fonts/Inter-variable-latin.woff2',
 ];
 
 const files = execFileSync('git', ['ls-files', '*.html'], { cwd: ROOT, encoding: 'utf8' })
@@ -44,8 +47,12 @@ for (const rel of files) {
   /* Two separate jobs: strip the Google tags (only some pages still have them)
      and guarantee the preloads (regenerated pages come out of the template with
      neither). Bailing out on "no Google tags" left 43 pages with no preload. */
+  /* Only pages on the site-wide stylesheet. The lab prototype ships its own
+     local styles.css and its own family (Fraunces) — stripping its Google link
+     silently downgraded its display face to Times New Roman. */
+  if (!html.includes('href="/styles.css')) continue;
   const needsStrip = html.includes('fonts.googleapis.com') || html.includes('fonts.gstatic.com');
-  const needsPreload = !html.includes('/assets/fonts/') && html.includes('/styles.css');
+  const needsPreload = !html.includes('/assets/fonts/');
   if (!needsStrip && !needsPreload) continue;
 
   let next = html

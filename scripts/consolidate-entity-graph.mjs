@@ -34,11 +34,29 @@ const BUSINESS_TYPES = new Set([
   'Organization',
 ]);
 
+/* @type is sometimes an array (faq/index.html ships
+   ["HomeAndConstructionBusiness","LocalBusiness"]), which a plain Set lookup misses. */
+const typeList = (node) => (Array.isArray(node['@type']) ? node['@type'] : [node['@type']]);
+
 const isBusinessNode = (node) =>
   node
   && typeof node === 'object'
-  && BUSINESS_TYPES.has(node['@type'])
+  && typeList(node).some((t) => BUSINESS_TYPES.has(t))
   && BUSINESS_NAMES.has(String(node.name || '').toLowerCase());
+
+/* Sharing one @id means these nodes are ONE thing, so they may not disagree about
+   what that thing is called or how to ring it. Before consolidation the pages
+   carried "Repair ASAP LLC" vs "Repair Asap LLC", "+17753107770" vs the dashed
+   form, and two different logos; separate anonymous nodes made that harmless.
+   Under a single @id a consumer merges them and gets a business with two names. */
+const CANONICAL = {
+  name: 'Repair Asap LLC',
+  telephone: '+1-775-310-7770',
+  url: SITE,
+  logo: `${SITE}/assets/images/logo-header.webp`,
+};
+
+const PAGE_SCOPED = /#(service|faq|breadcrumb)$/;
 
 /* Order matters for humans reading the JSON: @context, @type, @id first. */
 function withId(node, id, type) {
@@ -53,23 +71,38 @@ function withId(node, id, type) {
   return { ...head, ...rest };
 }
 
-function walk(node, canonical) {
-  if (Array.isArray(node)) return node.map((n) => walk(n, canonical));
+/* `top` is true only for the node a <script> block starts with. A page-scoped @id
+   like `<url>#service` describes THE service this page is about — handing the same
+   one to every entry nested in hasOfferCatalog/itemListElement declared 18 distinct
+   sub-services on the appliance hub to be a single entity, and pointed each of them
+   at the hub instead of at its own page. Nested nodes stay anonymous. */
+function walk(node, canonical, top = false) {
+  if (Array.isArray(node)) return node.map((n) => walk(n, canonical, top));
   if (!node || typeof node !== 'object') return node;
 
   let out = node;
-  if (isBusinessNode(out)) out = withId(out, BUSINESS_ID, BUSINESS_TYPE);
-  else if (out['@type'] === 'Service' && canonical) {
-    out = withId(out, `${canonical}#service`, 'Service');
-    if (!out.mainEntityOfPage) out.mainEntityOfPage = canonical;
-  } else if (out['@type'] === 'FAQPage' && canonical && !out['@id']) {
-    out = withId(out, `${canonical}#faq`, 'FAQPage');
-  } else if (out['@type'] === 'BreadcrumbList' && canonical && !out['@id']) {
-    out = withId(out, `${canonical}#breadcrumb`, 'BreadcrumbList');
+  if (isBusinessNode(out)) {
+    out = withId({ ...out, ...CANONICAL }, BUSINESS_ID, BUSINESS_TYPE);
+  } else if (top && canonical && !out['@id']) {
+    if (out['@type'] === 'Service') {
+      out = withId(out, `${canonical}#service`, 'Service');
+      if (!out.mainEntityOfPage) out.mainEntityOfPage = canonical;
+    } else if (out['@type'] === 'FAQPage') {
+      out = withId(out, `${canonical}#faq`, 'FAQPage');
+    } else if (out['@type'] === 'BreadcrumbList') {
+      out = withId(out, `${canonical}#breadcrumb`, 'BreadcrumbList');
+    }
+  } else if (!top && canonical && PAGE_SCOPED.test(String(out['@id'] ?? ''))) {
+    /* Undo the earlier version of this script, which stamped the page-scoped @id
+       on nested nodes too. Removing it here (rather than only guarding against
+       adding it) is what lets a re-run repair pages that already shipped wrong. */
+    out = { ...out };
+    delete out['@id'];
+    if (out.mainEntityOfPage === canonical) delete out.mainEntityOfPage;
   }
 
   const result = {};
-  for (const [key, value] of Object.entries(out)) result[key] = walk(value, canonical);
+  for (const [key, value] of Object.entries(out)) result[key] = walk(value, canonical, false);
   return result;
 }
 
@@ -99,7 +132,7 @@ for (const rel of files) {
       } catch {
         return whole; // not our JSON to rewrite — leave it exactly as found
       }
-      const updated = walk(data, canonical);
+      const updated = walk(data, canonical, true);
       const pretty = body.trim() !== body || /\n\s+"/.test(body);
       const indent = pretty ? (body.match(/\n(\s+)"/)?.[1]?.length ?? 4) - 2 : 0;
       const serialised = pretty

@@ -315,8 +315,6 @@ function renderPage(page) {
     <meta name="theme-color" content="#0a0f1c">
     <link rel="icon" type="image/x-icon" href="/assets/favicons/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
-    <noscript>
-    </noscript>
     <link rel="preload" as="image" type="${page.heroImage.endsWith('.png') ? 'image/png' : 'image/webp'}" href="${page.heroImage}">
     <link rel="stylesheet" href="/styles.css?v=${ASSET_VERSION}">
     <style>

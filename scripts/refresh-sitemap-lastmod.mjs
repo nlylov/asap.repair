@@ -14,7 +14,7 @@
  */
 
 import { execFileSync } from 'node:child_process';
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 const ROOT = new URL('..', import.meta.url).pathname;
@@ -31,10 +31,17 @@ const dirty = new Set(
     .map((line) => line.slice(3).trim()),
 );
 
+/* Must resolve to a FILE. existsSync() is true for directories too, so
+   `handyman-queens/` used to win over `handyman-queens/index.html` — and since the
+   dirty set only ever holds file paths, the "edited today" branch was dead for
+   every URL but the homepage, while `git log -- <dir>/` returned the newest commit
+   touching ANY child. Both failure modes made lastmod wrong in opposite directions. */
 function fileFor(loc) {
   const path = loc.replace(SITE, '').replace(/^\//, '');
-  for (const candidate of [path, join(path, 'index.html'), `${path.replace(/\/$/, '')}/index.html`]) {
-    if (candidate && existsSync(join(ROOT, candidate))) return candidate;
+  for (const candidate of [join(path, 'index.html'), path]) {
+    if (!candidate) continue;
+    const full = join(ROOT, candidate);
+    if (existsSync(full) && statSync(full).isFile()) return candidate;
   }
   return null;
 }
