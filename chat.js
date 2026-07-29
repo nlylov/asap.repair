@@ -12,6 +12,16 @@
   const GA4_ID = 'G-1ZRVGCMZ43';
   const GA_CLIENT_TIMEOUT_MS = 2200;
   const TRACKING_PARAM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'gbraid', 'wbraid', 'msclkid', 'fbclid', 'ttclid'];
+  const ATTRIBUTION_VERSION = 2;
+  const TRACKING_VALUE_MAX_LENGTH = 120;
+  const URL_CONTEXT_MAX_LENGTH = 2000;
+  const ATTRIBUTION_CONTEXT_KEYS = ['landingPage', 'landingPath', 'firstReferrer', 'firstTouchAt', 'latestPage', 'latestPath', 'latestReferrer', 'latestTouchAt'];
+  const ATTRIBUTION_STORAGE_KEYS = new Set([
+    'version',
+    ...ATTRIBUTION_CONTEXT_KEYS,
+    ...TRACKING_PARAM_KEYS,
+    ...TRACKING_PARAM_KEYS.map((name) => `latest_${name}`),
+  ]);
   // --------------------
 
   let state = {
@@ -24,6 +34,7 @@
   };
   let gaClientIdPromise = null;
   let gaClientIdCached = '';
+  let volatileAttribution = {};
 
   function injectStyles() {
     const style = document.createElement('style');
@@ -461,8 +472,8 @@
     }
 
     const sessionContext = {};
-    try { sessionContext.page = window.location.href; } catch (_) {}
-    try { sessionContext.referrer = document.referrer || ''; } catch (_) {}
+    try { sessionContext.page = sanitizeAttributionUrl(window.location.href, true).url; } catch (_) {}
+    try { sessionContext.referrer = sanitizeAttributionUrl(document.referrer || '', false).url; } catch (_) {}
     try { sessionContext.language = navigator.language || ''; } catch (_) {}
     try { sessionContext.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (_) {}
     try {
@@ -485,63 +496,166 @@
     }
   }
 
+  function normalizeStoredAttribution(record) {
+    const stored = record && typeof record === 'object' && !Array.isArray(record) ? record : {};
+    Object.keys(stored).forEach((name) => {
+      if (!ATTRIBUTION_STORAGE_KEYS.has(name)) delete stored[name];
+    });
+    // Paths are never trusted independently: they are regenerated only from
+    // the corresponding sanitized same-record URL during page-load capture.
+    delete stored.landingPath;
+    delete stored.latestPath;
+    TRACKING_PARAM_KEYS.forEach((name) => {
+      [name, `latest_${name}`].forEach((field) => {
+        if (typeof stored[field] !== 'string') {
+          delete stored[field];
+          return;
+        }
+        const value = stored[field].trim().slice(0, TRACKING_VALUE_MAX_LENGTH);
+        if (value) stored[field] = value;
+        else delete stored[field];
+      });
+    });
+    ['firstTouchAt', 'latestTouchAt'].forEach((field) => {
+      if (typeof stored[field] !== 'string' || !stored[field].trim()) {
+        delete stored[field];
+        return;
+      }
+      const timestamp = new Date(stored[field]);
+      if (Number.isNaN(timestamp.getTime())) delete stored[field];
+      else stored[field] = timestamp.toISOString();
+    });
+    return stored;
+  }
+
   function collectTrackingParams() {
     const out = {};
     try {
       const params = new URLSearchParams(window.location.search);
       TRACKING_PARAM_KEYS.forEach((name) => {
-        const value = params.get(name);
-        if (value) out[name] = value;
+        const value = params.get(name)?.trim();
+        if (value) out[name] = value.slice(0, TRACKING_VALUE_MAX_LENGTH);
       });
     } catch (_) {}
     return out;
   }
 
-  function getAttributionContext() {
-    const out = {};
-    const stored = getStoredJson(config.attributionStorageKey);
-    let page = '';
-    let referrer = '';
-    try { page = window.location.href; } catch (_) {}
-    try { referrer = document.referrer || ''; } catch (_) {}
+  function sanitizeAttributionUrl(input, keepTrackingParams = false) {
+    if (typeof input !== 'string' || !input.trim()) return { url: '', path: '', origin: '' };
+    try {
+      const parsed = new URL(input, window.location.origin);
+      if (!['http:', 'https:'].includes(parsed.protocol)) return { url: '', path: '', origin: '' };
+      const safe = new URL(`${parsed.origin}${parsed.pathname}`);
+      if (keepTrackingParams) {
+        TRACKING_PARAM_KEYS.forEach((name) => {
+          const value = parsed.searchParams.get(name)?.trim();
+          if (value) safe.searchParams.set(name, value.slice(0, TRACKING_VALUE_MAX_LENGTH));
+        });
+      }
+      return {
+        url: safe.href.slice(0, URL_CONTEXT_MAX_LENGTH),
+        path: safe.pathname.slice(0, URL_CONTEXT_MAX_LENGTH),
+        origin: safe.origin,
+      };
+    } catch (_) {
+      return { url: '', path: '', origin: '' };
+    }
+  }
+
+  function captureAttribution() {
+    const stored = normalizeStoredAttribution(getStoredJson(config.attributionStorageKey));
+    let rawPage = '';
+    let rawReferrer = '';
+    try { rawPage = window.location.href; } catch (_) {}
+    try { rawReferrer = document.referrer || ''; } catch (_) {}
+    const page = sanitizeAttributionUrl(rawPage, true);
+    const referrer = sanitizeAttributionUrl(rawReferrer, false);
     const now = new Date().toISOString();
     const params = collectTrackingParams();
 
-    if (!stored.landingPage && page) stored.landingPage = page;
-    if (!stored.firstReferrer && referrer) stored.firstReferrer = referrer;
-    if (!stored.firstTouchAt) stored.firstTouchAt = now;
-    if (page) stored.latestPage = page;
-    if (referrer) stored.latestReferrer = referrer;
-    stored.latestTouchAt = now;
+    if (stored.landingPage) {
+      const legacyLanding = sanitizeAttributionUrl(stored.landingPage, true);
+      if (legacyLanding.url && legacyLanding.origin === page.origin) {
+        stored.landingPage = legacyLanding.url;
+        stored.landingPath = legacyLanding.path;
+      } else {
+        delete stored.landingPage;
+        delete stored.landingPath;
+      }
+    }
+    if (stored.firstReferrer) stored.firstReferrer = sanitizeAttributionUrl(stored.firstReferrer, false).url;
+    const hasCompleteFirstTouch = Boolean(stored.landingPage && stored.firstTouchAt);
+    if (!hasCompleteFirstTouch) {
+      ['landingPage', 'landingPath', 'firstReferrer', 'firstTouchAt', ...TRACKING_PARAM_KEYS]
+        .forEach((name) => delete stored[name]);
+      stored.landingPage = page.url;
+      stored.landingPath = page.path;
+      stored.firstReferrer = referrer.url;
+      stored.firstTouchAt = now;
+      TRACKING_PARAM_KEYS.forEach((name) => {
+        if (params[name]) stored[name] = params[name];
+      });
+    } else if (!Object.prototype.hasOwnProperty.call(stored, 'firstReferrer')) {
+      stored.firstReferrer = '';
+    }
 
-    TRACKING_PARAM_KEYS.forEach((name) => {
-      if (params[name] && !stored[name]) stored[name] = params[name];
-    });
+    if (stored.latestPage) {
+      const legacyLatest = sanitizeAttributionUrl(stored.latestPage, true);
+      if (legacyLatest.url && legacyLatest.origin === page.origin) {
+        stored.latestPage = legacyLatest.url;
+        stored.latestPath = legacyLatest.path;
+      } else {
+        delete stored.latestPage;
+        delete stored.latestPath;
+      }
+    }
+    if (stored.latestReferrer) stored.latestReferrer = sanitizeAttributionUrl(stored.latestReferrer, false).url;
+    const hasCompleteLatestTouch = Boolean(stored.latestPage && stored.latestTouchAt);
+    if (!hasCompleteLatestTouch) {
+      ['latestPage', 'latestPath', 'latestReferrer', 'latestTouchAt', ...TRACKING_PARAM_KEYS.map((name) => `latest_${name}`)]
+        .forEach((name) => delete stored[name]);
+    }
+    const hasCampaignSignal = TRACKING_PARAM_KEYS.some((name) => Boolean(params[name]));
+    const hasExternalReferrer = Boolean(referrer.origin && page.origin && referrer.origin !== page.origin);
+    if (!hasCompleteLatestTouch || hasCampaignSignal || hasExternalReferrer) {
+      stored.latestPage = page.url;
+      stored.latestPath = page.path;
+      stored.latestReferrer = referrer.url;
+      stored.latestTouchAt = now;
+      TRACKING_PARAM_KEYS.forEach((name) => {
+        const latestName = `latest_${name}`;
+        if (params[name]) stored[latestName] = params[name];
+        else delete stored[latestName];
+      });
+    }
 
+    stored.version = ATTRIBUTION_VERSION;
+    volatileAttribution = { ...stored };
     try {
       localStorage.setItem(config.attributionStorageKey, JSON.stringify(stored));
     } catch (_) {}
+    return stored;
+  }
 
-    ['landingPage', 'firstReferrer', 'latestReferrer', 'firstTouchAt', 'latestTouchAt'].forEach((name) => {
-      if (stored[name]) out[name] = stored[name];
+  function getAttributionContext() {
+    const storedValue = getStoredJson(config.attributionStorageKey);
+    const stored = storedValue.firstTouchAt ? storedValue : volatileAttribution;
+    const out = {};
+    ATTRIBUTION_CONTEXT_KEYS.forEach((name) => {
+      if (typeof stored[name] === 'string' && stored[name]) out[name] = stored[name];
     });
     TRACKING_PARAM_KEYS.forEach((name) => {
       if (stored[name]) out[name] = stored[name];
+      const latestName = `latest_${name}`;
+      if (stored[latestName]) out[latestName] = stored[latestName];
     });
     return out;
   }
 
   async function getSessionContextAsync() {
-    if (typeof window.repairAsapGetSessionContextAsync === 'function') {
-      return window.repairAsapGetSessionContextAsync();
-    }
-
     const sessionContext = getSessionContext();
-    try {
-      const gaClientId = await getGaClientIdAsync();
-      if (gaClientId) sessionContext.gaClientId = gaClientId;
-    } catch (_) {}
-    return sessionContext;
+    primeGaClientIdInBackground();
+    return Promise.resolve(sessionContext);
   }
 
   function cacheGaClientId(clientId) {
@@ -607,6 +721,16 @@
     return gaClientIdPromise;
   }
 
+  function primeGaClientIdInBackground() {
+    try {
+      if (typeof window.repairAsapPrimeGaClientId === 'function') {
+        window.repairAsapPrimeGaClientId();
+      } else {
+        getGaClientIdAsync().catch(() => {});
+      }
+    } catch (_) {}
+  }
+
   function getOrCreateVisitorId() {
     try {
       let visitorId = localStorage.getItem(config.visitorStorageKey);
@@ -652,7 +776,8 @@
     const visitSource = options.source || 'chat_widget';
 
     const promise = (async () => {
-      const sessionContext = await getSessionContextAsync();
+      const sessionContext = getSessionContext();
+      primeGaClientIdInBackground();
       const body = Object.assign(
         {},
         { threadId: threadId, visitSource: visitSource },
@@ -705,7 +830,8 @@
     if (state.threadPromise) return state.threadPromise;
 
     state.threadPromise = (async () => {
-      const sessionContext = await getSessionContextAsync();
+      const sessionContext = getSessionContext();
+      primeGaClientIdInBackground();
       const response = await fetch(`${config.apiEndpoint}/api/widget/thread?org=repair-asap`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -918,6 +1044,7 @@
     createChatUI();
   }
 
+  if (typeof window.repairAsapGetSessionContext !== 'function') captureAttribution();
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 

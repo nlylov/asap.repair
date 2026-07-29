@@ -6,14 +6,101 @@
 const REPAIR_ASAP_VISITOR_KEY = 'repair_asap_visitor_id';
 const REPAIR_ASAP_THREAD_KEY = 'repair_asap_thread_id';
 const REPAIR_ASAP_ATTRIBUTION_KEY = 'repair_asap_attribution';
+const REPAIR_ASAP_ATTRIBUTION_VERSION = 2;
 const REPAIR_ASAP_GA4_ID = 'G-1ZRVGCMZ43';
 const REPAIR_ASAP_GA_CLIENT_TIMEOUT_MS = 2200;
 const REPAIR_ASAP_GA_CLIENT_PRIME_DELAY_MS = 2600;
 const REPAIR_ASAP_PHONE_CLICK_ENDPOINT = 'https://crm.asap.repair/api/widget/phone-click?org=repair-asap';
 const REPAIR_ASAP_SMS_CLICK_ENDPOINT = 'https://crm.asap.repair/api/widget/sms-click?org=repair-asap';
 const REPAIR_ASAP_TRACKING_PARAM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'gbraid', 'wbraid', 'msclkid', 'fbclid', 'ttclid'];
-const REPAIR_ASAP_CRM_TAXONOMY_VERSION = '2026-07-16';
+const REPAIR_ASAP_TRACKING_VALUE_MAX_LENGTH = 120;
+const REPAIR_ASAP_URL_CONTEXT_MAX_LENGTH = 2000;
+const REPAIR_ASAP_ATTRIBUTION_CONTEXT_KEYS = ['landingPage', 'landingPath', 'firstReferrer', 'firstTouchAt', 'latestPage', 'latestPath', 'latestReferrer', 'latestTouchAt'];
+const REPAIR_ASAP_ATTRIBUTION_STORAGE_KEYS = new Set([
+  'version',
+  ...REPAIR_ASAP_ATTRIBUTION_CONTEXT_KEYS,
+  ...REPAIR_ASAP_TRACKING_PARAM_KEYS,
+  ...REPAIR_ASAP_TRACKING_PARAM_KEYS.map((name) => `latest_${name}`),
+]);
+const REPAIR_ASAP_CRM_TAXONOMY_VERSION = '2026-07-29';
 const REPAIR_ASAP_SERVICE_TAXONOMY = {
+  'dishwasher-installation': {
+    serviceCode: 'dishwasher_installation',
+    label: 'Dishwasher Installation',
+    vertical: 'appliance_installation',
+    intent: 'installation',
+    quickbooksItem: 'Appliance Replacement Setup',
+    marketSegment: 'residential',
+    applianceType: 'dishwasher',
+    publicRoute: '/services/appliance-services/dishwasher-installation/',
+    complianceFlags: ['new_plumbing_possible', 'new_electrical_possible', 'permit_scope_possible'],
+  },
+  'dryer-installation': {
+    serviceCode: 'dryer_installation',
+    label: 'Dryer Installation',
+    vertical: 'appliance_installation',
+    intent: 'installation',
+    quickbooksItem: 'Appliance Replacement Setup',
+    marketSegment: 'residential',
+    applianceType: 'dryer',
+    publicRoute: '/services/appliance-services/dryer-installation/',
+    complianceFlags: ['gas_scope_possible', 'new_electrical_possible', 'permit_scope_possible'],
+  },
+  'microwave-installation': {
+    serviceCode: 'microwave_installation',
+    label: 'Microwave Installation',
+    vertical: 'appliance_installation',
+    intent: 'installation',
+    quickbooksItem: 'Appliance Replacement Setup',
+    marketSegment: 'residential',
+    applianceType: 'microwave',
+    publicRoute: '/services/appliance-services/microwave-installation/',
+    complianceFlags: ['new_electrical_possible', 'permit_scope_possible'],
+  },
+  'range-installation': {
+    serviceCode: 'range_installation',
+    label: 'Range & Oven Installation',
+    vertical: 'appliance_installation',
+    intent: 'installation',
+    quickbooksItem: 'Appliance Replacement Setup',
+    marketSegment: 'residential',
+    applianceType: 'range_oven',
+    publicRoute: '/services/appliance-services/range-installation/',
+    complianceFlags: ['gas_scope_possible', 'new_electrical_possible', 'permit_scope_possible'],
+  },
+  'refrigerator-installation': {
+    serviceCode: 'refrigerator_installation',
+    label: 'Refrigerator Installation',
+    vertical: 'appliance_installation',
+    intent: 'installation',
+    quickbooksItem: 'Appliance Replacement Setup',
+    marketSegment: 'residential',
+    applianceType: 'refrigerator',
+    publicRoute: '/services/appliance-services/refrigerator-installation/',
+    complianceFlags: ['new_plumbing_possible', 'permit_scope_possible'],
+  },
+  'washer-dryer-installation': {
+    serviceCode: 'washer_dryer_installation',
+    label: 'Washer & Dryer Installation',
+    vertical: 'appliance_installation',
+    intent: 'installation',
+    quickbooksItem: 'Appliance Replacement Setup',
+    marketSegment: 'residential',
+    applianceType: 'washer_dryer_combo',
+    publicRoute: '/services/appliance-services/washer-dryer-installation/',
+    complianceFlags: ['gas_scope_possible', 'new_plumbing_possible', 'new_electrical_possible', 'permit_scope_possible'],
+  },
+  'washer-installation': {
+    serviceCode: 'washer_installation',
+    label: 'Washer Installation',
+    vertical: 'appliance_installation',
+    intent: 'installation',
+    quickbooksItem: 'Appliance Replacement Setup',
+    marketSegment: 'residential',
+    applianceType: 'washer',
+    publicRoute: '/services/appliance-services/washer-installation/',
+    complianceFlags: ['new_plumbing_possible', 'new_electrical_possible', 'permit_scope_possible'],
+  },
   'appliance-repair': {
     serviceCode: 'appliance_diagnostic_visit',
     label: 'Appliance Diagnostic Visit',
@@ -218,6 +305,7 @@ const REPAIR_ASAP_SERVICE_LABEL_TO_SLUG = Object.keys(REPAIR_ASAP_SERVICE_TAXONO
 });
 let repairAsapGaClientIdPromise = null;
 let repairAsapGaClientIdCached = '';
+let repairAsapVolatileAttribution = {};
 
 function repairAsapTrackEvent(eventName, params) {
   const safeParams = params || {};
@@ -347,51 +435,176 @@ function repairAsapReadStoredJson(key) {
   }
 }
 
+function repairAsapNormalizeStoredAttribution(record) {
+  const stored = record && typeof record === 'object' && !Array.isArray(record) ? record : {};
+  Object.keys(stored).forEach((name) => {
+    if (!REPAIR_ASAP_ATTRIBUTION_STORAGE_KEYS.has(name)) delete stored[name];
+  });
+  // Paths are never trusted independently: they are regenerated only from the
+  // corresponding sanitized same-record URL during page-load capture.
+  delete stored.landingPath;
+  delete stored.latestPath;
+  REPAIR_ASAP_TRACKING_PARAM_KEYS.forEach((name) => {
+    [name, `latest_${name}`].forEach((field) => {
+      if (typeof stored[field] !== 'string') {
+        delete stored[field];
+        return;
+      }
+      const value = stored[field].trim().slice(0, REPAIR_ASAP_TRACKING_VALUE_MAX_LENGTH);
+      if (value) stored[field] = value;
+      else delete stored[field];
+    });
+  });
+  ['firstTouchAt', 'latestTouchAt'].forEach((field) => {
+    if (typeof stored[field] !== 'string' || !stored[field].trim()) {
+      delete stored[field];
+      return;
+    }
+    const timestamp = new Date(stored[field]);
+    if (Number.isNaN(timestamp.getTime())) delete stored[field];
+    else stored[field] = timestamp.toISOString();
+  });
+  return stored;
+}
+
 function repairAsapCollectTrackingParams() {
   const out = {};
   try {
     const params = new URLSearchParams(window.location.search);
     REPAIR_ASAP_TRACKING_PARAM_KEYS.forEach((name) => {
-      const value = params.get(name);
-      if (value) out[name] = value;
+      const value = params.get(name)?.trim();
+      if (value) out[name] = value.slice(0, REPAIR_ASAP_TRACKING_VALUE_MAX_LENGTH);
     });
   } catch (_) {}
   return out;
 }
 
-function repairAsapGetAttributionContext() {
-  const out = {};
-  const stored = repairAsapReadStoredJson(REPAIR_ASAP_ATTRIBUTION_KEY);
-  let page = '';
-  let referrer = '';
-  try { page = window.location.href; } catch (_) {}
-  try { referrer = document.referrer || ''; } catch (_) {}
+function repairAsapSanitizeAttributionUrl(input, keepTrackingParams = false) {
+  if (typeof input !== 'string' || !input.trim()) return { url: '', path: '', origin: '' };
+  try {
+    const parsed = new URL(input, window.location.origin);
+    if (!['http:', 'https:'].includes(parsed.protocol)) return { url: '', path: '', origin: '' };
+    const safe = new URL(`${parsed.origin}${parsed.pathname}`);
+    if (keepTrackingParams) {
+      REPAIR_ASAP_TRACKING_PARAM_KEYS.forEach((name) => {
+        const value = parsed.searchParams.get(name)?.trim();
+        if (value) safe.searchParams.set(name, value.slice(0, REPAIR_ASAP_TRACKING_VALUE_MAX_LENGTH));
+      });
+    }
+    return {
+      url: safe.href.slice(0, REPAIR_ASAP_URL_CONTEXT_MAX_LENGTH),
+      path: safe.pathname.slice(0, REPAIR_ASAP_URL_CONTEXT_MAX_LENGTH),
+      origin: safe.origin,
+    };
+  } catch (_) {
+    return { url: '', path: '', origin: '' };
+  }
+}
+
+function repairAsapCaptureAttribution() {
+  const stored = repairAsapNormalizeStoredAttribution(repairAsapReadStoredJson(REPAIR_ASAP_ATTRIBUTION_KEY));
+  let rawPage = '';
+  let rawReferrer = '';
+  try { rawPage = window.location.href; } catch (_) {}
+  try { rawReferrer = document.referrer || ''; } catch (_) {}
+  const page = repairAsapSanitizeAttributionUrl(rawPage, true);
+  const referrer = repairAsapSanitizeAttributionUrl(rawReferrer, false);
   const now = new Date().toISOString();
   const params = repairAsapCollectTrackingParams();
 
-  if (!stored.landingPage && page) stored.landingPage = page;
-  if (!stored.firstReferrer && referrer) stored.firstReferrer = referrer;
-  if (!stored.firstTouchAt) stored.firstTouchAt = now;
-  if (page) stored.latestPage = page;
-  if (referrer) stored.latestReferrer = referrer;
-  stored.latestTouchAt = now;
+  // Sanitize legacy v1 values in place so arbitrary query strings or hashes are
+  // never carried forward after this version loads.
+  if (stored.landingPage) {
+    const legacyLanding = repairAsapSanitizeAttributionUrl(stored.landingPage, true);
+    if (legacyLanding.url && legacyLanding.origin === page.origin) {
+      stored.landingPage = legacyLanding.url;
+      stored.landingPath = legacyLanding.path;
+    } else {
+      delete stored.landingPage;
+      delete stored.landingPath;
+    }
+  }
+  if (stored.firstReferrer) {
+    stored.firstReferrer = repairAsapSanitizeAttributionUrl(stored.firstReferrer, false).url;
+  }
+  const hasCompleteFirstTouch = Boolean(stored.landingPage && stored.firstTouchAt);
+  // First touch is an atomic, immutable snapshot. An explicitly empty referrer
+  // records a direct visit and prevents a later same-origin referrer from
+  // rewriting the original acquisition context.
+  if (!hasCompleteFirstTouch) {
+    ['landingPage', 'landingPath', 'firstReferrer', 'firstTouchAt', ...REPAIR_ASAP_TRACKING_PARAM_KEYS]
+      .forEach((name) => delete stored[name]);
+    stored.landingPage = page.url;
+    stored.landingPath = page.path;
+    stored.firstReferrer = referrer.url;
+    stored.firstTouchAt = now;
+    REPAIR_ASAP_TRACKING_PARAM_KEYS.forEach((name) => {
+      if (params[name]) stored[name] = params[name];
+    });
+  } else if (!Object.prototype.hasOwnProperty.call(stored, 'firstReferrer')) {
+    stored.firstReferrer = '';
+  }
 
-  REPAIR_ASAP_TRACKING_PARAM_KEYS.forEach((name) => {
-    if (params[name] && !stored[name]) stored[name] = params[name];
-  });
+  // Latest touch means the latest acquisition touch, not every internal page
+  // view. Current-page context is already carried separately as `page`.
+  if (stored.latestPage) {
+    const legacyLatest = repairAsapSanitizeAttributionUrl(stored.latestPage, true);
+    if (legacyLatest.url && legacyLatest.origin === page.origin) {
+      stored.latestPage = legacyLatest.url;
+      stored.latestPath = legacyLatest.path;
+    } else {
+      delete stored.latestPage;
+      delete stored.latestPath;
+    }
+  }
+  if (stored.latestReferrer) {
+    stored.latestReferrer = repairAsapSanitizeAttributionUrl(stored.latestReferrer, false).url;
+  }
+  const hasCompleteLatestTouch = Boolean(stored.latestPage && stored.latestTouchAt);
+  if (!hasCompleteLatestTouch) {
+    ['latestPage', 'latestPath', 'latestReferrer', 'latestTouchAt', ...REPAIR_ASAP_TRACKING_PARAM_KEYS.map((name) => `latest_${name}`)]
+      .forEach((name) => delete stored[name]);
+  }
+  const hasCampaignSignal = REPAIR_ASAP_TRACKING_PARAM_KEYS.some((name) => Boolean(params[name]));
+  const hasExternalReferrer = Boolean(referrer.origin && page.origin && referrer.origin !== page.origin);
+  const shouldReplaceLatest = !hasCompleteLatestTouch || hasCampaignSignal || hasExternalReferrer;
+  if (shouldReplaceLatest) {
+    stored.latestPage = page.url;
+    stored.latestPath = page.path;
+    stored.latestReferrer = referrer.url;
+    stored.latestTouchAt = now;
+    REPAIR_ASAP_TRACKING_PARAM_KEYS.forEach((name) => {
+      const latestName = `latest_${name}`;
+      if (params[name]) stored[latestName] = params[name];
+      else delete stored[latestName];
+    });
+  }
 
+  stored.version = REPAIR_ASAP_ATTRIBUTION_VERSION;
+  repairAsapVolatileAttribution = { ...stored };
   try {
     localStorage.setItem(REPAIR_ASAP_ATTRIBUTION_KEY, JSON.stringify(stored));
   } catch (_) {}
+  return stored;
+}
 
-  ['landingPage', 'firstReferrer', 'latestReferrer', 'firstTouchAt', 'latestTouchAt'].forEach((name) => {
-    if (stored[name]) out[name] = stored[name];
+function repairAsapGetAttributionContext() {
+  const storedValue = repairAsapReadStoredJson(REPAIR_ASAP_ATTRIBUTION_KEY);
+  const stored = storedValue.firstTouchAt ? storedValue : repairAsapVolatileAttribution;
+  const out = {};
+  REPAIR_ASAP_ATTRIBUTION_CONTEXT_KEYS.forEach((name) => {
+    if (typeof stored[name] === 'string' && stored[name]) out[name] = stored[name];
   });
   REPAIR_ASAP_TRACKING_PARAM_KEYS.forEach((name) => {
     if (stored[name]) out[name] = stored[name];
+    const latestName = `latest_${name}`;
+    if (stored[latestName]) out[latestName] = stored[latestName];
   });
   return out;
 }
+
+// Capture before a visitor can navigate away and lose the landing query string.
+repairAsapCaptureAttribution();
 
 function repairAsapCacheGaClientId(clientId) {
   const value = typeof clientId === 'string' ? clientId.trim() : '';
@@ -481,8 +694,12 @@ function repairAsapInstallGaClientPriming() {
 
 function repairAsapBuildSessionContext() {
   const sessionContext = {};
-  try { sessionContext.page = window.location.href; } catch (_) {}
-  try { sessionContext.referrer = document.referrer || ''; } catch (_) {}
+  try {
+    sessionContext.page = repairAsapSanitizeAttributionUrl(window.location.href, true).url;
+  } catch (_) {}
+  try {
+    sessionContext.referrer = repairAsapSanitizeAttributionUrl(document.referrer || '', false).url;
+  } catch (_) {}
   try { sessionContext.language = navigator.language || ''; } catch (_) {}
   try { sessionContext.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (_) {}
   sessionContext.visitorId = repairAsapGetOrCreateVisitorId();
@@ -500,12 +717,12 @@ function repairAsapGetSessionContext() {
 }
 
 async function repairAsapGetSessionContextAsync() {
-  const sessionContext = repairAsapBuildSessionContext();
-  try {
-    const gaClientId = await repairAsapGetGaClientIdAsync();
-    if (gaClientId) sessionContext.gaClientId = gaClientId;
-  } catch (_) {}
-  return sessionContext;
+  const sessionContext = repairAsapGetSessionContext();
+  // Compatibility API only: callers receive immediately available context.
+  // GA retrieval continues in the background and can enrich later actions,
+  // but can never delay or prevent the current customer action.
+  repairAsapPrimeGaClientId();
+  return Promise.resolve(sessionContext);
 }
 
 function repairAsapPostJsonBeacon(url, payload) {
@@ -606,6 +823,7 @@ document.addEventListener('components-loaded', repairAsapTrackConversionBlocks);
 
 window.repairAsapBuildLeadEventParams = repairAsapBuildLeadEventParams;
 window.repairAsapBuildServiceLeadContext = repairAsapBuildServiceLeadContext;
+window.repairAsapGetStoredThreadId = repairAsapGetStoredThreadId;
 window.repairAsapGetSessionContext = repairAsapGetSessionContext;
 window.repairAsapGetSessionContextAsync = repairAsapGetSessionContextAsync;
 window.repairAsapPrimeGaClientId = repairAsapPrimeGaClientId;
@@ -1195,9 +1413,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show loading state
         submitBtn.classList.add('loading');
         submitBtn.disabled = true;
-        const sessionContext = window.repairAsapGetSessionContextAsync
-          ? await window.repairAsapGetSessionContextAsync()
-          : (window.repairAsapGetSessionContext?.() || null);
+        const sessionContext = window.repairAsapGetSessionContext?.() || null;
 
         let inlineMessage = form.querySelector('#message')?.value.trim() || '';
         let inlineDate = form.querySelector('#date')?.value || '';
@@ -1222,6 +1438,7 @@ document.addEventListener('DOMContentLoaded', () => {
           address: inlineAddressInput?.value?.trim() || '',
           // Spam honeypot: hidden field humans never fill; CRM rejects non-empty.
           website: form.querySelector('#contact-website')?.value || '',
+          threadId: window.repairAsapGetStoredThreadId?.() || '',
           sessionContext,
           // Consent evidence (checkbox is client-required on every submission)
           custom_fields: {

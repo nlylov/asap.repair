@@ -5,7 +5,8 @@ import { execSync } from 'node:child_process';
 import { join } from 'node:path';
 
 const ASSET_VERSION = '20260726a';
-const LOADER_ASSET_VERSION = '20260726a';
+const MAIN_ASSET_VERSION = '20260729a';
+const LOADER_ASSET_VERSION = '20260729a';
 const ROOT = new URL('..', import.meta.url).pathname;
 
 const serviceLinks = {
@@ -468,7 +469,7 @@ ${page.faq.map(faqItem).join('\n')}
 
     <div id="site-footer"></div>
     <script src="/components/loader.js?v=${LOADER_ASSET_VERSION}"></script>
-    <script src="/main.js?v=${ASSET_VERSION}"></script>
+    <script src="/main.js?v=${MAIN_ASSET_VERSION}"></script>
 </body>
 
 </html>

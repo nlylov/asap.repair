@@ -19,6 +19,7 @@ PUBLIC_DATA_PATH = ROOT / "assets" / "data" / "case-studies.json"
 CASE_DIR = ROOT / "case-studies"
 SITE = "https://asap.repair"
 ASSET_VERSION = "20260726a"
+APP_ASSET_VERSION = "20260729a"
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 _DIM_CACHE: dict[str, str] = {}
@@ -677,8 +678,8 @@ def render_detail(study: dict, studies: list[dict]) -> str:
     </section>
   </main>
   <div id=\"site-footer\"></div>
-  <script src=\"/components/loader.js?v={ASSET_VERSION}\" defer></script>
-  <script src=\"/main.js?v={ASSET_VERSION}\" defer></script>{slider_script_block}
+  <script src=\"/components/loader.js?v={APP_ASSET_VERSION}\" defer></script>
+  <script src=\"/main.js?v={APP_ASSET_VERSION}\" defer></script>{slider_script_block}
 </body>
 </html>
 """
@@ -767,8 +768,8 @@ def render_index(studies: list[dict]) -> str:
     </section>
   </main>
   <div id=\"site-footer\"></div>
-  <script src=\"/components/loader.js?v={ASSET_VERSION}\" defer></script>
-  <script src=\"/main.js?v={ASSET_VERSION}\" defer></script>
+  <script src=\"/components/loader.js?v={APP_ASSET_VERSION}\" defer></script>
+  <script src=\"/main.js?v={APP_ASSET_VERSION}\" defer></script>
 </body>
 </html>
 """

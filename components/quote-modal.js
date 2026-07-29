@@ -634,9 +634,7 @@
         // Show loading state
         submitBtn.classList.add('loading');
         submitBtn.disabled = true;
-        const sessionContext = window.repairAsapGetSessionContextAsync
-            ? await window.repairAsapGetSessionContextAsync()
-            : (window.repairAsapGetSessionContext?.() || null);
+        const sessionContext = window.repairAsapGetSessionContext?.() || null;
 
         // Build payload
         let message = form.querySelector('#modal-message')?.value.trim() || '';
@@ -666,6 +664,7 @@
             address: addressInput?.value?.trim() || '',
             // Spam honeypot: hidden field humans never fill; CRM rejects non-empty.
             website: form.querySelector('#modal-website')?.value || '',
+            threadId: window.repairAsapGetStoredThreadId?.() || '',
             sessionContext,
             // Page context first; smart-calculator custom fields (set by main.js) win on conflicts.
             // consent_* records the checkbox evidence server-side (checkbox is

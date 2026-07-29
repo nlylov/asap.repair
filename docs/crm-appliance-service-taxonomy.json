@@ -1,5 +1,5 @@
 {
-  "version": "2026-07-09",
+  "version": "2026-07-29",
   "market": "New York City, five boroughs, Western Long Island, Nassau County when scope and travel fit",
   "leadClassification": {
     "marketSegment": [
@@ -277,6 +277,110 @@
       "defaultIntent": "cleaning_maintenance",
       "quickbooksItem": "AC Deep Cleaning",
       "publicRoute": "/services/ac-installation-cleaning/ac-deep-cleaning/"
+    },
+    {
+      "crmCode": "dishwasher_installation",
+      "label": "Dishwasher Installation",
+      "priority": 1,
+      "defaultVertical": "appliance_installation",
+      "defaultIntent": "installation",
+      "applianceType": "dishwasher",
+      "quickbooksItem": "Appliance Replacement Setup",
+      "publicRoute": "/services/appliance-services/dishwasher-installation/",
+      "complianceFlagsWhenRelevant": [
+        "new_plumbing_possible",
+        "new_electrical_possible",
+        "permit_scope_possible"
+      ]
+    },
+    {
+      "crmCode": "dryer_installation",
+      "label": "Dryer Installation",
+      "priority": 1,
+      "defaultVertical": "appliance_installation",
+      "defaultIntent": "installation",
+      "applianceType": "dryer",
+      "quickbooksItem": "Appliance Replacement Setup",
+      "publicRoute": "/services/appliance-services/dryer-installation/",
+      "complianceFlagsWhenRelevant": [
+        "gas_scope_possible",
+        "new_electrical_possible",
+        "permit_scope_possible"
+      ]
+    },
+    {
+      "crmCode": "microwave_installation",
+      "label": "Microwave Installation",
+      "priority": 1,
+      "defaultVertical": "appliance_installation",
+      "defaultIntent": "installation",
+      "applianceType": "microwave",
+      "quickbooksItem": "Appliance Replacement Setup",
+      "publicRoute": "/services/appliance-services/microwave-installation/",
+      "complianceFlagsWhenRelevant": [
+        "new_electrical_possible",
+        "permit_scope_possible"
+      ]
+    },
+    {
+      "crmCode": "range_installation",
+      "label": "Range & Oven Installation",
+      "priority": 1,
+      "defaultVertical": "appliance_installation",
+      "defaultIntent": "installation",
+      "applianceType": "range_oven",
+      "quickbooksItem": "Appliance Replacement Setup",
+      "publicRoute": "/services/appliance-services/range-installation/",
+      "complianceFlagsWhenRelevant": [
+        "gas_scope_possible",
+        "new_electrical_possible",
+        "permit_scope_possible"
+      ]
+    },
+    {
+      "crmCode": "refrigerator_installation",
+      "label": "Refrigerator Installation",
+      "priority": 1,
+      "defaultVertical": "appliance_installation",
+      "defaultIntent": "installation",
+      "applianceType": "refrigerator",
+      "quickbooksItem": "Appliance Replacement Setup",
+      "publicRoute": "/services/appliance-services/refrigerator-installation/",
+      "complianceFlagsWhenRelevant": [
+        "new_plumbing_possible",
+        "permit_scope_possible"
+      ]
+    },
+    {
+      "crmCode": "washer_dryer_installation",
+      "label": "Washer & Dryer Installation",
+      "priority": 1,
+      "defaultVertical": "appliance_installation",
+      "defaultIntent": "installation",
+      "applianceType": "washer_dryer_combo",
+      "quickbooksItem": "Appliance Replacement Setup",
+      "publicRoute": "/services/appliance-services/washer-dryer-installation/",
+      "complianceFlagsWhenRelevant": [
+        "gas_scope_possible",
+        "new_plumbing_possible",
+        "new_electrical_possible",
+        "permit_scope_possible"
+      ]
+    },
+    {
+      "crmCode": "washer_installation",
+      "label": "Washer Installation",
+      "priority": 1,
+      "defaultVertical": "appliance_installation",
+      "defaultIntent": "installation",
+      "applianceType": "washer",
+      "quickbooksItem": "Appliance Replacement Setup",
+      "publicRoute": "/services/appliance-services/washer-installation/",
+      "complianceFlagsWhenRelevant": [
+        "new_plumbing_possible",
+        "new_electrical_possible",
+        "permit_scope_possible"
+      ]
     },
     {
       "crmCode": "appliance_replacement_setup",
