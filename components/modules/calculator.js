@@ -3,6 +3,14 @@
    Usage: <div data-module="calculator" data-config="ikea"></div>
    ============================================ */
 
+/* Version of the price table in this file. Bump it on any edit to a figure inside CONFIGS
+   or VISIT_CONFIGS below. A lead records the version that was live when the customer saw
+   the estimate, so a later price change never rewrites what was promised.
+   The window-AC calculator in main.js has its own table and its own
+   REPAIR_ASAP_CALC_PRICE_VERSION; both land in the same custom field, and
+   calculator_config records which table produced the number. */
+const CALC_PRICE_VERSION = 'calc-2026-08-01';
+
 const CONFIGS = {
     ikea: {
         title: 'Get an Instant Estimate',
@@ -12726,6 +12734,15 @@ export default function calculator(container) {
         return [Math.max(lo, PRICING.REPAIR_MINIMUM), Math.max(hi, PRICING.REPAIR_MINIMUM)];
     }
 
+    function buildQuoteSnapshot(input) {
+        /* One implementation, and it lives in main.js, because the window-AC calculator
+           lives there too and both must write identical key names. Every page carrying
+           data-module="calculator" loads /main.js (all 93 of them), and this runs on a CTA
+           click long after load, so the function is there. If it somehow were not, the lead
+           still carries calculator_estimate exactly as it does today — nothing regresses. */
+        return window.repairAsapBuildQuoteSnapshot?.({ ...input, priceVersion: CALC_PRICE_VERSION }) || null;
+    }
+
     function updatePrice() {
         const series = selected.series;
         const size = selected.size;
@@ -12818,6 +12835,12 @@ export default function calculator(container) {
 
             // Build human-readable summary from selections
             let description = '';
+            /* Same estimate, in fields instead of prose. The CRM used to receive the price
+               only inside `description`, so nothing downstream could read it without
+               parsing English. This is a record of what the price box was showing — the
+               figures come from the same flooredRange() call that rendered them, and the
+               free-photo path deliberately carries no price at all. */
+            let snapshot = null;
             if (series && size && cfg.pricing[series]?.[size]) {
                 const [lo, hi] = flooredRange(...cfg.pricing[series][size]);
 
@@ -12827,6 +12850,10 @@ export default function calculator(container) {
                 const seriesLabel = seriesSelect?.selectedOptions?.[0]?.text || series;
                 const sizeLabel = sizeSelectEl?.selectedOptions?.[0]?.text || size;
 
+                // Which of the three paths the customer is on, and the selection wording
+                // that goes with it. `path` mirrors the branches below one-for-one.
+                let path;
+                let selectionText;
                 // Price is for the work only; NYC sales tax is separate (disclosed below).
                 if (cfg.mode === 'visit') {
                     const pathText = size === 'photo'
@@ -12836,18 +12863,43 @@ export default function calculator(container) {
                             : `estimated $${lo}–$${hi}, work only — NYC sales tax separate`;
                     // Drop the label's own "(...)" price hint so it isn't repeated next to pathText
                     const cleanSizeLabel = sizeLabel.replace(/\s*\([^)]*\)\s*$/, '');
-                    description = `${seriesLabel} — ${cleanSizeLabel} (${pathText})`;
+                    selectionText = `${seriesLabel} — ${cleanSizeLabel}`;
+                    path = size === 'photo'
+                        ? 'photo_estimate'
+                        : size === 'visit'
+                            ? 'assessment_99'
+                            : (hi > lo ? 'range' : 'single');
+                    description = `${selectionText} (${pathText})`;
                 } else if (isAssessmentPath(lo, hi)) {
-                    description = `${seriesLabel} — ${sizeLabel} ($99 on-site assessment, credited toward the work; repair scope confirmed on site)`;
+                    selectionText = `${seriesLabel} — ${sizeLabel}`;
+                    path = 'assessment_99';
+                    description = `${selectionText} ($99 on-site assessment, credited toward the work; repair scope confirmed on site)`;
                 } else {
+                    selectionText = `${seriesLabel} — ${sizeLabel}`;
+                    path = hi > lo ? 'range' : 'single';
                     description = hi > lo
-                        ? `${seriesLabel} — ${sizeLabel} (estimated $${lo}–$${hi}, work only — NYC sales tax separate)`
-                        : `${seriesLabel} — ${sizeLabel} (estimated $${lo} minimum repair visit, work only — NYC sales tax separate)`;
+                        ? `${selectionText} (estimated $${lo}–$${hi}, work only — NYC sales tax separate)`
+                        : `${selectionText} (estimated $${lo} minimum repair visit, work only — NYC sales tax separate)`;
                 }
+
+                snapshot = buildQuoteSnapshot({
+                    configKey,
+                    path,
+                    low: lo,
+                    high: hi,
+                    // The price box renders "FREE" for the free photo path, one figure when
+                    // the range collapses, and "$lo–$hi" otherwise (see updatePrice above).
+                    rangeText: (lo === 0 && hi === 0) ? 'FREE' : (hi > lo ? `$${lo}–$${hi}` : `$${lo}`),
+                    selectionText,
+                    displayText: description,
+                });
             }
 
-            // Store for quote-modal custom_fields
+            // Store for quote-modal custom_fields.
+            // calculator_estimate keeps its exact historical wording — leads going back to
+            // 2026-07 are stored in that form. The snapshot adds fields, it replaces nothing.
             window._calcQuoteData = {
+                ...(snapshot || {}),
                 calculator_config: configKey,
                 calculator_series: series || '',
                 calculator_size: size || '',

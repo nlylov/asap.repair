@@ -321,6 +321,54 @@
         return ctx;
     }
 
+    /* The CRM keeps only the first 20 custom fields it is handed
+       (MAX_WIDGET_CUSTOM_FIELDS, app/api/widget/quote/route.ts:110 — it stops accepting
+       once 20 non-empty pairs are in) and it walks them in arrival order.
+       That budget is already spent before any calculator field exists: running main.js's
+       own taxonomy builder against /services/appliance-services/ice-machine-repair/ yields
+       19 context fields, and /refrigerator-repair/ 18, plus three consent fields — 22 and
+       21 against a limit of 20. Whatever arrives last is what falls off the end, and the
+       calculator payload was merged last. So on exactly the appliance pages that carry a
+       calculator, the price the customer saw was first over the side.
+       Order is therefore stated here, most load-bearing first, and the trim happens on this
+       side where it can be read and tested instead of silently in the CRM. */
+    const CRM_CUSTOM_FIELD_LIMIT = 20;
+    const CUSTOM_FIELD_PRIORITY = [
+        // 1. the estimate that was on screen when they pressed submit. Nothing outranks it:
+        //    it is the only record of what the customer was promised.
+        'calculator_estimate', 'estimated_low', 'estimated_high', 'estimated_range',
+        'calculator_path', 'calculator_selection', 'calculator_price_version', 'calculator_config',
+        // 2. consent evidence
+        'consent_sms', 'consent_at', 'consent_policy',
+        // 3. who asked, from where, and anything that changes who may be sent —
+        //    compliance_flags carries the EPA 608 / licensed-trade markers
+        'crm_taxonomy_version', 'source_page', 'service_category', 'sub_service', 'requested_service_label',
+        'service_code', 'service_vertical', 'lead_intent', 'compliance_flags',
+        // 4. the machine-readable detail behind the estimate — each of these also reads back
+        //    out of calculator_selection in the words the customer saw
+        'calculator_series', 'calculator_size', 'btu_size', 'qty', 'window_type', 'floor', 'building', 'addons',
+        // Everything else keeps its natural order behind these: the rest of the taxonomy
+        // expansion, and the per-flag booleans that already repeat compliance_flags verbatim.
+    ];
+
+    function orderCustomFields(fields) {
+        const rank = new Map(CUSTOM_FIELD_PRIORITY.map((key, index) => [key, index]));
+        const unranked = CUSTOM_FIELD_PRIORITY.length;
+        const out = {};
+        const ordered = Object.keys(fields)
+            .map((key, index) => [key, rank.has(key) ? rank.get(key) : unranked + index])
+            .sort((a, b) => a[1] - b[1]);
+        for (const [key] of ordered) {
+            const value = fields[key];
+            // Mirror the CRM's own emptiness rule (route.ts:115 drops blank values) so the
+            // count made here is the count that actually lands.
+            if (value === undefined || value === null || String(value).trim() === '') continue;
+            if (Object.keys(out).length >= CRM_CUSTOM_FIELD_LIMIT) break;
+            out[key] = value;
+        }
+        return out;
+    }
+
     // ---- CTA Interceptors ----
     document.addEventListener('click', (e) => {
         // Handle button[data-open-quote]
@@ -666,16 +714,19 @@
             website: form.querySelector('#modal-website')?.value || '',
             threadId: window.repairAsapGetStoredThreadId?.() || '',
             sessionContext,
-            // Page context first; smart-calculator custom fields (set by main.js) win on conflicts.
+            // Page context first; smart-calculator custom fields (set by main.js and
+            // components/modules/calculator.js) still win on key conflicts.
             // consent_* records the checkbox evidence server-side (checkbox is
             // client-required for every submission; backend stores custom_fields).
-            custom_fields: {
+            // orderCustomFields then re-sorts and trims to the CRM's 20-field budget, so the
+            // shown price and the consent evidence can never be what gets clipped.
+            custom_fields: orderCustomFields({
                 ...pageQuoteContext(serviceSelect ? serviceSelect.value : ''),
                 consent_sms: 'granted',
                 consent_at: new Date().toISOString(),
                 consent_policy: 'privacy-policy+tos 2026',
                 ...(window._calcQuoteData || {}),
-            },
+            }),
         };
 
         try {

@@ -23,6 +23,59 @@ const REPAIR_ASAP_ATTRIBUTION_STORAGE_KEYS = new Set([
   ...REPAIR_ASAP_TRACKING_PARAM_KEYS.map((name) => `latest_${name}`),
 ]);
 const REPAIR_ASAP_CRM_TAXONOMY_VERSION = '2026-07-29';
+
+/* Version of the price table behind the window-AC calculator that lives further down this
+   file. Bump it on any edit to a figure that calculator can show — the data-lo / data-hi /
+   data-surcharge / data-price attributes in the window-AC markup. The lead keeps the
+   version that was live when the estimate was on screen, so a later price change never
+   rewrites what the customer was told.
+   components/modules/calculator.js owns a second price table (CONFIGS / VISIT_CONFIGS) and
+   carries its own CALC_PRICE_VERSION; both are written into the same custom field, and
+   calculator_config says which table produced the number. */
+const REPAIR_ASAP_CALC_PRICE_VERSION = 'calc-2026-08-01';
+
+/* The four outcomes a calculator can put in front of a customer. Anything else is a bug,
+   not a new path — the CRM is allowed to treat this list as closed. */
+const REPAIR_ASAP_QUOTE_PATHS = ['range', 'single', 'assessment_99', 'photo_estimate'];
+
+/* Every calculator on the site records its estimate through THIS function, so the CRM gets
+   the same key names whichever calculator the customer used and never has to read a price
+   out of prose.
+
+   Rules, in order of importance:
+   1. It is a record of what was DISPLAYED, not a recompute. low/high are the figures that
+      were on screen; rangeText and displayText are those figures as the customer read them.
+   2. A path that showed no price sends NO price keys. The free photo estimate renders
+      "FREE", and writing estimated_low: 0 would land in the CRM as a promise of free work.
+   3. Scalars only. app/api/widget/quote/route.ts:112 drops any value that is not a string,
+      number or boolean, so a nested object would disappear without a trace.
+   4. Nothing is truncated here. The CRM applies one 240-char rule to every custom field
+      (route.ts:116) and marks what it cut with an ellipsis; clipping first would hide that. */
+function repairAsapBuildQuoteSnapshot(input) {
+  const options = input || {};
+  const path = REPAIR_ASAP_QUOTE_PATHS.includes(options.path) ? options.path : '';
+  const snapshot = {
+    calculator_config: String(options.configKey || ''),
+    calculator_path: path,
+    calculator_selection: String(options.selectionText || ''),
+    calculator_estimate: String(options.displayText || ''),
+    // Each calculator names the price table it read; a caller that owns its own table
+    // (components/modules/calculator.js) passes that table's version.
+    calculator_price_version: String(options.priceVersion || REPAIR_ASAP_CALC_PRICE_VERSION),
+  };
+
+  const low = Number(options.low);
+  const high = Number(options.high);
+  const showedAPrice = path !== 'photo_estimate' && Number.isFinite(low) && Number.isFinite(high);
+  if (showedAPrice) {
+    snapshot.estimated_low = low;
+    snapshot.estimated_high = high;
+    snapshot.estimated_range = String(options.rangeText || '');
+  }
+
+  return snapshot;
+}
+
 const REPAIR_ASAP_SERVICE_TAXONOMY = {
   'dishwasher-installation': {
     serviceCode: 'dishwasher_installation',
@@ -823,6 +876,8 @@ document.addEventListener('components-loaded', repairAsapTrackConversionBlocks);
 
 window.repairAsapBuildLeadEventParams = repairAsapBuildLeadEventParams;
 window.repairAsapBuildServiceLeadContext = repairAsapBuildServiceLeadContext;
+window.repairAsapBuildQuoteSnapshot = repairAsapBuildQuoteSnapshot;
+window.REPAIR_ASAP_CALC_PRICE_VERSION = REPAIR_ASAP_CALC_PRICE_VERSION;
 window.repairAsapGetStoredThreadId = repairAsapGetStoredThreadId;
 window.repairAsapGetSessionContext = repairAsapGetSessionContext;
 window.repairAsapGetSessionContextAsync = repairAsapGetSessionContextAsync;
@@ -1616,6 +1671,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctaBtn = document.getElementById('calc-cta');
     let hasUserInteractedWithAcCalculator = false;
     let hasTrackedAcCalculatorResult = false;
+    /* What the price box is showing right now. Set by updateCalc(), read by the CTA.
+       The CTA used to recover the numbers by stripping characters out of the rendered
+       string, which mis-read the multi-unit layout ("$300–$400 ($150–$200/unit)" parsed
+       as low 300 / high 400150). The figures are already known here, so carry them. */
+    let acDisplayedQuote = null;
 
     if (!btuSel || !priceEl) return;
 
@@ -1711,6 +1771,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Update price
+      const rangeText = `$${totalLo}–$${totalHi}`;
       if (qty > 1) {
         labelEl.textContent = `Planning Estimate (${qty} units)`;
         priceEl.innerHTML = `$${totalLo}&ndash;$${totalHi} <span style="font-size:0.55em;opacity:0.7;">($${perUnitLo}&ndash;$${perUnitHi}/unit)</span>`;
@@ -1718,6 +1779,13 @@ document.addEventListener('DOMContentLoaded', () => {
         labelEl.textContent = 'Planning Estimate';
         priceEl.innerHTML = `$${totalLo}&ndash;$${totalHi}`;
       }
+      // Record the figures exactly as rendered above, for the lead snapshot.
+      acDisplayedQuote = {
+        low: totalLo,
+        high: totalHi,
+        rangeText,
+        perUnitText: qty > 1 ? `$${perUnitLo}–$${perUnitHi}/unit` : '',
+      };
 
       // Complexity badge
       badgeEl.textContent = tier;
@@ -1784,6 +1852,9 @@ document.addEventListener('DOMContentLoaded', () => {
           .filter(b => b.classList.contains('active') && b.dataset.price !== '0')
           .map(b => b.textContent.trim().replace(/\s+/g, ' ').split(' (+')[0]);
         const price = priceEl.innerText || '';
+        // The figures the price box is actually showing (set in updateCalc), not a re-parse
+        // of the rendered string. updateCalc() runs on load, so this is always populated.
+        const shown = acDisplayedQuote || { low: NaN, high: NaN, rangeText: price, perUnitText: '' };
 
         const summary = [
           'Window AC Installation — Calculator Summary',
@@ -1798,19 +1869,46 @@ document.addEventListener('DOMContentLoaded', () => {
           `Estimated Range: ${price}`,
         ].filter(s => s !== undefined).join('\n');
 
-        // Store structured data for CRM custom fields (picked up by quote-modal.js)
-        const priceNums = price.replace(/[^0-9–\-]/g, '').split(/[–\-]/);
+        /* Store structured data for CRM custom fields (picked up by quote-modal.js).
+           The window-AC calculator always shows a priced range — it has no free-photo or
+           $99-assessment path — so it reports 'range', or 'single' if the low and high
+           figures collapsed onto one number.
+           calculator_selection / calculator_estimate use the option text the customer read,
+           never the internal option values.
+           source_page was removed here: it sent the bare slug 'window-ac-installation' and,
+           because calculator keys are merged last, it overwrote the real page path that
+           repairAsapBuildServiceLeadContext had already put in the same field. No prod lead
+           ever carried it (the AC calculator has never produced one), and sub_service
+           already records the same slug. */
+        const acSelectionText = [
+          btuLabel && `AC Size: ${btuLabel}`,
+          qtyLabel && `Quantity: ${qtyLabel}`,
+          windowLabel && `Window Type: ${windowLabel}`,
+          floorLabel && `Floor Level: ${floorLabel}`,
+          buildingLabel && `Building: ${buildingLabel}`,
+          activeToggles.length && `Add-ons: ${activeToggles.join(', ')}`,
+        ].filter(Boolean).join(' · ');
+        const acShownPrice = shown.perUnitText
+          ? `${shown.rangeText} (${shown.perUnitText})`
+          : shown.rangeText;
         window._calcQuoteData = {
+          ...(window.repairAsapBuildQuoteSnapshot?.({
+            configKey: 'window_ac',
+            path: shown.high > shown.low ? 'range' : 'single',
+            low: shown.low,
+            high: shown.high,
+            rangeText: shown.rangeText,
+            selectionText: acSelectionText,
+            // The page labels this figure "Planning Estimate" and discloses tax separately;
+            // the sentence recorded here says only what the page said.
+            displayText: `Window AC Installation — ${acSelectionText} (planning estimate ${acShownPrice} — NYC sales tax added separately)`,
+          }) || {}),
           btu_size: selOpt(btuSel)?.value || '',
           qty: selOpt(qtySel)?.value || '1',
           window_type: selOpt(windowSel)?.value || '',
           floor: selOpt(floorSel)?.value || '',
           building: selOpt(buildingSel)?.value || '',
           addons: activeToggles.join(', '),
-          estimated_low: priceNums[0]?.trim() || '',
-          estimated_high: priceNums[1]?.trim() || '',
-          estimated_range: price,
-          source_page: 'window-ac-installation',
         };
 
         // Open the quote modal (selects "AC Installation & Cleaning" service automatically)
