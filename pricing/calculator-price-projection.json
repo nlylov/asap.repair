@@ -57,23 +57,135 @@
   ],
   "crossSeriesOrderChanges": {
     "note": "Pairs of series inside one config whose relative price order changed. The series axis of these configs is a type picker, not a ladder, and the site declares no order across it — the ordering the owner's rule governs is the SIZE axis, which is asserted monotonic for every ladder. catalog-or-contract entries are the intended corrections (apartment-turnover 1br vs 2br, beds storage vs adjustable, dishwasher builtin vs new). lift-artifact entries are a consequence of lifting only the ladders that were below the work minimum, and resolve when proposal §2.1-2.8 lands.",
-    "total": 88,
+    "total": 98,
     "byDriver": {
       "catalog-or-contract": 29,
-      "lift-artifact": 59
+      "lift-artifact": 69
     },
     "changes": [
       {
-        "at": "ikea/md",
+        "at": "ikea/sm",
+        "a": {
+          "series": "malm",
+          "was": [
+            65,
+            99
+          ],
+          "now": [
+            185,
+            219
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "besta",
+          "was": [
+            99,
+            150
+          ],
+          "now": [
+            150,
+            201
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "ikea/sm",
         "a": {
           "series": "hemnes",
           "was": [
-            115,
-            165
+            75,
+            115
           ],
           "now": [
-            190,
-            240
+            185,
+            225
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "besta",
+          "was": [
+            99,
+            150
+          ],
+          "now": [
+            150,
+            201
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "ikea/sm",
+        "a": {
+          "series": "besta",
+          "was": [
+            99,
+            150
+          ],
+          "now": [
+            150,
+            201
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "nordli",
+          "was": [
+            65,
+            110
+          ],
+          "now": [
+            185,
+            230
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "ikea/md",
+        "a": {
+          "series": "kallax",
+          "was": [
+            99,
+            150
+          ],
+          "now": [
+            184,
+            235
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "malm",
+          "was": [
+            85,
+            130
+          ],
+          "now": [
+            205,
+            250
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "ikea/md",
+        "a": {
+          "series": "malm",
+          "was": [
+            85,
+            130
+          ],
+          "now": [
+            205,
+            250
           ],
           "source": "carry-forward:lift"
         },
@@ -92,16 +204,128 @@
         "driver": "lift-artifact"
       },
       {
-        "at": "ikea/lg",
+        "at": "ikea/md",
         "a": {
           "series": "hemnes",
           "was": [
-            180,
-            280
+            115,
+            165
           ],
           "now": [
-            255,
-            355
+            225,
+            275
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "besta",
+          "was": [
+            165,
+            260
+          ],
+          "now": [
+            216,
+            311
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "ikea/md",
+        "a": {
+          "series": "besta",
+          "was": [
+            165,
+            260
+          ],
+          "now": [
+            216,
+            311
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "nordli",
+          "was": [
+            99,
+            150
+          ],
+          "now": [
+            219,
+            270
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "ikea/md",
+        "a": {
+          "series": "billy",
+          "was": [
+            115,
+            165
+          ],
+          "now": [
+            215,
+            265
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "nordli",
+          "was": [
+            99,
+            150
+          ],
+          "now": [
+            219,
+            270
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "ikea/lg",
+        "a": {
+          "series": "kallax",
+          "was": [
+            150,
+            220
+          ],
+          "now": [
+            235,
+            305
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "malm",
+          "was": [
+            120,
+            190
+          ],
+          "now": [
+            240,
+            310
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "ikea/lg",
+        "a": {
+          "series": "nordli",
+          "was": [
+            150,
+            230
+          ],
+          "now": [
+            270,
+            350
           ],
           "source": "carry-forward:lift"
         },
@@ -596,6 +820,62 @@
         "driver": "lift-artifact"
       },
       {
+        "at": "wall-mounted/sm",
+        "a": {
+          "series": "wall-cabinet",
+          "was": [
+            65,
+            110
+          ],
+          "now": [
+            165,
+            210
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "floating-desk",
+          "was": [
+            85,
+            130
+          ],
+          "now": [
+            150,
+            195
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "wall-mounted/sm",
+        "a": {
+          "series": "floating-desk",
+          "was": [
+            85,
+            130
+          ],
+          "now": [
+            150,
+            195
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            50,
+            99
+          ],
+          "now": [
+            165,
+            214
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
         "at": "wall-mounted/md",
         "a": {
           "series": "floating-vanity",
@@ -632,8 +912,8 @@
             200
           ],
           "now": [
-            210,
-            280
+            195,
+            265
           ],
           "source": "carry-forward:lift"
         },
@@ -644,8 +924,8 @@
             165
           ],
           "now": [
-            214,
-            280
+            199,
+            265
           ],
           "source": "carry-forward:lift"
         },
@@ -660,8 +940,8 @@
             200
           ],
           "now": [
-            210,
-            280
+            195,
+            265
           ],
           "source": "carry-forward:lift"
         },
@@ -688,8 +968,8 @@
             310
           ],
           "now": [
-            280,
-            390
+            265,
+            375
           ],
           "source": "carry-forward:lift"
         },
@@ -2641,12 +2921,12 @@
       "series": "malm",
       "size": "sm",
       "value": [
-        150,
-        184
+        185,
+        219
       ],
       "source": "carry-forward:lift",
-      "delta": 85,
-      "anchor": "furniture-assembly-single range.lo 150",
+      "delta": 120,
+      "anchor": "dresser-chest-assembly range.lo 185",
       "was": [
         65,
         99
@@ -2657,12 +2937,12 @@
       "series": "malm",
       "size": "md",
       "value": [
-        170,
-        215
+        205,
+        250
       ],
       "source": "carry-forward:lift",
-      "delta": 85,
-      "anchor": "furniture-assembly-single range.lo 150",
+      "delta": 120,
+      "anchor": "dresser-chest-assembly range.lo 185",
       "was": [
         85,
         130
@@ -2673,12 +2953,12 @@
       "series": "malm",
       "size": "lg",
       "value": [
-        205,
-        275
+        240,
+        310
       ],
       "source": "carry-forward:lift",
-      "delta": 85,
-      "anchor": "furniture-assembly-single range.lo 150",
+      "delta": 120,
+      "anchor": "dresser-chest-assembly range.lo 185",
       "was": [
         120,
         190
@@ -2689,12 +2969,12 @@
       "series": "hemnes",
       "size": "sm",
       "value": [
-        150,
-        190
+        185,
+        225
       ],
       "source": "carry-forward:lift",
-      "delta": 75,
-      "anchor": "furniture-assembly-single range.lo 150",
+      "delta": 110,
+      "anchor": "dresser-chest-assembly range.lo 185",
       "was": [
         75,
         115
@@ -2705,12 +2985,12 @@
       "series": "hemnes",
       "size": "md",
       "value": [
-        190,
-        240
+        225,
+        275
       ],
       "source": "carry-forward:lift",
-      "delta": 75,
-      "anchor": "furniture-assembly-single range.lo 150",
+      "delta": 110,
+      "anchor": "dresser-chest-assembly range.lo 185",
       "was": [
         115,
         165
@@ -2721,12 +3001,12 @@
       "series": "hemnes",
       "size": "lg",
       "value": [
-        255,
-        355
+        290,
+        390
       ],
       "source": "carry-forward:lift",
-      "delta": 75,
-      "anchor": "furniture-assembly-single range.lo 150",
+      "delta": 110,
+      "anchor": "dresser-chest-assembly range.lo 185",
       "was": [
         180,
         280
@@ -2833,12 +3113,12 @@
       "series": "nordli",
       "size": "sm",
       "value": [
-        150,
-        195
+        185,
+        230
       ],
       "source": "carry-forward:lift",
-      "delta": 85,
-      "anchor": "furniture-assembly-single range.lo 150",
+      "delta": 120,
+      "anchor": "dresser-chest-assembly range.lo 185",
       "was": [
         65,
         110
@@ -2849,12 +3129,12 @@
       "series": "nordli",
       "size": "md",
       "value": [
-        184,
-        235
+        219,
+        270
       ],
       "source": "carry-forward:lift",
-      "delta": 85,
-      "anchor": "furniture-assembly-single range.lo 150",
+      "delta": 120,
+      "anchor": "dresser-chest-assembly range.lo 185",
       "was": [
         99,
         150
@@ -2865,12 +3145,12 @@
       "series": "nordli",
       "size": "lg",
       "value": [
-        235,
-        315
+        270,
+        350
       ],
       "source": "carry-forward:lift",
-      "delta": 85,
-      "anchor": "furniture-assembly-single range.lo 150",
+      "delta": 120,
+      "anchor": "dresser-chest-assembly range.lo 185",
       "was": [
         150,
         230
@@ -3637,12 +3917,12 @@
       "series": "floating-desk",
       "size": "sm",
       "value": [
-        165,
-        210
+        150,
+        195
       ],
       "source": "carry-forward:lift",
-      "delta": 80,
-      "anchor": "wall-cabinet-hanging range.lo 165",
+      "delta": 65,
+      "anchor": "desk-assembly range.lo 150",
       "was": [
         85,
         130
@@ -3653,12 +3933,12 @@
       "series": "floating-desk",
       "size": "md",
       "value": [
-        210,
-        280
+        195,
+        265
       ],
       "source": "carry-forward:lift",
-      "delta": 80,
-      "anchor": "wall-cabinet-hanging range.lo 165",
+      "delta": 65,
+      "anchor": "desk-assembly range.lo 150",
       "was": [
         130,
         200
@@ -3669,12 +3949,12 @@
       "series": "floating-desk",
       "size": "lg",
       "value": [
-        280,
-        390
+        265,
+        375
       ],
       "source": "carry-forward:lift",
-      "delta": 80,
-      "anchor": "wall-cabinet-hanging range.lo 165",
+      "delta": 65,
+      "anchor": "desk-assembly range.lo 150",
       "was": [
         200,
         310
@@ -3733,12 +4013,12 @@
       "series": "floating-shelf",
       "size": "sm",
       "value": [
-        165,
-        200
+        150,
+        185
       ],
       "source": "carry-forward:lift",
-      "delta": 115,
-      "anchor": "wall-cabinet-hanging range.lo 165",
+      "delta": 100,
+      "anchor": "floating-shelf-install range.lo 150",
       "was": [
         50,
         85
@@ -3749,12 +4029,12 @@
       "series": "floating-shelf",
       "size": "md",
       "value": [
-        214,
-        280
+        199,
+        265
       ],
       "source": "carry-forward:lift",
-      "delta": 115,
-      "anchor": "wall-cabinet-hanging range.lo 165",
+      "delta": 100,
+      "anchor": "floating-shelf-install range.lo 150",
       "was": [
         99,
         165
@@ -3765,12 +4045,12 @@
       "series": "floating-shelf",
       "size": "lg",
       "value": [
-        280,
-        375
+        265,
+        360
       ],
       "source": "carry-forward:lift",
-      "delta": 115,
-      "anchor": "wall-cabinet-hanging range.lo 165",
+      "delta": 100,
+      "anchor": "floating-shelf-install range.lo 150",
       "was": [
         165,
         260

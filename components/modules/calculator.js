@@ -90,11 +90,11 @@ const CONFIGS = {
         pricing: {
             kallax: { sm: [150, 184], md: [184, 235], lg: [235, 305] },
             pax: { sm: [295, 355], md: [375, 485], lg: [485, 625] },
-            malm: { sm: [150, 184], md: [170, 215], lg: [205, 275] },
-            hemnes: { sm: [150, 190], md: [190, 240], lg: [255, 355] },
+            malm: { sm: [185, 219], md: [205, 250], lg: [240, 310] },
+            hemnes: { sm: [185, 225], md: [225, 275], lg: [290, 390] },
             besta: { sm: [150, 201], md: [216, 311], lg: [311, 451] },
             billy: { sm: [150, 185], md: [215, 265], lg: [280, 360] },
-            nordli: { sm: [150, 195], md: [184, 235], lg: [235, 315] },
+            nordli: { sm: [185, 230], md: [219, 270], lg: [270, 350] },
             other: { sm: [150, 199], md: [199, 265], lg: [265, 390] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
@@ -316,9 +316,9 @@ const CONFIGS = {
         pricing: {
             'floating-vanity': { sm: [165, 216], md: [216, 296], lg: [296, 416] },
             'wall-cabinet': { sm: [165, 210], md: [230, 310], lg: [330, 450] },
-            'floating-desk': { sm: [165, 210], md: [210, 280], lg: [280, 390] },
+            'floating-desk': { sm: [150, 195], md: [195, 265], lg: [265, 375] },
             'wall-unit': { sm: [165, 231], md: [246, 361], lg: [361, 516] },
-            'floating-shelf': { sm: [165, 200], md: [214, 280], lg: [280, 375] },
+            'floating-shelf': { sm: [150, 185], md: [199, 265], lg: [265, 360] },
             other: { sm: [165, 214], md: [214, 295], lg: [295, 425] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },

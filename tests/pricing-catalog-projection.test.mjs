@@ -527,7 +527,7 @@ test('cross-series order changes are counted, and the count cannot grow unnotice
        only the ladders that sat below the work minimum, across type-picker axes the site does not
        present as a ladder. If this number moves, say why in the commit. */
     assert.equal(c.byDriver['catalog-or-contract'], 29);
-    assert.equal(c.byDriver['lift-artifact'], 59);
+    assert.equal(c.byDriver['lift-artifact'], 69);
 });
 
 test('every page carrying a data-price-src marker is one the generator writes', () => {
