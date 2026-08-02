@@ -12815,7 +12815,19 @@ export default function calculator(container) {
         const startTime = performance.now();
 
         function tick(now) {
-            const elapsed = now - startTime;
+            /* Clamp at BOTH ends. requestAnimationFrame hands the callback the FRAME's
+               start timestamp, and that timestamp can PRECEDE the performance.now() taken
+               above: the frame's rendering update begins, a task inside it runs this code,
+               and the callback is then serviced by the same frame. `now - startTime` is
+               negative, `progress` is negative, `1 - (1 - progress)^3` is negative, and the
+               price box renders a NEGATIVE number for the first frame or two before
+               counting up.
+               Measured on the live page (b50ee4e6), visible tab, real Chrome, CPU throttled
+               6x — a mid-range phone: /services/general-repairs/apartment-turnover/ with
+               1br/md rendered "$-31 – $0", then "$-31 – $-55", then "$108 – $-55" before
+               settling on the correct $850 – $1500. Reproduced on 4 of 4 runs at 6x and
+               20x. Only the upper bound was clamped, so nothing caught it. */
+            const elapsed = Math.max(0, now - startTime);
             const progress = Math.min(elapsed / duration, 1);
             const eased = 1 - Math.pow(1 - progress, 3);
             const current = Math.round(start + (target - start) * eased);
