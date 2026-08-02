@@ -523,9 +523,11 @@ test('cross-series order changes are counted, and the count cannot grow unnotice
     assert.equal(c.total, c.changes.length);
     assert.equal(c.byDriver['catalog-or-contract'] + c.byDriver['lift-artifact'], c.total);
     /* Pinned. 29 are the catalog and the contract correcting inversions on purpose (the
-       apartment-turnover 1br-dearer-than-2br defect among them); 59 are a consequence of lifting
+       apartment-turnover 1br-dearer-than-2br defect among them); 69 are a consequence of lifting
        only the ladders that sat below the work minimum, across type-picker axes the site does not
-       present as a ladder. If this number moves, say why in the commit. */
+       present as a ladder. If either number moves, say why in the commit — and check it is not
+       the shape of defect Codex found in interior-painting, where an option's label described a
+       harder job than the catalog row it was priced from. */
     assert.equal(c.byDriver['catalog-or-contract'], 29);
     assert.equal(c.byDriver['lift-artifact'], 69);
 });
