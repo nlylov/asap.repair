@@ -19,7 +19,7 @@
  * all. tests/pricing-catalog-projection.test.mjs parses that COUNTS line and checks it against
  * the generated report, so this comment cannot go stale the way its first draft did.
  *
- * What IS true of all 1,332 is that no human types them into a page any more. Editing a price on
+ * What IS true of all 1,333 is that no human types them into a page any more. Editing a price on
  * the site is not possible: you edit the catalog in the CRM, re-vendor it, and re-run this.
  * `--check` re-derives everything in memory and fails if a committed file differs by one byte,
  * so drift is a red test rather than a customer seeing a number nobody agreed to.
@@ -41,6 +41,8 @@
  *   components/modules/calculator.js           CALC_PRICE_VERSION + every `pricing:` block
  *   main.js                                    REPAIR_ASAP_CALC_PRICE_VERSION
  *   assets/data/hub-calculators.json           regenerated from the rewritten leaf prices
+ *   llms.txt, llms-full.txt                    the example-price block LLM crawlers read as canon
+ *   the blog price tables + new-apartment-setup  prices written into page copy (see proseFigures)
  *
  * Usage:  node scripts/generate-calculator-prices.mjs [--check]
  */
