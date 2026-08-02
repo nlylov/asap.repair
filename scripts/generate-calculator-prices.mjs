@@ -9,20 +9,27 @@
  * Google, in structured data, that work starts at $99.
  *
  * From here every figure the site renders is WRITTEN BY THIS SCRIPT. That is not the same claim
- * as "every figure is a catalog figure", and the difference matters: 198 cells come from a
- * catalog tier or from a figure the contract states literally, and 1,134 are the previous
- * version's cells moved only by the owner's two decided rules (see below). What is true of all
- * 1,332 is that no human types them into a page any more. Editing a price on the site is not
- * possible: you edit the catalog in the CRM, re-vendor it, and re-run this. `--check` re-derives
- * everything in memory and fails if a committed file differs by one byte, so drift is a red test
- * rather than a customer seeing a number nobody agreed to.
+ * as "every figure is a catalog figure", and the difference matters:
+ *
+ *   COUNTS: total=1332 catalogOrContract=84 carryForward=1134 nonWorkPaths=114
+ *
+ * 84 cells come from a catalog tier or from a figure the contract states literally; 1,134 are
+ * the previous version's cells moved only by the owner's two decided rules; the remaining 114
+ * are the $0 photo-estimate, $99 assessment and frozen-gas paths, which are not work prices at
+ * all. tests/pricing-catalog-projection.test.mjs parses that COUNTS line and checks it against
+ * the generated report, so this comment cannot go stale the way its first draft did.
+ *
+ * What IS true of all 1,332 is that no human types them into a page any more. Editing a price on
+ * the site is not possible: you edit the catalog in the CRM, re-vendor it, and re-run this.
+ * `--check` re-derives everything in memory and fails if a committed file differs by one byte,
+ * so drift is a red test rather than a customer seeing a number nobody agreed to.
  *
  * ── What it does NOT do, and why ───────────────────────────────────────────────────────
- * It does not invent the 1,128 cells the catalog does not carry. docs/pricing-website-contract.md
+ * It does not invent the 1,134 cells the catalog does not carry. docs/pricing-website-contract.md
  * §4 says proposal sections 2.1-2.8 — the per-hub cell tables — were truncated out of the catalog
  * lane's input, and instructs: "Do not treat the absence of a cell here as 'unchanged'; treat it
- * as 'still to be taken from proposal §2.1-2.8'." 80 services and 204 tiers cannot yield 1,332
- * cells honestly. So an unbound cell is carried forward from the frozen calc-2026-08-01 table and
+ * as 'still to be taken from proposal §2.1-2.8'." 80 services and 204 tiers cannot fill 1,332
+ * slots honestly. So an unbound cell is carried forward from the frozen calc-2026-08-01 table and
  * passed through the two rules the owner has already ruled on — the $150 work minimum and
  * monotonicity — and its provenance says exactly that. pricing/calculator-price-projection.json
  * reports the count so the gap is a number on the page, not a silence.

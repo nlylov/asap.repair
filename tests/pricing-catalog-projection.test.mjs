@@ -258,6 +258,21 @@ test('the gas cells the renderer floors are written down, with both figures', ()
     assert.match(flooredRange, /Math\.max\(lo, PRICING\.REPAIR_MINIMUM\)/);
 });
 
+test('the generator\'s own header comment is arithmetically true', () => {
+    /* Codex round 2 caught the first draft of that comment claiming 198 catalog-owned cells when
+       the real figure is 84 — a doc that is wrong about the one number it exists to convey. The
+       comment now carries a machine-readable COUNTS line and this reads it back. */
+    const header = read('scripts/generate-calculator-prices.mjs').slice(0, 4000);
+    const line = /COUNTS: total=(\d+) catalogOrContract=(\d+) carryForward=(\d+) nonWorkPaths=(\d+)/.exec(header);
+    assert.ok(line, 'the COUNTS line was removed from the generator header');
+    const [, total, owned, carried, nonWork] = line.map(Number);
+    assert.equal(total, cells.length);
+    assert.equal(owned, cells.filter((c) => c.source.startsWith('catalog:tier') || c.source.startsWith('contract:')).length);
+    assert.equal(carried, cells.filter((c) => c.source.startsWith('carry-forward')).length);
+    assert.equal(nonWork, cells.filter((c) => ['photo:free', 'assessment:99'].includes(c.source) || c.source.startsWith('frozen:gas')).length);
+    assert.equal(owned + carried + nonWork, total);
+});
+
 test('the report does not overstate how much of the site the catalog owns', () => {
     /* Codex round 1, finding 2: a reader could take "generated from the catalog" to mean "every
        displayed price is a catalog price". It is not, and the numbers have to say so plainly. */
