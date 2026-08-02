@@ -1269,9 +1269,15 @@ const CONFIGS = {
                 id: 'series',
                 options: [
                     { value: '', label: 'Choose range type…' },
-                    { value: 'gas-freestanding', label: 'Gas Freestanding Range' },
+                    /* 'Slide-In Range (Gas or Electric)' used to sit on the electric row, so a
+                       customer with a GAS slide-in was quoted an electric price for work that
+                       needs a Licensed Master Plumber under Local Law 429 (2025). Gas belongs on
+                       the frozen gas row — the one the catalog holds at status "frozen" and this
+                       repricing does not touch — so the two options now say which fuel they are
+                       for, and the gas option covers both body styles. */
+                    { value: 'gas-freestanding', label: 'Gas Range — Freestanding or Slide-In' },
                     { value: 'electric-freestanding', label: 'Electric Freestanding Range' },
-                    { value: 'slide-in', label: 'Slide-In Range (Gas or Electric)' },
+                    { value: 'slide-in', label: 'Slide-In Range (Electric)' },
                     { value: 'wall-oven', label: 'Wall Oven' },
                     { value: 'cooktop', label: 'Cooktop Only' },
                     { value: 'other', label: 'Other Range / Oven' }
@@ -5187,11 +5193,11 @@ Object.assign(CONFIGS, {
                         },
                         {
                             "value": "md",
-                            "label": "Handheld + slide bar, or a new shower arm"
+                            "label": "New shower arm or escutcheon with the head"
                         },
                         {
                             "value": "lg",
-                            "label": "Rain head + arm & bracket set, drilling into tile"
+                            "label": "Rain head or handheld + slide bar — bracket set, drilling into tile"
                         }
                     ],
                     "shower-trim": [

@@ -3465,7 +3465,7 @@
             },
             {
               "value": "gas-freestanding",
-              "label": "Gas Freestanding Range"
+              "label": "Gas Range — Freestanding or Slide-In"
             },
             {
               "value": "electric-freestanding",
@@ -3473,7 +3473,7 @@
             },
             {
               "value": "slide-in",
-              "label": "Slide-In Range (Gas or Electric)"
+              "label": "Slide-In Range (Electric)"
             },
             {
               "value": "wall-oven",

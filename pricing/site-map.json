@@ -104,6 +104,7 @@
     },
 
     "bathroom-fixture": {
+      "_note": "Codex round 3, finding 3. The md option read 'Handheld + slide bar, or a new shower arm' — two different catalog rows in one line, priced off the cheaper of them, so a hand-shower job showed $195-$265 against the $280-$380 we hold for it. Same remedy as interior-painting: each option now names the row it is priced from. md = the arm/escutcheon row, lg = the rain-head-or-hand-shower row.",
       "showerhead": { "md": "showerhead-replacement#bath-fixture-sm", "lg": "showerhead-replacement#bath-fixture-md" }
     },
 
@@ -170,6 +171,7 @@
     "dishwasher":        { "*": "dishwasher-install" },
     "dryer":             { "*": "dryer-install-electric" },
     "microwave":         { "*": "otr-microwave-install" },
+    "_gasIsNotAnAnchor": "Codex round 3, finding 2. Every range series anchors to range-install-electric, which is an ELECTRIC-only catalog row, and the slide-in option's label used to read 'Gas or Electric'. A gas slide-in was therefore quoted $175-$230 off the electric row — for work that needs a Licensed Master Plumber under Local Law 429 (2025). The anchors are unchanged and correct; what was wrong was the label. The picker now says which fuel each option is for, and gas ranges of either body style land on the frozen gas row, which no anchor touches.",
     "range":             { "*": "range-install-electric" },
     "refrigerator":      { "*": "refrigerator-install" },
     "washer":            { "*": "washer-install" },
