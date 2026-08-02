@@ -221,6 +221,55 @@ test('the three gas ladders are carried forward byte-identical and exempt from t
     assert.equal(cells.filter(isFrozenGas).length, 9);
 });
 
+test('the gas cells the renderer floors are written down, with both figures', () => {
+    /* Codex round 1, finding 1. The stored gas cell and the figure the page shows are NOT the
+       same, and until now nothing said so. components/modules/calculator.js flooredRange() has
+       no gas exemption, on purpose (the reasons are in the comment there), so the frozen $125
+       small step renders as $150. That is unchanged from calc-2026-08-01 — the base commit
+       rendered $150-$180 for it too — but "unchanged and undocumented" is how a divergence
+       survives a review. This pins all three: the datum stays frozen, the render floors it, and
+       the projection report carries both. */
+    const report = readJson('pricing/calculator-price-projection.json');
+    const previous = readJson(`pricing/price-tables/${PREVIOUS_VERSION}.json`).modularCalculator;
+    const floorAsRendered = ([lo, hi]) => [Math.max(lo, REPAIR_MINIMUM), Math.max(hi, REPAIR_MINIMUM)];
+
+    const expected = [];
+    for (const cell of cells.filter(isFrozenGas)) {
+        if (cell.value[0] >= REPAIR_MINIMUM) continue;
+        expected.push(`${cell.configKey}.${cell.series}.${cell.size}`);
+        // stored: byte-identical to the frozen previous table
+        assert.deepEqual(cell.value, previous[cell.configKey][cell.series][cell.size]);
+        // recorded: the report carries the stored pair AND the rendered pair
+        const row = report.renderedFloorDivergence.find((r) => r.cell === `${cell.configKey}.${cell.series}.${cell.size}`);
+        assert.ok(row, `${cell.configKey}.${cell.series}.${cell.size} is floored at render time but not recorded`);
+        assert.deepEqual(row.stored, cell.value);
+        assert.deepEqual(row.rendered, floorAsRendered(cell.value));
+        assert.match(row.why, /Local Law 429/);
+    }
+    assert.deepEqual(expected.sort(), ['dryer.gas.sm', 'range.cooktop.sm', 'range.gas-freestanding.sm']);
+    assert.equal(report.renderedFloorDivergence.length, expected.length, 'the report lists a divergence that does not exist');
+
+    // And the renderer really has no gas exemption — if someone adds one, this test must be revisited.
+    const flooredRange = read('components/modules/calculator.js').slice(
+        read('components/modules/calculator.js').indexOf('function flooredRange('),
+        read('components/modules/calculator.js').indexOf('function buildQuoteSnapshot('),
+    );
+    assert.match(flooredRange, /THERE IS DELIBERATELY NO GAS EXEMPTION HERE/);
+    assert.match(flooredRange, /Math\.max\(lo, PRICING\.REPAIR_MINIMUM\)/);
+});
+
+test('the report does not overstate how much of the site the catalog owns', () => {
+    /* Codex round 1, finding 2: a reader could take "generated from the catalog" to mean "every
+       displayed price is a catalog price". It is not, and the numbers have to say so plainly. */
+    const report = readJson('pricing/calculator-price-projection.json');
+    const owned = cells.filter((c) => c.source.startsWith('catalog:tier') || c.source.startsWith('contract:')).length;
+    const pending = cells.filter((c) => c.source.startsWith('carry-forward')).length;
+    assert.equal(report.openGap.cellsTheCatalogOrContractOwns, owned);
+    assert.equal(report.openGap.cellsPendingProposalSections2_1To2_8, pending);
+    assert.equal(report.openGap.madeOf['carry-forward'] + report.openGap.madeOf['carry-forward:lift'], pending);
+    assert.ok(pending > owned, 'if the catalog ever owns the majority, rewrite this test and the wording it guards');
+});
+
 test('every catalog service marked frozen is still present in the catalog', () => {
     const frozen = catalog.services.filter((s) => s.status === 'frozen').map((s) => s.key).sort();
     assert.deepEqual(frozen, ['dryer-install-gas', 'range-cooktop-gas', 'range-install-gas-freestanding']);

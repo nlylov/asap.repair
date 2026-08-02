@@ -8,12 +8,14 @@
  * publish a price below the owner's $150 work minimum and how services/index.html came to tell
  * Google, in structured data, that work starts at $99.
  *
- * From here every figure the site renders is produced by this script from
- * pricing/catalog/<version>.json — a byte-identical copy of the catalog authored in the CRM
- * repository, pinned by sha256. Editing a price on the site is not possible any more: you edit
- * the catalog in the CRM, re-vendor it, and re-run this. `--check` re-derives everything in
- * memory and fails if a committed file differs by one byte, so drift is a red test rather than
- * a customer seeing a number nobody agreed to.
+ * From here every figure the site renders is WRITTEN BY THIS SCRIPT. That is not the same claim
+ * as "every figure is a catalog figure", and the difference matters: 198 cells come from a
+ * catalog tier or from a figure the contract states literally, and 1,134 are the previous
+ * version's cells moved only by the owner's two decided rules (see below). What is true of all
+ * 1,332 is that no human types them into a page any more. Editing a price on the site is not
+ * possible: you edit the catalog in the CRM, re-vendor it, and re-run this. `--check` re-derives
+ * everything in memory and fails if a committed file differs by one byte, so drift is a red test
+ * rather than a customer seeing a number nobody agreed to.
  *
  * ── What it does NOT do, and why ───────────────────────────────────────────────────────
  * It does not invent the 1,128 cells the catalog does not carry. docs/pricing-website-contract.md
@@ -613,6 +615,22 @@ export function build() {
         windowAcWidget: { ...frozenPrevious.windowAcWidget, applyRepairMinimum: true },
     };
 
+    /* The one place a RENDERED figure and a STORED cell differ. components/modules/calculator.js
+       flooredRange() applies the $150 work minimum at paint time with no gas exemption, so the
+       frozen $125 small gas step is shown as $150. The data stays frozen; this records what the
+       page actually says so the divergence is written down instead of discovered. */
+    const renderedFloor = allCells
+        .filter((c) => c.source.startsWith('frozen:gas') && c.value[0] < catalog.constants.repairMinimum)
+        .map((c) => ({
+            cell: `${c.configKey}.${c.series}.${c.size}`,
+            stored: c.value,
+            rendered: [Math.max(c.value[0], catalog.constants.repairMinimum), Math.max(c.value[1], catalog.constants.repairMinimum)],
+            why:
+                'Local Law 429 (2025) freezes the catalog cell; the owner\'s $150 work minimum is unconditional in ' +
+                'the renderer, and the CRM mirrors the same flooredRange, so site and CRM agree on the figure the ' +
+                'lead was shown. Unchanged from calc-2026-08-01.',
+        }));
+
     const projectionReport = {
         pricingVersion: CATALOG_VERSION,
         supersedes: PREVIOUS_VERSION,
@@ -628,6 +646,7 @@ export function build() {
             configs: Object.keys(projection).length,
             byProvenance: Object.fromEntries(Object.entries(byProvenance).sort((a, b) => b[1] - a[1])),
         },
+        renderedFloorDivergence: renderedFloor,
         openGap: {
             what: 'Cells the catalog does not carry.',
             why:
@@ -635,6 +654,11 @@ export function build() {
                 'truncated out of the catalog lane\'s input and are not in the catalog. They are pending, not ' +
                 'agreed-unchanged.',
             cellsPendingProposalSections2_1To2_8: allCells.filter((c) => c.source.startsWith('carry-forward')).length,
+            madeOf: {
+                'carry-forward': allCells.filter((c) => c.source.startsWith('carry-forward') && !c.source.startsWith('carry-forward:lift')).length,
+                'carry-forward:lift': allCells.filter((c) => c.source.startsWith('carry-forward:lift')).length,
+            },
+            cellsTheCatalogOrContractOwns: allCells.filter((c) => c.source.startsWith('catalog:tier') || c.source.startsWith('contract:')).length,
         },
         cells: allCells,
     };

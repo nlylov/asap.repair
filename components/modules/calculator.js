@@ -9364,6 +9364,26 @@ export default function calculator(container) {
         // Same exemption in menu mode for the explicit assessment path,
         // otherwise a "$99, credited" option would render as $150.
         if (isAssessmentPath(lo, hi)) return [lo, hi];
+        /* THERE IS DELIBERATELY NO GAS EXEMPTION HERE, and it is the one place where a
+           rendered figure and the stored cell differ.
+           dryer/gas/sm and range/cooktop/sm are frozen at $125-$180 and $110-$165 by Local
+           Law 429 (2025) — the catalog carries them at status "frozen", the generator copies
+           them byte-for-byte and never applies the floor to the DATA, and
+           pricing/calculator-price-projection.json records both the stored pair and the pair
+           this function renders. What the customer is shown is still floored to $150,
+           because:
+             - the owner's rule is unconditional: $150 is the minimum for work performed, and
+               a page offering a $125 gas dryer install contradicts it in public;
+             - gas install cannot lawfully be sold without a Licensed Master Plumber right
+               now anyway, so the sub-minimum figure would be advertising a job we cannot
+               take;
+             - the CRM mirrors this exact function (lib/pricing/website-price-table.ts
+               flooredRange), so floor-here / floor-there keeps site and CRM agreeing on the
+               figure a lead was shown. Exempting gas on one side only would create a
+               mismatch on every gas lead.
+           This is unchanged behaviour: calc-2026-08-01 rendered $150-$180 for that cell too.
+           tests/pricing-catalog-projection.test.mjs pins all three facts — stored value
+           frozen, rendered value floored, and the two recorded side by side. */
         return [Math.max(lo, PRICING.REPAIR_MINIMUM), Math.max(hi, PRICING.REPAIR_MINIMUM)];
     }
 

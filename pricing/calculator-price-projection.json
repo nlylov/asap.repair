@@ -17,10 +17,53 @@
       "frozen:gas": 9
     }
   },
+  "renderedFloorDivergence": [
+    {
+      "cell": "dryer.gas.sm",
+      "stored": [
+        125,
+        180
+      ],
+      "rendered": [
+        150,
+        180
+      ],
+      "why": "Local Law 429 (2025) freezes the catalog cell; the owner's $150 work minimum is unconditional in the renderer, and the CRM mirrors the same flooredRange, so site and CRM agree on the figure the lead was shown. Unchanged from calc-2026-08-01."
+    },
+    {
+      "cell": "range.gas-freestanding.sm",
+      "stored": [
+        125,
+        180
+      ],
+      "rendered": [
+        150,
+        180
+      ],
+      "why": "Local Law 429 (2025) freezes the catalog cell; the owner's $150 work minimum is unconditional in the renderer, and the CRM mirrors the same flooredRange, so site and CRM agree on the figure the lead was shown. Unchanged from calc-2026-08-01."
+    },
+    {
+      "cell": "range.cooktop.sm",
+      "stored": [
+        110,
+        165
+      ],
+      "rendered": [
+        150,
+        165
+      ],
+      "why": "Local Law 429 (2025) freezes the catalog cell; the owner's $150 work minimum is unconditional in the renderer, and the CRM mirrors the same flooredRange, so site and CRM agree on the figure the lead was shown. Unchanged from calc-2026-08-01."
+    }
+  ],
   "openGap": {
     "what": "Cells the catalog does not carry.",
     "why": "docs/pricing-website-contract.md §4: proposal sections 2.1-2.8 — the per-hub cell tables — were truncated out of the catalog lane's input and are not in the catalog. They are pending, not agreed-unchanged.",
-    "cellsPendingProposalSections2_1To2_8": 1134
+    "cellsPendingProposalSections2_1To2_8": 1134,
+    "madeOf": {
+      "carry-forward": 828,
+      "carry-forward:lift": 306
+    },
+    "cellsTheCatalogOrContractOwns": 84
   },
   "cells": [
     {
