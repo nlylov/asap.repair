@@ -840,72 +840,189 @@
       },
       {
         "file": "services/furniture-assembly/wardrobe-assembly/index.html",
-        "_note": "Codex round 3, finding 1: the FAQ JSON-LD quoted prices a repricing had moved past. A price in structured data is read by crawlers and by models that then quote us, so it is generated like every other figure.",
+        "_note": "Codex round 3, finding 1: the FAQ JSON-LD quoted prices a repricing had moved past. Round 2 of the structured-data pass found the other half of it — only the JSON-LD copy was generated, so the paragraph the customer reads kept the old figure and the page answered one question two ways. Google requires a FAQ rich result to match the visible answer, so both copies are the same sentence and both are written from the same catalog ref.",
         "inlineRanges": [
           {
             "before": "A simple two-door freestanding wardrobe starts around ",
             "after": ", while a multi-frame PAX",
             "ref": "site:wardrobes.freestanding.sm",
-            "sep": "-"
+            "sep": "-",
+            "in": "jsonld"
           },
           {
             "before": "interior organizers, and lighting can range from ",
             "after": " after scope review.",
             "ref": "site:ikea.pax",
-            "sep": "-"
+            "sep": "-",
+            "in": "jsonld"
+          },
+          {
+            "before": "A simple two-door freestanding wardrobe starts around ",
+            "after": ", while a multi-frame PAX",
+            "ref": "site:wardrobes.freestanding.sm",
+            "sep": "-",
+            "in": "html"
+          },
+          {
+            "before": "interior organizers, and lighting can range from ",
+            "after": " after scope review.",
+            "ref": "site:ikea.pax",
+            "sep": "-",
+            "in": "html"
           }
         ]
       },
       {
         "file": "services/furniture-assembly/bed-assembly/index.html",
-        "_note": "Codex round 3, finding 1.",
+        "_note": "Codex round 3, finding 1: the FAQ JSON-LD quoted prices a repricing had moved past. Round 2 of the structured-data pass found the other half of it — only the JSON-LD copy was generated, so the paragraph the customer reads kept the old figure and the page answered one question two ways. Google requires a FAQ rich result to match the visible answer, so both copies are the same sentence and both are written from the same catalog ref.",
         "inlineRanges": [
           {
             "before": "Simple platform frames start around ",
             "after": ", while storage beds",
             "ref": "site:beds.platform.sm",
-            "sep": "-"
+            "sep": "-",
+            "in": "jsonld"
           },
           {
             "before": "hydraulic lifts or bunk beds can range from ",
             "after": " after scope review.",
             "ref": "site:beds.bunk",
-            "sep": "-"
+            "sep": "-",
+            "in": "jsonld"
+          },
+          {
+            "before": "Simple platform frames start around ",
+            "after": ", while storage beds",
+            "ref": "site:beds.platform.sm",
+            "sep": "-",
+            "in": "html"
+          },
+          {
+            "before": "hydraulic lifts or bunk beds can range from ",
+            "after": " after scope review.",
+            "ref": "site:beds.bunk",
+            "sep": "-",
+            "in": "html"
           }
         ]
       },
       {
         "file": "services/furniture-assembly/ikea-assembly/index.html",
-        "_note": "Codex round 3, finding 1.",
+        "_note": "Codex round 3, finding 1: the FAQ JSON-LD quoted prices a repricing had moved past. Round 2 of the structured-data pass found the other half of it — only the JSON-LD copy was generated, so the paragraph the customer reads kept the old figure and the page answered one question two ways. Google requires a FAQ rich result to match the visible answer, so both copies are the same sentence and both are written from the same catalog ref.",
         "inlineRanges": [
           {
             "before": "Simple pieces like a KALLAX 1x4 shelf start around ",
             "after": ", while complex systems",
             "ref": "site:ikea.kallax.sm",
-            "sep": "-"
+            "sep": "-",
+            "in": "jsonld"
           },
           {
             "before": "like a PAX wardrobe with sliding doors can range from ",
             "after": " after scope review.",
             "ref": "site:ikea.pax",
-            "sep": "-"
+            "sep": "-",
+            "in": "jsonld"
+          },
+          {
+            "before": "Simple pieces like a KALLAX 1x4 shelf start around ",
+            "after": ", while complex systems",
+            "ref": "site:ikea.kallax.sm",
+            "sep": "-",
+            "in": "html"
+          },
+          {
+            "before": "like a PAX wardrobe with sliding doors can range from ",
+            "after": " after scope review.",
+            "ref": "site:ikea.pax",
+            "sep": "-",
+            "in": "html"
           }
         ]
       },
       {
         "file": "services/flooring-installation/floor-repair/index.html",
-        "_note": "Codex round 3, finding 3: this FAQ answer read 'Small repairs start at the $150 work minimum-$150.' — a sentence an earlier prose pass mangled and nothing checked. Both figures are generated now. Both are inlineRanges and NOT data-price-src spans, because this copy lives inside a JSON-LD FAQPage answer: a span carries double-quoted attributes, which close the JSON string and make the page's structured data unparseable. That is exactly how this page broke once; the generator now refuses it.",
+        "_note": "Codex round 3, finding 3: this FAQ answer read 'Small repairs start at the $150 work minimum-$150.' — a sentence an earlier prose pass mangled and nothing checked. Both figures are generated now, in BOTH copies of the answer. inlineRanges (digits) and never a data-price-src span: a span carries double-quoted attributes, and inside a JSON-LD string those close the JSON and make the page's structured data unparseable. That is exactly how this page broke; the generator now refuses it.",
         "inlineRanges": [
           {
             "before": "Small repairs start at the ",
             "after": " work minimum.",
-            "ref": "const.repairMinimum"
+            "ref": "const.repairMinimum",
+            "in": "jsonld"
           },
           {
             "before": "Larger water damage or section replacements run ",
-            "after": ".\"",
+            "after": ".",
             "ref": "floor-repair",
-            "sep": "–"
+            "sep": "–",
+            "in": "jsonld"
+          },
+          {
+            "before": "Small repairs start at the ",
+            "after": " work minimum.",
+            "ref": "const.repairMinimum",
+            "in": "html"
+          },
+          {
+            "before": "Larger water damage or section replacements run ",
+            "after": ".",
+            "ref": "floor-repair",
+            "sep": "–",
+            "in": "html"
+          }
+        ]
+      },
+      {
+        "file": "services/furniture-assembly/wall-bed-assembly/index.html",
+        "_note": "This branch hand-edited the JSON-LD figure to $900-$1,300 (the catalog's murphy-bed ceiling) and left the visible paragraph at $900-$1,500, so the page told a crawler one price and a reader another. The page was in no generator, so nothing would ever have corrected it. Both figures are bound to calculator cells now. OWNER, PLEASE CONFIRM THE TWO BINDINGS: 'a basic vertical twin' -> wall-bed/vertical/sm, and 'full system installs with cabinets' -> wall-bed/cabinet/lg. The prices are the calculator's own and are therefore right by construction; what needs a human is whether those two sentences describe those two rows.",
+        "inlineRanges": [
+          {
+            "before": "A basic vertical twin Murphy bed starts around ",
+            "after": ".",
+            "ref": "site:wall-bed.vertical.sm",
+            "sep": "-",
+            "in": "jsonld"
+          },
+          {
+            "before": "Full system installs with cabinets can run ",
+            "after": " after scope review.",
+            "ref": "site:wall-bed.cabinet.lg",
+            "sep": "-",
+            "in": "jsonld"
+          },
+          {
+            "before": "A basic vertical twin Murphy bed starts around ",
+            "after": ".",
+            "ref": "site:wall-bed.vertical.sm",
+            "sep": "-",
+            "in": "html"
+          },
+          {
+            "before": "Full system installs with cabinets can run ",
+            "after": " after scope review.",
+            "ref": "site:wall-bed.cabinet.lg",
+            "sep": "-",
+            "in": "html"
+          }
+        ]
+      },
+      {
+        "file": "services/painting/accent-wall-painting/index.html",
+        "_note": "PRE-EXISTING, NOT CAUSED BY THIS BRANCH, BUT MADE WORSE BY IT. The page said a single accent wall 'typically runs $150-$350' (and $150-$360 in the visible copy — the two never agreed). The catalog prices accent-wall-painting at $275-$1,700 and this page's own calculator opens at $275, so the sentence undercut the calculator directly beneath it. At calc-2026-08-01 the calculator opened at $225, so the gap existed before and this repricing widened it. Now generated from the service range. OWNER: this raises a published entry price from $150 to $275.",
+        "inlineRanges": [
+          {
+            "before": "A single accent wall typically runs ",
+            "after": " depending on wall size",
+            "ref": "accent-wall-painting",
+            "sep": "–",
+            "in": "jsonld"
+          },
+          {
+            "before": "A single accent wall typically runs ",
+            "after": " depending on wall size",
+            "ref": "accent-wall-painting",
+            "sep": "–",
+            "in": "html"
           }
         ]
       }

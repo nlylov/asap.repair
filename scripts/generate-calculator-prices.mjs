@@ -637,7 +637,14 @@ function rewriteLabelledPrices(src, file, rows, pattern, sep, index, projection)
    assertGeneratedJsonLdIsValid() enforces that at generation time.
 
    `ref` accepts the same grammar as data-price-src, so a constant such as const.repairMinimum
-   renders as one figure ("$150") rather than as a degenerate range ("$150–$150"). */
+   renders as one figure ("$150") rather than as a degenerate range ("$150–$150").
+
+   `in` scopes the search: "jsonld" searches only inside <script type="application/ld+json">
+   blocks, "html" only outside them, and omitting it searches the whole file. A FAQ answer exists
+   TWICE on these pages — once as structured data and once as the paragraph the customer reads —
+   and Google requires the two to say the same thing. Without scoping, the identical sentence
+   makes the anchor ambiguous and the generator can only refuse it; with it, both copies are
+   generated from one catalog figure and cannot drift apart. */
 function rewriteInlineRanges(src, file, specs, index, projection, constants) {
     let out = src;
     for (const spec of specs) {
@@ -650,12 +657,42 @@ function rewriteInlineRanges(src, file, specs, index, projection, constants) {
         }
         assertJsonStringSafe(value, spec.ref, file);
         const re = new RegExp(`(${escapeRe(spec.before)})([^\n]*?)(${escapeRe(spec.after)})`, 'g');
-        const matches = out.match(re);
-        if (!matches) throw new Error(`proseFigures.inlineRanges: anchor not found in ${file}: "${spec.before}"`);
-        if (matches.length > 1) throw new Error(`proseFigures.inlineRanges: anchor is not unique in ${file}: "${spec.before}"`);
-        out = out.replace(re, (_m, before, _old, after) => `${before}${value}${after}`);
+        const scope = spec.in || 'anywhere';
+        if (!['anywhere', 'jsonld', 'html'].includes(scope)) {
+            throw new Error(`proseFigures.inlineRanges: unknown scope "${scope}" in ${file}`);
+        }
+        let hits = 0;
+        out = mapScopedSegments(out, scope, (segment) => segment.replace(re, (_m, before, _old, after) => {
+            hits += 1;
+            return `${before}${value}${after}`;
+        }));
+        const where = scope === 'anywhere' ? file : `${file} (${scope} scope)`;
+        if (hits === 0) throw new Error(`proseFigures.inlineRanges: anchor not found in ${where}: "${spec.before}"`);
+        if (hits > 1) throw new Error(`proseFigures.inlineRanges: anchor is not unique in ${where}: "${spec.before}" (${hits} matches)`);
     }
     return out;
+}
+
+/**
+ * Split `src` into JSON-LD blocks and everything else, run `fn` over the segments the scope
+ * selects, and stitch it back together. The block's <script> tags stay in the non-JSON segment,
+ * so an anchor can never be written across the boundary between markup and JSON.
+ */
+function mapScopedSegments(src, scope, fn) {
+    if (scope === 'anywhere') return fn(src);
+    const parts = [];
+    let at = 0;
+    for (const m of src.matchAll(LD_JSON_BLOCK)) {
+        const bodyStart = m.index + m[0].indexOf('>', m[0].indexOf('<script')) + 1;
+        const bodyEnd = bodyStart + m[1].length;
+        parts.push({ text: src.slice(at, bodyStart), isLd: false });
+        parts.push({ text: src.slice(bodyStart, bodyEnd), isLd: true });
+        at = bodyEnd;
+    }
+    parts.push({ text: src.slice(at), isLd: false });
+    return parts
+        .map((p) => ((scope === 'jsonld') === p.isLd ? fn(p.text) : p.text))
+        .join('');
 }
 
 /* Any figure this script writes may land inside a JSON string. A price is digits, a currency

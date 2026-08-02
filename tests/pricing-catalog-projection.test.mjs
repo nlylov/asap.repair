@@ -702,3 +702,76 @@ test('the window-AC widget the browser reads is the window-AC widget the price t
     assert.equal((main.match(/Math\.max\(roundNearest5\([^\n]*REPAIR_ASAP_WORK_MINIMUM\)/g) || []).length, 4,
         'the $150 floor must be applied to both the per-unit and the total figure, low and high');
 });
+
+// ── 12. structured data is plain text, and it says what the page says ─────────────────
+
+/* Two defects, one root: a price written into a page's FAQ.
+ *
+ * The first was a `<span data-price-src="const.repairMinimum">$150</span>` marker dropped inside
+ * a FAQPage answer on services/flooring-installation/floor-repair/. Its double quotes closed the
+ * JSON string, the block stopped parsing, and CI went red — but only because that particular
+ * mistake happened to be *invalid* JSON. The same marker with single-quoted attributes parses
+ * fine and publishes raw markup to every crawler.
+ *
+ * The second was found looking for more of the first: five pages whose FAQ answer existed twice —
+ * once as structured data, once as the paragraph a human reads — with DIFFERENT prices in the two.
+ * floor-repair told a crawler $200–$1,500 and a reader $200–$500+ for the same question. Google
+ * requires a FAQ rich result to match the visible answer, so that is both a policy violation and
+ * a customer reading a number we would not honour.
+ */
+
+const LD_BLOCK = /<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+
+test('no page puts HTML markup inside a JSON-LD block', () => {
+    let blocks = 0;
+    for (const file of everyPage()) {
+        if (!file.endsWith('.html')) continue;
+        for (const [, body] of read(file).matchAll(LD_BLOCK)) {
+            blocks += 1;
+            assert.ok(!/<[a-zA-Z/!]/.test(body),
+                `${file}: HTML markup inside JSON-LD. Structured data is plain text; a price there is written by ` +
+                'proseFigures.inlineRanges (digits), never by a data-price-src span.');
+            assert.doesNotThrow(() => JSON.parse(body.trim()), `${file}: JSON-LD does not parse`);
+        }
+    }
+    assert.ok(blocks > 300, `expected the whole site's JSON-LD to be swept, only saw ${blocks} blocks`);
+});
+
+test('every FAQ answer states the same prices in its structured data and in the visible copy', () => {
+    const strip = (h) => h.replace(/<[^>]*>/g, ' ').replace(/&mdash;/g, '—').replace(/&amp;/g, '&')
+        .replace(/&ndash;/g, '–').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+    const money = (t) => (t.match(/\$[0-9][0-9,]*(?:\.\d+)?\+?/g) || []).join(' ');
+    let pairs = 0;
+
+    for (const file of everyPage()) {
+        if (!file.endsWith('.html')) continue;
+        const html = read(file);
+
+        const answers = [];
+        for (const [, body] of html.matchAll(LD_BLOCK)) {
+            let parsed;
+            try { parsed = JSON.parse(body.trim()); } catch { continue; }
+            for (const node of (Array.isArray(parsed) ? parsed : [parsed])) {
+                if (node?.['@type'] !== 'FAQPage') continue;
+                for (const q of node.mainEntity || []) answers.push([q.name, q.acceptedAnswer?.text ?? '']);
+            }
+        }
+        if (!answers.length) continue;
+
+        const visible = new Map();
+        for (const [, block] of html.matchAll(/<details[^>]*class="svc-faq__item"[^>]*>([\s\S]*?)<\/details>/gi)) {
+            const q = /<summary[^>]*>([\s\S]*?)<\/summary>/i.exec(block);
+            const a = /<div class="svc-faq__answer">([\s\S]*?)<\/div>/i.exec(block);
+            if (q && a) visible.set(strip(q[1]), strip(a[1]));
+        }
+
+        for (const [question, answer] of answers) {
+            const shown = visible.get(strip(question));
+            if (shown === undefined) continue;   // not every FAQ block is rendered as an accordion
+            pairs += 1;
+            assert.equal(money(answer), money(shown),
+                `${file}: "${question}" is answered with different prices in structured data and in the visible copy`);
+        }
+    }
+    assert.ok(pairs > 300, `expected the site's FAQ pairs to be swept, only matched ${pairs}`);
+});
