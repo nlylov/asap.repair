@@ -26,6 +26,16 @@
 /assets/data/*
   X-Robots-Tag: noindex, follow
 
+# The pricing catalog and the versioned price tables. Machine surfaces, not pages: the CRM's
+# cross-repository drift cron reads /pricing/catalog/index.json and compares the sha256 of the
+# live catalog against its own pinned literal, and an old lead is verified against
+# /pricing/price-tables/<the version it carries>.json. Kept out of the index, and CORS-open
+# because the reader is on another origin (crm.asap.repair).
+/pricing/*
+  X-Robots-Tag: noindex, nofollow
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=300
+
 /assets/rooms/_*
   X-Robots-Tag: noindex, nofollow
 

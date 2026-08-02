@@ -24,6 +24,14 @@ const modalSource = fs.readFileSync(path.join(root, 'components', 'quote-modal.j
 
 const PRICE_VERSION_SHAPE = /^calc-\d{4}-\d{2}-\d{2}$/;
 
+/* The generated table these tests read their expected figures from, plus the live CONFIGS.
+   Nothing in this file types a price: a repricing must not be able to turn a snapshot-shape
+   regression test red. */
+const liveVersion = /const CALC_PRICE_VERSION = '([^']+)';/.exec(calcSource)[1];
+const priceTable = JSON.parse(fs.readFileSync(path.join(root, 'pricing', 'price-tables', `${liveVersion}.json`), 'utf8'));
+// eslint-disable-next-line no-eval
+const configs = eval(`${calcSource.slice(0, calcSource.indexOf('export default function calculator'))}\nCONFIGS`);
+
 /* ---------------------------------------------------------------- DOM stubs -- */
 
 const noopClassList = { add() {}, remove() {}, toggle() {}, contains() { return false; } };
@@ -179,13 +187,19 @@ function loadCalculator(context) {
     return vm.runInContext('__calcModule', context);
 }
 
-/* Drive a real calculator instance to the CTA and return what it stored for the CRM. */
-function runCalculator({ configKey, series, size, pathname }) {
+/* Drive a real calculator instance to the CTA and return what it stored for the CRM.
+   `patchConfigs` injects a grid into the live CONFIGS before the module renders — the only way
+   left to exercise the $150 floor now that the catalog projection has authored every real cell
+   above it. It touches nothing on disk. */
+function runCalculator({ configKey, series, size, pathname, patchConfigs }) {
     const context = baseContext();
     if (pathname) context.window.location.pathname = pathname;
     vm.createContext(context);
     loadMain(context);
     const { calculator, CALC_PRICE_VERSION } = loadCalculator(context);
+    if (patchConfigs) {
+        vm.runInContext(`Object.assign(CONFIGS, ${JSON.stringify(patchConfigs)});`, context, { filename: 'patch.js' });
+    }
 
     const container = makeCalculatorContainer(configKey);
     calculator(container);
@@ -264,36 +278,64 @@ test('the snapshot builder records what was displayed and never invents a price'
 /* ------------------------------------------ the generic calculator, 3 paths -- */
 
 test('generic calculator: a priced range is recorded as numbers, not prose', () => {
-    // The exact selection behind the real 2026-07-23 lead from /desk-assembly/.
+    /* The exact selection behind the real 2026-07-23 lead from /desk-assembly/. The two figures
+       are READ FROM THE GENERATED PRICE TABLE, not typed here: this test is about the snapshot's
+       shape and wording, and hard-coding the price is what made it fail the first time a
+       repricing landed. If the numbers below are wrong, the table is wrong, and
+       pricing-catalog-projection.test.js is the test that says so. */
+    const [expectedLow, expectedHigh] = priceTable.modularCalculator.desk.standing.md;
     const { fields, priceVersion } = runCalculator({
         configKey: 'desk', series: 'standing', size: 'md',
         pathname: '/services/furniture-assembly/desk-assembly/',
     });
     assert.equal(fields.calculator_config, 'desk');
     assert.equal(fields.calculator_path, 'range');
-    assert.equal(fields.estimated_low, 150);
-    assert.equal(fields.estimated_high, 165);
-    assert.equal(fields.estimated_range, '$150–$165');
+    assert.equal(fields.estimated_low, expectedLow);
+    assert.equal(fields.estimated_high, expectedHigh);
+    assert.equal(fields.estimated_range, `$${expectedLow}–$${expectedHigh}`);
     assert.equal(fields.calculator_selection, 'Standing / Adjustable Desk — Electric — single motor');
     assert.equal(fields.calculator_price_version, priceVersion);
     // Unchanged wording — leads since 2026-07 are stored in exactly this form.
     assert.equal(
         fields.calculator_estimate,
-        'Standing / Adjustable Desk — Electric — single motor (estimated $150–$165, work only — NYC sales tax separate)',
+        `Standing / Adjustable Desk — Electric — single motor (estimated $${expectedLow}–$${expectedHigh}, work only — NYC sales tax separate)`,
     );
     assert.equal(fields.calculator_series, 'standing');
     assert.equal(fields.calculator_size, 'md');
 });
 
 test('generic calculator: a range collapsed by the $150 work minimum is recorded as single', () => {
-    // kallax/sm prices [65, 99]; the work minimum lifts both ends to 150, and the price box
-    // renders one figure. The snapshot must say the same thing the screen did.
-    const { fields } = runCalculator({ configKey: 'ikea', series: 'kallax', size: 'sm' });
+    /* Under calc-2026-08-01 this was a live state: ikea/kallax/sm priced [65, 99], the floor
+       lifted both ends to 150, and the box rendered one figure. calc-2026-09-01 authors every
+       real cell above the minimum, so no reachable selection collapses any more (asserted
+       below). The floor stays in the code as insurance against a future table, and insurance
+       nothing exercises is not insurance — so the sub-floor grid is injected here. */
+    const { fields } = runCalculator({
+        configKey: 'ikea', series: 'kallax', size: 'sm',
+        patchConfigs: { ikea: { ...configs.ikea, pricing: { ...configs.ikea.pricing, kallax: { sm: [65, 99], md: [99, 150], lg: [150, 220] } } } },
+    });
     assert.equal(fields.calculator_path, 'single');
     assert.equal(fields.estimated_low, 150);
     assert.equal(fields.estimated_high, 150);
     assert.equal(fields.estimated_range, '$150');
     assert.match(fields.calculator_estimate, /estimated \$150 minimum repair visit/);
+});
+
+test('no reachable priced selection collapses onto the bare work minimum any more', () => {
+    /* The point of the calc-2026-09-01 repricing, stated as a test. 111 cells used to render a
+       flat "$150" because the floor was doing the authoring; the catalog now authors them. The
+       $0 photo-estimate and $99 assessment cells are paths, not work, and are exempt. */
+    const flat = [];
+    for (const [configKey, ladders] of Object.entries(priceTable.modularCalculator)) {
+        for (const [series, sizes] of Object.entries(ladders)) {
+            for (const [size, [lo, hi]] of Object.entries(sizes)) {
+                if (lo === 0 && hi === 0) continue;       // free photo estimate
+                if (lo === 99 && hi === 99) continue;     // $99 on-site assessment, credited
+                if (lo === hi) flat.push(`${configKey}.${series}.${size} = $${lo}`);
+            }
+        }
+    }
+    assert.deepEqual(flat, []);
 });
 
 test('generic calculator: the $99 on-site assessment is recorded as a PATH, never as a price', () => {
@@ -329,9 +371,15 @@ test('generic calculator: visit-mode defined work is a priced range like any oth
         pathname: '/services/appliance-services/refrigerator-repair/',
     });
     assert.equal(fields.calculator_path, 'range');
-    assert.equal(fields.estimated_low, 150);
-    assert.equal(fields.estimated_high, 225);
-    assert.equal(fields.estimated_range, '$150–$225');
+    assert.equal(fields.estimated_low, 175);
+    assert.equal(fields.estimated_high, 260);
+    assert.equal(fields.estimated_range, '$175–$260');
+
+    /* The figure the dropdown LABEL prints has to be the same figure, or the same line of the
+       same select says two prices. The label is generated from the catalog tier now
+       (site-map.json visitWork), and this is what proves the two did not drift apart. */
+    const label = calcSource.slice(calcSource.indexOf("'refrigerator-repair': visitConfig({"));
+    assert.match(label.slice(0, label.indexOf('}),')), /workLabel: 'Condenser coil deep clean \(\$175–\$260\)'/);
 });
 
 test('every generic preset produces a known path, and a price only when one was shown', () => {
@@ -496,7 +544,13 @@ function windowAcOptionTable() {
     };
 }
 
-/* Replays main.js updateCalc() + the CTA's label derivation for one state. */
+/* Replays main.js updateCalc() + the CTA's label derivation for one state.
+   The $150 work minimum and the single-figure collapse are part of that replay: main.js floors
+   the per-unit figure and then the total, and prints one figure when the floor puts low and high
+   on the same number. A replay without them models a page that does not exist — the cheapest
+   state would be checked as "$120–$165" when the page says "$150–$165" — and the 240-char
+   analysis below would be measuring the wrong strings (Codex round 2, finding 4). */
+const WORK_MINIMUM = 150;
 function windowAcState(t, b, q, w, f, g, mask) {
     const active = t.toggles.filter((_, i) => mask & (1 << i));
     const addOnTotal = active.reduce((s, x) => s + x.price, 0);
@@ -506,11 +560,14 @@ function windowAcState(t, b, q, w, f, g, mask) {
     const subHi = Number(b.attrs['data-hi']) + surcharge + addOnTotal;
     const units = Number(q.attrs.value);
     const discount = Number(q.attrs['data-discount'] || 0) / 100;
-    const perUnitLo = r5(subLo * (1 - discount));
-    const perUnitHi = r5(subHi * (1 - discount));
-    const rangeText = `$${r5(perUnitLo * units)}–$${r5(perUnitHi * units)}`;
+    const perUnitLo = Math.max(r5(subLo * (1 - discount)), WORK_MINIMUM);
+    const perUnitHi = Math.max(r5(subHi * (1 - discount)), WORK_MINIMUM);
+    const totalLo = Math.max(r5(perUnitLo * units), WORK_MINIMUM);
+    const totalHi = Math.max(r5(perUnitHi * units), WORK_MINIMUM);
+    const money = (lo, hi) => (hi > lo ? `$${lo}–$${hi}` : `$${lo}`);
+    const rangeText = money(totalLo, totalHi);
     const shownPrice = units > 1
-        ? `${rangeText} ($${perUnitLo}–$${perUnitHi}/unit)`
+        ? `${rangeText} (${money(perUnitLo, perUnitHi)}/unit)`
         : rangeText;
     const addOns = active.filter((x) => String(x.price) !== '0').map((x) => x.label);
     const selectionText = [
@@ -521,7 +578,7 @@ function windowAcState(t, b, q, w, f, g, mask) {
         `Building: ${g.text}`,
         addOns.length ? `Add-ons: ${addOns.join(', ')}` : null,
     ].filter(Boolean).join(' · ');
-    return { rangeText, shownPrice, selectionText, low: r5(perUnitLo * units), high: r5(perUnitHi * units) };
+    return { rangeText, shownPrice, selectionText, low: totalLo, high: totalHi };
 }
 
 test('window-AC calculator: EVERY reachable state keeps its price inside the CRM 240-char cap', () => {
@@ -603,7 +660,12 @@ test('window-AC calculator: the old price-last wording did lose the price, on mo
             }
     assert.equal(states, 92160);
     assert.equal(overCap, 91960);          // 99.78% of states
-    assert.equal(lostPrice, 89254);        // 96.85% of states lost the figure entirely
+    /* 89,254 under calc-2026-08-01. The $150 work minimum shortens the cheapest few figures by a
+       character or two ("$120–$165" becomes "$150–$165", "$450–$450 ($150–$150/unit)" collapses
+       to "$450 ($150/unit)"), so twelve states now squeak the price inside the cap. The point of
+       this test is the order of magnitude, not the last digit: price-last lost the figure on
+       ~97% of states, which is why the wording leads with it. */
+    assert.equal(lostPrice, 89242);        // 96.83% of states lost the figure entirely
 });
 
 test('both calculators write the same key names', () => {

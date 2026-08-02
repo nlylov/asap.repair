@@ -24,10 +24,12 @@ const CALC = join(ROOT, 'components/modules/calculator.js');
 
 /* The data section ends where the exported component begins. Evaluating only
    that part keeps this script independent of the browser runtime below it. */
-const src = readFileSync(CALC, 'utf8');
-const dataOnly = src.slice(0, src.indexOf('export default function calculator'));
-// eslint-disable-next-line no-eval
-const CONFIGS = eval(`${dataOnly}\nCONFIGS`);
+function loadConfigs() {
+  const src = readFileSync(CALC, 'utf8');
+  const dataOnly = src.slice(0, src.indexOf('export default function calculator'));
+  // eslint-disable-next-line no-eval
+  return eval(`${dataOnly}\nCONFIGS`);
+}
 
 /* hub slug -> [leaf page slug, config key, label shown in the picker] */
 const HUBS = {
@@ -136,6 +138,10 @@ function span(tiers) {
   return lows.length ? [Math.min(...lows), Math.max(...highs)] : null;
 }
 
+/* Exported so scripts/generate-calculator-prices.mjs can rebuild the hubs from the price
+   table it just wrote, in memory, without a second pass over the file system. Both callers
+   must produce the same bytes or the byte-identity gate in tests/ fails. */
+export function buildHubCalculators(CONFIGS) {
 const out = {};
 const skipped = [];
 
@@ -153,6 +159,13 @@ for (const [hub, leaves] of Object.entries(HUBS)) {
     const jobs = [];
     const prices = {};
     for (const [jobKey, tiers] of Object.entries(leaf.pricing)) {
+      /* A job type whose every step is the $99 on-site assessment is a ROUTE, not a price:
+         "chandelier over 50 lb" and "the breaker trips repeatedly" are things we come out and
+         look at, and the leaf page says so in its own words. Spanning them here produced a
+         "$99 – $99" cell on the electrical hub — the assessment fee rendered as the price of
+         the work, which is the exact mistake the $99/$150 split exists to prevent. The visitor
+         still reaches them: the hub links to the leaf page. */
+      if (Object.values(tiers).every((pair) => Array.isArray(pair) && pair[0] === 99 && pair[1] === 99)) continue;
       const range = span(tiers);
       if (!range) continue;
       const jobLabel = leaf.categories?.[0]?.options?.find((o) => o.value === jobKey)?.label;
@@ -187,10 +200,22 @@ for (const [hub, leaves] of Object.entries(HUBS)) {
   };
 }
 
-const dest = join(ROOT, 'assets/data/hub-calculators.json');
-writeFileSync(dest, `${JSON.stringify(out, null, 2)}\n`);
-const total = Object.values(out).reduce((n, c) => n + c.categories[0].options.length - 1, 0);
-console.log(
-  `Hub calculators: ${Object.keys(out).length} hubs, ${total} services wired from their own leaf prices` +
-    (skipped.length ? `, ${skipped.length} leaf config(s) skipped (no price grid): ${skipped.join(', ')}` : ''),
-);
+  /* Non-enumerable so it never lands in the serialized JSON, and so Object.values(out)
+     below still counts hubs and nothing else. */
+  Object.defineProperty(out, '__skipped', { enumerable: false, value: skipped });
+  return out;
+}
+
+function main() {
+  const out = buildHubCalculators(loadConfigs());
+  const skipped = out.__skipped || [];
+  const dest = join(ROOT, 'assets/data/hub-calculators.json');
+  writeFileSync(dest, `${JSON.stringify(out, null, 2)}\n`);
+  const total = Object.values(out).reduce((n, c) => n + c.categories[0].options.length - 1, 0);
+  console.log(
+    `Hub calculators: ${Object.keys(out).length} hubs, ${total} services wired from their own leaf prices` +
+      (skipped.length ? `, ${skipped.length} leaf config(s) skipped (no price grid): ${skipped.join(', ')}` : ''),
+  );
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) main();
