@@ -11,28 +11,39 @@
  * From here every figure the site renders is WRITTEN BY THIS SCRIPT. That is not the same claim
  * as "every figure is a catalog figure", and the difference matters:
  *
- *   COUNTS: total=1333 catalogOrContract=85 carryForward=1134 nonWorkPaths=114
+ *   COUNTS: total=1333 catalogOrContract=1204 carryForward=15 nonWorkPaths=114
  *
- * 85 cells come from a catalog tier or from a figure the contract states literally; 1,134 are
- * the previous version's cells moved only by the owner's two decided rules; the remaining 114
- * are the $0 photo-estimate, $99 assessment and frozen-gas paths, which are not work prices at
- * all. tests/pricing-catalog-projection.test.mjs parses that COUNTS line and checks it against
- * the generated report, so this comment cannot go stale the way its first draft did.
+ * 1,204 cells come from a catalog tier or from a figure the contract states literally; 15 are
+ * still the previous version's cells; the remaining 114 are the $0 photo-estimate, $99
+ * assessment and frozen-gas paths, which are not work prices at all.
+ * tests/pricing-catalog-projection.test.mjs parses that COUNTS line and checks it against the
+ * generated report, so this comment cannot go stale the way its first draft did.
  *
  * What IS true of all 1,333 is that no human types them into a page any more. Editing a price on
  * the site is not possible: you edit the catalog in the CRM, re-vendor it, and re-run this.
  * `--check` re-derives everything in memory and fails if a committed file differs by one byte,
  * so drift is a red test rather than a customer seeing a number nobody agreed to.
  *
- * ── What it does NOT do, and why ───────────────────────────────────────────────────────
- * It does not invent the 1,134 cells the catalog does not carry. docs/pricing-website-contract.md
- * §4 says proposal sections 2.1-2.8 — the per-hub cell tables — were truncated out of the catalog
- * lane's input, and instructs: "Do not treat the absence of a cell here as 'unchanged'; treat it
- * as 'still to be taken from proposal §2.1-2.8'." 80 services and 204 tiers cannot fill 1,333
- * slots honestly. So an unbound cell is carried forward from the frozen calc-2026-08-01 table and
- * passed through the two rules the owner has already ruled on — the $150 work minimum and
- * monotonicity — and its provenance says exactly that. pricing/calculator-price-projection.json
- * reports the count so the gap is a number on the page, not a silence.
+ * ── The repricing, and the one gap left ────────────────────────────────────────────────
+ * The first draft of this script could bind only 85 cells: the catalog carried 80 services and
+ * 204 tiers and the remaining 1,134 slots had nothing behind them, so they were carried forward
+ * from calc-2026-08-01 and marked. That gap is now closed. The catalog carries a tier for every
+ * work cell the site publishes — 86 services, ~1,317 tiers — each one anchored on an entry price
+ * and a top price taken from a 2026-08-02 NYC market read and from our own realised prices, with
+ * the reasoning written into the tier's rationale. The steps between the two anchors keep the
+ * relative position the customer-visible step label describes (size, quantity, access, wall type,
+ * weight, second technician), so a derivation can move the level and never the meaning.
+ *
+ * What is still NOT a catalog price:
+ *   - decorative_plaster, 15 cells. One realised job ($5,000 Tadelakt, 2026-05-16) agrees with
+ *     the published ladder and there is no second data point and no NYC per-sq-ft survey for
+ *     Marmorino or Carrera. An honest carry-forward, marked, is better than a moved guess.
+ *   - the coi-handyman grid and peel-stick-flooring/apartment, 21 cells, which
+ *     docs/pricing-website-contract.md §4 states literally.
+ *   - the three frozen-gas ladders (Local Law 429), the $99 assessment path and the free photo
+ *     estimate — 114 cells that are not work prices at all.
+ * pricing/calculator-price-projection.json reports every count, so the gap stays a number on the
+ * page rather than a silence.
  *
  * ── Outputs ────────────────────────────────────────────────────────────────────────────
  *   pricing/price-tables/<version>.json        the resolved table, frozen once shipped
@@ -59,7 +70,7 @@ const CHECK = process.argv.includes('--check');
    PRICING_CATALOG_CHECKSUMS in bazas-crm/lib/pricing/catalog.ts. A vendored copy that drifts by
    a single whitespace character fails here, on this repo's CI, instead of at a customer. */
 export const CATALOG_VERSION = 'calc-2026-09-01';
-export const CATALOG_SHA256 = 'bd75b7b92e0e7d3a8b6d415b64766a85ed810325003cdb35065fb84916eda52b';
+export const CATALOG_SHA256 = '78465da3e34b8b0b849367cb91adcd41dfb57387c5ddd34d4417d984e47ab124';
 export const PREVIOUS_VERSION = 'calc-2026-08-01';
 /* The frozen previous table is an INPUT this script carries 1,134 cells forward from, so a
    silent edit to it would move a third of the site's prices and still leave every generated
@@ -90,17 +101,67 @@ export function loadCatalog() {
     return catalog;
 }
 
-/** service key -> service, and 'service#tier' -> tier. */
+/** service key -> service, 'service#tier' -> tier, and 'config.series.size' -> ladder cell. */
 function indexCatalog(catalog) {
     const services = new Map();
     const tiers = new Map();
     const addOns = new Map();
+    const ladderCells = new Map();
     for (const service of catalog.services) {
         services.set(service.key, service);
         for (const tier of service.tiers || []) tiers.set(`${service.key}#${tier.id}`, tier);
     }
     for (const addOn of catalog.addOns) addOns.set(addOn.key, addOn);
-    return { services, tiers, addOns };
+
+    /* websiteLadders is the catalog block that owns the 2-D calculator grid. services[] is the
+       trade price list — one ladder per service on one declared axis — and 1,333 published
+       cells cannot be squeezed onto it without destroying it. Each cell names the service it
+       reconciles against and every rule the catalog states about it is enforced HERE, before a
+       single figure reaches a page. */
+    const ladders = catalog.websiteLadders?.configs || {};
+    for (const [configKey, cfg] of Object.entries(ladders)) {
+        for (const [series, ser] of Object.entries(cfg.series || {})) {
+            const serviceKey = ser.service || cfg.service;
+            const service = services.get(serviceKey);
+            if (!service) {
+                throw new Error(`websiteLadders.${configKey}.${series} names a service that does not exist: ${serviceKey}`);
+            }
+            for (const [size, cell] of Object.entries(ser.cells || {})) {
+                if (!(cell.lo > 0) || !(cell.hi > cell.lo)) {
+                    throw new Error(`websiteLadders.${configKey}.${series}.${size} is not a range: ${cell.lo}-${cell.hi}`);
+                }
+                if (cell.lo < catalog.constants.repairMinimum) {
+                    throw new Error(
+                        `websiteLadders.${configKey}.${series}.${size} is $${cell.lo}, below the $` +
+                        `${catalog.constants.repairMinimum} work minimum. 30% of our real invoices were written below ` +
+                        'that floor; the catalog is not allowed to publish another one.',
+                    );
+                }
+                /* THE RECONCILIATION RULE. The preset ladder may be finer than the trade ladder;
+                   it may not contradict it. A cell outside its own service's band means one of
+                   the two is wrong, and the build stops until somebody says which. */
+                if (cell.lo < service.range.lo || cell.hi > service.range.hi) {
+                    throw new Error(
+                        `websiteLadders.${configKey}.${series}.${size} is $${cell.lo}-$${cell.hi}, outside ` +
+                        `${serviceKey}'s published band $${service.range.lo}-$${service.range.hi}. Either the cell ` +
+                        'is wrong or the service band is — fix the catalog, do not widen this check.',
+                    );
+                }
+                if (cell.tier) {
+                    const tier = tiers.get(cell.tier);
+                    if (!tier) throw new Error(`websiteLadders.${configKey}.${series}.${size} names a missing tier ${cell.tier}`);
+                    if (tier.lo !== cell.lo || tier.hi !== cell.hi) {
+                        throw new Error(
+                            `websiteLadders.${configKey}.${series}.${size} says $${cell.lo}-$${cell.hi} and ` +
+                            `${cell.tier} says $${tier.lo}-$${tier.hi}. One catalog, two prices for one cell.`,
+                        );
+                    }
+                }
+                ladderCells.set(`${configKey}.${series}.${size}`, { ...cell, service: serviceKey });
+            }
+        }
+    }
+    return { services, tiers, addOns, ladderCells };
 }
 
 // ── The projection ────────────────────────────────────────────────────────────────────
@@ -137,6 +198,7 @@ function projectConfig({ configKey, previous, map, index, constants, sizeOrders 
         for (const size of order) {
             const before = sizes[size];
             const tierRef = tierMap[series]?.[size];
+            const ladderCell = index.ladderCells.get(`${configKey}.${series}.${size}`);
             const contractValue = contractMap[series]?.[size];
             /* A step the picker declares but the previous version never priced. Legitimate only
                when the catalog or the contract states its value outright — otherwise there is
@@ -144,7 +206,7 @@ function projectConfig({ configKey, previous, map, index, constants, sizeOrders 
                this script refuses to do. (Codex round 2: interior-painting needed a fourth
                apartment step so the picker's 3BR+ option could stop being priced off the
                catalog's 2BR row.) */
-            if (!before && !tierRef && !contractValue) {
+            if (!before && !tierRef && !ladderCell && !contractValue) {
                 throw new Error(
                     `${configKey}.${series}.${size} is offered by the calculator but has no price: it is not in the ` +
                     `frozen ${PREVIOUS_VERSION} table and site-map.json binds it to neither a catalog tier nor a ` +
@@ -156,6 +218,13 @@ function projectConfig({ configKey, previous, map, index, constants, sizeOrders 
                 if (!tier) throw new Error(`site-map.json points at a tier that does not exist: ${tierRef}`);
                 resolved[size] = [tier.lo, tier.hi];
                 provenance[size] = { source: 'catalog:tier', ref: tierRef, was: before || null };
+            } else if (ladderCell) {
+                resolved[size] = [ladderCell.lo, ladderCell.hi];
+                provenance[size] = {
+                    source: 'catalog:ladder',
+                    ref: `websiteLadders.${configKey}.${series}.${size} (${ladderCell.service})`,
+                    was: before || null,
+                };
             } else if (contractValue) {
                 resolved[size] = [contractValue[0], contractValue[1]];
                 provenance[size] = { source: 'contract:section-4', ref: contractMap._source, was: before || null };
@@ -372,7 +441,10 @@ function rewriteCalculatorJs(src, projection, previousTable) {
        generator — which a file with two grids in each other's slots can also be. */
     const written = evalConfigs(out);
     for (const [configKey, pricing] of Object.entries(projection)) {
-        if (VISIT_MODE_CONFIGS.has(configKey)) continue;
+        /* Visit-mode configs have no literal grid — visitConfig() builds one from workLabel and
+           workRange, which rewriteVisitWork() has already written from the catalog. They are
+           checked here all the same, and that check is the only thing that proves the dropdown
+           label, the price array and the published price table are three views of one figure. */
         const got = written[configKey]?.pricing;
         if (JSON.stringify(got) !== JSON.stringify(pricing)) {
             throw new Error(
@@ -386,6 +458,60 @@ function rewriteCalculatorJs(src, projection, previousTable) {
     if (!versionLine.test(out)) throw new Error('CALC_PRICE_VERSION declaration not found in calculator.js');
     out = out.replace(versionLine, `const CALC_PRICE_VERSION = '${CATALOG_VERSION}';`);
     return { source: out, configsRewritten: blocks.length };
+}
+
+/* ── The eight visit-mode pages ────────────────────────────────────────────────────────
+   These pages are not a price grid. Each sells three first steps — the free photo estimate,
+   the $99 credited assessment, and ONE defined piece of work — and the work figure is written
+   into the customer-visible option LABEL as well as into the price array:
+
+       workLabel: 'Condenser coil deep clean ($150–$225)',
+       workRange: [150, 225],
+
+   Before this, the label was a hand-typed string. A repricing that moved the range and left
+   the label alone would put two different prices on the same line of the same dropdown, and
+   `--check` would not have noticed, because the label is not a price table. Both are now
+   written from the catalog tier named in site-map.json visitWork, from one figure. */
+const VISIT_WORK_LABEL = /^(\s*)workLabel: '(?:[^'\\]|\\.)*',$/m;
+
+function rewriteVisitWork(src, map, index) {
+    const spec = map.visitWork;
+    if (!spec) throw new Error('site-map.json carries no visitWork block');
+    let out = src;
+    const written = [];
+    for (const [configKey, binding] of Object.entries(spec)) {
+        if (configKey.startsWith('_')) continue;
+        if (!VISIT_MODE_CONFIGS.has(configKey)) {
+            throw new Error(`visitWork names "${configKey}", which is not a visit-mode config`);
+        }
+        const tier = index.tiers.get(binding.tier);
+        if (!tier) throw new Error(`visitWork points at a tier that does not exist: ${binding.tier}`);
+        /* The site's own $150 work minimum is unconditional; a catalog tier below it would be a
+           bug in the catalog, not something to render. Fail rather than print it. */
+        if (tier.lo < 150) throw new Error(`${binding.tier} is below the work minimum: ${tier.lo}`);
+        const anchor = `    '${configKey}': visitConfig({`;
+        const at = out.indexOf(anchor);
+        if (at < 0) throw new Error(`could not find the visitConfig call for "${configKey}"`);
+        const close = out.indexOf('\n    }),', at);
+        if (close < 0) throw new Error(`could not find the end of the visitConfig call for "${configKey}"`);
+        const body = out.slice(at, close);
+        const labelHit = VISIT_WORK_LABEL.exec(body);
+        if (!labelHit) throw new Error(`no workLabel line inside the visitConfig call for "${configKey}"`);
+        const rangeHit = /^(\s*)workRange: \[\d+, \d+\],$/m.exec(body);
+        if (!rangeHit) throw new Error(`no workRange line inside the visitConfig call for "${configKey}"`);
+        const label = `${labelHit[1]}workLabel: '${binding.label} (${money(tier.lo)}\u2013${money(tier.hi)})',`;
+        const range = `${rangeHit[1]}workRange: [${tier.lo}, ${tier.hi}],`;
+        /* Function replacers, not strings: money() emits '$175' and String.replace reads '$1' in a
+           replacement as capture group 1, so the literal form silently produced
+           "Condenser coil deep clean (        75–$260)". The test that reads the label back out
+           of the file is what caught it. */
+        const nextBody = body.replace(VISIT_WORK_LABEL, () => label).replace(/^(\s*)workRange: \[\d+, \d+\],$/m, () => range);
+        out = out.slice(0, at) + nextBody + out.slice(close);
+        written.push({ configKey, ref: binding.tier, value: [tier.lo, tier.hi], label: binding.label });
+    }
+    const missing = [...VISIT_MODE_CONFIGS].filter((k) => !written.some((w) => w.configKey === k));
+    if (missing.length) throw new Error(`visitWork does not cover: ${missing.join(', ')}`);
+    return { source: out, written };
 }
 
 function rewriteMainJs(src) {
@@ -612,7 +738,8 @@ export function build() {
     const frozenPrevious = JSON.parse(previousRaw);
     if (frozenPrevious.priceVersion !== PREVIOUS_VERSION) throw new Error('the frozen previous table is mislabelled');
 
-    const calculatorSrc = read('components/modules/calculator.js');
+    const rawCalculatorSrc = read('components/modules/calculator.js');
+    const { source: calculatorSrc, written: visitWorkWritten } = rewriteVisitWork(rawCalculatorSrc, map, index);
     const CONFIGS = evalConfigs(calculatorSrc);
     const sizeOrders = sizeOrdersFrom(CONFIGS);
 
@@ -751,15 +878,21 @@ export function build() {
         openGap: {
             what: 'Cells the catalog does not carry.',
             why:
-                'docs/pricing-website-contract.md §4: proposal sections 2.1-2.8 — the per-hub cell tables — were ' +
-                'truncated out of the catalog lane\'s input and are not in the catalog. They are pending, not ' +
-                'agreed-unchanged.',
+                'The 2026-08-02 repricing closed the §2.1-2.8 gap: every work cell is now either a catalog tier ' +
+                'or a catalog websiteLadders cell, anchored on a market read and on our own realised prices. ' +
+                'What is left is decorative_plaster, where one realised job agrees with the published ladder and ' +
+                'there is no second data point and no NYC per-sq-ft survey — an honest carry-forward, marked.',
             cellsPendingProposalSections2_1To2_8: allCells.filter((c) => c.source.startsWith('carry-forward')).length,
             madeOf: {
                 'carry-forward': allCells.filter((c) => c.source.startsWith('carry-forward') && !c.source.startsWith('carry-forward:lift')).length,
                 'carry-forward:lift': allCells.filter((c) => c.source.startsWith('carry-forward:lift')).length,
             },
-            cellsTheCatalogOrContractOwns: allCells.filter((c) => c.source.startsWith('catalog:tier') || c.source.startsWith('contract:')).length,
+            cellsTheCatalogOrContractOwns: allCells.filter((c) => c.source.startsWith('catalog:') || c.source.startsWith('contract:')).length,
+            madeOfOwned: {
+                'catalog:tier': allCells.filter((c) => c.source.startsWith('catalog:tier')).length,
+                'catalog:ladder': allCells.filter((c) => c.source.startsWith('catalog:ladder')).length,
+                'contract:section-4': allCells.filter((c) => c.source.startsWith('contract:')).length,
+            },
         },
         cells: allCells,
     };

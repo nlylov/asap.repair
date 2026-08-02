@@ -275,22 +275,31 @@ test('the generator\'s own header comment is arithmetically true', () => {
        comment now carries a machine-readable COUNTS line and this reads it back. */
     const { total, catalogOrContract: owned, carryForward: carried, nonWorkPaths: nonWork } = HEADER_COUNTS;
     assert.equal(total, cells.length);
-    assert.equal(owned, cells.filter((c) => c.source.startsWith('catalog:tier') || c.source.startsWith('contract:')).length);
+    assert.equal(owned, cells.filter((c) => c.source.startsWith('catalog:') || c.source.startsWith('contract:')).length);
     assert.equal(carried, cells.filter((c) => c.source.startsWith('carry-forward')).length);
     assert.equal(nonWork, cells.filter((c) => ['photo:free', 'assessment:99'].includes(c.source) || c.source.startsWith('frozen:gas')).length);
     assert.equal(owned + carried + nonWork, total);
 });
 
-test('the report does not overstate how much of the site the catalog owns', () => {
-    /* Codex round 1, finding 2: a reader could take "generated from the catalog" to mean "every
-       displayed price is a catalog price". It is not, and the numbers have to say so plainly. */
+test('the report states exactly how much of the site the catalog owns, and names what it does not', () => {
+    /* Codex round 1, finding 2 on the previous lane: a reader could take "generated from the
+       catalog" to mean "every displayed price is a catalog price". At that point it was 85 of
+       1,333 and the numbers had to say so. The repricing closed the gap, so this test now guards
+       the opposite risk — a claim of full coverage while something quietly falls out of the
+       catalog again. Both the count AND the identity of every remaining carry-forward are pinned:
+       a new unbound cell fails here even if the totals still add up. */
     const report = readJson('pricing/calculator-price-projection.json');
-    const owned = cells.filter((c) => c.source.startsWith('catalog:tier') || c.source.startsWith('contract:')).length;
-    const pending = cells.filter((c) => c.source.startsWith('carry-forward')).length;
+    const owned = cells.filter((c) => c.source.startsWith('catalog:') || c.source.startsWith('contract:')).length;
+    const carried = cells.filter((c) => c.source.startsWith('carry-forward'));
     assert.equal(report.openGap.cellsTheCatalogOrContractOwns, owned);
-    assert.equal(report.openGap.cellsPendingProposalSections2_1To2_8, pending);
-    assert.equal(report.openGap.madeOf['carry-forward'] + report.openGap.madeOf['carry-forward:lift'], pending);
-    assert.ok(pending > owned, 'if the catalog ever owns the majority, rewrite this test and the wording it guards');
+    assert.equal(report.openGap.cellsPendingProposalSections2_1To2_8, carried.length);
+    assert.equal(report.openGap.madeOf['carry-forward'] + (report.openGap.madeOf['carry-forward:lift'] || 0), carried.length);
+    assert.ok(owned > carried.length, 'the catalog is supposed to own the majority now');
+
+    const stillCarried = [...new Set(carried.map((c) => c.configKey))].sort();
+    assert.deepEqual(stillCarried, ['decorative_plaster'],
+        'a config fell out of the catalog. Bind it, or state here why its evidence is too thin to price.');
+    assert.equal(carried.length, 15);
 });
 
 test('every catalog service marked frozen is still present in the catalog', () => {
@@ -312,6 +321,46 @@ test('every catalog-bound cell equals its tier, to the dollar', () => {
         assert.ok(tier, `${cell.ref} is not a catalog tier`);
         assert.deepEqual(cell.value, [tier.lo, tier.hi], `${cell.configKey}.${cell.series}.${cell.size} != ${cell.ref}`);
     }
+});
+
+test('every websiteLadders cell equals the catalog, obeys the floor and fits its service band', () => {
+    /* The repricing put the 2-D calculator grid in its own catalog block rather than on the
+       trade services' 1-D ladders, which it would have destroyed. That block is now where most
+       of the site's prices live, so it gets the same treatment the tiers get: value identity,
+       the owner's floor, and the reconciliation rule — a preset ladder may be finer than the
+       trade ladder, it may not contradict it. */
+    const ladderCells = cells.filter((c) => c.source.startsWith('catalog:ladder'));
+    assert.ok(ladderCells.length > 1000, `expected the ladder block to own the bulk of the grid, it owns ${ladderCells.length}`);
+    const services = new Map(catalog.services.map((s) => [s.key, s]));
+    const block = catalog.websiteLadders?.configs;
+    assert.ok(block, 'the catalog carries no websiteLadders block');
+
+    let seen = 0;
+    for (const [configKey, cfg] of Object.entries(block)) {
+        for (const [series, ser] of Object.entries(cfg.series)) {
+            const service = services.get(ser.service || cfg.service);
+            assert.ok(service, `${configKey}.${series} names a service that does not exist`);
+            let prevLo = -1;
+            let prevHi = -1;
+            for (const [size, cell] of Object.entries(ser.cells)) {
+                seen += 1;
+                const at = `${configKey}.${series}.${size}`;
+                assert.ok(cell.lo >= REPAIR_MINIMUM, `${at} is $${cell.lo}, below the work minimum`);
+                assert.ok(cell.hi > cell.lo, `${at} is not a range`);
+                assert.ok(cell.lo >= service.range.lo && cell.hi <= service.range.hi,
+                    `${at} $${cell.lo}-$${cell.hi} is outside ${service.key} $${service.range.lo}-$${service.range.hi}`);
+                assert.ok(cell.lo >= prevLo && cell.hi >= prevHi, `${at} goes backwards along its own ladder`);
+                prevLo = cell.lo;
+                prevHi = cell.hi;
+                const shown = cells.find((c) => c.configKey === configKey && c.series === series && c.size === size);
+                assert.deepEqual(shown.value, [cell.lo, cell.hi], `${at}: the page and the catalog disagree`);
+                assert.ok(Array.isArray(cell.was) && cell.was.length === 2, `${at}: no record of what it was before`);
+                assert.ok((cell.derivation || '').length > 5, `${at}: no derivation recorded`);
+            }
+        }
+    }
+    assert.equal(seen, ladderCells.length + cells.filter((c) => c.source.startsWith('catalog:tier') && block[c.configKey]?.series?.[c.series]?.cells?.[c.size]).length);
+    assert.ok((catalog.websiteLadders.derivation || '').length > 200, 'the block must state how a derived step was derived');
 });
 
 test('the open gap is reported, not hidden', () => {
@@ -488,6 +537,7 @@ test('the committed price table satisfies the owner\'s rules independently of th
 
     let checked = 0;
     let boundChecked = 0;
+    let ladderChecked = 0;
     for (const [configKey, ladders] of Object.entries(table)) {
         for (const [series, sizes] of Object.entries(ladders)) {
             for (const [size, [lo, hi]] of Object.entries(sizes)) {
@@ -506,7 +556,15 @@ test('the committed price table satisfies the owner\'s rules independently of th
                 }
                 if ((lo === 0 && hi === 0) || (lo === 99 && hi === 99)) continue;
 
-                // everything else: at or above the minimum, and a pure translation of the old cell
+                // a repriced cell must equal the catalog's own ladder block, read straight off disk
+                const cell = catalog.websiteLadders?.configs?.[configKey]?.series?.[series]?.cells?.[size];
+                if (cell) {
+                    assert.deepEqual([lo, hi], [cell.lo, cell.hi], `${at} != websiteLadders`);
+                    assert.ok(lo >= REPAIR_MINIMUM, `${at} = $${lo} is below the work minimum`);
+                    ladderChecked += 1;
+                    continue;
+                }
+                // everything else is still a carry-forward: at or above the minimum, and a pure translation
                 assert.ok(lo >= REPAIR_MINIMUM, `${at} = $${lo} is below the work minimum`);
                 const [wasLo, wasHi] = previous[configKey][series][size];
                 assert.equal(hi - lo, wasHi - wasLo, `${at} changed its span; a carry-forward may only be translated`);
@@ -515,6 +573,7 @@ test('the committed price table satisfies the owner\'s rules independently of th
     }
     assert.equal(checked, HEADER_COUNTS.total);
     assert.ok(boundChecked >= 60, `expected the map to bind at least 60 cells, it bound ${boundChecked}`);
+    assert.ok(ladderChecked > 1000, `expected the catalog's ladder block to own the bulk of the grid, it owned ${ladderChecked}`);
 });
 
 test('cross-series order changes are counted, and the count cannot grow unnoticed', () => {
@@ -522,14 +581,16 @@ test('cross-series order changes are counted, and the count cannot grow unnotice
     const c = report.crossSeriesOrderChanges;
     assert.equal(c.total, c.changes.length);
     assert.equal(c.byDriver['catalog-or-contract'] + c.byDriver['lift-artifact'], c.total);
-    /* Pinned. 29 are the catalog and the contract correcting inversions on purpose (the
-       apartment-turnover 1br-dearer-than-2br defect among them); 69 are a consequence of lifting
-       only the ladders that sat below the work minimum, across type-picker axes the site does not
-       present as a ladder. If either number moves, say why in the commit — and check it is not
-       the shape of defect Codex found in interior-painting, where an option's label described a
-       harder job than the catalog row it was priced from. */
-    assert.equal(c.byDriver['catalog-or-contract'], 29);
-    assert.equal(c.byDriver['lift-artifact'], 69);
+    /* Pinned. Before the repricing this was 29 deliberate catalog corrections plus 69 artefacts
+       of lifting only the ladders that sat below the work minimum. The lift is gone — every work
+       cell is a catalog tier now — so lift-artifact is 0 and all 80 are the catalog moving a
+       type-picker series relative to another on purpose (bunk and loft beds rising to the
+       catalog's bunk-loft tier, wall-bed rising to murphy-bed's $350 entry, the AC multi-unit
+       series coming DOWN to a band the catalog can defend). If either number moves, say why in
+       the commit — and check it is not the shape of defect Codex found in interior-painting,
+       where an option's label described a harder job than the catalog row it was priced from. */
+    assert.equal(c.byDriver['catalog-or-contract'], 80);
+    assert.equal(c.byDriver['lift-artifact'], 0);
 });
 
 test('every page carrying a data-price-src marker is one the generator writes', () => {

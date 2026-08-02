@@ -371,9 +371,15 @@ test('generic calculator: visit-mode defined work is a priced range like any oth
         pathname: '/services/appliance-services/refrigerator-repair/',
     });
     assert.equal(fields.calculator_path, 'range');
-    assert.equal(fields.estimated_low, 150);
-    assert.equal(fields.estimated_high, 225);
-    assert.equal(fields.estimated_range, '$150–$225');
+    assert.equal(fields.estimated_low, 175);
+    assert.equal(fields.estimated_high, 260);
+    assert.equal(fields.estimated_range, '$175–$260');
+
+    /* The figure the dropdown LABEL prints has to be the same figure, or the same line of the
+       same select says two prices. The label is generated from the catalog tier now
+       (site-map.json visitWork), and this is what proves the two did not drift apart. */
+    const label = calcSource.slice(calcSource.indexOf("'refrigerator-repair': visitConfig({"));
+    assert.match(label.slice(0, label.indexOf('}),')), /workLabel: 'Condenser coil deep clean \(\$175–\$260\)'/);
 });
 
 test('every generic preset produces a known path, and a price only when one was shown', () => {
