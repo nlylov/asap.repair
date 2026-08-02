@@ -449,6 +449,74 @@ test('every $99 mention says the visit is credited, and every page that names it
     }
 });
 
+test('the committed price table satisfies the owner\'s rules independently of the generator', () => {
+    /* Every other assertion in this file reads build()'s output, so a generator that is wrong in
+       the same way twice would pass them all. This one ignores build() entirely: it reads the
+       COMMITTED table off disk and checks it against the catalog and the frozen previous table,
+       which are inputs the generator cannot influence. */
+    const table = readJson(`pricing/price-tables/${CATALOG_VERSION}.json`).modularCalculator;
+    const previous = readJson(`pricing/price-tables/${PREVIOUS_VERSION}.json`).modularCalculator;
+    const tiers = new Map();
+    for (const service of catalog.services) {
+        for (const tier of service.tiers || []) tiers.set(`${service.key}#${tier.id}`, [tier.lo, tier.hi]);
+    }
+    const map = readJson('pricing/site-map.json');
+    const frozenGasSeries = new Set(map.repairMinimumExempt.frozenGas.map(([c, s]) => `${c}.${s}`));
+
+    let checked = 0;
+    let boundChecked = 0;
+    for (const [configKey, ladders] of Object.entries(table)) {
+        for (const [series, sizes] of Object.entries(ladders)) {
+            for (const [size, [lo, hi]] of Object.entries(sizes)) {
+                checked += 1;
+                const at = `${configKey}.${series}.${size}`;
+                assert.ok(Number.isFinite(lo) && Number.isFinite(hi) && hi >= lo && lo >= 0, at);
+
+                // a bound cell must equal the catalog tier the map names — read from the map, not from build()
+                const ref = map.tierBindings[configKey]?.[series]?.[size];
+                if (ref) { assert.deepEqual([lo, hi], tiers.get(ref), `${at} != ${ref}`); boundChecked += 1; continue; }
+                const contractValue = map.contractCells[configKey]?.[series]?.[size];
+                if (contractValue) { assert.deepEqual([lo, hi], contractValue, `${at} != contract §4`); continue; }
+                if (frozenGasSeries.has(`${configKey}.${series}`)) {
+                    assert.deepEqual([lo, hi], previous[configKey][series][size], `${at} is frozen and must not move`);
+                    continue;
+                }
+                if ((lo === 0 && hi === 0) || (lo === 99 && hi === 99)) continue;
+
+                // everything else: at or above the minimum, and a pure translation of the old cell
+                assert.ok(lo >= REPAIR_MINIMUM, `${at} = $${lo} is below the work minimum`);
+                const [wasLo, wasHi] = previous[configKey][series][size];
+                assert.equal(hi - lo, wasHi - wasLo, `${at} changed its span; a carry-forward may only be translated`);
+            }
+        }
+    }
+    assert.equal(checked, 1332);
+    assert.ok(boundChecked >= 60, `expected the map to bind at least 60 cells, it bound ${boundChecked}`);
+});
+
+test('cross-series order changes are counted, and the count cannot grow unnoticed', () => {
+    const report = readJson('pricing/calculator-price-projection.json');
+    const c = report.crossSeriesOrderChanges;
+    assert.equal(c.total, c.changes.length);
+    assert.equal(c.byDriver['catalog-or-contract'] + c.byDriver['lift-artifact'], c.total);
+    /* Pinned. 29 are the catalog and the contract correcting inversions on purpose (the
+       apartment-turnover 1br-dearer-than-2br defect among them); 59 are a consequence of lifting
+       only the ladders that sat below the work minimum, across type-picker axes the site does not
+       present as a ladder. If this number moves, say why in the commit. */
+    assert.equal(c.byDriver['catalog-or-contract'], 29);
+    assert.equal(c.byDriver['lift-artifact'], 59);
+});
+
+test('every page carrying a data-price-src marker is one the generator writes', () => {
+    /* A marker on a page the generator does not own would never be written, so it would quietly
+       keep whatever number was typed next to it. */
+    const owned = new Set(readJson('pricing/site-map.json').proseFigures.files.map((f) => f.file));
+    for (const file of everyPage()) {
+        if (!read(file).includes('data-price-src=')) continue;
+        assert.ok(owned.has(file), `${file} has data-price-src markers but is not in proseFigures.files`);
+    }
+});
+
 test('every data-price-src figure equals the catalog', () => {
     /* The marker is the contract: the attribute says which catalog figure the sentence quotes,
        and the generator writes the text. If a human edits the text, the generation check above

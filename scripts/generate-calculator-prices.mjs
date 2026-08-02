@@ -52,6 +52,11 @@ const CHECK = process.argv.includes('--check');
 export const CATALOG_VERSION = 'calc-2026-09-01';
 export const CATALOG_SHA256 = 'bd75b7b92e0e7d3a8b6d415b64766a85ed810325003cdb35065fb84916eda52b';
 export const PREVIOUS_VERSION = 'calc-2026-08-01';
+/* The frozen previous table is an INPUT this script carries 1,134 cells forward from, so a
+   silent edit to it would move a third of the site's prices and still leave every generated
+   file self-consistent. It is pinned the same way the catalog is. It is also the only thing an
+   old lead can be verified against, so editing it would rewrite history. */
+export const PREVIOUS_TABLE_SHA256 = '7e171fae30940eb6d93a5493d3b5cf52c8b2c8b5f0dd4dfd1db2043cd60b836f';
 
 const p = (...parts) => join(ROOT, ...parts);
 const read = (rel) => readFileSync(p(rel), 'utf8');
@@ -562,7 +567,17 @@ export function build() {
     const map = readJson('pricing/site-map.json');
     if (map.catalogVersion !== CATALOG_VERSION) throw new Error('site-map.json targets a different catalog version');
 
-    const frozenPrevious = readJson(`pricing/price-tables/${PREVIOUS_VERSION}.json`);
+    const previousRaw = read(`pricing/price-tables/${PREVIOUS_VERSION}.json`);
+    const previousSha = createHash('sha256').update(previousRaw).digest('hex');
+    if (previousSha !== PREVIOUS_TABLE_SHA256) {
+        throw new Error(
+            `pricing/price-tables/${PREVIOUS_VERSION}.json has been edited.\n` +
+            `  expected ${PREVIOUS_TABLE_SHA256}\n  actual   ${previousSha}\n` +
+            'That file is frozen: it is what an old lead is verified against, and it is the source of ' +
+            'every carry-forward cell. A price change is a NEW version, never an edit to this one.',
+        );
+    }
+    const frozenPrevious = JSON.parse(previousRaw);
     if (frozenPrevious.priceVersion !== PREVIOUS_VERSION) throw new Error('the frozen previous table is mislabelled');
 
     const calculatorSrc = read('components/modules/calculator.js');
@@ -631,6 +646,44 @@ export function build() {
                 'lead was shown. Unchanged from calc-2026-08-01.',
         }));
 
+    /* The lift moves a whole ladder by one delta, so it can never break the order WITHIN a
+       ladder — but it can change how two SERIES of the same config compare, and so can a
+       catalog cell landing next to a carried-forward one. Most of these configs pick a TYPE
+       rather than a rung ("Bunk bed" vs "Storage bed", "Other IKEA item"), and the site
+       declares no order across them, so this is recorded rather than repaired: repairing it
+       would mean re-authoring the 1,134 cells that are still waiting for proposal §2.1-2.8.
+       Counted here so the number is pinned and a later change cannot add to it quietly. */
+    const orderChanges = [];
+    for (const [configKey, ladders] of Object.entries(projection)) {
+        const seriesKeys = Object.keys(ladders);
+        const sizes = new Set(seriesKeys.flatMap((s) => Object.keys(ladders[s])));
+        for (const size of sizes) {
+            for (let i = 0; i < seriesKeys.length; i += 1) {
+                for (let j = i + 1; j < seriesKeys.length; j += 1) {
+                    const a = seriesKeys[i];
+                    const b = seriesKeys[j];
+                    const wasA = frozenPrevious.modularCalculator[configKey]?.[a]?.[size];
+                    const wasB = frozenPrevious.modularCalculator[configKey]?.[b]?.[size];
+                    const nowA = ladders[a]?.[size];
+                    const nowB = ladders[b]?.[size];
+                    if (!wasA || !wasB || !nowA || !nowB) continue;
+                    const flipped = (wasA[0] < wasB[0] && nowA[0] > nowB[0]) || (wasA[0] > wasB[0] && nowA[0] < nowB[0]);
+                    if (!flipped) continue;
+                    const sourceOf = (series) => allCells.find((c) => c.configKey === configKey && c.series === series && c.size === size)?.source;
+                    const [sa, sb] = [sourceOf(a), sourceOf(b)];
+                    orderChanges.push({
+                        at: `${configKey}/${size}`,
+                        a: { series: a, was: wasA, now: nowA, source: sa },
+                        b: { series: b, was: wasB, now: nowB, source: sb },
+                        driver: /^(catalog|contract)/.test(sa || '') || /^(catalog|contract)/.test(sb || '')
+                            ? 'catalog-or-contract'
+                            : 'lift-artifact',
+                    });
+                }
+            }
+        }
+    }
+
     const projectionReport = {
         pricingVersion: CATALOG_VERSION,
         supersedes: PREVIOUS_VERSION,
@@ -647,6 +700,22 @@ export function build() {
             byProvenance: Object.fromEntries(Object.entries(byProvenance).sort((a, b) => b[1] - a[1])),
         },
         renderedFloorDivergence: renderedFloor,
+        crossSeriesOrderChanges: {
+            note:
+                'Pairs of series inside one config whose relative price order changed. The series axis of these ' +
+                'configs is a type picker, not a ladder, and the site declares no order across it — the ordering ' +
+                'the owner\'s rule governs is the SIZE axis, which is asserted monotonic for every ladder. ' +
+                'catalog-or-contract entries are the intended corrections (apartment-turnover 1br vs 2br, ' +
+                'beds storage vs adjustable, dishwasher builtin vs new). lift-artifact entries are a consequence of ' +
+                'lifting only the ladders that were below the work minimum, and resolve when proposal §2.1-2.8 ' +
+                'lands.',
+            total: orderChanges.length,
+            byDriver: {
+                'catalog-or-contract': orderChanges.filter((c) => c.driver === 'catalog-or-contract').length,
+                'lift-artifact': orderChanges.filter((c) => c.driver === 'lift-artifact').length,
+            },
+            changes: orderChanges,
+        },
         openGap: {
             what: 'Cells the catalog does not carry.',
             why:

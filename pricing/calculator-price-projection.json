@@ -55,6 +55,2480 @@
       "why": "Local Law 429 (2025) freezes the catalog cell; the owner's $150 work minimum is unconditional in the renderer, and the CRM mirrors the same flooredRange, so site and CRM agree on the figure the lead was shown. Unchanged from calc-2026-08-01."
     }
   ],
+  "crossSeriesOrderChanges": {
+    "note": "Pairs of series inside one config whose relative price order changed. The series axis of these configs is a type picker, not a ladder, and the site declares no order across it — the ordering the owner's rule governs is the SIZE axis, which is asserted monotonic for every ladder. catalog-or-contract entries are the intended corrections (apartment-turnover 1br vs 2br, beds storage vs adjustable, dishwasher builtin vs new). lift-artifact entries are a consequence of lifting only the ladders that were below the work minimum, and resolve when proposal §2.1-2.8 lands.",
+    "total": 88,
+    "byDriver": {
+      "catalog-or-contract": 29,
+      "lift-artifact": 59
+    },
+    "changes": [
+      {
+        "at": "ikea/md",
+        "a": {
+          "series": "hemnes",
+          "was": [
+            115,
+            165
+          ],
+          "now": [
+            190,
+            240
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            99,
+            165
+          ],
+          "now": [
+            199,
+            265
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "ikea/lg",
+        "a": {
+          "series": "hemnes",
+          "was": [
+            180,
+            280
+          ],
+          "now": [
+            255,
+            355
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            165,
+            290
+          ],
+          "now": [
+            265,
+            390
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "beds/sm",
+        "a": {
+          "series": "storage",
+          "was": [
+            99,
+            150
+          ],
+          "now": [
+            195,
+            265
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "bunk",
+          "was": [
+            125,
+            180
+          ],
+          "now": [
+            150,
+            205
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "beds/sm",
+        "a": {
+          "series": "storage",
+          "was": [
+            99,
+            150
+          ],
+          "now": [
+            195,
+            265
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "loft",
+          "was": [
+            115,
+            165
+          ],
+          "now": [
+            150,
+            200
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "beds/sm",
+        "a": {
+          "series": "bunk",
+          "was": [
+            125,
+            180
+          ],
+          "now": [
+            150,
+            205
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "adjustable",
+          "was": [
+            65,
+            110
+          ],
+          "now": [
+            195,
+            265
+          ],
+          "source": "catalog:tier"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "beds/sm",
+        "a": {
+          "series": "loft",
+          "was": [
+            115,
+            165
+          ],
+          "now": [
+            150,
+            200
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "adjustable",
+          "was": [
+            65,
+            110
+          ],
+          "now": [
+            195,
+            265
+          ],
+          "source": "catalog:tier"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "beds/md",
+        "a": {
+          "series": "storage",
+          "was": [
+            125,
+            200
+          ],
+          "now": [
+            245,
+            330
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "bunk",
+          "was": [
+            165,
+            250
+          ],
+          "now": [
+            190,
+            275
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "beds/md",
+        "a": {
+          "series": "storage",
+          "was": [
+            125,
+            200
+          ],
+          "now": [
+            245,
+            330
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "loft",
+          "was": [
+            150,
+            230
+          ],
+          "now": [
+            185,
+            265
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "beds/md",
+        "a": {
+          "series": "bunk",
+          "was": [
+            165,
+            250
+          ],
+          "now": [
+            190,
+            275
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "adjustable",
+          "was": [
+            85,
+            130
+          ],
+          "now": [
+            230,
+            310
+          ],
+          "source": "catalog:tier"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "beds/md",
+        "a": {
+          "series": "loft",
+          "was": [
+            150,
+            230
+          ],
+          "now": [
+            185,
+            265
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "adjustable",
+          "was": [
+            85,
+            130
+          ],
+          "now": [
+            230,
+            310
+          ],
+          "source": "catalog:tier"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "beds/md",
+        "a": {
+          "series": "adjustable",
+          "was": [
+            85,
+            130
+          ],
+          "now": [
+            230,
+            310
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "daybed",
+          "was": [
+            99,
+            150
+          ],
+          "now": [
+            184,
+            235
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "beds/md",
+        "a": {
+          "series": "daybed",
+          "was": [
+            99,
+            150
+          ],
+          "now": [
+            184,
+            235
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            85,
+            150
+          ],
+          "now": [
+            185,
+            250
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "beds/lg",
+        "a": {
+          "series": "storage",
+          "was": [
+            165,
+            290
+          ],
+          "now": [
+            310,
+            420
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "bunk",
+          "was": [
+            230,
+            350
+          ],
+          "now": [
+            255,
+            375
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "beds/lg",
+        "a": {
+          "series": "storage",
+          "was": [
+            165,
+            290
+          ],
+          "now": [
+            310,
+            420
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "loft",
+          "was": [
+            200,
+            310
+          ],
+          "now": [
+            235,
+            345
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "beds/lg",
+        "a": {
+          "series": "storage",
+          "was": [
+            165,
+            290
+          ],
+          "now": [
+            310,
+            420
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "adjustable",
+          "was": [
+            150,
+            230
+          ],
+          "now": [
+            390,
+            530
+          ],
+          "source": "catalog:tier"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "beds/lg",
+        "a": {
+          "series": "bunk",
+          "was": [
+            230,
+            350
+          ],
+          "now": [
+            255,
+            375
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "adjustable",
+          "was": [
+            150,
+            230
+          ],
+          "now": [
+            390,
+            530
+          ],
+          "source": "catalog:tier"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "beds/lg",
+        "a": {
+          "series": "loft",
+          "was": [
+            200,
+            310
+          ],
+          "now": [
+            235,
+            345
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "adjustable",
+          "was": [
+            150,
+            230
+          ],
+          "now": [
+            390,
+            530
+          ],
+          "source": "catalog:tier"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "wardrobes/md",
+        "a": {
+          "series": "armoire",
+          "was": [
+            150,
+            230
+          ],
+          "now": [
+            201,
+            281
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            130,
+            230
+          ],
+          "now": [
+            215,
+            315
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "wardrobes/md",
+        "a": {
+          "series": "closet-system",
+          "was": [
+            230,
+            350
+          ],
+          "now": [
+            255,
+            375
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "walk-in",
+          "was": [
+            250,
+            390
+          ],
+          "now": [
+            250,
+            390
+          ],
+          "source": "carry-forward"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "wall-mounted/md",
+        "a": {
+          "series": "floating-vanity",
+          "was": [
+            150,
+            230
+          ],
+          "now": [
+            216,
+            296
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "wall-cabinet",
+          "was": [
+            130,
+            210
+          ],
+          "now": [
+            230,
+            310
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "wall-mounted/md",
+        "a": {
+          "series": "floating-desk",
+          "was": [
+            130,
+            200
+          ],
+          "now": [
+            210,
+            280
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "floating-shelf",
+          "was": [
+            99,
+            165
+          ],
+          "now": [
+            214,
+            280
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "wall-mounted/md",
+        "a": {
+          "series": "floating-desk",
+          "was": [
+            130,
+            200
+          ],
+          "now": [
+            210,
+            280
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            99,
+            180
+          ],
+          "now": [
+            214,
+            295
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "wall-mounted/lg",
+        "a": {
+          "series": "floating-desk",
+          "was": [
+            200,
+            310
+          ],
+          "now": [
+            280,
+            390
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            180,
+            310
+          ],
+          "now": [
+            295,
+            425
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "shelf/lg",
+        "a": {
+          "series": "corner",
+          "was": [
+            155,
+            250
+          ],
+          "now": [
+            255,
+            350
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            150,
+            250
+          ],
+          "now": [
+            260,
+            360
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "curtain-rod/md",
+        "a": {
+          "series": "single",
+          "was": [
+            99,
+            165
+          ],
+          "now": [
+            209,
+            275
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "bay",
+          "was": [
+            130,
+            200
+          ],
+          "now": [
+            195,
+            265
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "curtain-rod/md",
+        "a": {
+          "series": "bay",
+          "was": [
+            130,
+            200
+          ],
+          "now": [
+            195,
+            265
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            99,
+            180
+          ],
+          "now": [
+            209,
+            290
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "curtain-rod/lg",
+        "a": {
+          "series": "double",
+          "was": [
+            210,
+            330
+          ],
+          "now": [
+            305,
+            425
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "bay",
+          "was": [
+            230,
+            350
+          ],
+          "now": [
+            295,
+            415
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "mirror/md",
+        "a": {
+          "series": "frameless",
+          "was": [
+            90,
+            140
+          ],
+          "now": [
+            185,
+            235
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            85,
+            150
+          ],
+          "now": [
+            195,
+            260
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "mirror/lg",
+        "a": {
+          "series": "vanity",
+          "was": [
+            115,
+            180
+          ],
+          "now": [
+            215,
+            280
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "decorative",
+          "was": [
+            110,
+            165
+          ],
+          "now": [
+            220,
+            275
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "projector/md",
+        "a": {
+          "series": "ceiling",
+          "was": [
+            165,
+            250
+          ],
+          "now": [
+            205,
+            290
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            150,
+            230
+          ],
+          "now": [
+            230,
+            310
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "projector/md",
+        "a": {
+          "series": "wall",
+          "was": [
+            130,
+            200
+          ],
+          "now": [
+            196,
+            266
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "shelf",
+          "was": [
+            85,
+            130
+          ],
+          "now": [
+            200,
+            245
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "projector-screen/md",
+        "a": {
+          "series": "fixed",
+          "was": [
+            150,
+            230
+          ],
+          "now": [
+            246,
+            326
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            125,
+            200
+          ],
+          "now": [
+            255,
+            330
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "projector-screen/lg",
+        "a": {
+          "series": "fixed",
+          "was": [
+            230,
+            330
+          ],
+          "now": [
+            326,
+            426
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            200,
+            330
+          ],
+          "now": [
+            330,
+            460
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "desk/md",
+        "a": {
+          "series": "lshaped",
+          "was": [
+            130,
+            200
+          ],
+          "now": [
+            195,
+            265
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            99,
+            165
+          ],
+          "now": [
+            199,
+            265
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "desk/md",
+        "a": {
+          "series": "standing",
+          "was": [
+            110,
+            165
+          ],
+          "now": [
+            195,
+            250
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            99,
+            165
+          ],
+          "now": [
+            199,
+            265
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "dresser/md",
+        "a": {
+          "series": "tall",
+          "was": [
+            90,
+            140
+          ],
+          "now": [
+            220,
+            270
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            85,
+            150
+          ],
+          "now": [
+            230,
+            295
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "dresser/lg",
+        "a": {
+          "series": "wide",
+          "was": [
+            165,
+            250
+          ],
+          "now": [
+            285,
+            370
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            150,
+            230
+          ],
+          "now": [
+            295,
+            375
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "dresser/lg",
+        "a": {
+          "series": "combo",
+          "was": [
+            165,
+            230
+          ],
+          "now": [
+            285,
+            350
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            150,
+            230
+          ],
+          "now": [
+            295,
+            375
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "dishwasher/lg",
+        "a": {
+          "series": "new",
+          "was": [
+            410,
+            620
+          ],
+          "now": [
+            520,
+            700
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "builtin",
+          "was": [
+            310,
+            450
+          ],
+          "now": [
+            650,
+            880
+          ],
+          "source": "catalog:tier"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "dishwasher/lg",
+        "a": {
+          "series": "builtin",
+          "was": [
+            310,
+            450
+          ],
+          "now": [
+            650,
+            880
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            330,
+            490
+          ],
+          "now": [
+            380,
+            540
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "dryer/sm",
+        "a": {
+          "series": "electric",
+          "was": [
+            99,
+            150
+          ],
+          "now": [
+            165,
+            216
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "gas",
+          "was": [
+            125,
+            180
+          ],
+          "now": [
+            125,
+            180
+          ],
+          "source": "frozen:gas"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "dryer/sm",
+        "a": {
+          "series": "gas",
+          "was": [
+            125,
+            180
+          ],
+          "now": [
+            125,
+            180
+          ],
+          "source": "frozen:gas"
+        },
+        "b": {
+          "series": "ventless",
+          "was": [
+            110,
+            165
+          ],
+          "now": [
+            165,
+            220
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "dryer/sm",
+        "a": {
+          "series": "gas",
+          "was": [
+            125,
+            180
+          ],
+          "now": [
+            125,
+            180
+          ],
+          "source": "frozen:gas"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            99,
+            165
+          ],
+          "now": [
+            165,
+            231
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "dryer/md",
+        "a": {
+          "series": "electric",
+          "was": [
+            150,
+            215
+          ],
+          "now": [
+            216,
+            281
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "gas",
+          "was": [
+            180,
+            260
+          ],
+          "now": [
+            180,
+            260
+          ],
+          "source": "frozen:gas"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "dryer/md",
+        "a": {
+          "series": "gas",
+          "was": [
+            180,
+            260
+          ],
+          "now": [
+            180,
+            260
+          ],
+          "source": "frozen:gas"
+        },
+        "b": {
+          "series": "ventless",
+          "was": [
+            165,
+            250
+          ],
+          "now": [
+            220,
+            305
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "dryer/md",
+        "a": {
+          "series": "gas",
+          "was": [
+            180,
+            260
+          ],
+          "now": [
+            180,
+            260
+          ],
+          "source": "frozen:gas"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            165,
+            260
+          ],
+          "now": [
+            231,
+            326
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "dryer/md",
+        "a": {
+          "series": "stackable",
+          "was": [
+            180,
+            260
+          ],
+          "now": [
+            220,
+            300
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            165,
+            260
+          ],
+          "now": [
+            231,
+            326
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "dryer/lg",
+        "a": {
+          "series": "electric",
+          "was": [
+            230,
+            330
+          ],
+          "now": [
+            296,
+            396
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "gas",
+          "was": [
+            290,
+            410
+          ],
+          "now": [
+            290,
+            410
+          ],
+          "source": "frozen:gas"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "dryer/lg",
+        "a": {
+          "series": "gas",
+          "was": [
+            290,
+            410
+          ],
+          "now": [
+            290,
+            410
+          ],
+          "source": "frozen:gas"
+        },
+        "b": {
+          "series": "ventless",
+          "was": [
+            250,
+            370
+          ],
+          "now": [
+            305,
+            425
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "dryer/lg",
+        "a": {
+          "series": "gas",
+          "was": [
+            290,
+            410
+          ],
+          "now": [
+            290,
+            410
+          ],
+          "source": "frozen:gas"
+        },
+        "b": {
+          "series": "stackable",
+          "was": [
+            260,
+            370
+          ],
+          "now": [
+            300,
+            410
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "dryer/lg",
+        "a": {
+          "series": "gas",
+          "was": [
+            290,
+            410
+          ],
+          "now": [
+            290,
+            410
+          ],
+          "source": "frozen:gas"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            260,
+            410
+          ],
+          "now": [
+            326,
+            476
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "dryer/lg",
+        "a": {
+          "series": "ventless",
+          "was": [
+            250,
+            370
+          ],
+          "now": [
+            305,
+            425
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "stackable",
+          "was": [
+            260,
+            370
+          ],
+          "now": [
+            300,
+            410
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "microwave/md",
+        "a": {
+          "series": "builtin",
+          "was": [
+            165,
+            250
+          ],
+          "now": [
+            250,
+            335
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            150,
+            250
+          ],
+          "now": [
+            260,
+            360
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "microwave/md",
+        "a": {
+          "series": "drawer",
+          "was": [
+            180,
+            280
+          ],
+          "now": [
+            250,
+            350
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            150,
+            250
+          ],
+          "now": [
+            260,
+            360
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "microwave/lg",
+        "a": {
+          "series": "drawer",
+          "was": [
+            280,
+            410
+          ],
+          "now": [
+            350,
+            480
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            250,
+            370
+          ],
+          "now": [
+            360,
+            480
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "range/sm",
+        "a": {
+          "series": "gas-freestanding",
+          "was": [
+            125,
+            180
+          ],
+          "now": [
+            125,
+            180
+          ],
+          "source": "frozen:gas"
+        },
+        "b": {
+          "series": "electric-freestanding",
+          "was": [
+            99,
+            150
+          ],
+          "now": [
+            175,
+            226
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "range/sm",
+        "a": {
+          "series": "gas-freestanding",
+          "was": [
+            125,
+            180
+          ],
+          "now": [
+            125,
+            180
+          ],
+          "source": "frozen:gas"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            99,
+            180
+          ],
+          "now": [
+            175,
+            256
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "range/sm",
+        "a": {
+          "series": "electric-freestanding",
+          "was": [
+            99,
+            150
+          ],
+          "now": [
+            175,
+            226
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "wall-oven",
+          "was": [
+            150,
+            215
+          ],
+          "now": [
+            150,
+            215
+          ],
+          "source": "carry-forward"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "range/sm",
+        "a": {
+          "series": "electric-freestanding",
+          "was": [
+            99,
+            150
+          ],
+          "now": [
+            175,
+            226
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "cooktop",
+          "was": [
+            110,
+            165
+          ],
+          "now": [
+            110,
+            165
+          ],
+          "source": "frozen:gas"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "range/sm",
+        "a": {
+          "series": "slide-in",
+          "was": [
+            125,
+            180
+          ],
+          "now": [
+            175,
+            230
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "wall-oven",
+          "was": [
+            150,
+            215
+          ],
+          "now": [
+            150,
+            215
+          ],
+          "source": "carry-forward"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "range/sm",
+        "a": {
+          "series": "wall-oven",
+          "was": [
+            150,
+            215
+          ],
+          "now": [
+            150,
+            215
+          ],
+          "source": "carry-forward"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            99,
+            180
+          ],
+          "now": [
+            175,
+            256
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "range/sm",
+        "a": {
+          "series": "cooktop",
+          "was": [
+            110,
+            165
+          ],
+          "now": [
+            110,
+            165
+          ],
+          "source": "frozen:gas"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            99,
+            180
+          ],
+          "now": [
+            175,
+            256
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "range/md",
+        "a": {
+          "series": "gas-freestanding",
+          "was": [
+            180,
+            260
+          ],
+          "now": [
+            180,
+            260
+          ],
+          "source": "frozen:gas"
+        },
+        "b": {
+          "series": "electric-freestanding",
+          "was": [
+            150,
+            215
+          ],
+          "now": [
+            226,
+            291
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "range/md",
+        "a": {
+          "series": "electric-freestanding",
+          "was": [
+            150,
+            215
+          ],
+          "now": [
+            226,
+            291
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "wall-oven",
+          "was": [
+            215,
+            310
+          ],
+          "now": [
+            215,
+            310
+          ],
+          "source": "carry-forward"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "range/md",
+        "a": {
+          "series": "electric-freestanding",
+          "was": [
+            150,
+            215
+          ],
+          "now": [
+            226,
+            291
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "cooktop",
+          "was": [
+            165,
+            250
+          ],
+          "now": [
+            165,
+            250
+          ],
+          "source": "frozen:gas"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "range/md",
+        "a": {
+          "series": "slide-in",
+          "was": [
+            180,
+            280
+          ],
+          "now": [
+            230,
+            330
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "wall-oven",
+          "was": [
+            215,
+            310
+          ],
+          "now": [
+            215,
+            310
+          ],
+          "source": "carry-forward"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "range/md",
+        "a": {
+          "series": "wall-oven",
+          "was": [
+            215,
+            310
+          ],
+          "now": [
+            215,
+            310
+          ],
+          "source": "carry-forward"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            180,
+            290
+          ],
+          "now": [
+            256,
+            366
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "range/lg",
+        "a": {
+          "series": "gas-freestanding",
+          "was": [
+            290,
+            410
+          ],
+          "now": [
+            290,
+            410
+          ],
+          "source": "frozen:gas"
+        },
+        "b": {
+          "series": "electric-freestanding",
+          "was": [
+            230,
+            330
+          ],
+          "now": [
+            306,
+            406
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "range/lg",
+        "a": {
+          "series": "gas-freestanding",
+          "was": [
+            290,
+            410
+          ],
+          "now": [
+            290,
+            410
+          ],
+          "source": "frozen:gas"
+        },
+        "b": {
+          "series": "slide-in",
+          "was": [
+            280,
+            410
+          ],
+          "now": [
+            330,
+            460
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "range/lg",
+        "a": {
+          "series": "electric-freestanding",
+          "was": [
+            230,
+            330
+          ],
+          "now": [
+            306,
+            406
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "cooktop",
+          "was": [
+            260,
+            395
+          ],
+          "now": [
+            260,
+            395
+          ],
+          "source": "frozen:gas"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "range/lg",
+        "a": {
+          "series": "wall-oven",
+          "was": [
+            330,
+            490
+          ],
+          "now": [
+            330,
+            490
+          ],
+          "source": "carry-forward"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            290,
+            450
+          ],
+          "now": [
+            366,
+            526
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "refrigerator/md",
+        "a": {
+          "series": "counter-depth",
+          "was": [
+            180,
+            280
+          ],
+          "now": [
+            205,
+            305
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            150,
+            250
+          ],
+          "now": [
+            215,
+            315
+          ],
+          "source": "carry-forward:lift"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "washer-dryer/sm",
+        "a": {
+          "series": "allinone",
+          "was": [
+            125,
+            180
+          ],
+          "now": [
+            165,
+            220
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "laundry-center",
+          "was": [
+            150,
+            215
+          ],
+          "now": [
+            150,
+            215
+          ],
+          "source": "carry-forward"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "washer-dryer/sm",
+        "a": {
+          "series": "allinone",
+          "was": [
+            125,
+            180
+          ],
+          "now": [
+            165,
+            220
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            150,
+            230
+          ],
+          "now": [
+            150,
+            230
+          ],
+          "source": "carry-forward"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "washer-dryer/md",
+        "a": {
+          "series": "allinone",
+          "was": [
+            180,
+            260
+          ],
+          "now": [
+            220,
+            300
+          ],
+          "source": "carry-forward:lift"
+        },
+        "b": {
+          "series": "laundry-center",
+          "was": [
+            215,
+            310
+          ],
+          "now": [
+            215,
+            310
+          ],
+          "source": "carry-forward"
+        },
+        "driver": "lift-artifact"
+      },
+      {
+        "at": "garbage-disposal/lg",
+        "a": {
+          "series": "swap-same",
+          "was": [
+            311,
+            430
+          ],
+          "now": [
+            370,
+            500
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "swap-diff",
+          "was": [
+            310,
+            420
+          ],
+          "now": [
+            395,
+            530
+          ],
+          "source": "catalog:tier"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "bathroom-fixture/md",
+        "a": {
+          "series": "showerhead",
+          "was": [
+            169,
+            209
+          ],
+          "now": [
+            195,
+            265
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "accessories",
+          "was": [
+            190,
+            265
+          ],
+          "now": [
+            190,
+            265
+          ],
+          "source": "carry-forward"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "bathroom-fixture/lg",
+        "a": {
+          "series": "showerhead",
+          "was": [
+            207,
+            260
+          ],
+          "now": [
+            280,
+            380
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "accessories",
+          "was": [
+            265,
+            370
+          ],
+          "now": [
+            265,
+            370
+          ],
+          "source": "carry-forward"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "lock-installation/sm",
+        "a": {
+          "series": "deadbolt",
+          "was": [
+            150,
+            175
+          ],
+          "now": [
+            165,
+            225
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "mortise",
+          "was": [
+            160,
+            225
+          ],
+          "now": [
+            160,
+            225
+          ],
+          "source": "carry-forward"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "lock-installation/sm",
+        "a": {
+          "series": "smart",
+          "was": [
+            150,
+            210
+          ],
+          "now": [
+            215,
+            290
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "mortise",
+          "was": [
+            160,
+            225
+          ],
+          "now": [
+            160,
+            225
+          ],
+          "source": "carry-forward"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "lock-installation/md",
+        "a": {
+          "series": "smart",
+          "was": [
+            195,
+            285
+          ],
+          "now": [
+            300,
+            405
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "mortise",
+          "was": [
+            240,
+            350
+          ],
+          "now": [
+            240,
+            350
+          ],
+          "source": "carry-forward"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "lock-installation/md",
+        "a": {
+          "series": "smart",
+          "was": [
+            195,
+            285
+          ],
+          "now": [
+            300,
+            405
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            200,
+            300
+          ],
+          "now": [
+            200,
+            300
+          ],
+          "source": "carry-forward"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "lock-installation/lg",
+        "a": {
+          "series": "smart",
+          "was": [
+            285,
+            425
+          ],
+          "now": [
+            430,
+            580
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "mortise",
+          "was": [
+            350,
+            520
+          ],
+          "now": [
+            350,
+            520
+          ],
+          "source": "carry-forward"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "lock-installation/lg",
+        "a": {
+          "series": "smart",
+          "was": [
+            285,
+            425
+          ],
+          "now": [
+            430,
+            580
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            300,
+            455
+          ],
+          "now": [
+            300,
+            455
+          ],
+          "source": "carry-forward"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "door-installation/md",
+        "a": {
+          "series": "prehung",
+          "was": [
+            330,
+            480
+          ],
+          "now": [
+            520,
+            700
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "barn",
+          "was": [
+            430,
+            680
+          ],
+          "now": [
+            430,
+            680
+          ],
+          "source": "carry-forward"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "drywall-repair/lg",
+        "a": {
+          "series": "small-holes",
+          "was": [
+            650,
+            1000
+          ],
+          "now": [
+            560,
+            850
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "large-hole",
+          "was": [
+            480,
+            720
+          ],
+          "now": [
+            700,
+            1000
+          ],
+          "source": "catalog:tier"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "apartment-turnover/md",
+        "a": {
+          "series": "1br",
+          "was": [
+            850,
+            1500
+          ],
+          "now": [
+            650,
+            970
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "2br",
+          "was": [
+            680,
+            1020
+          ],
+          "now": [
+            900,
+            1350
+          ],
+          "source": "catalog:tier"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "apartment-turnover/md",
+        "a": {
+          "series": "1br",
+          "was": [
+            850,
+            1500
+          ],
+          "now": [
+            650,
+            970
+          ],
+          "source": "catalog:tier"
+        },
+        "b": {
+          "series": "office",
+          "was": [
+            520,
+            780
+          ],
+          "now": [
+            680,
+            1000
+          ],
+          "source": "catalog:tier"
+        },
+        "driver": "catalog-or-contract"
+      }
+    ]
+  },
   "openGap": {
     "what": "Cells the catalog does not carry.",
     "why": "docs/pricing-website-contract.md §4: proposal sections 2.1-2.8 — the per-hub cell tables — were truncated out of the catalog lane's input and are not in the catalog. They are pending, not agreed-unchanged.",
