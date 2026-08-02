@@ -1924,11 +1924,21 @@ document.addEventListener('DOMContentLoaded', () => {
                The PRICE COMES FIRST, before the selection list, because this string is
                capped at 240 characters when the CRM stores it
                (MAX_WIDGET_CUSTOM_FIELD_VALUE_CHARS, app/api/widget/quote/route.ts) and this
-               calculator's selection list is long: with the price trailing the list, 2060 of
-               the 2160 reachable combinations were clipped and 852 of them lost the price
-               text altogether — the one part of the sentence that is evidence of what the
-               customer was promised. Leading with it means no combination can lose it
-               (the longest prefix through "…added separately" is 78 characters). */
+               calculator's selection list is long. Counted against the real option table in
+               services/ac-installation-cleaning/window-ac-installation/index.html — 4 BTU ×
+               5 quantity × 4 window × 3 floor × 3 building × 2^7 toggle states = 92,160
+               reachable states (46,080 distinct sentences; the COI toggle is priced $0, so
+               it changes neither the price nor the add-on list) — with the price trailing
+               the list 91,960 of them (99.78%) were over the cap and 89,254 (96.85%) were
+               cut before the figure, losing the one part of the sentence that is evidence of
+               what the customer was promised.
+               Leading with the price means no state can lose it: the longest prefix through
+               "…added separately" is 104 characters ("…estimate $1010–$1090 ($505–$545/unit)
+               — NYC sales tax added separately"), well inside the 240 cap. The selection
+               tail is what gets cut instead, and it is carried separately and in full by
+               calculator_selection and by the btu_size/qty/window_type/floor/building/addons
+               fields. The exhaustive check lives in
+               tests/calculator-quote-snapshot.test.js. */
             displayText: `Window AC Installation — planning estimate ${acShownPrice} — NYC sales tax added separately — ${acSelectionText}`,
           }) || {}),
           btu_size: selOpt(btuSel)?.value || '',

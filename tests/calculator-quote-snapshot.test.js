@@ -462,42 +462,116 @@ test('window-AC calculator: same key names, and the multi-unit figure is no long
 
 /* The CRM stores every custom field at 240 characters
    (MAX_WIDGET_CUSTOM_FIELD_VALUE_CHARS, app/api/widget/quote/route.ts) and marks the cut
-   with an ellipsis. This calculator's selection list is long — six labelled parts plus up
-   to six add-ons — so a sentence that ends with the price loses the price. Measured against
-   the real option table in
-   services/ac-installation-cleaning/window-ac-installation/index.html, 2060 of the 2160
-   reachable combinations were over the cap and 852 of them were clipped before the figure.
-   The price therefore leads the sentence, and no selection can push it out. */
-test('window-AC calculator: the price survives the CRM 240-char field cap, however long the selection', () => {
+   with an ellipsis. This calculator's selection list is long — five labelled parts plus up
+   to six add-ons — so a sentence that ENDS with the price loses the price.
+   No hand-written "worst case" here: the option table is read out of the real page and
+   every reachable state is generated, because a hand-picked worst case is a guess and this
+   file is the only thing standing between a price change and a silently clipped record. */
+function windowAcOptionTable() {
+    const html = fs.readFileSync(path.join(
+        root, 'services', 'ac-installation-cleaning', 'window-ac-installation', 'index.html'), 'utf8');
+    const selectOptions = (id) => {
+        const block = new RegExp(`<select[^>]*id="${id}"[\\s\\S]*?</select>`).exec(html);
+        assert.ok(block, `#${id} not found on the window-AC page`);
+        return [...block[0].matchAll(/<option([^>]*)>([\s\S]*?)<\/option>/g)].map((m) => {
+            const attrs = {};
+            for (const a of m[1].matchAll(/([a-z-]+)="([^"]*)"/g)) attrs[a[1]] = a[2];
+            return { attrs, text: m[2].replace(/\s+/g, ' ').trim() };
+        });
+    };
+    const toggles = [...html.matchAll(
+        /<button[^>]*class="[^"]*svc-calculator__toggle[^"]*"[\s\S]*?<\/button>/g)].map((m) => {
+        const attrs = {};
+        for (const a of m[0].matchAll(/data-([a-z-]+)="([^"]*)"/g)) attrs[a[1]] = a[2];
+        return {
+            price: Number(attrs.price || 0),
+            // main.js: b.textContent.trim().replace(/\s+/g,' ').split(' (+')[0]
+            label: m[0].replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().split(' (+')[0],
+        };
+    });
+    return {
+        btu: selectOptions('calc-btu'), qty: selectOptions('calc-qty'),
+        win: selectOptions('calc-window'), floor: selectOptions('calc-floor'),
+        building: selectOptions('calc-building'), toggles,
+    };
+}
+
+/* Replays main.js updateCalc() + the CTA's label derivation for one state. */
+function windowAcState(t, b, q, w, f, g, mask) {
+    const active = t.toggles.filter((_, i) => mask & (1 << i));
+    const addOnTotal = active.reduce((s, x) => s + x.price, 0);
+    const r5 = (n) => Math.round(n / 5) * 5;
+    const surcharge = Number(w.attrs['data-surcharge'] || 0) + Number(f.attrs['data-surcharge'] || 0);
+    const subLo = Number(b.attrs['data-lo']) + surcharge + addOnTotal;
+    const subHi = Number(b.attrs['data-hi']) + surcharge + addOnTotal;
+    const units = Number(q.attrs.value);
+    const discount = Number(q.attrs['data-discount'] || 0) / 100;
+    const perUnitLo = r5(subLo * (1 - discount));
+    const perUnitHi = r5(subHi * (1 - discount));
+    const rangeText = `$${r5(perUnitLo * units)}–$${r5(perUnitHi * units)}`;
+    const shownPrice = units > 1
+        ? `${rangeText} ($${perUnitLo}–$${perUnitHi}/unit)`
+        : rangeText;
+    const addOns = active.filter((x) => String(x.price) !== '0').map((x) => x.label);
+    const selectionText = [
+        `AC Size: ${b.text.split(' (')[0]}`,
+        `Quantity: ${q.text}`,
+        `Window Type: ${w.text.split(' (+')[0]}`,
+        `Floor Level: ${f.text.split(' (+')[0]}`,
+        `Building: ${g.text}`,
+        addOns.length ? `Add-ons: ${addOns.join(', ')}` : null,
+    ].filter(Boolean).join(' · ');
+    return { rangeText, shownPrice, selectionText, low: r5(perUnitLo * units), high: r5(perUnitHi * units) };
+}
+
+test('window-AC calculator: EVERY reachable state keeps its price inside the CRM 240-char cap', () => {
     const CRM_FIELD_CAP = 240;
     const build = (() => {
         const context = baseContext();
         vm.createContext(context);
         return loadMain(context).repairAsapBuildQuoteSnapshot;
     })();
+    const t = windowAcOptionTable();
 
-    // The longest selection the real page can produce: every label at its maximum and all
-    // six priced add-ons active.
-    const worstSelection = [
-        'AC Size: 24,000+ BTU',
-        'Quantity: 5+ units (-15% each)',
-        'Window Type: Casement / Outswing',
-        'Floor Level: 6th floor and above',
-        'Building: Co-op / Condo (COI likely required)',
-        'Add-ons: Support Bracket, Old Unit Removal, Haul-Away / Disposal, Custom Gap Fill / Plexiglass, Non-Standard / Deep Frame, 2-Person Install',
-    ].join(' · ');
-    const shownPrice = '$2800–$3225 ($560–$645/unit)';
-    const displayText = `Window AC Installation — planning estimate ${shownPrice} — NYC sales tax added separately — ${worstSelection}`;
+    let states = 0, overCap = 0, lostPrice = 0, longestPricePrefix = 0, longestPrefixExample = '';
+    for (const b of t.btu) for (const q of t.qty) for (const w of t.win)
+        for (const f of t.floor) for (const g of t.building)
+            for (let mask = 0; mask < (1 << t.toggles.length); mask++) {
+                const s = windowAcState(t, b, q, w, f, g, mask);
+                const displayText = `Window AC Installation — planning estimate ${s.shownPrice}`
+                    + ` — NYC sales tax added separately — ${s.selectionText}`;
+                const snapshot = build({
+                    configKey: 'window_ac', path: s.high > s.low ? 'range' : 'single',
+                    low: s.low, high: s.high, rangeText: s.rangeText,
+                    selectionText: s.selectionText, displayText,
+                });
+                const value = snapshot.calculator_estimate;
+                const stored = value.length > CRM_FIELD_CAP
+                    ? `${value.slice(0, CRM_FIELD_CAP - 1)}…`
+                    : value;
+                states++;
+                if (value.length > CRM_FIELD_CAP) overCap++;
+                if (!stored.includes(s.shownPrice)) {
+                    lostPrice++;
+                    assert.fail(`the CRM would store "${stored}" — the price ${s.shownPrice} fell outside the cap`);
+                }
+                assert.ok(stored.includes('NYC sales tax added separately'),
+                    `tax disclosure clipped out of "${stored}"`);
+                const prefix = `Window AC Installation — planning estimate ${s.shownPrice}`
+                    + ' — NYC sales tax added separately';
+                if (prefix.length > longestPricePrefix) {
+                    longestPricePrefix = prefix.length;
+                    longestPrefixExample = prefix;
+                }
+            }
 
-    const snapshot = build({
-        configKey: 'window_ac', path: 'range', low: 2800, high: 3225,
-        rangeText: '$2800–$3225', selectionText: worstSelection, displayText,
-    });
-    assert.ok(snapshot.calculator_estimate.length > CRM_FIELD_CAP,
-        'this test is only meaningful while the worst case actually overflows the cap');
-    const stored = `${snapshot.calculator_estimate.slice(0, CRM_FIELD_CAP - 1)}…`;
-    assert.ok(stored.includes(shownPrice), `the CRM would store "${stored}" — the price must be inside it`);
-    assert.ok(stored.includes('NYC sales tax added separately'));
+    // Pin the measured shape of the problem so the comment in main.js cannot drift from it.
+    assert.equal(states, 92160, 'the reachable state count changed — re-measure before trusting the cap');
+    assert.equal(overCap, 91960, 'how many states overflow the 240-char cap changed');
+    assert.equal(lostPrice, 0);
+    assert.equal(longestPricePrefix, 104, `longest price prefix is now "${longestPrefixExample}"`);
+    assert.ok(longestPricePrefix < CRM_FIELD_CAP);
+
     // main.js must keep emitting this order; a future edit that moves the price back to the
     // end would pass every other assertion in this file.
     assert.match(
@@ -505,6 +579,31 @@ test('window-AC calculator: the price survives the CRM 240-char field cap, howev
         /displayText: `Window AC Installation — planning estimate \$\{acShownPrice\} — NYC sales tax added separately — \$\{acSelectionText\}`/,
         'the window-AC displayText must lead with the price',
     );
+});
+
+/* The counterfactual: the SAME exhaustive sweep against the pre-fix wording, which is what
+   makes the assertion above worth anything. If this ever stops failing, the cap moved and
+   the whole reordering can be reconsidered. */
+test('window-AC calculator: the old price-last wording did lose the price, on most states', () => {
+    const CRM_FIELD_CAP = 240;
+    const t = windowAcOptionTable();
+    let states = 0, overCap = 0, lostPrice = 0;
+    for (const b of t.btu) for (const q of t.qty) for (const w of t.win)
+        for (const f of t.floor) for (const g of t.building)
+            for (let mask = 0; mask < (1 << t.toggles.length); mask++) {
+                const s = windowAcState(t, b, q, w, f, g, mask);
+                const legacy = `Window AC Installation — ${s.selectionText}`
+                    + ` (planning estimate ${s.shownPrice} — NYC sales tax added separately)`;
+                const stored = legacy.length > CRM_FIELD_CAP
+                    ? `${legacy.slice(0, CRM_FIELD_CAP - 1)}…`
+                    : legacy;
+                states++;
+                if (legacy.length > CRM_FIELD_CAP) overCap++;
+                if (!stored.includes(s.shownPrice)) lostPrice++;
+            }
+    assert.equal(states, 92160);
+    assert.equal(overCap, 91960);          // 99.78% of states
+    assert.equal(lostPrice, 89254);        // 96.85% of states lost the figure entirely
 });
 
 test('both calculators write the same key names', () => {
