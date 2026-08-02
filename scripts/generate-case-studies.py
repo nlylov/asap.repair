@@ -19,7 +19,7 @@ PUBLIC_DATA_PATH = ROOT / "assets" / "data" / "case-studies.json"
 CASE_DIR = ROOT / "case-studies"
 SITE = "https://asap.repair"
 ASSET_VERSION = "20260726a"
-APP_ASSET_VERSION = "20260729a"
+APP_ASSET_VERSION = "20260801a"
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 _DIM_CACHE: dict[str, str] = {}

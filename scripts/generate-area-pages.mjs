@@ -5,8 +5,8 @@ import { execSync } from 'node:child_process';
 import { join } from 'node:path';
 
 const ASSET_VERSION = '20260726a';
-const MAIN_ASSET_VERSION = '20260729a';
-const LOADER_ASSET_VERSION = '20260729a';
+const MAIN_ASSET_VERSION = '20260801a';
+const LOADER_ASSET_VERSION = '20260801a';
 const ROOT = new URL('..', import.meta.url).pathname;
 
 const serviceLinks = {
