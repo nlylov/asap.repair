@@ -653,7 +653,15 @@ function rewriteInlineRanges(src, file, specs, index, projection, constants) {
             value = resolvePriceSrc(spec.ref, index, constants, file);
         } else {
             const [lo, hi] = resolveRefRange(spec.ref, index, projection);
-            value = priceRange(lo, hi, spec.sep || '–');
+            /* `figure` picks one end instead of the band. A hero that says "vent cleaning from $X"
+               is quoting the entry price, not a range, and writing "$175–$380" there would change
+               what the sentence claims. Defaults to the range, which is what every existing spec
+               wants. */
+            const figure = spec.figure || 'range';
+            if (figure === 'lo') value = `$${withThousands(lo)}`;
+            else if (figure === 'hi') value = `$${withThousands(hi)}`;
+            else if (figure === 'range') value = priceRange(lo, hi, spec.sep || '–');
+            else throw new Error(`proseFigures.inlineRanges: unknown figure "${figure}" in ${file}`);
         }
         assertJsonStringSafe(value, spec.ref, file);
         const re = new RegExp(`(${escapeRe(spec.before)})([^\n]*?)(${escapeRe(spec.after)})`, 'g');
@@ -683,8 +691,12 @@ function mapScopedSegments(src, scope, fn) {
     const parts = [];
     let at = 0;
     for (const m of src.matchAll(LD_JSON_BLOCK)) {
-        const bodyStart = m.index + m[0].indexOf('>', m[0].indexOf('<script')) + 1;
-        const bodyEnd = bodyStart + m[1].length;
+        /* Measure the body from the END of the match, not by hunting for the first '>'. The
+           opening tag is the one place an attribute value could itself contain '>', which would
+           put the boundary inside the tag and let an anchor match across markup and JSON. No page
+           here does that today; deriving the offset arithmetically means none ever can. */
+        const bodyEnd = m.index + m[0].length - '</script>'.length;
+        const bodyStart = bodyEnd - m[1].length;
         parts.push({ text: src.slice(at, bodyStart), isLd: false });
         parts.push({ text: src.slice(bodyStart, bodyEnd), isLd: true });
         at = bodyEnd;

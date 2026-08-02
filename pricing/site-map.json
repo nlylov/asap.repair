@@ -1025,6 +1025,66 @@
             "in": "html"
           }
         ]
+      },
+      {
+        "file": "services/furniture-assembly/dresser-assembly/index.html",
+        "_note": "Consistent at calc-2026-08-01 and broken by THIS repricing: the ladder moved up and the sentence stayed at $150, so the page advertised an entry price its own calculator no longer offers. Generated now. Both the FAQPage answer and the visible paragraph, which must match. The second figure was also wrong in kind: '7+ drawers' was quoted $150-$220, the SAME entry as a 3-4 drawer piece.",
+        "inlineRanges": [
+          {
+            "before": "A standard 3-4 drawer dresser starts around ",
+            "after": ". Larger pieces",
+            "ref": "site:dresser.standard.sm",
+            "sep": "-",
+            "in": "jsonld"
+          },
+          {
+            "before": "Larger pieces with 7+ drawers often run ",
+            "after": " after product model",
+            "ref": "site:dresser.standard.lg",
+            "sep": "-",
+            "in": "jsonld"
+          },
+          {
+            "before": "A standard 3-4 drawer dresser starts around ",
+            "after": ". Larger pieces",
+            "ref": "site:dresser.standard.sm",
+            "sep": "-",
+            "in": "html"
+          },
+          {
+            "before": "Larger pieces with 7+ drawers often run ",
+            "after": " after product model",
+            "ref": "site:dresser.standard.lg",
+            "sep": "-",
+            "in": "html"
+          }
+        ]
+      },
+      {
+        "file": "services/appliance-services/ice-machine-cleaning/index.html",
+        "_note": "Consistent at calc-2026-08-01 and broken by THIS repricing: the ladder moved up and the sentence stayed at $150, so the page advertised an entry price its own calculator no longer offers. Generated now. Hero subtitle only. Bound to the cheapest job the calculator offers — countertop / office unit, 'Manufacturer-cycle clean + sanitize' — which is the job the sentence describes.",
+        "inlineRanges": [
+          {
+            "before": "Manufacturer-cycle cleaning and sanitizing from ",
+            "after": " — inspection-ready ice",
+            "ref": "site:ice-machine-cleaning.countertop.sm",
+            "figure": "lo",
+            "in": "html"
+          }
+        ]
+      },
+      {
+        "file": "services/appliance-services/dryer-vent-cleaning/index.html",
+        "_note": "Consistent at calc-2026-08-01 and broken by THIS repricing: the ladder moved up and the sentence stayed at $150, so the page advertised an entry price its own calculator no longer offers. Generated now. Hero subtitle only. Bound to standard / 'Cleaning + airflow check', the accessible single-unit job the sentence describes.",
+        "inlineRanges": [
+          {
+            "before": "accessible vent cleaning from ",
+            "after": " with a before/after airflow check",
+            "ref": "site:dryer-vent-cleaning.standard.sm",
+            "figure": "lo",
+            "in": "html"
+          }
+        ]
       }
     ]
   },

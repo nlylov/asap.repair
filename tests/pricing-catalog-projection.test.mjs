@@ -775,3 +775,45 @@ test('every FAQ answer states the same prices in its structured data and in the 
     }
     assert.ok(pairs > 300, `expected the site's FAQ pairs to be swept, only matched ${pairs}`);
 });
+
+/* The third shape of the same defect: an ENTRY-PRICE promise in page copy that the page's own
+ * calculator no longer honours. dresser-assembly, ice-machine-cleaning and dryer-vent-cleaning all
+ * said "from $150" while this repricing moved their cheapest cell to $185, $225 and $175 — copy
+ * that was correct at calc-2026-08-01 and became an advertised price we would not accept.
+ *
+ * "3. Work From $150" is excluded by name: that is the shared how-it-works step stating the
+ * site-wide work minimum, it is on 86 pages, and it is true.
+ */
+test('no page promises an entry price below its own calculator', () => {
+    const CONFIGS = { ...evalConfigs(read('components/modules/calculator.js')), ...readJson('assets/data/hub-calculators.json') };
+    const BOILERPLATE = /Work From \$150|\$150 work minimum/gi;
+    const CLAIM = /(?:starts? (?:at|from|around)|typically runs|start(?:ing)? around|priced from|from)\s+\$([0-9][0-9,]*)/gi;
+
+    let claims = 0;
+    for (const file of everyPage()) {
+        if (!file.endsWith('.html')) continue;
+        const html = read(file);
+        const mounted = /data-module="calculator"[^>]*data-config="([^"]+)"/.exec(html);
+        const cfg = mounted && CONFIGS[mounted[1]];
+        if (!cfg?.pricing) continue;
+
+        const priced = Object.values(cfg.pricing).flatMap((s) => Object.values(s))
+            .filter(([lo, hi]) => !isFreePhoto([lo, hi]) && !isAssessment([lo, hi]));
+        if (!priced.length) continue;
+        const floor = Math.max(Math.min(...priced.map((v) => v[0])), cfg.mode === 'visit' ? 0 : REPAIR_MINIMUM);
+
+        const text = html
+            .replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ')
+            .replace(/<[^>]*>/g, ' ').replace(/&ndash;/g, '–').replace(/&mdash;/g, '—')
+            .replace(/\s+/g, ' ').replace(BOILERPLATE, ' ');
+
+        for (const m of text.matchAll(CLAIM)) {
+            const claimed = Number(m[1].replace(/,/g, ''));
+            if (claimed === ASSESSMENT_FEE || claimed === 0) continue;
+            claims += 1;
+            assert.ok(claimed >= floor,
+                `${file}: copy promises "${m[0]}" but the cheapest cell of its own "${mounted[1]}" calculator is $${floor}`);
+        }
+    }
+    assert.ok(claims > 10, `expected the entry-price claims to be swept, only saw ${claims}`);
+});
