@@ -1,7 +1,7 @@
 {
   "pricingVersion": "calc-2026-09-01",
   "supersedes": "calc-2026-08-01",
-  "catalogSha256": "78465da3e34b8b0b849367cb91adcd41dfb57387c5ddd34d4417d984e47ab124",
+  "catalogSha256": "3701a3526981a5c7913a8a036bc4dc8d71011c3d6f7bef1c20c53ee8cb46557d",
   "generatedBy": "scripts/generate-calculator-prices.mjs",
   "note": "Provenance of every calculator cell on asap.repair. A cell is only overwritten when the catalog or docs/pricing-website-contract.md §4 states its value; otherwise it is the frozen calc-2026-08-01 figure, moved only by the two rules the owner has already decided (the $150 work minimum, and monotonicity along the declared size axis).",
   "totals": {
@@ -57,9 +57,9 @@
   ],
   "crossSeriesOrderChanges": {
     "note": "Pairs of series inside one config whose relative price order changed. The series axis of these configs is a type picker, not a ladder, and the site declares no order across it — the ordering the owner's rule governs is the SIZE axis, which is asserted monotonic for every ladder. catalog-or-contract entries are the intended corrections (apartment-turnover 1br vs 2br, beds storage vs adjustable, dishwasher builtin vs new). lift-artifact entries are a consequence of lifting only the ladders that were below the work minimum, and resolve when proposal §2.1-2.8 lands.",
-    "total": 80,
+    "total": 82,
     "byDriver": {
-      "catalog-or-contract": 80,
+      "catalog-or-contract": 82,
       "lift-artifact": 0
     },
     "changes": [
@@ -400,6 +400,62 @@
         "driver": "catalog-or-contract"
       },
       {
+        "at": "wardrobes/sm",
+        "a": {
+          "series": "freestanding",
+          "was": [
+            85,
+            130
+          ],
+          "now": [
+            195,
+            235
+          ],
+          "source": "catalog:ladder"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            65,
+            130
+          ],
+          "now": [
+            230,
+            285
+          ],
+          "source": "catalog:ladder"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "wardrobes/sm",
+        "a": {
+          "series": "armoire",
+          "was": [
+            99,
+            150
+          ],
+          "now": [
+            215,
+            260
+          ],
+          "source": "catalog:ladder"
+        },
+        "b": {
+          "series": "other",
+          "was": [
+            65,
+            130
+          ],
+          "now": [
+            230,
+            285
+          ],
+          "source": "catalog:ladder"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
         "at": "wardrobes/md",
         "a": {
           "series": "armoire",
@@ -408,8 +464,8 @@
             230
           ],
           "now": [
-            250,
-            325
+            260,
+            320
           ],
           "source": "catalog:ladder"
         },
@@ -420,36 +476,8 @@
             230
           ],
           "now": [
-            260,
-            355
-          ],
-          "source": "catalog:ladder"
-        },
-        "driver": "catalog-or-contract"
-      },
-      {
-        "at": "wardrobes/md",
-        "a": {
-          "series": "closet-system",
-          "was": [
-            230,
-            350
-          ],
-          "now": [
-            300,
-            410
-          ],
-          "source": "catalog:ladder"
-        },
-        "b": {
-          "series": "walk-in",
-          "was": [
-            250,
-            390
-          ],
-          "now": [
-            295,
-            425
+            285,
+            365
           ],
           "source": "catalog:ladder"
         },
@@ -1892,8 +1920,8 @@
             180
           ],
           "now": [
-            235,
-            295
+            265,
+            315
           ],
           "source": "catalog:ladder"
         },
@@ -1905,35 +1933,7 @@
           ],
           "now": [
             215,
-            290
-          ],
-          "source": "catalog:ladder"
-        },
-        "driver": "catalog-or-contract"
-      },
-      {
-        "at": "washer-dryer/sm",
-        "a": {
-          "series": "allinone",
-          "was": [
-            125,
-            180
-          ],
-          "now": [
-            235,
-            295
-          ],
-          "source": "catalog:ladder"
-        },
-        "b": {
-          "series": "other",
-          "was": [
-            150,
-            230
-          ],
-          "now": [
-            215,
-            310
+            275
           ],
           "source": "catalog:ladder"
         },
@@ -1948,8 +1948,8 @@
             260
           ],
           "now": [
-            295,
-            385
+            315,
+            375
           ],
           "source": "catalog:ladder"
         },
@@ -1960,8 +1960,64 @@
             310
           ],
           "now": [
+            275,
+            355
+          ],
+          "source": "catalog:ladder"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "washer-dryer/lg",
+        "a": {
+          "series": "allinone",
+          "was": [
             290,
-            395
+            410
+          ],
+          "now": [
+            395,
+            475
+          ],
+          "source": "catalog:ladder"
+        },
+        "b": {
+          "series": "laundry-center",
+          "was": [
+            330,
+            475
+          ],
+          "now": [
+            370,
+            475
+          ],
+          "source": "catalog:ladder"
+        },
+        "driver": "catalog-or-contract"
+      },
+      {
+        "at": "interior-painting/md",
+        "a": {
+          "series": "hallway",
+          "was": [
+            475,
+            750
+          ],
+          "now": [
+            475,
+            750
+          ],
+          "source": "catalog:ladder"
+        },
+        "b": {
+          "series": "ceiling",
+          "was": [
+            450,
+            750
+          ],
+          "now": [
+            525,
+            790
           ],
           "source": "catalog:ladder"
         },
@@ -3002,10 +3058,10 @@
       "size": "sm",
       "value": [
         195,
-        240
+        235
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.wardrobes.freestanding.sm (closet-system-build)",
+      "ref": "websiteLadders.wardrobes.freestanding.sm (freestanding-wardrobe-assembly)",
       "was": [
         85,
         130
@@ -3016,11 +3072,11 @@
       "series": "freestanding",
       "size": "md",
       "value": [
-        240,
-        310
+        235,
+        295
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.wardrobes.freestanding.md (closet-system-build)",
+      "ref": "websiteLadders.wardrobes.freestanding.md (freestanding-wardrobe-assembly)",
       "was": [
         130,
         200
@@ -3031,11 +3087,11 @@
       "series": "freestanding",
       "size": "lg",
       "value": [
-        310,
-        410
+        295,
+        375
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.wardrobes.freestanding.lg (closet-system-build)",
+      "ref": "websiteLadders.wardrobes.freestanding.lg (freestanding-wardrobe-assembly)",
       "was": [
         200,
         310
@@ -3046,11 +3102,11 @@
       "series": "armoire",
       "size": "sm",
       "value": [
-        195,
-        250
+        215,
+        260
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.wardrobes.armoire.sm (closet-system-build)",
+      "ref": "websiteLadders.wardrobes.armoire.sm (freestanding-wardrobe-assembly)",
       "was": [
         99,
         150
@@ -3061,11 +3117,11 @@
       "series": "armoire",
       "size": "md",
       "value": [
-        250,
-        325
+        260,
+        320
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.wardrobes.armoire.md (closet-system-build)",
+      "ref": "websiteLadders.wardrobes.armoire.md (freestanding-wardrobe-assembly)",
       "was": [
         150,
         230
@@ -3076,11 +3132,11 @@
       "series": "armoire",
       "size": "lg",
       "value": [
-        325,
-        435
+        320,
+        400
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.wardrobes.armoire.lg (closet-system-build)",
+      "ref": "websiteLadders.wardrobes.armoire.lg (freestanding-wardrobe-assembly)",
       "was": [
         230,
         350
@@ -3091,8 +3147,8 @@
       "series": "closet-system",
       "size": "sm",
       "value": [
-        195,
-        270
+        230,
+        300
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.wardrobes.closet-system.sm (closet-system-build)",
@@ -3106,8 +3162,8 @@
       "series": "closet-system",
       "size": "md",
       "value": [
-        300,
-        410
+        330,
+        425
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.wardrobes.closet-system.md (closet-system-build)",
@@ -3121,8 +3177,8 @@
       "series": "closet-system",
       "size": "lg",
       "value": [
-        410,
-        565
+        425,
+        555
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.wardrobes.closet-system.lg (closet-system-build)",
@@ -3136,11 +3192,11 @@
       "series": "sliding-door",
       "size": "sm",
       "value": [
-        195,
-        265
+        230,
+        290
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.wardrobes.sliding-door.sm (closet-system-build)",
+      "ref": "websiteLadders.wardrobes.sliding-door.sm (freestanding-wardrobe-assembly)",
       "was": [
         130,
         200
@@ -3151,11 +3207,11 @@
       "series": "sliding-door",
       "size": "md",
       "value": [
-        265,
-        370
+        290,
+        375
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.wardrobes.sliding-door.md (closet-system-build)",
+      "ref": "websiteLadders.wardrobes.sliding-door.md (freestanding-wardrobe-assembly)",
       "was": [
         200,
         310
@@ -3166,11 +3222,11 @@
       "series": "sliding-door",
       "size": "lg",
       "value": [
-        370,
-        495
+        375,
+        470
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.wardrobes.sliding-door.lg (closet-system-build)",
+      "ref": "websiteLadders.wardrobes.sliding-door.lg (freestanding-wardrobe-assembly)",
       "was": [
         310,
         450
@@ -3181,8 +3237,8 @@
       "series": "walk-in",
       "size": "sm",
       "value": [
-        210,
-        295
+        265,
+        345
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.wardrobes.walk-in.sm (closet-system-build)",
@@ -3196,8 +3252,8 @@
       "series": "walk-in",
       "size": "md",
       "value": [
-        295,
-        425
+        345,
+        460
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.wardrobes.walk-in.md (closet-system-build)",
@@ -3211,7 +3267,7 @@
       "series": "walk-in",
       "size": "lg",
       "value": [
-        425,
+        460,
         620
       ],
       "source": "catalog:ladder",
@@ -3226,8 +3282,8 @@
       "series": "other",
       "size": "sm",
       "value": [
-        195,
-        260
+        230,
+        285
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.wardrobes.other.sm (closet-system-build)",
@@ -3241,8 +3297,8 @@
       "series": "other",
       "size": "md",
       "value": [
-        260,
-        355
+        285,
+        365
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.wardrobes.other.md (closet-system-build)",
@@ -3256,8 +3312,8 @@
       "series": "other",
       "size": "lg",
       "value": [
-        355,
-        480
+        365,
+        455
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.wardrobes.other.lg (closet-system-build)",
@@ -7456,8 +7512,8 @@
       "series": "stacked",
       "size": "sm",
       "value": [
-        235,
-        330
+        285,
+        375
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.washer-dryer.stacked.sm (stackable-washer-dryer)",
@@ -7471,8 +7527,8 @@
       "series": "stacked",
       "size": "md",
       "value": [
-        330,
-        430
+        375,
+        465
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.washer-dryer.stacked.md (stackable-washer-dryer)",
@@ -7486,7 +7542,7 @@
       "series": "stacked",
       "size": "lg",
       "value": [
-        460,
+        485,
         620
       ],
       "source": "catalog:ladder",
@@ -7501,8 +7557,8 @@
       "series": "sidebyside",
       "size": "sm",
       "value": [
-        235,
-        330
+        285,
+        375
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.washer-dryer.sidebyside.sm (stackable-washer-dryer)",
@@ -7516,8 +7572,8 @@
       "series": "sidebyside",
       "size": "md",
       "value": [
-        330,
-        430
+        375,
+        465
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.washer-dryer.sidebyside.md (stackable-washer-dryer)",
@@ -7531,7 +7587,7 @@
       "series": "sidebyside",
       "size": "lg",
       "value": [
-        460,
+        485,
         620
       ],
       "source": "catalog:ladder",
@@ -7546,8 +7602,8 @@
       "series": "allinone",
       "size": "sm",
       "value": [
-        235,
-        295
+        265,
+        315
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.washer-dryer.allinone.sm (stackable-washer-dryer)",
@@ -7561,8 +7617,8 @@
       "series": "allinone",
       "size": "md",
       "value": [
-        295,
-        385
+        315,
+        375
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.washer-dryer.allinone.md (stackable-washer-dryer)",
@@ -7576,8 +7632,8 @@
       "series": "allinone",
       "size": "lg",
       "value": [
-        415,
-        540
+        395,
+        475
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.washer-dryer.allinone.lg (stackable-washer-dryer)",
@@ -7592,10 +7648,10 @@
       "size": "sm",
       "value": [
         215,
-        290
+        275
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.washer-dryer.laundry-center.sm (stackable-washer-dryer)",
+      "ref": "websiteLadders.washer-dryer.laundry-center.sm (laundry-center-install)",
       "was": [
         150,
         215
@@ -7606,11 +7662,11 @@
       "series": "laundry-center",
       "size": "md",
       "value": [
-        290,
-        395
+        275,
+        355
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.washer-dryer.laundry-center.md (stackable-washer-dryer)",
+      "ref": "websiteLadders.washer-dryer.laundry-center.md (laundry-center-install)",
       "was": [
         215,
         310
@@ -7621,11 +7677,11 @@
       "series": "laundry-center",
       "size": "lg",
       "value": [
-        415,
-        565
+        370,
+        475
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.washer-dryer.laundry-center.lg (stackable-washer-dryer)",
+      "ref": "websiteLadders.washer-dryer.laundry-center.lg (laundry-center-install)",
       "was": [
         330,
         475
@@ -7636,8 +7692,8 @@
       "series": "other",
       "size": "sm",
       "value": [
-        215,
-        310
+        265,
+        355
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.washer-dryer.other.sm (stackable-washer-dryer)",
@@ -7651,8 +7707,8 @@
       "series": "other",
       "size": "md",
       "value": [
-        310,
-        430
+        355,
+        465
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.washer-dryer.other.md (stackable-washer-dryer)",
@@ -7666,7 +7722,7 @@
       "series": "other",
       "size": "lg",
       "value": [
-        430,
+        465,
         620
       ],
       "source": "catalog:ladder",
@@ -10912,11 +10968,11 @@
       "series": "ceiling",
       "size": "sm",
       "value": [
-        225,
-        375
+        300,
+        450
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.interior-painting.ceiling.sm (interior-painting)",
+      "ref": "websiteLadders.interior-painting.ceiling.sm (ceiling-and-touchup-painting)",
       "was": [
         225,
         375
@@ -10927,11 +10983,11 @@
       "series": "ceiling",
       "size": "md",
       "value": [
-        450,
-        750
+        525,
+        790
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.interior-painting.ceiling.md (interior-painting)",
+      "ref": "websiteLadders.interior-painting.ceiling.md (ceiling-and-touchup-painting)",
       "was": [
         450,
         750
@@ -10942,11 +10998,11 @@
       "series": "ceiling",
       "size": "lg",
       "value": [
-        600,
+        660,
         975
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.interior-painting.ceiling.lg (interior-painting)",
+      "ref": "websiteLadders.interior-painting.ceiling.lg (ceiling-and-touchup-painting)",
       "was": [
         600,
         975
@@ -10961,7 +11017,7 @@
         345
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.interior-painting.touchup.sm (interior-painting)",
+      "ref": "websiteLadders.interior-painting.touchup.sm (ceiling-and-touchup-painting)",
       "was": [
         150,
         275
@@ -10976,7 +11032,7 @@
         430
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.interior-painting.touchup.md (interior-painting)",
+      "ref": "websiteLadders.interior-painting.touchup.md (ceiling-and-touchup-painting)",
       "was": [
         225,
         375
@@ -10991,7 +11047,7 @@
         600
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.interior-painting.touchup.lg (interior-painting)",
+      "ref": "websiteLadders.interior-painting.touchup.lg (ceiling-and-touchup-painting)",
       "was": [
         350,
         600
@@ -11272,8 +11328,8 @@
       "series": "kitchen",
       "size": "sm",
       "value": [
-        1310,
-        2120
+        1200,
+        2000
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.cabinet-painting.kitchen.sm (kitchen-cabinet-painting)",
@@ -11287,8 +11343,8 @@
       "series": "kitchen",
       "size": "md",
       "value": [
-        2605,
-        4475
+        2485,
+        4420
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.cabinet-painting.kitchen.md (kitchen-cabinet-painting)",
@@ -11302,7 +11358,7 @@
       "series": "kitchen",
       "size": "lg",
       "value": [
-        3550,
+        3455,
         5500
       ],
       "source": "catalog:ladder",
@@ -11317,11 +11373,11 @@
       "series": "bathroom",
       "size": "sm",
       "value": [
-        415,
-        690
+        275,
+        475
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.cabinet-painting.bathroom.sm (kitchen-cabinet-painting)",
+      "ref": "websiteLadders.cabinet-painting.bathroom.sm (cabinet-vanity-furniture-painting)",
       "was": [
         275,
         475
@@ -11332,11 +11388,11 @@
       "series": "bathroom",
       "size": "md",
       "value": [
-        690,
-        1120
+        475,
+        800
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.cabinet-painting.bathroom.md (kitchen-cabinet-painting)",
+      "ref": "websiteLadders.cabinet-painting.bathroom.md (cabinet-vanity-furniture-painting)",
       "was": [
         475,
         800
@@ -11347,11 +11403,11 @@
       "series": "bathroom",
       "size": "lg",
       "value": [
-        1055,
-        1685
+        750,
+        1250
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.cabinet-painting.bathroom.lg (kitchen-cabinet-painting)",
+      "ref": "websiteLadders.cabinet-painting.bathroom.lg (cabinet-vanity-furniture-painting)",
       "was": [
         750,
         1250
@@ -11362,11 +11418,11 @@
       "series": "island",
       "size": "sm",
       "value": [
-        625,
-        1055
+        500,
+        835
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.cabinet-painting.island.sm (kitchen-cabinet-painting)",
+      "ref": "websiteLadders.cabinet-painting.island.sm (cabinet-vanity-furniture-painting)",
       "was": [
         425,
         750
@@ -11377,11 +11433,11 @@
       "series": "island",
       "size": "md",
       "value": [
-        1055,
-        1810
+        835,
+        1415
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.cabinet-painting.island.md (kitchen-cabinet-painting)",
+      "ref": "websiteLadders.cabinet-painting.island.md (cabinet-vanity-furniture-painting)",
       "was": [
         750,
         1350
@@ -11392,11 +11448,11 @@
       "series": "island",
       "size": "lg",
       "value": [
-        1750,
-        2840
+        1370,
+        2200
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.cabinet-painting.island.lg (kitchen-cabinet-painting)",
+      "ref": "websiteLadders.cabinet-painting.island.lg (cabinet-vanity-furniture-painting)",
       "was": [
         1300,
         2200
@@ -11407,11 +11463,11 @@
       "series": "builtin",
       "size": "sm",
       "value": [
-        520,
-        855
+        500,
+        800
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.cabinet-painting.builtin.sm (kitchen-cabinet-painting)",
+      "ref": "websiteLadders.cabinet-painting.builtin.sm (cabinet-vanity-furniture-painting)",
       "was": [
         350,
         600
@@ -11422,11 +11478,11 @@
       "series": "builtin",
       "size": "md",
       "value": [
-        855,
-        1500
+        800,
+        1365
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.cabinet-painting.builtin.md (kitchen-cabinet-painting)",
+      "ref": "websiteLadders.cabinet-painting.builtin.md (cabinet-vanity-furniture-painting)",
       "was": [
         600,
         1100
@@ -11437,11 +11493,11 @@
       "series": "builtin",
       "size": "lg",
       "value": [
-        1500,
-        2480
+        1365,
+        2200
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.cabinet-painting.builtin.lg (kitchen-cabinet-painting)",
+      "ref": "websiteLadders.cabinet-painting.builtin.lg (cabinet-vanity-furniture-painting)",
       "was": [
         1100,
         1900
@@ -11453,10 +11509,10 @@
       "size": "sm",
       "value": [
         275,
-        485
+        360
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.cabinet-painting.furniture.sm (kitchen-cabinet-painting)",
+      "ref": "websiteLadders.cabinet-painting.furniture.sm (cabinet-vanity-furniture-painting)",
       "was": [
         175,
         325
@@ -11467,11 +11523,11 @@
       "series": "furniture",
       "size": "md",
       "value": [
-        485,
-        855
+        360,
+        470
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.cabinet-painting.furniture.md (kitchen-cabinet-painting)",
+      "ref": "websiteLadders.cabinet-painting.furniture.md (cabinet-vanity-furniture-painting)",
       "was": [
         325,
         600
@@ -11482,11 +11538,11 @@
       "series": "furniture",
       "size": "lg",
       "value": [
-        825,
-        1435
+        460,
+        600
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.cabinet-painting.furniture.lg (kitchen-cabinet-painting)",
+      "ref": "websiteLadders.cabinet-painting.furniture.lg (cabinet-vanity-furniture-painting)",
       "was": [
         575,
         1050
@@ -15052,8 +15108,8 @@
       "series": "new-install",
       "size": "sm",
       "value": [
-        350,
-        470
+        310,
+        435
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.garbage-disposal.new-install.sm (garbage-disposal-install)",
@@ -15067,8 +15123,8 @@
       "series": "new-install",
       "size": "md",
       "value": [
-        445,
-        585
+        410,
+        565
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.garbage-disposal.new-install.md (garbage-disposal-install)",
@@ -15082,7 +15138,7 @@
       "series": "new-install",
       "size": "lg",
       "value": [
-        550,
+        525,
         720
       ],
       "source": "catalog:ladder",
@@ -15097,8 +15153,8 @@
       "series": "repair",
       "size": "sm",
       "value": [
-        185,
-        255
+        225,
+        280
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.garbage-disposal.repair.sm (garbage-disposal-install)",
@@ -15112,8 +15168,8 @@
       "series": "repair",
       "size": "md",
       "value": [
-        230,
-        320
+        265,
+        330
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.garbage-disposal.repair.md (garbage-disposal-install)",
@@ -15127,8 +15183,8 @@
       "series": "repair",
       "size": "lg",
       "value": [
-        330,
-        460
+        340,
+        430
       ],
       "source": "catalog:ladder",
       "ref": "websiteLadders.garbage-disposal.repair.lg (garbage-disposal-install)",
@@ -15143,10 +15199,10 @@
       "size": "sm",
       "value": [
         185,
-        255
+        240
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.garbage-disposal.remove.sm (garbage-disposal-install)",
+      "ref": "websiteLadders.garbage-disposal.remove.sm (garbage-disposal-removal)",
       "was": [
         150,
         210
@@ -15157,11 +15213,11 @@
       "series": "remove",
       "size": "md",
       "value": [
-        230,
-        320
+        220,
+        285
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.garbage-disposal.remove.md (garbage-disposal-install)",
+      "ref": "websiteLadders.garbage-disposal.remove.md (garbage-disposal-removal)",
       "was": [
         190,
         270
@@ -15172,11 +15228,11 @@
       "series": "remove",
       "size": "lg",
       "value": [
-        295,
-        395
+        270,
+        340
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.garbage-disposal.remove.lg (garbage-disposal-install)",
+      "ref": "websiteLadders.garbage-disposal.remove.lg (garbage-disposal-removal)",
       "was": [
         250,
         340
@@ -15686,7 +15742,7 @@
         190
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.bathroom-fixture.showerhead.sm (bathroom-accessories)",
+      "ref": "websiteLadders.bathroom-fixture.showerhead.sm (showerhead-replacement)",
       "was": [
         150,
         190
@@ -15866,7 +15922,7 @@
         265
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.bathroom-fixture.grab-bar.sm (bathroom-accessories)",
+      "ref": "websiteLadders.bathroom-fixture.grab-bar.sm (grab-bar)",
       "was": [
         165,
         240
@@ -15881,7 +15937,7 @@
         360
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.bathroom-fixture.grab-bar.md (bathroom-accessories)",
+      "ref": "websiteLadders.bathroom-fixture.grab-bar.md (grab-bar)",
       "was": [
         240,
         340
@@ -15896,7 +15952,7 @@
         470
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.bathroom-fixture.grab-bar.lg (bathroom-accessories)",
+      "ref": "websiteLadders.bathroom-fixture.grab-bar.lg (grab-bar)",
       "was": [
         340,
         470
@@ -15911,7 +15967,7 @@
         270
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.bathroom-fixture.mirror-cabinet.sm (bathroom-accessories)",
+      "ref": "websiteLadders.bathroom-fixture.mirror-cabinet.sm (wall-cabinet-hanging)",
       "was": [
         165,
         240
@@ -15926,7 +15982,7 @@
         365
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.bathroom-fixture.mirror-cabinet.md (bathroom-accessories)",
+      "ref": "websiteLadders.bathroom-fixture.mirror-cabinet.md (wall-cabinet-hanging)",
       "was": [
         240,
         340
@@ -15941,7 +15997,7 @@
         540
       ],
       "source": "catalog:ladder",
-      "ref": "websiteLadders.bathroom-fixture.mirror-cabinet.lg (bathroom-accessories)",
+      "ref": "websiteLadders.bathroom-fixture.mirror-cabinet.lg (wall-cabinet-hanging)",
       "was": [
         380,
         540

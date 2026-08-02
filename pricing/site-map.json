@@ -118,15 +118,15 @@
       }
     },
     "beds": {
-      "storage": {
-        "sm": "bed-frame-platform#storage-sm",
-        "md": "bed-frame-platform#storage-md",
-        "lg": "bed-frame-platform#storage-lg"
-      },
       "adjustable": {
         "sm": "bed-frame-platform#adjustable-sm",
         "md": "bed-frame-platform#adjustable-md",
         "lg": "bed-frame-platform#adjustable-lg"
+      },
+      "storage": {
+        "sm": "bed-frame-platform#storage-sm",
+        "md": "bed-frame-platform#storage-md",
+        "lg": "bed-frame-platform#storage-lg"
       }
     },
     "garbage-disposal": {
@@ -835,6 +835,72 @@
           {
             "label": "Painting (room)",
             "ref": "interior-painting#room-walls"
+          }
+        ]
+      },
+      {
+        "file": "services/furniture-assembly/wardrobe-assembly/index.html",
+        "_note": "Codex round 3, finding 1: the FAQ JSON-LD quoted prices a repricing had moved past. A price in structured data is read by crawlers and by models that then quote us, so it is generated like every other figure.",
+        "inlineRanges": [
+          {
+            "before": "A simple two-door freestanding wardrobe starts around ",
+            "after": ", while a multi-frame PAX",
+            "ref": "site:wardrobes.freestanding.sm",
+            "sep": "-"
+          },
+          {
+            "before": "interior organizers, and lighting can range from ",
+            "after": " after scope review.",
+            "ref": "site:ikea.pax",
+            "sep": "-"
+          }
+        ]
+      },
+      {
+        "file": "services/furniture-assembly/bed-assembly/index.html",
+        "_note": "Codex round 3, finding 1.",
+        "inlineRanges": [
+          {
+            "before": "Simple platform frames start around ",
+            "after": ", while storage beds",
+            "ref": "site:beds.platform.sm",
+            "sep": "-"
+          },
+          {
+            "before": "hydraulic lifts or bunk beds can range from ",
+            "after": " after scope review.",
+            "ref": "site:beds.bunk",
+            "sep": "-"
+          }
+        ]
+      },
+      {
+        "file": "services/furniture-assembly/ikea-assembly/index.html",
+        "_note": "Codex round 3, finding 1.",
+        "inlineRanges": [
+          {
+            "before": "Simple pieces like a KALLAX 1x4 shelf start around ",
+            "after": ", while complex systems",
+            "ref": "site:ikea.kallax.sm",
+            "sep": "-"
+          },
+          {
+            "before": "like a PAX wardrobe with sliding doors can range from ",
+            "after": " after scope review.",
+            "ref": "site:ikea.pax",
+            "sep": "-"
+          }
+        ]
+      },
+      {
+        "file": "services/flooring-installation/floor-repair/index.html",
+        "_note": "Codex round 3, finding 3: this FAQ answer read 'Small repairs start at the $150 work minimum-$150.' — a sentence an earlier prose pass mangled and nothing checked. Both figures are generated now.",
+        "inlineRanges": [
+          {
+            "before": "Larger water damage or section replacements run ",
+            "after": ".\"",
+            "ref": "floor-repair",
+            "sep": "–"
           }
         ]
       }

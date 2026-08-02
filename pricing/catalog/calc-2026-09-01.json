@@ -1737,23 +1737,8 @@
       "kbCategory": "Appliance Installation",
       "kbName": "Washer-Dryer Combo (stackable)",
       "unitBasis": "per_item",
-      "rate": 215,
+      "rate": 265,
       "tiers": [
-        {
-          "id": "laundry-center",
-          "series": null,
-          "size": null,
-          "label": "Laundry center (one-piece unit) swap",
-          "lo": 215,
-          "hi": 330,
-          "includes": "labor_only",
-          "secondTechRequired": false,
-          "coiRequired": false,
-          "materialsIncluded": false,
-          "rationale": "A laundry center is a single appliance on existing hookups: $100-$300 labour nationally (homeguide, market read 2026-08-02), $215-$330 for an insured NYC crew. The stackable tier ($265-$620) describes two machines and a stacking kit.",
-          "confidence": "medium",
-          "source": "repricing 2026-09-01"
-        },
         {
           "id": "standard",
           "series": null,
@@ -1803,11 +1788,10 @@
         "photoEstimateOffered": true
       },
       "range": {
-        "lo": 215,
+        "lo": 265,
         "hi": 620,
         "openEnded": false
-      },
-      "rateRationale": "A one-piece laundry center (#laundry-center, $215) is now the bottom of this service; a stacked PAIR starts at $265. The rate is the bottom of the published band so the AI cannot quote a floor the website does not show; it was $265 before the 2026-08-02 repricing."
+      }
     },
     {
       "key": "washer-install",
@@ -3794,23 +3778,8 @@
       "kbCategory": "Carpentry & Woodwork",
       "kbName": "Closet Organization Build",
       "unitBasis": "per_item",
-      "rate": 195,
+      "rate": 230,
       "tiers": [
-        {
-          "id": "freestanding-wardrobe",
-          "series": "freestanding-wardrobe",
-          "size": null,
-          "label": "Freestanding wardrobe / armoire assembly",
-          "lo": 195,
-          "hi": 330,
-          "includes": "labor_only",
-          "secondTechRequired": false,
-          "coiRequired": false,
-          "materialsIncluded": false,
-          "rationale": "NYC wardrobe assembly is $100-$220 uninsured (flatrateassembly.com, market read 2026-08-02). An insured company with a $150 work minimum sits at $195-$330 for a 2-4 door freestanding unit that has to be anti-tip anchored. The closet-system tiers start at $230 and describe a built run, which this is not.",
-          "confidence": "medium",
-          "source": "repricing 2026-09-01"
-        },
         {
           "id": "single-run",
           "series": "single-run",
@@ -3887,7 +3856,6 @@
         {
           "id": "series",
           "order": [
-            "freestanding-wardrobe",
             "single-run",
             "multi-unit",
             "walk-in"
@@ -3906,7 +3874,7 @@
         "photoEstimateOffered": true
       },
       "range": {
-        "lo": 195,
+        "lo": 230,
         "hi": 620,
         "openEnded": false
       },
@@ -3915,8 +3883,7 @@
         "median": null,
         "verdict": "no_observations",
         "note": "Zero closet-system builds in 249 invoices. Three closet lines exist and all three are demolition and patching, which is a different service. The ladder is published on the strength of the previous published ladder alone."
-      },
-      "rateRationale": "A single freestanding wardrobe (#freestanding-wardrobe, $195) is now the bottom of this service; the closet-system runs start at $230. The rate is the bottom of the published band so the AI cannot quote a floor the website does not show; it was $230 before the 2026-08-02 repricing."
+      }
     },
     {
       "key": "caulking",
@@ -5719,38 +5686,8 @@
       "kbCategory": "Painting & Wall Finishes",
       "kbName": "Cabinet Painting (kitchen)",
       "unitBasis": "per_item",
-      "rate": 275,
+      "rate": 1200,
       "tiers": [
-        {
-          "id": "vanity-or-single-piece",
-          "series": null,
-          "size": null,
-          "label": "Bathroom vanity or a single furniture piece",
-          "lo": 275,
-          "hi": 1250,
-          "includes": "labor_only",
-          "secondTechRequired": false,
-          "coiRequired": false,
-          "materialsIncluded": false,
-          "rationale": "The kitchen tier is $1,200-$5,500 and describes a kitchen. A 2-4 door vanity or one dresser is a strip, sand, prime and two-coat job on a fraction of the door count.",
-          "confidence": "medium",
-          "source": "repricing 2026-09-01"
-        },
-        {
-          "id": "built-ins",
-          "series": null,
-          "size": null,
-          "label": "Built-ins, bookcases or an island run",
-          "lo": 350,
-          "hi": 2200,
-          "includes": "labor_only",
-          "secondTechRequired": false,
-          "coiRequired": false,
-          "materialsIncluded": false,
-          "rationale": "Between the vanity and the kitchen: 4-15 doors plus open shelving, sprayed or brushed in place.",
-          "confidence": "medium",
-          "source": "repricing 2026-09-01"
-        },
         {
           "id": "standard",
           "series": null,
@@ -5798,11 +5735,10 @@
         "photoEstimateOffered": true
       },
       "range": {
-        "lo": 275,
+        "lo": 1200,
         "hi": 5500,
         "openEnded": false
-      },
-      "rateRationale": "A bathroom vanity or one freestanding piece (#vanity-or-single-piece, $275) is now the bottom; a KITCHEN starts at $1,200. The rate is the bottom of the published band so the AI cannot quote a floor the website does not show; it was $1200 before the 2026-08-02 repricing."
+      }
     },
     {
       "key": "interior-painting",
@@ -5811,7 +5747,7 @@
       "kbCategory": "Painting & Wall Finishes",
       "kbName": "Interior Painting",
       "unitBasis": "per_item",
-      "rate": 225,
+      "rate": 450,
       "axes": [
         {
           "id": "size",
@@ -5824,36 +5760,6 @@
         }
       ],
       "tiers": [
-        {
-          "id": "touch-up",
-          "series": null,
-          "size": null,
-          "label": "Touch-ups / one wall repainted",
-          "lo": 225,
-          "hi": 600,
-          "includes": "labor_only",
-          "secondTechRequired": false,
-          "coiRequired": false,
-          "materialsIncluded": false,
-          "rationale": "Our own realised figures: one medium opening patched and painted $120 (2026-04-29) and a bedroom wall area repaired, prepped and painted $500 (2026-03-20). $225 is the insured entry once the $150 minimum, the colour match and the mobilisation are counted.",
-          "confidence": "medium",
-          "source": "repricing 2026-09-01"
-        },
-        {
-          "id": "ceiling-only",
-          "series": null,
-          "size": null,
-          "label": "Ceilings only",
-          "lo": 225,
-          "hi": 975,
-          "includes": "labor_only",
-          "secondTechRequired": false,
-          "coiRequired": false,
-          "materialsIncluded": false,
-          "rationale": "A flat single-room ceiling with no stains is below the room-walls tier ($450-$700). Per-room flat rates are $300-$1,200 nationally and NYC runs 20-40% above (market read 2026-08-02); a ceiling alone is roughly half a room, and stain-blocking old water marks is the top.",
-          "confidence": "medium",
-          "source": "repricing 2026-09-01"
-        },
         {
           "id": "hallway-stair",
           "series": null,
@@ -6033,11 +5939,11 @@
         "photoEstimateOffered": true
       },
       "range": {
-        "lo": 225,
+        "lo": 325,
         "hi": 11000,
         "openEnded": false
       },
-      "rateRationale": "A one-wall touch-up and a ceilings-only job (#touch-up, #ceiling-only, $225) are now the bottom; one room walls-only starts at $450. The rate is the bottom of the published band so the AI cannot quote a floor the website does not show; it was $450 before the 2026-08-02 repricing."
+      "rateRationale": "range.lo is $325 because #hallway-stair joined this service in the 2026-08-02 repricing: a hallway has less wall area than a room and genuinely enters below the $450 room-walls tier. The rate stays on a ROOM, because price-engine.ts quotes rate to a customer as an EXACT figure and \"paint my bedroom\" must not be answered with the price of a hallway. The two sub-room scopes that are NOT interior painting of a room — a ceiling on its own and a one-wall touch-up — are their own service, ceiling-and-touchup-painting. (Codex round 2, finding 1.)"
     },
     {
       "key": "wallpaper-installation",
@@ -6748,7 +6654,7 @@
       "kbCategory": "Plumbing",
       "kbName": "Garbage Disposal Installation",
       "unitBasis": "per_item",
-      "rate": 185,
+      "rate": 225,
       "axes": [
         {
           "id": "size",
@@ -6760,36 +6666,6 @@
         }
       ],
       "tiers": [
-        {
-          "id": "removal-to-standard-drain",
-          "series": null,
-          "size": null,
-          "label": "Remove disposal, convert back to a standard drain",
-          "lo": 185,
-          "hi": 340,
-          "includes": "labor_only",
-          "secondTechRequired": false,
-          "coiRequired": false,
-          "materialsIncluded": false,
-          "rationale": "The one scope below the swap tiers ($225-$530): pull the unit, fit a basket strainer, rebuild the tailpiece and trap, reroute the dishwasher drain if there was one.",
-          "confidence": "medium",
-          "source": "repricing 2026-09-01"
-        },
-        {
-          "id": "swap-same-sm",
-          "series": "swap-same",
-          "size": "sm",
-          "label": "Swap, same model — simple",
-          "lo": 225,
-          "hi": 305,
-          "includes": "labor_only",
-          "secondTechRequired": false,
-          "coiRequired": false,
-          "materialsIncluded": false,
-          "rationale": "Proposal §3.7.",
-          "confidence": "medium",
-          "source": "proposal §2.11"
-        },
         {
           "id": "standard",
           "series": null,
@@ -6806,17 +6682,17 @@
           "source": "proposal §2.11"
         },
         {
-          "id": "swap-diff-sm",
-          "series": "swap-diff",
+          "id": "swap-same-sm",
+          "series": "swap-same",
           "size": "sm",
-          "label": "Swap, different model — simple",
-          "lo": 245,
-          "hi": 330,
+          "label": "Swap, same model — simple",
+          "lo": 225,
+          "hi": 305,
           "includes": "labor_only",
           "secondTechRequired": false,
           "coiRequired": false,
           "materialsIncluded": false,
-          "rationale": "Proposal §3.7: swap-diff was $1-$5 CHEAPER than swap-same on every step despite needing a new mounting ring.",
+          "rationale": "Proposal §3.7.",
           "confidence": "medium",
           "source": "proposal §2.11"
         },
@@ -6836,12 +6712,12 @@
           "source": "proposal §2.11"
         },
         {
-          "id": "swap-diff-md",
-          "series": "swap-diff",
-          "size": "md",
-          "label": "Swap, different model — moderate",
-          "lo": 310,
-          "hi": 420,
+          "id": "swap-same-lg",
+          "series": "swap-same",
+          "size": "lg",
+          "label": "Swap, same model — complex",
+          "lo": 370,
+          "hi": 500,
           "includes": "labor_only",
           "secondTechRequired": false,
           "coiRequired": false,
@@ -6851,12 +6727,27 @@
           "source": "proposal §2.11"
         },
         {
-          "id": "swap-same-lg",
-          "series": "swap-same",
-          "size": "lg",
-          "label": "Swap, same model — complex",
-          "lo": 370,
-          "hi": 500,
+          "id": "swap-diff-sm",
+          "series": "swap-diff",
+          "size": "sm",
+          "label": "Swap, different model — simple",
+          "lo": 245,
+          "hi": 330,
+          "includes": "labor_only",
+          "secondTechRequired": false,
+          "coiRequired": false,
+          "materialsIncluded": false,
+          "rationale": "Proposal §3.7: swap-diff was $1-$5 CHEAPER than swap-same on every step despite needing a new mounting ring.",
+          "confidence": "medium",
+          "source": "proposal §2.11"
+        },
+        {
+          "id": "swap-diff-md",
+          "series": "swap-diff",
+          "size": "md",
+          "label": "Swap, different model — moderate",
+          "lo": 310,
+          "hi": 420,
           "includes": "labor_only",
           "secondTechRequired": false,
           "coiRequired": false,
@@ -6912,11 +6803,10 @@
         "photoEstimateOffered": true
       },
       "range": {
-        "lo": 185,
+        "lo": 225,
         "hi": 720,
         "openEnded": false
-      },
-      "rateRationale": "Removing a disposal and going back to a plain drain (#removal-to-standard-drain, $185) is now the bottom; a swap starts at $225. The rate is the bottom of the published band so the AI cannot quote a floor the website does not show; it was $225 before the 2026-08-02 repricing."
+      }
     },
     {
       "key": "leak-repair",
@@ -9249,6 +9139,501 @@
         "hi": 3700,
         "openEnded": false
       }
+    },
+    {
+      "key": "freestanding-wardrobe-assembly",
+      "displayName": "Freestanding wardrobe / armoire assembly",
+      "priceItemCategory": "Furniture Assembly",
+      "kbCategory": "Furniture Assembly",
+      "kbName": "Freestanding Wardrobe Assembly",
+      "unitBasis": "per_item",
+      "rate": 195,
+      "tiers": [
+        {
+          "id": "single-unit",
+          "series": "single-unit",
+          "size": null,
+          "label": "Freestanding wardrobe / armoire, one unit",
+          "lo": 195,
+          "hi": 330,
+          "includes": "labor_only",
+          "secondTechRequired": false,
+          "coiRequired": false,
+          "materialsIncluded": false,
+          "rationale": "NYC wardrobe assembly is $100-$220 uninsured (flatrateassembly.com, market read 2026-08-02). An insured company with a $150 work minimum sits at $195-$330 for a 2-4 door freestanding unit that has to be anti-tip anchored. The closet-system tiers start at $230 and describe a built run, which this is not.",
+          "confidence": "medium",
+          "source": "repricing 2026-09-01"
+        },
+        {
+          "id": "mirrored-sliding",
+          "series": "mirrored-sliding",
+          "size": null,
+          "label": "Mirrored or sliding-door wardrobe",
+          "lo": 265,
+          "hi": 400,
+          "includes": "labor_only",
+          "secondTechRequired": false,
+          "coiRequired": false,
+          "materialsIncluded": false,
+          "rationale": "Sliding doors have to be tracked and shimmed square or they bind, and a mirrored door is a two-person lift that cannot be flexed.",
+          "confidence": "medium",
+          "source": "repricing 2026-09-01"
+        },
+        {
+          "id": "multi-unit",
+          "series": "multi-unit",
+          "size": null,
+          "label": "Two or more units side by side",
+          "lo": 330,
+          "hi": 470,
+          "includes": "labor_only",
+          "secondTechRequired": false,
+          "coiRequired": false,
+          "materialsIncluded": false,
+          "rationale": "Two or more freestanding units levelled to each other and anchored as one run.",
+          "confidence": "medium",
+          "source": "repricing 2026-09-01"
+        }
+      ],
+      "addOns": [],
+      "confidence": "medium",
+      "rationale": "NYC wardrobe assembly is $100-$220 uninsured (flatrateassembly.com, market read 2026-08-02); an insured company with a $150 work minimum sits at $195-$330 for a 2-4 door unit that has to be anti-tip anchored. Split out of closet-system-build, whose tiers start at $230 and describe a BUILT run — a knowledge-base row reading \"$195-$620\" for closet systems would have led a customer with the price of a different job (Codex round 2, finding 1).",
+      "previous": {
+        "priceItemRate": null,
+        "priceItemNotes": null,
+        "kbName": null,
+        "kbPriceRange": null
+      },
+      "sources": [
+        {
+          "kind": "market",
+          "note": "NYC market read, repricing lane",
+          "readOn": "2026-08-02"
+        }
+      ],
+      "status": "active",
+      "axes": [
+        {
+          "id": "series",
+          "order": [
+            "single-unit",
+            "mirrored-sliding",
+            "multi-unit"
+          ],
+          "note": "One unit, then a door type that has to be tracked and shimmed square, then more than one unit levelled to each other as a single run."
+        }
+      ],
+      "riskFlags": [],
+      "openEnded": false,
+      "secondTechImplied": false,
+      "minCharge": 150,
+      "visit": {
+        "applies": true,
+        "fee": 99,
+        "creditedTowardWork": true,
+        "photoEstimateOffered": true
+      },
+      "range": {
+        "lo": 195,
+        "hi": 470,
+        "openEnded": false
+      }
+    },
+    {
+      "key": "laundry-center-install",
+      "displayName": "Laundry center (one-piece) installation",
+      "priceItemCategory": "Appliance Installation",
+      "kbCategory": "Appliance Installation",
+      "kbName": "Laundry Center Installation",
+      "unitBasis": "per_item",
+      "rate": 215,
+      "tiers": [
+        {
+          "id": "swap",
+          "series": "swap",
+          "size": null,
+          "label": "Laundry center (one-piece unit) swap",
+          "lo": 215,
+          "hi": 330,
+          "includes": "labor_only",
+          "secondTechRequired": false,
+          "coiRequired": false,
+          "materialsIncluded": false,
+          "rationale": "A laundry center is a single appliance on existing hookups: $100-$300 labour nationally (homeguide, market read 2026-08-02), $215-$330 for an insured NYC crew. The stackable tier ($265-$620) describes two machines and a stacking kit.",
+          "confidence": "medium",
+          "source": "repricing 2026-09-01"
+        },
+        {
+          "id": "hoses-venting",
+          "series": "hoses-venting",
+          "size": null,
+          "label": "Swap + new hoses and venting",
+          "lo": 265,
+          "hi": 360,
+          "includes": "labor_only",
+          "secondTechRequired": false,
+          "coiRequired": false,
+          "materialsIncluded": false,
+          "rationale": "New fill hoses, a new vent run and a leak check under load.",
+          "confidence": "medium",
+          "source": "repricing 2026-09-01"
+        },
+        {
+          "id": "new-hookup",
+          "series": "new-hookup",
+          "size": null,
+          "label": "New install + full hookup",
+          "lo": 330,
+          "hi": 475,
+          "includes": "labor_only",
+          "secondTechRequired": false,
+          "coiRequired": false,
+          "materialsIncluded": false,
+          "rationale": "Hookups that were not there: supply, drain and vent brought to the machine.",
+          "confidence": "medium",
+          "source": "repricing 2026-09-01"
+        }
+      ],
+      "addOns": [],
+      "confidence": "medium",
+      "rationale": "A laundry center is ONE appliance on existing hookups: $100-$300 labour nationally (homeguide, market read 2026-08-02), $215-$330 for an insured NYC crew. Split out of stackable-washer-dryer, which describes two machines and a stacking kit and starts at $265.",
+      "previous": {
+        "priceItemRate": null,
+        "priceItemNotes": null,
+        "kbName": null,
+        "kbPriceRange": null
+      },
+      "sources": [
+        {
+          "kind": "market",
+          "note": "NYC market read, repricing lane",
+          "readOn": "2026-08-02"
+        }
+      ],
+      "status": "active",
+      "axes": [
+        {
+          "id": "series",
+          "order": [
+            "swap",
+            "hoses-venting",
+            "new-hookup"
+          ],
+          "note": "How much of the hookup already exists: a straight swap, a swap with new hoses and a new vent run, or utilities brought to the machine for the first time."
+        }
+      ],
+      "riskFlags": [],
+      "openEnded": false,
+      "secondTechImplied": false,
+      "minCharge": 150,
+      "visit": {
+        "applies": true,
+        "fee": 99,
+        "creditedTowardWork": true,
+        "photoEstimateOffered": true
+      },
+      "range": {
+        "lo": 215,
+        "hi": 475,
+        "openEnded": false
+      }
+    },
+    {
+      "key": "garbage-disposal-removal",
+      "displayName": "Garbage disposal removal (back to a plain drain)",
+      "priceItemCategory": "Plumbing",
+      "kbCategory": "Plumbing",
+      "kbName": "Garbage Disposal Removal",
+      "unitBasis": "per_item",
+      "rate": 185,
+      "tiers": [
+        {
+          "id": "strainer-only",
+          "series": "strainer-only",
+          "size": null,
+          "label": "Remove disposal, fit a basket strainer",
+          "lo": 185,
+          "hi": 245,
+          "includes": "labor_only",
+          "secondTechRequired": false,
+          "coiRequired": false,
+          "materialsIncluded": false,
+          "rationale": "The one scope below the swap tiers ($225-$530): pull the unit, fit a basket strainer, rebuild the tailpiece and trap, reroute the dishwasher drain if there was one.",
+          "confidence": "medium",
+          "source": "repricing 2026-09-01"
+        },
+        {
+          "id": "strainer-trap",
+          "series": "strainer-trap",
+          "size": null,
+          "label": "Remove + new strainer, tailpiece and trap",
+          "lo": 215,
+          "hi": 285,
+          "includes": "labor_only",
+          "secondTechRequired": false,
+          "coiRequired": false,
+          "materialsIncluded": false,
+          "rationale": "The disposal out and the whole drain assembly under the sink rebuilt in plain parts.",
+          "confidence": "medium",
+          "source": "repricing 2026-09-01"
+        },
+        {
+          "id": "drain-rework",
+          "series": "drain-rework",
+          "size": null,
+          "label": "Remove + drain rework, dishwasher drain rerouted",
+          "lo": 265,
+          "hi": 340,
+          "includes": "labor_only",
+          "secondTechRequired": false,
+          "coiRequired": false,
+          "materialsIncluded": false,
+          "rationale": "The dishwasher drained into the disposal, so its drain has to be rerouted with an air gap or a high loop before the disposal can go.",
+          "confidence": "medium",
+          "source": "repricing 2026-09-01"
+        }
+      ],
+      "addOns": [],
+      "confidence": "medium",
+      "rationale": "The one scope below garbage-disposal-install's $225 swap tiers, and the opposite job. Split out so the knowledge base cannot answer \"how much to install a disposal\" with the price of removing one (Codex round 2, finding 1).",
+      "previous": {
+        "priceItemRate": null,
+        "priceItemNotes": null,
+        "kbName": null,
+        "kbPriceRange": null
+      },
+      "sources": [
+        {
+          "kind": "market",
+          "note": "NYC market read, repricing lane",
+          "readOn": "2026-08-02"
+        }
+      ],
+      "status": "active",
+      "axes": [
+        {
+          "id": "series",
+          "order": [
+            "strainer-only",
+            "strainer-trap",
+            "drain-rework"
+          ],
+          "note": "How much of the drain has to be rebuilt once the disposal is out: a strainer, the whole trap assembly, or the dishwasher drain rerouted as well."
+        }
+      ],
+      "riskFlags": [],
+      "openEnded": false,
+      "secondTechImplied": false,
+      "minCharge": 150,
+      "visit": {
+        "applies": true,
+        "fee": 99,
+        "creditedTowardWork": true,
+        "photoEstimateOffered": true
+      },
+      "range": {
+        "lo": 185,
+        "hi": 340,
+        "openEnded": false
+      }
+    },
+    {
+      "key": "ceiling-and-touchup-painting",
+      "displayName": "Ceilings and touch-up painting",
+      "priceItemCategory": "Painting",
+      "kbCategory": "Painting & Wallpaper",
+      "kbName": "Ceiling & Touch-Up Painting",
+      "unitBasis": "per_item",
+      "rate": 225,
+      "tiers": [
+        {
+          "id": "one-wall",
+          "series": "one-wall",
+          "size": null,
+          "label": "One wall repainted, or a patch matched in",
+          "lo": 225,
+          "hi": 430,
+          "includes": "labor_only",
+          "secondTechRequired": false,
+          "coiRequired": false,
+          "materialsIncluded": false,
+          "rationale": "Our own realised figures: one medium opening patched and painted $120 (2026-04-29), a bedroom wall area repaired, prepped and painted $500 (2026-03-20). $225 is the insured entry once the $150 minimum, the colour match and the mobilisation are counted.",
+          "confidence": "medium",
+          "source": "repricing 2026-09-01"
+        },
+        {
+          "id": "one-ceiling",
+          "series": "one-ceiling",
+          "size": null,
+          "label": "One room ceiling",
+          "lo": 300,
+          "hi": 600,
+          "includes": "labor_only",
+          "secondTechRequired": false,
+          "coiRequired": false,
+          "materialsIncluded": false,
+          "rationale": "A ceiling is a room's worth of area, all of it overhead and all of it cut in at the wall line. Per-room flat rates are $300-$1,200 nationally and NYC runs 20-40% above (market read 2026-08-02); a ceiling alone is roughly half a room.",
+          "confidence": "medium",
+          "source": "repricing 2026-09-01"
+        },
+        {
+          "id": "several-areas",
+          "series": "several-areas",
+          "size": null,
+          "label": "Several ceilings, or patches across rooms",
+          "lo": 450,
+          "hi": 975,
+          "includes": "labor_only",
+          "secondTechRequired": false,
+          "coiRequired": false,
+          "materialsIncluded": false,
+          "rationale": "Two or three ceilings in one visit, or stain-blocking old water marks before anything else can go on — the top of what this page sells before it becomes a room repaint.",
+          "confidence": "medium",
+          "source": "repricing 2026-09-01"
+        }
+      ],
+      "addOns": [],
+      "confidence": "medium",
+      "rationale": "Two scopes the interior-painting service had no row for and which are below its $450 room tier: a ceiling on its own, and a wall or a patch repainted. Our own realised figures are $120 for one medium opening patched and painted (2026-04-29) and $500 for a bedroom wall area repaired, prepped and painted (2026-03-20). Split out so the interior-painting KB row keeps saying \"$450\" for a room (Codex round 2, finding 1).",
+      "previous": {
+        "priceItemRate": null,
+        "priceItemNotes": null,
+        "kbName": null,
+        "kbPriceRange": null
+      },
+      "sources": [
+        {
+          "kind": "market",
+          "note": "NYC market read, repricing lane",
+          "readOn": "2026-08-02"
+        }
+      ],
+      "status": "active",
+      "axes": [
+        {
+          "id": "series",
+          "order": [
+            "one-wall",
+            "one-ceiling",
+            "several-areas"
+          ],
+          "note": "How much area, and how much of it is overhead: one wall or a patch, then a whole ceiling, then several ceilings or patches across rooms with stain-blocking at the top."
+        }
+      ],
+      "riskFlags": [],
+      "openEnded": false,
+      "secondTechImplied": false,
+      "minCharge": 150,
+      "visit": {
+        "applies": true,
+        "fee": 99,
+        "creditedTowardWork": true,
+        "photoEstimateOffered": true
+      },
+      "range": {
+        "lo": 225,
+        "hi": 975,
+        "openEnded": false
+      }
+    },
+    {
+      "key": "cabinet-vanity-furniture-painting",
+      "displayName": "Vanity, built-in and furniture painting",
+      "priceItemCategory": "Painting",
+      "kbCategory": "Painting & Wallpaper",
+      "kbName": "Vanity & Furniture Painting",
+      "unitBasis": "per_item",
+      "rate": 275,
+      "tiers": [
+        {
+          "id": "single-piece",
+          "series": "single-piece",
+          "size": null,
+          "label": "One freestanding furniture piece",
+          "lo": 275,
+          "hi": 600,
+          "includes": "labor_only",
+          "secondTechRequired": false,
+          "coiRequired": false,
+          "materialsIncluded": false,
+          "rationale": "A nightstand, a small cabinet, a dresser or a hutch: stripped, sanded, primed and two-coated off its hinges.",
+          "confidence": "medium",
+          "source": "repricing 2026-09-01"
+        },
+        {
+          "id": "vanity",
+          "series": "vanity",
+          "size": null,
+          "label": "Bathroom vanity (2-8 doors and drawers)",
+          "lo": 350,
+          "hi": 1250,
+          "includes": "labor_only",
+          "secondTechRequired": false,
+          "coiRequired": false,
+          "materialsIncluded": false,
+          "rationale": "kitchen-cabinet-painting is $1,200-$5,500 and describes a KITCHEN. A vanity is a fraction of that door count in a room with no ventilation and a sink to mask.",
+          "confidence": "medium",
+          "source": "repricing 2026-09-01"
+        },
+        {
+          "id": "built-ins",
+          "series": "built-ins",
+          "size": null,
+          "label": "Built-ins, bookcases or an island run",
+          "lo": 500,
+          "hi": 2200,
+          "includes": "labor_only",
+          "secondTechRequired": false,
+          "coiRequired": false,
+          "materialsIncluded": false,
+          "rationale": "Between the vanity and the kitchen: 4-15 doors plus open shelving, sprayed or brushed in place.",
+          "confidence": "medium",
+          "source": "repricing 2026-09-01"
+        }
+      ],
+      "addOns": [],
+      "confidence": "medium",
+      "rationale": "kitchen-cabinet-painting is $1,200-$5,500 and describes a KITCHEN. A 2-4 door bathroom vanity, one dresser, or a run of built-ins is a fraction of the door count and its own job. Split out so a customer asking about a kitchen is never led with $275 (Codex round 2, finding 1).",
+      "previous": {
+        "priceItemRate": null,
+        "priceItemNotes": null,
+        "kbName": null,
+        "kbPriceRange": null
+      },
+      "sources": [
+        {
+          "kind": "market",
+          "note": "NYC market read, repricing lane",
+          "readOn": "2026-08-02"
+        }
+      ],
+      "status": "active",
+      "axes": [
+        {
+          "id": "series",
+          "order": [
+            "single-piece",
+            "vanity",
+            "built-ins"
+          ],
+          "note": "Door and drawer-front count: one piece of furniture, then a bathroom vanity, then a run of built-ins or an island. A KITCHEN is a different service."
+        }
+      ],
+      "riskFlags": [],
+      "openEnded": false,
+      "secondTechImplied": false,
+      "minCharge": 150,
+      "visit": {
+        "applies": true,
+        "fee": 99,
+        "creditedTowardWork": true,
+        "photoEstimateOffered": true
+      },
+      "range": {
+        "lo": 275,
+        "hi": 2200,
+        "openEnded": false
+      }
     }
   ],
   "kbAliases": [
@@ -9884,49 +10269,6 @@
               }
             }
           },
-          "storage": {
-            "label": "Storage Bed (Drawers / Hydraulic)",
-            "service": "bed-frame-platform",
-            "anchors": {
-              "entry": 195,
-              "top": 420
-            },
-            "cells": {
-              "sm": {
-                "lo": 195,
-                "hi": 265,
-                "label": "Twin / Full",
-                "was": [
-                  195,
-                  265
-                ],
-                "tier": "bed-frame-platform#storage-sm",
-                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
-              },
-              "md": {
-                "lo": 245,
-                "hi": 330,
-                "label": "Queen",
-                "was": [
-                  245,
-                  330
-                ],
-                "tier": "bed-frame-platform#storage-md",
-                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
-              },
-              "lg": {
-                "lo": 310,
-                "hi": 420,
-                "label": "King / Cal King",
-                "was": [
-                  310,
-                  420
-                ],
-                "tier": "bed-frame-platform#storage-lg",
-                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
-              }
-            }
-          },
           "adjustable": {
             "label": "Adjustable Base",
             "service": "bed-frame-platform",
@@ -9969,6 +10311,49 @@
                 "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
               }
             }
+          },
+          "storage": {
+            "label": "Storage Bed (Drawers / Hydraulic)",
+            "service": "bed-frame-platform",
+            "anchors": {
+              "entry": 195,
+              "top": 420
+            },
+            "cells": {
+              "sm": {
+                "lo": 195,
+                "hi": 265,
+                "label": "Twin / Full",
+                "was": [
+                  195,
+                  265
+                ],
+                "tier": "bed-frame-platform#storage-sm",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              },
+              "md": {
+                "lo": 245,
+                "hi": 330,
+                "label": "Queen",
+                "was": [
+                  245,
+                  330
+                ],
+                "tier": "bed-frame-platform#storage-md",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              },
+              "lg": {
+                "lo": 310,
+                "hi": 420,
+                "label": "King / Cal King",
+                "was": [
+                  310,
+                  420
+                ],
+                "tier": "bed-frame-platform#storage-lg",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              }
+            }
           }
         }
       },
@@ -9976,7 +10361,7 @@
         "service": "closet-system-build",
         "title": "Wardrobe Assembly Estimate",
         "anchors": {
-          "entry": 195,
+          "entry": 230,
           "top": 620
         },
         "evidence": "closet-system-build is $230-$620 (single-run / multi-unit / walk-in). A single freestanding two-door wardrobe is below that band — it is a furniture-assembly item, not a closet build — so the config enters at $195, the catalog's standard-item assembly tier, and tops out at the walk-in anchor $620. NYC wardrobe assembly $100-$220 uninsured (market read 2026-08-02) is the floor this sits above, not the target.",
@@ -9984,15 +10369,15 @@
         "series": {
           "freestanding": {
             "label": "Freestanding Wardrobe",
-            "service": "closet-system-build",
+            "service": "freestanding-wardrobe-assembly",
             "anchors": {
               "entry": 195,
-              "top": 620
+              "top": 375
             },
             "cells": {
               "sm": {
                 "lo": 195,
-                "hi": 240,
+                "hi": 235,
                 "label": "Single door / 2 doors",
                 "was": [
                   150,
@@ -10001,8 +10386,8 @@
                 "derivation": "anchor:entry"
               },
               "md": {
-                "lo": 240,
-                "hi": 310,
+                "lo": 235,
+                "hi": 295,
                 "label": "3 doors with drawers",
                 "was": [
                   195,
@@ -10011,8 +10396,8 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 310,
-                "hi": 410,
+                "lo": 295,
+                "hi": 375,
                 "label": "4+ doors / mirrored",
                 "was": [
                   265,
@@ -10024,15 +10409,15 @@
           },
           "armoire": {
             "label": "Armoire",
-            "service": "closet-system-build",
+            "service": "freestanding-wardrobe-assembly",
             "anchors": {
-              "entry": 195,
-              "top": 620
+              "entry": 215,
+              "top": 400
             },
             "cells": {
               "sm": {
-                "lo": 195,
-                "hi": 250,
+                "lo": 215,
+                "hi": 260,
                 "label": "Small / 2-door",
                 "was": [
                   150,
@@ -10041,8 +10426,8 @@
                 "derivation": "anchor:entry"
               },
               "md": {
-                "lo": 250,
-                "hi": 325,
+                "lo": 260,
+                "hi": 320,
                 "label": "Standard with shelves",
                 "was": [
                   201,
@@ -10051,8 +10436,8 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 325,
-                "hi": 435,
+                "lo": 320,
+                "hi": 400,
                 "label": "Large / multi-section",
                 "was": [
                   281,
@@ -10066,13 +10451,13 @@
             "label": "Closet System (Multi-Unit)",
             "service": "closet-system-build",
             "anchors": {
-              "entry": 195,
-              "top": 620
+              "entry": 230,
+              "top": 555
             },
             "cells": {
               "sm": {
-                "lo": 195,
-                "hi": 270,
+                "lo": 230,
+                "hi": 300,
                 "label": "1–2 units",
                 "was": [
                   150,
@@ -10081,8 +10466,8 @@
                 "derivation": "anchor:entry"
               },
               "md": {
-                "lo": 300,
-                "hi": 410,
+                "lo": 330,
+                "hi": 425,
                 "label": "3–4 units",
                 "was": [
                   255,
@@ -10091,8 +10476,8 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 410,
-                "hi": 565,
+                "lo": 425,
+                "hi": 555,
                 "label": "5+ units / wall-to-wall",
                 "was": [
                   375,
@@ -10104,15 +10489,15 @@
           },
           "sliding-door": {
             "label": "Sliding Door Wardrobe",
-            "service": "closet-system-build",
+            "service": "freestanding-wardrobe-assembly",
             "anchors": {
-              "entry": 195,
-              "top": 620
+              "entry": 230,
+              "top": 470
             },
             "cells": {
               "sm": {
-                "lo": 195,
-                "hi": 265,
+                "lo": 230,
+                "hi": 290,
                 "label": "2-door (up to 150cm)",
                 "was": [
                   150,
@@ -10121,8 +10506,8 @@
                 "derivation": "anchor:entry"
               },
               "md": {
-                "lo": 265,
-                "hi": 370,
+                "lo": 290,
+                "hi": 375,
                 "label": "3-door (up to 250cm)",
                 "was": [
                   220,
@@ -10131,8 +10516,8 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 370,
-                "hi": 495,
+                "lo": 375,
+                "hi": 470,
                 "label": "4-door (250cm+)",
                 "was": [
                   330,
@@ -10146,23 +10531,23 @@
             "label": "Walk-In Closet Kit",
             "service": "closet-system-build",
             "anchors": {
-              "entry": 195,
+              "entry": 265,
               "top": 620
             },
             "cells": {
               "sm": {
-                "lo": 210,
-                "hi": 295,
+                "lo": 265,
+                "hi": 345,
                 "label": "Basic rods + shelves",
                 "was": [
                   165,
                   250
                 ],
-                "derivation": "derived:log-affine between the entry and top anchors"
+                "derivation": "anchor:entry"
               },
               "md": {
-                "lo": 295,
-                "hi": 425,
+                "lo": 345,
+                "hi": 460,
                 "label": "Full kit with drawers",
                 "was": [
                   250,
@@ -10171,7 +10556,7 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 425,
+                "lo": 460,
                 "hi": 620,
                 "label": "Custom multi-section",
                 "was": [
@@ -10186,13 +10571,13 @@
             "label": "Other Wardrobe",
             "service": "closet-system-build",
             "anchors": {
-              "entry": 195,
-              "top": 620
+              "entry": 230,
+              "top": 455
             },
             "cells": {
               "sm": {
-                "lo": 195,
-                "hi": 260,
+                "lo": 230,
+                "hi": 285,
                 "label": "Simple",
                 "was": [
                   150,
@@ -10201,8 +10586,8 @@
                 "derivation": "anchor:entry"
               },
               "md": {
-                "lo": 260,
-                "hi": 355,
+                "lo": 285,
+                "hi": 365,
                 "label": "Medium",
                 "was": [
                   215,
@@ -10211,8 +10596,8 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 355,
-                "hi": 480,
+                "lo": 365,
+                "hi": 455,
                 "label": "Complex",
                 "was": [
                   315,
@@ -14041,7 +14426,7 @@
         "service": "stackable-washer-dryer",
         "title": "Washer & Dryer Combo Estimate",
         "anchors": {
-          "entry": 215,
+          "entry": 265,
           "top": 620
         },
         "evidence": "A washer+dryer pair is $100-$300 labour with hookups in place and $650-$2,000 where new utilities are needed (market read 2026-08-02); NYC hookup installs read $1,120-$2,810 all-in. The catalog's stackable service is $265-$620. A laundry-center swap is the easiest thing on this page and enters at $215 — below the stackable tier because it is one appliance, not two.",
@@ -14051,13 +14436,13 @@
             "label": "Stacked Washer + Dryer",
             "service": "stackable-washer-dryer",
             "anchors": {
-              "entry": 215,
+              "entry": 265,
               "top": 620
             },
             "cells": {
               "sm": {
-                "lo": 235,
-                "hi": 330,
+                "lo": 285,
+                "hi": 375,
                 "label": "Standard swap (hookups exist)",
                 "was": [
                   165,
@@ -14066,8 +14451,8 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "md": {
-                "lo": 330,
-                "hi": 430,
+                "lo": 375,
+                "hi": 465,
                 "label": "Swap + stacking kit + venting",
                 "was": [
                   250,
@@ -14076,7 +14461,7 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 460,
+                "lo": 485,
                 "hi": 620,
                 "label": "New hookups + venting + haul-away",
                 "was": [
@@ -14091,13 +14476,13 @@
             "label": "Side-by-Side Washer + Dryer",
             "service": "stackable-washer-dryer",
             "anchors": {
-              "entry": 215,
+              "entry": 265,
               "top": 620
             },
             "cells": {
               "sm": {
-                "lo": 235,
-                "hi": 330,
+                "lo": 285,
+                "hi": 375,
                 "label": "Standard swap (hookups exist)",
                 "was": [
                   165,
@@ -14106,8 +14491,8 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "md": {
-                "lo": 330,
-                "hi": 430,
+                "lo": 375,
+                "hi": 465,
                 "label": "Swap + hoses + venting",
                 "was": [
                   250,
@@ -14116,7 +14501,7 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 460,
+                "lo": 485,
                 "hi": 620,
                 "label": "New hookups + venting + haul-away",
                 "was": [
@@ -14127,27 +14512,67 @@
               }
             }
           },
-          "allinone": {
-            "label": "All-in-One Combo Unit",
+          "other": {
+            "label": "Other Setup",
             "service": "stackable-washer-dryer",
             "anchors": {
-              "entry": 215,
+              "entry": 265,
               "top": 620
             },
             "cells": {
               "sm": {
-                "lo": 235,
-                "hi": 295,
+                "lo": 265,
+                "hi": 355,
+                "label": "Simple",
+                "was": [
+                  150,
+                  230
+                ],
+                "derivation": "anchor:entry"
+              },
+              "md": {
+                "lo": 355,
+                "hi": 465,
+                "label": "Medium",
+                "was": [
+                  230,
+                  345
+                ],
+                "derivation": "derived:log-affine between the entry and top anchors"
+              },
+              "lg": {
+                "lo": 465,
+                "hi": 620,
+                "label": "Complex",
+                "was": [
+                  345,
+                  530
+                ],
+                "derivation": "derived:log-affine between the entry and top anchors"
+              }
+            }
+          },
+          "allinone": {
+            "label": "All-in-One Combo Unit",
+            "service": "stackable-washer-dryer",
+            "anchors": {
+              "entry": 265,
+              "top": 475
+            },
+            "cells": {
+              "sm": {
+                "lo": 265,
+                "hi": 315,
                 "label": "Standard swap",
                 "was": [
                   165,
                   220
                 ],
-                "derivation": "derived:log-affine between the entry and top anchors"
+                "derivation": "anchor:entry"
               },
               "md": {
-                "lo": 295,
-                "hi": 385,
+                "lo": 315,
+                "hi": 375,
                 "label": "Swap + drain hookup",
                 "was": [
                   220,
@@ -14156,8 +14581,8 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 415,
-                "hi": 540,
+                "lo": 395,
+                "hi": 475,
                 "label": "New install + plumbing + electrical",
                 "was": [
                   330,
@@ -14169,15 +14594,15 @@
           },
           "laundry-center": {
             "label": "Laundry Center",
-            "service": "stackable-washer-dryer",
+            "service": "laundry-center-install",
             "anchors": {
               "entry": 215,
-              "top": 620
+              "top": 475
             },
             "cells": {
               "sm": {
                 "lo": 215,
-                "hi": 290,
+                "hi": 275,
                 "label": "Standard swap",
                 "was": [
                   150,
@@ -14186,8 +14611,8 @@
                 "derivation": "anchor:entry"
               },
               "md": {
-                "lo": 290,
-                "hi": 395,
+                "lo": 275,
+                "hi": 355,
                 "label": "Swap + hoses + venting",
                 "was": [
                   215,
@@ -14196,52 +14621,12 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 415,
-                "hi": 565,
+                "lo": 370,
+                "hi": 475,
                 "label": "New install + full hookup",
                 "was": [
                   330,
                   475
-                ],
-                "derivation": "derived:log-affine between the entry and top anchors"
-              }
-            }
-          },
-          "other": {
-            "label": "Other Setup",
-            "service": "stackable-washer-dryer",
-            "anchors": {
-              "entry": 215,
-              "top": 620
-            },
-            "cells": {
-              "sm": {
-                "lo": 215,
-                "hi": 310,
-                "label": "Simple",
-                "was": [
-                  150,
-                  230
-                ],
-                "derivation": "anchor:entry"
-              },
-              "md": {
-                "lo": 310,
-                "hi": 430,
-                "label": "Medium",
-                "was": [
-                  230,
-                  345
-                ],
-                "derivation": "derived:log-affine between the entry and top anchors"
-              },
-              "lg": {
-                "lo": 430,
-                "hi": 620,
-                "label": "Complex",
-                "was": [
-                  345,
-                  530
                 ],
                 "derivation": "derived:log-affine between the entry and top anchors"
               }
@@ -16293,7 +16678,7 @@
         "service": "interior-painting",
         "title": "What Will Painting This Room Cost?",
         "anchors": {
-          "entry": 225,
+          "entry": 325,
           "top": 11000
         },
         "evidence": "Per-room flat rates are $300-$1,200 and NYC runs 20-40% above the national average (facadecolorizer, remodelcalculators, market read 2026-08-02); the catalog's room-walls $450-$700 and apartment-xl $6,500-$11,000 are that read. A single ceiling or a one-wall touch-up is below the room tier and the catalog had no row for it — our own realised 'repair, patch, prep and paint bedroom wall area' is $500 and a single medium patch-and-paint is $120 (2026-04-29).",
@@ -16421,15 +16806,15 @@
           },
           "ceiling": {
             "label": "Ceilings only",
-            "service": "interior-painting",
+            "service": "ceiling-and-touchup-painting",
             "anchors": {
-              "entry": 225,
+              "entry": 300,
               "top": 975
             },
             "cells": {
               "sm": {
-                "lo": 225,
-                "hi": 375,
+                "lo": 300,
+                "hi": 450,
                 "label": "One room ceiling — flat, no stains",
                 "was": [
                   225,
@@ -16438,8 +16823,8 @@
                 "derivation": "anchor:entry"
               },
               "md": {
-                "lo": 450,
-                "hi": 750,
+                "lo": 525,
+                "hi": 790,
                 "label": "2–3 room ceilings",
                 "was": [
                   450,
@@ -16448,7 +16833,7 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 600,
+                "lo": 660,
                 "hi": 975,
                 "label": "Ceilings + stain blocking (old water marks)",
                 "was": [
@@ -16461,7 +16846,7 @@
           },
           "touchup": {
             "label": "Touch-ups / one wall repainted",
-            "service": "interior-painting",
+            "service": "ceiling-and-touchup-painting",
             "anchors": {
               "entry": 225,
               "top": 600
@@ -16811,7 +17196,7 @@
         "service": "kitchen-cabinet-painting",
         "title": "What Will Cabinet Painting Cost?",
         "anchors": {
-          "entry": 275,
+          "entry": 1200,
           "top": 5500
         },
         "evidence": "kitchen-cabinet-painting is $1,200-$5,500 — that is a KITCHEN. This page also sells a single bathroom vanity and one freestanding furniture piece, which are not kitchens and had no catalog row; a 2-4 door vanity is $275-$475.",
@@ -16821,23 +17206,23 @@
             "label": "Kitchen cabinets",
             "service": "kitchen-cabinet-painting",
             "anchors": {
-              "entry": 275,
+              "entry": 1200,
               "top": 5500
             },
             "cells": {
               "sm": {
-                "lo": 1310,
-                "hi": 2120,
+                "lo": 1200,
+                "hi": 2000,
                 "label": "Up to 15 doors + drawer fronts (galley / small kitchen)",
                 "was": [
                   950,
                   1600
                 ],
-                "derivation": "derived:log-affine between the entry and top anchors"
+                "derivation": "anchor:entry"
               },
               "md": {
-                "lo": 2605,
-                "hi": 4475,
+                "lo": 2485,
+                "hi": 4420,
                 "label": "16–30 doors + drawer fronts",
                 "was": [
                   2000,
@@ -16846,7 +17231,7 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 3550,
+                "lo": 3455,
                 "hi": 5500,
                 "label": "31+ doors + drawer fronts (large kitchen)",
                 "was": [
@@ -16859,25 +17244,25 @@
           },
           "bathroom": {
             "label": "Bathroom vanity",
-            "service": "kitchen-cabinet-painting",
+            "service": "cabinet-vanity-furniture-painting",
             "anchors": {
               "entry": 275,
-              "top": 5500
+              "top": 1250
             },
             "cells": {
               "sm": {
-                "lo": 415,
-                "hi": 690,
+                "lo": 275,
+                "hi": 475,
                 "label": "Single vanity (2–4 doors / drawers)",
                 "was": [
                   275,
                   475
                 ],
-                "derivation": "derived:log-affine between the entry and top anchors"
+                "derivation": "anchor:entry"
               },
               "md": {
-                "lo": 690,
-                "hi": 1120,
+                "lo": 475,
+                "hi": 800,
                 "label": "Large vanity (5–8) or two vanities",
                 "was": [
                   475,
@@ -16886,8 +17271,8 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 1055,
-                "hi": 1685,
+                "lo": 750,
+                "hi": 1250,
                 "label": "Vanity + linen or medicine cabinet",
                 "was": [
                   750,
@@ -16899,25 +17284,25 @@
           },
           "island": {
             "label": "Island or one cabinet run",
-            "service": "kitchen-cabinet-painting",
+            "service": "cabinet-vanity-furniture-painting",
             "anchors": {
-              "entry": 275,
-              "top": 5500
+              "entry": 500,
+              "top": 2200
             },
             "cells": {
               "sm": {
-                "lo": 625,
-                "hi": 1055,
+                "lo": 500,
+                "hi": 835,
                 "label": "Island only (up to 6 doors / drawers)",
                 "was": [
                   425,
                   750
                 ],
-                "derivation": "derived:log-affine between the entry and top anchors"
+                "derivation": "anchor:entry"
               },
               "md": {
-                "lo": 1055,
-                "hi": 1810,
+                "lo": 835,
+                "hi": 1415,
                 "label": "One run, 7–14 doors / drawers",
                 "was": [
                   750,
@@ -16926,8 +17311,8 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 1750,
-                "hi": 2840,
+                "lo": 1370,
+                "hi": 2200,
                 "label": "Island + run, 15+ doors / drawers",
                 "was": [
                   1300,
@@ -16939,25 +17324,25 @@
           },
           "builtin": {
             "label": "Built-ins / bookcases / closet doors",
-            "service": "kitchen-cabinet-painting",
+            "service": "cabinet-vanity-furniture-painting",
             "anchors": {
-              "entry": 275,
-              "top": 5500
+              "entry": 500,
+              "top": 2200
             },
             "cells": {
               "sm": {
-                "lo": 520,
-                "hi": 855,
+                "lo": 500,
+                "hi": 800,
                 "label": "1 unit (up to 4 doors) or open shelving",
                 "was": [
                   350,
                   600
                 ],
-                "derivation": "derived:log-affine between the entry and top anchors"
+                "derivation": "anchor:entry"
               },
               "md": {
-                "lo": 855,
-                "hi": 1500,
+                "lo": 800,
+                "hi": 1365,
                 "label": "2–3 units (5–12 doors)",
                 "was": [
                   600,
@@ -16966,8 +17351,8 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 1500,
-                "hi": 2480,
+                "lo": 1365,
+                "hi": 2200,
                 "label": "Wall-to-wall built-ins (13+ doors)",
                 "was": [
                   1100,
@@ -16979,15 +17364,15 @@
           },
           "furniture": {
             "label": "Freestanding furniture piece",
-            "service": "kitchen-cabinet-painting",
+            "service": "cabinet-vanity-furniture-painting",
             "anchors": {
               "entry": 275,
-              "top": 5500
+              "top": 600
             },
             "cells": {
               "sm": {
                 "lo": 275,
-                "hi": 485,
+                "hi": 360,
                 "label": "1 small piece (nightstand, small cabinet)",
                 "was": [
                   175,
@@ -16996,8 +17381,8 @@
                 "derivation": "anchor:entry"
               },
               "md": {
-                "lo": 485,
-                "hi": 855,
+                "lo": 360,
+                "hi": 470,
                 "label": "1 large piece (dresser, hutch, sideboard)",
                 "was": [
                   325,
@@ -17006,8 +17391,8 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 825,
-                "hi": 1435,
+                "lo": 460,
+                "hi": 600,
                 "label": "2+ pieces or a matching set",
                 "was": [
                   575,
@@ -20219,7 +20604,7 @@
         "service": "garbage-disposal-install",
         "title": "Garbage Disposal Installation Estimate",
         "anchors": {
-          "entry": 185,
+          "entry": 225,
           "top": 720
         },
         "evidence": "Garbage disposal installation is $200-$500 in NYC (market read 2026-08-02) and the catalog's swap tiers ($225-$530) are inside that. Removing a disposal and going back to a plain drain is the one scope below the swap band and the catalog had no row for it.",
@@ -20229,13 +20614,13 @@
             "label": "First disposal in this sink (power already there)",
             "service": "garbage-disposal-install",
             "anchors": {
-              "entry": 185,
+              "entry": 225,
               "top": 720
             },
             "cells": {
               "sm": {
-                "lo": 350,
-                "hi": 470,
+                "lo": 310,
+                "hi": 435,
                 "label": "1/3–1/2 HP — switched outlet ready, drain lines up",
                 "was": [
                   300,
@@ -20244,8 +20629,8 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "md": {
-                "lo": 445,
-                "hi": 585,
+                "lo": 410,
+                "hi": 565,
                 "label": "3/4 HP — new flange, trap rework & dishwasher tie-in",
                 "was": [
                   388,
@@ -20254,7 +20639,7 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 550,
+                "lo": 525,
                 "hi": 720,
                 "label": "1 HP — tight cabinet, old drain parts, full trap rebuild",
                 "was": [
@@ -20269,13 +20654,13 @@
             "label": "Jammed, humming, or leaking unit",
             "service": "garbage-disposal-install",
             "anchors": {
-              "entry": 185,
-              "top": 720
+              "entry": 225,
+              "top": 430
             },
             "cells": {
               "sm": {
-                "lo": 185,
-                "hi": 255,
+                "lo": 225,
+                "hi": 280,
                 "label": "Jam clear / reset — unit otherwise sound",
                 "was": [
                   150,
@@ -20284,8 +20669,8 @@
                 "derivation": "anchor:entry"
               },
               "md": {
-                "lo": 230,
-                "hi": 320,
+                "lo": 265,
+                "hi": 330,
                 "label": "Leak diagnosis + flange re-seal or drain-part swap",
                 "was": [
                   190,
@@ -20294,8 +20679,8 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 330,
-                "hi": 460,
+                "lo": 340,
+                "hi": 430,
                 "label": "Diagnose, then replace the unit the same visit",
                 "was": [
                   280,
@@ -20307,15 +20692,15 @@
           },
           "remove": {
             "label": "Remove disposal — convert back to standard drain",
-            "service": "garbage-disposal-install",
+            "service": "garbage-disposal-removal",
             "anchors": {
               "entry": 185,
-              "top": 720
+              "top": 340
             },
             "cells": {
               "sm": {
                 "lo": 185,
-                "hi": 255,
+                "hi": 240,
                 "label": "Remove unit, install standard basket strainer",
                 "was": [
                   150,
@@ -20324,8 +20709,8 @@
                 "derivation": "anchor:entry"
               },
               "md": {
-                "lo": 230,
-                "hi": 320,
+                "lo": 220,
+                "hi": 285,
                 "label": "Remove + new strainer, tailpiece & trap",
                 "was": [
                   190,
@@ -20334,8 +20719,8 @@
                 "derivation": "derived:log-affine between the entry and top anchors"
               },
               "lg": {
-                "lo": 295,
-                "hi": 395,
+                "lo": 270,
+                "hi": 340,
                 "label": "Remove + drain rework + dishwasher drain rerouted",
                 "was": [
                   250,
@@ -20909,7 +21294,7 @@
         "series": {
           "showerhead": {
             "label": "Shower head / handheld / rain head",
-            "service": "bathroom-accessories",
+            "service": "showerhead-replacement",
             "anchors": {
               "entry": 150,
               "top": 660
@@ -21071,7 +21456,7 @@
           },
           "grab-bar": {
             "label": "Grab bar / safety rail",
-            "service": "bathroom-accessories",
+            "service": "grab-bar",
             "anchors": {
               "entry": 195,
               "top": 470
@@ -21111,7 +21496,7 @@
           },
           "mirror-cabinet": {
             "label": "Mirror or medicine cabinet",
-            "service": "bathroom-accessories",
+            "service": "wall-cabinet-hanging",
             "anchors": {
               "entry": 195,
               "top": 540
@@ -25077,6 +25462,1380 @@
                   645
                 ],
                 "derivation": "derived:log-affine between the entry and top anchors"
+              }
+            }
+          }
+        }
+      },
+      "apartment-turnover": {
+        "service": "apartment-turnover",
+        "title": "Apartment Turnover Estimate",
+        "anchors": {
+          "entry": 195,
+          "top": 4000
+        },
+        "evidence": "All 18 cells are already catalog tiers from phase 1 and they agree with the market read: turnover is $1,000-$5,000 a unit, make-ready $3,000-$5,000, heavy turns $8,000+ (dropcurb, lula.life, market read 2026-08-02), and NYC handyman punch-list work is $89-$120/hr. Nothing to move.",
+        "catalogChange": "none.",
+        "series": {
+          "single-room": {
+            "label": "One room or one bathroom only",
+            "service": "apartment-turnover",
+            "anchors": {
+              "entry": 195,
+              "top": 760
+            },
+            "cells": {
+              "sm": {
+                "lo": 195,
+                "hi": 290,
+                "label": "Light — anchor holes patched, fixtures tightened, caulk touch-up",
+                "was": [
+                  195,
+                  290
+                ],
+                "tier": "apartment-turnover#single-room-sm",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              },
+              "md": {
+                "lo": 330,
+                "hi": 490,
+                "label": "Standard — patches, caulk, door and hardware adjustments",
+                "was": [
+                  330,
+                  490
+                ],
+                "tier": "apartment-turnover#single-room-md",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              },
+              "lg": {
+                "lo": 520,
+                "hi": 760,
+                "label": "Deep — repairs + blinds + hardware + patch-and-prep for paint",
+                "was": [
+                  520,
+                  760
+                ],
+                "tier": "apartment-turnover#single-room-lg",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              }
+            }
+          },
+          "studio": {
+            "label": "Studio / alcove studio",
+            "service": "apartment-turnover",
+            "anchors": {
+              "entry": 280,
+              "top": 1150
+            },
+            "cells": {
+              "sm": {
+                "lo": 280,
+                "hi": 420,
+                "label": "Light — anchor holes patched, fixtures tightened, caulk touch-up",
+                "was": [
+                  280,
+                  420
+                ],
+                "tier": "apartment-turnover#studio-sm",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              },
+              "md": {
+                "lo": 480,
+                "hi": 720,
+                "label": "Standard — patches, caulk, doors, locks, blinds, hardware",
+                "was": [
+                  480,
+                  720
+                ],
+                "tier": "apartment-turnover#studio-md",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              },
+              "lg": {
+                "lo": 780,
+                "hi": 1150,
+                "label": "Deep — multi-room repairs + fixtures + patch-and-prep for paint",
+                "was": [
+                  780,
+                  1150
+                ],
+                "tier": "apartment-turnover#studio-lg",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              }
+            }
+          },
+          "1br": {
+            "label": "1 bedroom",
+            "service": "apartment-turnover",
+            "anchors": {
+              "entry": 380,
+              "top": 1550
+            },
+            "cells": {
+              "sm": {
+                "lo": 380,
+                "hi": 560,
+                "label": "Light — anchor holes patched, fixtures tightened, caulk touch-up",
+                "was": [
+                  380,
+                  560
+                ],
+                "tier": "apartment-turnover#1br-sm",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              },
+              "md": {
+                "lo": 650,
+                "hi": 970,
+                "label": "Standard — patches, caulk, doors, locks, blinds, hardware",
+                "was": [
+                  650,
+                  970
+                ],
+                "tier": "apartment-turnover#1br-md",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              },
+              "lg": {
+                "lo": 1050,
+                "hi": 1550,
+                "label": "Deep — multi-room repairs + fixtures + patch-and-prep for paint",
+                "was": [
+                  1050,
+                  1550
+                ],
+                "tier": "apartment-turnover#1br-lg",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              }
+            }
+          },
+          "2br": {
+            "label": "2 bedroom",
+            "service": "apartment-turnover",
+            "anchors": {
+              "entry": 520,
+              "top": 2150
+            },
+            "cells": {
+              "sm": {
+                "lo": 520,
+                "hi": 780,
+                "label": "Light — anchor holes patched, fixtures tightened, caulk touch-up",
+                "was": [
+                  520,
+                  780
+                ],
+                "tier": "apartment-turnover#2br-sm",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              },
+              "md": {
+                "lo": 900,
+                "hi": 1350,
+                "label": "Standard — patches, caulk, doors, locks, blinds, hardware",
+                "was": [
+                  900,
+                  1350
+                ],
+                "tier": "apartment-turnover#2br-md",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              },
+              "lg": {
+                "lo": 1450,
+                "hi": 2150,
+                "label": "Deep — multi-room repairs + fixtures + patch-and-prep for paint",
+                "was": [
+                  1450,
+                  2150
+                ],
+                "tier": "apartment-turnover#2br-lg",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              }
+            }
+          },
+          "3br": {
+            "label": "3+ bedroom or duplex",
+            "service": "apartment-turnover",
+            "anchors": {
+              "entry": 750,
+              "top": 4000
+            },
+            "cells": {
+              "sm": {
+                "lo": 750,
+                "hi": 1120,
+                "label": "Light — anchor holes patched, fixtures tightened, caulk touch-up",
+                "was": [
+                  750,
+                  1120
+                ],
+                "tier": "apartment-turnover#3br-sm",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              },
+              "md": {
+                "lo": 1300,
+                "hi": 1950,
+                "label": "Standard — patches, caulk, doors, locks, blinds, hardware",
+                "was": [
+                  1300,
+                  1950
+                ],
+                "tier": "apartment-turnover#3br-md",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              },
+              "lg": {
+                "lo": 2600,
+                "hi": 4000,
+                "label": "Deep — multi-room repairs + fixtures + patch-and-prep for paint",
+                "was": [
+                  2600,
+                  4000
+                ],
+                "tier": "apartment-turnover#3br-lg",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              }
+            }
+          },
+          "office": {
+            "label": "Small office or commercial unit",
+            "service": "apartment-turnover",
+            "anchors": {
+              "entry": 380,
+              "top": 1700
+            },
+            "cells": {
+              "sm": {
+                "lo": 380,
+                "hi": 560,
+                "label": "Light — wall patches, loose fixtures, door adjustments",
+                "was": [
+                  380,
+                  560
+                ],
+                "tier": "apartment-turnover#office-sm",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              },
+              "md": {
+                "lo": 680,
+                "hi": 1000,
+                "label": "Standard — patches, doors, locks, blinds, hardware, fixtures",
+                "was": [
+                  680,
+                  1000
+                ],
+                "tier": "apartment-turnover#office-md",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              },
+              "lg": {
+                "lo": 1150,
+                "hi": 1700,
+                "label": "Deep — multi-room repairs + fixtures + patch-and-prep for paint",
+                "was": [
+                  1150,
+                  1700
+                ],
+                "tier": "apartment-turnover#office-lg",
+                "derivation": "phase-1 catalog tier, market-priced already; the repricing left it alone"
+              }
+            }
+          }
+        }
+      },
+      "refrigerator-repair": {
+        "service": "appliance-repair-labor",
+        "title": "What Will My Refrigerator Visit Cost?",
+        "anchors": {
+          "entry": 175,
+          "top": 260
+        },
+        "evidence": "appliance-repair-labor is $175-$425. Our own realised fridge work is $90 (a service call) and $170 (2026-04-23, 2026-05-26) — both at or below the diagnostic, not the price of the work. A coil pull-and-clean on a NYC built-in is an hour and a half with the unit moved.",
+        "catalogChange": "add appliance-repair-labor#refrigerator-first-fix 175-260",
+        "series": {
+          "not-cooling": {
+            "label": "Not cooling / not cold enough",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 260
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 260,
+                "label": "Condenser coil deep clean",
+                "was": [
+                  150,
+                  225
+                ],
+                "tier": "appliance-repair-labor#refrigerator-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "ice-frost": {
+            "label": "Ice buildup or frost",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 260
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 260,
+                "label": "Condenser coil deep clean",
+                "was": [
+                  150,
+                  225
+                ],
+                "tier": "appliance-repair-labor#refrigerator-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "leaking": {
+            "label": "Leaking water",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 260
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 260,
+                "label": "Condenser coil deep clean",
+                "was": [
+                  150,
+                  225
+                ],
+                "tier": "appliance-repair-labor#refrigerator-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "noisy": {
+            "label": "Noisy or vibrating",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 260
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 260,
+                "label": "Condenser coil deep clean",
+                "was": [
+                  150,
+                  225
+                ],
+                "tier": "appliance-repair-labor#refrigerator-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "dirty-coils": {
+            "label": "Never had coils cleaned",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 260
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 260,
+                "label": "Condenser coil deep clean",
+                "was": [
+                  150,
+                  225
+                ],
+                "tier": "appliance-repair-labor#refrigerator-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "replace": {
+            "label": "Thinking about replacing it",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 260
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 260,
+                "label": "Condenser coil deep clean",
+                "was": [
+                  150,
+                  225
+                ],
+                "tier": "appliance-repair-labor#refrigerator-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          }
+        }
+      },
+      "dishwasher-repair": {
+        "service": "appliance-repair-labor",
+        "title": "What Will My Dishwasher Visit Cost?",
+        "anchors": {
+          "entry": 175,
+          "top": 260
+        },
+        "evidence": "Our own realised 'repair dishwasher' is $170 (2026-06-17), which is the entry of this band almost exactly. $150 was below both our own realised price and the catalog service.",
+        "catalogChange": "add appliance-repair-labor#dishwasher-first-fix 175-260",
+        "series": {
+          "leaking": {
+            "label": "Leaking",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 260
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 260,
+                "label": "Filter + drain-path service",
+                "was": [
+                  150,
+                  225
+                ],
+                "tier": "appliance-repair-labor#dishwasher-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "not-draining": {
+            "label": "Not draining / standing water",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 260
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 260,
+                "label": "Filter + drain-path service",
+                "was": [
+                  150,
+                  225
+                ],
+                "tier": "appliance-repair-labor#dishwasher-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "odor": {
+            "label": "Odor or residue on dishes",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 260
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 260,
+                "label": "Filter + drain-path service",
+                "was": [
+                  150,
+                  225
+                ],
+                "tier": "appliance-repair-labor#dishwasher-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "loose": {
+            "label": "Loose, tilted or rocking",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 260
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 260,
+                "label": "Filter + drain-path service",
+                "was": [
+                  150,
+                  225
+                ],
+                "tier": "appliance-repair-labor#dishwasher-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "hookup": {
+            "label": "Hookup or high-loop concern",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 260
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 260,
+                "label": "Filter + drain-path service",
+                "was": [
+                  150,
+                  225
+                ],
+                "tier": "appliance-repair-labor#dishwasher-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "replace": {
+            "label": "Thinking about replacing it",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 260
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 260,
+                "label": "Filter + drain-path service",
+                "was": [
+                  150,
+                  225
+                ],
+                "tier": "appliance-repair-labor#dishwasher-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          }
+        }
+      },
+      "washer-repair": {
+        "service": "appliance-repair-labor",
+        "title": "What Will My Washer Visit Cost?",
+        "anchors": {
+          "entry": 175,
+          "top": 280
+        },
+        "evidence": "appliance-repair-labor entry plus the hose set; a walking washer has to be levelled with the drum loaded, which is a return-and-check job.",
+        "catalogChange": "add appliance-repair-labor#washer-first-fix 175-280",
+        "series": {
+          "not-draining": {
+            "label": "Not draining",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 280
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 280,
+                "label": "Leveling + hose refresh",
+                "was": [
+                  150,
+                  250
+                ],
+                "tier": "appliance-repair-labor#washer-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "shaking": {
+            "label": "Shaking or walking",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 280
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 280,
+                "label": "Leveling + hose refresh",
+                "was": [
+                  150,
+                  250
+                ],
+                "tier": "appliance-repair-labor#washer-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "leaking": {
+            "label": "Leaking",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 280
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 280,
+                "label": "Leveling + hose refresh",
+                "was": [
+                  150,
+                  250
+                ],
+                "tier": "appliance-repair-labor#washer-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "hoses": {
+            "label": "Old / suspect supply hoses",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 280
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 280,
+                "label": "Leveling + hose refresh",
+                "was": [
+                  150,
+                  250
+                ],
+                "tier": "appliance-repair-labor#washer-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "stacking": {
+            "label": "Stacking or leveling issue",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 280
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 280,
+                "label": "Leveling + hose refresh",
+                "was": [
+                  150,
+                  250
+                ],
+                "tier": "appliance-repair-labor#washer-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "replace": {
+            "label": "Thinking about replacing it",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 280
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 280,
+                "label": "Leveling + hose refresh",
+                "was": [
+                  150,
+                  250
+                ],
+                "tier": "appliance-repair-labor#washer-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          }
+        }
+      },
+      "dryer-repair": {
+        "service": "appliance-repair-labor",
+        "title": "What Will My Dryer Visit Cost?",
+        "anchors": {
+          "entry": 175,
+          "top": 360
+        },
+        "evidence": "This is the dryer-vent-cleaning service ($175-$460 in the catalog; NYC $99-$197 typical, Manhattan $175-$385+) done as a repair call, with the dryer pulled out and reconnected. Holding it at $150 contradicted the vent-cleaning page on the same site.",
+        "catalogChange": "add appliance-repair-labor#dryer-vent-first-fix 175-360",
+        "series": {
+          "not-heating": {
+            "label": "Not heating / clothes stay damp",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 360
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 360,
+                "label": "Vent cleaning + reconnect",
+                "was": [
+                  150,
+                  325
+                ],
+                "tier": "appliance-repair-labor#dryer-vent-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "long-dry": {
+            "label": "Takes forever to dry",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 360
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 360,
+                "label": "Vent cleaning + reconnect",
+                "was": [
+                  150,
+                  325
+                ],
+                "tier": "appliance-repair-labor#dryer-vent-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "vent": {
+            "label": "Lint or vent concern",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 360
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 360,
+                "label": "Vent cleaning + reconnect",
+                "was": [
+                  150,
+                  325
+                ],
+                "tier": "appliance-repair-labor#dryer-vent-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "noisy": {
+            "label": "Noisy or vibrating",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 360
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 360,
+                "label": "Vent cleaning + reconnect",
+                "was": [
+                  150,
+                  325
+                ],
+                "tier": "appliance-repair-labor#dryer-vent-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "connection": {
+            "label": "Cord / plug / gas-ready question",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 360
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 360,
+                "label": "Vent cleaning + reconnect",
+                "was": [
+                  150,
+                  325
+                ],
+                "tier": "appliance-repair-labor#dryer-vent-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "replace": {
+            "label": "Thinking about replacing it",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 360
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 360,
+                "label": "Vent cleaning + reconnect",
+                "was": [
+                  150,
+                  325
+                ],
+                "tier": "appliance-repair-labor#dryer-vent-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          }
+        }
+      },
+      "oven-range-repair": {
+        "service": "appliance-repair-labor",
+        "title": "What Will My Oven or Range Visit Cost?",
+        "anchors": {
+          "entry": 175,
+          "top": 280
+        },
+        "evidence": "appliance-repair-labor entry. Our own books carry an igniter replacement as a materials line against a labour call in the same band.",
+        "catalogChange": "add appliance-repair-labor#oven-first-fix 175-280",
+        "series": {
+          "burner": {
+            "label": "Burner not lighting / not heating",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 280
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 280,
+                "label": "Burner + door tune-up",
+                "was": [
+                  150,
+                  250
+                ],
+                "tier": "appliance-repair-labor#oven-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "door": {
+            "label": "Door, hinge or gasket issue",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 280
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 280,
+                "label": "Burner + door tune-up",
+                "was": [
+                  150,
+                  250
+                ],
+                "tier": "appliance-repair-labor#oven-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "knobs": {
+            "label": "Broken knobs or handles",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 280
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 280,
+                "label": "Burner + door tune-up",
+                "was": [
+                  150,
+                  250
+                ],
+                "tier": "appliance-repair-labor#oven-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "level": {
+            "label": "Not level / no anti-tip bracket",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 280
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 280,
+                "label": "Burner + door tune-up",
+                "was": [
+                  150,
+                  250
+                ],
+                "tier": "appliance-repair-labor#oven-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "hood": {
+            "label": "Range hood filter or light",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 280
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 280,
+                "label": "Burner + door tune-up",
+                "was": [
+                  150,
+                  250
+                ],
+                "tier": "appliance-repair-labor#oven-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "replace": {
+            "label": "Thinking about replacing it",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 280
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 280,
+                "label": "Burner + door tune-up",
+                "was": [
+                  150,
+                  250
+                ],
+                "tier": "appliance-repair-labor#oven-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          }
+        }
+      },
+      "ac-repair-help": {
+        "service": "appliance-repair-labor",
+        "title": "What Will My AC Visit Cost?",
+        "anchors": {
+          "entry": 175,
+          "top": 330
+        },
+        "evidence": "ac-deep-cleaning is $150-$285 in place and $285-$400 chassis-pulled; a repair call that ends in a clean and a re-seat sits across those. Our own realised AC work is $180 (blower, 2026-06-08), $120 (capacitor, 2026-05-20) and $90 (a service call).",
+        "catalogChange": "add appliance-repair-labor#ac-first-fix 175-330",
+        "series": {
+          "not-cooling": {
+            "label": "Not cooling like it used to",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 330
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 330,
+                "label": "Deep clean + re-seat",
+                "was": [
+                  150,
+                  300
+                ],
+                "tier": "appliance-repair-labor#ac-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "leaking": {
+            "label": "Leaking or dripping water",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 330
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 330,
+                "label": "Deep clean + re-seat",
+                "was": [
+                  150,
+                  300
+                ],
+                "tier": "appliance-repair-labor#ac-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "noisy": {
+            "label": "Noisy or rattling",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 330
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 330,
+                "label": "Deep clean + re-seat",
+                "was": [
+                  150,
+                  300
+                ],
+                "tier": "appliance-repair-labor#ac-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "airflow": {
+            "label": "Weak airflow / dirty filter",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 330
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 330,
+                "label": "Deep clean + re-seat",
+                "was": [
+                  150,
+                  300
+                ],
+                "tier": "appliance-repair-labor#ac-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "seal": {
+            "label": "Gaps or bad seal around the unit",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 330
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 330,
+                "label": "Deep clean + re-seat",
+                "was": [
+                  150,
+                  300
+                ],
+                "tier": "appliance-repair-labor#ac-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "replace": {
+            "label": "Thinking about replacing it",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 330
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 330,
+                "label": "Deep clean + re-seat",
+                "was": [
+                  150,
+                  300
+                ],
+                "tier": "appliance-repair-labor#ac-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          }
+        }
+      },
+      "commercial-refrigeration": {
+        "service": "appliance-repair-labor",
+        "title": "What Will a Commercial Triage Visit Cost?",
+        "anchors": {
+          "entry": 195,
+          "top": 450
+        },
+        "evidence": "Commercial kitchens are COI, off-hours and a bigger machine. The catalog's commercial-refrigeration service is visit_only ($99 assessment) and had no labour row at all; $195-$450 is appliance-repair-labor plus the commercial premium the after-hours add-on (25% of labour) already describes.",
+        "catalogChange": "add appliance-repair-labor#commercial-first-fix 195-450",
+        "series": {
+          "not-holding": {
+            "label": "Not holding temperature (41°F risk)",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 195,
+              "top": 450
+            },
+            "cells": {
+              "work": {
+                "lo": 195,
+                "hi": 450,
+                "label": "Coil clean + gasket/door service",
+                "was": [
+                  175,
+                  450
+                ],
+                "tier": "appliance-repair-labor#commercial-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "gasket": {
+            "label": "Torn gasket / door not sealing",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 195,
+              "top": 450
+            },
+            "cells": {
+              "work": {
+                "lo": 195,
+                "hi": 450,
+                "label": "Coil clean + gasket/door service",
+                "was": [
+                  175,
+                  450
+                ],
+                "tier": "appliance-repair-labor#commercial-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "coils": {
+            "label": "Dirty condenser coils",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 195,
+              "top": 450
+            },
+            "cells": {
+              "work": {
+                "lo": 195,
+                "hi": 450,
+                "label": "Coil clean + gasket/door service",
+                "was": [
+                  175,
+                  450
+                ],
+                "tier": "appliance-repair-labor#commercial-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "drain": {
+            "label": "Drain line / water pooling",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 195,
+              "top": 450
+            },
+            "cells": {
+              "work": {
+                "lo": 195,
+                "hi": 450,
+                "label": "Coil clean + gasket/door service",
+                "was": [
+                  175,
+                  450
+                ],
+                "tier": "appliance-repair-labor#commercial-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "door": {
+            "label": "Door hinge, latch or closer",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 195,
+              "top": 450
+            },
+            "cells": {
+              "work": {
+                "lo": 195,
+                "hi": 450,
+                "label": "Coil clean + gasket/door service",
+                "was": [
+                  175,
+                  450
+                ],
+                "tier": "appliance-repair-labor#commercial-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "plan": {
+            "label": "Want a maintenance plan",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 195,
+              "top": 450
+            },
+            "cells": {
+              "work": {
+                "lo": 195,
+                "hi": 450,
+                "label": "Coil clean + gasket/door service",
+                "was": [
+                  175,
+                  450
+                ],
+                "tier": "appliance-repair-labor#commercial-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          }
+        }
+      },
+      "appliance-repair": {
+        "service": "appliance-repair-labor",
+        "title": "What Will My Appliance Visit Cost?",
+        "anchors": {
+          "entry": 175,
+          "top": 300
+        },
+        "evidence": "The catch-all page. appliance-repair-labor $175-$425 with the top held at $300 because anything above that is quoted after the assessment, not from a dropdown.",
+        "catalogChange": "add appliance-repair-labor#general-first-fix 175-300",
+        "series": {
+          "not-working": {
+            "label": "Not turning on or not running",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 300
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 300,
+                "label": "Cleaning, hookup or adjustment work",
+                "was": [
+                  150,
+                  300
+                ],
+                "tier": "appliance-repair-labor#general-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "not-cooling-heating": {
+            "label": "Not cooling or not heating",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 300
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 300,
+                "label": "Cleaning, hookup or adjustment work",
+                "was": [
+                  150,
+                  300
+                ],
+                "tier": "appliance-repair-labor#general-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "leaking": {
+            "label": "Leaking water",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 300
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 300,
+                "label": "Cleaning, hookup or adjustment work",
+                "was": [
+                  150,
+                  300
+                ],
+                "tier": "appliance-repair-labor#general-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "noisy": {
+            "label": "Noisy, shaking or vibrating",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 300
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 300,
+                "label": "Cleaning, hookup or adjustment work",
+                "was": [
+                  150,
+                  300
+                ],
+                "tier": "appliance-repair-labor#general-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "drain-vent": {
+            "label": "Not draining or not venting",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 300
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 300,
+                "label": "Cleaning, hookup or adjustment work",
+                "was": [
+                  150,
+                  300
+                ],
+                "tier": "appliance-repair-labor#general-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
+              }
+            }
+          },
+          "install-replace": {
+            "label": "Installing or replacing a unit",
+            "service": "appliance-repair-labor",
+            "anchors": {
+              "entry": 175,
+              "top": 300
+            },
+            "cells": {
+              "work": {
+                "lo": 175,
+                "hi": 300,
+                "label": "Cleaning, hookup or adjustment work",
+                "was": [
+                  150,
+                  300
+                ],
+                "tier": "appliance-repair-labor#general-first-fix",
+                "derivation": "the one defined piece of work this visit page sells; the option LABEL the customer reads is generated from the same tier, so the words and the figure cannot drift apart"
               }
             }
           }

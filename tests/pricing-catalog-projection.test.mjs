@@ -589,7 +589,7 @@ test('cross-series order changes are counted, and the count cannot grow unnotice
        series coming DOWN to a band the catalog can defend). If either number moves, say why in
        the commit — and check it is not the shape of defect Codex found in interior-painting,
        where an option's label described a harder job than the catalog row it was priced from. */
-    assert.equal(c.byDriver['catalog-or-contract'], 80);
+    assert.equal(c.byDriver['catalog-or-contract'], 82);
     assert.equal(c.byDriver['lift-artifact'], 0);
 });
 
@@ -656,4 +656,49 @@ test('every hub range is the span of the leaf prices it claims to summarise', ()
         }
     }
     assert.ok(checked > 300, `expected every hub cell, checked ${checked}`);
+});
+
+test('the window-AC widget the browser reads is the window-AC widget the price table records', () => {
+    /* CODEX ROUND 2. The generic calculators are safe because the generator WRITES their grids
+       into calculator.js and reads them back. The window-AC widget is different: main.js computes
+       it from data-lo / data-hi attributes in the page's own HTML, and the generator only copies
+       the previous version's widget block forward. Nothing compared the two, so editing
+       data-hi="165" to data-hi="500" in the page would move the price a customer is shown AND the
+       figure their lead carries, while --check stayed green and the committed table still said
+       $120-$165.
+
+       This does not price anything — the widget's figures are unchanged by the repricing and the
+       $150 work minimum is applied in main.js before render and before the snapshot. It closes the
+       one path left by which a hand-typed number could reach a customer. */
+    const table = readJson(`pricing/price-tables/${CATALOG_VERSION}.json`).windowAcWidget;
+    const html = read('services/ac-installation-cleaning/window-ac-installation/index.html');
+    const options = [...html.matchAll(/<option value="([^"]+)"\s+data-lo="(\d+)"\s+data-hi="(\d+)"/g)]
+        .map(([, v, lo, hi]) => ({ v, lo: Number(lo), hi: Number(hi) }));
+    assert.ok(options.length >= 4, `only ${options.length} BTU options found in the page`);
+    assert.deepEqual(options, table.btu,
+        'the BTU options in the page and the committed windowAcWidget table disagree. The page is what '
+        + 'the browser reads and what the lead snapshot is built from; the table is what the CRM verifies '
+        + 'an old lead against. They are the same numbers or a lead is a forgery.');
+    assert.equal(table.applyRepairMinimum, true);
+
+    /* Codex round 3, finding 2: the page also ships a STATIC figure in #calc-price, which is what
+       a reader sees before the script runs and what they keep if it never does. It said $190–$260
+       while the widget's own default state computes $170–$215 — the cheapest BTU option plus the
+       one add-on the page ships switched on. Recomputed here from the page's own attributes so it
+       cannot be typed wrong again. */
+    const activeAddOns = [...html.matchAll(/class="svc-calculator__toggle active"[\s\S]{0,160}?data-price="(\d+)"/g)]
+        .reduce((sum, [, n]) => sum + Number(n), 0);
+    const first = table.btu[0];
+    const expectLo = Math.max(first.lo + activeAddOns, REPAIR_MINIMUM);
+    const expectHi = Math.max(first.hi + activeAddOns, REPAIR_MINIMUM);
+    const placeholder = /<div class="svc-calculator__estimate-price" id="calc-price">([^<]*)<\/div>/.exec(html);
+    assert.ok(placeholder, 'the window-AC page has no #calc-price');
+    assert.equal(placeholder[1], `$${expectLo}&ndash;$${expectHi}`,
+        'the static price the page ships is not the price its own default state computes');
+    // And the floor really is applied on the render path, not just recorded as intended.
+    const main = read('main.js');
+    assert.match(main, /^const REPAIR_ASAP_WORK_MINIMUM = 150;$/m);
+    // per-unit AND total, which is what contract §4 requires of this widget.
+    assert.equal((main.match(/Math\.max\(roundNearest5\([^\n]*REPAIR_ASAP_WORK_MINIMUM\)/g) || []).length, 4,
+        'the $150 floor must be applied to both the per-unit and the total figure, low and high');
 });

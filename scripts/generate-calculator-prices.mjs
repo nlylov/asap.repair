@@ -70,7 +70,7 @@ const CHECK = process.argv.includes('--check');
    PRICING_CATALOG_CHECKSUMS in bazas-crm/lib/pricing/catalog.ts. A vendored copy that drifts by
    a single whitespace character fails here, on this repo's CI, instead of at a customer. */
 export const CATALOG_VERSION = 'calc-2026-09-01';
-export const CATALOG_SHA256 = '78465da3e34b8b0b849367cb91adcd41dfb57387c5ddd34d4417d984e47ab124';
+export const CATALOG_SHA256 = '3701a3526981a5c7913a8a036bc4dc8d71011c3d6f7bef1c20c53ee8cb46557d';
 export const PREVIOUS_VERSION = 'calc-2026-08-01';
 /* The frozen previous table is an INPUT this script carries 1,134 cells forward from, so a
    silent edit to it would move a third of the site's prices and still leave every generated
@@ -150,6 +150,16 @@ function indexCatalog(catalog) {
                 if (cell.tier) {
                     const tier = tiers.get(cell.tier);
                     if (!tier) throw new Error(`websiteLadders.${configKey}.${series}.${size} names a missing tier ${cell.tier}`);
+                    /* Codex round 1, finding 2: the dollars matching is not enough. A cell that
+                       names a tier of ANOTHER service was being reconciled against the band of
+                       the service it declared — a wider band it was never priced against. Two
+                       services, one cell, and the check passing. */
+                    if (cell.tier.split('#')[0] !== serviceKey) {
+                        throw new Error(
+                            `websiteLadders.${configKey}.${series}.${size} declares service ${serviceKey} but is ` +
+                            `bound to ${cell.tier}. Reconcile it against the service that actually prices it.`,
+                        );
+                    }
                     if (tier.lo !== cell.lo || tier.hi !== cell.hi) {
                         throw new Error(
                             `websiteLadders.${configKey}.${series}.${size} says $${cell.lo}-$${cell.hi} and ` +
@@ -486,6 +496,17 @@ function rewriteVisitWork(src, map, index) {
         }
         const tier = index.tiers.get(binding.tier);
         if (!tier) throw new Error(`visitWork points at a tier that does not exist: ${binding.tier}`);
+        /* Codex round 1, finding 1: the label the CUSTOMER reads was taken from site-map.json
+           while the price came from the catalog, so renaming the tier in the CRM left the
+           dropdown saying the old words next to the new number and `--check` stayed a fixed
+           point. The catalog owns the words as well as the figure; site-map keeps its copy only
+           so a reviewer can read the binding, and a disagreement is a build failure. */
+        if (binding.label !== tier.label) {
+            throw new Error(
+                `visitWork.${configKey} says the work is "${binding.label}" and ${binding.tier} says ` +
+                `"${tier.label}". The catalog owns the wording; update site-map.json or the tier.`,
+            );
+        }
         /* The site's own $150 work minimum is unconditional; a catalog tier below it would be a
            bug in the catalog, not something to render. Fail rather than print it. */
         if (tier.lo < 150) throw new Error(`${binding.tier} is below the work minimum: ${tier.lo}`);
@@ -499,7 +520,7 @@ function rewriteVisitWork(src, map, index) {
         if (!labelHit) throw new Error(`no workLabel line inside the visitConfig call for "${configKey}"`);
         const rangeHit = /^(\s*)workRange: \[\d+, \d+\],$/m.exec(body);
         if (!rangeHit) throw new Error(`no workRange line inside the visitConfig call for "${configKey}"`);
-        const label = `${labelHit[1]}workLabel: '${binding.label} (${money(tier.lo)}\u2013${money(tier.hi)})',`;
+        const label = `${labelHit[1]}workLabel: '${tier.label} (${money(tier.lo)}\u2013${money(tier.hi)})',`;
         const range = `${rangeHit[1]}workRange: [${tier.lo}, ${tier.hi}],`;
         /* Function replacers, not strings: money() emits '$175' and String.replace reads '$1' in a
            replacement as capture group 1, so the literal form silently produced

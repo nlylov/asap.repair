@@ -242,12 +242,12 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            freestanding: { sm: [195, 240], md: [240, 310], lg: [310, 410] },
-            armoire: { sm: [195, 250], md: [250, 325], lg: [325, 435] },
-            'closet-system': { sm: [195, 270], md: [300, 410], lg: [410, 565] },
-            'sliding-door': { sm: [195, 265], md: [265, 370], lg: [370, 495] },
-            'walk-in': { sm: [210, 295], md: [295, 425], lg: [425, 620] },
-            other: { sm: [195, 260], md: [260, 355], lg: [355, 480] }
+            freestanding: { sm: [195, 235], md: [235, 295], lg: [295, 375] },
+            armoire: { sm: [215, 260], md: [260, 320], lg: [320, 400] },
+            'closet-system': { sm: [230, 300], md: [330, 425], lg: [425, 555] },
+            'sliding-door': { sm: [230, 290], md: [290, 375], lg: [375, 470] },
+            'walk-in': { sm: [265, 345], md: [345, 460], lg: [460, 620] },
+            other: { sm: [230, 285], md: [285, 365], lg: [365, 455] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates based on standard assembly. Final price confirmed after review.'
@@ -1465,11 +1465,11 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            stacked: { sm: [235, 330], md: [330, 430], lg: [460, 620] },
-            sidebyside: { sm: [235, 330], md: [330, 430], lg: [460, 620] },
-            allinone: { sm: [235, 295], md: [295, 385], lg: [415, 540] },
-            'laundry-center': { sm: [215, 290], md: [290, 395], lg: [415, 565] },
-            other: { sm: [215, 310], md: [310, 430], lg: [430, 620] }
+            stacked: { sm: [285, 375], md: [375, 465], lg: [485, 620] },
+            sidebyside: { sm: [285, 375], md: [375, 465], lg: [485, 620] },
+            allinone: { sm: [265, 315], md: [315, 375], lg: [395, 475] },
+            'laundry-center': { sm: [215, 275], md: [275, 355], lg: [370, 475] },
+            other: { sm: [265, 355], md: [355, 465], lg: [465, 620] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates include hookup, venting, and testing for both units. Appliances not included.'
@@ -2191,7 +2191,7 @@ Object.assign(CONFIGS, {
             living: { sm: [525, 785], md: [730, 1090], lg: [1015, 1500] },
             hallway: { sm: [325, 525], md: [475, 750], lg: [750, 1250] },
             apartment: { sm: [1600, 2600], md: [2600, 4200], lg: [4300, 7500], xl: [6500, 11000] },
-            ceiling: { sm: [225, 375], md: [450, 750], lg: [600, 975] },
+            ceiling: { sm: [300, 450], md: [525, 790], lg: [660, 975] },
             touchup: { sm: [225, 345], md: [300, 430], lg: [410, 600] }
         },
         "cta": {
@@ -2501,11 +2501,11 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            kitchen: { sm: [1310, 2120], md: [2605, 4475], lg: [3550, 5500] },
-            bathroom: { sm: [415, 690], md: [690, 1120], lg: [1055, 1685] },
-            island: { sm: [625, 1055], md: [1055, 1810], lg: [1750, 2840] },
-            builtin: { sm: [520, 855], md: [855, 1500], lg: [1500, 2480] },
-            furniture: { sm: [275, 485], md: [485, 855], lg: [825, 1435] }
+            kitchen: { sm: [1200, 2000], md: [2485, 4420], lg: [3455, 5500] },
+            bathroom: { sm: [275, 475], md: [475, 800], lg: [750, 1250] },
+            island: { sm: [500, 835], md: [835, 1415], lg: [1370, 2200] },
+            builtin: { sm: [500, 800], md: [800, 1365], lg: [1365, 2200] },
+            furniture: { sm: [275, 360], md: [360, 470], lg: [460, 600] }
         },
         "cta": {
             "text": "Get My Cabinet Quote",
@@ -4816,9 +4816,9 @@ Object.assign(CONFIGS, {
         "pricing": {
             'swap-same': { sm: [225, 305], md: [290, 390], lg: [370, 500] },
             'swap-diff': { sm: [245, 330], md: [310, 420], lg: [395, 530] },
-            'new-install': { sm: [350, 470], md: [445, 585], lg: [550, 720] },
-            repair: { sm: [185, 255], md: [230, 320], lg: [330, 460] },
-            remove: { sm: [185, 255], md: [230, 320], lg: [295, 395] }
+            'new-install': { sm: [310, 435], md: [410, 565], lg: [525, 720] },
+            repair: { sm: [225, 280], md: [265, 330], lg: [340, 430] },
+            remove: { sm: [185, 240], md: [220, 285], lg: [270, 340] }
         },
         "cta": {
             "text": "Get Exact Quote",
