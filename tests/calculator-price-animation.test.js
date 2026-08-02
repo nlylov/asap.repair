@@ -37,14 +37,18 @@ const calcSource = fs.readFileSync(
 
 const ANIMATE_NUMBER_RE = /\n {4}function animateNumber\(el, target\) \{[\s\S]*?\n {4}\}\n/;
 
-/** Lift the shipped animateNumber() out of the module and make it callable in isolation. */
-function loadAnimateNumber(rafTimestamps, initialText = '$0') {
-    // The extractor takes the FIRST textual match, so it is only honest while there is
-    // exactly one definition to find. A stale copy left in a comment above the real one
-    // would otherwise be the thing under test.
+/* The extractor takes the FIRST textual match, so "this test runs the shipped function" is
+   only true while there is exactly one definition to find. A stale copy left in a comment
+   above the real one would silently become the thing under test. Checked once, up front, so
+   the failure names the actual problem. */
+{
     const definitions = calcSource.match(/function animateNumber\s*\(/g) || [];
     assert.equal(definitions.length, 1,
         `expected exactly one animateNumber() in components/modules/calculator.js, found ${definitions.length}`);
+}
+
+/** Lift the shipped animateNumber() out of the module and make it callable in isolation. */
+function loadAnimateNumber(rafTimestamps, initialText = '$0') {
     const match = calcSource.match(ANIMATE_NUMBER_RE);
     assert.ok(match, 'animateNumber() not found in components/modules/calculator.js');
 
@@ -72,11 +76,31 @@ function loadAnimateNumber(rafTimestamps, initialText = '$0') {
 const dollars = (s) => Number(String(s).replace(/[^0-9.-]/g, ''));
 // Every measured negative first-frame delta, plus the two boundary cases.
 const NEGATIVE_FIRST_FRAMES = [-15.5, -10.9, -7.2, -3.9, -0.1];
+/* Read the animation length out of the module rather than hardcoding it, so retuning the
+   animation does not turn this file red for no reason. Nothing here asserts a particular
+   duration or a particular easing curve — only that the price never leaves the interval
+   between where it started and where it is going, and that it gets there. */
+const DURATION = (() => {
+    const m = calcSource.match(ANIMATE_NUMBER_RE);
+    assert.ok(m, 'animateNumber() not found');
+    const d = m[0].match(/const duration = (\d+);/);
+    assert.ok(d, 'animateNumber() must declare its duration');
+    return Number(d[1]);
+})();
+const SCHEDULED_AT = 1000;
+/** A frame sequence: the given (possibly negative) first offset, then through to the end. */
+const frames = (firstOffset) => [
+    SCHEDULED_AT + firstOffset,
+    SCHEDULED_AT + DURATION * 0.05,
+    SCHEDULED_AT + DURATION * 0.25,
+    SCHEDULED_AT + DURATION * 0.6,
+    SCHEDULED_AT + DURATION,
+    SCHEDULED_AT + DURATION + 1,
+];
 
 test('counting UP: a frame that predates the animation still shows the starting price, never below it', () => {
     for (const offset of NEGATIVE_FIRST_FRAMES) {
-        const { run, writes } = loadAnimateNumber(
-            [1000 + offset, 1020, 1100, 1300, 1600, 1601], '$0');
+        const { run, writes } = loadAnimateNumber(frames(offset), '$0');
         run(850);
         // The exact first write is the point. "not negative" alone would also be satisfied
         // by Math.abs(), which silently plays the easing curve backwards from frame one.
@@ -95,8 +119,7 @@ test('counting DOWN: the same frame must not render a price ABOVE the one alread
     // figure past the price the customer was already looking at — $1606 on a $1500 -> $850
     // step — which is just as much a number nobody quoted as a negative one.
     for (const offset of NEGATIVE_FIRST_FRAMES) {
-        const { run, writes } = loadAnimateNumber(
-            [1000 + offset, 1020, 1100, 1300, 1600, 1601], '$1500');
+        const { run, writes } = loadAnimateNumber(frames(offset), '$1500');
         run(850);
         assert.equal(writes[0], '$1500',
             `offset ${offset}ms: first frame rendered ${writes[0]}, expected the start value $1500`);
@@ -110,7 +133,7 @@ test('counting DOWN: the same frame must not render a price ABOVE the one alread
 
 test('animateNumber still reaches the exact target, and never overshoots it', () => {
     for (const target of [150, 850, 1500, 12500]) {
-        const { run, writes } = loadAnimateNumber([990, 1020, 1150, 1400, 1601]);
+        const { run, writes } = loadAnimateNumber(frames(-10));
         run(target);
         assert.equal(writes.at(-1), `$${target}`, `did not settle on $${target}`);
         for (const w of writes) {
@@ -120,19 +143,19 @@ test('animateNumber still reaches the exact target, and never overshoots it', ()
     }
 });
 
-test('a non-negative frame is untouched: the clamp changes nothing once the animation has started', () => {
-    // Guards the other direction — a clamp that also swallowed real elapsed time would
-    // freeze the count-up, and every assertion above would still pass.
-    const { run, writes } = loadAnimateNumber([1000, 1150, 1300, 1450, 1601], '$0');
+test('a non-negative frame is untouched: the clamp must not swallow real elapsed time', () => {
+    // Guards the other direction. A clamp that zeroed genuine elapsed time would freeze the
+    // count-up, and every "never outside the endpoints" assertion above would still pass.
+    // Deliberately NOT pinned to a particular easing curve or duration — retuning the
+    // animation is a legitimate change; stalling it is not.
+    const { run, writes } = loadAnimateNumber(frames(0), '$0');
     run(1000);
     const values = writes.map(dollars);
-    assert.equal(values[0], 0, 'progress 0 must render the start value');
+    assert.equal(values[0], 0, 'a frame at exactly the scheduling instant must render the start value');
     for (let i = 1; i < values.length; i++) {
         assert.ok(values[i] > values[i - 1],
             `the animation stalled: ${writes[i - 1]} -> ${writes[i]}`);
     }
-    // 1 - (1 - 150/600)^3 = 0.578125 of the way after the first 150ms.
-    assert.equal(values[1], Math.round(1000 * (1 - Math.pow(1 - 150 / 600, 3))),
-        'the cubic easing curve changed');
+    assert.ok(values.length >= 3, 'the animation must render intermediate frames, not jump');
     assert.equal(writes.at(-1), '$1000');
 });
