@@ -103,7 +103,7 @@ test('target AC pages no longer present unrelated renovation cases as service pr
 });
 
 test('every sitemap page and canonical generator uses the Phase 1 asset version', () => {
-  const assetVersion = '20260729a';
+  const assetVersion = '20260801a';
   const sitemap = read('sitemap.xml');
   const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => new URL(match[1]));
   assert.equal(urls.length, 131);

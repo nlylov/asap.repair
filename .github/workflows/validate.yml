@@ -27,3 +27,12 @@ jobs:
         run: node scripts/validate-review-schema.mjs
       - name: facts.json is valid JSON
         run: node -e "JSON.parse(require('fs').readFileSync('facts.json','utf8')); console.log('facts.json OK')"
+      # Unit tests (tests/*.test.js) — the calculator price-animation regression,
+      # the quote-state snapshot sweep and the content contracts. These existed
+      # but nothing ran them, so every one of them was unenforced on PRs.
+      # Bare `node --test` is deliberate over an explicit glob: it uses Node's
+      # own discovery (any *.test.js / *-test.js / test-*.js / test/**, anywhere
+      # in the repo) and skips node_modules, so a test added outside tests/ is
+      # still gated. Whole suite is ~2s.
+      - name: Unit tests
+        run: node --test
