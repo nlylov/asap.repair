@@ -27,7 +27,14 @@ jobs:
         run: node scripts/validate-review-schema.mjs
       - name: facts.json is valid JSON
         run: node -e "JSON.parse(require('fs').readFileSync('facts.json','utf8')); console.log('facts.json OK')"
-      # Unit tests (tests/*.test.js) — the calculator price-animation regression,
+      # The website's prices are a PROJECTION of the CRM pricing catalog. This re-derives
+      # every generated file in memory and fails if a committed byte differs — so a price
+      # edited by hand in calculator.js, main.js, a blog table or llms.txt turns the build
+      # red instead of shipping a figure that is in no catalog. It also re-checks the sha256
+      # of the vendored catalog against the literal pinned in the CRM.
+      - name: Calculator prices match the pricing catalog
+        run: node scripts/generate-calculator-prices.mjs --check
+      # Unit tests (tests/*.test.js and *.test.mjs) — the calculator price-animation regression,
       # the quote-state snapshot sweep and the content contracts. These existed
       # but nothing ran them, so every one of them was unenforced on PRs.
       # Bare `node --test` is deliberate over an explicit glob: it uses Node's

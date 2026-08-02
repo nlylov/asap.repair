@@ -1,0 +1,710 @@
+#!/usr/bin/env node
+/*
+ * Make the website a PROJECTION of the CRM pricing catalog instead of a second price list.
+ *
+ * ── The failure this removes ───────────────────────────────────────────────────────────
+ * Until now asap.repair carried its own numbers, hand-edited, and the CRM carried different
+ * numbers, also hand-edited. Nothing compared them. That is how 192 calculator cells came to
+ * publish a price below the owner's $150 work minimum and how services/index.html came to tell
+ * Google, in structured data, that work starts at $99.
+ *
+ * From here every figure the site renders is produced by this script from
+ * pricing/catalog/<version>.json — a byte-identical copy of the catalog authored in the CRM
+ * repository, pinned by sha256. Editing a price on the site is not possible any more: you edit
+ * the catalog in the CRM, re-vendor it, and re-run this. `--check` re-derives everything in
+ * memory and fails if a committed file differs by one byte, so drift is a red test rather than
+ * a customer seeing a number nobody agreed to.
+ *
+ * ── What it does NOT do, and why ───────────────────────────────────────────────────────
+ * It does not invent the 1,128 cells the catalog does not carry. docs/pricing-website-contract.md
+ * §4 says proposal sections 2.1-2.8 — the per-hub cell tables — were truncated out of the catalog
+ * lane's input, and instructs: "Do not treat the absence of a cell here as 'unchanged'; treat it
+ * as 'still to be taken from proposal §2.1-2.8'." 80 services and 204 tiers cannot yield 1,332
+ * cells honestly. So an unbound cell is carried forward from the frozen calc-2026-08-01 table and
+ * passed through the two rules the owner has already ruled on — the $150 work minimum and
+ * monotonicity — and its provenance says exactly that. pricing/calculator-price-projection.json
+ * reports the count so the gap is a number on the page, not a silence.
+ *
+ * ── Outputs ────────────────────────────────────────────────────────────────────────────
+ *   pricing/price-tables/<version>.json        the resolved table, frozen once shipped
+ *   pricing/calculator-price-projection.json   every cell with its provenance and any delta
+ *   pricing/catalog/index.json                 { live, versions[] } for the CRM's cross-repo cron
+ *   components/modules/calculator.js           CALC_PRICE_VERSION + every `pricing:` block
+ *   main.js                                    REPAIR_ASAP_CALC_PRICE_VERSION
+ *   assets/data/hub-calculators.json           regenerated from the rewritten leaf prices
+ *
+ * Usage:  node scripts/generate-calculator-prices.mjs [--check]
+ */
+
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import { createHash } from 'node:crypto';
+import { buildHubCalculators } from './generate-hub-calculators.mjs';
+
+const ROOT = new URL('..', import.meta.url).pathname;
+const CHECK = process.argv.includes('--check');
+
+/* The sha256 of the catalog we are allowed to render. Same literal as
+   PRICING_CATALOG_CHECKSUMS in bazas-crm/lib/pricing/catalog.ts. A vendored copy that drifts by
+   a single whitespace character fails here, on this repo's CI, instead of at a customer. */
+export const CATALOG_VERSION = 'calc-2026-09-01';
+export const CATALOG_SHA256 = 'bd75b7b92e0e7d3a8b6d415b64766a85ed810325003cdb35065fb84916eda52b';
+export const PREVIOUS_VERSION = 'calc-2026-08-01';
+
+const p = (...parts) => join(ROOT, ...parts);
+const read = (rel) => readFileSync(p(rel), 'utf8');
+const readJson = (rel) => JSON.parse(read(rel));
+
+// ── Inputs ────────────────────────────────────────────────────────────────────────────
+
+export function loadCatalog() {
+    const raw = read(`pricing/catalog/${CATALOG_VERSION}.json`);
+    const sha = createHash('sha256').update(raw).digest('hex');
+    if (sha !== CATALOG_SHA256) {
+        throw new Error(
+            `pricing/catalog/${CATALOG_VERSION}.json does not match the pinned checksum.\n` +
+            `  expected ${CATALOG_SHA256}\n  actual   ${sha}\n` +
+            'The vendored catalog must be a byte-identical copy of the CRM file. Re-copy it; do not edit it here.',
+        );
+    }
+    const catalog = JSON.parse(raw);
+    if (catalog.pricingVersion !== CATALOG_VERSION) throw new Error('catalog pricingVersion mismatch');
+    if (catalog.status !== 'live') throw new Error(`catalog status is "${catalog.status}"; the site renders only "live"`);
+    if (catalog.tenantSlug !== 'repair-asap') throw new Error('catalog belongs to another tenant');
+    return catalog;
+}
+
+/** service key -> service, and 'service#tier' -> tier. */
+function indexCatalog(catalog) {
+    const services = new Map();
+    const tiers = new Map();
+    const addOns = new Map();
+    for (const service of catalog.services) {
+        services.set(service.key, service);
+        for (const tier of service.tiers || []) tiers.set(`${service.key}#${tier.id}`, tier);
+    }
+    for (const addOn of catalog.addOns) addOns.set(addOn.key, addOn);
+    return { services, tiers, addOns };
+}
+
+// ── The projection ────────────────────────────────────────────────────────────────────
+
+const isAssessmentCell = ([lo, hi]) => lo === 99 && hi === 99;
+const isFreePhotoCell = ([lo, hi]) => lo === 0 && hi === 0;
+
+/**
+ * Resolve one config's ladders.
+ *
+ * Order matters and is the whole design: a catalog tier beats the contract, the contract beats a
+ * carry-forward, and the floor/monotonic rules run last over whatever is left — never over a
+ * frozen, assessment or free-photo cell.
+ */
+function projectConfig({ configKey, previous, map, index, constants, sizeOrders }) {
+    const out = {};
+    const cells = [];
+
+    const tierMap = map.tierBindings[configKey] || {};
+    const contractMap = map.contractCells[configKey] || {};
+    const anchors = map.floorAnchors[configKey] || {};
+    const frozenGas = new Set(
+        map.repairMinimumExempt.frozenGas
+            .filter(([cfg]) => cfg === configKey)
+            .map(([, series]) => series),
+    );
+
+    for (const [series, sizes] of Object.entries(previous)) {
+        const order = sizeOrders[configKey]?.[series] || Object.keys(sizes);
+        const resolved = {};
+        const provenance = {};
+
+        // 1. per-cell overrides
+        for (const size of order) {
+            const before = sizes[size];
+            const tierRef = tierMap[series]?.[size];
+            const contractValue = contractMap[series]?.[size];
+            if (tierRef) {
+                const tier = index.tiers.get(tierRef);
+                if (!tier) throw new Error(`site-map.json points at a tier that does not exist: ${tierRef}`);
+                resolved[size] = [tier.lo, tier.hi];
+                provenance[size] = { source: 'catalog:tier', ref: tierRef, was: before };
+            } else if (contractValue) {
+                resolved[size] = [contractValue[0], contractValue[1]];
+                provenance[size] = { source: 'contract:section-4', ref: contractMap._source, was: before };
+            } else {
+                resolved[size] = [before[0], before[1]];
+                provenance[size] = { source: 'carry-forward', was: before };
+            }
+        }
+
+        // 2. exemptions — these ladders are never lifted and never monotonic-repaired
+        if (frozenGas.has(series)) {
+            for (const size of order) {
+                provenance[size] = {
+                    source: 'frozen:gas',
+                    ref: 'Local Law 429 (2025) — Licensed Master Plumber; catalog status "frozen"',
+                    was: sizes[size],
+                };
+            }
+            out[series] = resolved;
+            for (const size of order) cells.push({ configKey, series, size, value: resolved[size], ...provenance[size] });
+            continue;
+        }
+        const everyCellIsAssessment = order.every((size) => isAssessmentCell(resolved[size]));
+        if (everyCellIsAssessment) {
+            for (const size of order) provenance[size] = { source: 'assessment:99', was: sizes[size] };
+            out[series] = resolved;
+            for (const size of order) cells.push({ configKey, series, size, value: resolved[size], ...provenance[size] });
+            continue;
+        }
+
+        /* 2b. Inside a mixed ladder — the repair/diagnostic pages price a free photo estimate, a
+               $99 credited assessment and a defined work path side by side — the two non-work
+               paths are named for what they are and never touched by the floor. Rendering the
+               $99 assessment as $150 would state a work price nobody quoted; rendering the free
+               photo estimate as $150 would put a price on the thing we advertise as free. */
+        for (const size of order) {
+            if (isAssessmentCell(resolved[size])) provenance[size] = { source: 'assessment:99', was: sizes[size] };
+            else if (isFreePhotoCell(resolved[size])) provenance[size] = { source: 'photo:free', was: sizes[size] };
+        }
+
+        // 3. the floor. One additive delta for the whole ladder, so spans and the gaps between
+        //    steps survive exactly and the lift cannot invert anything it did not already invert.
+        const workSizes = order.filter((size) => !isAssessmentCell(resolved[size]) && !isFreePhotoCell(resolved[size]));
+        const lowest = Math.min(...workSizes.map((size) => resolved[size][0]));
+        if (workSizes.length && lowest < constants.repairMinimum) {
+            const anchorRef = anchors[series] || anchors['*'];
+            const anchor = resolveAnchor(anchorRef, index, constants.repairMinimum);
+            const delta = anchor.value - lowest;
+            for (const size of workSizes) {
+                if (provenance[size].source !== 'carry-forward') continue; // a catalog/contract cell is never moved
+                resolved[size] = [resolved[size][0] + delta, resolved[size][1] + delta];
+                provenance[size] = {
+                    source: 'carry-forward:lift',
+                    delta,
+                    anchor: anchor.label,
+                    was: provenance[size].was,
+                };
+            }
+        }
+
+        // 4. monotonicity along the declared size order
+        let prevLo = -Infinity;
+        let prevHi = -Infinity;
+        for (const size of order) {
+            if (isAssessmentCell(resolved[size]) || isFreePhotoCell(resolved[size])) continue;
+            let [lo, hi] = resolved[size];
+            let touched = false;
+            if (lo < prevLo) { lo = prevLo; touched = true; }
+            if (hi < prevHi) { hi = prevHi; touched = true; }
+            if (hi <= lo) { hi = lo + 5; touched = true; }
+            if (touched) {
+                resolved[size] = [lo, hi];
+                provenance[size] = { ...provenance[size], source: `${provenance[size].source}+monotonic` };
+            }
+            prevLo = lo;
+            prevHi = hi;
+        }
+
+        out[series] = resolved;
+        for (const size of order) cells.push({ configKey, series, size, value: resolved[size], ...provenance[size] });
+    }
+
+    return { pricing: out, cells };
+}
+
+function resolveAnchor(ref, index, fallback) {
+    if (!ref) return { value: fallback, label: `repairMinimum ${fallback}` };
+    if (ref.includes('#')) {
+        const tier = index.tiers.get(ref);
+        if (!tier) throw new Error(`floorAnchors points at a tier that does not exist: ${ref}`);
+        return { value: Math.max(tier.lo, fallback), label: `${ref} lo ${tier.lo}` };
+    }
+    const service = index.services.get(ref);
+    if (!service) throw new Error(`floorAnchors points at a service that does not exist: ${ref}`);
+    return { value: Math.max(service.range.lo, fallback), label: `${ref} range.lo ${service.range.lo}` };
+}
+
+// ── calculator.js surgery ─────────────────────────────────────────────────────────────
+
+/* Every config's price grid opens its own line, as `pricing: {`, `"pricing": {` or
+   `'pricing': {`, at whatever indentation that config happens to sit at — the file has three
+   different styles in it and one config nested a level deeper than the rest. The single-line
+   `pricing: { photo: [0, 0], ... }` inside VISIT_PATH_OPTIONS is a function body, not a config;
+   the trailing `{$` is what excludes it.
+ *
+ * The owner of each block is identified BY ITS CONTENT, not by scanning backwards for the
+ * nearest key. The first draft of this script did scan backwards, and it silently mis-attributed
+ * nine blocks — every config whose key is single-quoted ('wall-mounted', 'ac-window', …) was
+ * skipped by the key pattern, so nine grids were about to be overwritten with a neighbouring
+ * config's prices. Matching the block's own parsed value against the frozen previous table
+ * cannot make that mistake: a block either is some config's exact old grid or the build stops. */
+const PRICING_BLOCK = /^\s*['"]?pricing['"]?: \{$/;
+
+function locatePricingBlocks(src, previousTable, projection) {
+    const lines = src.split('\n');
+    const blocks = [];
+    let offset = 0;
+    const lineStart = lines.map((line) => { const at = offset; offset += line.length + 1; return at; });
+
+    /* Fingerprint every grid a block may legitimately be holding: the frozen previous one (first
+       run) and the projected one (every run after — this script has to be idempotent, and
+       `--check` runs it against its own output). Two configs sharing a fingerprint would make the
+       attribution ambiguous, so that is checked rather than assumed. */
+    const byFingerprint = new Map();
+    const claim = (fp, configKey, which) => {
+        const held = byFingerprint.get(fp);
+        if (held && held !== configKey) {
+            throw new Error(
+                `the ${which} price grid of "${configKey}" is byte-identical to a grid of "${held}", so a block in ` +
+                'calculator.js cannot be attributed to one of them by content. Give one of them a distinct grid.',
+            );
+        }
+        byFingerprint.set(fp, configKey);
+    };
+    for (const [configKey, pricing] of Object.entries(previousTable)) claim(JSON.stringify(pricing), configKey, 'previous');
+    for (const [configKey, pricing] of Object.entries(projection)) claim(JSON.stringify(pricing), configKey, 'projected');
+
+    for (let i = 0; i < lines.length; i += 1) {
+        if (!PRICING_BLOCK.test(lines[i])) continue;
+        const open = lineStart[i] + lines[i].length - 1; // the '{'
+        const close = matchBrace(src, open);
+        const literal = src.slice(open, close + 1);
+        let parsed;
+        try {
+            // eslint-disable-next-line no-eval
+            parsed = eval(`(${literal})`);
+        } catch (error) {
+            throw new Error(`could not parse the pricing block on line ${i + 1}: ${error.message}`);
+        }
+        const owner = byFingerprint.get(JSON.stringify(parsed));
+        if (!owner) {
+            throw new Error(
+                `the pricing block on line ${i + 1} of calculator.js does not match any grid in the frozen ` +
+                `${PREVIOUS_VERSION} table. Either calculator.js was hand-edited (it must not be — regenerate ` +
+                'instead) or the frozen table is stale.',
+            );
+        }
+        blocks.push({ configKey: owner, open, close, indent: /^\s*/.exec(lines[i])[0] });
+    }
+
+    const expected = Object.keys(previousTable).length;
+    const missing = Object.keys(previousTable).filter((k) => !blocks.some((b) => b.configKey === k));
+    /* The eight visit-mode configs are built by visitConfig() at runtime and have no literal
+       block, so they are legitimately absent. Anything else missing is a locator failure. */
+    const unexplained = missing.filter((k) => !VISIT_MODE_CONFIGS.has(k));
+    if (unexplained.length) {
+        throw new Error(`no pricing block found in calculator.js for: ${unexplained.join(', ')}`);
+    }
+    if (blocks.length !== expected - missing.length) {
+        throw new Error(`located ${blocks.length} pricing blocks but expected ${expected - missing.length}`);
+    }
+    return blocks;
+}
+
+function matchBrace(src, open) {
+    let depth = 0;
+    for (let i = open; i < src.length; i += 1) {
+        const ch = src[i];
+        if (ch === '{') depth += 1;
+        else if (ch === '}') { depth -= 1; if (depth === 0) return i; }
+    }
+    throw new Error('unbalanced brace while locating a pricing block');
+}
+
+const IDENT = /^[A-Za-z_$][A-Za-z0-9_$]*$/;
+const key = (k) => (IDENT.test(k) ? k : `'${k}'`);
+
+/** One canonical rendering for every block — the byte-identity check needs exactly one.
+ *  `indent` is the block's own indentation, so a config nested a level deeper keeps its shape. */
+function renderPricing(pricing, indent) {
+    const rows = Object.entries(pricing).map(([series, sizes]) => {
+        const cells = Object.entries(sizes)
+            .map(([size, [lo, hi]]) => `${key(size)}: [${lo}, ${hi}]`)
+            .join(', ');
+        return `${indent}    ${key(series)}: { ${cells} }`;
+    });
+    return `{\n${rows.join(',\n')}\n${indent}}`;
+}
+
+/* Built by visitConfig() at runtime from VISIT_PATH_OPTIONS — free photo estimate, $99 credited
+   assessment, and a defined-work path already held at the $150 minimum. No literal grid exists
+   for them in the file, and none should: they are paths, not a price table. */
+const VISIT_MODE_CONFIGS = new Set([
+    'refrigerator-repair', 'dishwasher-repair', 'washer-repair', 'dryer-repair',
+    'oven-range-repair', 'ac-repair-help', 'commercial-refrigeration', 'appliance-repair',
+]);
+
+function rewriteCalculatorJs(src, projection, previousTable) {
+    const blocks = locatePricingBlocks(src, previousTable, projection);
+    let out = '';
+    let cursor = 0;
+    for (const block of blocks) {
+        const pricing = projection[block.configKey];
+        if (!pricing) throw new Error(`no projection for config "${block.configKey}"`);
+        out += src.slice(cursor, block.open) + renderPricing(pricing, block.indent);
+        cursor = block.close + 1;
+    }
+    out += src.slice(cursor);
+
+    const versionLine = /^const CALC_PRICE_VERSION = '[^']+';$/m;
+    if (!versionLine.test(out)) throw new Error('CALC_PRICE_VERSION declaration not found in calculator.js');
+    out = out.replace(versionLine, `const CALC_PRICE_VERSION = '${CATALOG_VERSION}';`);
+    return { source: out, configsRewritten: blocks.length };
+}
+
+function rewriteMainJs(src) {
+    const versionLine = /^const REPAIR_ASAP_CALC_PRICE_VERSION = '[^']+';$/m;
+    if (!versionLine.test(src)) throw new Error('REPAIR_ASAP_CALC_PRICE_VERSION declaration not found in main.js');
+    return src.replace(versionLine, `const REPAIR_ASAP_CALC_PRICE_VERSION = '${CATALOG_VERSION}';`);
+}
+
+// ── llms.txt / llms-full.txt ──────────────────────────────────────────────────────────
+
+const money = (n) => `$${Number.isInteger(n) ? n : n.toFixed(2)}`;
+
+function renderAiGuideBlock(map, index, constants) {
+    const lines = [
+        `- On-site assessment visit: ${money(constants.assessmentVisitFee)}, credited toward the job if you ` +
+        'proceed (photo and text estimates are free). ' +
+        `${money(constants.assessmentVisitFee)} is never the price of work — work performed starts at the ` +
+        `${money(constants.repairMinimum)} minimum.`,
+    ];
+    for (const { label, ref } of map.aiGuideExamples.lines) {
+        const [lo, hi, unit] = resolveRefRange(ref, index, null);
+        lines.push(`- ${label}: ${money(lo)}–${money(hi)}${unit}`);
+    }
+    lines.push(
+        `- Work minimum: ${money(constants.repairMinimum)} for any work performed on a visit. NYC sales tax ` +
+        `(${(constants.salesTaxRate * 100).toFixed(3)}%) is added separately and is never inside a quoted figure.`,
+    );
+    return lines.join('\n');
+}
+
+const UNIT_SUFFIX = {
+    per_sqft: ' per square foot',
+    per_linear_ft: ' per linear foot',
+    per_hour: ' per hour',
+    per_unit: ' each',
+};
+
+function resolveRefRange(ref, index, projection) {
+    if (ref.startsWith('addon:')) {
+        const addOn = index.addOns.get(ref.slice('addon:'.length));
+        if (!addOn) throw new Error(`ref points at an add-on that does not exist: ${ref}`);
+        return [addOn.lo, addOn.hi, UNIT_SUFFIX[addOn.unitBasis] || ''];
+    }
+    if (ref.startsWith('site:')) {
+        /* A figure quoted from the site's own generated calculator, so an article and the
+           calculator on the same page can never disagree about the same job. */
+        const [configKey, series, size] = ref.slice('site:'.length).split('.');
+        const ladder = projection?.[configKey]?.[series];
+        if (!ladder) throw new Error(`ref points at a calculator ladder that does not exist: ${ref}`);
+        if (size) {
+            const cell = ladder[size];
+            if (!cell) throw new Error(`ref points at a calculator cell that does not exist: ${ref}`);
+            return [cell[0], cell[1], ''];
+        }
+        const values = Object.values(ladder);
+        return [Math.min(...values.map((v) => v[0])), Math.max(...values.map((v) => v[1])), ''];
+    }
+    if (ref.includes('#')) {
+        const tier = index.tiers.get(ref);
+        if (!tier) throw new Error(`aiGuideExamples points at a tier that does not exist: ${ref}`);
+        const service = index.services.get(ref.split('#')[0]);
+        return [tier.lo, tier.hi, UNIT_SUFFIX[service.unitBasis] || ''];
+    }
+    const service = index.services.get(ref);
+    if (!service) throw new Error(`aiGuideExamples points at a service that does not exist: ${ref}`);
+    return [service.range.lo, service.range.hi, UNIT_SUFFIX[service.unitBasis] || ''];
+}
+
+// ── Prices written into page copy ─────────────────────────────────────────────────────
+
+const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const withThousands = (n) => (Number.isInteger(n) ? n : n.toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const priceRange = (lo, hi, sep, prefix = '', suffix = '') =>
+    `${prefix}$${withThousands(lo)}${sep}$${withThousands(hi)}${suffix}`;
+
+/**
+ * Rewrite the price next to a label, never the label itself. Anchoring on the label is what makes
+ * this idempotent and what stops it from ever matching the wrong row: the pattern requires the
+ * exact label immediately before the cell it writes into.
+ */
+function rewriteLabelledPrices(src, file, rows, pattern, sep, index, projection) {
+    let out = src;
+    for (const row of rows) {
+        const [lo, hi] = resolveRefRange(row.ref, index, projection);
+        const value = priceRange(lo, hi, sep, row.prefix || '', row.suffix || '');
+        const re = pattern(escapeRe(row.label));
+        const matches = out.match(new RegExp(re.source, `${re.flags}g`));
+        if (!matches) throw new Error(`proseFigures: no row labelled "${row.label}" in ${file}`);
+        if (matches.length > 1) throw new Error(`proseFigures: label "${row.label}" appears ${matches.length} times in ${file}; it must be unique`);
+        out = out.replace(re, (_m, before, _old, after) => `${before}${value}${after}`);
+    }
+    return out;
+}
+
+/* A figure inside a plain-text sentence, anchored on the words either side of it rather than on
+   the number — so re-running finds the same place and writes the same value. */
+function rewriteInlineRanges(src, file, specs, index, projection) {
+    let out = src;
+    for (const spec of specs) {
+        const [lo, hi] = resolveRefRange(spec.ref, index, projection);
+        const re = new RegExp(`(${escapeRe(spec.before)})([^\n]*?)(${escapeRe(spec.after)})`, 'g');
+        const matches = out.match(re);
+        if (!matches) throw new Error(`proseFigures.inlineRanges: anchor not found in ${file}: "${spec.before}"`);
+        if (matches.length > 1) throw new Error(`proseFigures.inlineRanges: anchor is not unique in ${file}: "${spec.before}"`);
+        out = out.replace(re, (_m, before, _old, after) => `${before}${priceRange(lo, hi, spec.sep || '–')}${after}`);
+    }
+    return out;
+}
+
+const TABLE_ROW = (label) => new RegExp(`(<tr><td>${label}</td><td>)([^<]*)(</td></tr>)`);
+const SIDEBAR_ROW = (label) =>
+    new RegExp(`(<span class="sidebar-card__label">${label}</span><span class="sidebar-card__value">)([^<]*)(</span>)`);
+
+function rewriteProseFigures(map, index, projection, constants, read) {
+    const out = {};
+    for (const spec of map.proseFigures.files) {
+        let src = read(spec.file);
+        if (spec.tableRows) src = rewriteLabelledPrices(src, spec.file, spec.tableRows, TABLE_ROW, ' – ', index, projection);
+        if (spec.sidebarRows) src = rewriteLabelledPrices(src, spec.file, spec.sidebarRows, SIDEBAR_ROW, '–', index, projection);
+        if (spec.inlineRanges) src = rewriteInlineRanges(src, spec.file, spec.inlineRanges, index, projection);
+        src = rewritePriceSrcSpans(src, spec.file, index, constants);
+        out[spec.file] = src;
+    }
+    return out;
+}
+
+/* An inline figure in a sentence or a heading, marked in the HTML as
+       <span data-price-src="new-apartment-setup.rate">$125</span>
+   The attribute is the contract (pricing-website-contract.md §6.4): the marker says which catalog
+   figure the sentence is quoting, and the text inside is written by this generator. A price in
+   prose is still a price, and this is how a sentence stops being a place where one can rot.
+   Grammar: const.<name> · <service>.rate|.minCharge|.range · <service>#<tier>.range ·
+            <service>.hours:N · <service>.hours:N-M   (an hourly rate multiplied out) */
+const PRICE_SRC_SPAN = /(<span data-price-src="([^"]+)"[^>]*>)([^<]*)(<\/span>)/g;
+
+function rewritePriceSrcSpans(src, file, index, constants) {
+    return src.replace(PRICE_SRC_SPAN, (_m, open, ref, _old, close) => `${open}${resolvePriceSrc(ref, index, constants, file)}${close}`);
+}
+
+function resolvePriceSrc(ref, index, constants, file) {
+    const fail = (why) => { throw new Error(`data-price-src="${ref}" in ${file}: ${why}`); };
+    if (ref.startsWith('const.')) {
+        const value = constants[ref.slice('const.'.length)];
+        if (typeof value !== 'number') fail('no such catalog constant');
+        return `$${withThousands(value)}`;
+    }
+    const [target, field] = [ref.slice(0, ref.lastIndexOf('.')), ref.slice(ref.lastIndexOf('.') + 1)];
+    if (field === 'range') {
+        const [lo, hi] = resolveRefRange(target, index, null);
+        return priceRange(lo, hi, '–');
+    }
+    const service = index.services.get(target);
+    if (!service) fail('no such catalog service');
+    if (field === 'rate') return `$${withThousands(service.rate)}`;
+    if (field === 'minCharge') return `$${withThousands(service.minCharge)}`;
+    if (field.startsWith('hours:')) {
+        const spec = field.slice('hours:'.length);
+        if (service.unitBasis !== 'per_hour') fail('hours: only applies to a per_hour service');
+        const [from, to] = spec.split('-').map(Number);
+        if (!Number.isFinite(from)) fail('unparseable hour count');
+        const lo = Math.max(service.rate * from, service.minCharge);
+        if (!Number.isFinite(to)) return `$${withThousands(lo)}`;
+        return priceRange(lo, Math.max(service.rate * to, service.minCharge), '–');
+    }
+    return fail('unknown field');
+}
+
+function spliceAiGuide(src, target, block) {
+    const startAt = src.indexOf(target.startsAfter);
+    if (startAt === -1) throw new Error(`marker not found in ${target.file}: ${target.startsAfter}`);
+    const from = startAt + target.startsAfter.length;
+    const endAt = src.indexOf(target.endsBefore, from);
+    if (endAt === -1) throw new Error(`marker not found in ${target.file}: ${target.endsBefore}`);
+    return `${src.slice(0, from)}\n\n${block}\n\n${src.slice(endAt)}`;
+}
+
+// ── Reading the current CONFIGS out of calculator.js ──────────────────────────────────
+
+export function evalConfigs(src) {
+    const dataOnly = src.slice(0, src.indexOf('export default function calculator'));
+    // eslint-disable-next-line no-eval
+    return eval(`${dataOnly}\nCONFIGS`);
+}
+
+/** The declared size order per config/series — the axis monotonicity is checked along. */
+function sizeOrdersFrom(CONFIGS) {
+    const orders = {};
+    for (const [configKey, cfg] of Object.entries(CONFIGS)) {
+        if (!cfg.pricing) continue;
+        orders[configKey] = {};
+        const sizeCategory = cfg.categories?.[1];
+        for (const series of Object.keys(cfg.pricing)) {
+            const declared = sizeCategory?.optionSets?.[series]
+                ?.map((o) => o.value)
+                .filter(Boolean)
+                .filter((v) => Object.prototype.hasOwnProperty.call(cfg.pricing[series], v));
+            orders[configKey][series] = declared?.length ? declared : Object.keys(cfg.pricing[series]);
+        }
+    }
+    return orders;
+}
+
+// ── Build everything ──────────────────────────────────────────────────────────────────
+
+export function build() {
+    const catalog = loadCatalog();
+    const index = indexCatalog(catalog);
+    const map = readJson('pricing/site-map.json');
+    if (map.catalogVersion !== CATALOG_VERSION) throw new Error('site-map.json targets a different catalog version');
+
+    const frozenPrevious = readJson(`pricing/price-tables/${PREVIOUS_VERSION}.json`);
+    if (frozenPrevious.priceVersion !== PREVIOUS_VERSION) throw new Error('the frozen previous table is mislabelled');
+
+    const calculatorSrc = read('components/modules/calculator.js');
+    const CONFIGS = evalConfigs(calculatorSrc);
+    const sizeOrders = sizeOrdersFrom(CONFIGS);
+
+    const projection = {};
+    const allCells = [];
+    for (const configKey of Object.keys(frozenPrevious.modularCalculator)) {
+        const { pricing, cells } = projectConfig({
+            configKey,
+            previous: frozenPrevious.modularCalculator[configKey],
+            map,
+            index,
+            constants: catalog.constants,
+            sizeOrders,
+        });
+        projection[configKey] = pricing;
+        allCells.push(...cells);
+    }
+
+    const { source: nextCalculator, configsRewritten } = rewriteCalculatorJs(
+        calculatorSrc,
+        projection,
+        frozenPrevious.modularCalculator,
+    );
+    const nextMain = rewriteMainJs(read('main.js'));
+    const hub = buildHubCalculators(evalConfigs(nextCalculator));
+
+    const aiGuideBlock = renderAiGuideBlock(map, index, catalog.constants);
+    const aiGuides = {};
+    for (const target of map.aiGuideExamples.targets) {
+        aiGuides[target.file] = spliceAiGuide(read(target.file), target, aiGuideBlock);
+    }
+    const prose = rewriteProseFigures(map, index, projection, catalog.constants, read);
+
+    const byProvenance = {};
+    for (const cell of allCells) byProvenance[cell.source] = (byProvenance[cell.source] || 0) + 1;
+
+    const priceTable = {
+        priceVersion: CATALOG_VERSION,
+        frozen: false,
+        note:
+            `The exact price table asap.repair renders under ${CATALOG_VERSION}. Generated by ` +
+            'scripts/generate-calculator-prices.mjs from pricing/catalog/' + CATALOG_VERSION + '.json. ' +
+            'Freeze it (set frozen: true) the moment a lead is stamped with this version.',
+        supersedes: PREVIOUS_VERSION,
+        catalogSha256: CATALOG_SHA256,
+        modularCalculator: projection,
+        windowAcWidget: { ...frozenPrevious.windowAcWidget, applyRepairMinimum: true },
+    };
+
+    const projectionReport = {
+        pricingVersion: CATALOG_VERSION,
+        supersedes: PREVIOUS_VERSION,
+        catalogSha256: CATALOG_SHA256,
+        generatedBy: 'scripts/generate-calculator-prices.mjs',
+        note:
+            'Provenance of every calculator cell on asap.repair. A cell is only overwritten when the catalog ' +
+            'or docs/pricing-website-contract.md §4 states its value; otherwise it is the frozen ' +
+            `${PREVIOUS_VERSION} figure, moved only by the two rules the owner has already decided (the ` +
+            '$150 work minimum, and monotonicity along the declared size axis).',
+        totals: {
+            cells: allCells.length,
+            configs: Object.keys(projection).length,
+            byProvenance: Object.fromEntries(Object.entries(byProvenance).sort((a, b) => b[1] - a[1])),
+        },
+        openGap: {
+            what: 'Cells the catalog does not carry.',
+            why:
+                'docs/pricing-website-contract.md §4: proposal sections 2.1-2.8 — the per-hub cell tables — were ' +
+                'truncated out of the catalog lane\'s input and are not in the catalog. They are pending, not ' +
+                'agreed-unchanged.',
+            cellsPendingProposalSections2_1To2_8: allCells.filter((c) => c.source.startsWith('carry-forward')).length,
+        },
+        cells: allCells,
+    };
+
+    return {
+        catalog,
+        map,
+        projection,
+        cells: allCells,
+        configsRewritten,
+        files: {
+            [`pricing/price-tables/${CATALOG_VERSION}.json`]: `${JSON.stringify(priceTable, null, 2)}\n`,
+            'pricing/calculator-price-projection.json': `${JSON.stringify(projectionReport, null, 2)}\n`,
+            'pricing/catalog/index.json': `${JSON.stringify(
+                {
+                    live: CATALOG_VERSION,
+                    versions: [CATALOG_VERSION],
+                    sha256: { [CATALOG_VERSION]: CATALOG_SHA256 },
+                    priceTables: [PREVIOUS_VERSION, CATALOG_VERSION],
+                    note:
+                        'Published for the CRM cross-repository drift cron (pricing-website-contract.md §8): fetch ' +
+                        'this, then compare sha256(pricing/catalog/<live>.json) with PRICING_CATALOG_CHECKSUMS[live] ' +
+                        'in bazas-crm/lib/pricing/catalog.ts. priceTables lists every version a lead may still carry; ' +
+                        'each is served at /pricing/price-tables/<version>.json and is never rewritten.',
+                },
+                null,
+                2,
+            )}\n`,
+            'components/modules/calculator.js': nextCalculator,
+            'main.js': nextMain,
+            'assets/data/hub-calculators.json': `${JSON.stringify(hub, null, 2)}\n`,
+            ...aiGuides,
+            ...prose,
+        },
+    };
+}
+
+// ── CLI ───────────────────────────────────────────────────────────────────────────────
+
+function main() {
+    const result = build();
+    const drifted = [];
+    for (const [rel, content] of Object.entries(result.files)) {
+        let current = null;
+        try { current = read(rel); } catch { current = null; }
+        if (current === content) continue;
+        drifted.push(rel);
+        if (!CHECK) {
+            mkdirSync(dirname(p(rel)), { recursive: true });
+            writeFileSync(p(rel), content);
+        }
+    }
+
+    const counts = result.cells.reduce((acc, c) => { acc[c.source] = (acc[c.source] || 0) + 1; return acc; }, {});
+    const summary = Object.entries(counts).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k}=${v}`).join('  ');
+
+    if (CHECK) {
+        if (drifted.length) {
+            console.error(`Calculator prices are out of date. Run: node scripts/generate-calculator-prices.mjs\n  ${drifted.join('\n  ')}`);
+            process.exit(1);
+        }
+        console.log(`Calculator prices are in sync with ${CATALOG_VERSION}. ${result.cells.length} cells.`);
+        return;
+    }
+
+    console.log(
+        `Projected ${result.cells.length} cells across ${result.configsRewritten} configs from ${CATALOG_VERSION}.\n` +
+        `  ${summary}\n` +
+        (drifted.length ? `  wrote: ${drifted.join(', ')}` : '  nothing changed'),
+    );
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) main();

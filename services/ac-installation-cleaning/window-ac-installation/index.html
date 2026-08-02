@@ -660,13 +660,15 @@
         </div>
     </section>
 
-    <!-- ========== GALLERY ========== -->
-    <section class="spoke-module" id="calculator">
-        <div class="container">
-            <div data-module="calculator" data-config="ac-window"></div>
-        </div>
-    </section>
+    <!-- The generic ac-window calculator used to be mounted here, a second time and under a
+         SECOND element carrying the same anchor id (the real window-AC widget above owns it). One page
+         was quoting the same job at two different prices from two different tables, and a
+         duplicate id meant the in-page anchor could land on either. The widget above is the one
+         with the floor, the BTU/window/floor/building axes and the lead snapshot; this one is
+         gone. The ac-window config itself stays in calculator.js — the AC hub calculator reads
+         it — it just no longer renders on the page that has its own. -->
 
+    <!-- ========== GALLERY ========== -->
     <section class="svc-gallery" id="gallery">
         <div class="container">
             <span class="section-tag">Our Work</span>

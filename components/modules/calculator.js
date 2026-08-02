@@ -9,7 +9,7 @@
    The window-AC calculator in main.js has its own table and its own
    REPAIR_ASAP_CALC_PRICE_VERSION; both land in the same custom field, and
    calculator_config records which table produced the number. */
-const CALC_PRICE_VERSION = 'calc-2026-08-01';
+const CALC_PRICE_VERSION = 'calc-2026-09-01';
 
 const CONFIGS = {
     ikea: {
@@ -88,14 +88,14 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            kallax: { sm: [65, 99], md: [99, 150], lg: [150, 220] },
-            pax: { sm: [120, 180], md: [200, 310], lg: [310, 450] },
-            malm: { sm: [65, 99], md: [85, 130], lg: [120, 190] },
-            hemnes: { sm: [75, 115], md: [115, 165], lg: [180, 280] },
-            besta: { sm: [99, 150], md: [165, 260], lg: [260, 400] },
-            billy: { sm: [50, 85], md: [115, 165], lg: [180, 260] },
-            nordli: { sm: [65, 110], md: [99, 150], lg: [150, 230] },
-            other: { sm: [50, 99], md: [99, 165], lg: [165, 290] }
+            kallax: { sm: [150, 184], md: [184, 235], lg: [235, 305] },
+            pax: { sm: [295, 355], md: [375, 485], lg: [485, 625] },
+            malm: { sm: [150, 184], md: [170, 215], lg: [205, 275] },
+            hemnes: { sm: [150, 190], md: [190, 240], lg: [255, 355] },
+            besta: { sm: [150, 201], md: [216, 311], lg: [311, 451] },
+            billy: { sm: [150, 185], md: [215, 265], lg: [280, 360] },
+            nordli: { sm: [150, 195], md: [184, 235], lg: [235, 315] },
+            other: { sm: [150, 199], md: [199, 265], lg: [265, 390] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates based on standard assembly. Final price confirmed after review.'
@@ -169,13 +169,13 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            platform: { sm: [65, 99], md: [85, 125], lg: [99, 150] },
-            storage: { sm: [99, 150], md: [125, 200], lg: [165, 290] },
-            bunk: { sm: [125, 180], md: [165, 250], lg: [230, 350] },
-            loft: { sm: [115, 165], md: [150, 230], lg: [200, 310] },
-            adjustable: { sm: [65, 110], md: [85, 130], lg: [150, 230] },
-            daybed: { sm: [65, 110], md: [99, 150], lg: [130, 200] },
-            other: { sm: [50, 99], md: [85, 150], lg: [130, 250] }
+            platform: { sm: [150, 184], md: [170, 210], lg: [184, 235] },
+            storage: { sm: [195, 265], md: [245, 330], lg: [310, 420] },
+            bunk: { sm: [150, 205], md: [190, 275], lg: [255, 375] },
+            loft: { sm: [150, 200], md: [185, 265], lg: [235, 345] },
+            adjustable: { sm: [195, 265], md: [230, 310], lg: [390, 530] },
+            daybed: { sm: [150, 195], md: [184, 235], lg: [215, 285] },
+            other: { sm: [150, 199], md: [185, 250], lg: [230, 350] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates based on standard assembly. Final price confirmed after review.'
@@ -242,12 +242,12 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            freestanding: { sm: [85, 130], md: [130, 200], lg: [200, 310] },
-            armoire: { sm: [99, 150], md: [150, 230], lg: [230, 350] },
-            'closet-system': { sm: [125, 200], md: [230, 350], lg: [350, 530] },
-            'sliding-door': { sm: [130, 200], md: [200, 310], lg: [310, 450] },
+            freestanding: { sm: [150, 195], md: [195, 265], lg: [265, 375] },
+            armoire: { sm: [150, 201], md: [201, 281], lg: [281, 401] },
+            'closet-system': { sm: [150, 225], md: [255, 375], lg: [375, 555] },
+            'sliding-door': { sm: [150, 220], md: [220, 330], lg: [330, 470] },
             'walk-in': { sm: [165, 250], md: [250, 390], lg: [390, 620] },
-            other: { sm: [65, 130], md: [130, 230], lg: [230, 370] }
+            other: { sm: [150, 215], md: [215, 315], lg: [315, 455] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates based on standard assembly. Final price confirmed after review.'
@@ -314,12 +314,12 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            'floating-vanity': { sm: [99, 150], md: [150, 230], lg: [230, 350] },
-            'wall-cabinet': { sm: [65, 110], md: [130, 210], lg: [230, 350] },
-            'floating-desk': { sm: [85, 130], md: [130, 200], lg: [200, 310] },
-            'wall-unit': { sm: [99, 165], md: [180, 295], lg: [295, 450] },
-            'floating-shelf': { sm: [50, 85], md: [99, 165], lg: [165, 260] },
-            other: { sm: [50, 99], md: [99, 180], lg: [180, 310] }
+            'floating-vanity': { sm: [165, 216], md: [216, 296], lg: [296, 416] },
+            'wall-cabinet': { sm: [165, 210], md: [230, 310], lg: [330, 450] },
+            'floating-desk': { sm: [165, 210], md: [210, 280], lg: [280, 390] },
+            'wall-unit': { sm: [165, 231], md: [246, 361], lg: [361, 516] },
+            'floating-shelf': { sm: [165, 200], md: [214, 280], lg: [280, 375] },
+            other: { sm: [165, 214], md: [214, 295], lg: [295, 425] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates based on standard assembly. Final price confirmed after review.'
@@ -372,8 +372,8 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            small: { sm: [99, 150], md: [130, 180], lg: [165, 230] },
-            medium: { sm: [125, 180], md: [165, 230], lg: [200, 280] },
+            small: { sm: [150, 201], md: [181, 231], lg: [216, 281] },
+            medium: { sm: [150, 205], md: [190, 255], lg: [225, 305] },
             large: { sm: [165, 230], md: [200, 290], lg: [250, 350] },
             xlarge: { sm: [230, 310], md: [280, 370], lg: [330, 450] }
         },
@@ -442,12 +442,12 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            floating: { sm: [50, 85], md: [99, 165], lg: [165, 260] },
-            bracket: { sm: [40, 65], md: [85, 130], lg: [130, 210] },
-            ledge: { sm: [40, 65], md: [75, 125], lg: [125, 200] },
-            heavy: { sm: [65, 110], md: [130, 210], lg: [210, 330] },
-            corner: { sm: [50, 85], md: [99, 155], lg: [155, 250] },
-            other: { sm: [40, 85], md: [85, 150], lg: [150, 250] }
+            floating: { sm: [150, 185], md: [199, 265], lg: [265, 360] },
+            bracket: { sm: [150, 175], md: [195, 240], lg: [240, 320] },
+            ledge: { sm: [150, 175], md: [185, 235], lg: [235, 310] },
+            heavy: { sm: [150, 195], md: [215, 295], lg: [295, 415] },
+            corner: { sm: [150, 185], md: [199, 255], lg: [255, 350] },
+            other: { sm: [150, 195], md: [195, 260], lg: [260, 360] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates based on standard installation. Final price confirmed after reviewing your wall and shelves.'
@@ -514,12 +514,12 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            single: { sm: [40, 65], md: [99, 165], lg: [165, 260] },
-            double: { sm: [55, 90], md: [130, 210], lg: [210, 330] },
-            ceiling: { sm: [65, 110], md: [150, 250], lg: [250, 380] },
-            bay: { sm: [85, 130], md: [130, 200], lg: [230, 350] },
-            tension: { sm: [25, 40], md: [55, 99], lg: [99, 165] },
-            other: { sm: [40, 85], md: [99, 180], lg: [180, 295] }
+            single: { sm: [150, 175], md: [209, 275], lg: [275, 370] },
+            double: { sm: [150, 185], md: [225, 305], lg: [305, 425] },
+            ceiling: { sm: [150, 195], md: [235, 335], lg: [335, 465] },
+            bay: { sm: [150, 195], md: [195, 265], lg: [295, 415] },
+            tension: { sm: [150, 165], md: [180, 224], lg: [224, 290] },
+            other: { sm: [150, 195], md: [209, 290], lg: [290, 405] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates based on standard installation. Final price confirmed after reviewing your windows and rods.'
@@ -586,12 +586,12 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            vanity: { sm: [50, 75], md: [75, 115], lg: [115, 180] },
-            'full-length': { sm: [50, 85], md: [85, 130], lg: [130, 200] },
-            decorative: { sm: [40, 65], md: [65, 110], lg: [110, 165] },
-            oversized: { sm: [99, 150], md: [150, 230], lg: [200, 310] },
-            frameless: { sm: [55, 90], md: [90, 140], lg: [140, 215] },
-            other: { sm: [40, 85], md: [85, 150], lg: [150, 250] }
+            vanity: { sm: [150, 175], md: [175, 215], lg: [215, 280] },
+            'full-length': { sm: [150, 185], md: [185, 230], lg: [230, 300] },
+            decorative: { sm: [150, 175], md: [175, 220], lg: [220, 275] },
+            oversized: { sm: [275, 375], md: [325, 440], lg: [390, 530] },
+            frameless: { sm: [150, 185], md: [185, 235], lg: [235, 310] },
+            other: { sm: [150, 195], md: [195, 260], lg: [260, 360] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates based on standard installation. Final price confirmed after reviewing your mirror and wall.'
@@ -644,10 +644,10 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            ceiling: { sm: [125, 180], md: [165, 250], lg: [230, 330] },
-            wall: { sm: [99, 150], md: [130, 200], lg: [180, 280] },
-            shelf: { sm: [50, 85], md: [85, 130], lg: [115, 180] },
-            other: { sm: [85, 150], md: [150, 230], lg: [230, 350] }
+            ceiling: { sm: [165, 220], md: [205, 290], lg: [270, 370] },
+            wall: { sm: [165, 216], md: [196, 266], lg: [246, 346] },
+            shelf: { sm: [165, 200], md: [200, 245], lg: [230, 295] },
+            other: { sm: [165, 230], md: [230, 310], lg: [310, 430] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates include mount and cable routing. Projector and cables not included.'
@@ -707,11 +707,11 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            fixed: { sm: [99, 150], md: [150, 230], lg: [230, 330] },
-            pulldown: { sm: [65, 110], md: [110, 165], lg: [165, 250] },
-            motorized: { sm: [125, 190], md: [190, 290], lg: [290, 410] },
-            'tab-tension': { sm: [130, 200], md: [200, 310], lg: [310, 450] },
-            other: { sm: [65, 125], md: [125, 200], lg: [200, 330] }
+            fixed: { sm: [195, 246], md: [246, 326], lg: [326, 426] },
+            pulldown: { sm: [195, 240], md: [240, 295], lg: [295, 380] },
+            motorized: { sm: [195, 260], md: [260, 360], lg: [360, 480] },
+            'tab-tension': { sm: [195, 265], md: [265, 375], lg: [375, 515] },
+            other: { sm: [195, 255], md: [255, 330], lg: [330, 460] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates include mounting and alignment. Screen hardware not included unless specified.'
@@ -778,12 +778,12 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            simple: { sm: [50, 85], md: [85, 130], lg: [130, 200] },
-            lshaped: { sm: [85, 130], md: [130, 200], lg: [200, 295] },
-            standing: { sm: [65, 110], md: [110, 165], lg: [165, 250] },
-            executive: { sm: [99, 150], md: [165, 250], lg: [250, 370] },
-            gaming: { sm: [55, 99], md: [99, 165], lg: [165, 260] },
-            other: { sm: [50, 99], md: [99, 165], lg: [165, 280] }
+            simple: { sm: [150, 185], md: [185, 230], lg: [230, 300] },
+            lshaped: { sm: [150, 195], md: [195, 265], lg: [265, 360] },
+            standing: { sm: [150, 195], md: [195, 250], lg: [250, 335] },
+            executive: { sm: [150, 201], md: [216, 301], lg: [301, 421] },
+            gaming: { sm: [150, 194], md: [194, 260], lg: [260, 355] },
+            other: { sm: [150, 199], md: [199, 265], lg: [265, 380] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates based on standard assembly. Final price confirmed after reviewing your desk.'
@@ -850,12 +850,12 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            standard: { sm: [50, 85], md: [85, 125], lg: [125, 180] },
-            tall: { sm: [55, 90], md: [90, 140], lg: [140, 200] },
-            wide: { sm: [65, 110], md: [110, 165], lg: [165, 250] },
-            combo: { sm: [65, 110], md: [110, 165], lg: [165, 230] },
-            nightstand: { sm: [35, 55], md: [55, 99], lg: [90, 140] },
-            other: { sm: [40, 85], md: [85, 150], lg: [150, 230] }
+            standard: { sm: [185, 220], md: [220, 260], lg: [260, 315] },
+            tall: { sm: [185, 220], md: [220, 270], lg: [270, 330] },
+            wide: { sm: [185, 230], md: [230, 285], lg: [285, 370] },
+            combo: { sm: [185, 230], md: [230, 285], lg: [285, 350] },
+            nightstand: { sm: [185, 205], md: [205, 249], lg: [240, 290] },
+            other: { sm: [185, 230], md: [230, 295], lg: [295, 375] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates based on standard assembly. Wall anchoring included where required.'
@@ -994,12 +994,12 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            framed: { sm: [35, 55], md: [65, 115], lg: [125, 215] },
-            canvas: { sm: [35, 55], md: [65, 115], lg: [125, 200] },
-            'gallery-wall': { sm: [99, 165], md: [165, 260], lg: [260, 395] },
-            heavy: { sm: [65, 110], md: [110, 165], lg: [165, 260] },
-            'mirror-decor': { sm: [40, 65], md: [65, 115], lg: [115, 180] },
-            other: { sm: [35, 65], md: [65, 130], lg: [130, 230] }
+            framed: { sm: [150, 170], md: [180, 230], lg: [240, 330] },
+            canvas: { sm: [150, 170], md: [180, 230], lg: [240, 315] },
+            'gallery-wall': { sm: [150, 216], md: [216, 311], lg: [311, 446] },
+            heavy: { sm: [150, 195], md: [195, 250], lg: [250, 345] },
+            'mirror-decor': { sm: [150, 175], md: [175, 225], lg: [225, 290] },
+            other: { sm: [150, 180], md: [180, 245], lg: [245, 345] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates include wall assessment, leveling, and hardware. Art pieces not included.'
@@ -1066,12 +1066,12 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            kitchen: { sm: [65, 115], md: [165, 290], lg: [330, 530] },
-            bathroom: { sm: [50, 85], md: [85, 150], lg: [150, 250] },
-            ikea: { sm: [65, 110], md: [130, 210], lg: [230, 350] },
-            laundry: { sm: [65, 115], md: [150, 250], lg: [260, 410] },
-            floating: { sm: [65, 110], md: [130, 210], lg: [230, 350] },
-            other: { sm: [50, 99], md: [115, 200], lg: [215, 350] }
+            kitchen: { sm: [165, 215], md: [265, 390], lg: [430, 630] },
+            bathroom: { sm: [165, 200], md: [200, 265], lg: [265, 365] },
+            ikea: { sm: [165, 210], md: [230, 310], lg: [330, 450] },
+            laundry: { sm: [165, 215], md: [250, 350], lg: [360, 510] },
+            floating: { sm: [165, 210], md: [230, 310], lg: [330, 450] },
+            other: { sm: [165, 214], md: [230, 315], lg: [330, 465] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates include stud locating, leveling, and secure mounting. Cabinet hardware not included unless specified.'
@@ -1124,10 +1124,10 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            swap: { sm: [125, 180], md: [165, 230], lg: [200, 290] },
-            new: { sm: [200, 290], md: [290, 410], lg: [410, 620] },
-            builtin: { sm: [150, 215], md: [215, 310], lg: [310, 450] },
-            other: { sm: [125, 200], md: [200, 330], lg: [330, 490] }
+            swap: { sm: [175, 230], md: [215, 280], lg: [250, 340] },
+            new: { sm: [325, 450], md: [430, 590], lg: [520, 700] },
+            builtin: { sm: [280, 380], md: [430, 590], lg: [650, 880] },
+            other: { sm: [175, 250], md: [250, 380], lg: [380, 540] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates include hookup, leveling, and leak test. Appliance not included.'
@@ -1187,11 +1187,11 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            electric: { sm: [99, 150], md: [150, 215], lg: [230, 330] },
+            electric: { sm: [165, 216], md: [216, 281], lg: [296, 396] },
             gas: { sm: [125, 180], md: [180, 260], lg: [290, 410] },
-            ventless: { sm: [110, 165], md: [165, 250], lg: [250, 370] },
-            stackable: { sm: [125, 180], md: [180, 260], lg: [260, 370] },
-            other: { sm: [99, 165], md: [165, 260], lg: [260, 410] }
+            ventless: { sm: [165, 220], md: [220, 305], lg: [305, 425] },
+            stackable: { sm: [165, 220], md: [220, 300], lg: [300, 410] },
+            other: { sm: [165, 231], md: [231, 326], lg: [326, 476] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates include hookup, venting, and testing. Appliance and parts not included.'
@@ -1251,11 +1251,11 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            otr: { sm: [99, 150], md: [150, 230], lg: [230, 345] },
-            builtin: { sm: [110, 165], md: [165, 250], lg: [250, 370] },
-            undermount: { sm: [85, 130], md: [130, 200], lg: [200, 310] },
-            drawer: { sm: [125, 180], md: [180, 280], lg: [280, 410] },
-            other: { sm: [85, 150], md: [150, 250], lg: [250, 370] }
+            otr: { sm: [195, 246], md: [246, 326], lg: [326, 441] },
+            builtin: { sm: [195, 250], md: [250, 335], lg: [335, 455] },
+            undermount: { sm: [195, 240], md: [240, 310], lg: [310, 420] },
+            drawer: { sm: [195, 250], md: [250, 350], lg: [350, 480] },
+            other: { sm: [195, 260], md: [260, 360], lg: [360, 480] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates include mounting, venting, and electrical check. Microwave not included.'
@@ -1323,11 +1323,11 @@ const CONFIGS = {
         ],
         pricing: {
             'gas-freestanding': { sm: [125, 180], md: [180, 260], lg: [290, 410] },
-            'electric-freestanding': { sm: [99, 150], md: [150, 215], lg: [230, 330] },
-            'slide-in': { sm: [125, 180], md: [180, 280], lg: [280, 410] },
+            'electric-freestanding': { sm: [175, 226], md: [226, 291], lg: [306, 406] },
+            'slide-in': { sm: [175, 230], md: [230, 330], lg: [330, 460] },
             'wall-oven': { sm: [150, 215], md: [215, 310], lg: [330, 490] },
             cooktop: { sm: [110, 165], md: [165, 250], lg: [260, 395] },
-            other: { sm: [99, 180], md: [180, 290], lg: [290, 450] }
+            other: { sm: [175, 256], md: [256, 366], lg: [366, 526] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates include hookup, anti-tip installation, and testing. Appliance not included.'
@@ -1394,12 +1394,12 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            freestanding: { sm: [85, 130], md: [130, 200], lg: [215, 310] },
-            'french-door': { sm: [99, 150], md: [150, 215], lg: [230, 330] },
-            'side-by-side': { sm: [99, 150], md: [150, 215], lg: [215, 310] },
-            'counter-depth': { sm: [125, 180], md: [180, 280], lg: [290, 410] },
-            mini: { sm: [50, 85], md: [85, 130], lg: [130, 215] },
-            other: { sm: [85, 150], md: [150, 250], lg: [250, 370] }
+            freestanding: { sm: [150, 195], md: [195, 265], lg: [280, 375] },
+            'french-door': { sm: [150, 201], md: [201, 266], lg: [281, 381] },
+            'side-by-side': { sm: [150, 201], md: [201, 266], lg: [266, 361] },
+            'counter-depth': { sm: [150, 205], md: [205, 305], lg: [315, 435] },
+            mini: { sm: [150, 185], md: [185, 230], lg: [230, 315] },
+            other: { sm: [150, 215], md: [215, 315], lg: [315, 435] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates include leveling, water line, and testing. Appliance not included.'
@@ -1461,7 +1461,7 @@ const CONFIGS = {
         pricing: {
             stacked: { sm: [165, 250], md: [250, 345], lg: [370, 530] },
             sidebyside: { sm: [165, 250], md: [250, 345], lg: [370, 530] },
-            allinone: { sm: [125, 180], md: [180, 260], lg: [290, 410] },
+            allinone: { sm: [165, 220], md: [220, 300], lg: [330, 450] },
             'laundry-center': { sm: [150, 215], md: [215, 310], lg: [330, 475] },
             other: { sm: [150, 230], md: [230, 345], lg: [345, 530] }
         },
@@ -1523,11 +1523,11 @@ const CONFIGS = {
             }
         ],
         pricing: {
-            topload: { sm: [99, 150], md: [150, 215], lg: [230, 330] },
-            frontload: { sm: [110, 165], md: [165, 250], lg: [250, 360] },
-            stackable: { sm: [110, 165], md: [165, 230], lg: [250, 345] },
-            portable: { sm: [50, 85], md: [85, 130], lg: [130, 200] },
-            other: { sm: [99, 165], md: [165, 250], lg: [250, 370] }
+            topload: { sm: [165, 216], md: [216, 281], lg: [296, 396] },
+            frontload: { sm: [165, 220], md: [220, 305], lg: [305, 415] },
+            stackable: { sm: [165, 220], md: [220, 285], lg: [305, 400] },
+            portable: { sm: [165, 200], md: [200, 245], lg: [245, 315] },
+            other: { sm: [165, 231], md: [231, 316], lg: [316, 436] }
         },
         cta: { text: 'Get Exact Quote', href: '/#contact' },
         disclaimer: 'Estimates include hookup, leveling, and leak test. Appliance and hoses not included.'
@@ -1888,62 +1888,10 @@ Object.assign(CONFIGS, {
                     }
             ],
             "pricing": {
-                    "small": {
-                            "drop": [
-                                    150,
-                                    195
-                            ],
-                            "seal": [
-                                    195,
-                                    265
-                            ],
-                            "hard": [
-                                    255,
-                                    345
-                            ]
-                    },
-                    "medium": {
-                            "drop": [
-                                    165,
-                                    220
-                            ],
-                            "seal": [
-                                    220,
-                                    300
-                            ],
-                            "hard": [
-                                    290,
-                                    390
-                            ]
-                    },
-                    "large": {
-                            "drop": [
-                                    195,
-                                    260
-                            ],
-                            "seal": [
-                                    260,
-                                    350
-                            ],
-                            "hard": [
-                                    340,
-                                    460
-                            ]
-                    },
-                    "casement": {
-                            "drop": [
-                                    185,
-                                    245
-                            ],
-                            "seal": [
-                                    245,
-                                    330
-                            ],
-                            "hard": [
-                                    325,
-                                    435
-                            ]
-                    }
+                small: { drop: [150, 195], seal: [195, 265], hard: [255, 345] },
+                medium: { drop: [165, 220], seal: [220, 300], hard: [290, 390] },
+                large: { drop: [195, 260], seal: [260, 350], hard: [340, 460] },
+                casement: { drop: [185, 245], seal: [245, 330], hard: [325, 435] }
             },
             "cta": {
                     "text": "Get My AC Install Quote",
@@ -2006,7 +1954,7 @@ Object.assign(CONFIGS, VISIT_CONFIGS, {
             standard: { sm: [150, 195], md: [175, 240], lg: [210, 295] },
             stacked: { sm: [165, 225], md: [195, 270], lg: [250, 350] },
             'long-run': { sm: [175, 250], md: [195, 280], lg: [240, 340] },
-            multi: { sm: [280, 420], md: [480, 750], lg: [750, 1200] },
+            multi: { sm: [280, 420], md: [480, 750], lg: [750, 1200] }
         },
         cta: { text: 'Book My Vent Cleaning', href: '/#contact' },
         disclaimer: 'Estimates cover accessible duct runs. In-wall or riser ductwork is flagged and routed separately. Final price confirmed after photos.',
@@ -2062,7 +2010,7 @@ Object.assign(CONFIGS, VISIT_CONFIGS, {
             undercounter: { sm: [175, 250], md: [210, 295], lg: [250, 350] },
             modular: { sm: [210, 310], md: [250, 360], lg: [295, 420] },
             countertop: { sm: [150, 210], md: [180, 250], lg: [220, 310] },
-            multiple: { sm: [320, 480], md: [450, 680], lg: [600, 950] },
+            multiple: { sm: [320, 480], md: [450, 680], lg: [600, 950] }
         },
         cta: { text: 'Book My Machine Cleaning', href: '/#contact' },
         disclaimer: 'Cleaning follows the manufacturer’s documented procedure. Refrigerant or sealed-system faults found during cleaning are flagged and routed to a specialist. Final price confirmed after photos.',
@@ -2229,90 +2177,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "bedroom": {
-                "sm": [
-                    375,
-                    575
-                ],
-                "md": [
-                    525,
-                    800
-                ],
-                "lg": [
-                    750,
-                    1150
-                ]
-            },
-            "living": {
-                "sm": [
-                    500,
-                    750
-                ],
-                "md": [
-                    700,
-                    1050
-                ],
-                "lg": [
-                    975,
-                    1450
-                ]
-            },
-            "hallway": {
-                "sm": [
-                    325,
-                    525
-                ],
-                "md": [
-                    475,
-                    750
-                ],
-                "lg": [
-                    750,
-                    1250
-                ]
-            },
-            "apartment": {
-                "sm": [
-                    1400,
-                    2200
-                ],
-                "md": [
-                    3200,
-                    5200
-                ],
-                "lg": [
-                    6000,
-                    10000
-                ]
-            },
-            "ceiling": {
-                "sm": [
-                    225,
-                    375
-                ],
-                "md": [
-                    450,
-                    750
-                ],
-                "lg": [
-                    600,
-                    975
-                ]
-            },
-            "touchup": {
-                "sm": [
-                    150,
-                    275
-                ],
-                "md": [
-                    225,
-                    375
-                ],
-                "lg": [
-                    350,
-                    600
-                ]
-            }
+            bedroom: { sm: [375, 575], md: [525, 800], lg: [750, 1150] },
+            living: { sm: [500, 750], md: [700, 1050], lg: [975, 1450] },
+            hallway: { sm: [325, 525], md: [475, 750], lg: [750, 1250] },
+            apartment: { sm: [1600, 2600], md: [2600, 4200], lg: [4300, 7500] },
+            ceiling: { sm: [225, 375], md: [450, 750], lg: [600, 975] },
+            touchup: { sm: [150, 275], md: [225, 375], lg: [350, 600] }
         },
         "cta": {
             "text": "Get My Painting Quote",
@@ -2475,90 +2345,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "solid": {
-                "sm": [
-                    225,
-                    425
-                ],
-                "md": [
-                    275,
-                    450
-                ],
-                "lg": [
-                    400,
-                    625
-                ]
-            },
-            "two-tone": {
-                "sm": [
-                    225,
-                    375
-                ],
-                "md": [
-                    350,
-                    550
-                ],
-                "lg": [
-                    500,
-                    775
-                ]
-            },
-            "stripes": {
-                "sm": [
-                    325,
-                    500
-                ],
-                "md": [
-                    475,
-                    725
-                ],
-                "lg": [
-                    675,
-                    975
-                ]
-            },
-            "geometric": {
-                "sm": [
-                    425,
-                    650
-                ],
-                "md": [
-                    625,
-                    950
-                ],
-                "lg": [
-                    900,
-                    1400
-                ]
-            },
-            "dark": {
-                "sm": [
-                    225,
-                    375
-                ],
-                "md": [
-                    350,
-                    550
-                ],
-                "lg": [
-                    500,
-                    800
-                ]
-            },
-            "multiple": {
-                "sm": [
-                    325,
-                    525
-                ],
-                "md": [
-                    525,
-                    850
-                ],
-                "lg": [
-                    850,
-                    1400
-                ]
-            }
+            solid: { sm: [225, 425], md: [275, 450], lg: [400, 625] },
+            'two-tone': { sm: [225, 375], md: [350, 550], lg: [500, 775] },
+            stripes: { sm: [325, 500], md: [475, 725], lg: [675, 975] },
+            geometric: { sm: [425, 650], md: [625, 950], lg: [900, 1400] },
+            dark: { sm: [225, 375], md: [350, 550], lg: [500, 800] },
+            multiple: { sm: [325, 525], md: [525, 850], lg: [850, 1400] }
         },
         "cta": {
             "text": "Get My Accent Wall Quote",
@@ -2699,76 +2491,11 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "kitchen": {
-                "sm": [
-                    950,
-                    1600
-                ],
-                "md": [
-                    2000,
-                    3600
-                ],
-                "lg": [
-                    2800,
-                    4500
-                ]
-            },
-            "bathroom": {
-                "sm": [
-                    275,
-                    475
-                ],
-                "md": [
-                    475,
-                    800
-                ],
-                "lg": [
-                    750,
-                    1250
-                ]
-            },
-            "island": {
-                "sm": [
-                    425,
-                    750
-                ],
-                "md": [
-                    750,
-                    1350
-                ],
-                "lg": [
-                    1300,
-                    2200
-                ]
-            },
-            "builtin": {
-                "sm": [
-                    350,
-                    600
-                ],
-                "md": [
-                    600,
-                    1100
-                ],
-                "lg": [
-                    1100,
-                    1900
-                ]
-            },
-            "furniture": {
-                "sm": [
-                    175,
-                    325
-                ],
-                "md": [
-                    325,
-                    600
-                ],
-                "lg": [
-                    575,
-                    1050
-                ]
-            }
+            kitchen: { sm: [950, 1600], md: [2000, 3600], lg: [2800, 4500] },
+            bathroom: { sm: [275, 475], md: [475, 800], lg: [750, 1250] },
+            island: { sm: [425, 750], md: [750, 1350], lg: [1300, 2200] },
+            builtin: { sm: [350, 600], md: [600, 1100], lg: [1100, 1900] },
+            furniture: { sm: [175, 325], md: [325, 600], lg: [575, 1050] }
         },
         "cta": {
             "text": "Get My Cabinet Quote",
@@ -2931,90 +2658,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "baseboard": {
-                "sm": [
-                    200,
-                    350
-                ],
-                "md": [
-                    400,
-                    700
-                ],
-                "lg": [
-                    750,
-                    1300
-                ]
-            },
-            "doors": {
-                "sm": [
-                    175,
-                    325
-                ],
-                "md": [
-                    375,
-                    650
-                ],
-                "lg": [
-                    700,
-                    1200
-                ]
-            },
-            "windows": {
-                "sm": [
-                    175,
-                    300
-                ],
-                "md": [
-                    325,
-                    575
-                ],
-                "lg": [
-                    600,
-                    1050
-                ]
-            },
-            "crown": {
-                "sm": [
-                    250,
-                    425
-                ],
-                "md": [
-                    500,
-                    875
-                ],
-                "lg": [
-                    700,
-                    1300
-                ]
-            },
-            "wainscot": {
-                "sm": [
-                    225,
-                    400
-                ],
-                "md": [
-                    500,
-                    900
-                ],
-                "lg": [
-                    950,
-                    1700
-                ]
-            },
-            "all": {
-                "sm": [
-                    400,
-                    700
-                ],
-                "md": [
-                    800,
-                    1400
-                ],
-                "lg": [
-                    1500,
-                    2600
-                ]
-            }
+            baseboard: { sm: [200, 350], md: [400, 700], lg: [750, 1300] },
+            doors: { sm: [175, 325], md: [375, 650], lg: [700, 1200] },
+            windows: { sm: [175, 300], md: [325, 575], lg: [600, 1050] },
+            crown: { sm: [250, 425], md: [500, 875], lg: [700, 1300] },
+            wainscot: { sm: [225, 400], md: [500, 900], lg: [950, 1700] },
+            all: { sm: [400, 700], md: [800, 1400], lg: [1500, 2600] }
         },
         "cta": {
             "text": "Get My Trim Quote",
@@ -3155,76 +2804,11 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "peel-stick": {
-                "sm": [
-                    275,
-                    475
-                ],
-                "md": [
-                    500,
-                    950
-                ],
-                "lg": [
-                    950,
-                    1750
-                ]
-            },
-            "prepasted": {
-                "sm": [
-                    375,
-                    625
-                ],
-                "md": [
-                    650,
-                    1200
-                ],
-                "lg": [
-                    1600,
-                    3000
-                ]
-            },
-            "vinyl": {
-                "sm": [
-                    400,
-                    675
-                ],
-                "md": [
-                    700,
-                    1250
-                ],
-                "lg": [
-                    1250,
-                    2300
-                ]
-            },
-            "grasscloth": {
-                "sm": [
-                    525,
-                    875
-                ],
-                "md": [
-                    900,
-                    1550
-                ],
-                "lg": [
-                    2400,
-                    4200
-                ]
-            },
-            "mural": {
-                "sm": [
-                    425,
-                    725
-                ],
-                "md": [
-                    725,
-                    1250
-                ],
-                "lg": [
-                    1250,
-                    2200
-                ]
-            }
+            'peel-stick': { sm: [275, 475], md: [500, 950], lg: [950, 1750] },
+            prepasted: { sm: [375, 625], md: [650, 1200], lg: [1600, 3000] },
+            vinyl: { sm: [400, 675], md: [700, 1250], lg: [1250, 2300] },
+            grasscloth: { sm: [525, 875], md: [900, 1550], lg: [2400, 4200] },
+            mural: { sm: [425, 725], md: [725, 1250], lg: [1250, 2200] }
         },
         "cta": {
             "text": "Get My Wallpaper Quote",
@@ -3387,90 +2971,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "single-layer": {
-                "sm": [
-                    200,
-                    350
-                ],
-                "md": [
-                    350,
-                    650
-                ],
-                "lg": [
-                    675,
-                    1200
-                ]
-            },
-            "vinyl": {
-                "sm": [
-                    250,
-                    425
-                ],
-                "md": [
-                    425,
-                    775
-                ],
-                "lg": [
-                    775,
-                    1400
-                ]
-            },
-            "grasscloth": {
-                "sm": [
-                    325,
-                    550
-                ],
-                "md": [
-                    550,
-                    975
-                ],
-                "lg": [
-                    975,
-                    1750
-                ]
-            },
-            "multi-layer": {
-                "sm": [
-                    350,
-                    600
-                ],
-                "md": [
-                    600,
-                    1050
-                ],
-                "lg": [
-                    1050,
-                    1900
-                ]
-            },
-            "painted-over": {
-                "sm": [
-                    400,
-                    675
-                ],
-                "md": [
-                    675,
-                    1200
-                ],
-                "lg": [
-                    1200,
-                    2100
-                ]
-            },
-            "glue-residue": {
-                "sm": [
-                    150,
-                    275
-                ],
-                "md": [
-                    275,
-                    500
-                ],
-                "lg": [
-                    500,
-                    900
-                ]
-            }
+            'single-layer': { sm: [200, 350], md: [350, 650], lg: [675, 1200] },
+            vinyl: { sm: [250, 425], md: [425, 775], lg: [775, 1400] },
+            grasscloth: { sm: [325, 550], md: [550, 975], lg: [975, 1750] },
+            'multi-layer': { sm: [350, 600], md: [600, 1050], lg: [1050, 1900] },
+            'painted-over': { sm: [400, 675], md: [675, 1200], lg: [1200, 2100] },
+            'glue-residue': { sm: [150, 275], md: [275, 500], lg: [500, 900] }
         },
         "cta": {
             "text": "Get My Removal Quote",
@@ -3633,90 +3139,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "closet": {
-                "sm": [
-                    275,
-                    425
-                ],
-                "md": [
-                    375,
-                    575
-                ],
-                "lg": [
-                    525,
-                    800
-                ]
-            },
-            "small": {
-                "sm": [
-                    425,
-                    675
-                ],
-                "md": [
-                    575,
-                    900
-                ],
-                "lg": [
-                    800,
-                    1250
-                ]
-            },
-            "room": {
-                "sm": [
-                    700,
-                    1050
-                ],
-                "md": [
-                    900,
-                    1400
-                ],
-                "lg": [
-                    1250,
-                    1900
-                ]
-            },
-            "large": {
-                "sm": [
-                    975,
-                    1500
-                ],
-                "md": [
-                    1300,
-                    1950
-                ],
-                "lg": [
-                    1750,
-                    2600
-                ]
-            },
-            "multi": {
-                "sm": [
-                    1500,
-                    2300
-                ],
-                "md": [
-                    1950,
-                    2900
-                ],
-                "lg": [
-                    2600,
-                    3900
-                ]
-            },
-            "apartment": {
-                "sm": [
-                    2300,
-                    3600
-                ],
-                "md": [
-                    3000,
-                    4600
-                ],
-                "lg": [
-                    3900,
-                    6200
-                ]
-            }
+            closet: { sm: [275, 425], md: [375, 575], lg: [525, 800] },
+            small: { sm: [425, 675], md: [575, 900], lg: [800, 1250] },
+            room: { sm: [700, 1050], md: [900, 1400], lg: [1250, 1900] },
+            large: { sm: [975, 1500], md: [1300, 1950], lg: [1750, 2600] },
+            multi: { sm: [1500, 2300], md: [1950, 2900], lg: [2600, 3900] },
+            apartment: { sm: [2300, 3600], md: [3000, 4600], lg: [3900, 6200] }
         },
         "cta": {
             "text": "Get My Laminate Quote",
@@ -3880,90 +3308,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "closet": {
-                "sm": [
-                    295,
-                    450
-                ],
-                "md": [
-                    400,
-                    600
-                ],
-                "lg": [
-                    550,
-                    850
-                ]
-            },
-            "small": {
-                "sm": [
-                    450,
-                    700
-                ],
-                "md": [
-                    600,
-                    925
-                ],
-                "lg": [
-                    825,
-                    1275
-                ]
-            },
-            "room": {
-                "sm": [
-                    700,
-                    1075
-                ],
-                "md": [
-                    925,
-                    1425
-                ],
-                "lg": [
-                    1275,
-                    1950
-                ]
-            },
-            "large": {
-                "sm": [
-                    975,
-                    1475
-                ],
-                "md": [
-                    1300,
-                    1950
-                ],
-                "lg": [
-                    1750,
-                    2600
-                ]
-            },
-            "multi": {
-                "sm": [
-                    1450,
-                    2250
-                ],
-                "md": [
-                    1900,
-                    2850
-                ],
-                "lg": [
-                    2550,
-                    3800
-                ]
-            },
-            "apartment": {
-                "sm": [
-                    2200,
-                    3450
-                ],
-                "md": [
-                    2900,
-                    4400
-                ],
-                "lg": [
-                    3800,
-                    6000
-                ]
-            }
+            closet: { sm: [295, 450], md: [400, 600], lg: [550, 850] },
+            small: { sm: [450, 700], md: [600, 925], lg: [825, 1275] },
+            room: { sm: [700, 1075], md: [925, 1425], lg: [1275, 1950] },
+            large: { sm: [975, 1475], md: [1300, 1950], lg: [1750, 2600] },
+            multi: { sm: [1450, 2250], md: [1900, 2850], lg: [2550, 3800] },
+            apartment: { sm: [2200, 3450], md: [2900, 4400], lg: [3800, 6000] }
         },
         "cta": {
             "text": "Get My Vinyl Plank Quote",
@@ -4127,90 +3477,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "closet": {
-                "sm": [
-                    350,
-                    525
-                ],
-                "md": [
-                    475,
-                    700
-                ],
-                "lg": [
-                    650,
-                    975
-                ]
-            },
-            "small": {
-                "sm": [
-                    525,
-                    800
-                ],
-                "md": [
-                    700,
-                    1100
-                ],
-                "lg": [
-                    975,
-                    1500
-                ]
-            },
-            "room": {
-                "sm": [
-                    850,
-                    1300
-                ],
-                "md": [
-                    1100,
-                    1700
-                ],
-                "lg": [
-                    1500,
-                    2300
-                ]
-            },
-            "large": {
-                "sm": [
-                    1200,
-                    1800
-                ],
-                "md": [
-                    1600,
-                    2400
-                ],
-                "lg": [
-                    2100,
-                    3200
-                ]
-            },
-            "multi": {
-                "sm": [
-                    1800,
-                    2800
-                ],
-                "md": [
-                    2400,
-                    3600
-                ],
-                "lg": [
-                    3200,
-                    4800
-                ]
-            },
-            "apartment": {
-                "sm": [
-                    2800,
-                    4300
-                ],
-                "md": [
-                    3600,
-                    5500
-                ],
-                "lg": [
-                    4800,
-                    7400
-                ]
-            }
+            closet: { sm: [350, 525], md: [475, 700], lg: [650, 975] },
+            small: { sm: [525, 800], md: [700, 1100], lg: [975, 1500] },
+            room: { sm: [850, 1300], md: [1100, 1700], lg: [1500, 2300] },
+            large: { sm: [1200, 1800], md: [1600, 2400], lg: [2100, 3200] },
+            multi: { sm: [1800, 2800], md: [2400, 3600], lg: [3200, 4800] },
+            apartment: { sm: [2800, 4300], md: [3600, 5500], lg: [4800, 7400] }
         },
         "cta": {
             "text": "Get My Click-Lock Quote",
@@ -4374,90 +3646,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "closet": {
-                "sm": [
-                    175,
-                    300
-                ],
-                "md": [
-                    250,
-                    400
-                ],
-                "lg": [
-                    350,
-                    550
-                ]
-            },
-            "small": {
-                "sm": [
-                    275,
-                    450
-                ],
-                "md": [
-                    400,
-                    625
-                ],
-                "lg": [
-                    550,
-                    850
-                ]
-            },
-            "room": {
-                "sm": [
-                    425,
-                    675
-                ],
-                "md": [
-                    600,
-                    925
-                ],
-                "lg": [
-                    850,
-                    1300
-                ]
-            },
-            "large": {
-                "sm": [
-                    600,
-                    925
-                ],
-                "md": [
-                    850,
-                    1250
-                ],
-                "lg": [
-                    1150,
-                    1750
-                ]
-            },
-            "multi": {
-                "sm": [
-                    925,
-                    1500
-                ],
-                "md": [
-                    1300,
-                    2000
-                ],
-                "lg": [
-                    1750,
-                    2700
-                ]
-            },
-            "apartment": {
-                "sm": [
-                    1500,
-                    2350
-                ],
-                "md": [
-                    2000,
-                    3100
-                ],
-                "lg": [
-                    2000,
-                    3400
-                ]
-            }
+            closet: { sm: [175, 300], md: [250, 400], lg: [350, 550] },
+            small: { sm: [275, 450], md: [400, 625], lg: [550, 850] },
+            room: { sm: [425, 675], md: [600, 925], lg: [850, 1300] },
+            large: { sm: [600, 925], md: [850, 1250], lg: [1150, 1750] },
+            multi: { sm: [925, 1500], md: [1300, 2000], lg: [1750, 2700] },
+            apartment: { sm: [1700, 2500], md: [2200, 3200], lg: [2900, 4100] }
         },
         "cta": {
             "text": "Get My Peel & Stick Quote",
@@ -4621,90 +3815,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "planks": {
-                "sm": [
-                    150,
-                    275
-                ],
-                "md": [
-                    275,
-                    475
-                ],
-                "lg": [
-                    525,
-                    950
-                ]
-            },
-            "water": {
-                "sm": [
-                    225,
-                    375
-                ],
-                "md": [
-                    400,
-                    700
-                ],
-                "lg": [
-                    750,
-                    1500
-                ]
-            },
-            "scratch": {
-                "sm": [
-                    150,
-                    250
-                ],
-                "md": [
-                    250,
-                    425
-                ],
-                "lg": [
-                    450,
-                    850
-                ]
-            },
-            "squeak": {
-                "sm": [
-                    175,
-                    300
-                ],
-                "md": [
-                    300,
-                    525
-                ],
-                "lg": [
-                    575,
-                    1100
-                ]
-            },
-            "tile": {
-                "sm": [
-                    175,
-                    325
-                ],
-                "md": [
-                    325,
-                    600
-                ],
-                "lg": [
-                    650,
-                    1200
-                ]
-            },
-            "transition": {
-                "sm": [
-                    150,
-                    250
-                ],
-                "md": [
-                    250,
-                    475
-                ],
-                "lg": [
-                    500,
-                    950
-                ]
-            }
+            planks: { sm: [150, 275], md: [275, 475], lg: [525, 950] },
+            water: { sm: [225, 375], md: [400, 700], lg: [750, 1500] },
+            scratch: { sm: [150, 250], md: [250, 425], lg: [450, 850] },
+            squeak: { sm: [175, 300], md: [300, 525], lg: [575, 1100] },
+            tile: { sm: [175, 325], md: [325, 600], lg: [650, 1200] },
+            transition: { sm: [150, 250], md: [250, 475], lg: [500, 950] }
         },
         "cta": {
             "text": "Get My Floor Repair Quote",
@@ -4868,90 +3984,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "lf25": {
-                "sm": [
-                    175,
-                    300
-                ],
-                "md": [
-                    250,
-                    400
-                ],
-                "lg": [
-                    350,
-                    575
-                ]
-            },
-            "lf50": {
-                "sm": [
-                    275,
-                    450
-                ],
-                "md": [
-                    400,
-                    650
-                ],
-                "lg": [
-                    550,
-                    875
-                ]
-            },
-            "lf100": {
-                "sm": [
-                    475,
-                    750
-                ],
-                "md": [
-                    675,
-                    1050
-                ],
-                "lg": [
-                    900,
-                    1400
-                ]
-            },
-            "lf175": {
-                "sm": [
-                    800,
-                    1250
-                ],
-                "md": [
-                    1100,
-                    1750
-                ],
-                "lg": [
-                    1500,
-                    2300
-                ]
-            },
-            "lf300": {
-                "sm": [
-                    1300,
-                    2000
-                ],
-                "md": [
-                    1800,
-                    2800
-                ],
-                "lg": [
-                    2400,
-                    3700
-                ]
-            },
-            "casing": {
-                "sm": [
-                    175,
-                    350
-                ],
-                "md": [
-                    350,
-                    700
-                ],
-                "lg": [
-                    700,
-                    1400
-                ]
-            }
+            lf25: { sm: [175, 300], md: [250, 400], lg: [350, 575] },
+            lf50: { sm: [275, 450], md: [400, 650], lg: [550, 875] },
+            lf100: { sm: [475, 750], md: [675, 1050], lg: [900, 1400] },
+            lf175: { sm: [800, 1250], md: [1100, 1750], lg: [1500, 2300] },
+            lf300: { sm: [1300, 2000], md: [1800, 2800], lg: [2400, 3700] },
+            casing: { sm: [175, 350], md: [350, 700], lg: [700, 1400] }
         },
         "cta": {
             "text": "Get My Baseboard Quote",
@@ -5115,90 +4153,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "level": {
-                "sm": [
-                    175,
-                    325
-                ],
-                "md": [
-                    350,
-                    900
-                ],
-                "lg": [
-                    1300,
-                    2600
-                ]
-            },
-            "plywood": {
-                "sm": [
-                    225,
-                    425
-                ],
-                "md": [
-                    450,
-                    1100
-                ],
-                "lg": [
-                    1800,
-                    3600
-                ]
-            },
-            "squeak": {
-                "sm": [
-                    150,
-                    275
-                ],
-                "md": [
-                    300,
-                    650
-                ],
-                "lg": [
-                    650,
-                    1250
-                ]
-            },
-            "demo": {
-                "sm": [
-                    175,
-                    325
-                ],
-                "md": [
-                    350,
-                    850
-                ],
-                "lg": [
-                    850,
-                    1700
-                ]
-            },
-            "moisture": {
-                "sm": [
-                    150,
-                    250
-                ],
-                "md": [
-                    275,
-                    650
-                ],
-                "lg": [
-                    650,
-                    1300
-                ]
-            },
-            "underlayment": {
-                "sm": [
-                    150,
-                    250
-                ],
-                "md": [
-                    275,
-                    600
-                ],
-                "lg": [
-                    600,
-                    1200
-                ]
-            }
+            level: { sm: [175, 325], md: [350, 900], lg: [1300, 2600] },
+            plywood: { sm: [225, 425], md: [450, 1100], lg: [1800, 3600] },
+            squeak: { sm: [150, 275], md: [300, 650], lg: [650, 1250] },
+            demo: { sm: [175, 325], md: [350, 850], lg: [850, 1700] },
+            moisture: { sm: [150, 250], md: [275, 650], lg: [650, 1300] },
+            underlayment: { sm: [150, 250], md: [275, 600], lg: [600, 1200] }
         },
         "cta": {
             "text": "Get My Subfloor Quote",
@@ -5362,90 +4322,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "kitchen": {
-                "sm": [
-                    150,
-                    220
-                ],
-                "md": [
-                    220,
-                    310
-                ],
-                "lg": [
-                    310,
-                    440
-                ]
-            },
-            "bathroom": {
-                "sm": [
-                    150,
-                    210
-                ],
-                "md": [
-                    200,
-                    290
-                ],
-                "lg": [
-                    290,
-                    410
-                ]
-            },
-            "widespread": {
-                "sm": [
-                    180,
-                    260
-                ],
-                "md": [
-                    260,
-                    360
-                ],
-                "lg": [
-                    360,
-                    500
-                ]
-            },
-            "wall-bar": {
-                "sm": [
-                    165,
-                    240
-                ],
-                "md": [
-                    240,
-                    340
-                ],
-                "lg": [
-                    340,
-                    470
-                ]
-            },
-            "laundry": {
-                "sm": [
-                    150,
-                    210
-                ],
-                "md": [
-                    210,
-                    300
-                ],
-                "lg": [
-                    300,
-                    420
-                ]
-            },
-            "shower-tub": {
-                "sm": [
-                    165,
-                    240
-                ],
-                "md": [
-                    240,
-                    340
-                ],
-                "lg": [
-                    340,
-                    470
-                ]
-            }
+            kitchen: { sm: [150, 220], md: [220, 310], lg: [310, 440] },
+            bathroom: { sm: [150, 210], md: [200, 290], lg: [290, 410] },
+            widespread: { sm: [180, 260], md: [260, 360], lg: [360, 500] },
+            'wall-bar': { sm: [165, 240], md: [240, 340], lg: [340, 470] },
+            laundry: { sm: [150, 210], md: [210, 300], lg: [300, 420] },
+            'shower-tub': { sm: [165, 240], md: [240, 340], lg: [340, 470] }
         },
         "cta": {
             "text": "Get Exact Quote",
@@ -5608,90 +4490,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "drop-in": {
-                "sm": [
-                    180,
-                    260
-                ],
-                "md": [
-                    260,
-                    370
-                ],
-                "lg": [
-                    370,
-                    520
-                ]
-            },
-            "undermount": {
-                "sm": [
-                    230,
-                    330
-                ],
-                "md": [
-                    330,
-                    470
-                ],
-                "lg": [
-                    470,
-                    650
-                ]
-            },
-            "vessel": {
-                "sm": [
-                    200,
-                    290
-                ],
-                "md": [
-                    290,
-                    410
-                ],
-                "lg": [
-                    410,
-                    570
-                ]
-            },
-            "pedestal": {
-                "sm": [
-                    230,
-                    330
-                ],
-                "md": [
-                    330,
-                    460
-                ],
-                "lg": [
-                    460,
-                    640
-                ]
-            },
-            "vanity": {
-                "sm": [
-                    260,
-                    380
-                ],
-                "md": [
-                    380,
-                    540
-                ],
-                "lg": [
-                    540,
-                    760
-                ]
-            },
-            "utility": {
-                "sm": [
-                    180,
-                    260
-                ],
-                "md": [
-                    260,
-                    370
-                ],
-                "lg": [
-                    370,
-                    510
-                ]
-            }
+            'drop-in': { sm: [180, 260], md: [260, 370], lg: [370, 520] },
+            undermount: { sm: [230, 330], md: [330, 470], lg: [470, 650] },
+            vessel: { sm: [200, 290], md: [290, 410], lg: [410, 570] },
+            pedestal: { sm: [230, 330], md: [330, 460], lg: [460, 640] },
+            vanity: { sm: [260, 380], md: [380, 540], lg: [540, 760] },
+            utility: { sm: [180, 260], md: [260, 370], lg: [370, 510] }
         },
         "cta": {
             "text": "Get Exact Quote",
@@ -5854,90 +4658,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "standard": {
-                "sm": [
-                    180,
-                    260
-                ],
-                "md": [
-                    260,
-                    350
-                ],
-                "lg": [
-                    330,
-                    450
-                ]
-            },
-            "comfort": {
-                "sm": [
-                    200,
-                    280
-                ],
-                "md": [
-                    280,
-                    380
-                ],
-                "lg": [
-                    350,
-                    480
-                ]
-            },
-            "one-piece": {
-                "sm": [
-                    230,
-                    320
-                ],
-                "md": [
-                    320,
-                    430
-                ],
-                "lg": [
-                    400,
-                    540
-                ]
-            },
-            "bidet-smart": {
-                "sm": [
-                    165,
-                    240
-                ],
-                "md": [
-                    240,
-                    340
-                ],
-                "lg": [
-                    400,
-                    560
-                ]
-            },
-            "wall-hung": {
-                "sm": [
-                    260,
-                    370
-                ],
-                "md": [
-                    340,
-                    470
-                ],
-                "lg": [
-                    430,
-                    600
-                ]
-            },
-            "repair": {
-                "sm": [
-                    150,
-                    210
-                ],
-                "md": [
-                    180,
-                    250
-                ],
-                "lg": [
-                    240,
-                    330
-                ]
-            }
+            standard: { sm: [180, 260], md: [260, 350], lg: [330, 450] },
+            comfort: { sm: [200, 280], md: [280, 380], lg: [350, 480] },
+            'one-piece': { sm: [230, 320], md: [320, 430], lg: [400, 540] },
+            'bidet-smart': { sm: [165, 240], md: [240, 340], lg: [400, 560] },
+            'wall-hung': { sm: [260, 370], md: [340, 470], lg: [430, 600] },
+            repair: { sm: [150, 210], md: [180, 250], lg: [240, 330] }
         },
         "cta": {
             "text": "Get Exact Quote",
@@ -6078,76 +4804,11 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "swap-same": {
-                "sm": [
-                    180,
-                    263
-                ],
-                "md": [
-                    240,
-                    335
-                ],
-                "lg": [
-                    311,
-                    430
-                ]
-            },
-            "swap-diff": {
-                "sm": [
-                    180,
-                    260
-                ],
-                "md": [
-                    240,
-                    330
-                ],
-                "lg": [
-                    310,
-                    420
-                ]
-            },
-            "new-install": {
-                "sm": [
-                    300,
-                    409
-                ],
-                "md": [
-                    388,
-                    519
-                ],
-                "lg": [
-                    486,
-                    650
-                ]
-            },
-            "repair": {
-                "sm": [
-                    150,
-                    210
-                ],
-                "md": [
-                    190,
-                    270
-                ],
-                "lg": [
-                    280,
-                    400
-                ]
-            },
-            "remove": {
-                "sm": [
-                    150,
-                    210
-                ],
-                "md": [
-                    190,
-                    270
-                ],
-                "lg": [
-                    250,
-                    340
-                ]
-            }
+            'swap-same': { sm: [225, 305], md: [290, 390], lg: [370, 500] },
+            'swap-diff': { sm: [245, 330], md: [310, 420], lg: [395, 530] },
+            'new-install': { sm: [300, 409], md: [388, 519], lg: [486, 650] },
+            repair: { sm: [150, 210], md: [190, 270], lg: [280, 400] },
+            remove: { sm: [150, 210], md: [190, 270], lg: [250, 340] }
         },
         "cta": {
             "text": "Get Exact Quote",
@@ -6288,76 +4949,11 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "toilet": {
-                "sm": [
-                    150,
-                    210
-                ],
-                "md": [
-                    200,
-                    280
-                ],
-                "lg": [
-                    280,
-                    390
-                ]
-            },
-            "sink": {
-                "sm": [
-                    200,
-                    297
-                ],
-                "md": [
-                    297,
-                    408
-                ],
-                "lg": [
-                    408,
-                    560
-                ]
-            },
-            "appliance": {
-                "sm": [
-                    165,
-                    230
-                ],
-                "md": [
-                    230,
-                    320
-                ],
-                "lg": [
-                    320,
-                    440
-                ]
-            },
-            "washer": {
-                "sm": [
-                    180,
-                    260
-                ],
-                "md": [
-                    260,
-                    360
-                ],
-                "lg": [
-                    360,
-                    500
-                ]
-            },
-            "multi": {
-                "sm": [
-                    300,
-                    434
-                ],
-                "md": [
-                    434,
-                    609
-                ],
-                "lg": [
-                    609,
-                    850
-                ]
-            }
+            toilet: { sm: [150, 210], md: [200, 280], lg: [280, 390] },
+            sink: { sm: [200, 297], md: [297, 408], lg: [408, 560] },
+            appliance: { sm: [165, 230], md: [230, 320], lg: [320, 440] },
+            washer: { sm: [180, 260], md: [260, 360], lg: [360, 500] },
+            multi: { sm: [300, 434], md: [434, 609], lg: [609, 850] }
         },
         "cta": {
             "text": "Get Exact Quote",
@@ -6520,90 +5116,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "faucet": {
-                "sm": [
-                    150,
-                    210
-                ],
-                "md": [
-                    200,
-                    290
-                ],
-                "lg": [
-                    290,
-                    410
-                ]
-            },
-            "under-sink": {
-                "sm": [
-                    150,
-                    220
-                ],
-                "md": [
-                    210,
-                    300
-                ],
-                "lg": [
-                    300,
-                    420
-                ]
-            },
-            "toilet": {
-                "sm": [
-                    150,
-                    210
-                ],
-                "md": [
-                    180,
-                    250
-                ],
-                "lg": [
-                    240,
-                    330
-                ]
-            },
-            "disposal": {
-                "sm": [
-                    150,
-                    220
-                ],
-                "md": [
-                    190,
-                    270
-                ],
-                "lg": [
-                    280,
-                    400
-                ]
-            },
-            "shower-tub": {
-                "sm": [
-                    165,
-                    240
-                ],
-                "md": [
-                    240,
-                    340
-                ],
-                "lg": [
-                    340,
-                    470
-                ]
-            },
-            "unsure": {
-                "sm": [
-                    150,
-                    230
-                ],
-                "md": [
-                    230,
-                    330
-                ],
-                "lg": [
-                    330,
-                    470
-                ]
-            }
+            faucet: { sm: [150, 210], md: [200, 290], lg: [290, 410] },
+            'under-sink': { sm: [150, 220], md: [210, 300], lg: [300, 420] },
+            toilet: { sm: [150, 210], md: [180, 250], lg: [240, 330] },
+            disposal: { sm: [150, 220], md: [190, 270], lg: [280, 400] },
+            'shower-tub': { sm: [165, 240], md: [240, 340], lg: [340, 470] },
+            unsure: { sm: [150, 230], md: [230, 330], lg: [330, 470] }
         },
         "cta": {
             "text": "Get Exact Quote",
@@ -6766,90 +5284,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "showerhead": {
-                "sm": [
-                    150,
-                    190
-                ],
-                "md": [
-                    169,
-                    209
-                ],
-                "lg": [
-                    207,
-                    260
-                ]
-            },
-            "shower-trim": {
-                "sm": [
-                    165,
-                    240
-                ],
-                "md": [
-                    240,
-                    340
-                ],
-                "lg": [
-                    340,
-                    470
-                ]
-            },
-            "accessories": {
-                "sm": [
-                    150,
-                    200
-                ],
-                "md": [
-                    190,
-                    265
-                ],
-                "lg": [
-                    265,
-                    370
-                ]
-            },
-            "full-set": {
-                "sm": [
-                    280,
-                    390
-                ],
-                "md": [
-                    370,
-                    510
-                ],
-                "lg": [
-                    480,
-                    660
-                ]
-            },
-            "grab-bar": {
-                "sm": [
-                    165,
-                    240
-                ],
-                "md": [
-                    240,
-                    340
-                ],
-                "lg": [
-                    340,
-                    470
-                ]
-            },
-            "mirror-cabinet": {
-                "sm": [
-                    165,
-                    240
-                ],
-                "md": [
-                    240,
-                    340
-                ],
-                "lg": [
-                    380,
-                    540
-                ]
-            }
+            showerhead: { sm: [150, 190], md: [195, 265], lg: [280, 380] },
+            'shower-trim': { sm: [165, 240], md: [240, 340], lg: [340, 470] },
+            accessories: { sm: [150, 200], md: [190, 265], lg: [265, 370] },
+            'full-set': { sm: [280, 390], md: [370, 510], lg: [480, 660] },
+            'grab-bar': { sm: [165, 240], md: [240, 340], lg: [340, 470] },
+            'mirror-cabinet': { sm: [165, 240], md: [240, 340], lg: [380, 540] }
         },
         "cta": {
             "text": "Get Exact Quote",
@@ -7012,90 +5452,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "swap": {
-                "sm": [
-                    150,
-                    200
-                ],
-                "md": [
-                    210,
-                    300
-                ],
-                "lg": [
-                    310,
-                    440
-                ]
-            },
-            "hugger": {
-                "sm": [
-                    150,
-                    215
-                ],
-                "md": [
-                    225,
-                    320
-                ],
-                "lg": [
-                    330,
-                    470
-                ]
-            },
-            "downrod": {
-                "sm": [
-                    165,
-                    240
-                ],
-                "md": [
-                    250,
-                    350
-                ],
-                "lg": [
-                    360,
-                    510
-                ]
-            },
-            "light-remote": {
-                "sm": [
-                    180,
-                    260
-                ],
-                "md": [
-                    270,
-                    380
-                ],
-                "lg": [
-                    390,
-                    550
-                ]
-            },
-            "outdoor": {
-                "sm": [
-                    190,
-                    275
-                ],
-                "md": [
-                    285,
-                    400
-                ],
-                "lg": [
-                    410,
-                    580
-                ]
-            },
-            "other": {
-                "sm": [
-                    150,
-                    240
-                ],
-                "md": [
-                    250,
-                    360
-                ],
-                "lg": [
-                    370,
-                    540
-                ]
-            }
+            swap: { sm: [150, 200], md: [210, 300], lg: [310, 440] },
+            hugger: { sm: [150, 215], md: [225, 320], lg: [330, 470] },
+            downrod: { sm: [165, 240], md: [250, 350], lg: [360, 510] },
+            'light-remote': { sm: [180, 260], md: [270, 380], lg: [390, 550] },
+            outdoor: { sm: [190, 275], md: [285, 400], lg: [410, 580] },
+            other: { sm: [150, 240], md: [250, 360], lg: [370, 540] }
         },
         "cta": {
             "text": "Get My Fan Quote",
@@ -7258,90 +5620,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "standard": {
-                "sm": [
-                    185,
-                    265
-                ],
-                "md": [
-                    275,
-                    390
-                ],
-                "lg": [
-                    400,
-                    570
-                ]
-            },
-            "crystal": {
-                "sm": [
-                    260,
-                    380
-                ],
-                "md": [
-                    390,
-                    560
-                ],
-                "lg": [
-                    570,
-                    820
-                ]
-            },
-            "heavy": {
-                "sm": [
-                    300,
-                    430
-                ],
-                "md": [
-                    440,
-                    620
-                ],
-                "lg": [
-                    630,
-                    900
-                ]
-            },
-            "cluster": {
-                "sm": [
-                    230,
-                    340
-                ],
-                "md": [
-                    350,
-                    500
-                ],
-                "lg": [
-                    510,
-                    730
-                ]
-            },
-            "other": {
-                "sm": [
-                    165,
-                    280
-                ],
-                "md": [
-                    290,
-                    430
-                ],
-                "lg": [
-                    440,
-                    650
-                ]
-            },
-            "oversize": {
-                "sm": [
-                    99,
-                    99
-                ],
-                "md": [
-                    99,
-                    99
-                ],
-                "lg": [
-                    99,
-                    99
-                ]
-            }
+            standard: { sm: [185, 265], md: [275, 390], lg: [400, 570] },
+            crystal: { sm: [260, 380], md: [390, 560], lg: [570, 820] },
+            heavy: { sm: [300, 430], md: [440, 620], lg: [630, 900] },
+            cluster: { sm: [230, 340], md: [350, 500], lg: [510, 730] },
+            other: { sm: [165, 280], md: [290, 430], lg: [440, 650] },
+            oversize: { sm: [99, 99], md: [99, 99], lg: [99, 99] }
         },
         "cta": {
             "text": "Get My Chandelier Quote",
@@ -7504,90 +5788,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "flush": {
-                "sm": [
-                    150,
-                    200
-                ],
-                "md": [
-                    210,
-                    310
-                ],
-                "lg": [
-                    320,
-                    480
-                ]
-            },
-            "pendant": {
-                "sm": [
-                    160,
-                    230
-                ],
-                "md": [
-                    240,
-                    350
-                ],
-                "lg": [
-                    360,
-                    540
-                ]
-            },
-            "sconce-vanity": {
-                "sm": [
-                    150,
-                    215
-                ],
-                "md": [
-                    225,
-                    330
-                ],
-                "lg": [
-                    340,
-                    510
-                ]
-            },
-            "track": {
-                "sm": [
-                    190,
-                    270
-                ],
-                "md": [
-                    280,
-                    400
-                ],
-                "lg": [
-                    410,
-                    600
-                ]
-            },
-            "under-cabinet": {
-                "sm": [
-                    420,
-                    494
-                ],
-                "md": [
-                    504,
-                    612
-                ],
-                "lg": [
-                    622,
-                    800
-                ]
-            },
-            "other": {
-                "sm": [
-                    150,
-                    230
-                ],
-                "md": [
-                    240,
-                    360
-                ],
-                "lg": [
-                    370,
-                    560
-                ]
-            }
+            flush: { sm: [150, 200], md: [210, 310], lg: [320, 480] },
+            pendant: { sm: [160, 230], md: [240, 350], lg: [360, 540] },
+            'sconce-vanity': { sm: [150, 215], md: [225, 330], lg: [340, 510] },
+            track: { sm: [190, 270], md: [280, 400], lg: [410, 600] },
+            'under-cabinet': { sm: [290, 395], md: [430, 580], lg: [620, 840] },
+            other: { sm: [150, 230], md: [240, 360], lg: [370, 560] }
         },
         "cta": {
             "text": "Get My Fixture Quote",
@@ -7750,90 +5956,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "standard": {
-                "sm": [
-                    150,
-                    185
-                ],
-                "md": [
-                    190,
-                    270
-                ],
-                "lg": [
-                    280,
-                    410
-                ]
-            },
-            "gfci": {
-                "sm": [
-                    150,
-                    215
-                ],
-                "md": [
-                    220,
-                    320
-                ],
-                "lg": [
-                    330,
-                    490
-                ]
-            },
-            "usb": {
-                "sm": [
-                    150,
-                    215
-                ],
-                "md": [
-                    220,
-                    320
-                ],
-                "lg": [
-                    330,
-                    470
-                ]
-            },
-            "smart": {
-                "sm": [
-                    150,
-                    220
-                ],
-                "md": [
-                    230,
-                    340
-                ],
-                "lg": [
-                    350,
-                    520
-                ]
-            },
-            "damaged": {
-                "sm": [
-                    150,
-                    205
-                ],
-                "md": [
-                    210,
-                    300
-                ],
-                "lg": [
-                    310,
-                    460
-                ]
-            },
-            "plates": {
-                "sm": [
-                    150,
-                    165
-                ],
-                "md": [
-                    170,
-                    215
-                ],
-                "lg": [
-                    220,
-                    300
-                ]
-            }
+            standard: { sm: [150, 185], md: [190, 270], lg: [280, 410] },
+            gfci: { sm: [150, 215], md: [220, 320], lg: [330, 490] },
+            usb: { sm: [150, 215], md: [220, 320], lg: [330, 470] },
+            smart: { sm: [150, 220], md: [230, 340], lg: [350, 520] },
+            damaged: { sm: [150, 205], md: [210, 300], lg: [310, 460] },
+            plates: { sm: [150, 165], md: [170, 215], lg: [220, 300] }
         },
         "cta": {
             "text": "Get My Outlet Quote",
@@ -7996,90 +6124,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "usb-a": {
-                "sm": [
-                    150,
-                    195
-                ],
-                "md": [
-                    200,
-                    285
-                ],
-                "lg": [
-                    295,
-                    420
-                ]
-            },
-            "usb-c": {
-                "sm": [
-                    150,
-                    205
-                ],
-                "md": [
-                    210,
-                    300
-                ],
-                "lg": [
-                    310,
-                    440
-                ]
-            },
-            "combo": {
-                "sm": [
-                    150,
-                    215
-                ],
-                "md": [
-                    220,
-                    315
-                ],
-                "lg": [
-                    325,
-                    460
-                ]
-            },
-            "usb-gfci": {
-                "sm": [
-                    155,
-                    225
-                ],
-                "md": [
-                    235,
-                    340
-                ],
-                "lg": [
-                    350,
-                    500
-                ]
-            },
-            "usb-plate": {
-                "sm": [
-                    150,
-                    180
-                ],
-                "md": [
-                    185,
-                    250
-                ],
-                "lg": [
-                    260,
-                    360
-                ]
-            },
-            "other": {
-                "sm": [
-                    150,
-                    215
-                ],
-                "md": [
-                    220,
-                    320
-                ],
-                "lg": [
-                    330,
-                    470
-                ]
-            }
+            'usb-a': { sm: [150, 195], md: [200, 285], lg: [295, 420] },
+            'usb-c': { sm: [150, 205], md: [210, 300], lg: [310, 440] },
+            combo: { sm: [150, 215], md: [220, 315], lg: [325, 460] },
+            'usb-gfci': { sm: [155, 225], md: [235, 340], lg: [350, 500] },
+            'usb-plate': { sm: [150, 180], md: [185, 250], lg: [260, 360] },
+            other: { sm: [150, 215], md: [220, 320], lg: [330, 470] }
         },
         "cta": {
             "text": "Get My USB Outlet Quote",
@@ -8242,90 +6292,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "standard": {
-                "sm": [
-                    150,
-                    180
-                ],
-                "md": [
-                    185,
-                    260
-                ],
-                "lg": [
-                    270,
-                    390
-                ]
-            },
-            "dimmer": {
-                "sm": [
-                    150,
-                    200
-                ],
-                "md": [
-                    205,
-                    290
-                ],
-                "lg": [
-                    300,
-                    430
-                ]
-            },
-            "three-way": {
-                "sm": [
-                    155,
-                    215
-                ],
-                "md": [
-                    225,
-                    320
-                ],
-                "lg": [
-                    330,
-                    480
-                ]
-            },
-            "smart": {
-                "sm": [
-                    150,
-                    220
-                ],
-                "md": [
-                    230,
-                    335
-                ],
-                "lg": [
-                    345,
-                    500
-                ]
-            },
-            "timer-fan": {
-                "sm": [
-                    150,
-                    210
-                ],
-                "md": [
-                    215,
-                    305
-                ],
-                "lg": [
-                    315,
-                    450
-                ]
-            },
-            "other": {
-                "sm": [
-                    150,
-                    215
-                ],
-                "md": [
-                    220,
-                    320
-                ],
-                "lg": [
-                    330,
-                    470
-                ]
-            }
+            standard: { sm: [150, 180], md: [185, 260], lg: [270, 390] },
+            dimmer: { sm: [150, 200], md: [205, 290], lg: [300, 430] },
+            'three-way': { sm: [155, 215], md: [225, 320], lg: [330, 480] },
+            smart: { sm: [150, 220], md: [230, 335], lg: [345, 500] },
+            'timer-fan': { sm: [150, 210], md: [215, 305], lg: [315, 450] },
+            other: { sm: [150, 215], md: [220, 320], lg: [330, 470] }
         },
         "cta": {
             "text": "Get My Switch Quote",
@@ -8488,90 +6460,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "thermostat": {
-                "sm": [
-                    150,
-                    215
-                ],
-                "md": [
-                    225,
-                    320
-                ],
-                "lg": [
-                    330,
-                    490
-                ]
-            },
-            "lock": {
-                "sm": [
-                    330,
-                    370
-                ],
-                "md": [
-                    355,
-                    395
-                ],
-                "lg": [
-                    393,
-                    450
-                ]
-            },
-            "doorbell": {
-                "sm": [
-                    165,
-                    240
-                ],
-                "md": [
-                    250,
-                    360
-                ],
-                "lg": [
-                    370,
-                    550
-                ]
-            },
-            "lighting": {
-                "sm": [
-                    150,
-                    220
-                ],
-                "md": [
-                    230,
-                    335
-                ],
-                "lg": [
-                    345,
-                    500
-                ]
-            },
-            "plugs-sensors": {
-                "sm": [
-                    150,
-                    200
-                ],
-                "md": [
-                    210,
-                    320
-                ],
-                "lg": [
-                    330,
-                    560
-                ]
-            },
-            "camera-other": {
-                "sm": [
-                    150,
-                    215
-                ],
-                "md": [
-                    225,
-                    330
-                ],
-                "lg": [
-                    340,
-                    520
-                ]
-            }
+            thermostat: { sm: [150, 215], md: [225, 320], lg: [330, 490] },
+            lock: { sm: [215, 290], md: [300, 405], lg: [430, 580] },
+            doorbell: { sm: [165, 240], md: [250, 360], lg: [370, 550] },
+            lighting: { sm: [150, 220], md: [230, 335], lg: [345, 500] },
+            'plugs-sensors': { sm: [150, 200], md: [210, 320], lg: [330, 560] },
+            'camera-other': { sm: [150, 215], md: [225, 330], lg: [340, 520] }
         },
         "cta": {
             "text": "Get My Smart Setup Quote",
@@ -8734,90 +6628,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "dead-outlet": {
-                "sm": [
-                    150,
-                    215
-                ],
-                "md": [
-                    225,
-                    330
-                ],
-                "lg": [
-                    340,
-                    520
-                ]
-            },
-            "partial-power": {
-                "sm": [
-                    165,
-                    260
-                ],
-                "md": [
-                    270,
-                    400
-                ],
-                "lg": [
-                    410,
-                    620
-                ]
-            },
-            "breaker-trips": {
-                "sm": [
-                    99,
-                    99
-                ],
-                "md": [
-                    99,
-                    99
-                ],
-                "lg": [
-                    99,
-                    99
-                ]
-            },
-            "flicker": {
-                "sm": [
-                    150,
-                    225
-                ],
-                "md": [
-                    235,
-                    340
-                ],
-                "lg": [
-                    350,
-                    530
-                ]
-            },
-            "buzz-heat": {
-                "sm": [
-                    99,
-                    99
-                ],
-                "md": [
-                    99,
-                    99
-                ],
-                "lg": [
-                    99,
-                    99
-                ]
-            },
-            "after-install": {
-                "sm": [
-                    150,
-                    200
-                ],
-                "md": [
-                    210,
-                    310
-                ],
-                "lg": [
-                    320,
-                    490
-                ]
-            }
+            'dead-outlet': { sm: [150, 215], md: [225, 330], lg: [340, 520] },
+            'partial-power': { sm: [165, 260], md: [270, 400], lg: [410, 620] },
+            'breaker-trips': { sm: [99, 99], md: [99, 99], lg: [99, 99] },
+            flicker: { sm: [150, 225], md: [235, 340], lg: [350, 530] },
+            'buzz-heat': { sm: [99, 99], md: [99, 99], lg: [99, 99] },
+            'after-install': { sm: [150, 200], md: [210, 310], lg: [320, 490] }
         },
         "cta": {
             "text": "Start My Diagnosis Request",
@@ -8936,62 +6752,10 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "upto12k": {
-                "sm": [
-                    150,
-                    210
-                ],
-                "md": [
-                    200,
-                    275
-                ],
-                "lg": [
-                    265,
-                    360
-                ]
-            },
-            "12to18k": {
-                "sm": [
-                    185,
-                    250
-                ],
-                "md": [
-                    240,
-                    325
-                ],
-                "lg": [
-                    310,
-                    420
-                ]
-            },
-            "over18k": {
-                "sm": [
-                    240,
-                    325
-                ],
-                "md": [
-                    300,
-                    405
-                ],
-                "lg": [
-                    380,
-                    510
-                ]
-            },
-            "unknown": {
-                "sm": [
-                    150,
-                    325
-                ],
-                "md": [
-                    200,
-                    405
-                ],
-                "lg": [
-                    265,
-                    510
-                ]
-            }
+            upto12k: { sm: [150, 210], md: [200, 275], lg: [265, 360] },
+            '12to18k': { sm: [185, 250], md: [240, 325], lg: [310, 420] },
+            over18k: { sm: [240, 325], md: [300, 405], lg: [380, 510] },
+            unknown: { sm: [150, 325], md: [200, 405], lg: [265, 510] }
         },
         "cta": {
             "text": "Get Exact Quote",
@@ -9132,76 +6896,11 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "swap": {
-                "sm": [
-                    200,
-                    280
-                ],
-                "md": [
-                    265,
-                    360
-                ],
-                "lg": [
-                    340,
-                    460
-                ]
-            },
-            "brand-change": {
-                "sm": [
-                    240,
-                    325
-                ],
-                "md": [
-                    310,
-                    415
-                ],
-                "lg": [
-                    395,
-                    530
-                ]
-            },
-            "first-fit": {
-                "sm": [
-                    230,
-                    310
-                ],
-                "md": [
-                    295,
-                    395
-                ],
-                "lg": [
-                    375,
-                    500
-                ]
-            },
-            "reseat": {
-                "sm": [
-                    165,
-                    230
-                ],
-                "md": [
-                    215,
-                    295
-                ],
-                "lg": [
-                    275,
-                    375
-                ]
-            },
-            "multi": {
-                "sm": [
-                    400,
-                    760
-                ],
-                "md": [
-                    750,
-                    1480
-                ],
-                "lg": [
-                    1600,
-                    3600
-                ]
-            }
+            swap: { sm: [200, 280], md: [265, 360], lg: [340, 460] },
+            'brand-change': { sm: [240, 325], md: [310, 415], lg: [395, 530] },
+            'first-fit': { sm: [230, 310], md: [295, 395], lg: [375, 500] },
+            reseat: { sm: [165, 230], md: [215, 295], lg: [275, 375] },
+            multi: { sm: [400, 760], md: [750, 1480], lg: [1600, 3600] }
         },
         "cta": {
             "text": "Get Exact Quote",
@@ -9364,90 +7063,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "double-hung": {
-                "sm": [
-                    150,
-                    190
-                ],
-                "md": [
-                    175,
-                    235
-                ],
-                "lg": [
-                    250,
-                    340
-                ]
-            },
-            "slider": {
-                "sm": [
-                    150,
-                    205
-                ],
-                "md": [
-                    195,
-                    265
-                ],
-                "lg": [
-                    285,
-                    385
-                ]
-            },
-            "casement": {
-                "sm": [
-                    175,
-                    240
-                ],
-                "md": [
-                    230,
-                    310
-                ],
-                "lg": [
-                    330,
-                    445
-                ]
-            },
-            "tall-narrow": {
-                "sm": [
-                    165,
-                    225
-                ],
-                "md": [
-                    215,
-                    290
-                ],
-                "lg": [
-                    310,
-                    420
-                ]
-            },
-            "multi": {
-                "sm": [
-                    280,
-                    430
-                ],
-                "md": [
-                    400,
-                    800
-                ],
-                "lg": [
-                    650,
-                    1500
-                ]
-            },
-            "unsure": {
-                "sm": [
-                    150,
-                    240
-                ],
-                "md": [
-                    175,
-                    310
-                ],
-                "lg": [
-                    250,
-                    445
-                ]
-            }
+            'double-hung': { sm: [150, 190], md: [175, 235], lg: [250, 340] },
+            slider: { sm: [150, 205], md: [195, 265], lg: [285, 385] },
+            casement: { sm: [175, 240], md: [230, 310], lg: [330, 445] },
+            'tall-narrow': { sm: [165, 225], md: [215, 290], lg: [310, 420] },
+            multi: { sm: [280, 430], md: [400, 800], lg: [650, 1500] },
+            unsure: { sm: [150, 240], md: [175, 310], lg: [250, 445] }
         },
         "cta": {
             "text": "Get Exact Quote",
@@ -9610,90 +7231,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "universal": {
-                "sm": [
-                    150,
-                    200
-                ],
-                "md": [
-                    190,
-                    255
-                ],
-                "lg": [
-                    255,
-                    340
-                ]
-            },
-            "no-drill": {
-                "sm": [
-                    150,
-                    190
-                ],
-                "md": [
-                    175,
-                    235
-                ],
-                "lg": [
-                    235,
-                    310
-                ]
-            },
-            "rail": {
-                "sm": [
-                    150,
-                    205
-                ],
-                "md": [
-                    195,
-                    260
-                ],
-                "lg": [
-                    260,
-                    345
-                ]
-            },
-            "heavy-duty": {
-                "sm": [
-                    190,
-                    255
-                ],
-                "md": [
-                    245,
-                    330
-                ],
-                "lg": [
-                    325,
-                    430
-                ]
-            },
-            "manufacturer": {
-                "sm": [
-                    175,
-                    235
-                ],
-                "md": [
-                    225,
-                    300
-                ],
-                "lg": [
-                    300,
-                    400
-                ]
-            },
-            "unsure": {
-                "sm": [
-                    150,
-                    255
-                ],
-                "md": [
-                    175,
-                    330
-                ],
-                "lg": [
-                    235,
-                    430
-                ]
-            }
+            universal: { sm: [150, 200], md: [190, 255], lg: [255, 340] },
+            'no-drill': { sm: [150, 190], md: [175, 235], lg: [235, 310] },
+            rail: { sm: [150, 205], md: [195, 260], lg: [260, 345] },
+            'heavy-duty': { sm: [190, 255], md: [245, 330], lg: [325, 430] },
+            manufacturer: { sm: [175, 235], md: [225, 300], lg: [300, 400] },
+            unsure: { sm: [150, 255], md: [175, 330], lg: [235, 430] }
         },
         "cta": {
             "text": "Get Exact Quote",
@@ -9834,76 +7377,11 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "window": {
-                "sm": [
-                    150,
-                    190
-                ],
-                "md": [
-                    190,
-                    250
-                ],
-                "lg": [
-                    250,
-                    340
-                ]
-            },
-            "ptac": {
-                "sm": [
-                    165,
-                    215
-                ],
-                "md": [
-                    215,
-                    285
-                ],
-                "lg": [
-                    290,
-                    390
-                ]
-            },
-            "mini-split": {
-                "sm": [
-                    180,
-                    240
-                ],
-                "md": [
-                    230,
-                    310
-                ],
-                "lg": [
-                    310,
-                    420
-                ]
-            },
-            "portable": {
-                "sm": [
-                    150,
-                    190
-                ],
-                "md": [
-                    185,
-                    240
-                ],
-                "lg": [
-                    250,
-                    330
-                ]
-            },
-            "multi-mixed": {
-                "sm": [
-                    300,
-                    620
-                ],
-                "md": [
-                    520,
-                    1150
-                ],
-                "lg": [
-                    900,
-                    2200
-                ]
-            }
+            window: { sm: [150, 190], md: [190, 250], lg: [250, 340] },
+            ptac: { sm: [165, 215], md: [215, 285], lg: [290, 390] },
+            'mini-split': { sm: [180, 240], md: [230, 310], lg: [310, 420] },
+            portable: { sm: [150, 190], md: [185, 240], lg: [250, 330] },
+            'multi-mixed': { sm: [300, 620], md: [520, 1150], lg: [900, 2200] }
         },
         "cta": {
             "text": "Get Exact Quote",
@@ -10044,76 +7522,11 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "window-small": {
-                "sm": [
-                    150,
-                    190
-                ],
-                "md": [
-                    180,
-                    240
-                ],
-                "lg": [
-                    240,
-                    325
-                ]
-            },
-            "window-large": {
-                "sm": [
-                    175,
-                    235
-                ],
-                "md": [
-                    225,
-                    300
-                ],
-                "lg": [
-                    300,
-                    400
-                ]
-            },
-            "through-wall": {
-                "sm": [
-                    150,
-                    195
-                ],
-                "md": [
-                    200,
-                    270
-                ],
-                "lg": [
-                    270,
-                    360
-                ]
-            },
-            "ptac": {
-                "sm": [
-                    150,
-                    200
-                ],
-                "md": [
-                    205,
-                    275
-                ],
-                "lg": [
-                    275,
-                    370
-                ]
-            },
-            "multi": {
-                "sm": [
-                    300,
-                    640
-                ],
-                "md": [
-                    520,
-                    1200
-                ],
-                "lg": [
-                    1200,
-                    2800
-                ]
-            }
+            'window-small': { sm: [150, 190], md: [180, 240], lg: [240, 325] },
+            'window-large': { sm: [175, 235], md: [225, 300], lg: [300, 400] },
+            'through-wall': { sm: [150, 195], md: [200, 270], lg: [270, 360] },
+            ptac: { sm: [150, 200], md: [205, 275], lg: [275, 370] },
+            multi: { sm: [300, 640], md: [520, 1200], lg: [1200, 2800] }
         },
         "cta": {
             "text": "Get Exact Quote",
@@ -10276,90 +7689,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "deadbolt": {
-                "sm": [
-                    150,
-                    175
-                ],
-                "md": [
-                    190,
-                    265
-                ],
-                "lg": [
-                    265,
-                    395
-                ]
-            },
-            "knob-lever": {
-                "sm": [
-                    150,
-                    190
-                ],
-                "md": [
-                    190,
-                    275
-                ],
-                "lg": [
-                    285,
-                    425
-                ]
-            },
-            "smart": {
-                "sm": [
-                    150,
-                    210
-                ],
-                "md": [
-                    195,
-                    285
-                ],
-                "lg": [
-                    285,
-                    425
-                ]
-            },
-            "mortise": {
-                "sm": [
-                    160,
-                    225
-                ],
-                "md": [
-                    240,
-                    350
-                ],
-                "lg": [
-                    350,
-                    520
-                ]
-            },
-            "strike": {
-                "sm": [
-                    150,
-                    180
-                ],
-                "md": [
-                    175,
-                    255
-                ],
-                "lg": [
-                    260,
-                    390
-                ]
-            },
-            "other": {
-                "sm": [
-                    150,
-                    200
-                ],
-                "md": [
-                    200,
-                    300
-                ],
-                "lg": [
-                    300,
-                    455
-                ]
-            }
+            deadbolt: { sm: [165, 225], md: [190, 265], lg: [265, 395] },
+            'knob-lever': { sm: [150, 190], md: [190, 275], lg: [285, 425] },
+            smart: { sm: [215, 290], md: [300, 405], lg: [430, 580] },
+            mortise: { sm: [160, 225], md: [240, 350], lg: [350, 520] },
+            strike: { sm: [150, 180], md: [175, 255], lg: [260, 390] },
+            other: { sm: [150, 200], md: [200, 300], lg: [300, 455] }
         },
         "cta": {
             "text": "Get My Lock Quote",
@@ -10522,90 +7857,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "roller": {
-                "sm": [
-                    150,
-                    210
-                ],
-                "md": [
-                    230,
-                    340
-                ],
-                "lg": [
-                    420,
-                    700
-                ]
-            },
-            "cellular": {
-                "sm": [
-                    150,
-                    215
-                ],
-                "md": [
-                    240,
-                    355
-                ],
-                "lg": [
-                    395,
-                    590
-                ]
-            },
-            "slat": {
-                "sm": [
-                    155,
-                    225
-                ],
-                "md": [
-                    255,
-                    375
-                ],
-                "lg": [
-                    420,
-                    630
-                ]
-            },
-            "roman": {
-                "sm": [
-                    165,
-                    240
-                ],
-                "md": [
-                    270,
-                    395
-                ],
-                "lg": [
-                    440,
-                    660
-                ]
-            },
-            "motorized": {
-                "sm": [
-                    225,
-                    350
-                ],
-                "md": [
-                    330,
-                    480
-                ],
-                "lg": [
-                    545,
-                    810
-                ]
-            },
-            "other": {
-                "sm": [
-                    150,
-                    220
-                ],
-                "md": [
-                    240,
-                    360
-                ],
-                "lg": [
-                    400,
-                    600
-                ]
-            }
+            roller: { sm: [150, 210], md: [230, 340], lg: [420, 700] },
+            cellular: { sm: [150, 215], md: [240, 355], lg: [395, 590] },
+            slat: { sm: [155, 225], md: [255, 375], lg: [420, 630] },
+            roman: { sm: [165, 240], md: [270, 395], lg: [440, 660] },
+            motorized: { sm: [225, 350], md: [330, 480], lg: [545, 810] },
+            other: { sm: [150, 220], md: [240, 360], lg: [400, 600] }
         },
         "cta": {
             "text": "Get My Blind Quote",
@@ -10768,90 +8025,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "slab": {
-                "sm": [
-                    150,
-                    215
-                ],
-                "md": [
-                    225,
-                    330
-                ],
-                "lg": [
-                    370,
-                    555
-                ]
-            },
-            "prehung": {
-                "sm": [
-                    330,
-                    520
-                ],
-                "md": [
-                    330,
-                    480
-                ],
-                "lg": [
-                    560,
-                    840
-                ]
-            },
-            "closet": {
-                "sm": [
-                    165,
-                    235
-                ],
-                "md": [
-                    225,
-                    325
-                ],
-                "lg": [
-                    370,
-                    555
-                ]
-            },
-            "barn": {
-                "sm": [
-                    255,
-                    370
-                ],
-                "md": [
-                    430,
-                    680
-                ],
-                "lg": [
-                    480,
-                    720
-                ]
-            },
-            "pocket": {
-                "sm": [
-                    230,
-                    350
-                ],
-                "md": [
-                    285,
-                    415
-                ],
-                "lg": [
-                    450,
-                    675
-                ]
-            },
-            "storm": {
-                "sm": [
-                    195,
-                    285
-                ],
-                "md": [
-                    285,
-                    415
-                ],
-                "lg": [
-                    415,
-                    620
-                ]
-            }
+            slab: { sm: [150, 215], md: [225, 330], lg: [370, 555] },
+            prehung: { sm: [390, 530], md: [520, 700], lg: [850, 1150] },
+            closet: { sm: [165, 235], md: [225, 325], lg: [370, 555] },
+            barn: { sm: [255, 370], md: [430, 680], lg: [480, 720] },
+            pocket: { sm: [230, 350], md: [285, 415], lg: [450, 675] },
+            storm: { sm: [195, 285], md: [285, 415], lg: [415, 620] }
         },
         "cta": {
             "text": "Get My Door Quote",
@@ -11014,90 +8193,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "sticking": {
-                "sm": [
-                    150,
-                    190
-                ],
-                "md": [
-                    190,
-                    275
-                ],
-                "lg": [
-                    285,
-                    430
-                ]
-            },
-            "latch": {
-                "sm": [
-                    150,
-                    180
-                ],
-                "md": [
-                    175,
-                    255
-                ],
-                "lg": [
-                    260,
-                    390
-                ]
-            },
-            "hardware": {
-                "sm": [
-                    150,
-                    190
-                ],
-                "md": [
-                    190,
-                    275
-                ],
-                "lg": [
-                    300,
-                    450
-                ]
-            },
-            "frame": {
-                "sm": [
-                    150,
-                    215
-                ],
-                "md": [
-                    235,
-                    345
-                ],
-                "lg": [
-                    450,
-                    750
-                ]
-            },
-            "hole": {
-                "sm": [
-                    150,
-                    200
-                ],
-                "md": [
-                    200,
-                    290
-                ],
-                "lg": [
-                    300,
-                    450
-                ]
-            },
-            "slider": {
-                "sm": [
-                    150,
-                    195
-                ],
-                "md": [
-                    200,
-                    290
-                ],
-                "lg": [
-                    320,
-                    480
-                ]
-            }
+            sticking: { sm: [150, 190], md: [190, 275], lg: [285, 430] },
+            latch: { sm: [150, 180], md: [175, 255], lg: [260, 390] },
+            hardware: { sm: [150, 190], md: [190, 275], lg: [300, 450] },
+            frame: { sm: [150, 215], md: [235, 345], lg: [450, 750] },
+            hole: { sm: [150, 200], md: [200, 290], lg: [300, 450] },
+            slider: { sm: [150, 195], md: [200, 290], lg: [320, 480] }
         },
         "cta": {
             "text": "Get My Door Repair Quote",
@@ -11260,90 +8361,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "small-holes": {
-                "sm": [
-                    150,
-                    190
-                ],
-                "md": [
-                    190,
-                    285
-                ],
-                "lg": [
-                    650,
-                    1000
-                ]
-            },
-            "hole": {
-                "sm": [
-                    185,
-                    290
-                ],
-                "md": [
-                    230,
-                    340
-                ],
-                "lg": [
-                    345,
-                    520
-                ]
-            },
-            "large-hole": {
-                "sm": [
-                    330,
-                    500
-                ],
-                "md": [
-                    350,
-                    455
-                ],
-                "lg": [
-                    480,
-                    720
-                ]
-            },
-            "crack": {
-                "sm": [
-                    150,
-                    215
-                ],
-                "md": [
-                    235,
-                    350
-                ],
-                "lg": [
-                    390,
-                    585
-                ]
-            },
-            "water": {
-                "sm": [
-                    190,
-                    275
-                ],
-                "md": [
-                    290,
-                    430
-                ],
-                "lg": [
-                    460,
-                    690
-                ]
-            },
-            "texture": {
-                "sm": [
-                    150,
-                    225
-                ],
-                "md": [
-                    255,
-                    375
-                ],
-                "lg": [
-                    420,
-                    630
-                ]
-            }
+            'small-holes': { sm: [150, 190], md: [190, 285], lg: [560, 850] },
+            hole: { sm: [185, 290], md: [230, 340], lg: [390, 560] },
+            'large-hole': { sm: [350, 500], md: [480, 680], lg: [700, 1000] },
+            crack: { sm: [150, 215], md: [235, 350], lg: [390, 585] },
+            water: { sm: [190, 275], md: [290, 430], lg: [460, 690] },
+            texture: { sm: [150, 225], md: [255, 375], lg: [420, 630] }
         },
         "cta": {
             "text": "Get My Drywall Quote",
@@ -11506,90 +8529,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "tub-shower": {
-                "sm": [
-                    150,
-                    195
-                ],
-                "md": [
-                    190,
-                    275
-                ],
-                "lg": [
-                    300,
-                    450
-                ]
-            },
-            "sink-counter": {
-                "sm": [
-                    150,
-                    180
-                ],
-                "md": [
-                    175,
-                    255
-                ],
-                "lg": [
-                    260,
-                    390
-                ]
-            },
-            "backsplash": {
-                "sm": [
-                    150,
-                    190
-                ],
-                "md": [
-                    195,
-                    285
-                ],
-                "lg": [
-                    300,
-                    450
-                ]
-            },
-            "window-door": {
-                "sm": [
-                    150,
-                    200
-                ],
-                "md": [
-                    210,
-                    310
-                ],
-                "lg": [
-                    345,
-                    520
-                ]
-            },
-            "trim": {
-                "sm": [
-                    150,
-                    210
-                ],
-                "md": [
-                    230,
-                    340
-                ],
-                "lg": [
-                    370,
-                    555
-                ]
-            },
-            "other": {
-                "sm": [
-                    150,
-                    190
-                ],
-                "md": [
-                    200,
-                    295
-                ],
-                "lg": [
-                    320,
-                    480
-                ]
-            }
+            'tub-shower': { sm: [150, 195], md: [190, 275], lg: [300, 450] },
+            'sink-counter': { sm: [150, 180], md: [175, 255], lg: [260, 390] },
+            backsplash: { sm: [150, 190], md: [195, 285], lg: [300, 450] },
+            'window-door': { sm: [150, 200], md: [210, 310], lg: [345, 520] },
+            trim: { sm: [150, 210], md: [230, 340], lg: [370, 555] },
+            other: { sm: [150, 190], md: [200, 295], lg: [320, 480] }
         },
         "cta": {
             "text": "Get My Caulking Quote",
@@ -11752,90 +8697,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "knobs-existing": {
-                "sm": [
-                    150,
-                    180
-                ],
-                "md": [
-                    180,
-                    255
-                ],
-                "lg": [
-                    255,
-                    375
-                ]
-            },
-            "pulls-existing": {
-                "sm": [
-                    150,
-                    185
-                ],
-                "md": [
-                    190,
-                    275
-                ],
-                "lg": [
-                    280,
-                    420
-                ]
-            },
-            "new-holes": {
-                "sm": [
-                    150,
-                    215
-                ],
-                "md": [
-                    245,
-                    360
-                ],
-                "lg": [
-                    395,
-                    590
-                ]
-            },
-            "respace": {
-                "sm": [
-                    285,
-                    420
-                ],
-                "md": [
-                    490,
-                    730
-                ],
-                "lg": [
-                    790,
-                    1180
-                ]
-            },
-            "hinges": {
-                "sm": [
-                    150,
-                    200
-                ],
-                "md": [
-                    215,
-                    315
-                ],
-                "lg": [
-                    345,
-                    520
-                ]
-            },
-            "slides": {
-                "sm": [
-                    150,
-                    215
-                ],
-                "md": [
-                    245,
-                    360
-                ],
-                "lg": [
-                    395,
-                    590
-                ]
-            }
+            'knobs-existing': { sm: [150, 180], md: [180, 255], lg: [255, 375] },
+            'pulls-existing': { sm: [150, 185], md: [190, 275], lg: [280, 420] },
+            'new-holes': { sm: [150, 215], md: [245, 360], lg: [395, 590] },
+            respace: { sm: [285, 420], md: [490, 730], lg: [790, 1180] },
+            hinges: { sm: [150, 200], md: [215, 315], lg: [345, 520] },
+            slides: { sm: [150, 215], md: [245, 360], lg: [395, 590] }
         },
         "cta": {
             "text": "Get My Hardware Quote",
@@ -11998,90 +8865,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "stuck": {
-                "sm": [
-                    150,
-                    195
-                ],
-                "md": [
-                    260,
-                    420
-                ],
-                "lg": [
-                    365,
-                    545
-                ]
-            },
-            "hardware": {
-                "sm": [
-                    150,
-                    200
-                ],
-                "md": [
-                    225,
-                    330
-                ],
-                "lg": [
-                    370,
-                    555
-                ]
-            },
-            "balance": {
-                "sm": [
-                    165,
-                    240
-                ],
-                "md": [
-                    240,
-                    350
-                ],
-                "lg": [
-                    400,
-                    600
-                ]
-            },
-            "weatherstrip": {
-                "sm": [
-                    150,
-                    195
-                ],
-                "md": [
-                    215,
-                    315
-                ],
-                "lg": [
-                    360,
-                    540
-                ]
-            },
-            "screen": {
-                "sm": [
-                    150,
-                    165
-                ],
-                "md": [
-                    180,
-                    265
-                ],
-                "lg": [
-                    290,
-                    435
-                ]
-            },
-            "glass": {
-                "sm": [
-                    190,
-                    275
-                ],
-                "md": [
-                    290,
-                    430
-                ],
-                "lg": [
-                    430,
-                    645
-                ]
-            }
+            stuck: { sm: [150, 195], md: [260, 420], lg: [365, 545] },
+            hardware: { sm: [150, 200], md: [225, 330], lg: [370, 555] },
+            balance: { sm: [165, 240], md: [240, 350], lg: [400, 600] },
+            weatherstrip: { sm: [150, 195], md: [215, 315], lg: [360, 540] },
+            screen: { sm: [150, 190], md: [180, 265], lg: [290, 435] },
+            glass: { sm: [190, 275], md: [290, 430], lg: [430, 645] }
         },
         "cta": {
             "text": "Get My Window Repair Quote",
@@ -12244,90 +9033,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "single-room": {
-                "sm": [
-                    150,
-                    225
-                ],
-                "md": [
-                    265,
-                    395
-                ],
-                "lg": [
-                    460,
-                    690
-                ]
-            },
-            "studio": {
-                "sm": [
-                    225,
-                    330
-                ],
-                "md": [
-                    420,
-                    620
-                ],
-                "lg": [
-                    720,
-                    1080
-                ]
-            },
-            "1br": {
-                "sm": [
-                    280,
-                    410
-                ],
-                "md": [
-                    850,
-                    1500
-                ],
-                "lg": [
-                    900,
-                    1350
-                ]
-            },
-            "2br": {
-                "sm": [
-                    370,
-                    545
-                ],
-                "md": [
-                    680,
-                    1020
-                ],
-                "lg": [
-                    1180,
-                    1770
-                ]
-            },
-            "3br": {
-                "sm": [
-                    480,
-                    720
-                ],
-                "md": [
-                    890,
-                    1330
-                ],
-                "lg": [
-                    2600,
-                    4200
-                ]
-            },
-            "office": {
-                "sm": [
-                    280,
-                    410
-                ],
-                "md": [
-                    520,
-                    780
-                ],
-                "lg": [
-                    900,
-                    1350
-                ]
-            }
+            'single-room': { sm: [195, 290], md: [330, 490], lg: [520, 760] },
+            studio: { sm: [280, 420], md: [480, 720], lg: [780, 1150] },
+            '1br': { sm: [380, 560], md: [650, 970], lg: [1050, 1550] },
+            '2br': { sm: [520, 780], md: [900, 1350], lg: [1450, 2150] },
+            '3br': { sm: [750, 1120], md: [1300, 1950], lg: [2600, 4000] },
+            office: { sm: [380, 560], md: [680, 1000], lg: [1150, 1700] }
         },
         "cta": {
             "text": "Send My Turnover Punch List",
@@ -12490,90 +9201,12 @@ Object.assign(CONFIGS, {
             }
         ],
         "pricing": {
-            "mounting": {
-                "sm": [
-                    150,
-                    230
-                ],
-                "md": [
-                    200,
-                    300
-                ],
-                "lg": [
-                    265,
-                    400
-                ]
-            },
-            "assembly": {
-                "sm": [
-                    150,
-                    250
-                ],
-                "md": [
-                    210,
-                    325
-                ],
-                "lg": [
-                    280,
-                    430
-                ]
-            },
-            "repairs": {
-                "sm": [
-                    175,
-                    255
-                ],
-                "md": [
-                    225,
-                    335
-                ],
-                "lg": [
-                    420,
-                    650
-                ]
-            },
-            "fixtures": {
-                "sm": [
-                    165,
-                    240
-                ],
-                "md": [
-                    215,
-                    315
-                ],
-                "lg": [
-                    285,
-                    425
-                ]
-            },
-            "ac": {
-                "sm": [
-                    190,
-                    275
-                ],
-                "md": [
-                    245,
-                    360
-                ],
-                "lg": [
-                    320,
-                    480
-                ]
-            },
-            "punch-list": {
-                "sm": [
-                    265,
-                    395
-                ],
-                "md": [
-                    330,
-                    490
-                ],
-                "lg": [
-                    700,
-                    1200
-                ]
-            }
+            mounting: { sm: [195, 300], md: [280, 400], lg: [370, 520] },
+            assembly: { sm: [195, 300], md: [280, 400], lg: [370, 520] },
+            repairs: { sm: [225, 320], md: [300, 430], lg: [520, 780] },
+            fixtures: { sm: [215, 300], md: [285, 400], lg: [370, 520] },
+            ac: { sm: [245, 340], md: [320, 450], lg: [420, 590] },
+            'punch-list': { sm: [340, 490], md: [430, 620], lg: [850, 1400] }
         },
         "cta": {
             "text": "Start My COI Review",

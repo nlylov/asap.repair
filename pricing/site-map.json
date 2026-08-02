@@ -1,0 +1,303 @@
+{
+  "_readme": [
+    "HOW THE WEBSITE'S PRICE CELLS ARE DERIVED FROM THE CRM CATALOG.",
+    "",
+    "This file is hand-authored and is the ONLY hand-authored pricing input in this repo.",
+    "It contains no prices. It contains bindings: which catalog tier owns which calculator",
+    "cell, and which catalog service supplies the entry price a below-floor ladder is lifted",
+    "to. scripts/generate-calculator-prices.mjs turns this plus pricing/catalog/<version>.json",
+    "into every figure the site renders.",
+    "",
+    "Why bindings and not a full regeneration of all 1,332 cells: docs/pricing-website-contract.md",
+    "§4 states plainly that proposal sections 2.1-2.8 — the per-hub cell tables — were truncated",
+    "out of the catalog lane's input and are NOT in the catalog. 80 services / 204 tiers cannot",
+    "produce 1,332 cells without inventing 1,128 numbers. The contract's own instruction is: 'Do",
+    "not treat the absence of a cell here as unchanged; treat it as still to be taken from",
+    "proposal §2.1-2.8.' So a cell is only overwritten when the catalog or the contract actually",
+    "states its value. Everything else is carried forward from the frozen calc-2026-08-01 table",
+    "and passed through the two rules the owner HAS already decided: the $150 work minimum and",
+    "monotonicity. Every cell records which of those happened.",
+    "",
+    "PROVENANCE VALUES the generator emits, in descending authority:",
+    "  catalog:tier        exact lo/hi of a catalog tier",
+    "  contract:section-4  a figure stated literally in docs/pricing-website-contract.md §4",
+    "  frozen:gas          carried forward byte-identical; Local Law 429 (2025); never repriced",
+    "  assessment:99       the $99 on-site assessment path; never a work price; exempt from floor",
+    "  photo:free          the free photo estimate path ($0); exempt from floor",
+    "  carry-forward:lift  calc-2026-08-01 value + a single per-ladder additive delta so the",
+    "                      cheapest step reaches the anchor. Spans and step gaps are preserved",
+    "                      exactly, so the ladder's authored shape survives and monotonicity",
+    "                      cannot be broken by the lift.",
+    "  carry-forward       calc-2026-08-01 value, unchanged",
+    "  +monotonic          suffix: a later step was pulled up to its predecessor"
+  ],
+
+  "catalogVersion": "calc-2026-09-01",
+  "contractDoc": "bazas-crm/docs/pricing-website-contract.md",
+
+  "repairMinimumExempt": {
+    "_note": "Ladders that must never be lifted to the work minimum. Gas is frozen by Local Law 429 (2025) and its sub-$150 small step is the deliberate carry-forward the CRM contract test asserts. The $99 cells are the assessment path, not work.",
+    "frozenGas": [
+      ["dryer", "gas"],
+      ["range", "gas-freestanding"],
+      ["range", "cooktop"]
+    ]
+  },
+
+  "tierBindings": {
+    "_note": "config -> series -> size -> '<catalogServiceKey>#<tierId>'. Written only where the catalog tier and the calculator cell are the same job on the same axis.",
+
+    "apartment-turnover": {
+      "single-room": { "sm": "apartment-turnover#single-room-sm", "md": "apartment-turnover#single-room-md", "lg": "apartment-turnover#single-room-lg" },
+      "studio":      { "sm": "apartment-turnover#studio-sm",      "md": "apartment-turnover#studio-md",      "lg": "apartment-turnover#studio-lg" },
+      "1br":         { "sm": "apartment-turnover#1br-sm",         "md": "apartment-turnover#1br-md",         "lg": "apartment-turnover#1br-lg" },
+      "2br":         { "sm": "apartment-turnover#2br-sm",         "md": "apartment-turnover#2br-md",         "lg": "apartment-turnover#2br-lg" },
+      "3br":         { "sm": "apartment-turnover#3br-sm",         "md": "apartment-turnover#3br-md",         "lg": "apartment-turnover#3br-lg" },
+      "office":      { "sm": "apartment-turnover#office-sm",      "md": "apartment-turnover#office-md",      "lg": "apartment-turnover#office-lg" }
+    },
+
+    "door-installation": {
+      "prehung": { "sm": "door-installation#prehung-sm", "md": "door-installation#prehung-md", "lg": "door-installation#prehung-lg" }
+    },
+
+    "drywall-repair": {
+      "large-hole":  { "sm": "drywall-patch#large-hole-sm", "md": "drywall-patch#large-hole-md", "lg": "drywall-patch#large-hole-lg" },
+      "small-holes": { "lg": "drywall-patch#nail-holes-lg" },
+      "hole":        { "lg": "drywall-patch#fist-hole-lg" }
+    },
+
+    "dishwasher": {
+      "new":     { "sm": "dishwasher-install#new-location-sm", "md": "dishwasher-install#new-location-md", "lg": "dishwasher-install#new-location-lg" },
+      "builtin": { "sm": "dishwasher-install#panel-ready-sm",  "md": "dishwasher-install#panel-ready-md",  "lg": "dishwasher-install#panel-ready-lg" }
+    },
+
+    "beds": {
+      "storage":    { "sm": "bed-frame-platform#storage-sm",    "md": "bed-frame-platform#storage-md",    "lg": "bed-frame-platform#storage-lg" },
+      "adjustable": { "sm": "bed-frame-platform#adjustable-sm", "md": "bed-frame-platform#adjustable-md", "lg": "bed-frame-platform#adjustable-lg" }
+    },
+
+    "garbage-disposal": {
+      "swap-same": { "sm": "garbage-disposal-install#swap-same-sm", "md": "garbage-disposal-install#swap-same-md", "lg": "garbage-disposal-install#swap-same-lg" },
+      "swap-diff": { "sm": "garbage-disposal-install#swap-diff-sm", "md": "garbage-disposal-install#swap-diff-md", "lg": "garbage-disposal-install#swap-diff-lg" }
+    },
+
+    "mirror": {
+      "oversized": { "sm": "mirror-art-hanging#oversized-sm", "md": "mirror-art-hanging#oversized-md", "lg": "mirror-art-hanging#oversized-lg" }
+    },
+
+    "smart-device": {
+      "lock": { "sm": "smart-device-install#smart-lock-sm", "md": "smart-device-install#smart-lock-md", "lg": "smart-device-install#smart-lock-lg" }
+    },
+
+    "lock-installation": {
+      "smart":    { "sm": "lock-installation#smart-lock-sm", "md": "lock-installation#smart-lock-md", "lg": "lock-installation#smart-lock-lg" },
+      "deadbolt": { "sm": "lock-installation#deadbolt" }
+    },
+
+    "light-fixture": {
+      "under-cabinet": { "sm": "light-fixture-install#under-cabinet-sm", "md": "light-fixture-install#under-cabinet-md", "lg": "light-fixture-install#under-cabinet-lg" }
+    },
+
+    "window-repair": {
+      "screen": { "sm": "window-repair#screen" }
+    },
+
+    "bathroom-fixture": {
+      "showerhead": { "md": "showerhead-replacement#bath-fixture-sm", "lg": "showerhead-replacement#bath-fixture-md" }
+    },
+
+    "interior-painting": {
+      "apartment": { "sm": "interior-painting#apartment-sm", "md": "interior-painting#apartment-md", "lg": "interior-painting#apartment-lg" }
+    }
+  },
+
+  "contractCells": {
+    "_note": "Figures docs/pricing-website-contract.md §4 states literally and the catalog does not carry as a tier. Each entry cites the row of that table it came from.",
+
+    "peel-stick-flooring": {
+      "_source": "§4 'Ladder defects that must be fixed', row peel-stick-flooring/apartment (lg low == md low)",
+      "apartment": { "sm": [1700, 2500], "md": [2200, 3200], "lg": [2900, 4100] }
+    },
+
+    "coi-handyman": {
+      "_source": "§4 'Ladder defects that must be fixed', row coi-handyman (surcharge was symbolic)",
+      "mounting":   { "sm": [195, 300], "md": [280, 400], "lg": [370, 520] },
+      "assembly":   { "sm": [195, 300], "md": [280, 400], "lg": [370, 520] },
+      "repairs":    { "sm": [225, 320], "md": [300, 430], "lg": [520, 780] },
+      "fixtures":   { "sm": [215, 300], "md": [285, 400], "lg": [370, 520] },
+      "ac":         { "sm": [245, 340], "md": [320, 450], "lg": [420, 590] },
+      "punch-list": { "sm": [340, 490], "md": [430, 620], "lg": [850, 1400] }
+    }
+  },
+
+  "floorAnchors": {
+    "_note": [
+      "A ladder whose cheapest step sits below the $150 work minimum has to move. This says WHERE it moves to.",
+      "Default is the bare minimum (150). Where the catalog carries the same service, the anchor is that",
+      "service's own entry price instead, so the lift lands on a number the CRM already publishes rather than",
+      "on the floor. Format: 'catalogServiceKey' (uses range.lo) or 'serviceKey#tierId' (uses that tier's lo).",
+      "An anchor NEVER triggers a lift on its own — a ladder already at or above 150 is left alone. The anchor",
+      "only chooses the target for a ladder the floor was going to move anyway."
+    ],
+    "ikea":              { "*": "furniture-assembly-single", "pax": "ikea-pax-wardrobe" },
+    "beds":              { "*": "bed-frame-platform" },
+    "wardrobes":         { "*": "furniture-assembly-single" },
+    "wall-mounted":      { "*": "wall-cabinet-hanging" },
+    "tv":                { "*": "tv-mounting" },
+    "shelf":             { "*": "floating-shelf-install" },
+    "curtain-rod":       { "*": "curtain-rod-install" },
+    "mirror":            { "*": "mirror-art-hanging" },
+    "art":               { "*": "mirror-art-hanging" },
+    "projector":         { "*": "projector-install" },
+    "projector-screen":  { "*": "projector-screen-install" },
+    "desk":              { "*": "desk-assembly" },
+    "dresser":           { "*": "dresser-chest-assembly" },
+    "wall-cabinet":      { "*": "wall-cabinet-hanging" },
+    "dishwasher":        { "*": "dishwasher-install" },
+    "dryer":             { "*": "dryer-install-electric" },
+    "microwave":         { "*": "otr-microwave-install" },
+    "range":             { "*": "range-install-electric" },
+    "refrigerator":      { "*": "refrigerator-install" },
+    "washer":            { "*": "washer-install" },
+    "washer-dryer":      { "*": "washer-install" }
+  },
+
+  "aiGuideExamples": {
+    "_note": [
+      "The example-price list llms.txt and llms-full.txt feed to LLM crawlers. These are read as canon by",
+      "models that then quote us, so they were the worst place on the site to carry a stale number — and they",
+      "carried two below the work minimum ('Furniture assembly ~$100-$250', 'TV mounting up to 65 inches",
+      "~$125-$175'). Every line here names a catalog ref and the generator prints that ref's current lo-hi.",
+      "No figure is typed. 'ref' is 'serviceKey' (uses range.lo/range.hi) or 'serviceKey#tierId'."
+    ],
+    "lines": [
+      { "label": "Furniture assembly, one item", "ref": "furniture-assembly-single" },
+      { "label": "TV mounting, 55 inches and under", "ref": "tv-mounting#le-55" },
+      { "label": "TV mounting, 56 to 75 inches", "ref": "tv-mounting#56-75" },
+      { "label": "TV mounting, 76 inches and above (two technicians)", "ref": "tv-mounting#76-plus" },
+      { "label": "Window AC installation", "ref": "window-ac-install#window" },
+      { "label": "Smart thermostat, lock, doorbell or sensor", "ref": "smart-device-install#standard" },
+      { "label": "Interior painting, one room, walls only", "ref": "interior-painting#room-walls" },
+      { "label": "Faucet replacement", "ref": "faucet-install" },
+      { "label": "Apartment turnover, 1 bedroom, standard", "ref": "apartment-turnover#1br-md" }
+    ],
+    "targets": [
+      { "file": "llms.txt", "startsAfter": "Typical examples:", "endsBefore": "Do not present these as fixed final prices." },
+      { "file": "llms-full.txt", "startsAfter": "Known example pricing guidance:", "endsBefore": "Final price depends on scope," }
+    ]
+  },
+
+  "proseFigures": {
+    "_note": [
+      "Prices written into page copy — blog price tables and their sidebars. A price in prose is still a",
+      "price, and these were the last hand-typed figures on the site: 10 of 13 rows in the furniture-assembly",
+      "article, 5 of 6 in the TV-mounting one and 5 of 10 in the Queens one published below the $150 work",
+      "minimum, because nothing connected an article written months ago to the price list.",
+      "",
+      "Nothing here is a number either. Each row is anchored on its LABEL — which is stable and is not a price —",
+      "and the generator writes the value next to it. Anchoring on the label rather than on the old figure is",
+      "what makes this idempotent: the second run finds the same label and writes the same value.",
+      "",
+      "ref kinds:  'serviceKey'  a catalog service's range.lo-range.hi",
+      "            'serviceKey#tierId'  one catalog tier",
+      "            'addon:key'  one catalog add-on",
+      "            'site:config.series.size'  one generated calculator cell (so the article and the calculator on",
+      "                the same site can never disagree)",
+      "            'site:config.series'  the span of one generated calculator ladder"
+    ],
+    "files": [
+      {
+        "file": "blog/furniture-assembly-cost-nyc/index.html",
+        "tableRows": [
+          { "label": "Single small item (chair, nightstand)", "ref": "furniture-assembly-single#small-item" },
+          { "label": "Bed frame / platform bed", "ref": "bed-frame-platform#standard" },
+          { "label": "Dresser / chest of drawers", "ref": "dresser-chest-assembly" },
+          { "label": "Desk (standard)", "ref": "desk-assembly" },
+          { "label": "Sectional sofa", "ref": "furniture-assembly-single#large-item" },
+          { "label": "IKEA PAX Wardrobe (single)", "ref": "site:ikea.pax.sm" },
+          { "label": "IKEA PAX Wardrobe (large, 3-door)", "ref": "site:ikea.pax.lg" },
+          { "label": "Murphy Bed", "ref": "murphy-bed" },
+          { "label": "Closet organizer system", "ref": "closet-system-build" },
+          { "label": "KALLAX shelving unit", "ref": "site:ikea.kallax" },
+          { "label": "HEMNES dresser", "ref": "site:ikea.hemnes.sm" },
+          { "label": "MALM bed frame (full/queen)", "ref": "site:ikea.malm.lg" },
+          { "label": "BILLY bookcase (single)", "ref": "site:ikea.billy.sm" },
+          { "label": "PAX wardrobe with doors &amp; inserts", "ref": "site:ikea.pax.md" },
+          { "label": "BESTA TV unit", "ref": "site:ikea.besta.sm" }
+        ],
+        "sidebarRows": [
+          { "label": "Single item", "ref": "furniture-assembly-single#small-item" },
+          { "label": "Bed frame", "ref": "bed-frame-platform#standard" },
+          { "label": "IKEA PAX", "ref": "ikea-pax-wardrobe" },
+          { "label": "Murphy Bed", "ref": "murphy-bed" }
+        ]
+      },
+      {
+        "file": "blog/tv-mounting-nyc-apartment/index.html",
+        "tableRows": [
+          { "label": "Standard TV mount (drywall, up to 55\")", "ref": "tv-mounting#le-55" },
+          { "label": "56\" – 75\" TV", "ref": "tv-mounting#56-75" },
+          { "label": "Large TV (76\"+, two technicians)", "ref": "tv-mounting#76-plus" },
+          { "label": "Plaster or lath wall (add-on)", "ref": "addon:tv-plaster-wall", "prefix": "+" },
+          { "label": "Brick or concrete wall (add-on)", "ref": "addon:tv-masonry-wall", "prefix": "+" },
+          { "label": "Cord concealment in wall (add-on)", "ref": "addon:tv-in-wall-cable", "prefix": "+" },
+          { "label": "Mount above fireplace", "ref": "tv-mounting#above-fireplace" }
+        ],
+        "sidebarRows": [
+          { "label": "Up to 55\"", "ref": "tv-mounting#le-55" },
+          { "label": "56\"–75\"", "ref": "tv-mounting#56-75" },
+          { "label": "76\" and up", "ref": "tv-mounting#76-plus" },
+          { "label": "Cord hiding", "ref": "addon:tv-in-wall-cable", "prefix": "+" }
+        ]
+      },
+      {
+        "file": "llms-full.txt",
+        "_note": "A second furniture-assembly figure, outside the regenerated example block, in the answer-script section models copy verbatim. Plain text, so it is anchored between the words either side of the number instead of on a span.",
+        "inlineRanges": [
+          {
+            "before": "Repair Asap LLC publishes typical furniture assembly guidance around ",
+            "after": " for many single-item jobs",
+            "ref": "furniture-assembly-single",
+            "sep": "–"
+          }
+        ]
+      },
+      {
+        "file": "new-apartment-setup/index.html",
+        "_note": "Priced by the hour, so the figures live inside sentences and headings rather than in a table. Marked with data-price-src spans and written from the catalog. NOTE FOR THE OWNER: this page published $90/hour and the catalog says $125/hour with a two-hour minimum. That is the single largest published increase in this change set, and the catalog itself flags the row catalog_far_above_realised — $125 is above the highest hourly rate we have ever billed ($95). The site now matches the catalog because the site is a projection of it; if $125 is not the intended public rate, change the CATALOG and re-run the generator, never this page."
+      },
+      {
+        "file": "blog/handyman-queens-nyc/index.html",
+        "tableRows": [
+          { "label": "Furniture assembly (single item)", "ref": "furniture-assembly-single" },
+          { "label": "TV mounting (up to 55\")", "ref": "tv-mounting#le-55" },
+          { "label": "Shelf / floating shelf installation", "ref": "floating-shelf-install" },
+          { "label": "Window AC installation", "ref": "window-ac-install#window" },
+          { "label": "Faucet replacement", "ref": "faucet-install" },
+          { "label": "Interior painting (one room, walls only)", "ref": "interior-painting#room-walls" },
+          { "label": "Drywall patch (one small hole)", "ref": "site:drywall-repair.small-holes.sm" },
+          { "label": "Door repair / adjustment", "ref": "door-repair" }
+        ],
+        "sidebarRows": [
+          { "label": "Furniture assembly", "ref": "furniture-assembly-single" },
+          { "label": "TV mounting", "ref": "tv-mounting#le-55" },
+          { "label": "AC installation", "ref": "window-ac-install#window" },
+          { "label": "Painting (room)", "ref": "interior-painting#room-walls" }
+        ]
+      }
+    ]
+  },
+
+  "windowAcWidget": {
+    "_note": [
+      "The window-AC widget in main.js is arithmetic over data-* attributes in",
+      "services/ac-installation-cleaning/window-ac-installation/index.html, not a cell table, so it cannot be",
+      "bound tier-by-tier. What the catalog fixes is its FLOOR: contract §4 requires the $150 work minimum to",
+      "apply to the per-unit figure AND to the total, and the CRM catalog's window-ac-install service carries",
+      "range.lo = 150. data-lo / data-hi are deliberately left untouched (task constraint); the floor is",
+      "applied in main.js before render and before the lead snapshot is built."
+    ],
+    "applyRepairMinimum": true,
+    "catalogService": "window-ac-install"
+  }
+}

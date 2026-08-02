@@ -7,6 +7,8 @@
 node_modules/
 .env
 .wrangler/
+# local editor / preview scaffolding, never deployed
+.claude/
 
 # Internal docs — don't deploy to Netlify
 SEO_ROADMAP.md

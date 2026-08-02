@@ -32,11 +32,19 @@ const REPAIR_ASAP_CRM_TAXONOMY_VERSION = '2026-07-29';
    components/modules/calculator.js owns a second price table (CONFIGS / VISIT_CONFIGS) and
    carries its own CALC_PRICE_VERSION; both are written into the same custom field, and
    calculator_config says which table produced the number. */
-const REPAIR_ASAP_CALC_PRICE_VERSION = 'calc-2026-08-01';
+const REPAIR_ASAP_CALC_PRICE_VERSION = 'calc-2026-09-01';
 
 /* The four outcomes a calculator can put in front of a customer. Anything else is a bug,
    not a new path — the CRM is allowed to treat this list as closed. */
 const REPAIR_ASAP_QUOTE_PATHS = ['range', 'single', 'assessment_99', 'photo_estimate'];
+
+/* The lowest total we charge for WORK PERFORMED on a visit — constants.repairMinimum in
+   pricing/catalog/calc-2026-09-01.json. It is not a service fee and it is not the $99 on-site
+   assessment, which buys an assessment and is credited toward the job. Kept as a named constant
+   here because the window-AC calculator further down this file is the one calculator whose
+   figures are arithmetic rather than a table, so nothing else can hold its floor for it.
+   components/modules/calculator.js holds the identical value for the modular calculators. */
+const REPAIR_ASAP_WORK_MINIMUM = 150;
 
 /* Of those four, the two that put a PRICE FOR THE WORK on screen. Only these carry
    estimated_low / estimated_high / estimated_range.
@@ -1774,10 +1782,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const qty = Number(selOpt(qtySel)?.value || 1);
       const discount = Number(selOpt(qtySel)?.dataset.discount || 0) / 100;
 
-      const perUnitLo = roundNearest5(subtotalLo * (1 - discount));
-      const perUnitHi = roundNearest5(subtotalHi * (1 - discount));
-      const totalLo = roundNearest5(perUnitLo * qty);
-      const totalHi = roundNearest5(perUnitHi * qty);
+      /* The $150 work minimum, applied here and not in the markup.
+         This widget is the one calculator on the site that never had a floor. Its cheapest
+         reachable state — 5,000 BTU, double-hung, low floor, no add-ons, one unit — rendered
+         $120–$165, and the multi-unit discount took the per-unit figure down to $100 at five
+         units. Both are prices for WORK, and the owner's minimum for work performed is $150;
+         $99 is the on-site assessment and is a different thing entirely.
+         The floor is applied to the PER-UNIT figure and then to the TOTAL, in that order,
+         because both are shown to the customer and the per-unit one is what a landlord
+         multiplies. data-lo / data-hi in the page markup are deliberately left alone: they are
+         the raw job cost before quantity and discount, they are read by nothing else, and
+         moving them would change the shape of the estimate rather than enforce the minimum.
+         Everything downstream — the rendered string, acDisplayedQuote, the lead snapshot and
+         the GA event — reads these floored figures, so no path can report a number the page
+         did not show. Same rule as flooredRange() in components/modules/calculator.js. */
+      const perUnitLo = Math.max(roundNearest5(subtotalLo * (1 - discount)), REPAIR_ASAP_WORK_MINIMUM);
+      const perUnitHi = Math.max(roundNearest5(subtotalHi * (1 - discount)), REPAIR_ASAP_WORK_MINIMUM);
+      const totalLo = Math.max(roundNearest5(perUnitLo * qty), REPAIR_ASAP_WORK_MINIMUM);
+      const totalHi = Math.max(roundNearest5(perUnitHi * qty), REPAIR_ASAP_WORK_MINIMUM);
 
       // Complexity
       const score = computeComplexity();
@@ -1790,21 +1812,27 @@ document.addEventListener('DOMContentLoaded', () => {
         tier = 'Photo Review Required'; badgeColor = '#dc2626';
       }
 
+      /* Once the floor bites, the low and the high can land on the same number (five units of
+         the smallest AC: $150–$150 each). Show one figure then, the way the modular calculator
+         does, instead of an estimate that reads like a broken template. */
+      const money = (lo, hi) => (hi > lo ? `$${lo}–$${hi}` : `$${lo}`);
+      const moneyHtml = (lo, hi) => (hi > lo ? `$${lo}&ndash;$${hi}` : `$${lo}`);
+
       // Update price
-      const rangeText = `$${totalLo}–$${totalHi}`;
+      const rangeText = money(totalLo, totalHi);
       if (qty > 1) {
         labelEl.textContent = `Planning Estimate (${qty} units)`;
-        priceEl.innerHTML = `$${totalLo}&ndash;$${totalHi} <span style="font-size:0.55em;opacity:0.7;">($${perUnitLo}&ndash;$${perUnitHi}/unit)</span>`;
+        priceEl.innerHTML = `${moneyHtml(totalLo, totalHi)} <span style="font-size:0.55em;opacity:0.7;">(${moneyHtml(perUnitLo, perUnitHi)}/unit)</span>`;
       } else {
         labelEl.textContent = 'Planning Estimate';
-        priceEl.innerHTML = `$${totalLo}&ndash;$${totalHi}`;
+        priceEl.innerHTML = moneyHtml(totalLo, totalHi);
       }
       // Record the figures exactly as rendered above, for the lead snapshot.
       acDisplayedQuote = {
         low: totalLo,
         high: totalHi,
         rangeText,
-        perUnitText: qty > 1 ? `$${perUnitLo}–$${perUnitHi}/unit` : '',
+        perUnitText: qty > 1 ? `${money(perUnitLo, perUnitHi)}/unit` : '',
       };
 
       // Complexity badge

@@ -1,0 +1,14 @@
+{
+  "live": "calc-2026-09-01",
+  "versions": [
+    "calc-2026-09-01"
+  ],
+  "sha256": {
+    "calc-2026-09-01": "bd75b7b92e0e7d3a8b6d415b64766a85ed810325003cdb35065fb84916eda52b"
+  },
+  "priceTables": [
+    "calc-2026-08-01",
+    "calc-2026-09-01"
+  ],
+  "note": "Published for the CRM cross-repository drift cron (pricing-website-contract.md §8): fetch this, then compare sha256(pricing/catalog/<live>.json) with PRICING_CATALOG_CHECKSUMS[live] in bazas-crm/lib/pricing/catalog.ts. priceTables lists every version a lead may still carry; each is served at /pricing/price-tables/<version>.json and is never rewritten."
+}
