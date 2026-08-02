@@ -5,12 +5,12 @@
   "generatedBy": "scripts/generate-calculator-prices.mjs",
   "note": "Provenance of every calculator cell on asap.repair. A cell is only overwritten when the catalog or docs/pricing-website-contract.md §4 states its value; otherwise it is the frozen calc-2026-08-01 figure, moved only by the two rules the owner has already decided (the $150 work minimum, and monotonicity along the declared size axis).",
   "totals": {
-    "cells": 1332,
+    "cells": 1333,
     "configs": 78,
     "byProvenance": {
       "carry-forward": 828,
       "carry-forward:lift": 306,
-      "catalog:tier": 63,
+      "catalog:tier": 64,
       "assessment:99": 57,
       "photo:free": 48,
       "contract:section-4": 21,
@@ -2537,7 +2537,7 @@
       "carry-forward": 828,
       "carry-forward:lift": 306
     },
-    "cellsTheCatalogOrContractOwns": 84
+    "cellsTheCatalogOrContractOwns": 85
   },
   "cells": [
     {
@@ -11284,6 +11284,18 @@
         6000,
         10000
       ]
+    },
+    {
+      "configKey": "interior-painting",
+      "series": "apartment",
+      "size": "xl",
+      "value": [
+        6500,
+        11000
+      ],
+      "source": "catalog:tier",
+      "ref": "interior-painting#apartment-xl",
+      "was": null
     },
     {
       "configKey": "interior-painting",

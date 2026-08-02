@@ -11,9 +11,9 @@
  * From here every figure the site renders is WRITTEN BY THIS SCRIPT. That is not the same claim
  * as "every figure is a catalog figure", and the difference matters:
  *
- *   COUNTS: total=1332 catalogOrContract=84 carryForward=1134 nonWorkPaths=114
+ *   COUNTS: total=1333 catalogOrContract=85 carryForward=1134 nonWorkPaths=114
  *
- * 84 cells come from a catalog tier or from a figure the contract states literally; 1,134 are
+ * 85 cells come from a catalog tier or from a figure the contract states literally; 1,134 are
  * the previous version's cells moved only by the owner's two decided rules; the remaining 114
  * are the $0 photo-estimate, $99 assessment and frozen-gas paths, which are not work prices at
  * all. tests/pricing-catalog-projection.test.mjs parses that COUNTS line and checks it against
@@ -28,7 +28,7 @@
  * It does not invent the 1,134 cells the catalog does not carry. docs/pricing-website-contract.md
  * §4 says proposal sections 2.1-2.8 — the per-hub cell tables — were truncated out of the catalog
  * lane's input, and instructs: "Do not treat the absence of a cell here as 'unchanged'; treat it
- * as 'still to be taken from proposal §2.1-2.8'." 80 services and 204 tiers cannot fill 1,332
+ * as 'still to be taken from proposal §2.1-2.8'." 80 services and 204 tiers cannot fill 1,333
  * slots honestly. So an unbound cell is carried forward from the frozen calc-2026-08-01 table and
  * passed through the two rules the owner has already ruled on — the $150 work minimum and
  * monotonicity — and its provenance says exactly that. pricing/calculator-price-projection.json
@@ -136,14 +136,27 @@ function projectConfig({ configKey, previous, map, index, constants, sizeOrders 
             const before = sizes[size];
             const tierRef = tierMap[series]?.[size];
             const contractValue = contractMap[series]?.[size];
+            /* A step the picker declares but the previous version never priced. Legitimate only
+               when the catalog or the contract states its value outright — otherwise there is
+               nothing to carry forward and nothing to derive, and inventing one is exactly what
+               this script refuses to do. (Codex round 2: interior-painting needed a fourth
+               apartment step so the picker's 3BR+ option could stop being priced off the
+               catalog's 2BR row.) */
+            if (!before && !tierRef && !contractValue) {
+                throw new Error(
+                    `${configKey}.${series}.${size} is offered by the calculator but has no price: it is not in the ` +
+                    `frozen ${PREVIOUS_VERSION} table and site-map.json binds it to neither a catalog tier nor a ` +
+                    'contract figure. Bind it, or remove the option.',
+                );
+            }
             if (tierRef) {
                 const tier = index.tiers.get(tierRef);
                 if (!tier) throw new Error(`site-map.json points at a tier that does not exist: ${tierRef}`);
                 resolved[size] = [tier.lo, tier.hi];
-                provenance[size] = { source: 'catalog:tier', ref: tierRef, was: before };
+                provenance[size] = { source: 'catalog:tier', ref: tierRef, was: before || null };
             } else if (contractValue) {
                 resolved[size] = [contractValue[0], contractValue[1]];
-                provenance[size] = { source: 'contract:section-4', ref: contractMap._source, was: before };
+                provenance[size] = { source: 'contract:section-4', ref: contractMap._source, was: before || null };
             } else {
                 resolved[size] = [before[0], before[1]];
                 provenance[size] = { source: 'carry-forward', was: before };
@@ -242,76 +255,68 @@ function resolveAnchor(ref, index, fallback) {
 
 /* Every config's price grid opens its own line, as `pricing: {`, `"pricing": {` or
    `'pricing': {`, at whatever indentation that config happens to sit at — the file has three
-   different styles in it and one config nested a level deeper than the rest. The single-line
-   `pricing: { photo: [0, 0], ... }` inside VISIT_PATH_OPTIONS is a function body, not a config;
-   the trailing `{$` is what excludes it.
- *
- * The owner of each block is identified BY ITS CONTENT, not by scanning backwards for the
- * nearest key. The first draft of this script did scan backwards, and it silently mis-attributed
- * nine blocks — every config whose key is single-quoted ('wall-mounted', 'ac-window', …) was
- * skipped by the key pattern, so nine grids were about to be overwritten with a neighbouring
- * config's prices. Matching the block's own parsed value against the frozen previous table
- * cannot make that mistake: a block either is some config's exact old grid or the build stops. */
-const PRICING_BLOCK = /^\s*['"]?pricing['"]?: \{$/;
+   different key-quoting styles in it and one config nested a level deeper than the rest. The
+   single-line `pricing: { photo: [0, 0], ... }` inside VISIT_PATH_OPTIONS is a function body, not
+   a config; the trailing `{$` is what excludes it.
+
+   The owner of a block is the nearest preceding key at a SHALLOWER indentation. Two things about
+   that are load-bearing, both learned the hard way:
+
+     - the key pattern accepts all three quote styles. The first draft matched only bare and
+       double-quoted keys, so every single-quoted config ('wall-mounted', 'ac-window', 'closet-
+       system', …) was skipped by the scan and nine grids were about to be overwritten with a
+       neighbouring config's prices.
+     - the indentation must be strictly shallower. A key at the same depth as `pricing:` is a
+       sibling field, not the owner.
+
+   Identification is structural on purpose rather than content-addressed (Codex round 2, finding
+   3): a content fingerprint follows the numbers, so two grids physically swapped between their
+   config bodies would regenerate byte-for-byte and `--check` would pass on a file that quotes
+   desk prices for dressers. Structural attribution cannot do that, and rewriteCalculatorJs()
+   proves the result by re-evaluating the file it just wrote. */
+const PRICING_BLOCK = /^(\s*)['"]?pricing['"]?: \{$/;
+const OBJECT_KEY = /^(\s*)(?:'([^']+)'|"([^"]+)"|([A-Za-z0-9_$-]+)): \{$/;
 
 function locatePricingBlocks(src, previousTable, projection) {
     const lines = src.split('\n');
     const blocks = [];
     let offset = 0;
     const lineStart = lines.map((line) => { const at = offset; offset += line.length + 1; return at; });
-
-    /* Fingerprint every grid a block may legitimately be holding: the frozen previous one (first
-       run) and the projected one (every run after — this script has to be idempotent, and
-       `--check` runs it against its own output). Two configs sharing a fingerprint would make the
-       attribution ambiguous, so that is checked rather than assumed. */
-    const byFingerprint = new Map();
-    const claim = (fp, configKey, which) => {
-        const held = byFingerprint.get(fp);
-        if (held && held !== configKey) {
-            throw new Error(
-                `the ${which} price grid of "${configKey}" is byte-identical to a grid of "${held}", so a block in ` +
-                'calculator.js cannot be attributed to one of them by content. Give one of them a distinct grid.',
-            );
-        }
-        byFingerprint.set(fp, configKey);
-    };
-    for (const [configKey, pricing] of Object.entries(previousTable)) claim(JSON.stringify(pricing), configKey, 'previous');
-    for (const [configKey, pricing] of Object.entries(projection)) claim(JSON.stringify(pricing), configKey, 'projected');
+    const known = new Set([...Object.keys(previousTable), ...Object.keys(projection)]);
 
     for (let i = 0; i < lines.length; i += 1) {
-        if (!PRICING_BLOCK.test(lines[i])) continue;
-        const open = lineStart[i] + lines[i].length - 1; // the '{'
-        const close = matchBrace(src, open);
-        const literal = src.slice(open, close + 1);
-        let parsed;
-        try {
-            // eslint-disable-next-line no-eval
-            parsed = eval(`(${literal})`);
-        } catch (error) {
-            throw new Error(`could not parse the pricing block on line ${i + 1}: ${error.message}`);
+        const hit = PRICING_BLOCK.exec(lines[i]);
+        if (!hit) continue;
+        const indent = hit[1];
+        let owner = null;
+        for (let j = i - 1; j >= 0; j -= 1) {
+            const key = OBJECT_KEY.exec(lines[j]);
+            if (!key) continue;
+            if (key[1].length >= indent.length) continue; // sibling field, keep looking outward
+            owner = key[2] ?? key[3] ?? key[4];
+            break;
         }
-        const owner = byFingerprint.get(JSON.stringify(parsed));
-        if (!owner) {
+        if (!owner) throw new Error(`could not find the config that owns the pricing block on line ${i + 1}`);
+        if (!known.has(owner)) {
             throw new Error(
-                `the pricing block on line ${i + 1} of calculator.js does not match any grid in the frozen ` +
-                `${PREVIOUS_VERSION} table. Either calculator.js was hand-edited (it must not be — regenerate ` +
-                'instead) or the frozen table is stale.',
+                `the pricing block on line ${i + 1} of calculator.js belongs to "${owner}", which is in neither the ` +
+                `frozen ${PREVIOUS_VERSION} table nor the projection. Add it to the frozen table (a new config is a ` +
+                'new version) or remove it.',
             );
         }
-        blocks.push({ configKey: owner, open, close, indent: /^\s*/.exec(lines[i])[0] });
+        const open = lineStart[i] + lines[i].length - 1; // the '{'
+        blocks.push({ configKey: owner, open, close: matchBrace(src, open), indent });
     }
 
-    const expected = Object.keys(previousTable).length;
-    const missing = Object.keys(previousTable).filter((k) => !blocks.some((b) => b.configKey === k));
+    const seen = blocks.map((b) => b.configKey);
+    const duplicated = seen.filter((k, n) => seen.indexOf(k) !== n);
+    if (duplicated.length) throw new Error(`two pricing blocks claim the same config: ${[...new Set(duplicated)].join(', ')}`);
+
+    const missing = Object.keys(previousTable).filter((k) => !seen.includes(k));
     /* The eight visit-mode configs are built by visitConfig() at runtime and have no literal
        block, so they are legitimately absent. Anything else missing is a locator failure. */
     const unexplained = missing.filter((k) => !VISIT_MODE_CONFIGS.has(k));
-    if (unexplained.length) {
-        throw new Error(`no pricing block found in calculator.js for: ${unexplained.join(', ')}`);
-    }
-    if (blocks.length !== expected - missing.length) {
-        throw new Error(`located ${blocks.length} pricing blocks but expected ${expected - missing.length}`);
-    }
+    if (unexplained.length) throw new Error(`no pricing block found in calculator.js for: ${unexplained.join(', ')}`);
     return blocks;
 }
 
@@ -359,6 +364,21 @@ function rewriteCalculatorJs(src, projection, previousTable) {
         cursor = block.close + 1;
     }
     out += src.slice(cursor);
+
+    /* Prove the splice landed where it was meant to, by reading the result back the way the
+       browser will. Without this, `--check` only guarantees the file is a fixed point of the
+       generator — which a file with two grids in each other's slots can also be. */
+    const written = evalConfigs(out);
+    for (const [configKey, pricing] of Object.entries(projection)) {
+        if (VISIT_MODE_CONFIGS.has(configKey)) continue;
+        const got = written[configKey]?.pricing;
+        if (JSON.stringify(got) !== JSON.stringify(pricing)) {
+            throw new Error(
+                `after rewriting calculator.js, config "${configKey}" does not hold its own projected grid. ` +
+                'The splice put a price table in the wrong place; nothing was written.',
+            );
+        }
+    }
 
     const versionLine = /^const CALC_PRICE_VERSION = '[^']+';$/m;
     if (!versionLine.test(out)) throw new Error('CALC_PRICE_VERSION declaration not found in calculator.js');
@@ -556,10 +576,13 @@ function sizeOrdersFrom(CONFIGS) {
         orders[configKey] = {};
         const sizeCategory = cfg.categories?.[1];
         for (const series of Object.keys(cfg.pricing)) {
+            /* Every step the picker OFFERS, including one that has no price yet. Dropping the
+               unpriced ones here is what let interior-painting's fourth apartment scope be added
+               to the map and silently ignored; projectConfig now refuses an unpriced step
+               instead, which is a red build rather than a missing option. */
             const declared = sizeCategory?.optionSets?.[series]
                 ?.map((o) => o.value)
-                .filter(Boolean)
-                .filter((v) => Object.prototype.hasOwnProperty.call(cfg.pricing[series], v));
+                .filter(Boolean);
             orders[configKey][series] = declared?.length ? declared : Object.keys(cfg.pricing[series]);
         }
     }
@@ -669,7 +692,7 @@ export function build() {
                 for (let j = i + 1; j < seriesKeys.length; j += 1) {
                     const a = seriesKeys[i];
                     const b = seriesKeys[j];
-                    const wasA = frozenPrevious.modularCalculator[configKey]?.[a]?.[size];
+                    const wasA = frozenPrevious.modularCalculator[configKey]?.[a]?.[size];  // undefined for a brand-new step
                     const wasB = frozenPrevious.modularCalculator[configKey]?.[b]?.[size];
                     const nowA = ladders[a]?.[size];
                     const nowB = ladders[b]?.[size];

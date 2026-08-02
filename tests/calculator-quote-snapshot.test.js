@@ -538,7 +538,13 @@ function windowAcOptionTable() {
     };
 }
 
-/* Replays main.js updateCalc() + the CTA's label derivation for one state. */
+/* Replays main.js updateCalc() + the CTA's label derivation for one state.
+   The $150 work minimum and the single-figure collapse are part of that replay: main.js floors
+   the per-unit figure and then the total, and prints one figure when the floor puts low and high
+   on the same number. A replay without them models a page that does not exist — the cheapest
+   state would be checked as "$120–$165" when the page says "$150–$165" — and the 240-char
+   analysis below would be measuring the wrong strings (Codex round 2, finding 4). */
+const WORK_MINIMUM = 150;
 function windowAcState(t, b, q, w, f, g, mask) {
     const active = t.toggles.filter((_, i) => mask & (1 << i));
     const addOnTotal = active.reduce((s, x) => s + x.price, 0);
@@ -548,11 +554,14 @@ function windowAcState(t, b, q, w, f, g, mask) {
     const subHi = Number(b.attrs['data-hi']) + surcharge + addOnTotal;
     const units = Number(q.attrs.value);
     const discount = Number(q.attrs['data-discount'] || 0) / 100;
-    const perUnitLo = r5(subLo * (1 - discount));
-    const perUnitHi = r5(subHi * (1 - discount));
-    const rangeText = `$${r5(perUnitLo * units)}–$${r5(perUnitHi * units)}`;
+    const perUnitLo = Math.max(r5(subLo * (1 - discount)), WORK_MINIMUM);
+    const perUnitHi = Math.max(r5(subHi * (1 - discount)), WORK_MINIMUM);
+    const totalLo = Math.max(r5(perUnitLo * units), WORK_MINIMUM);
+    const totalHi = Math.max(r5(perUnitHi * units), WORK_MINIMUM);
+    const money = (lo, hi) => (hi > lo ? `$${lo}–$${hi}` : `$${lo}`);
+    const rangeText = money(totalLo, totalHi);
     const shownPrice = units > 1
-        ? `${rangeText} ($${perUnitLo}–$${perUnitHi}/unit)`
+        ? `${rangeText} (${money(perUnitLo, perUnitHi)}/unit)`
         : rangeText;
     const addOns = active.filter((x) => String(x.price) !== '0').map((x) => x.label);
     const selectionText = [
@@ -563,7 +572,7 @@ function windowAcState(t, b, q, w, f, g, mask) {
         `Building: ${g.text}`,
         addOns.length ? `Add-ons: ${addOns.join(', ')}` : null,
     ].filter(Boolean).join(' · ');
-    return { rangeText, shownPrice, selectionText, low: r5(perUnitLo * units), high: r5(perUnitHi * units) };
+    return { rangeText, shownPrice, selectionText, low: totalLo, high: totalHi };
 }
 
 test('window-AC calculator: EVERY reachable state keeps its price inside the CRM 240-char cap', () => {
@@ -645,7 +654,12 @@ test('window-AC calculator: the old price-last wording did lose the price, on mo
             }
     assert.equal(states, 92160);
     assert.equal(overCap, 91960);          // 99.78% of states
-    assert.equal(lostPrice, 89254);        // 96.85% of states lost the figure entirely
+    /* 89,254 under calc-2026-08-01. The $150 work minimum shortens the cheapest few figures by a
+       character or two ("$120–$165" becomes "$150–$165", "$450–$450 ($150–$150/unit)" collapses
+       to "$450 ($150/unit)"), so twelve states now squeak the price inside the cap. The point of
+       this test is the order of magnitude, not the last digit: price-last lost the figure on
+       ~97% of states, which is why the wording leads with it. */
+    assert.equal(lostPrice, 89242);        // 96.83% of states lost the figure entirely
 });
 
 test('both calculators write the same key names', () => {

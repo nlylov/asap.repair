@@ -108,7 +108,8 @@
     },
 
     "interior-painting": {
-      "apartment": { "sm": "interior-painting#apartment-sm", "md": "interior-painting#apartment-md", "lg": "interior-painting#apartment-lg" }
+      "_note": "Codex round 2, finding 1. The picker's three scopes were bound sm->apartment-sm, md->apartment-md, lg->apartment-lg, but the LABELS did not say the same thing the catalog rows said: the option reading '3BR+ — walls, ceilings + all trim' was priced off the catalog's 2BR row ($4,300-$7,500) while the catalog's own 3BR+ row is $6,500-$11,000. That is the biggest job on the page quoted at up to $3,500 under the price we hold for it — harder work cheaper than easier work, which is the one thing the owner's rules forbid outright. The catalog declares four steps for this axis (axes.size = sm|md|lg|xl); the picker now has four too, worded from the catalog's own tier labels, and each binds to the row it names.",
+      "apartment": { "sm": "interior-painting#apartment-sm", "md": "interior-painting#apartment-md", "lg": "interior-painting#apartment-lg", "xl": "interior-painting#apartment-xl" }
     }
   },
 

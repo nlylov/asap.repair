@@ -42,6 +42,17 @@ const isFreePhoto = ([lo, hi]) => lo === 0 && hi === 0;
 const isAssessment = ([lo, hi]) => lo === ASSESSMENT_FEE && hi === ASSESSMENT_FEE;
 const isFrozenGas = (cell) => cell.source.startsWith('frozen:gas');
 
+/* The one place a cell count is written down by a human: the COUNTS line in the generator's
+   header comment. Every test that needs the total reads it from there, so a legitimate change to
+   the shape of the calculator (a new step on an axis, say) is one edit and not a scavenger hunt —
+   and a change nobody meant to make still turns something red. */
+const HEADER_COUNTS = (() => {
+    const m = /COUNTS: total=(\d+) catalogOrContract=(\d+) carryForward=(\d+) nonWorkPaths=(\d+)/
+        .exec(read('scripts/generate-calculator-prices.mjs').slice(0, 4000));
+    assert.ok(m, 'the COUNTS line was removed from the generator header');
+    return { total: +m[1], catalogOrContract: +m[2], carryForward: +m[3], nonWorkPaths: +m[4] };
+})();
+
 // ── 1. the vendored catalog ───────────────────────────────────────────────────────────
 
 test('the vendored catalog is a byte-identical copy of the CRM file', () => {
@@ -88,7 +99,7 @@ test('the price grids inside calculator.js are exactly the projection', () => {
         }
     }
     assert.equal(checked, cells.length);
-    assert.equal(checked, 1332);
+    assert.equal(checked, HEADER_COUNTS.total);
 });
 
 // ── 3. the version stamp ──────────────────────────────────────────────────────────────
@@ -262,10 +273,7 @@ test('the generator\'s own header comment is arithmetically true', () => {
     /* Codex round 2 caught the first draft of that comment claiming 198 catalog-owned cells when
        the real figure is 84 — a doc that is wrong about the one number it exists to convey. The
        comment now carries a machine-readable COUNTS line and this reads it back. */
-    const header = read('scripts/generate-calculator-prices.mjs').slice(0, 4000);
-    const line = /COUNTS: total=(\d+) catalogOrContract=(\d+) carryForward=(\d+) nonWorkPaths=(\d+)/.exec(header);
-    assert.ok(line, 'the COUNTS line was removed from the generator header');
-    const [, total, owned, carried, nonWork] = line.map(Number);
+    const { total, catalogOrContract: owned, carryForward: carried, nonWorkPaths: nonWork } = HEADER_COUNTS;
     assert.equal(total, cells.length);
     assert.equal(owned, cells.filter((c) => c.source.startsWith('catalog:tier') || c.source.startsWith('contract:')).length);
     assert.equal(carried, cells.filter((c) => c.source.startsWith('carry-forward')).length);
@@ -505,7 +513,7 @@ test('the committed price table satisfies the owner\'s rules independently of th
             }
         }
     }
-    assert.equal(checked, 1332);
+    assert.equal(checked, HEADER_COUNTS.total);
     assert.ok(boundChecked >= 60, `expected the map to bind at least 60 cells, it bound ${boundChecked}`);
 });
 

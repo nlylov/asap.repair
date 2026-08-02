@@ -2130,11 +2130,15 @@ Object.assign(CONFIGS, {
                         },
                         {
                             "value": "md",
-                            "label": "1–2BR — walls + ceilings"
+                            "label": "1BR — walls + ceilings"
                         },
                         {
                             "value": "lg",
-                            "label": "3BR+ — walls, ceilings + all trim"
+                            "label": "2BR — walls + ceilings + baseboards + doors"
+                        },
+                        {
+                            "value": "xl",
+                            "label": "3BR+ — full scope (walls, ceilings, trim and doors)"
                         }
                     ],
                     "ceiling": [
@@ -2180,7 +2184,7 @@ Object.assign(CONFIGS, {
             bedroom: { sm: [375, 575], md: [525, 800], lg: [750, 1150] },
             living: { sm: [500, 750], md: [700, 1050], lg: [975, 1450] },
             hallway: { sm: [325, 525], md: [475, 750], lg: [750, 1250] },
-            apartment: { sm: [1600, 2600], md: [2600, 4200], lg: [4300, 7500] },
+            apartment: { sm: [1600, 2600], md: [2600, 4200], lg: [4300, 7500], xl: [6500, 11000] },
             ceiling: { sm: [225, 375], md: [450, 750], lg: [600, 975] },
             touchup: { sm: [150, 275], md: [225, 375], lg: [350, 600] }
         },
