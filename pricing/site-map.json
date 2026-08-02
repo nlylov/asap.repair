@@ -894,8 +894,13 @@
       },
       {
         "file": "services/flooring-installation/floor-repair/index.html",
-        "_note": "Codex round 3, finding 3: this FAQ answer read 'Small repairs start at the $150 work minimum-$150.' — a sentence an earlier prose pass mangled and nothing checked. Both figures are generated now.",
+        "_note": "Codex round 3, finding 3: this FAQ answer read 'Small repairs start at the $150 work minimum-$150.' — a sentence an earlier prose pass mangled and nothing checked. Both figures are generated now. Both are inlineRanges and NOT data-price-src spans, because this copy lives inside a JSON-LD FAQPage answer: a span carries double-quoted attributes, which close the JSON string and make the page's structured data unparseable. That is exactly how this page broke once; the generator now refuses it.",
         "inlineRanges": [
+          {
+            "before": "Small repairs start at the ",
+            "after": " work minimum.",
+            "ref": "const.repairMinimum"
+          },
           {
             "before": "Larger water damage or section replacements run ",
             "after": ".\"",

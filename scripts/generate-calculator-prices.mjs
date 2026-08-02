@@ -628,18 +628,47 @@ function rewriteLabelledPrices(src, file, rows, pattern, sep, index, projection)
 }
 
 /* A figure inside a plain-text sentence, anchored on the words either side of it rather than on
-   the number — so re-running finds the same place and writes the same value. */
-function rewriteInlineRanges(src, file, specs, index, projection) {
+   the number — so re-running finds the same place and writes the same value.
+
+   This is the mechanism to use when the sentence lives inside a JSON string (a JSON-LD FAQ
+   answer, say): it writes DIGITS, no markup. The data-price-src span below is the HTML-only
+   variant and must never be used inside a <script type="application/ld+json"> block — putting
+   markup with double-quoted attributes inside a JSON string is what broke floor-repair's FAQPage.
+   assertGeneratedJsonLdIsValid() enforces that at generation time.
+
+   `ref` accepts the same grammar as data-price-src, so a constant such as const.repairMinimum
+   renders as one figure ("$150") rather than as a degenerate range ("$150–$150"). */
+function rewriteInlineRanges(src, file, specs, index, projection, constants) {
     let out = src;
     for (const spec of specs) {
-        const [lo, hi] = resolveRefRange(spec.ref, index, projection);
+        let value;
+        if (spec.ref.startsWith('const.')) {
+            value = resolvePriceSrc(spec.ref, index, constants, file);
+        } else {
+            const [lo, hi] = resolveRefRange(spec.ref, index, projection);
+            value = priceRange(lo, hi, spec.sep || '–');
+        }
+        assertJsonStringSafe(value, spec.ref, file);
         const re = new RegExp(`(${escapeRe(spec.before)})([^\n]*?)(${escapeRe(spec.after)})`, 'g');
         const matches = out.match(re);
         if (!matches) throw new Error(`proseFigures.inlineRanges: anchor not found in ${file}: "${spec.before}"`);
         if (matches.length > 1) throw new Error(`proseFigures.inlineRanges: anchor is not unique in ${file}: "${spec.before}"`);
-        out = out.replace(re, (_m, before, _old, after) => `${before}${priceRange(lo, hi, spec.sep || '–')}${after}`);
+        out = out.replace(re, (_m, before, _old, after) => `${before}${value}${after}`);
     }
     return out;
+}
+
+/* Any figure this script writes may land inside a JSON string. A price is digits, a currency
+   sign, separators and a dash — nothing that needs escaping. If a resolver ever produces a quote,
+   a backslash or a control character, the page it lands on stops being parseable structured data,
+   so it is refused here rather than shipped. */
+function assertJsonStringSafe(value, ref, file) {
+    if (/["\\<>\u0000-\u001f]/.test(value)) {
+        throw new Error(
+            `the figure written for "${ref}" in ${file} is not safe inside a JSON string: ${JSON.stringify(value)}. ` +
+            'A price must be plain text — no quotes, backslashes or control characters.',
+        );
+    }
 }
 
 const TABLE_ROW = (label) => new RegExp(`(<tr><td>${label}</td><td>)([^<]*)(</td></tr>)`);
@@ -652,11 +681,62 @@ function rewriteProseFigures(map, index, projection, constants, read) {
         let src = read(spec.file);
         if (spec.tableRows) src = rewriteLabelledPrices(src, spec.file, spec.tableRows, TABLE_ROW, ' – ', index, projection);
         if (spec.sidebarRows) src = rewriteLabelledPrices(src, spec.file, spec.sidebarRows, SIDEBAR_ROW, '–', index, projection);
-        if (spec.inlineRanges) src = rewriteInlineRanges(src, spec.file, spec.inlineRanges, index, projection);
+        if (spec.inlineRanges) src = rewriteInlineRanges(src, spec.file, spec.inlineRanges, index, projection, constants);
         src = rewritePriceSrcSpans(src, spec.file, index, constants);
         out[spec.file] = src;
     }
     return out;
+}
+
+// ── The generator's own structured-data gate ──────────────────────────────────────────
+
+const LD_JSON_BLOCK = /<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+
+/**
+ * Every HTML file this script writes must still carry parseable JSON-LD after the rewrite.
+ *
+ * This exists because it already failed the other way round. floor-repair's FAQPage answer had a
+ * `<span data-price-src="const.repairMinimum">$150</span>` marker dropped into it — the HTML-only
+ * price mechanism, used inside a JSON string. The attribute's double quotes closed the string and
+ * the page shipped structured data Google cannot read. Nothing in the generator noticed, because
+ * the generator only ever checked that IT could find its anchors, never that what it produced was
+ * still valid. A hand-patch to the HTML would not have helped: this script rewrites these pages,
+ * so the break would come back on the next regeneration.
+ *
+ * Two rules, both checked against generated output rather than against what is on disk:
+ *   1. no HTML markup inside a JSON-LD block — caught by name, because `<span …'…'>` with SINGLE
+ *      quotes would parse as legal JSON and still be garbage in structured data;
+ *   2. the block parses.
+ */
+function assertGeneratedJsonLdIsValid(files) {
+    const errors = [];
+    for (const [rel, html] of Object.entries(files)) {
+        if (!rel.endsWith('.html')) continue;
+        let n = 0;
+        for (const [, body] of html.matchAll(LD_JSON_BLOCK)) {
+            n += 1;
+            const where = `${rel} JSON-LD block ${n}`;
+            if (/data-price-src=/.test(body)) {
+                errors.push(
+                    `${where}: a data-price-src span is inside structured data. That marker is the HTML-only ` +
+                    'price mechanism; inside a JSON string use proseFigures.inlineRanges, which writes digits.',
+                );
+                continue;
+            }
+            if (/<[a-zA-Z/!]/.test(body)) {
+                errors.push(`${where}: HTML markup inside structured data.`);
+                continue;
+            }
+            try {
+                JSON.parse(body.trim());
+            } catch (error) {
+                errors.push(`${where}: does not parse (${error.message})`);
+            }
+        }
+    }
+    if (errors.length) {
+        throw new Error(`the generator would write invalid structured data (${errors.length}):\n  ${errors.join('\n  ')}`);
+    }
 }
 
 /* An inline figure in a sentence or a heading, marked in the HTML as
@@ -918,13 +998,7 @@ export function build() {
         cells: allCells,
     };
 
-    return {
-        catalog,
-        map,
-        projection,
-        cells: allCells,
-        configsRewritten,
-        files: {
+    const files = {
             [`pricing/price-tables/${CATALOG_VERSION}.json`]: `${JSON.stringify(priceTable, null, 2)}\n`,
             'pricing/calculator-price-projection.json': `${JSON.stringify(projectionReport, null, 2)}\n`,
             'pricing/catalog/index.json': `${JSON.stringify(
@@ -947,7 +1021,19 @@ export function build() {
             'assets/data/hub-calculators.json': `${JSON.stringify(hub, null, 2)}\n`,
             ...aiGuides,
             ...prose,
-        },
+    };
+
+    /* Before anything is written or compared: what this run produced must be parseable structured
+       data. Runs inside build(), so `--check`, a real write and the unit suite all go through it. */
+    assertGeneratedJsonLdIsValid(files);
+
+    return {
+        catalog,
+        map,
+        projection,
+        cells: allCells,
+        configsRewritten,
+        files,
     };
 }
 
