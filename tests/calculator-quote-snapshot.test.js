@@ -221,8 +221,8 @@ test('the snapshot builder records what was displayed and never invents a price'
     assert.equal(ranged.calculator_estimate, 'A — B (estimated $150–$165)');
     assert.match(ranged.calculator_price_version, PRICE_VERSION_SHAPE);
 
-    // A page that showed no price must not report one. "FREE" is a free ESTIMATE, and
-    // estimated_low: 0 would read downstream as an offer of free work.
+    // A page that quoted no price FOR THE WORK must not report one. "FREE" is a free
+    // ESTIMATE, and estimated_low: 0 would read downstream as an offer of free work.
     const photo = build({
         configKey: 'refrigerator-repair', path: 'photo_estimate', low: 0, high: 0,
         rangeText: 'FREE', selectionText: 'X', displayText: 'X (free photo estimate requested)',
@@ -231,6 +231,22 @@ test('the snapshot builder records what was displayed and never invents a price'
     assert.equal('estimated_high' in photo, false);
     assert.equal('estimated_range' in photo, false);
     assert.equal(photo.calculator_path, 'photo_estimate');
+
+    // Same rule for the $99 on-site assessment. $99 buys a visit, not the repair, and it is
+    // credited toward the job; the work minimum is $150. Sending it as estimated_low made
+    // the CRM read outcome 'single' at $99 instead of 'assessment_fee' and instruct the AI
+    // that "the customer's price expectation is $99" — the $99-as-the-work-minimum mistake,
+    // handed to the model as a hard rule. The fee is still in the prose, verbatim.
+    const assessment = build({
+        configKey: 'washer-repair', path: 'assessment_99', low: 99, high: 99,
+        rangeText: '$99', selectionText: 'Leaking — Book on-site assessment',
+        displayText: 'Leaking — Book on-site assessment ($99 on-site assessment, credited toward the work)',
+    });
+    assert.equal('estimated_low' in assessment, false);
+    assert.equal('estimated_high' in assessment, false);
+    assert.equal('estimated_range' in assessment, false);
+    assert.equal(assessment.calculator_path, 'assessment_99');
+    assert.match(assessment.calculator_estimate, /\$99 on-site assessment, credited toward the work/);
 
     // An unknown path is a bug, not a new outcome — it must not be passed through.
     assert.equal(build({ configKey: 'x', path: 'made_up', low: 1, high: 2 }).calculator_path, '');
@@ -280,15 +296,17 @@ test('generic calculator: a range collapsed by the $150 work minimum is recorded
     assert.match(fields.calculator_estimate, /estimated \$150 minimum repair visit/);
 });
 
-test('generic calculator: the $99 on-site assessment is recorded as its own path at $99', () => {
+test('generic calculator: the $99 on-site assessment is recorded as a PATH, never as a price', () => {
     const { fields } = runCalculator({
         configKey: 'refrigerator-repair', series: 'not-cooling', size: 'visit',
         pathname: '/services/appliance-services/refrigerator-repair/',
     });
     assert.equal(fields.calculator_path, 'assessment_99');
-    assert.equal(fields.estimated_low, 99);
-    assert.equal(fields.estimated_high, 99);
-    assert.equal(fields.estimated_range, '$99');
+    // $99 is the assessment VISIT, credited toward the work — not a quote for the job, and
+    // below the $150 work minimum. It must not arrive in the CRM as estimated_low.
+    assert.equal('estimated_low' in fields, false);
+    assert.equal('estimated_high' in fields, false);
+    assert.equal('estimated_range' in fields, false);
     assert.equal(fields.calculator_selection, 'Not cooling / not cold enough — Book on-site assessment');
     assert.match(fields.calculator_estimate, /\$99 on-site assessment, credited toward the work/);
 });
@@ -334,7 +352,9 @@ test('every generic preset produces a known path, and a price only when one was 
                     `${configKey}/${series}/${size} produced path "${fields.calculator_path}"`,
                 );
                 const priced = 'estimated_low' in fields;
-                assert.equal(priced, fields.calculator_path !== 'photo_estimate',
+                // Only the two paths that quoted the WORK carry a price. photo_estimate
+                // showed no figure; assessment_99 showed a visit fee that is credited back.
+                assert.equal(priced, ['range', 'single'].includes(fields.calculator_path),
                     `${configKey}/${series}/${size} price keys disagree with its path`);
                 if (priced) {
                     assert.ok(Number.isFinite(fields.estimated_low) && fields.estimated_low > 0);
@@ -417,8 +437,12 @@ test('window-AC calculator: same key names, and the multi-unit figure is no long
     assert.equal(one.estimated_range, '$150–$200');
     assert.match(one.calculator_price_version, PRICE_VERSION_SHAPE);
     assert.equal(one.calculator_selection, 'AC Size: 12,000 BTU · Quantity: 1 unit · Window Type: Double-hung · Floor Level: Floor 2–5 · Building: Co-op / condo');
-    assert.match(one.calculator_estimate, /^Window AC Installation — AC Size: 12,000 BTU/);
-    assert.match(one.calculator_estimate, /planning estimate \$150–\$200 — NYC sales tax added separately\)$/);
+    // The price leads the sentence — see the 240-char test below for why.
+    assert.equal(
+        one.calculator_estimate,
+        'Window AC Installation — planning estimate $150–$200 — NYC sales tax added separately'
+        + ' — AC Size: 12,000 BTU · Quantity: 1 unit · Window Type: Double-hung · Floor Level: Floor 2–5 · Building: Co-op / condo',
+    );
     // Still carries the machine-readable selections the CRM has always been sent.
     assert.equal(one.btu_size, '12k');
     assert.equal(one.qty, '1');
@@ -433,7 +457,54 @@ test('window-AC calculator: same key names, and the multi-unit figure is no long
     assert.equal(two.estimated_low, 300);
     assert.equal(two.estimated_high, 400);
     assert.equal(two.estimated_range, '$300–$400');
-    assert.match(two.calculator_estimate, /planning estimate \$300–\$400 \(\$150–\$200\/unit\) — NYC sales tax added separately\)$/);
+    assert.match(two.calculator_estimate, /^Window AC Installation — planning estimate \$300–\$400 \(\$150–\$200\/unit\) — NYC sales tax added separately — /);
+});
+
+/* The CRM stores every custom field at 240 characters
+   (MAX_WIDGET_CUSTOM_FIELD_VALUE_CHARS, app/api/widget/quote/route.ts) and marks the cut
+   with an ellipsis. This calculator's selection list is long — six labelled parts plus up
+   to six add-ons — so a sentence that ends with the price loses the price. Measured against
+   the real option table in
+   services/ac-installation-cleaning/window-ac-installation/index.html, 2060 of the 2160
+   reachable combinations were over the cap and 852 of them were clipped before the figure.
+   The price therefore leads the sentence, and no selection can push it out. */
+test('window-AC calculator: the price survives the CRM 240-char field cap, however long the selection', () => {
+    const CRM_FIELD_CAP = 240;
+    const build = (() => {
+        const context = baseContext();
+        vm.createContext(context);
+        return loadMain(context).repairAsapBuildQuoteSnapshot;
+    })();
+
+    // The longest selection the real page can produce: every label at its maximum and all
+    // six priced add-ons active.
+    const worstSelection = [
+        'AC Size: 24,000+ BTU',
+        'Quantity: 5+ units (-15% each)',
+        'Window Type: Casement / Outswing',
+        'Floor Level: 6th floor and above',
+        'Building: Co-op / Condo (COI likely required)',
+        'Add-ons: Support Bracket, Old Unit Removal, Haul-Away / Disposal, Custom Gap Fill / Plexiglass, Non-Standard / Deep Frame, 2-Person Install',
+    ].join(' · ');
+    const shownPrice = '$2800–$3225 ($560–$645/unit)';
+    const displayText = `Window AC Installation — planning estimate ${shownPrice} — NYC sales tax added separately — ${worstSelection}`;
+
+    const snapshot = build({
+        configKey: 'window_ac', path: 'range', low: 2800, high: 3225,
+        rangeText: '$2800–$3225', selectionText: worstSelection, displayText,
+    });
+    assert.ok(snapshot.calculator_estimate.length > CRM_FIELD_CAP,
+        'this test is only meaningful while the worst case actually overflows the cap');
+    const stored = `${snapshot.calculator_estimate.slice(0, CRM_FIELD_CAP - 1)}…`;
+    assert.ok(stored.includes(shownPrice), `the CRM would store "${stored}" — the price must be inside it`);
+    assert.ok(stored.includes('NYC sales tax added separately'));
+    // main.js must keep emitting this order; a future edit that moves the price back to the
+    // end would pass every other assertion in this file.
+    assert.match(
+        mainSource,
+        /displayText: `Window AC Installation — planning estimate \$\{acShownPrice\} — NYC sales tax added separately — \$\{acSelectionText\}`/,
+        'the window-AC displayText must lead with the price',
+    );
 });
 
 test('both calculators write the same key names', () => {

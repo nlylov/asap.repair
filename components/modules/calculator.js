@@ -12885,6 +12885,13 @@ export default function calculator(container) {
                 snapshot = buildQuoteSnapshot({
                     configKey,
                     path,
+                    // The figures are always handed over; the builder decides which paths
+                    // may report a price. 'range' and 'single' do. 'photo_estimate' and
+                    // 'assessment_99' do not — the first showed no figure at all, and the
+                    // second showed a $99 assessment VISIT fee, which is not a price for
+                    // the work and must never reach the CRM as one. Both keep their exact
+                    // wording in calculator_estimate. See REPAIR_ASAP_PRICED_QUOTE_PATHS
+                    // in main.js.
                     low: lo,
                     high: hi,
                     // The price box renders "FREE" for the free photo path, one figure when

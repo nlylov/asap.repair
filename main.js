@@ -38,6 +38,23 @@ const REPAIR_ASAP_CALC_PRICE_VERSION = 'calc-2026-08-01';
    not a new path — the CRM is allowed to treat this list as closed. */
 const REPAIR_ASAP_QUOTE_PATHS = ['range', 'single', 'assessment_99', 'photo_estimate'];
 
+/* Of those four, the two that put a PRICE FOR THE WORK on screen. Only these carry
+   estimated_low / estimated_high / estimated_range.
+   The other two are paths, not prices, and the difference is not cosmetic:
+   - photo_estimate renders "FREE"; estimated_low: 0 would read downstream as free work.
+   - assessment_99 renders "$99", but $99 buys an on-site assessment visit — no repair is
+     performed for it and it is credited toward the job if the customer proceeds. The work
+     minimum is $150. Sending estimated_low: 99 states a $99 job price that nobody quoted,
+     and the CRM then binds the AI reply to it: lib/shown-price-snapshot.ts reads the
+     numeric fields before the prose, returns outcome 'single' at $99 instead of
+     'assessment_fee', and buildShownPricePromptSection emits "the customer's price
+     expectation is $99. If you state a price, it must be that figure or a narrower band
+     inside it." That is the $99-as-the-work-minimum mistake, restated to the model as a
+     hard rule. The fee itself is not lost: it stays in calculator_estimate verbatim
+     ("$99 on-site assessment, credited toward the work") and calculator_path names the
+     branch. */
+const REPAIR_ASAP_PRICED_QUOTE_PATHS = ['range', 'single'];
+
 /* Every calculator on the site records its estimate through THIS function, so the CRM gets
    the same key names whichever calculator the customer used and never has to read a price
    out of prose.
@@ -45,8 +62,10 @@ const REPAIR_ASAP_QUOTE_PATHS = ['range', 'single', 'assessment_99', 'photo_esti
    Rules, in order of importance:
    1. It is a record of what was DISPLAYED, not a recompute. low/high are the figures that
       were on screen; rangeText and displayText are those figures as the customer read them.
-   2. A path that showed no price sends NO price keys. The free photo estimate renders
-      "FREE", and writing estimated_low: 0 would land in the CRM as a promise of free work.
+   2. A path that quoted no price FOR THE WORK sends NO price keys — see
+      REPAIR_ASAP_PRICED_QUOTE_PATHS above. The free photo estimate renders "FREE" and the
+      $99 assessment renders a visit fee; neither is an estimate of the job, and both land
+      in the CRM as a job price if they are written into estimated_low.
    3. Scalars only. app/api/widget/quote/route.ts:112 drops any value that is not a string,
       number or boolean, so a nested object would disappear without a trace.
    4. Nothing is truncated here. The CRM applies one 240-char rule to every custom field
@@ -66,7 +85,8 @@ function repairAsapBuildQuoteSnapshot(input) {
 
   const low = Number(options.low);
   const high = Number(options.high);
-  const showedAPrice = path !== 'photo_estimate' && Number.isFinite(low) && Number.isFinite(high);
+  const showedAPrice = REPAIR_ASAP_PRICED_QUOTE_PATHS.includes(path)
+    && Number.isFinite(low) && Number.isFinite(high);
   if (showedAPrice) {
     snapshot.estimated_low = low;
     snapshot.estimated_high = high;
@@ -1899,9 +1919,17 @@ document.addEventListener('DOMContentLoaded', () => {
             high: shown.high,
             rangeText: shown.rangeText,
             selectionText: acSelectionText,
-            // The page labels this figure "Planning Estimate" and discloses tax separately;
-            // the sentence recorded here says only what the page said.
-            displayText: `Window AC Installation — ${acSelectionText} (planning estimate ${acShownPrice} — NYC sales tax added separately)`,
+            /* The page labels this figure "Planning Estimate" and discloses tax separately;
+               the sentence recorded here says only what the page said.
+               The PRICE COMES FIRST, before the selection list, because this string is
+               capped at 240 characters when the CRM stores it
+               (MAX_WIDGET_CUSTOM_FIELD_VALUE_CHARS, app/api/widget/quote/route.ts) and this
+               calculator's selection list is long: with the price trailing the list, 2060 of
+               the 2160 reachable combinations were clipped and 852 of them lost the price
+               text altogether — the one part of the sentence that is evidence of what the
+               customer was promised. Leading with it means no combination can lose it
+               (the longest prefix through "…added separately" is 78 characters). */
+            displayText: `Window AC Installation — planning estimate ${acShownPrice} — NYC sales tax added separately — ${acSelectionText}`,
           }) || {}),
           btu_size: selOpt(btuSel)?.value || '',
           qty: selOpt(qtySel)?.value || '1',
