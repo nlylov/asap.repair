@@ -50,10 +50,15 @@ const isBusinessNode = (node) =>
    form, and two different logos; separate anonymous nodes made that harmless.
    Under a single @id a consumer merges them and gets a business with two names. */
 const CANONICAL = {
-  name: 'Repair Asap LLC',
+  name: 'Repair ASAP LLC',
   telephone: '+1-775-310-7770',
   url: SITE,
   logo: `${SITE}/assets/images/logo-header.webp`,
+  identifier: {
+    '@type': 'PropertyValue',
+    propertyID: 'NYC DCWP Home Improvement Contractor License',
+    value: '2137199-DCWP',
+  },
 };
 
 const PAGE_SCOPED = /#(service|faq|breadcrumb)$/;

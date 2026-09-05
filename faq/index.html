@@ -77,10 +77,10 @@
       },
       {
         "@type": "Question",
-        "name": "Are you insured?",
+        "name": "Are you licensed and insured?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Repair Asap LLC carries insurance coverage and supports COI requests for buildings. We perform tasks that typically don't require NYC Licensed Master trades. For permitted work (major electrical or plumbing), we can recommend licensed professionals."
+          "text": "Yes. Repair ASAP LLC holds NYC DCWP Home Improvement Contractor License No. 2137199-DCWP and carries general liability insurance with COI support for buildings. The HIC license does not replace trade-specific licenses; work requiring a Licensed Master Plumber, Licensed Master Electrician, or permit is reviewed and routed before booking."
         }
       },
       {
@@ -104,7 +104,7 @@
         "name": "What warranty do you provide?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We provide a 1-year workmanship warranty on all labor. Parts are covered for 60 days only if supplied by us. Warranty does not cover normal wear and tear, misuse, pre-existing conditions, client-supplied parts, or third-party damage."
+          "text": "We correct qualifying workmanship failures on covered labor at no charge for one year. Parts are covered for 60 days only if supplied by us. The guarantees exclude normal wear and tear, misuse, pre-existing conditions, client-supplied parts or materials, and third-party damage."
         }
       },
       {
@@ -157,7 +157,7 @@
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
     "@id": "https://asap.repair/#business",
-    "name": "Repair Asap LLC",
+    "name": "Repair ASAP LLC",
     "url": "https://asap.repair",
     "telephone": "+1-775-310-7770",
     "logo": "https://asap.repair/assets/images/logo-header.webp",
@@ -233,7 +233,12 @@
     "sameAs": [
       "https://www.facebook.com/repairasap",
       "https://www.instagram.com/repairasap"
-    ]
+    ],
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "NYC DCWP Home Improvement Contractor License",
+      "value": "2137199-DCWP"
+    }
   }
   </script>
 
@@ -390,7 +395,7 @@
                 <dl class="bk-pricing">
                     <div class="bk-pricing-row"><dt class="bk-pricing-label">Minimum visit</dt><dd class="bk-pricing-value">$150</dd></div>
                     <div class="bk-pricing-row"><dt class="bk-pricing-label">On-site assessment</dt><dd class="bk-pricing-value">$99 (credited toward job)</dd></div>
-                    <div class="bk-pricing-row"><dt class="bk-pricing-label">Warranty</dt><dd class="bk-pricing-value">1-year labor warranty, 60-day parts warranty</dd></div>
+                    <div class="bk-pricing-row"><dt class="bk-pricing-label">Warranty</dt><dd class="bk-pricing-value">1-year workmanship and 60-day supplied-parts guarantees; <a href="#warranty">terms and exclusions below</a></dd></div>
                     <div class="bk-pricing-row"><dt class="bk-pricing-label">Payment</dt><dd class="bk-pricing-value">Cash, Zelle, Venmo, Credit/Debit Card, Apple Pay, Google Pay, Check</dd></div>
                 </dl>
                 <p class="bk-pricing-note">NYC sales tax 8.875% applies to most jobs and is added to the final invoice; certain capital-improvement installs may be exempt with Form ST-124. Prices quoted are for the work only.</p>
@@ -621,7 +626,7 @@
                     <div class="faq-item__answer">
                         <p><strong>What IS covered:</strong></p>
                         <ul>
-                            <li><strong>Labor warranty:</strong> 1-year workmanship guarantee on all labor</li>
+                            <li><strong>Labor guarantee:</strong> qualifying workmanship failures on covered labor are corrected at no charge for one year</li>
                             <li><strong>Parts warranty:</strong> 60 days on parts supplied by us</li>
                         </ul>
                         <p><strong>What is NOT covered:</strong></p>
@@ -632,7 +637,7 @@
                             <li>Client-supplied parts or materials</li>
                             <li>Third-party damage</li>
                         </ul>
-                        <p>See full details in our <a href="/terms-of-service/">Terms of Service</a>.</p>
+                        <p>See full details in our <a href="/terms-of-service/#workmanship-guarantee">Terms of Service</a>.</p>
                     </div>
                 </div>
 
@@ -654,17 +659,19 @@
                 <!-- Licensed/Insured -->
                 <div class="faq-item">
                     <button class="faq-item__question" aria-expanded="false">
-                        <span>Are you insured?</span>
+                        <span>Are you licensed and insured?</span>
                         <svg class="faq-item__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2">
                             <polyline points="6 9 12 15 18 9" />
                         </svg>
                     </button>
                     <div class="faq-item__answer">
-                        <p><strong>Yes.</strong> Repair Asap LLC carries insurance coverage and supports COI requests for
-                            buildings when needed.</p>
-                        <p>We perform tasks that typically don't require NYC Licensed Master trades. For permitted work
-                            (major electrical or plumbing), we can recommend licensed professionals.</p>
+                        <p><strong>Yes.</strong> Repair ASAP LLC holds NYC DCWP Home Improvement Contractor License No.
+                            <strong>2137199-DCWP</strong> and carries general liability insurance with COI support for
+                            buildings. You can <a href="https://www.nyc.gov/site/dca/consumers/check-license.page"
+                                target="_blank" rel="noopener noreferrer">verify the license with NYC DCWP</a>.</p>
+                        <p>The HIC license does not replace trade-specific licenses. Work requiring a Licensed Master
+                            Plumber, Licensed Master Electrician, or permit is reviewed and routed before booking.</p>
                     </div>
                 </div>
 
@@ -781,7 +788,7 @@
                     <img src="/assets/images/logo-footer.webp" alt="Repair Asap LLC" class="logo-img logo-img--footer" width="702" height="679" loading="lazy" decoding="async">
                 </a>
                 <p class="footer__tagline">Professional handyman services for New York City homes and businesses.
-                    Insured, COI-ready, and committed to scope-reviewed work.</p>
+                    General liability insured, COI-ready, and committed to scope-reviewed work.</p>
                 <div class="footer__social">
                     <a href="https://www.yelp.com/biz/repair-asap-brooklyn" target="_blank" rel="noopener noreferrer"
                         aria-label="Yelp" class="footer__social-link">
@@ -857,13 +864,20 @@
                     <li><a href="tel:+17753107770">+1 (775) 310-7770</a></li>
                     <li><a href="#" class="js-email-link" data-email-user="info" data-email-domain="asap.repair">info [at] asap.repair</a></li>
                     <li><span>99-60 64th Ave, Rego Park, NY 11374</span></li>
+                    <li><a href="https://www.nyc.gov/site/dca/consumers/check-license.page" target="_blank"
+                            rel="noopener noreferrer">Repair ASAP LLC &middot; NYC DCWP Home Improvement Contractor
+                            License No. 2137199-DCWP</a></li>
                     <li><span>Mon–Fri: 9 AM – 7 PM</span></li>
                     <li><span>Sat–Sun: 10 AM – 4 PM</span></li>
                 </ul>
             </div>
         </div>
         <div class="footer__bottom">
-            <p>&copy; 2026 Repair Asap LLC. All rights reserved.</p>
+            <p>1-year workmanship repair guarantee on covered labor: Repair ASAP LLC corrects qualifying workmanship
+                failures at no charge. Normal wear, misuse, pre-existing conditions, client-supplied materials, and
+                third-party damage are excluded. <a href="/terms-of-service/#workmanship-guarantee">Full terms and
+                    limitations</a>.</p>
+            <p>&copy; 2026 Repair ASAP LLC. All rights reserved.</p>
             <div class="footer__legal">
                 <a href="/about/">About Us</a>
                 <a href="/case-studies/">Case Studies</a>

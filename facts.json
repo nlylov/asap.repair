@@ -6,6 +6,13 @@
   "url": "https://asap.repair/",
   "telephone": "+1-775-310-7770",
   "email": "info@asap.repair",
+  "license": {
+    "holder": "Repair ASAP LLC",
+    "agency": "New York City Department of Consumer and Worker Protection (DCWP)",
+    "type": "Home Improvement Contractor",
+    "number": "2137199-DCWP",
+    "verificationUrl": "https://www.nyc.gov/site/dca/consumers/check-license.page"
+  },
   "sameAs": [
     "https://www.google.com/maps/place/Repair+Asap+LLC/",
     "https://www.yelp.com/biz/repair-asap-brooklyn",
@@ -21,7 +28,7 @@
     "Western Long Island",
     "Nassau County"
   ],
-  "description": "Repair ASAP LLC is an insured NYC handyman service with COI support for repairs, installations, furniture assembly, TV mounting, appliance installation, appliance repair-scope help, commercial refrigeration triage and maintenance planning, painting, flooring, AC installation and cleaning, minor plumbing fixture work, electrical fixture/device replacement, and new apartment setup after scope review.",
+  "description": "Repair ASAP LLC holds NYC DCWP Home Improvement Contractor License No. 2137199-DCWP and carries general liability insurance with COI support for repairs, installations, furniture assembly, TV mounting, appliance installation, appliance repair-scope help, commercial refrigeration triage and maintenance planning, painting, flooring, AC installation and cleaning, minor plumbing fixture work, electrical fixture/device replacement, and new apartment setup after scope review.",
   "serviceTypes": [
     "Furniture assembly",
     "TV mounting",
@@ -458,9 +465,10 @@
     "applianceRepair": "Appliance repair help is limited to handyman-compatible diagnosis, cleaning, connection, drain, vent, leveling, replacement, and setup scope after photo review. Sealed-system refrigerator work, refrigerant, compressor replacement, board-level electronics, manufacturer warranty service, new gas piping, hidden plumbing, new circuits, hardwired changes, or permit-level work may require a specialized technician, manufacturer-authorized service, Licensed Master Plumber, Licensed Master Electrician, or DOB permit."
   },
   "trustSignals": [
-    "Insured business with COI support",
+    "NYC DCWP Home Improvement Contractor License No. 2137199-DCWP",
+    "General liability insurance with COI support",
     "COI support for NYC co-ops and condos",
-    "1-year labor warranty advertised",
+    "1-year workmanship repair guarantee on covered labor; qualifying workmanship failures are corrected at no charge, with normal wear, misuse, pre-existing conditions, client-supplied materials, and third-party damage excluded",
     "Transparent quote before work begins",
     "Fast scheduling may be available after scope review"
   ],
@@ -497,7 +505,7 @@
     "forPropertyManagers": "https://asap.repair/for-property-managers/",
     "serviceAreas": "https://asap.repair/service-areas/"
   },
-  "lastReviewed": "2026-07-26",
+  "lastReviewed": "2026-09-05",
   "address": {
     "streetAddress": "99-60 64th Ave",
     "addressLocality": "Rego Park",
