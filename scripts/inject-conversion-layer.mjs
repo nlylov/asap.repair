@@ -53,13 +53,20 @@ const PRICING_PANEL = `        <section class="svc-features" id="pricing" aria-l
 
 `;
 
+/* The DCWP Home Improvement Contractor license (Sept 2026) is the strongest trust
+   cue a NYC handyman can show and it was only in the footer. Upgrade whichever
+   insured-only chip a page carries; the title attribute holds the license number
+   so the chip stays short on mobile. Idempotent. */
+const LICENSE_CHIP = `<div class="trust-item" title="NYC DCWP Home Improvement Contractor License No. 2137199-DCWP"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>DCWP-Licensed &amp; Insured</div>`;
+const INSURED_ONLY_CHIP_RE = /<div class="trust-item">(\s*<svg[^>]*>(?:(?!<\/svg>)[\s\S])*<\/svg>)\s*(?:Insured Business|Insured &amp; COI-Ready)\s*<\/div>/g;
+
 // Hero chips: lead with proof instead of generic labels. Only rewritten when
 // the page still carries the old generic set.
 const OLD_CHIPS_RE = /<div class="svc-hero__trust">[\s\S]*?<\/div>\s*<\/div>/;
 const NEW_CHIPS = `<div class="svc-hero__trust">
                     <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>4.9&#9733; &middot; 73 Verified Reviews</div>
                     <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Free Photo Estimates</div>
-                    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Insured &amp; COI-Ready</div>
+                    <div class="trust-item" title="NYC DCWP Home Improvement Contractor License No. 2137199-DCWP"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>DCWP-Licensed &amp; Insured</div>
                     <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Same-Day When Available</div>
                 </div>
             </div>`;
@@ -96,6 +103,12 @@ for (const rel of files) {
       panels++;
       touched = true;
     }
+  }
+
+  if (INSURED_ONLY_CHIP_RE.test(html)) {
+    html = html.replace(INSURED_ONLY_CHIP_RE, () => LICENSE_CHIP);
+    chips++;
+    touched = true;
   }
 
   if (html.includes('svc-hero__trust') && !html.includes('73 Verified Reviews')) {

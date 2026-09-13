@@ -69,7 +69,10 @@ if cur and len(lines) < 2: lines.append(cur)
 y = H - 80 - 70 * len(lines)
 for ln in lines:
     dr.text((60, y), ln, font=f_title, fill=(255, 255, 255)); y += 70
-dr.text((60, H - 62), 'Repair ASAP  ·  NYC  ·  4.9 stars, 73 reviews', font=f_brand, fill=(201, 168, 76))
+brand = 'Repair ASAP  ·  NYC  ·  DCWP-Licensed & Insured  ·  4.9 stars, 73 reviews'
+fb = f_brand
+while dr.textlength(brand, font=fb) > W - 120 and fb.size > 20: fb = font(fb.size - 1, False)
+dr.text((60, H - 62), brand, font=fb, fill=(201, 168, 76))
 card.save(out, 'WEBP', quality=86, method=6)
 `;
 
@@ -84,7 +87,18 @@ for (const rel of files) {
 
   const slug = rel.split('/').slice(-2)[0];
   const outRel = `assets/og/${slug}.webp`;
-  const title = h1[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  // The H1 is HTML: "&amp;" must become "&" before it is painted into pixels —
+  // the first cut baked the literal entity into the window-repair card.
+  const title = h1[1]
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&#8217;|&rsquo;/g, '\u2019')
+    .replace(/&#8211;|&ndash;/g, '\u2013')
+    .replace(/&#8212;|&mdash;/g, '\u2014')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
 
   execFileSync(PY, ['-c', RENDER, join(ROOT, photo[1].slice(1)), join(ROOT, outRel), title]);
 

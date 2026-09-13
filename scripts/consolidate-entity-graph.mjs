@@ -101,7 +101,9 @@ function walk(node, canonical, top = false, ogImage = null) {
       // Not one Service node carried an image, so nothing tied the service
       // entity to a picture of the work. The page's own share card already
       // shows that page's job photo — reuse it rather than invent a second one.
-      if (!out.image && ogImage) out.image = ogImage;
+      // Mirror, never write-once: og:image was upgraded to a per-page photo card
+      // after this first ran, and 19 Service nodes kept pointing at the brand card.
+      if (ogImage) out.image = ogImage;
     } else if (out['@type'] === 'FAQPage' && !out['@id']) {
       out = withId(out, `${canonical}#faq`, 'FAQPage');
     } else if (out['@type'] === 'BreadcrumbList' && !out['@id']) {
@@ -132,7 +134,7 @@ for (const rel of files) {
   const path = join(ROOT, rel);
   const html = readFileSync(path, 'utf8');
   const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1] || null;
-  const ogImage = html.match(/<meta property="og:image" content="([^"]+)"/)?.[1] || null;
+  const ogImage = html.match(/<meta\s+property="og:image"\s+content="([^"]+)"/)?.[1] || null;
   let next = html;
 
   /* The tag is hand-written on the older pages and wraps across lines

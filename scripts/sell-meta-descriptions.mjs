@@ -14,7 +14,9 @@
  *
  * The offer wording is the same contract used on-page: photo/text estimates are
  * free, an on-site assessment is $99 and is credited toward the job, and actual
- * work starts at $150. Nothing here promises same-day, 24/7 or licensed trades.
+ * work starts at $150. "DCWP-licensed" is the Home Improvement Contractor
+ * license (No. 2137199-DCWP, Sept 2026) — not a plumbing/electrical trade license,
+ * and nothing here promises same-day, 24/7 or licensed-trade work.
  *
  * Idempotent: a description that already carries the offer is left alone.
  * Pass --dry to preview without writing.
@@ -27,7 +29,9 @@ import { join } from 'node:path';
 const ROOT = new URL('..', import.meta.url).pathname;
 const DRY = process.argv.includes('--dry');
 
-const OFFER = 'Free photo estimate, work from $150.';
+const OFFER = 'DCWP-licensed & insured. Free photo estimate, work from $150.';
+/* The earlier wording, so pages already carrying it get upgraded rather than skipped. */
+const OLD_OFFER = 'Free photo estimate, work from $150.';
 const MAX = 158; // Google truncates around 160 characters on desktop.
 
 const decode = (s) =>
@@ -39,7 +43,7 @@ const decode = (s) =>
     .replace(/&#39;/g, "'");
 const encode = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 
-const hasOffer = (d) => /\$1?50|free photo|free estimate/i.test(d);
+const hasOffer = (d) => d.includes(OFFER) || (!d.endsWith(OLD_OFFER) && /\$1?50|free photo|free estimate/i.test(d));
 
 /* Trim to a clause boundary, never mid-word, so the sentence still reads. */
 function fit(base, budget) {
@@ -89,7 +93,8 @@ for (const rel of files) {
     continue;
   }
 
-  const base = fit(current.replace(/\.$/, ''), MAX - OFFER.length - 2);
+  const stripped = current.endsWith(OLD_OFFER) ? current.slice(0, -OLD_OFFER.length).trim() : current;
+  const base = fit(stripped.replace(/\.$/, ''), MAX - OFFER.length - 2);
   const next = `${base}. ${OFFER}`;
   if (next === current) {
     skipped += 1;

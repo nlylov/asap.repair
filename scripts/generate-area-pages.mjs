@@ -382,7 +382,7 @@ ${schemas}
                     <a href="sms:+17753107770" class="btn btn--outline btn--lg">Text Photos</a>
                 </div>
                 <div class="svc-hero__trust">
-                    <div class="trust-item">Insured Business</div>
+                    <div class="trust-item" title="NYC DCWP Home Improvement Contractor License No. 2137199-DCWP">DCWP-Licensed &amp; Insured</div>
                     <div class="trust-item">COI Support</div>
                     <div class="trust-item">Photo-Based Quotes</div>
                     <div class="trust-item">NYC Apartments &amp; Homes</div>
@@ -489,3 +489,6 @@ execSync(`node ${new URL('./bake-components.mjs', import.meta.url).pathname}`, {
 execSync(`node ${new URL('./vendor-fonts.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
 execSync(`node ${new URL('./sell-meta-descriptions.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
 execSync(`node ${new URL('./consolidate-entity-graph.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
+// Prose prices ("from $175") belong to the CRM catalog, not to this template: without this
+// step a regeneration reverted dryer-vent-cleaning to a stale figure and broke `--check`.
+execSync(`node ${new URL('./generate-calculator-prices.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });

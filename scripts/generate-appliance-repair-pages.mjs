@@ -2170,10 +2170,7 @@ function pageHtml(page) {
                             stroke="currentColor" stroke-width="2">
                             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                         </svg>4.9★ · 73 Verified Reviews</div>
-                    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                        </svg>Insured Business</div>
+                    <div class="trust-item" title="NYC DCWP Home Improvement Contractor License No. 2137199-DCWP"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>DCWP-Licensed &amp; Insured</div>
                     <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2">
                             <polyline points="20 6 9 17 4 12" />
@@ -2309,3 +2306,6 @@ execSync(`node ${new URL('./bake-components.mjs', import.meta.url).pathname}`, {
 execSync(`node ${new URL('./vendor-fonts.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
 execSync(`node ${new URL('./sell-meta-descriptions.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
 execSync(`node ${new URL('./consolidate-entity-graph.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
+// Prose prices ("from $175") belong to the CRM catalog, not to this template: without this
+// step a regeneration reverted dryer-vent-cleaning to a stale figure and broke `--check`.
+execSync(`node ${new URL('./generate-calculator-prices.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
