@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { mkdir, writeFile } from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
 import { execSync } from 'node:child_process';
 import { join } from 'node:path';
 
@@ -287,6 +288,49 @@ function schemaFor(page) {
   ];
 }
 
+
+/* Borough-specific proof: the case studies that happened in this borough, as photo cards.
+   The "Related Work" aside lists two text links; a visitor comparing handymen wants to see
+   a job on a street like theirs. Cards reuse the /case-studies/ component and stylesheet.
+   Boroughs with no published case study (the Bronx today) simply get no section. */
+const CASE_STUDIES = JSON.parse(readFileSync(join(ROOT, '_data/case-studies.json'), 'utf8')).filter((x) => x.status === 'published');
+/* "the Bronx" -> bronx; "Long Island & Nassau County" -> either "long island" or "nassau". */
+const boroughKeys = (areaName) => areaName.replace(/^the\s+/i, '').split(/\s*(?:&|and|\/)\s*/i).map((k) => k.replace(/^(?:western|eastern|northern|southern)\s+/i, '').replace(/\s+county$/i, '').trim().toLowerCase()).filter(Boolean);
+function boroughCases(areaName) {
+  const keys = boroughKeys(areaName);
+  return CASE_STUDIES.filter((x) => {
+    const hay = `${x.borough || ''} ${x.locationShort || ''} ${x.location || ''}`.toLowerCase();
+    return keys.some((k) => hay.includes(k));
+  }).slice(0, 3);
+}
+function recentWorkSection(page) {
+  const cases = boroughCases(page.areaName);
+  if (!cases.length) return '';
+  const cards = cases.map((x) => `                <a class="cs-card reveal" href="/case-studies/${escapeHtml(x.slug)}/">
+                    <div class="cs-card__photo"><img src="${escapeHtml(x.thumbnail)}" alt="${escapeHtml(x.title)}" loading="lazy" width="600" height="400"></div>
+                    <div class="cs-card__body">
+                        <div class="cs-card__meta"><span class="cs-card__tag">${escapeHtml(x.projectType || 'Case study')}</span><span class="cs-card__location">📍 ${escapeHtml(x.locationShort || x.borough)}</span></div>
+                        <h3 class="cs-card__title">${escapeHtml(x.shortTitle || x.title)}</h3>
+                        <p class="cs-card__excerpt">${escapeHtml(x.excerpt)}</p>
+                        <div class="cs-card__footer"><span></span><span class="cs-card__link">View project →</span></div>
+                    </div>
+                </a>`).join('\n');
+  return `        <section class="area-section" aria-label="Recent work in ${escapeHtml(page.areaName)}">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Recent work</span>
+                    <h2 class="section-title">Recent work in ${escapeHtml(page.areaName)}</h2>
+                    <p class="section-subtitle">Completed jobs in ${escapeHtml(page.areaName)}, with before-and-after photos and what each one cost.</p>
+                </div>
+                <div class="cs-grid">
+${cards}
+                </div>
+            </div>
+        </section>
+
+`;
+}
+
 function renderPage(page) {
   const canonical = `https://asap.repair/${page.slug}/`;
   const schemas = schemaFor(page).map((schema) => `    <script type="application/ld+json">\n${jsonLd(schema)}\n    </script>`).join('\n');
@@ -318,6 +362,7 @@ function renderPage(page) {
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
     <link rel="preload" as="image" type="${page.heroImage.endsWith('.png') ? 'image/png' : 'image/webp'}" href="${page.heroImage}">
     <link rel="stylesheet" href="/styles.css?v=${ASSET_VERSION}">
+    <link rel="stylesheet" href="/case-studies/case-studies.css?v=20260726a">
     <style>
         .area-page .svc-hero { min-height: 420px; padding: 12px 0 18px; }
         .area-page .svc-hero__inner { max-width: 820px; }
@@ -446,7 +491,7 @@ ${proofLinks}
         <!-- Instant estimate: the general-repairs hub picker, with real catalog ranges.
              Borough landers had no price surface at all — the reader had to click through
              to a service page to see a number. -->
-        <section class="spoke-module" id="calculator">
+${recentWorkSection(page)}        <section class="spoke-module" id="calculator">
             <div class="container">
                 <div data-module="calculator" data-config="hub-general-repairs"></div>
             </div>
