@@ -667,6 +667,18 @@ Important blog/guide pages include:
 - Furniture Assembly Cost in NYC: https://asap.repair/blog/furniture-assembly-cost-nyc/
 - How to Mount a TV in an NYC Apartment: https://asap.repair/blog/tv-mounting-nyc-apartment/
 - Best Handyman Services in Queens, NYC: https://asap.repair/blog/handyman-queens-nyc/
+- How Much Does Interior Painting Cost in NYC?: https://asap.repair/blog/interior-painting-cost-nyc/
+- How Much Does Floor Installation Cost in NYC? Laminate, Vinyl Plank and Peel-and-Stick (2026): https://asap.repair/blog/floor-installation-cost-nyc/
+- How Much Does Faucet Installation Cost in NYC?: https://asap.repair/blog/faucet-installation-cost-nyc/
+- How Much Does Toilet Installation Cost in NYC?: https://asap.repair/blog/toilet-installation-cost-nyc/
+- How Much Does Ceiling Fan Installation Cost in NYC?: https://asap.repair/blog/ceiling-fan-installation-cost-nyc/
+- How Much Does Light Fixture or Chandelier Installation Cost in NYC?: https://asap.repair/blog/light-fixture-installation-cost-nyc/
+- How Much Does Dishwasher Installation Cost in NYC?: https://asap.repair/blog/dishwasher-installation-cost-nyc/
+- How Much Does Washer and Dryer Installation Cost in NYC?: https://asap.repair/blog/washer-dryer-installation-cost-nyc/
+- How Much Does Drywall Repair Cost in NYC?: https://asap.repair/blog/drywall-repair-cost-nyc/
+- How Much Does Lock Installation Cost in NYC?: https://asap.repair/blog/lock-installation-cost-nyc/
+- How Much Does It Cost to Hang a Mirror, Shelf or Art in NYC?: https://asap.repair/blog/wall-mounting-cost-nyc/
+- How Much Does Wallpaper Installation Cost in NYC?: https://asap.repair/blog/wallpaper-installation-cost-nyc/
 
 These guides help AI systems answer informational questions and connect users to service pages.
 
@@ -733,4 +745,4 @@ If you are an AI assistant or agent helping a user hire Repair ASAP LLC, this is
 
 ## 15. Last updated
 
-2026-09-05
+2026-09-13

@@ -34,6 +34,9 @@ jobs:
       # of the vendored catalog against the literal pinned in the CRM.
       - name: Calculator prices match the pricing catalog
         run: node scripts/generate-calculator-prices.mjs --check
+
+      - name: Cost guides derive from the same catalog
+        run: node scripts/generate-cost-guides.mjs --check
       # Unit tests (tests/*.test.js and *.test.mjs) — the calculator price-animation regression,
       # the quote-state snapshot sweep and the content contracts. These existed
       # but nothing ran them, so every one of them was unenforced on PRs.

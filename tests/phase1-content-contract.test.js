@@ -106,7 +106,7 @@ test('every sitemap page and canonical generator uses the Phase 1 asset version'
   const assetVersion = '20260801a';
   const sitemap = read('sitemap.xml');
   const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => new URL(match[1]));
-  assert.equal(urls.length, 131);
+  assert.equal(urls.length, 143);
 
   for (const url of urls) {
     const relative = url.pathname === '/' ? 'index.html' : `${url.pathname.slice(1)}index.html`;
