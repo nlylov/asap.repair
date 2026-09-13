@@ -58,7 +58,7 @@ const PRICING_PANEL = `        <section class="svc-features" id="pricing" aria-l
    insured-only chip a page carries; the title attribute holds the license number
    so the chip stays short on mobile. Idempotent. */
 const LICENSE_CHIP = `<div class="trust-item" title="NYC DCWP Home Improvement Contractor License No. 2137199-DCWP"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>DCWP-Licensed &amp; Insured</div>`;
-const INSURED_ONLY_CHIP_RE = /<div class="trust-item">(\s*<svg[^>]*>(?:(?!<\/svg>)[\s\S])*<\/svg>)\s*(?:Insured Business|Insured &amp; COI-Ready)\s*<\/div>/g;
+const INSURED_ONLY_CHIP_RE = /<div class="trust-item">(\s*<svg[^>]*>(?:(?!<\/svg>)[\s\S])*<\/svg>)\s*(?:Insured Business|Insured &amp; COI-Ready|Insured &amp; COI Ready|Insured &amp; Scope-Checked)\s*<\/div>/g;
 
 // Hero chips: lead with proof instead of generic labels. Only rewritten when
 // the page still carries the old generic set.
