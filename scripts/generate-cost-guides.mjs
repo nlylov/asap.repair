@@ -138,8 +138,19 @@ ${rows.map((r) => `              <tr><td>${esc(r.series)}</td><td>${esc(tidy(r.s
           </table>`;
 }
 
+/* The guide shares the service page's own photo card when it has one (assets/og/<slug>.webp,
+   a real job photo), instead of the brand placeholder — that is what shows up when the link
+   is pasted into a chat, and what Discover needs. */
+function serviceCardFor(g) {
+  /* Hubs have no photo card of their own; a guide anchored on a hub names a leaf to borrow from. */
+  const rel = `${(g.cardFrom || g.serviceUrl).replace(/^\//, '')}index.html`;
+  const m = read(rel).match(/<meta\s+property="og:image"\s+content="([^"]+)"/);
+  return m && m[1].includes('/assets/og/') ? m[1] : `${SITE}/assets/images/og-image.png`;
+}
+
 function renderGuide(g) {
   const url = `${SITE}/blog/${g.slug}/`;
+  const card = serviceCardFor(g);
   const tables = g.tables.map(([config, heading]) => ({ heading, rows: rowsFor(config) }));
   const primary = rowsFor(g.primaryConfig);
   const all = tables.flatMap((t) => t.rows).filter((r) => !r.assessment);
@@ -184,6 +195,7 @@ function renderGuide(g) {
     description,
     author: business(),
     publisher: business(),
+    image: card,
     datePublished: g.published,
     dateModified: g.published,
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
@@ -222,10 +234,10 @@ function renderGuide(g) {
   <meta property="og:description" content="${esc(description)}">
   <meta property="og:type" content="article">
   <meta property="og:url" content="${url}">
-  <meta property="og:image" content="${SITE}/assets/images/og-image.png">
-  <meta property="og:image:alt" content="Repair ASAP LLC handyman services in New York City">
+  <meta property="og:image" content="${card}">
+  <meta property="og:image:alt" content="${esc(g.h1)} — Repair ASAP NYC">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="${SITE}/assets/images/og-image.png">
+  <meta name="twitter:image" content="${card}">
   ${ICONS}
   ${STYLESHEET}
   <script type="application/ld+json">${JSON.stringify(article)}</script>

@@ -153,7 +153,8 @@
         "interior-painting-cost-nyc",
         "drywall-repair-cost-nyc",
         "handyman-queens-nyc"
-      ]
+      ],
+      "cardFrom": "/services/flooring-installation/laminate-floor-installation/"
     },
     {
       "slug": "faucet-installation-cost-nyc",
@@ -777,7 +778,8 @@
         "tv-mounting-nyc-apartment",
         "furniture-assembly-cost-nyc",
         "drywall-repair-cost-nyc"
-      ]
+      ],
+      "cardFrom": "/services/tv-wall-mounting/mirror-installation/"
     },
     {
       "slug": "wallpaper-installation-cost-nyc",
