@@ -1,6 +1,36 @@
 {
   "studies": [
     {
+      "slug": "water-damaged-floor-repair-refrigerator-leak-bronx",
+      "title": "Water-Damaged Floor Repair After a Refrigerator Leak in the Bronx",
+      "excerpt": "A leaking refrigerator line left water sitting on a Bronx kitchen floor for days. It soaked through the vinyl planks into the parquet underneath, which rotted and grew mold. The damaged section came out, the subfloor dried, plywood went in at the original height, and a new vinyl plank floor went down on top.",
+      "thumbnail": "/assets/case-studies/water-damaged-floor-repair-refrigerator-leak-bronx/thumbnail.webp",
+      "location": "The Bronx",
+      "category": "flooring",
+      "categories": [
+        "flooring",
+        "general_repairs"
+      ],
+      "tags": [
+        "water damaged floor repair",
+        "subfloor repair",
+        "mold under vinyl flooring",
+        "refrigerator leak",
+        "vinyl plank floor repair",
+        "parquet subfloor replacement",
+        "plywood subfloor",
+        "floor repair after leak",
+        "Bronx",
+        "NYC apartment"
+      ],
+      "serviceSlugs": [
+        "flooring-installation/floor-repair",
+        "flooring-installation/vinyl-floor-installation",
+        "general-repairs"
+      ],
+      "featured": true
+    },
+    {
       "slug": "custom-ac-cover-box-water-damage-wall-repair-nyc-high-rise",
       "title": "A Custom AC Cover Box and Flood-Damaged Wall Repair in a NYC High-Rise",
       "excerpt": "A flooded high-rise apartment in Kips Bay, Manhattan, had its floor replaced, but the wall was still damaged and the AC unit under the window was bare. Repair Asap built a custom cover box in the workshop, installed it, patched the drywall and repainted — two days on site.",
