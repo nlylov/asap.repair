@@ -28,7 +28,7 @@ const pages = [
   {
     slug: 'handyman-manhattan',
     areaName: 'Manhattan',
-    title: 'Handyman Manhattan NYC | Repair ASAP',
+    title: 'DCWP-Licensed Handyman Manhattan NYC | Repair ASAP',
     description: 'Insured Manhattan handyman for apartments, co-ops, condos and offices: TV mounting, furniture assembly, repairs, fixtures, AC and move-in setup.',
     ogTitle: 'Handyman Services in Manhattan, NYC | Repair ASAP',
     heroImage: '/assets/services/service-tv-mounting.webp',
@@ -52,7 +52,7 @@ const pages = [
   {
     slug: 'handyman-brooklyn',
     areaName: 'Brooklyn',
-    title: 'Handyman Brooklyn NYC | Repair ASAP',
+    title: 'DCWP-Licensed Handyman Brooklyn NYC | Repair ASAP',
     description: 'Brooklyn handyman for apartments, brownstones, condos and offices: repairs, mounting, furniture, appliances, AC, painting and fixture work.',
     ogTitle: 'Handyman Services in Brooklyn, NYC | Repair ASAP',
     heroImage: '/assets/services/service-home-repairs.webp',
@@ -76,7 +76,7 @@ const pages = [
   {
     slug: 'handyman-queens',
     areaName: 'Queens',
-    title: 'Handyman Queens NYC | Repair ASAP',
+    title: 'DCWP-Licensed Handyman Queens NYC | Repair ASAP',
     description: 'Queens handyman based near Rego Park for furniture assembly, TV mounting, AC, appliance installation, repairs, painting and fixture work.',
     ogTitle: 'Handyman Services in Queens, NYC | Repair ASAP',
     heroImage: '/assets/services/service-ac.webp',
@@ -101,7 +101,7 @@ const pages = [
   {
     slug: 'handyman-bronx',
     areaName: 'the Bronx',
-    title: 'Handyman Bronx NYC | Repair ASAP',
+    title: 'DCWP-Licensed Handyman Bronx NYC | Repair ASAP',
     description: 'Bronx handyman for apartments, co-ops, condos and homes: mounting, assembly, AC, repairs, painting, plumbing and electrical fixture work.',
     ogTitle: 'Handyman Services in the Bronx, NYC | Repair ASAP',
     heroImage: '/assets/services/service-home-repairs.webp',
@@ -125,7 +125,7 @@ const pages = [
   {
     slug: 'handyman-staten-island',
     areaName: 'Staten Island',
-    title: 'Handyman Staten Island | Repair ASAP',
+    title: 'DCWP-Licensed Handyman Staten Island | Repair ASAP',
     description: 'Staten Island handyman for homes, apartments and punch lists: repairs, mounting, assembly, AC, appliance setup, painting and fixture work.',
     ogTitle: 'Handyman Services in Staten Island | Repair ASAP',
     heroImage: '/assets/services/service-flooring.webp',
@@ -149,7 +149,7 @@ const pages = [
   {
     slug: 'handyman-long-island',
     areaName: 'Western Long Island and Nassau County',
-    title: 'Handyman Long Island & Nassau | Repair ASAP',
+    title: 'DCWP-Licensed Handyman Long Island & Nassau | Repair ASAP',
     description: 'Western Long Island and Nassau handyman for larger repairs, assembly, mounting, outdoor projects, apartment setup and installations when scope fits.',
     ogTitle: 'Handyman Services in Western Long Island and Nassau | Repair ASAP',
     heroImage: '/assets/services/service-gazebo.png',
