@@ -103,6 +103,23 @@ const tidy = (label) => label.replace(/\s*\((small|medium|large|x-large|xl)\)\s*
 
 /* ---- rendering ---------------------------------------------------------- */
 
+/* Option values of the quote modal's "Service Needed" select, keyed by hub slug — the
+   same map quote-modal.js uses to preselect on service pages. A guide lives under
+   /blog/, so the modal cannot infer it from the URL; the button says it instead. */
+const SERVICE_MAP = {
+  'furniture-assembly': 'Furniture Assembly',
+  'tv-wall-mounting': 'TV & Wall Mounting',
+  'appliance-services': 'Appliance Services',
+  'flooring-installation': 'Flooring Installation',
+  painting: 'Painting & Wall Finishes',
+  'ac-installation-cleaning': 'AC Installation & Cleaning',
+  plumbing: 'Plumbing',
+  electrical: 'Electrical',
+  'general-repairs': 'General Repairs',
+};
+const hubOfUrl = (u) => (u.match(/^\/services\/([a-z-]+)\//) || [])[1];
+const serviceAttr = (hubSlug) => (SERVICE_MAP[hubSlug] ? ` data-service="${esc(SERVICE_MAP[hubSlug])}"` : '');
+
 const furniturePost = read('blog/furniture-assembly-cost-nyc/index.html');
 /* Anchored to </head>: a corrupted JSON-LD block once carried a literal "<style>" and the
    unanchored form matched from there, spreading the junk into every guide. */
@@ -307,7 +324,7 @@ ${faqs.map((f) => `          <h3>${esc(f.q)}</h3>\n          <p>${esc(f.a)}</p>`
             <h3>Ready for a real number?</h3>
             <p>Text photos and get a free estimate. DCWP-licensed &amp; insured, COI support, work from $150.</p>
             <div class="article-cta__btns">
-              <button class="btn btn--accent" data-open-quote>Get a Free Quote</button>
+              <button class="btn btn--accent" data-open-quote${serviceAttr(hubOfUrl(g.serviceUrl))}>Get a Free Quote</button>
               <a class="btn btn--outline" href="${esc(g.serviceUrl)}">View ${esc(g.serviceLabel)} service →</a>
             </div>
           </div>
@@ -329,7 +346,7 @@ ${g.related.map((slug) => {
 ${sidebarRows.map(([s, r]) => `            <div class="sidebar-card__item"><span class="sidebar-card__label">${esc(s)}</span><span class="sidebar-card__value">${range(r.lo, r.hi)}</span></div>`).join('\n')}
             <div class="sidebar-card__item"><span class="sidebar-card__label">Work minimum</span><span class="sidebar-card__value">$150</span></div>
             <div class="sidebar-cta">
-              <button class="btn btn--accent btn--full" data-open-quote>Get a Free Quote</button>
+              <button class="btn btn--accent btn--full" data-open-quote${serviceAttr(hubOfUrl(g.serviceUrl))}>Get a Free Quote</button>
             </div>
           </div>
         </aside>
@@ -405,7 +422,12 @@ function legacyUpgrade(html, l) {
   if (out.includes(LD_START)) out = out.replace(new RegExp(`${LD_START.trim()}[\\s\\S]*?${LD_END.trim()}`), () => ld.trim());
   else out = out.replace(/(\n\s*<style>[\s\S]*?<\/style>\s*<\/head>)/, (m) => `\n${ld}${m}`);
 
-  // 4. the license where the article asks for the job
+  // 4. the modal preselects the service when the button names it
+  if (l.hub && SERVICE_MAP[l.hub]) {
+    out = out.replace(/<button([^>]*)\sdata-open-quote(?![^>]*data-service)([^>]*)>/g, (m, a, b) => `<button${a} data-open-quote data-service="${esc(SERVICE_MAP[l.hub])}"${b}>`);
+  }
+
+  // 5. the license where the article asks for the job
   out = out.replace(/Insured business, COI support/g, () => 'DCWP-licensed &amp; insured, COI support')
     .replace(/Insured business with COI support/g, () => 'DCWP-licensed &amp; insured with COI support');
   return out;
