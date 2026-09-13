@@ -178,6 +178,36 @@ function serviceCardFor(g) {
   return m && m[1].includes('/assets/og/') ? m[1] : `${SITE}/assets/images/og-image.png`;
 }
 
+/* Four "after" photos borrowed from the service page's own gallery (same markup, same
+   thumbnails), so the guide shows the work it prices. Static like the originals — the
+   site has no lightbox; the link leads to the full gallery on the service page. */
+function gallerySection(g) {
+  const src = g.cardFrom || g.serviceUrl;
+  const html = read(`${src.replace(/^\//, '')}index.html`);
+  const cards = [...html.matchAll(/<div class="svc-gallery__card" data-type="([a-z]+)">([\s\S]*?)<\/div>\s*<\/div>/g)]
+    .map((m) => ({ type: m[1], body: m[0] }));
+  if (!cards.length) return '';
+  const picked = [...cards.filter((c) => c.type === 'after'), ...cards.filter((c) => c.type !== 'after')].slice(0, 4);
+  return `
+  <section class="svc-gallery" id="gallery">
+    <div class="container">
+      <span class="section-tag">Recent work</span>
+      <h2 class="section-title">What ${esc(g.serviceLabel)} looks like <span class="text-accent">when it's done</span></h2>
+      <div class="svc-gallery__grid">
+${picked.map((c) => c.body.replace(/^/gm, '        ')).join('\n')}
+      </div>
+      <p style="text-align:center;margin-top:24px"><a class="btn btn--outline" href="${esc(src)}#gallery">See all ${cards.length} photos on the service page →</a></p>
+    </div>
+  </section>`;
+}
+
+const TRUST_CHIPS = `      <div class="svc-hero__trust">
+        <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>4.9&#9733; &middot; 73 Verified Reviews</div>
+        <div class="trust-item" title="NYC DCWP Home Improvement Contractor License No. 2137199-DCWP"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>DCWP-Licensed &amp; Insured</div>
+        <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Free Photo Estimates</div>
+        <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Same-Day When Available</div>
+      </div>`;
+
 function renderGuide(g) {
   const url = `${SITE}/blog/${g.slug}/`;
   const card = serviceCardFor(g);
@@ -292,6 +322,7 @@ function renderGuide(g) {
       </div>
       <h1 class="article-hero__title">${esc(g.h1)}</h1>
       <p class="article-lead">${esc(g.lead)}</p>
+${TRUST_CHIPS}
     </div>
   </section>
 
@@ -366,6 +397,7 @@ ${sidebarRows.map(([s, r]) => `            <div class="sidebar-card__item"><span
       </div>
     </div>
   </section>
+${gallerySection(g)}
 ${RELATED_CATEGORY[hubOfUrl(g.serviceUrl)] ? `
   <div id="related-content" data-category="${RELATED_CATEGORY[hubOfUrl(g.serviceUrl)]}"></div>
 ` : ''}
