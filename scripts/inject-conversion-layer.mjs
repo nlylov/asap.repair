@@ -21,7 +21,7 @@
  */
 
 import { execSync } from 'node:child_process';
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
 const ROOT = new URL('..', import.meta.url).pathname;
@@ -125,3 +125,27 @@ for (const rel of files) {
 
 console.log(`Pricing panel added to ${panels} pages; hero chips upgraded on ${chips} pages.`);
 if (skipped.length) console.log(`No anchor found (left untouched): ${skipped.join(', ')}`);
+
+/* Audience landers priced nothing on-page. Each gets the calculator whose tiers match
+   the visitor: property managers see apartment-turnover by unit size, restaurants see
+   commercial refrigeration triage, the rest the general-repairs hub picker. Inserted
+   once, before the page's FAQ section. */
+const LANDER_CALCULATORS = {
+  'same-day-handyman-nyc/index.html': 'hub-general-repairs',
+  'for-restaurants/index.html': 'commercial-refrigeration',
+  'for-property-managers/index.html': 'apartment-turnover',
+  'new-apartment-setup/index.html': 'hub-furniture-assembly',
+  'preventive-maintenance/index.html': 'hub-general-repairs',
+};
+for (const [rel, config] of Object.entries(LANDER_CALCULATORS)) {
+  const path = join(ROOT, rel);
+  if (!existsSync(path)) continue;
+  const html = readFileSync(path, 'utf8');
+  if (html.includes('data-module="calculator"')) continue;
+  const faq = html.match(/([ \t]*)<section[^>]*\sid="faq"[^>]*>/);
+  if (!faq) { console.log(`  lander ${rel}: no #faq anchor, calculator not added`); continue; }
+  const indent = faq[1];
+  const section = `${indent}<section class="spoke-module" id="calculator">\n${indent}    <div class="container">\n${indent}        <div data-module="calculator" data-config="${config}"></div>\n${indent}    </div>\n${indent}</section>\n\n`;
+  writeFileSync(path, html.replace(faq[0], () => section + faq[0]));
+  console.log(`  lander ${rel}: calculator ${config} added`);
+}
