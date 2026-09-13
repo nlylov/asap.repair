@@ -141,6 +141,11 @@ function renderGuide(g) {
   const all = tables.flatMap((t) => t.rows).filter((r) => !r.assessment);
   const lo = Math.min(...all.map((r) => r.lo));
   const hi = Math.max(...all.map((r) => r.hi));
+  /* The "from" figure must be the cheapest cell of the calculator mounted on THIS page
+     (a contract test enforces it): on the flooring guide peel-and-stick starts at $175
+     but the page's calculator is laminate, whose floor is $275. */
+  const primaryLo = Math.min(...primary.filter((r) => !r.assessment).map((r) => r.lo));
+  const primaryHeading = (g.tables.find(([c]) => c === g.primaryConfig) || [null, g.serviceLabel])[1];
   const description = `${g.description} ${OFFER}`;
 
   /* Sidebar: one line per series of the primary config, its own min–max. */
@@ -250,8 +255,8 @@ function renderGuide(g) {
         <div class="article-content">
 ${g.intro.map((p) => `          <p>${esc(p)}</p>`).join('\n')}
 
-          <h2>${esc(g.serviceLabel.charAt(0).toUpperCase() + g.serviceLabel.slice(1))} prices in NYC: ${range(lo, hi)}</h2>
-          <p>Every figure below is labor from the current price catalog (${esc(catalogVersion)}), floored at the $150 work minimum. The exact quote is confirmed from your photos before booking; NYC sales tax is added separately where applicable.</p>
+          <h2>${esc(g.serviceLabel.charAt(0).toUpperCase() + g.serviceLabel.slice(1))} prices in NYC: from ${money(primaryLo)}${g.tables.length > 1 ? ` for ${esc(primaryHeading.toLowerCase())}` : ''}</h2>
+          <p>Across the jobs in this guide, labor runs ${range(lo, hi)} — the low end is a single small job, the high end the largest scope in the tables (a whole apartment or a multi-room project where the guide covers one). Every figure is from the current price catalog (${esc(catalogVersion)}), floored at the $150 work minimum; the exact quote is confirmed from your photos before booking, and NYC sales tax is added separately where applicable.</p>
 ${tables.map((t) => renderTable(t.heading, t.rows)).join('\n')}
 
           <div data-module="calculator" data-config="${esc(g.primaryConfig)}"></div>
