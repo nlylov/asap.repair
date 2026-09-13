@@ -10,6 +10,24 @@ const MAIN_ASSET_VERSION = '20260801a';
 const LOADER_ASSET_VERSION = '20260801a';
 const ROOT = new URL('..', import.meta.url).pathname;
 
+/* Real width/height from the WebP header, so the hero <img> reserves the right box
+   whatever file sits behind the URL — the category backgrounds were swapped from
+   640x640 placeholders to 1600x900 photos and a hardcoded 640x640 here would revert
+   them on every regeneration. */
+function webpDims(publicPath) {
+  try {
+    const buf = readFileSync(join(ROOT, publicPath.replace(/^\//, '').split('?')[0]));
+    if (buf.toString('ascii', 0, 4) !== 'RIFF' || buf.toString('ascii', 8, 12) !== 'WEBP') return null;
+    const fmt = buf.toString('ascii', 12, 16);
+    if (fmt === 'VP8X') return { w: 1 + buf.readUIntLE(24, 3), h: 1 + buf.readUIntLE(27, 3) };
+    if (fmt === 'VP8 ') return { w: buf.readUInt16LE(26) & 0x3fff, h: buf.readUInt16LE(28) & 0x3fff };
+    if (fmt === 'VP8L') { const b = buf.readUInt32LE(21); return { w: (b & 0x3fff) + 1, h: ((b >> 14) & 0x3fff) + 1 }; }
+  } catch { /* fall through */ }
+  return null;
+}
+const heroDims = (p) => { const d = webpDims(p) || { w: 640, h: 640 }; return `width="${d.w}" height="${d.h}"`; };
+
+
 const serviceLinks = {
   apartmentSetup: { name: 'New apartment setup', url: '/new-apartment-setup/' },
   furniture: { name: 'Furniture assembly', url: '/services/furniture-assembly/' },
@@ -56,7 +74,7 @@ const pages = [
     title: 'DCWP-Licensed Handyman Brooklyn NYC | Repair ASAP',
     description: 'Brooklyn handyman for apartments, brownstones, condos and offices: repairs, mounting, furniture, appliances, AC, painting and fixture work.',
     ogTitle: 'Handyman Services in Brooklyn, NYC | Repair ASAP',
-    heroImage: '/assets/services/service-home-repairs.webp',
+    heroImage: '/assets/services/service-home-repairs.webp?v=20260912',
     badge: 'Brooklyn Handyman',
     h1: 'Handyman Services in Brooklyn',
     subtitle: 'Insured handyman help for Brooklyn apartments, brownstones, condos, rentals, storefronts, and punch-list repairs after photo and scope review.',
@@ -80,7 +98,7 @@ const pages = [
     title: 'DCWP-Licensed Handyman Queens NYC | Repair ASAP',
     description: 'Queens handyman based near Rego Park for furniture assembly, TV mounting, AC, appliance installation, repairs, painting and fixture work.',
     ogTitle: 'Handyman Services in Queens, NYC | Repair ASAP',
-    heroImage: '/assets/services/service-ac.webp',
+    heroImage: '/assets/services/service-ac.webp?v=20260912',
     badge: 'Queens Handyman',
     h1: 'Handyman Services in Queens',
     subtitle: 'Local Queens handyman help for apartments, co-ops, condos, single-family homes, storefronts, and move-in punch lists.',
@@ -105,7 +123,7 @@ const pages = [
     title: 'DCWP-Licensed Handyman Bronx NYC | Repair ASAP',
     description: 'Bronx handyman for apartments, co-ops, condos and homes: mounting, assembly, AC, repairs, painting, plumbing and electrical fixture work.',
     ogTitle: 'Handyman Services in the Bronx, NYC | Repair ASAP',
-    heroImage: '/assets/services/service-home-repairs.webp',
+    heroImage: '/assets/services/service-home-repairs.webp?v=20260912',
     badge: 'Bronx Handyman',
     h1: 'Handyman Services in the Bronx',
     subtitle: 'Insured handyman service for Bronx apartments, co-ops, condos, homes, and light commercial punch-list work after scope review.',
@@ -415,7 +433,7 @@ ${schemas}
         <section class="svc-hero" aria-label="${escapeHtml(page.h1)}">
             <div class="svc-hero__bg">
                 <img src="${page.heroImage}" alt="${escapeHtml(page.h1)}"
-                    class="svc-hero__img" loading="eager" fetchpriority="high" width="640" height="640">
+                    class="svc-hero__img" loading="eager" fetchpriority="high" ${heroDims(page.heroImage)}>
                 <div class="svc-hero__overlay"></div>
             </div>
             <div class="container svc-hero__inner">

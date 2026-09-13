@@ -8,6 +8,24 @@ import { join } from 'node:path';
 const ASSET_VERSION = '20260801a';
 const CSS_VERSION = '20260726a';
 const ROOT = new URL('..', import.meta.url).pathname;
+
+/* Real width/height from the WebP header, so the hero <img> reserves the right box
+   whatever file sits behind the URL — the category backgrounds were swapped from
+   640x640 placeholders to 1600x900 photos and a hardcoded 640x640 here would revert
+   them on every regeneration. */
+function webpDims(publicPath) {
+  try {
+    const buf = readFileSync(join(ROOT, publicPath.replace(/^\//, '').split('?')[0]));
+    if (buf.toString('ascii', 0, 4) !== 'RIFF' || buf.toString('ascii', 8, 12) !== 'WEBP') return null;
+    const fmt = buf.toString('ascii', 12, 16);
+    if (fmt === 'VP8X') return { w: 1 + buf.readUIntLE(24, 3), h: 1 + buf.readUIntLE(27, 3) };
+    if (fmt === 'VP8 ') return { w: buf.readUInt16LE(26) & 0x3fff, h: buf.readUInt16LE(28) & 0x3fff };
+    if (fmt === 'VP8L') { const b = buf.readUInt32LE(21); return { w: (b & 0x3fff) + 1, h: ((b >> 14) & 0x3fff) + 1 }; }
+  } catch { /* fall through */ }
+  return null;
+}
+const heroDims = (p) => { const d = webpDims(p) || { w: 640, h: 640 }; return `width="${d.w}" height="${d.h}"`; };
+
 const BASE_URL = 'https://asap.repair';
 
 const provider = {
@@ -1008,7 +1026,7 @@ const pages = [
       "label": "AC Installation & Cleaning",
       "url": "/services/ac-installation-cleaning/",
       "dataCategory": "ac",
-      "heroImage": "/assets/services/service-ac.webp"
+      "heroImage": "/assets/services/service-ac.webp?v=20260912"
     }
   },
   {
@@ -1986,7 +2004,7 @@ const DEFAULT_CATEGORY = {
   label: 'Appliance Services',
   url: '/services/appliance-services/',
   dataCategory: 'appliances',
-  heroImage: '/assets/services/service-appliance.webp',
+  heroImage: '/assets/services/service-appliance.webp?v=20260912',
 };
 
 function pageCategory(page) {
@@ -2152,7 +2170,7 @@ function pageHtml(page) {
         <section class="svc-hero" aria-label="Service overview">
             <div class="svc-hero__bg"><img src="${heroImage}"
                     alt="${escapeHtml(page.serviceName)}" class="svc-hero__img" loading="eager" fetchpriority="high"
-                    width="640" height="640">
+                    ${heroDims(page.heroImage)}>
                 <div class="svc-hero__overlay"></div>
             </div>
             <div class="container svc-hero__inner">
