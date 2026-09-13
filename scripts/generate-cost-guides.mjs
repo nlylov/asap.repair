@@ -545,6 +545,49 @@ function homepageWith(html) {
   return html.replace(re, (m) => `${m}\n${block}`);
 }
 
+/* Three latest case studies on the homepage: the strongest page on the site showed no
+   finished job at all. Same card and stylesheet as /case-studies/, newest first. */
+const CASE_STUDIES = JSON.parse(read('_data/case-studies.json')).filter((x) => x.status === 'published');
+function caseCard(x) {
+  return `        <a class="cs-card reveal" href="/case-studies/${esc(x.slug)}/">
+          <div class="cs-card__photo"><img src="${esc(x.thumbnail)}" alt="${esc(x.title)}" loading="lazy" width="600" height="400"></div>
+          <div class="cs-card__body">
+            <div class="cs-card__meta"><span class="cs-card__tag">${esc(x.projectType || 'Case study')}</span><span class="cs-card__location">📍 ${esc(x.locationShort || x.borough || 'NYC')}</span></div>
+            <h3 class="cs-card__title">${esc(x.shortTitle || x.title)}</h3>
+            <p class="cs-card__excerpt">${esc(x.excerpt)}</p>
+            <div class="cs-card__footer"><span></span><span class="cs-card__link">View project →</span></div>
+          </div>
+        </a>`;
+}
+function homepageRecentWork(html) {
+  const START = '  <!-- cost-guides:recent-work:start -->';
+  const END = '  <!-- cost-guides:recent-work:end -->';
+  const latest = [...CASE_STUDIES].sort((a, b) => String(b.datePublished || '').localeCompare(String(a.datePublished || ''))).slice(0, 3);
+  const block = `${START}
+  <section class="site-links" aria-label="Recent work">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Recent work</span>
+        <h2 class="section-title">Finished jobs across NYC</h2>
+        <p class="section-subtitle">Before-and-after photos, what each job involved and what it cost — from the latest completed projects.</p>
+      </div>
+      <div class="cs-grid">
+${latest.map(caseCard).join('\n')}
+      </div>
+      <p style="text-align:center;margin-top:28px"><a class="btn btn--outline" href="/case-studies/">See all ${CASE_STUDIES.length} case studies →</a></p>
+    </div>
+  </section>
+${END}`;
+  let out = html;
+  if (!out.includes('/case-studies/case-studies.css')) {
+    out = out.replace(/([ \t]*)(<link rel="stylesheet" href="\/styles\.css[^>]*>)/, (m, indent, tag) => `${indent}${tag}\n${indent}<link rel="stylesheet" href="/case-studies/case-studies.css?v=20260726a">`);
+  }
+  if (out.includes(START.trim())) return out.replace(new RegExp(`${START.trim()}[\\s\\S]*?${END.trim()}`), () => block.trim());
+  const anchor = '<section class="site-links" aria-label="Explore Repair ASAP">';
+  if (!out.includes(anchor)) throw new Error('cost-guides: homepage Explore section anchor not found');
+  return out.replace(anchor, () => `${block}\n\n  ${anchor}`);
+}
+
 /* ---- side effects on other files (all idempotent) ------------------------ */
 
 function blogIndexWith(html) {
@@ -616,7 +659,7 @@ const noBacklink = [];
 for (const g of data.guides) outputs.set(`blog/${g.slug}/index.html`, renderGuide(g));
 for (const l of data.legacy ?? []) outputs.set(`blog/${l.slug}/index.html`, legacyUpgrade(read(`blog/${l.slug}/index.html`), l));
 outputs.set('blog/index.html', blogIndexWith(read('blog/index.html')));
-outputs.set('index.html', homepageWith(read('index.html')));
+outputs.set('index.html', homepageRecentWork(homepageWith(read('index.html'))));
 for (const hubSlug of new Set(allGuides.map(hubOf).filter(Boolean))) {
   const rel = `services/${hubSlug}/index.html`;
   const next = hubWith(read(rel), hubSlug);
