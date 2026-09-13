@@ -117,6 +117,19 @@ const SERVICE_MAP = {
   electrical: 'Electrical',
   'general-repairs': 'General Repairs',
 };
+/* related-content.js pulls three case studies from the CRM for a category — real proof
+   under the price table. Same category keys the service pages use. */
+const RELATED_CATEGORY = {
+  'appliance-services': 'appliances',
+  'general-repairs': 'general_repairs',
+  'tv-wall-mounting': 'tv_mounting',
+  electrical: 'electrical',
+  'ac-installation-cleaning': 'ac',
+  plumbing: 'plumbing',
+  painting: 'painting',
+  'furniture-assembly': 'furniture_assembly',
+  'flooring-installation': 'flooring',
+};
 const hubOfUrl = (u) => (u.match(/^\/services\/([a-z-]+)\//) || [])[1];
 const serviceAttr = (hubSlug) => (SERVICE_MAP[hubSlug] ? ` data-service="${esc(SERVICE_MAP[hubSlug])}"` : '');
 
@@ -353,7 +366,9 @@ ${sidebarRows.map(([s, r]) => `            <div class="sidebar-card__item"><span
       </div>
     </div>
   </section>
-
+${RELATED_CATEGORY[hubOfUrl(g.serviceUrl)] ? `
+  <div id="related-content" data-category="${RELATED_CATEGORY[hubOfUrl(g.serviceUrl)]}"></div>
+` : ''}
   <div id="site-footer"></div>
   ${SCRIPTS}
 </body>
