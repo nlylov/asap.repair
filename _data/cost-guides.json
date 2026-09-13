@@ -46,8 +46,8 @@
       ],
       "extra": [
         "Paint, primer and materials (supplied by you or quoted separately)",
-        "Heavy patching, skim coating or wallpaper removal",
-        "Ceilings and trim when not in the agreed scope"
+        "Skim coating and wallpaper removal; heavy patching is included only in the tiers that say so",
+        "Ceilings and trim when not in the agreed scope — they have their own tables above"
       ],
       "notOurJob": [
         "Full lead-paint abatement in pre-1978 buildings is a licensed abatement contractor's job — we flag it from photos rather than paint over it."
@@ -125,8 +125,7 @@
       ],
       "extra": [
         "Flooring, underlayment, transitions and trim (client-supplied or quoted)",
-        "Subfloor preparation, leveling compound or replacement",
-        "Removal and haul-away of old flooring",
+        "Old-floor removal, subfloor leveling, transitions and baseboard work — included only in the tiers that name them; on install-only tiers they are quoted separately",
         "Furniture moving beyond what fits in the room"
       ],
       "notOurJob": [
@@ -196,9 +195,9 @@
         "Sprayer, soap dispenser or drain assembly when they come with the faucet"
       ],
       "extra": [
-        "The faucet, supply lines, adapters and a new drain assembly",
-        "Shut-off valve replacement",
-        "Sink replacement, countertop cutting or cabinet modification"
+        "The faucet, supply lines, adapters and drain assembly — the parts themselves",
+        "Shut-off valve replacement and new supply lines are included in the tiers that name them; on a straight swap they are quoted separately",
+        "Sink replacement, countertop cutting or cabinet modification — see the sink table"
       ],
       "notOurJob": [
         "Anything that alters the piping behind the wall or under the floor is a Licensed Master Plumber's work — we identify the boundary from photos before scheduling."
@@ -263,9 +262,8 @@
         "Seat installation and flush test"
       ],
       "extra": [
-        "The toilet, seal, bolts and supply line",
-        "Shut-off valve replacement",
-        "Old fixture haul-away",
+        "The toilet, seal, bolts and supply line — the parts themselves",
+        "Shut-off valve replacement and old-toilet haul-away are included in the tiers that name them; on a straight swap they are quoted separately",
         "Bidet seat or smart toilet electrical accessories"
       ],
       "notOurJob": [
@@ -332,7 +330,7 @@
       ],
       "extra": [
         "The fan, downrod, remote or wall control",
-        "Fan-rated box or brace when the existing box is not suitable",
+        "A fan-rated brace: the labor is in the mid tier that names it, the brace itself is a part",
         "Patching or painting around the canopy"
       ],
       "notOurJob": [
@@ -469,13 +467,13 @@
         "Leak and full cycle test"
       ],
       "extra": [
-        "Haul-away of the old unit",
+        "Old-unit haul-away and a new supply line — included in the tiers that name them, otherwise quoted separately",
         "Replacement hoses, adapters or cord kit",
         "Cabinet or floor correction and first-time opening adjustments",
         "Difficult access labor"
       ],
       "notOurJob": [
-        "New water lines, new circuits, hardwired changes and permit-level work require a Licensed Master Plumber or Electrician — we identify that from photos before booking."
+        "New water lines, new circuits, hardwired changes and permit-level work may require a Licensed Master Plumber or Electrician — we identify that from photos before booking."
       ],
       "faq": [
         [
@@ -545,8 +543,8 @@
         "Full test cycle"
       ],
       "extra": [
-        "Stacking hardware, new hoses, cords, vent parts and drain pans",
-        "Haul-away of old units",
+        "Stacking hardware, new hoses, cords, vent parts and drain pans — the parts themselves",
+        "Old-unit haul-away — included in the tiers that name it, otherwise quoted separately",
         "Tight-access labor and a second technician"
       ],
       "notOurJob": [
@@ -611,7 +609,7 @@
         "Texture blending where the existing finish allows"
       ],
       "extra": [
-        "Painting the repaired area or wall",
+        "Painting the repaired wall — included only where a tier says so (with your paint); otherwise quoted as a painting line",
         "Replacing large sections of board",
         "Fixing the leak or moisture source behind water damage"
       ],

@@ -81,6 +81,10 @@ function rowsFor(configKey) {
          never renders a work price under $150. [99, 99] is the assessment visit, not
          work, and is shown as such. */
       const assessment = cell[0] === 99 && cell[1] === 99;
+      /* The catalog carries gas-line tiers (frozen under Local Law 429). The service page's
+         own scope text routes gas piping to a Licensed Master Plumber, so a price guide
+         does not advertise it. */
+      if (/\bgas line\b/i.test(sizes.get(s)?.get(sz) ?? '')) continue;
       rows.push({
         series: series.get(s) ?? s,
         size: sizes.get(s)?.get(sz) ?? sz,
