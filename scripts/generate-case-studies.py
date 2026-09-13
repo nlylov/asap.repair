@@ -481,8 +481,6 @@ def render_before_after_slider_script(content: dict) -> str:
             dragging = false;
           });
         }
-
-        set(parseFloat(range.value) || 50);
       });
     })();
   </script>"""
