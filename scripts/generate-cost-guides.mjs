@@ -567,8 +567,8 @@ function homepageRecentWork(html) {
   <section class="site-links" aria-label="Recent work">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Recent work</span>
-        <h2 class="section-title">Finished jobs across NYC</h2>
+        <span class="section-tag">Case studies</span>
+        <h2 class="section-title">Latest case studies, with prices</h2>
         <p class="section-subtitle">Before-and-after photos, what each job involved and what it cost — from the latest completed projects.</p>
       </div>
       <div class="cs-grid">
@@ -583,9 +583,11 @@ ${END}`;
     out = out.replace(/([ \t]*)(<link rel="stylesheet" href="\/styles\.css[^>]*>)/, (m, indent, tag) => `${indent}${tag}\n${indent}<link rel="stylesheet" href="/case-studies/case-studies.css?v=20260726a">`);
   }
   if (out.includes(START.trim())) return out.replace(new RegExp(`${START.trim()}[\\s\\S]*?${END.trim()}`), () => block.trim());
-  const anchor = '<section class="site-links" aria-label="Explore Repair ASAP">';
-  if (!out.includes(anchor)) throw new Error('cost-guides: homepage Explore section anchor not found');
-  return out.replace(anchor, () => `${block}\n\n  ${anchor}`);
+  /* Right after the static "Our Work" portfolio, so proof stays in one place instead of
+     a second showcase 6,000px lower. */
+  const m = out.match(/<section class="portfolio" id="portfolio">[\s\S]*?<\/section>\n/);
+  if (!m) throw new Error('cost-guides: homepage #portfolio section not found');
+  return out.replace(m[0], () => `${m[0]}\n${block}\n`);
 }
 
 /* ---- side effects on other files (all idempotent) ------------------------ */
