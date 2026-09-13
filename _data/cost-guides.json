@@ -887,7 +887,8 @@
       ],
       "hub": "furniture-assembly",
       "tag": "Furniture Assembly",
-      "h1": "Furniture Assembly Cost in NYC: Price Guide"
+      "h1": "Furniture Assembly Cost in NYC: Price Guide",
+      "galleryFrom": "/services/furniture-assembly/ikea-assembly/"
     },
     {
       "slug": "tv-mounting-nyc-apartment",
@@ -921,7 +922,8 @@
       ],
       "hub": "tv-wall-mounting",
       "tag": "TV Mounting",
-      "h1": "How to Mount a TV in an NYC Apartment"
+      "h1": "How to Mount a TV in an NYC Apartment",
+      "galleryFrom": "/services/tv-wall-mounting/tv-mounting/"
     },
     {
       "slug": "handyman-queens-nyc",

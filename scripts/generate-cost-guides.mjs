@@ -474,7 +474,22 @@ function legacyUpgrade(html, l) {
     out = out.replace(/<button([^>]*)\sdata-open-quote(?![^>]*data-service)([^>]*)>/g, (m, a, b) => `<button${a} data-open-quote data-service="${esc(SERVICE_MAP[l.hub])}"${b}>`);
   }
 
-  // 5. the license where the article asks for the job
+  // 5. the same trust chips the guides carry, under the lead
+  if (!out.includes('svc-hero__trust')) {
+    out = out.replace(/(<p class="article-lead">[\s\S]*?<\/p>)/, (m) => `${m}\n${TRUST_CHIPS}`);
+  }
+
+  // 6. four photos from the named service gallery, above the related work
+  if (l.galleryFrom) {
+    const G_START = '<!-- guide-upgrade:gallery -->';
+    const G_END = '<!-- /guide-upgrade:gallery -->';
+    const gal = gallerySection({ cardFrom: l.galleryFrom, serviceUrl: l.galleryFrom, serviceLabel: l.serviceLabel });
+    const block = `${G_START}${gal}\n  ${G_END}`;
+    if (out.includes(G_START)) out = out.replace(new RegExp(`${G_START}[\\s\\S]*?${G_END}`), () => block);
+    else out = out.replace(/(\s*<div id="related-content")/, (m) => `\n  ${block}${m}`);
+  }
+
+  // 7. the license where the article asks for the job
   out = out.replace(/Insured business, COI support/g, () => 'DCWP-licensed &amp; insured, COI support')
     .replace(/Insured business with COI support/g, () => 'DCWP-licensed &amp; insured with COI support');
   return out;
