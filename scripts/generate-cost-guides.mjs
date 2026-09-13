@@ -122,9 +122,9 @@ const SERVICE_MAP = {
 const RELATED_CATEGORY = {
   'appliance-services': 'appliances',
   'general-repairs': 'general_repairs',
-  'tv-wall-mounting': 'tv_mounting',
+  'tv-wall-mounting': 'tv_wall_mounting',
   electrical: 'electrical',
-  'ac-installation-cleaning': 'ac',
+  'ac-installation-cleaning': 'ac_installation_cleaning',
   plumbing: 'plumbing',
   painting: 'painting',
   'furniture-assembly': 'furniture_assembly',
