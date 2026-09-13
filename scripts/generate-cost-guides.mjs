@@ -399,6 +399,56 @@ function legacyUpgrade(html, l) {
   return out;
 }
 
+/* ---- hubs and the homepage link to their guides ------------------------------
+   Seven of nine category hubs and the homepage had no path to the guides at all; the
+   hubs are the guides' natural parents and the homepage is the strongest page on the
+   site. Same site-links component the homepage already uses for "Explore". */
+
+const guideCard = (x) => `      <a class="site-links__card" href="/blog/${x.slug}/">
+        <span class="site-links__eyebrow">${esc(x.tag)}</span>
+        <strong>${esc(x.h1.replace(/\s*\(\d{4} Prices\)\s*$/, ''))}</strong>
+        <span>${esc(x.description)}</span>
+      </a>`;
+
+const hubOf = (x) => x.hub || (x.serviceUrl.match(/^\/services\/([a-z-]+)\//) || [])[1];
+const allGuides = [...data.guides, ...(data.legacy ?? []).filter((l) => l.hub)];
+
+function hubWith(html, hubSlug) {
+  const mine = allGuides.filter((x) => hubOf(x) === hubSlug);
+  const START = '<!-- cost-guides:hub:start -->';
+  const END = '<!-- cost-guides:hub:end -->';
+  if (!mine.length) return html.includes(START) ? html.replace(new RegExp(`\\s*${START}[\\s\\S]*?${END}`), () => '') : html;
+  const block = `${START}
+  <section class="site-links" aria-label="NYC price guides">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Price guides</span>
+        <h2 class="section-title">How much does it cost in NYC?</h2>
+        <p class="section-subtitle">Labor ranges from the same catalog the calculator on this page uses — by job and size, with what's included and what's quoted separately.</p>
+      </div>
+      <div class="site-links__grid">
+${mine.map(guideCard).join('\n')}
+      </div>
+    </div>
+  </section>
+  ${END}`;
+  if (html.includes(START)) return html.replace(new RegExp(`${START}[\\s\\S]*?${END}`), () => block);
+  if (!html.includes('</main>')) return null;
+  return html.replace('</main>', () => `${block}\n</main>`);
+}
+
+function homepageWith(html) {
+  const picks = (data.homepage ?? []).map((slug) => allGuides.find((x) => x.slug === slug)).filter(Boolean);
+  const START = '      <!-- cost-guides:home:start -->';
+  const END = '      <!-- cost-guides:home:end -->';
+  const block = `${START}\n${picks.map(guideCard).join('\n')}\n${END}`;
+  if (html.includes(START.trim())) return html.replace(new RegExp(`${START.trim()}[\\s\\S]*?${END.trim()}`), () => block.trim());
+  /* Right after the existing "Read NYC repair guides" card in the Explore grid. */
+  const re = /(<a class="site-links__card" href="\/blog\/">[\s\S]*?<\/a>)/;
+  if (!re.test(html)) throw new Error('cost-guides: homepage Explore grid anchor (the /blog/ card) not found');
+  return html.replace(re, (m) => `${m}\n${block}`);
+}
+
 /* ---- side effects on other files (all idempotent) ------------------------ */
 
 function blogIndexWith(html) {
@@ -466,14 +516,21 @@ function servicePageWith(html, g) {
 /* ---- run --------------------------------------------------------------- */
 
 const outputs = new Map(); // rel path -> content
+const noBacklink = [];
 for (const g of data.guides) outputs.set(`blog/${g.slug}/index.html`, renderGuide(g));
 for (const l of data.legacy ?? []) outputs.set(`blog/${l.slug}/index.html`, legacyUpgrade(read(`blog/${l.slug}/index.html`), l));
 outputs.set('blog/index.html', blogIndexWith(read('blog/index.html')));
+outputs.set('index.html', homepageWith(read('index.html')));
+for (const hubSlug of new Set(allGuides.map(hubOf).filter(Boolean))) {
+  const rel = `services/${hubSlug}/index.html`;
+  const next = hubWith(read(rel), hubSlug);
+  if (next === null) noBacklink.push(`${rel} (no </main> for the price-guides block)`);
+  else outputs.set(rel, next);
+}
 outputs.set('sitemap.xml', sitemapWith(read('sitemap.xml')));
 outputs.set('llms.txt', llmsWith(read('llms.txt')));
 outputs.set('llms-full.txt', llmsWith(read('llms-full.txt')));
 
-const noBacklink = [];
 for (const g of data.guides) {
   const rel = `${g.serviceUrl.replace(/^\//, '')}index.html`;
   if (!existsSync(join(ROOT, rel))) throw new Error(`cost-guides: service page missing for ${g.slug}: ${rel}`);

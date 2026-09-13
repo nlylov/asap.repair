@@ -882,7 +882,10 @@
           "Does my co-op or condo need a COI?",
           "Many do. Repair ASAP LLC carries general liability insurance and provides a Certificate of Insurance naming your building's management company when they ask for it."
         ]
-      ]
+      ],
+      "hub": "furniture-assembly",
+      "tag": "Furniture Assembly",
+      "h1": "Furniture Assembly Cost in NYC: Price Guide"
     },
     {
       "slug": "tv-mounting-nyc-apartment",
@@ -913,7 +916,10 @@
           "Should I mount the TV myself?",
           "On modern drywall with wood studs and a TV under 50 inches, confident DIY-ers usually manage. For older buildings, plaster, brick, concrete or large TVs, professional mounting is worth it — a fallen TV can injure someone and void the warranty."
         ]
-      ]
+      ],
+      "hub": "tv-wall-mounting",
+      "tag": "TV Mounting",
+      "h1": "How to Mount a TV in an NYC Apartment"
     },
     {
       "slug": "handyman-queens-nyc",
@@ -944,5 +950,11 @@
         ]
       ]
     }
+  ],
+  "homepage": [
+    "interior-painting-cost-nyc",
+    "floor-installation-cost-nyc",
+    "tv-mounting-nyc-apartment",
+    "furniture-assembly-cost-nyc"
   ]
 }
