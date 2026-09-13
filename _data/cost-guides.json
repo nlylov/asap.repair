@@ -849,5 +849,102 @@
         "furniture-assembly-cost-nyc"
       ]
     }
+  ],
+  "legacy": [
+    {
+      "slug": "furniture-assembly-cost-nyc",
+      "primaryConfig": "ikea",
+      "rangeConfigs": [
+        "ikea",
+        "beds",
+        "desk",
+        "dresser",
+        "wardrobes"
+      ],
+      "serviceLabel": "furniture assembly",
+      "description": "NYC furniture assembly cost guide for IKEA, Wayfair, beds, desks, dressers and wardrobes.",
+      "faq": [
+        [
+          "Do you assemble IKEA furniture in NYC?",
+          "Yes — IKEA is by far the most common furniture we assemble: PAX, KALLAX, MALM, HEMNES, BESTÅ, BILLY and NORDLI are all priced by series and size in the table above."
+        ],
+        [
+          "Is there a minimum for a furniture assembly visit?",
+          "Yes. Any visit has a $150 work minimum, which covers the first item; additional items in the same visit are priced individually, so bundling several pieces into one appointment is the best value."
+        ],
+        [
+          "Do you anchor bookshelves and wardrobes to the wall?",
+          "Wall anchoring where the manufacturer requires it — bookshelves, wardrobes and dressers — is part of the assembly price."
+        ],
+        [
+          "Do you take the cardboard away?",
+          "Cardboard disposal is available on request. We confirm it when booking, because some buildings have their own rules for bulk recycling."
+        ],
+        [
+          "Does my co-op or condo need a COI?",
+          "Many do. Repair ASAP LLC carries general liability insurance and provides a Certificate of Insurance naming your building's management company when they ask for it."
+        ]
+      ]
+    },
+    {
+      "slug": "tv-mounting-nyc-apartment",
+      "primaryConfig": "tv",
+      "rangeConfigs": [
+        "tv"
+      ],
+      "serviceLabel": "TV mounting",
+      "description": "TV mounting in NYC apartments: plaster, brick, concrete or drywall — rules, hardware, prices.",
+      "faq": [
+        [
+          "Can you mount a TV on plaster walls?",
+          "Yes. Plaster looks solid but does not hold standard drywall anchors well, so for a 55-inch or larger TV we mount into studs — and plaster fools most stud finders, which is why we locate them ourselves."
+        ],
+        [
+          "Can you mount a TV on brick or concrete?",
+          "Yes, with masonry anchors rated for the TV and mount weight. Send a photo of the wall and the TV size for the exact quote."
+        ],
+        [
+          "Can you hide the cables?",
+          "Two options: a paintable surface raceway, which needs no drywall cutting and is the right choice for rentals, or in-wall cable management, which hides everything but requires cutting drywall — check your building's rules first."
+        ],
+        [
+          "Does my building need a Certificate of Insurance?",
+          "Many NYC co-ops and condos require proof of insurance before any contractor works. We provide a COI and can name the management company as additionally insured."
+        ],
+        [
+          "Should I mount the TV myself?",
+          "On modern drywall with wood studs and a TV under 50 inches, confident DIY-ers usually manage. For older buildings, plaster, brick, concrete or large TVs, professional mounting is worth it — a fallen TV can injure someone and void the warranty."
+        ]
+      ]
+    },
+    {
+      "slug": "handyman-queens-nyc",
+      "primaryConfig": "hub-general-repairs",
+      "rangeConfigs": [],
+      "serviceLabel": "handyman services in Queens",
+      "description": "Choosing a handyman in Queens, NYC: rates, insurance, COI, scheduling and neighborhoods.",
+      "faq": [
+        [
+          "Is Repair ASAP licensed and insured?",
+          "Yes. Repair ASAP LLC holds NYC DCWP Home Improvement Contractor License No. 2137199-DCWP and carries general liability insurance, with COI documents provided at no additional cost."
+        ],
+        [
+          "What is the minimum for a handyman visit in Queens?",
+          "Any visit has a $150 work minimum, which covers the first task. Additional tasks in the same visit are priced per task, so it pays to bundle — assemble the bed, mount the TV and hang the shelves in one appointment."
+        ],
+        [
+          "Which Queens neighborhoods do you serve?",
+          "Forest Hills, Rego Park, Astoria, Long Island City, Flushing, Bayside, Jackson Heights, Elmhurst, Jamaica, Woodside, Sunnyside and Howard Beach, with Rego Park as home base."
+        ],
+        [
+          "How quickly can you come?",
+          "We confirm appointment windows across Queens after reviewing the task, location, access and photos. Text or call +1 (775) 310-7770 and we will do our best to fit you in."
+        ],
+        [
+          "How do I get a price?",
+          "Send photos of the job by text for a free estimate. If the job needs eyes on site first, the assessment visit is $99 and is credited toward the work."
+        ]
+      ]
+    }
   ]
 }

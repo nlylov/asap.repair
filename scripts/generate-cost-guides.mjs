@@ -100,7 +100,9 @@ const tidy = (label) => label.replace(/\s*\((small|medium|large|x-large|xl)\)\s*
 /* ---- rendering ---------------------------------------------------------- */
 
 const furniturePost = read('blog/furniture-assembly-cost-nyc/index.html');
-const STYLE = furniturePost.match(/<style>[\s\S]*?<\/style>/)[0];
+/* Anchored to </head>: a corrupted JSON-LD block once carried a literal "<style>" and the
+   unanchored form matched from there, spreading the junk into every guide. */
+const STYLE = furniturePost.match(/<style>[\s\S]*?<\/style>(?=\s*<\/head>)/)[0];
 const ICONS = furniturePost.match(/<link rel="icon"[^>]*>/g).join('\n  ');
 const ANALYTICS = furniturePost.match(/<script defer src="\/analytics\.js[^>]*><\/script>/)[0];
 const STYLESHEET = furniturePost.match(/(?:<link rel="preload" as="font"[^>]*>\s*)*<link rel="stylesheet" href="\/styles\.css[^>]*>/)[0];
@@ -321,6 +323,73 @@ ${sidebarRows.map(([s, r]) => `            <div class="sidebar-card__item"><span
 `;
 }
 
+/* ---- legacy posts: bring the three hand-written guides up to the same bar ----
+   They keep their catalog-managed price tables (generate-calculator-prices.mjs owns
+   those rows); this adds what they lacked — a calculator, an FAQ with FAQPage schema,
+   breadcrumbs, the offer in the snippet, the license in the CTA. Every step is a
+   no-op when already applied, so --check compares the transform of the file to itself. */
+
+const MAX_DESC = 158;
+function fit(base, budget) {
+  if (base.length <= budget) return base;
+  const cut = base.slice(0, budget + 1);
+  for (const sep of [' with ', ' and ', ', ', ' — ', ' ']) {
+    const at = cut.lastIndexOf(sep);
+    if (at > budget * 0.55) return base.slice(0, at).replace(/[,\s—-]+$/, '');
+  }
+  return cut.slice(0, budget).replace(/\s+\S*$/, '');
+}
+const decodeAttr = (v) => v.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+
+function legacyUpgrade(html, l) {
+  const url = `${SITE}/blog/${l.slug}/`;
+  let out = html;
+
+  // 1. snippet: the offer, trimmed to the same budget the service pages use
+  const descMatch = out.match(/<meta\s+name="description"\s+content="([^"]*)"/);
+  const current = decodeAttr(descMatch[1]).replace(/\s+/g, ' ').trim();
+  if (!current.includes(OFFER)) {
+    const next = `${fit(l.description.replace(/\.$/, ''), MAX_DESC - OFFER.length - 2)}. ${OFFER}`;
+    out = out.replace(/(<meta\s+name="description"\s+content=")([^"]*)(")/, (w, o, v, c) => o + esc(next) + c);
+  }
+
+  // 2. calculator right after the first price table
+  if (!out.includes('data-module="calculator"')) {
+    out = out.replace(/(<\/table>)/, (m) => `${m}\n\n          <div data-module="calculator" data-config="${l.primaryConfig}"></div>`);
+  }
+
+  // 3. FAQ section + schema
+  const rows = l.rangeConfigs.flatMap((c) => rowsFor(c)).filter((r) => !r.assessment);
+  const costQ = rows.length
+    ? [{ q: `How much does ${l.serviceLabel} cost in NYC?`, a: `Labor runs ${range(Math.min(...rows.map((r) => r.lo)), Math.max(...rows.map((r) => r.hi)))} across the jobs in this guide, from the current price catalog (${catalogVersion}). Photo and text estimates are free; an on-site assessment visit is $99, credited toward the job. Work starts at the $150 minimum. NYC sales tax is added separately where applicable.` }]
+    : [];
+  const faqs = [...l.faq.map(([q, a]) => ({ q, a })), ...costQ];
+  const START = '          <!-- guide-upgrade:faq -->';
+  const END = '          <!-- /guide-upgrade:faq -->';
+  const faqHtml = `${START}\n          <h2>Frequently asked questions</h2>\n${faqs.map((f) => `          <h3>${esc(f.q)}</h3>\n          <p>${esc(f.a)}</p>`).join('\n')}\n${END}`;
+  /* Function replacements only: the FAQ text contains "$150", and in a replacement string
+     "$1" is capture group 1 — this is the footgun that corrupted the meta descriptions in July. */
+  if (out.includes(START)) out = out.replace(new RegExp(`${START.trim()}[\\s\\S]*?${END.trim()}`), () => faqHtml.trim());
+  else out = out.replace(/([ \t]*<div class="article-cta">)/, (m) => `${faqHtml}\n\n${m}`);
+
+  const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', '@id': `${url}#faq`, mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+  const h1 = decodeAttr(out.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1].replace(/<[^>]+>/g, '').trim());
+  const crumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', '@id': `${url}#breadcrumb`, itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE}/blog/` },
+    { '@type': 'ListItem', position: 3, name: h1, item: url } ] };
+  const LD_START = '  <!-- guide-upgrade:schema -->';
+  const LD_END = '  <!-- /guide-upgrade:schema -->';
+  const ld = `${LD_START}\n  <script type="application/ld+json">${JSON.stringify(faqLd)}</script>\n  <script type="application/ld+json">${JSON.stringify(crumbs)}</script>\n${LD_END}`;
+  if (out.includes(LD_START)) out = out.replace(new RegExp(`${LD_START.trim()}[\\s\\S]*?${LD_END.trim()}`), () => ld.trim());
+  else out = out.replace(/(\n\s*<style>[\s\S]*?<\/style>\s*<\/head>)/, (m) => `\n${ld}${m}`);
+
+  // 4. the license where the article asks for the job
+  out = out.replace(/Insured business, COI support/g, () => 'DCWP-licensed &amp; insured, COI support')
+    .replace(/Insured business with COI support/g, () => 'DCWP-licensed &amp; insured with COI support');
+  return out;
+}
+
 /* ---- side effects on other files (all idempotent) ------------------------ */
 
 function blogIndexWith(html) {
@@ -339,9 +408,9 @@ function blogIndexWith(html) {
           </div>
         </article>`).join('\n\n');
   const block = `${START}\n${cards}\n${END}`;
-  if (html.includes(START)) return html.replace(new RegExp(`${START.trim()}[\\s\\S]*?${END.trim()}`), block.trim());
+  if (html.includes(START)) return html.replace(new RegExp(`${START.trim()}[\\s\\S]*?${END.trim()}`), () => block.trim());
   /* First run: the guides go at the top of the grid — newest content first. */
-  return html.replace(/(<div class="blog-grid">\n)/, `$1\n${block}\n\n`);
+  return html.replace(/(<div class="blog-grid">\n)/, (m) => `${m}\n${block}\n\n`);
 }
 
 function sitemapWith(xml) {
@@ -350,7 +419,7 @@ function sitemapWith(xml) {
     const loc = `${SITE}/blog/${g.slug}/`;
     if (out.includes(`<loc>${loc}</loc>`)) continue;
     const entry = `    <url>\n        <loc>${loc}</loc>\n        <lastmod>${g.published}</lastmod>\n        <changefreq>monthly</changefreq>\n        <priority>0.7</priority>\n    </url>\n`;
-    out = out.replace('</urlset>', `${entry}</urlset>`);
+    out = out.replace('</urlset>', () => `${entry}</urlset>`);
   }
   return out;
 }
@@ -377,11 +446,11 @@ function servicePageWith(html, g) {
   if (html.includes(marker)) return html;
   const link = `<p class="calc-guide-link" style="text-align:center;margin:16px 0 0"><a class="btn btn--outline" href="/blog/${g.slug}/">Read the NYC ${esc(g.serviceLabel)} cost guide →</a></p>`;
   const leaf = new RegExp(`(<div data-module="calculator"[^>]*data-config="${g.primaryConfig}"[^>]*>\\s*</div>)`);
-  if (leaf.test(html)) return html.replace(leaf, `$1\n                ${link}`);
+  if (leaf.test(html)) return html.replace(leaf, (m) => `${m}\n                ${link}`);
   /* Hubs mount the derived hub calculator (data-config="hub-…"), whose container is not
      self-closing; put the link just above it instead. */
   const hub = /([ \t]*)(<div data-module="calculator"[^>]*data-config="hub-[a-z-]+"[^>]*>)/;
-  if (hub.test(html)) return html.replace(hub, `$1${link}\n$1$2`);
+  if (hub.test(html)) return html.replace(hub, (m, indent, tag) => `${indent}${link}\n${indent}${tag}`);
   return null; // caller reports; the guide still ships without the backlink
 }
 
@@ -389,6 +458,7 @@ function servicePageWith(html, g) {
 
 const outputs = new Map(); // rel path -> content
 for (const g of data.guides) outputs.set(`blog/${g.slug}/index.html`, renderGuide(g));
+for (const l of data.legacy ?? []) outputs.set(`blog/${l.slug}/index.html`, legacyUpgrade(read(`blog/${l.slug}/index.html`), l));
 outputs.set('blog/index.html', blogIndexWith(read('blog/index.html')));
 outputs.set('sitemap.xml', sitemapWith(read('sitemap.xml')));
 outputs.set('llms.txt', llmsWith(read('llms.txt')));
@@ -403,12 +473,13 @@ for (const g of data.guides) {
   else outputs.set(rel, next);
 }
 
-if (CHECK) {
-  /* A brand-new guide page has no baked header yet, so compare the body the generator owns:
-     everything except the two baked placeholders, which bake-components fills afterwards. */
-  const strip = (s) => s
+/* bake-components fills the two placeholders after this script writes, so a page on disk
+   never equals what this script rendered byte-for-byte; compare everything but those. */
+const strip = (s) => s
     .replace(/<div id="site-header"(?: class="loaded")?>(?:<!--baked:header-->[\s\S]*?<!--\/baked-->)?<\/div>/, '<div id="site-header"></div>')
     .replace(/<div id="site-footer"(?: class="loaded")?>(?:<!--baked:footer-->[\s\S]*?<!--\/baked-->)?<\/div>/, '<div id="site-footer"></div>');
+
+if (CHECK) {
   const stale = [...outputs].filter(([rel, content]) => !existsSync(join(ROOT, rel)) || strip(read(rel)) !== strip(content));
   if (stale.length) {
     console.error('Cost guides are out of date. Run: node scripts/generate-cost-guides.mjs');
@@ -424,7 +495,7 @@ const created = [];
 for (const [rel, content] of outputs) {
   const abs = join(ROOT, rel);
   const isNew = !existsSync(abs);
-  if (!isNew && read(rel) === content) continue;
+  if (!isNew && strip(read(rel)) === strip(content)) continue;
   mkdirSync(dirname(abs), { recursive: true });
   writeFileSync(abs, content);
   written += 1;
