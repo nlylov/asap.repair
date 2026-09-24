@@ -136,6 +136,9 @@ const LANDER_CALCULATORS = {
   'for-property-managers/index.html': 'apartment-turnover',
   'new-apartment-setup/index.html': 'hub-furniture-assembly',
   'preventive-maintenance/index.html': 'hub-general-repairs',
+  // No catalog tiers for these two services yet; the hub picker shows real neighbouring ranges.
+  'services/general-repairs/gazebo-assembly/index.html': 'hub-general-repairs',
+  'services/painting/checkerboard-floor-painting/index.html': 'hub-painting',
 };
 for (const [rel, config] of Object.entries(LANDER_CALCULATORS)) {
   const path = join(ROOT, rel);
