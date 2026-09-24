@@ -1,0 +1,172 @@
+{
+ "_note": "Gallery photos removed after a 2026-09-24 vision audit: wrong subject, duplicate, or customer privacy. Applied by scripts/apply-photo-exclusions.mjs after every generator.",
+ "drop": {
+  "dryer-vent-cleaning": [
+   "16bb0ca3f727fb65.webp"
+  ],
+  "oven-range-repair": [
+   "b0cce58cdbc22a94.webp",
+   "5783b11b64fa31cd.webp"
+  ],
+  "dresser-assembly": [
+   "0e75d8620bf1044e.webp",
+   "953fd53f29dae8bf.webp",
+   "ecc5958f5e1e39ec.webp",
+   "edcd336cfb52aee8.webp",
+   "9b52a5a38c6f7046.webp",
+   "f3c2f1f4122a4c74.webp"
+  ],
+  "mirror-installation": [
+   "0dc4f901bddb5b31.webp",
+   "d8bb61566997a10a.webp",
+   "6d308c0f55009b0f.webp",
+   "ce3e2eed1e34c9c0.webp",
+   "4655b98cb32af27d.webp",
+   "44a3fc8fd20093d1.webp"
+  ],
+  "tv-mounting": [
+   "745413b6b32c865b.webp",
+   "011491f916f15a18.webp",
+   "3d6a668bae66d030.webp"
+  ],
+  "ptac-installation": [
+   "59c6afe9561f9077.webp",
+   "40cd71d433a99287.webp"
+  ],
+  "dishwasher-repair": [
+   "398d11e170dccb9c.webp"
+  ],
+  "ice-machine-cleaning": [
+   "fcbf84dad7fd6b66.webp"
+  ],
+  "refrigerator-repair": [
+   "d8a29e8807aa4456.webp"
+  ],
+  "washer-installation": [
+   "4f36e463a20f742c.webp"
+  ],
+  "ikea-assembly": [
+   "327a866a3c70e3ce.webp"
+  ],
+  "wallpaper-installation": [
+   "5e6d4aea88bf2f86.webp"
+  ],
+  "ice-machine-repair": [
+   "fcbf84dad7fd6b66.webp"
+  ],
+  "range-installation": [
+   "ae97da20b3e6c47e.webp",
+   "9e59f69b260eb8a5.webp"
+  ],
+  "washer-repair": [
+   "dc928458aefc5133.webp",
+   "46d241d27e71fd1a.webp"
+  ],
+  "light-fixture-installation": [
+   "d6ba9db5317c574e.webp",
+   "1bf674db82d962e7.webp"
+  ],
+  "laminate-floor-installation": [
+   "4b945b9db1d6eb65.webp",
+   "05ff9420fbc34fb7.webp",
+   "1b65cfe2f618c4de.webp",
+   "ec46a84cec474843.webp",
+   "3c5144d5afd21bad.webp",
+   "167ec2db68fa7d4d.webp",
+   "4f95c3a83ec65536.webp",
+   "1a6d09bedfae822d.webp",
+   "fb41311e99ec6cc3.webp"
+  ],
+  "cabinet-hardware-installation": [
+   "b2c2cde968baf958.webp",
+   "2d0c4ae0a5ba3947.webp",
+   "b6ee78c9fd422a82.webp",
+   "7ef1ff8761f3c91f.webp"
+  ],
+  "door-repair": [
+   "8022006b55d94818.webp",
+   "88832345da64f5fc.webp",
+   "6b1d7e8462d0b1e5.webp"
+  ],
+  "leak-repair": [
+   "cb70dcfae44070af.webp",
+   "9cfb2087186b32b1.webp"
+  ],
+  "art-installation": [
+   "489089e55f3e01f2.webp"
+  ],
+  "ac-repair-help": [
+   "015e8889913fd71b.webp"
+  ],
+  "dryer-repair": [
+   "ec618634508adcda.webp"
+  ],
+  "desk-assembly": [
+   "3c9dc8cc8fc6fa72.webp"
+  ],
+  "wardrobe-assembly": [
+   "74e2b49424be6bf8.webp"
+  ],
+  "caulking": [
+   "118bd7c5bc0b1ec3.webp"
+  ],
+  "drywall-repair": [
+   "51bb57fadb1e28d9.webp",
+   "67f7344f355a7abd.webp",
+   "dabc01071d51dccc.webp",
+   "77dde01af8465aae.webp",
+   "ec5360217359fcdc.webp"
+  ],
+  "accent-wall-painting": [
+   "cf5b95734a0b3ecb.webp",
+   "c2a1ed75cf55be5b.webp"
+  ],
+  "interior-painting": [
+   "00a9953fb753f557.webp"
+  ],
+  "bathroom-fixture-installation": [
+   "ef5df5431ab89f1a.webp",
+   "8fe5f096ca76641d.webp"
+  ],
+  "shut-off-valve-installation": [
+   "b9bd01c2ebe1747e.webp",
+   "c20d2a12f272e3ae.webp",
+   "850a28c995abea7b.webp",
+   "e9bb76f73406d322.webp",
+   "0180d66b3bb9710c.webp",
+   "ebf2c62a570a8ed0.webp",
+   "ebbdd734b38b3365.webp",
+   "6a27b586f01980ff.webp",
+   "01bd6e0a8da6f04a.webp",
+   "036ba51e25cd275f.webp"
+  ],
+  "curtain-rod-installation": [
+   "bd46ef0393e50cf7.webp",
+   "617118bd12c9afa5.webp",
+   "87dc662f59191dfb.webp",
+   "f8e44bd87f596832.webp"
+  ],
+  "shelf-installation": [
+   "dc2c700702061f31.webp",
+   "4b66719d51139d51.webp",
+   "1b44d4b39e9e30ac.webp"
+  ]
+ },
+ "heroes": {
+  "dishwasher-installation": "/assets/photo/appliance-services/dishwasher-installation/398d11e170dccb9c.webp",
+  "refrigerator-installation": "/assets/photo/appliance-services/refrigerator-installation/750aa1e92a9e452b.webp",
+  "washer-dryer-installation": "/assets/photo/appliance-services/washer-dryer-installation/1445c9f91cfaecfe.webp",
+  "mirror-installation": "/assets/photo/tv-wall-mounting/mirror-installation/a318f0c17ac25495.webp",
+  "washer-installation": "/assets/photo/appliance-services/washer-installation/9119de60a7b96075.webp",
+  "toilet-installation": "/assets/photo/plumbing/toilet-installation/1bcb8541a042c67a.webp",
+  "projector-installation": "/assets/photo/tv-wall-mounting/projector-installation/17b2b47e71e62e6e.webp",
+  "wall-cabinet-installation": "/assets/photo/tv-wall-mounting/wall-cabinet-installation/wall-cabinet-installation-1354.webp",
+  "through-wall-ac-installation": "/assets/photo/ac-installation/through-wall-ac-installation/82c97c9d1fafd310.webp",
+  "dryer-installation": "/assets/photo/appliance-services/dryer-installation/f91e2c6918e6b817.webp",
+  "range-installation": "/assets/photo/appliance-services/range-installation/b0cce58cdbc22a94.webp",
+  "usb-outlet-installation": "/assets/photo/electrical/outlet-installation/b497978586535d8b.webp",
+  "curtain-rod-installation": "/assets/photo/tv-wall-mounting/curtain-rod-installation/b8d69949029f4a4b.webp",
+  "shelf-installation": "/assets/photo/tv-wall-mounting/shelf-installation/c4a15730dbe7b288.webp",
+  "projector-screen-installation": "/assets/photo/tv-wall-mounting/projector-installation/17b2b47e71e62e6e.webp"
+ }
+}

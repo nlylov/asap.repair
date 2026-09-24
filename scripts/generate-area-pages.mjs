@@ -560,6 +560,7 @@ console.log(`Generated ${pages.length} area landing pages.`);
 execSync(`node ${new URL('./bake-components.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
 execSync(`node ${new URL('./vendor-fonts.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
 execSync(`node ${new URL('./sell-meta-descriptions.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
+execSync(`node ${new URL('./apply-photo-exclusions.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
 execSync(`node ${new URL('./consolidate-entity-graph.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
 // Prose prices ("from $175") belong to the CRM catalog, not to this template: without this
 // step a regeneration reverted dryer-vent-cleaning to a stale figure and broke `--check`.

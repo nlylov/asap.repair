@@ -2328,6 +2328,7 @@ execSync(`node ${new URL('./sell-meta-descriptions.mjs', import.meta.url).pathna
 // og:image into Service.image — otherwise every regeneration reverted 16 pages to
 // the placeholder (it did, twice today).
 execSync(`node ${new URL('./generate-og-cards.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
+execSync(`node ${new URL('./apply-photo-exclusions.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
 execSync(`node ${new URL('./consolidate-entity-graph.mjs', import.meta.url).pathname}`, { stdio: 'inherit' });
 // Prose prices ("from $175") belong to the CRM catalog, not to this template: without this
 // step a regeneration reverted dryer-vent-cleaning to a stale figure and broke `--check`.

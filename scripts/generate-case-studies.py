@@ -871,5 +871,6 @@ if __name__ == "__main__":
 import subprocess as _sp, os as _os
 _sp.run(["node", _os.path.join(_os.path.dirname(__file__), "bake-components.mjs")], check=False)
 _sp.run(["node", _os.path.join(_os.path.dirname(__file__), "vendor-fonts.mjs")], check=False)
+_sp.run(["node", _os.path.join(_os.path.dirname(__file__), "apply-photo-exclusions.mjs")], check=False)
 _sp.run(["node", _os.path.join(_os.path.dirname(__file__), "consolidate-entity-graph.mjs")], check=False)
 _sp.run(["node", _os.path.join(_os.path.dirname(__file__), "generate-calculator-prices.mjs")], check=False)
