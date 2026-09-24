@@ -754,7 +754,21 @@
                 const msgEl = document.getElementById('successMessage');
                 const detailsEl = document.getElementById('successBookingDetails');
 
-                if (result.booked && payload.time) {
+                if (result.tentative && payload.time) {
+                    // The time is HELD for the customer while our dispatcher confirms a couple
+                    // of details by text. It is not a confirmed appointment yet, so this screen
+                    // must never say "confirmed" (bazas-crm #1079 response contract).
+                    const activeSlot = timeSlotsEl?.querySelector('.time-slot.active');
+                    const timeLabel = activeSlot?.dataset?.label || payload.time;
+                    titleEl.textContent = 'Your Time Is Reserved';
+                    msgEl.textContent = "We're holding this time for you. We'll text you in a moment to confirm a couple of quick details.";
+                    detailsEl.style.display = 'block';
+                    detailsEl.innerHTML = [
+                        `<div class="booking-detail"><span>📅</span> <strong>${payload.date}</strong> at <strong>${timeLabel}</strong></div>`,
+                        payload.address ? `<div class="booking-detail"><span>📍</span> ${payload.address}</div>` : '',
+                        `<div class="booking-detail"><span>🔧</span> ${payload.service || 'Handyman Service'}</div>`,
+                    ].filter(Boolean).join('');
+                } else if (result.booked && payload.time) {
                     // Parse the time for display
                     let timeLabel = '';
                     const activeSlot = timeSlotsEl?.querySelector('.time-slot.active');
