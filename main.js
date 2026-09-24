@@ -1554,7 +1554,27 @@ document.addEventListener('DOMContentLoaded', () => {
             trackEvent('generate_lead', leadEventParams);
             // Dynamic success screen with booking details
             let successHtml = '';
-            if (result.booked && payload.time) {
+            if (result.tentative && payload.time) {
+              // Held, not confirmed: our dispatcher texts the customer to confirm a couple of
+              // details first (bazas-crm #1079). Never say "confirmed" here.
+              const activeSlot = inlineTimeSlotsEl?.querySelector('.time-slot.active');
+              const timeLabel = activeSlot?.dataset?.label || payload.time;
+              successHtml = `
+                <div style="text-align:center; padding:40px 20px;">
+                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:20px">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                  <h3 style="font-size:24px; margin-bottom:12px;">Your Time Is Reserved</h3>
+                  <p style="color:var(--text-secondary); font-size:16px; line-height:1.7; margin-bottom:16px;">We're holding this time for you. We'll text you in a moment to confirm a couple of quick details.</p>
+                  <div class="booking-details">
+                    <div class="booking-detail"><span>📅</span> <strong>${payload.date}</strong> at <strong>${timeLabel}</strong></div>
+                    ${payload.address ? `<div class="booking-detail"><span>📍</span> ${payload.address}</div>` : ''}
+                    <div class="booking-detail"><span>🔧</span> ${payload.service || 'Handyman Service'}</div>
+                  </div>
+                </div>
+              `;
+            } else if (result.booked && payload.time) {
               const activeSlot = inlineTimeSlotsEl?.querySelector('.time-slot.active');
               const timeLabel = activeSlot?.dataset?.label || payload.time;
               successHtml = `

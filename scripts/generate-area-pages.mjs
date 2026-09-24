@@ -6,8 +6,8 @@ import { execSync } from 'node:child_process';
 import { join } from 'node:path';
 
 const ASSET_VERSION = '20260726a';
-const MAIN_ASSET_VERSION = '20260801a';
-const LOADER_ASSET_VERSION = '20260801a';
+const MAIN_ASSET_VERSION = '20260923a';
+const LOADER_ASSET_VERSION = '20260923a';
 const ROOT = new URL('..', import.meta.url).pathname;
 
 /* Real width/height from the WebP header, so the hero <img> reserves the right box

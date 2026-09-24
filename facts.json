@@ -443,7 +443,7 @@
       "service category",
       "consent checkbox (Privacy Policy + Terms + SMS consent — required on every submission, not only when booking)"
     ],
-    "confirmationContract": "A booking is confirmed ONLY when the response contains booked:true and an appointmentId. success:true with pendingConfirmation:true means a lead/manual follow-up was created, NOT a scheduled appointment — never tell the user a visit is booked in that case."
+    "confirmationContract": "A booking is confirmed ONLY when the response contains booked:true and an appointmentId. success:true with pendingConfirmation:true means a lead/manual follow-up was created, NOT a scheduled appointment — never tell the user a visit is booked in that case. success:true with tentative:true means the requested time is held while a dispatcher confirms details with the customer by text; it is not a confirmed booking."
   },
   "quotePreparationByCategory": {
     "applianceInstallation": "Send the appliance model number, installation space photo, existing hookups, delivery status, vent path if relevant, water-line or shutoff photo if relevant, gas shutoff photo for gas-ready dryer/range requests, and building or COI requirements.",
