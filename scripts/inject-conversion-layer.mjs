@@ -30,7 +30,7 @@ const PRICING_PANEL = `        <section class="svc-features" id="pricing" aria-l
             <div class="container">
                 <span class="section-tag">Simple, Honest Pricing</span>
                 <h2 class="section-title">Know the Cost <span class="text-accent">Before Anyone Shows Up</span></h2>
-                <p class="section-subtitle">4.9&#9733; average across 73 verified reviews on Google, Yelp and Thumbtack. <a href="/reviews/">Read reviews &rarr;</a></p>
+                <p class="section-subtitle">4.9&#9733; average across 93 verified reviews on Google, Yelp and Thumbtack. <a href="/reviews/">Read reviews &rarr;</a></p>
                 <div class="svc-features__grid">
                     <div class="svc-features__card">
                         <div class="svc-features__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg></div>
@@ -64,7 +64,7 @@ const INSURED_ONLY_CHIP_RE = /<div class="trust-item">(\s*<svg[^>]*>(?:(?!<\/svg
 // the page still carries the old generic set.
 const OLD_CHIPS_RE = /<div class="svc-hero__trust">[\s\S]*?<\/div>\s*<\/div>/;
 const NEW_CHIPS = `<div class="svc-hero__trust">
-                    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>4.9&#9733; &middot; 73 Verified Reviews</div>
+                    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>4.9&#9733; &middot; 93 Verified Reviews</div>
                     <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Free Photo Estimates</div>
                     <div class="trust-item" title="NYC DCWP Home Improvement Contractor License No. 2137199-DCWP"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>DCWP-Licensed &amp; Insured</div>
                     <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Same-Day When Available</div>
@@ -111,7 +111,7 @@ for (const rel of files) {
     touched = true;
   }
 
-  if (html.includes('svc-hero__trust') && !html.includes('73 Verified Reviews')) {
+  if (html.includes('svc-hero__trust') && !html.includes('93 Verified Reviews')) {
     const next = html.replace(OLD_CHIPS_RE, NEW_CHIPS);
     if (next !== html) {
       html = next;

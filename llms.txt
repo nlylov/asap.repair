@@ -13,7 +13,7 @@
 - Primary market: New York City and Western Long Island
 - Business type: NYC DCWP-licensed home improvement contractor and general-liability-insured handyman, repair, installation, assembly, and apartment setup service with COI support
 - Primary customer: NYC homeowners, renters, landlords, property managers, co-op/condo residents, office managers, and people moving into a new apartment
-- Key trust signals: NYC DCWP Home Improvement Contractor License No. 2137199-DCWP, general liability insurance, COI available for NYC co-ops/condos, 1-year workmanship repair guarantee on covered labor (normal wear, misuse, pre-existing conditions, client-supplied materials, and third-party damage excluded), fast scheduling after scope review, photo-based estimates, transparent quotes before work begins, 73 verified Google/Yelp/Thumbtack reviews with additional TaskRabbit testimonials shown separately
+- Key trust signals: NYC DCWP Home Improvement Contractor License No. 2137199-DCWP, general liability insurance, COI available for NYC co-ops/condos, 1-year workmanship repair guarantee on covered labor (normal wear, misuse, pre-existing conditions, client-supplied materials, and third-party damage excluded), fast scheduling after scope review, photo-based estimates, transparent quotes before work begins, 93 verified Google/Yelp/Thumbtack reviews with additional TaskRabbit testimonials shown separately
 - Structured facts: https://asap.repair/facts.json
 
 ## Best short description
@@ -457,4 +457,4 @@ Do not index helper/component paths such as `/components/`, `/_data/`, or `/.wel
 
 ## Last updated
 
-2026-09-13
+2026-09-24

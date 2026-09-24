@@ -69,7 +69,7 @@ if cur and len(lines) < 2: lines.append(cur)
 y = H - 80 - 70 * len(lines)
 for ln in lines:
     dr.text((60, y), ln, font=f_title, fill=(255, 255, 255)); y += 70
-brand = 'Repair ASAP  ·  NYC  ·  DCWP-Licensed & Insured  ·  4.9 stars, 73 reviews'
+brand = 'Repair ASAP  ·  NYC  ·  DCWP-Licensed & Insured  ·  4.9 stars, 93 reviews'
 fb = f_brand
 while dr.textlength(brand, font=fb) > W - 120 and fb.size > 20: fb = font(fb.size - 1, False)
 dr.text((60, H - 62), brand, font=fb, fill=(201, 168, 76))
