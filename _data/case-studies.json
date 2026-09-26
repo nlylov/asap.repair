@@ -2176,7 +2176,11 @@
     "result": "The table kept its wood character while getting a cleaner, more usable protected surface. The work was completed over two days to allow stripping, stain drying, polyurethane application, and drying/curing time; timelines vary by table condition and finish system.",
     "relatedServices": [
       {
-        "title": "Furniture Assembly & Repair",
+        "title": "Wood Furniture Repair",
+        "url": "/services/general-repairs/furniture-repair/"
+      },
+      {
+        "title": "Furniture Assembly",
         "url": "/services/furniture-assembly/"
       },
       {

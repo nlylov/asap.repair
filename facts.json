@@ -58,6 +58,7 @@
     "Laminate flooring, vinyl plank flooring, click-lock flooring, peel-and-stick flooring, baseboards, subfloor preparation, floor repair, and checkerboard floor painting after room and material review",
     "IKEA assembly, bed assembly, desk assembly, dresser assembly, wardrobe/PAX assembly, and wall bed/Murphy bed assembly after product, room, anchoring, and access review",
     "Door installation, blind installation, cabinet hardware installation, caulking, window repair, and gazebo assembly after photo, measurement, building-access, and site-condition review",
+    "Wood furniture repair for solid-wood and mid-range to high-end wood or metal pieces: loose or wobbly joints, cracked or broken legs, rails and stretchers, drawers that stick or drop, sagging wardrobe or freestanding cabinet doors, lifted edge veneer, failed or sticky finishes stripped and refinished, and stripped or broken bolts, brackets, glides and hardware on metal frames; not upholstery, welding, conservation-grade antique restoration, or inexpensive flat-pack pieces where replacement costs less",
     "New apartment setup and COI-ready co-op/condo punch-list work",
     "Interior painting, drywall repair, cabinet painting, trim painting, wallpaper installation/removal, decorative plaster, Tadelakt-style finishes, lime plaster, Venetian plaster, and accent wall work"
   ],
@@ -194,6 +195,7 @@
       "https://asap.repair/services/general-repairs/lock-installation/",
       "https://asap.repair/services/general-repairs/blind-installation/",
       "https://asap.repair/services/general-repairs/cabinet-hardware-installation/",
+      "https://asap.repair/services/general-repairs/furniture-repair/",
       "https://asap.repair/services/general-repairs/caulking/",
       "https://asap.repair/services/general-repairs/window-repair/",
       "https://asap.repair/services/general-repairs/gazebo-assembly/"
@@ -363,6 +365,18 @@
     "caulkingAndSealing": {
       "url": "https://asap.repair/services/general-repairs/caulking/",
       "matchWhen": "tub re-caulking, shower caulk replacement, sink sealing, backsplash edge sealing, window gap sealing, countertop seams, wet-area caulk replacement where no hidden leak is active"
+    },
+    "woodFurnitureRepair": {
+      "url": "https://asap.repair/services/general-repairs/furniture-repair/",
+      "matchWhen": "wood furniture repair NYC, wobbly chair or table, loose chair or table joints, cracked or broken furniture leg, rail or stretcher, drawer that sticks or drops, drawer runner or slide repair, sagging wardrobe or freestanding cabinet door hinges (kitchen cabinet hinges, knobs and pulls route to https://asap.repair/services/general-repairs/cabinet-hardware-installation/), lifted edge veneer, sticky or tacky furniture finish, furniture refinishing, stripped or broken bolts, brackets or glides on a metal furniture frame; for solid-wood and mid-range to high-end pieces, not upholstery, fabric or leather re-covering, welding, conservation-grade antique restoration, or inexpensive flat-pack furniture where replacement costs less",
+      "areaServed": [
+        "Manhattan",
+        "Brooklyn",
+        "Queens",
+        "Staten Island",
+        "Nassau County"
+      ],
+      "pricing": "Per item, labor only, materials extra: catalog service wood-furniture-repair in pricing/catalog/calc-2026-09-01.json (the page and llms-full.txt render the figure from it). $150 work minimum; free photo estimate; $99 on-site assessment credited toward the work."
     }
   },
   "priorityMarkets": [
@@ -456,7 +470,8 @@
     "flooringInstallation": "Send room photos, dimensions, current floor/subfloor condition, product link or material details, transition/baseboard needs, moisture or leveling concerns, and building or COI requirements.",
     "paintingAndWallFinishes": "Send room photos, wall dimensions, finish references, paint or material details, moisture concerns, and access requirements.",
     "furnitureAssembly": "Send the product link or model, box count, room photo, delivery status, room access, and whether wall anchoring, anti-tip restraints, ceiling clearance, packaging removal, or COI paperwork is required.",
-    "generalRepairs": "Send clear photos, measurements, product links if parts are involved, timing, and building access requirements."
+    "generalRepairs": "Send clear photos, measurements, product links if parts are involved, timing, and building access requirements.",
+    "woodFurnitureRepair": "Send close-up photos of the damage, one photo of the whole piece, the brand if known, and whether it is solid wood, veneer, or a metal frame, plus the neighborhood and any co-op/condo COI requirement."
   },
   "regulatedTradeScope": {
     "electrical": "NYC electrical work involving new wiring routes, added circuits, service equipment, new outlet or fixture locations, 220V/240V outlets, EV chargers, or permit-level electrical installations may require a NYC Licensed Master Electrician and DOB permit. Repair ASAP reviews photos and scope before booking fixture/device replacement, setup, and troubleshooting work.",
@@ -510,7 +525,7 @@
     "forPropertyManagers": "https://asap.repair/for-property-managers/",
     "serviceAreas": "https://asap.repair/service-areas/"
   },
-  "lastReviewed": "2026-09-24",
+  "lastReviewed": "2026-09-26",
   "address": {
     "streetAddress": "99-60 64th Ave",
     "addressLocality": "Rego Park",

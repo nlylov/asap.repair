@@ -776,6 +776,12 @@
             "after": " for many single-item jobs",
             "ref": "furniture-assembly-single",
             "sep": "–"
+          },
+          {
+            "before": "Wood furniture repair is quoted per item at ",
+            "after": ", labor only, materials extra",
+            "ref": "wood-furniture-repair",
+            "sep": "–"
           }
         ]
       },
@@ -1082,6 +1088,42 @@
             "after": " with a before/after airflow check",
             "ref": "site:dryer-vent-cleaning.standard.sm",
             "figure": "lo",
+            "in": "html"
+          }
+        ]
+      },
+      {
+        "file": "services/general-repairs/furniture-repair/index.html",
+        "_note": "Priced per item from the catalog's wood-furniture-repair service (one tier, labor only). The customer-visible figures are data-price-src spans. The FAQ answer's structured-data copy, the meta description and the Service Offer's priceSpecification are inlineRanges, so every figure on the page — including the two JSON numbers, written with format \"number\" because schema.org reads minPrice/maxPrice as numbers — comes from the same catalog range and cannot drift from the visible copy.",
+        "inlineRanges": [
+          {
+            "before": "Most repairs run ",
+            "after": " per item for labor only",
+            "ref": "wood-furniture-repair",
+            "sep": "–",
+            "in": "jsonld"
+          },
+          {
+            "before": "\"minPrice\":",
+            "after": ",\"maxPrice\":",
+            "ref": "wood-furniture-repair",
+            "figure": "lo",
+            "format": "number",
+            "in": "jsonld"
+          },
+          {
+            "before": "\"maxPrice\":",
+            "after": ",\"priceCurrency\":\"USD\"}",
+            "ref": "wood-furniture-repair",
+            "figure": "hi",
+            "format": "number",
+            "in": "jsonld"
+          },
+          {
+            "before": "sagging doors, refinishing. ",
+            "after": " per item, labor only. Free photo estimate.",
+            "ref": "wood-furniture-repair",
+            "sep": "–",
             "in": "html"
           }
         ]

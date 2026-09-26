@@ -295,6 +295,7 @@
         "Queens"
       ],
       "serviceSlugs": [
+        "general-repairs/furniture-repair",
         "furniture-assembly",
         "painting/interior-painting",
         "general-repairs"

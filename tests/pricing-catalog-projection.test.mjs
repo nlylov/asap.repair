@@ -737,6 +737,53 @@ test('no page puts HTML markup inside a JSON-LD block', () => {
     assert.ok(blocks > 300, `expected the whole site's JSON-LD to be swept, only saw ${blocks} blocks`);
 });
 
+/* A price range in structured data is a price like any other, and the one shape that cannot carry a
+ * data-price-src marker or a "$" string: schema.org reads Offer.priceSpecification.minPrice/maxPrice
+ * as numbers. The first page to publish one (services/general-repairs/furniture-repair/) binds both
+ * numbers through proseFigures.inlineRanges with format "number". This makes that the rule for every
+ * page: a minPrice/maxPrice the generator does not write is a number nobody will ever update. */
+test('every structured-data price range is written by the generator from the catalog', () => {
+    const specsByFile = new Map(readJson('pricing/site-map.json').proseFigures.files.map((f) => [f.file, f.inlineRanges || []]));
+    const services = new Map(catalog.services.map((s) => [s.key, s]));
+    const tiers = new Map(catalog.services.flatMap((s) => (s.tiers || []).map((t) => [`${s.key}#${t.id}`, t])));
+    const rangeOf = (ref) => {
+        if (tiers.has(ref)) return [tiers.get(ref).lo, tiers.get(ref).hi];
+        if (services.has(ref)) return [services.get(ref).range.lo, services.get(ref).range.hi];
+        return null;
+    };
+    let found = 0;
+    for (const file of everyPage()) {
+        if (!file.endsWith('.html')) continue;
+        for (const [, body] of read(file).matchAll(LD_BLOCK)) {
+            let parsed;
+            try { parsed = JSON.parse(body.trim()); } catch { continue; }
+            const stack = [parsed];
+            while (stack.length) {
+                const node = stack.pop();
+                if (!node || typeof node !== 'object') continue;
+                if (Array.isArray(node)) { stack.push(...node); continue; }
+                if ('minPrice' in node || 'maxPrice' in node) {
+                    found += 1;
+                    const specs = specsByFile.get(file) || [];
+                    const bound = (before, figure) => specs.find((s) =>
+                        s.before === before && s.figure === figure && s.format === 'number' && s.in === 'jsonld');
+                    const lo = bound('"minPrice":', 'lo');
+                    const hi = bound('"maxPrice":', 'hi');
+                    assert.ok(lo && hi, `${file}: JSON-LD minPrice/maxPrice that scripts/generate-calculator-prices.mjs does not write`);
+                    assert.equal(lo.ref, hi.ref, `${file}: minPrice and maxPrice are bound to different catalog refs`);
+                    const range = rangeOf(lo.ref);
+                    assert.ok(range, `${file}: ${lo.ref} is not a catalog service or tier`);
+                    assert.deepEqual([node.minPrice, node.maxPrice], range, `${file}: structured-data range != ${lo.ref}`);
+                    assert.ok(node.minPrice >= REPAIR_MINIMUM, `${file}: structured data prices work below the $${REPAIR_MINIMUM} minimum`);
+                    assert.equal(node.priceCurrency, catalog.currency, `${file}: priceCurrency`);
+                }
+                stack.push(...Object.values(node));
+            }
+        }
+    }
+    assert.ok(found >= 1, 'no structured-data price range found — the furniture-repair Offer was removed or the sweep is broken');
+});
+
 test('every FAQ answer states the same prices in its structured data and in the visible copy', () => {
     const strip = (h) => h.replace(/<[^>]*>/g, ' ').replace(/&mdash;/g, '—').replace(/&amp;/g, '&')
         .replace(/&ndash;/g, '–').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();

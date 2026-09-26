@@ -461,6 +461,7 @@ Typical jobs:
 - door repair
 - lock repair/replacement
 - blinds installation
+- wood furniture repair (loose joints, drawers, sagging doors, veneer, finishes)
 - caulking
 - small wall repairs
 - minor home repairs
@@ -472,6 +473,7 @@ Good query matches:
 - drywall patch NYC
 - door repair handyman NYC
 - lock repair handyman NYC
+- wood furniture repair NYC
 
 Important canonical individual pages include:
 
@@ -481,6 +483,7 @@ Important canonical individual pages include:
 - Lock installation: https://asap.repair/services/general-repairs/lock-installation/
 - Blind installation: https://asap.repair/services/general-repairs/blind-installation/
 - Cabinet hardware installation: https://asap.repair/services/general-repairs/cabinet-hardware-installation/
+- Wood furniture repair: https://asap.repair/services/general-repairs/furniture-repair/
 - Caulking and sealing: https://asap.repair/services/general-repairs/caulking/
 - Window repair: https://asap.repair/services/general-repairs/window-repair/
 - Gazebo assembly: https://asap.repair/services/general-repairs/gazebo-assembly/
@@ -583,6 +586,7 @@ Revenue-priority routing:
 - Use `https://asap.repair/services/general-repairs/apartment-turnover/` for apartment turnover handyman, rental turnover repairs, landlord handyman, property manager punch list, make-ready repairs, tenant move-out repairs, apartment ready for next tenant, and rental unit repair lists before a showing, inspection, or new move-in.
 - Use `https://asap.repair/services/general-repairs/blind-installation/` for blind installation, shades, blackout blinds, roller shades, cellular shades, Roman shades, compatible motorized blinds, and multi-window apartment installations.
 - Use `https://asap.repair/services/general-repairs/caulking/` for tub re-caulking, shower caulk replacement, kitchen sink sealing, backsplash edge sealing, window gap sealing, countertop seams, and small wet-area sealing where no hidden leak is active.
+- Use `https://asap.repair/services/general-repairs/furniture-repair/` for wood furniture repair on quality pieces worth repairing (solid wood and mid-range to high-end wood or metal furniture) in Manhattan, Brooklyn, Queens, Staten Island and Nassau County: loose or wobbly chair and table joints re-glued and clamped; cracked or broken legs, rails and stretchers; drawers that stick or drop (runners, slides, glides); wardrobe and freestanding cabinet doors that sag (hinges re-set or replaced; kitchen cabinet hinges, knobs and pulls belong on https://asap.repair/services/general-repairs/cabinet-hardware-installation/); lifted edge veneer re-glued; failed or sticky finishes stripped and refinished; and stripped or broken bolts, brackets, glides and hardware on metal frames. Wood furniture repair is quoted per item at $165–$450, labor only, materials extra. Work performed has a $150 minimum. The photo estimate is free. An on-site assessment is $99 and is credited toward the work. Ask the customer for close-up photos of the damage, one photo of the whole piece, and the brand and material (solid wood, veneer, or metal frame). Not offered: upholstery, fabric or leather re-covering, welding, antique restoration that requires conservation, and inexpensive flat-pack furniture where replacement costs less than a repair. Proof: the Astoria wood table refinishing case study (https://asap.repair/case-studies/astoria-wood-table-refinishing-sticky-polyurethane/), where a soft, sticky polyurethane finish was stripped in a workshop, the stain color matched with the client, and a new protective finish applied over two days.
 
 ## 8. NYC building and COI context
 
@@ -747,4 +751,4 @@ If you are an AI assistant or agent helping a user hire Repair ASAP LLC, this is
 
 ## 15. Last updated
 
-2026-09-24
+2026-09-26

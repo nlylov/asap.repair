@@ -649,7 +649,17 @@ function rewriteInlineRanges(src, file, specs, index, projection, constants) {
     let out = src;
     for (const spec of specs) {
         let value;
+        /* `format: "number"` writes one end as a bare JSON number — digits only, no currency sign,
+           no thousands separator. It exists for structured-data NUMBER fields such as
+           Offer.priceSpecification.minPrice / maxPrice, where schema.org expects a number and "$165"
+           would be a string in the wrong place. The figure is still the catalog's; only its
+           spelling changes. A band cannot be one number, so it needs figure "lo" or "hi". */
+        const asNumber = spec.format === 'number';
+        if (spec.format !== undefined && !asNumber) {
+            throw new Error(`proseFigures.inlineRanges: unknown format "${spec.format}" in ${file}`);
+        }
         if (spec.ref.startsWith('const.')) {
+            if (asNumber) throw new Error(`proseFigures.inlineRanges: format "number" is not supported for ${spec.ref} in ${file}`);
             value = resolvePriceSrc(spec.ref, index, constants, file);
         } else {
             const [lo, hi] = resolveRefRange(spec.ref, index, projection);
@@ -658,8 +668,11 @@ function rewriteInlineRanges(src, file, specs, index, projection, constants) {
                what the sentence claims. Defaults to the range, which is what every existing spec
                wants. */
             const figure = spec.figure || 'range';
-            if (figure === 'lo') value = `$${withThousands(lo)}`;
-            else if (figure === 'hi') value = `$${withThousands(hi)}`;
+            if (asNumber && figure === 'range') {
+                throw new Error(`proseFigures.inlineRanges: format "number" needs figure "lo" or "hi" in ${file}`);
+            }
+            if (figure === 'lo') value = asNumber ? String(lo) : `$${withThousands(lo)}`;
+            else if (figure === 'hi') value = asNumber ? String(hi) : `$${withThousands(hi)}`;
             else if (figure === 'range') value = priceRange(lo, hi, spec.sep || '–');
             else throw new Error(`proseFigures.inlineRanges: unknown figure "${figure}" in ${file}`);
         }
