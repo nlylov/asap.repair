@@ -21,6 +21,13 @@
 /services/drywall-repair-finishing/*  /services/general-repairs/         301
 /services/minor-tiling-backsplash/*   /services/general-repairs/         301
 
+# ---- GUESSED CONTACT URLS ----
+# Both answered 404; people and assistants type them when looking for the form.
+/contact/                             /#contact                          301
+/contact                              /#contact                          301
+/quote/                               /#contact                          301
+/quote                                /#contact                          301
+
 # ---- REMOVED PAGES ----
 /booking/                             /                                  301
 /booking                              /                                  301
