@@ -86,6 +86,7 @@ function rowsFor(configKey) {
          does not advertise it. */
       if (/\bgas line\b/i.test(sizes.get(s)?.get(sz) ?? '')) continue;
       rows.push({
+        key: s,
         series: series.get(s) ?? s,
         size: sizes.get(s)?.get(sz) ?? sz,
         lo: assessment ? 99 : Math.max(cell[0], 150),
@@ -180,14 +181,27 @@ function serviceCardFor(g) {
 
 /* Four "after" photos borrowed from the service page's own gallery (same markup, same
    thumbnails), so the guide shows the work it prices. Static like the originals — the
-   site has no lightbox; the link leads to the full gallery on the service page. */
+   site has no lightbox; the link leads to the full gallery on the service page.
+   `"gallery": false` on a guide leaves the section out, for a service page whose photos show
+   work the guide does not price: the accent-wall page's gallery is molding, wood-slat and
+   panel installs, which must not sit under "what accent wall painting looks like". */
 function gallerySection(g) {
+  if (g.gallery === false) return '';
   const src = g.cardFrom || g.serviceUrl;
   const html = read(`${src.replace(/^\//, '')}index.html`);
   const cards = [...html.matchAll(/<div class="svc-gallery__card" data-type="([a-z]+)">([\s\S]*?)<\/div>\s*<\/div>/g)]
     .map((m) => ({ type: m[1], body: m[0] }));
   if (!cards.length) return '';
-  const picked = [...cards.filter((c) => c.type === 'after'), ...cards.filter((c) => c.type !== 'after')].slice(0, 4);
+  /* `"galleryExclude": ["<photo>.webp", …]` keeps a photo on the service page but out of the
+     guide, when the service covers more than the guide prices: the cabinet page's gallery
+     opens with a stained dining table, which must not lead "what cabinet painting looks like". */
+  const excluded = g.galleryExclude ?? [];
+  for (const name of excluded) {
+    if (!cards.some((c) => c.body.includes(`/${name}"`))) throw new Error(`cost-guides: galleryExclude "${name}" is not in the gallery of ${src}`);
+  }
+  const shown = cards.filter((c) => !excluded.some((name) => c.body.includes(`/${name}"`)));
+  const picked = [...shown.filter((c) => c.type === 'after'), ...shown.filter((c) => c.type !== 'after')].slice(0, 4);
+  if (!picked.length) return '';
   return `
   <section class="svc-gallery" id="gallery">
     <div class="container">
@@ -216,9 +230,9 @@ function renderGuide(g) {
   const all = tables.flatMap((t) => t.rows).filter((r) => !r.assessment);
   const lo = Math.min(...all.map((r) => r.lo));
   const hi = Math.max(...all.map((r) => r.hi));
-  /* The "from" figure must be the cheapest cell of the calculator mounted on THIS page
-     (a contract test enforces it): on the flooring guide peel-and-stick starts at $175
-     but the page's calculator is laminate, whose floor is $275. */
+  /* The "from" figure is a cell of the calculator mounted on THIS page and never below its
+     cheapest one (a contract test enforces that): on the flooring guide peel-and-stick starts
+     at $175 but the page's calculator is laminate, whose floor is $275. */
   const primaryLo = Math.min(...primary.filter((r) => !r.assessment).map((r) => r.lo));
   const primaryHeading = (g.tables.find(([c]) => c === g.primaryConfig) || [null, g.serviceLabel])[1];
   const description = `${g.description} ${OFFER}`;
@@ -226,14 +240,33 @@ function renderGuide(g) {
   /* Sidebar: one line per series of the primary config, its own min–max. */
   const bySeries = new Map();
   for (const r of primary.filter((x) => !x.assessment)) {
-    const cur = bySeries.get(r.series) ?? { lo: Infinity, hi: 0 };
-    bySeries.set(r.series, { lo: Math.min(cur.lo, r.lo), hi: Math.max(cur.hi, r.hi) });
+    const cur = bySeries.get(r.series) ?? { key: r.key, lo: Infinity, hi: 0 };
+    bySeries.set(r.series, { key: r.key, lo: Math.min(cur.lo, r.lo), hi: Math.max(cur.hi, r.hi) });
   }
   const sidebarRows = [...bySeries.entries()].slice(0, 6);
 
+  /* `"headlineSeries": "<series key>"` makes the H2 lead with that series' own minimum instead
+     of the cheapest cell of the whole calculator. The cabinet catalog splits kitchens from
+     vanities and furniture "so a customer asking about a kitchen is never led with $275";
+     a guide titled for kitchens must not open its price section with the vanity figure.
+     The figure is still a cell of this page's calculator, so it can never sit below it. */
+  let headline = { lo: primaryLo, label: g.tables.length > 1 ? primaryHeading.toLowerCase() : null };
+  if (g.headlineSeries) {
+    const hit = [...bySeries.entries()].find(([, v]) => v.key === g.headlineSeries);
+    if (!hit) throw new Error(`cost-guides: headlineSeries "${g.headlineSeries}" is not a series of "${g.primaryConfig}"`);
+    headline = { lo: hit[1].lo, label: hit[0].toLowerCase() };
+  }
+
+  /* `"costBySeries": true` answers the cost question per job type (the sidebar's figures)
+     instead of one span from the cheapest to the largest scope: "$195 – $1,150" answers
+     nothing for someone with one prehung door, and the service page's own FAQ already
+     breaks the same question down by door type. */
+  const costA = g.costBySeries
+    ? `By job, labor in New York City runs: ${[...bySeries.entries()].map(([s, r]) => `${s} ${range(r.lo, r.hi)}`).join('; ')}.`
+    : `Across the jobs in this guide, labor runs ${range(lo, hi)} in New York City.`;
   const costQ = {
     q: `How much does ${g.serviceLabel} cost in NYC?`,
-    a: `Across the jobs in this guide, labor runs ${range(lo, hi)} in New York City. Photo and text estimates are free; an on-site assessment visit is $99, credited toward the job. Work starts at the $150 minimum and is quoted before anything begins. NYC sales tax is added separately where applicable.`,
+    a: `${costA} Photo and text estimates are free; an on-site assessment visit is $99, credited toward the job. Work starts at the $150 minimum and is quoted before anything begins. NYC sales tax is added separately where applicable.`,
   };
   const faqs = [...g.faq.map(([q, a]) => ({ q, a })), costQ];
 
@@ -332,7 +365,7 @@ ${TRUST_CHIPS}
         <div class="article-content">
 ${g.intro.map((p) => `          <p>${esc(p)}</p>`).join('\n')}
 
-          <h2>${esc(g.serviceLabel.charAt(0).toUpperCase() + g.serviceLabel.slice(1))} prices in NYC: from ${money(primaryLo)}${g.tables.length > 1 ? ` for ${esc(primaryHeading.toLowerCase())}` : ''}</h2>
+          <h2>${esc(g.serviceLabel.charAt(0).toUpperCase() + g.serviceLabel.slice(1))} prices in NYC: from ${money(headline.lo)}${headline.label ? ` for ${esc(headline.label)}` : ''}</h2>
           <p>Across the jobs in this guide, labor runs ${range(lo, hi)} — the low end is a single small job, the high end the largest scope in the tables (a whole apartment or a multi-room project where the guide covers one). Every figure is from the current price catalog (${esc(catalogVersion)}), floored at the $150 work minimum; the exact quote is confirmed from your photos before booking, and NYC sales tax is added separately where applicable.</p>
 ${tables.map((t) => renderTable(t.heading, t.rows)).join('\n')}
 

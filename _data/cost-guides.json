@@ -848,6 +848,323 @@
         "drywall-repair-cost-nyc",
         "furniture-assembly-cost-nyc"
       ]
+    },
+    {
+      "slug": "door-installation-cost-nyc",
+      "tag": "General Repairs",
+      "icon": "🚪",
+      "published": "2026-09-26",
+      "serviceUrl": "/services/general-repairs/door-installation/",
+      "serviceLabel": "door installation",
+      "title": "Door Installation Cost NYC 2026 | Prehung, Slab & Barn",
+      "h1": "How Much Does Door Installation Cost in NYC? (2026 Prices)",
+      "description": "NYC door installation prices: slab, prehung, closet, barn, pocket and storm doors.",
+      "lead": "New door leaning against the hallway wall, still in its wrap? Here is what hanging a slab in an existing frame, setting a prehung door, or installing a closet, barn, pocket or storm door costs in New York City — labor for the door you supply.",
+      "primaryConfig": "door-installation",
+      "costBySeries": true,
+      "tables": [
+        [
+          "door-installation",
+          "Door installation"
+        ]
+      ],
+      "intro": [
+        "A door is priced by how much fitting it needs, not by the door itself: the table runs from a same-size slab on the old hinges, to a slab trimmed, mortised and bored to fit, to a prehung door that replaces the jamb. Prices are labor; the door, jamb, casing and hardware are yours to supply.",
+        "Same ranges as the door installation page calculator."
+      ],
+      "drivers": [
+        "Slab vs prehung: a slab is fitted to the frame you already have; a prehung door comes in its own jamb, so the old jamb comes out and the new one is set plumb in the rough opening.",
+        "Out-of-square frames: pre-war openings settle and lean, so a slab is scribed to the old frame or a prehung jamb is shimmed further. An oversized or out-of-square storm-door opening is its own tier.",
+        "Floor clearance: new flooring, a threshold or a thick rug can mean trimming the bottom of the slab.",
+        "What the hardware bolts into: a barn door track goes into studs, or onto a header board first over plaster or masonry; pocket doors are priced on an existing pocket frame.",
+        "Quantity: on the slab, prehung, closet and pocket lines, two or three doors in one visit are one tier, so label each door and opening before the visit.",
+        "Building rules: co-op and condo COI requirements, permitted work hours and a service-elevator booking for the door delivery decide when the job can be scheduled."
+      ],
+      "included": [
+        "Measuring the opening and checking the frame, swing direction and floor clearance",
+        "Hanging the door, with hinges mortised and the latch and strike fitted",
+        "Trimming, boring and new casing in the tiers that name them",
+        "A swing and latch test so the door closes without scraping or springing open"
+      ],
+      "extra": [
+        "The door, jamb, casing, hinges and lockset — the parts themselves",
+        "Painting, staining and finish trim",
+        "Repairs to a loose or rotted jamb, or correcting an uneven floor — flagged with the adjustment needed before booking"
+      ],
+      "notOurJob": [
+        "Cutting a new opening, removing or re-framing studs, and anything at DOB permit level goes to a licensed contractor. A pocket-door frame kit is stud framing too, so your contractor builds the frame and we hang the slab and fit the track and hardware once it is in."
+      ],
+      "faq": [
+        [
+          "Is a prehung door more expensive to install than a slab?",
+          "Usually, yes. A slab reuses the frame you already have, so the work is fitting the door to it: trimming, mortising the hinges and boring for the lockset. A prehung door arrives in its own jamb, so the old jamb comes out, the new one is shimmed plumb and level in the opening and the casing is reset. When the existing frame is sound and square, a slab is the cheaper route; when the frame is damaged or badly out of square, prehung is usually the better one."
+        ],
+        [
+          "My door frame is out of square. Will a new door fit?",
+          "Usually — few pre-war NYC frames are perfectly square. A slab can be scribed and planed to the frame's actual shape, and a prehung jamb is shimmed until it hangs plumb. Send a photo of the closed door showing the gaps along the top and sides, and the width and height measured at both ends of the opening; that shows which route costs less. A loose or rotted jamb, or a floor that slopes, is flagged with the adjustment needed before we book."
+        ],
+        [
+          "How does a co-op or condo building change a door installation?",
+          "Mostly through paperwork and timing. Many buildings ask for a Certificate of Insurance naming the management company, allow work only on weekdays within set hours, and want the service elevator reserved for the door delivery. Repair ASAP LLC provides the COI at no additional cost; send the building's rules with your photos so the visit is booked inside them. The apartment entry door onto the public hallway is typically fire-rated, with building and code limits, so replacing it needs management sign-off before you order anything; lock changes on it are covered in the lock installation guide."
+        ],
+        [
+          "Can you hang a barn door on a plaster or brick wall?",
+          "Yes. The track carries the whole weight of the door, so it has to bolt into studs. On pre-war plaster or masonry, where the studs are not where the track needs them, a header board is fixed to the wall first and the track mounts to it — that is the middle barn-door tier in the table. Double doors or an oversized, heavy slab are the top tier."
+        ],
+        [
+          "Do you install pocket doors?",
+          "On an existing pocket frame, yes: re-hanging the slab, or replacing the track, rollers and hardware. Building a new pocket into the wall is stud framing, so the frame kit goes to your contractor, and we hang the slab and fit the track and hardware once the frame is in."
+        ],
+        [
+          "Can you replace an exterior entry door or add a storm door on a house?",
+          "Yes. In our Staten Island entry door case study, the old storm door, the door and the worn frame came out, a new prehung exterior door was set plumb, level and square, the unused second lock bore was capped and the perimeter was sealed with low-expansion spray foam, in about three and a half hours; a new storm door with an automatic closer then took about four hours, most of it lock and closer prep. An exterior entry door is quoted from photos of both sides of the opening. For storm doors, a direct swap into an existing storm-door frame is the first storm line in the table, and a new storm door that has to be drilled, shimmed and sealed with a closer is the next."
+        ],
+        [
+          "What should I send for a door installation quote?",
+          "Photos of the opening and the existing door from both sides, the width and height of the opening, the swing direction, the door type or a product link, a photo of the hinges and latch, and your building's COI or work-hour rules. If you are replacing several doors, label each door and opening — sizes that look identical often are not."
+        ]
+      ],
+      "related": [
+        "lock-installation-cost-nyc",
+        "caulking-cost-nyc",
+        "interior-painting-cost-nyc"
+      ]
+    },
+    {
+      "slug": "caulking-cost-nyc",
+      "tag": "General Repairs",
+      "icon": "🛁",
+      "published": "2026-09-26",
+      "serviceUrl": "/services/general-repairs/caulking/",
+      "serviceLabel": "caulking and sealing",
+      "title": "Caulking Cost NYC 2026 | Tub, Shower & Window Sealing",
+      "h1": "How Much Does Caulking and Sealing Cost in NYC? (2026 Prices)",
+      "description": "NYC caulking prices: tub and shower re-caulking, sinks, backsplash, window drafts.",
+      "lead": "Black line along the tub that no longer scrubs out, or a draft around the window frame every winter? Here is what stripping and re-sealing a tub or shower, a sink or backsplash, or sealing windows and doors against drafts costs in New York City.",
+      "primaryConfig": "caulking",
+      "costBySeries": true,
+      "gallery": false,
+      "tables": [
+        [
+          "caulking",
+          "Caulking and sealing"
+        ]
+      ],
+      "intro": [
+        "Caulking is priced by where the joint is, how much of it there is, and whether the old bead has to come out first; stripping moldy or built-up caulk is where the time goes. Standard sealant is included in these prices, chosen per joint: mold-resistant silicone for wet areas, paintable acrylic for trim, polyurethane where the joint moves.",
+        "Same ranges as the caulking page calculator."
+      ],
+      "drivers": [
+        "Old caulk: a new bead on a clean joint is the base case; stripping old, moldy or layered caulk and scraping the residue out adds most of the time.",
+        "Wet or dry joint: tubs, showers, sinks and backsplashes get mold-resistant silicone on a fully dry joint and need about 24 hours before use; trim and baseboard gaps take paintable acrylic and are priced by the room.",
+        "How much joint: one tub or one sink edge is the small tier; two bathrooms, a full kitchen perimeter or a whole apartment of windows is the large one.",
+        "Windows and doors: draft sealing is priced by the number of openings — one or two windows, three to five windows or doors, or six and more.",
+        "What is behind the joint: loose tile, soft drywall or an active leak is flagged before sealing, because caulk would only hide it."
+      ],
+      "included": [
+        "Stripping loose, moldy or failed caulk in the tiers that include it",
+        "Cleaning and drying the joint before sealing",
+        "Standard sealant chosen per joint — mold-resistant silicone, paintable acrylic or polyurethane",
+        "A smooth, even bead, with messy old buildup removed where practical"
+      ],
+      "extra": [
+        "Painting over new paintable caulk on trim and baseboards — a painting line",
+        "Window problems caulk cannot fix: worn weatherstripping, broken balances or a sash that no longer closes are a window repair",
+        "Anything found behind a failed joint — loose tile, soft drywall or a leak — is flagged before sealing, not priced as caulking"
+      ],
+      "notOurJob": [
+        "Mold in or behind the wall, or mold that keeps coming back after a proper re-caulk, is remediation work for a licensed contractor, not a caulk job.",
+        "Facade, roof and above-grade exterior joints are outside handyman scope."
+      ],
+      "faq": [
+        [
+          "Is re-caulking a tub or shower priced differently from sealing windows?",
+          "Yes, because the work is different. A tub or shower is a wet joint: the old bead is stripped, mold and soap residue are cleaned out, the joint is dried and re-sealed with mold-resistant silicone, and the tub or shower should stay unused for about 24 hours while it cures. Window and door sealing is priced by the number of openings rather than by the fixture: the gaps around the frame and trim are sealed against drafts, without a wet-area cure wait. Each has its own line in the table."
+        ],
+        [
+          "Will caulking stop the winter drafts around my windows?",
+          "It stops drafts that come through the gaps where the window frame and trim meet the wall, which are easy to find on a windy day by holding a damp hand or a strip of tissue along the trim. One or two windows are the small tier; three to five openings, or a whole-apartment draft seal, are the larger ones. Air coming through a worn sash, failed weatherstripping or a window that no longer closes tight is a window repair, not a caulk job."
+        ],
+        [
+          "Why does black mold keep coming back in my shower caulk?",
+          "Usually because new caulk went over old caulk, or onto a joint that was still damp, so the mold underneath keeps growing and shows through. Surface mold on the old bead comes out with the bead when it is stripped properly, and the joint is dried before mold-resistant silicone goes on. If it returns within weeks, or the wall behind feels soft, the moisture is coming from somewhere else — that is flagged for the right trade instead of sealed over."
+        ],
+        [
+          "How long before I can use the shower after re-caulking?",
+          "Plan on about 24 hours. Silicone only bonds to a clean, dry joint and needs that time to cure, so if it is the only shower in the apartment, plan the visit around it."
+        ],
+        [
+          "Do you seal the outside of windows and doors?",
+          "The draft-sealing line in the table is priced by the number of windows and doors, and its first tier is the interior perimeter of one or two windows. Facade, roof and exterior joints above ground level are outside handyman scope. For an exterior joint at ground level, such as around a house entry door, send photos: whether it is in scope, and at what price, is confirmed in your quote."
+        ],
+        [
+          "What should I send for a caulking quote?",
+          "Close photos of each joint, the room, the rough length, whether the old caulk is still there, any mold or soft spots, and whether the area is fully dry or still leaking. For drafts, say how many windows and doors there are and at which ones you feel the air."
+        ]
+      ],
+      "related": [
+        "toilet-installation-cost-nyc",
+        "faucet-installation-cost-nyc",
+        "door-installation-cost-nyc"
+      ]
+    },
+    {
+      "slug": "cabinet-painting-cost-nyc",
+      "tag": "Painting",
+      "icon": "🗄️",
+      "published": "2026-09-26",
+      "serviceUrl": "/services/painting/cabinet-painting/",
+      "serviceLabel": "cabinet painting",
+      "title": "Cabinet Painting Cost NYC 2026 | Kitchen & Vanity Prices",
+      "h1": "How Much Does Cabinet Painting Cost in NYC? (2026 Prices)",
+      "description": "NYC cabinet painting prices for kitchens, vanities, islands, built-ins and furniture.",
+      "lead": "Cabinet boxes still solid, but the finish yellowed, chipped or dated? Here is what painting kitchen cabinets costs in New York City, priced by the count of doors and drawer fronts, and what a vanity, an island, built-ins or a single furniture piece costs on its own.",
+      "primaryConfig": "cabinet-painting",
+      "headlineSeries": "kitchen",
+      "costBySeries": true,
+      "galleryExclude": [
+        "42ba1a89db7c5646.webp",
+        "c23df4df8dc5ca5d.webp"
+      ],
+      "tables": [
+        [
+          "cabinet-painting",
+          "Cabinet painting"
+        ]
+      ],
+      "intro": [
+        "Kitchens are the first three rows of the table; the lowest figures in the guide belong to a single vanity or one small furniture piece, not a kitchen. Every tier includes removing and labeling the doors and hardware, degreasing, sanding, a bonding primer, two coats of cabinet-grade paint and reinstallation with the hinges adjusted. Paint, primer and new hardware are extra unless you ask us to supply them.",
+        "Same ranges as the cabinet painting page calculator."
+      ],
+      "drivers": [
+        "Doors and drawer fronts: the count sets the tier — up to 15 fronts for a galley kitchen, 16–30, or 31 and more for a large kitchen.",
+        "Boxes and frames: say whether the face frames and exposed box sides should be painted with the doors; that, and any interiors or shelves, is confirmed in the quote from your photos.",
+        "Grease and old finish: degreasing and a bonding primer are in every tier, but glossy factory finishes, laminate and dark-to-light color changes may need extra prep or primer.",
+        "Sprayed or brushed: spraying gives the smoothest finish where the space can be masked and ventilated and the building allows it; otherwise the paint is brushed and rolled.",
+        "Condition: peeling veneer, swollen MDF, water damage or failing hinges are flagged before paint.",
+        "Pre-1978 buildings: suspected lead paint on original millwork or old painted doors is flagged before any sanding."
+      ],
+      "included": [
+        "Doors, drawer fronts and hardware removed and labeled",
+        "Degreasing and sanding",
+        "Bonding primer and two coats of cabinet-grade paint",
+        "Reinstallation with hinges adjusted"
+      ],
+      "extra": [
+        "Paint, primer and new hardware, unless you ask us to supply them",
+        "Cabinet interiors and shelves, when you want them painted too",
+        "Filling old hardware holes and drilling new ones for different pulls — a cabinet hardware line"
+      ],
+      "notOurJob": [
+        "Peeling veneer, swollen MDF and water-damaged boxes are not fixed by paint — when refacing or replacement is the honest answer, we say so instead of painting over it.",
+        "In pre-1978 buildings we stop and flag suspected lead paint before sanding original millwork, built-ins or old painted doors; lead abatement is a licensed abatement contractor's job."
+      ],
+      "faq": [
+        [
+          "Is cabinet painting priced per door?",
+          "By the count of doors and drawer fronts together — that is the axis the table and the calculator use. A galley kitchen with up to 15 fronts is the small tier, 16–30 the middle one, and 31 or more a large kitchen. Count every door and drawer front, including the small ones over the fridge and the range hood, and send that number with wide photos of each wall of cabinets."
+        ],
+        [
+          "Do you paint the cabinet boxes or only the doors?",
+          "The doors and drawer fronts set the tier. Whether the face frames and exposed box sides are painted along with them, so the kitchen reads as one finish, is confirmed in your quote. Cabinet interiors and shelves are not assumed; say which you want when you send photos."
+        ],
+        [
+          "Why does degreasing matter so much?",
+          "Kitchen cabinets, especially near the range, carry a film of cooking grease that paint will not bond to, and paint over grease is the most common reason painted cabinets chip and peel. Every tier includes degreasing, sanding and a bonding primer before the two coats. Glossy factory finishes, laminate and dark-to-light color changes may need extra prep or primer, which is called out before the work starts."
+        ],
+        [
+          "Sprayed or brushed: which finish will I get?",
+          "Spraying gives the smoothest finish and is used when it is possible: the area has to be masked and ventilated, and the building has to allow it. Where spraying is not practical, the doors and frames are brushed and rolled with the same cabinet-grade paint. Both get the same prep, primer and two coats; which one fits your kitchen is confirmed before the visit."
+        ],
+        [
+          "How long will my kitchen be out of use?",
+          "A full kitchen typically runs 3–5 days, because cabinet paint needs cure time before the doors go back on and get handled. The kitchen stays partly usable throughout: the work can be phased so some cabinets stay in service while doors and drawer fronts dry."
+        ],
+        [
+          "Can I change the cabinet hardware at the same time?",
+          "Yes. The hardware comes off anyway, so new knobs or pulls go on at reinstallation. If the new pulls need different hole spacing, filling the old holes and drilling new ones is priced as a cabinet hardware line — mention it with your photos so it is done before the paint goes on."
+        ]
+      ],
+      "related": [
+        "interior-painting-cost-nyc",
+        "accent-wall-cost-nyc",
+        "wallpaper-installation-cost-nyc"
+      ]
+    },
+    {
+      "slug": "accent-wall-cost-nyc",
+      "tag": "Painting",
+      "icon": "🖌️",
+      "published": "2026-09-26",
+      "serviceUrl": "/services/painting/accent-wall-painting/",
+      "serviceLabel": "accent wall painting",
+      "title": "Accent Wall Cost NYC 2026 | Painted Feature Wall Prices",
+      "h1": "How Much Does an Accent Wall Cost in NYC? (2026 Prices)",
+      "description": "NYC painted accent wall prices: solid, two-tone, stripes, geometric and deep colors.",
+      "lead": "Same beige wall behind the sofa for years? Here is what painting one feature wall costs in New York City — a solid color, a two-tone block, stripes, a geometric pattern or a deep color over a light wall.",
+      "primaryConfig": "accent-wall",
+      "costBySeries": true,
+      "tables": [
+        [
+          "accent-wall",
+          "Painted accent walls"
+        ]
+      ],
+      "intro": [
+        "An accent wall is priced by the look and by the wall: a solid color on a standard wall (up to about 12 ft wide, 8–9 ft ceiling) is the base case, and stripes, geometric layouts, taller walls and heavier patching move it up the table. Paint, primer and tape are extra unless you ask us to supply them. This guide prices painted accent walls; wood slat, molding and acoustic panel walls are quoted from photos.",
+        "Same ranges as the accent wall page calculator."
+      ],
+      "drivers": [
+        "Style: a solid color is the base case; two-tone blocks, stripes and geometric patterns are priced by how many tape lines and colors the layout needs.",
+        "Wall size and ceiling height: walls wider than about 12 ft and pre-war ceilings of 10 ft and up mean more paint, ladder work and cut-in.",
+        "Color change: the deep-color line already includes a tinted primer and two coats, so on a standard wall it starts at the same figure as a solid color; a large wall or a third coat for full coverage is its middle tier.",
+        "Wall condition: small holes are patched in every tier; on the solid-color line, minor patching is the middle tier and heavy patching or a skim coat the top one, while for a patterned wall, damaged or textured plaster is prepped and quoted separately.",
+        "What is on the wall: outlets, shelves, trim and out-of-square corners change how a pattern lands, so layouts are checked against a straight-on photo first.",
+        "More than one wall: two or three walls, solid or patterned, are priced as a set in the multiple-walls line."
+      ],
+      "included": [
+        "Floor and trim protection",
+        "Small holes patched before paint",
+        "Taping and layout, checked against a straight-on photo of the wall",
+        "Primer where the color change needs it, two coats and clean edges"
+      ],
+      "extra": [
+        "Paint, primer and tape, unless you ask us to supply them",
+        "Wallpaper removal, or prep of a textured or damaged wall"
+      ],
+      "notOurJob": [],
+      "faq": [
+        [
+          "Why does a patterned accent wall cost more than a solid one?",
+          "Stripes, chevrons and geometric patterns cost more because the time goes into layout: measuring, marking level lines, taping every edge, painting each color and pulling the tape for a clean line. A solid wall is two coats and clean edges. The table prices each style on its own line, from a standard wall to a tall wall or a complex layout, so the difference for your wall size is visible before you decide."
+        ],
+        [
+          "Does a dark accent wall need extra coats?",
+          "Usually. Navy, forest green or black over a light wall gets a tinted primer and two coats, which the deep-color line already includes; a third coat, for colors that still look patchy, is its middle tier. A dark color also shows every flaw in the wall, so patching matters more than under a pale one."
+        ],
+        [
+          "My wall is pre-war plaster with cracks. Can it still be an accent wall?",
+          "Yes, after prep. Small holes are patched in every tier. On the solid-color line, minor patching is the middle tier, and cracked or uneven plaster that needs heavy patching or a skim coat is the top one; under a patterned design, damaged plaster is prepped and quoted separately. Send a close photo of the cracks and one taken with light raking across the wall from the side, which shows unevenness a straight-on photo hides."
+        ],
+        [
+          "Do you install wood slat or acoustic panel accent walls?",
+          "Those are installation jobs rather than painting, so they are not in this table. Slat, molding and acoustic panel walls are quoted from photos and wall measurements with the product you have chosen. The prices in this guide are for painted accent walls only."
+        ],
+        [
+          "How long does an accent wall take?",
+          "A single accent wall typically takes 3–5 hours, including prep, two coats and clean-up. Patterns with several colors, and deep colors that need a tinted primer, take longer because each coat has to dry before the next."
+        ],
+        [
+          "What should I send for an accent wall quote?",
+          "A straight-on photo of the wall, its approximate width and height, the color or pattern you have in mind, photos of any outlets, shelves, trim or damage on it, and the paint brand and color if you have chosen one."
+        ]
+      ],
+      "related": [
+        "interior-painting-cost-nyc",
+        "wallpaper-installation-cost-nyc",
+        "cabinet-painting-cost-nyc"
+      ],
+      "gallery": false
     }
   ],
   "legacy": [
